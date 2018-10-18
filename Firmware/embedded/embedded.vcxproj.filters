@@ -17,4 +17,20 @@
   <ItemGroup>
     <None Include="embedded.ino" />
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\MS5607.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\I2C.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\MS5607.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\I2C.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
 </Project>
