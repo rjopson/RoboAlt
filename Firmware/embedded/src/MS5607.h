@@ -28,9 +28,20 @@
 #define MS5607_AVERAGE_VALUES			10 //number of values to average for getAverage functions. Careful of increasing this number past 32 bit overflow
 
 class MS5607 {
-public:	
-	MS5607();
+	public:	
+		MS5607();
 
+		uint16_t C[6]; //calibration coefficients
+
+		void initialize(); //initialize sensor, get calibration coefficients
+		uint32_t getRawPressure(); //get raw pressure D1 value
+		uint32_t getRawTemperature(); //get raw temperature D2 value	
+
+	private:
+		uint8_t devAddr;
+		uint8_t buffer[3];
+		
+		void getCalibrationCoefficients(); //get calibration coefficients
 };
 
 #endif
