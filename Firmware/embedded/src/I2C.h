@@ -16,11 +16,11 @@
 #define I2C_READ_TIMEOUT 100
 
 class I2C {
-	public:
-		I2C();
+public:
+	I2C();
 
-		static bool read(const uint8_t& devAddr, const uint8_t& regAddr, const uint8_t& length, uint8_t *data);
-		static uint8_t write(const uint8_t& devAddr, const uint8_t& regAddr, const uint8_t& length, uint8_t *data);
-		static uint8_t writeByte(const uint8_t& devAddr, const uint8_t& regAddr, uint8_t data);
+	static bool read(const uint8_t& devAddr, const uint8_t& regAddr, const uint8_t& length, uint8_t *data);
+	static uint8_t write(const uint8_t& devAddr, const uint8_t& regAddr, const uint8_t& length, uint8_t *data);
+	static uint8_t writeByte(const uint8_t& devAddr, const uint8_t& regAddr, uint8_t data);
 };
 #endif

@@ -83,10 +83,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\I2C.cpp" />
+    <ClCompile Include="src\MPU6050.cpp" />
     <ClCompile Include="src\MS5607.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\I2C.h" />
+    <ClInclude Include="src\MPU6050.h" />
     <ClInclude Include="src\MS5607.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

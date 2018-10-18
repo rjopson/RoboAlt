@@ -24,12 +24,18 @@
     <ClCompile Include="src\I2C.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\MPU6050.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\MS5607.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\I2C.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MPU6050.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

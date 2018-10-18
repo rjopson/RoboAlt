@@ -6,7 +6,9 @@
 
 #include <Wire.h>
 #include "src/I2C.h"
+#include "src/MPU6050.h"
 #include "src/MS5607.h"
+
 
 // the setup function runs once when you press reset or power the board
 void setup() {
