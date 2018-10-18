@@ -29,6 +29,7 @@
 
 class MS5607 {
 public:
+	
 	MS5607();
 
 };
