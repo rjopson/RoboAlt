@@ -1,6 +1,7 @@
 /*
  Name:		ALT_MPU6050.h
 
+  Modified from library originally written by Jeff Rowberg <jeff@rowberg.net> under MIT license
 */
 
 #ifndef _MPU6050_h

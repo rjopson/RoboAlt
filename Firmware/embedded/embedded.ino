@@ -6,6 +6,7 @@
 
 #include <Wire.h>
 #include "src/I2C.h"
+#include "src/H3LIS331DL.h"
 #include "src/MPU6050.h"
 #include "src/MS5607.h"
 
