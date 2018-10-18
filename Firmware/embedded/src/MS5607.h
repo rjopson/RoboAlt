@@ -6,7 +6,6 @@
 #ifndef _MS5607_h
 #define _MS5607_h
 
-//#include "Arduino.h"
 #include "I2C.h"
 
 #define MS5607_ADDRESS_HIGH				0x76 //address pin low (GND) for altimeter board
