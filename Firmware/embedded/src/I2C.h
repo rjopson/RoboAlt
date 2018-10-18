@@ -1,6 +1,9 @@
 /*
  Name:		I2C.h
 
+ This class abstracts read/write commands to I2C devices for conveniency. 
+ 
+ Modified from library originally written by Jeff Rowberg <jeff@rowberg.net> under MIT license
 */
 
 #ifndef _I2C_h
@@ -10,7 +13,7 @@
 #include "Arduino.h"
 #include "Wire.h"
 
-#define I2C_READ_TIMEOUT 500
+#define I2C_READ_TIMEOUT 100
 
 class I2C {
 public:

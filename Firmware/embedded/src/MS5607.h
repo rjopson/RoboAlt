@@ -28,8 +28,7 @@
 #define MS5607_AVERAGE_VALUES			10 //number of values to average for getAverage functions. Careful of increasing this number past 32 bit overflow
 
 class MS5607 {
-public:
-	
+public:	
 	MS5607();
 
 };
