@@ -1,7 +1,11 @@
 /*
- Name:		MS5607.h
-
-*/
+ * MS5607.h
+ *
+ * This class is used to extract 3 byte pressure and temperature data from the MS5607.
+ * This class abstracts all hardware interaction, conversions to engineering units 
+ * used in filtering and flight logic are done in baroAndTemp.h
+ * 
+ */
 
 #ifndef _MS5607_h
 #define _MS5607_h

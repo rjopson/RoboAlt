@@ -1,8 +1,12 @@
 /*
- Name:		ALT_MPU6050.h
-
-  Modified from library originally written by Jeff Rowberg <jeff@rowberg.net> under MIT license
-*/
+ * MPU6050.h
+ *
+ * Modified from library originally written by Jeff Rowberg <jeff@rowberg.net> under MIT license
+ *
+ * This class is used to extract 2 byte accelerometer data from the MPU6050 in
+ * the x,y,z directions of the sensor (y direction is vertical). This class abstracts all hardware 
+ * interaction, conversions to engineering units used in filtering and flight logic are done in IMU.h
+ */
 
 #ifndef _MPU6050_h
 #define _MPU6050_h

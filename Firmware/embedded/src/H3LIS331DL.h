@@ -1,7 +1,10 @@
 /*
- Name:		ALT_H3LIS331DL.h
-
-*/
+ * H3LIS331DL.h
+ *
+ * This class is used to extract 2 byte accelerometer data from the H3LIS331DL in 
+ * the y direction of the sensor (vertical on altimeter). This class abstracts all hardware interaction,
+ * conversions to engineering units used in filtering and flight logic are done in IMU.h
+ */
 
 #ifndef _H3LIS331DL_h
 #define _H3LIS331DL_h

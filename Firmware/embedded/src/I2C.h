@@ -1,5 +1,5 @@
 /*
- Name:		I2C.h
+ * I2C.h
 
  This class abstracts read/write commands to I2C devices for conveniency. 
  

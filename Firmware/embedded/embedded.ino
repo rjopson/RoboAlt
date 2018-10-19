@@ -10,6 +10,9 @@
 #include "src/MPU6050.h"
 #include "src/MS5607.h"
 
+#include "src/sensorOffset.h"
+#include "src/IMU.h"
+
 
 // the setup function runs once when you press reset or power the board
 void setup() {
