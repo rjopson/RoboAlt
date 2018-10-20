@@ -45,14 +45,16 @@ int32_t IMU::getReducedAcceleration(const int16_t& bytesAccelMPU, const int16_t&
  * result is 1 or -1, which is used to change sign of mapped accelerometer readings
  *
  */
-void IMU::setOrientation(const int16_t& acceleration) {
+int8_t IMU::setOrientation(const int16_t& acceleration) {
 
 	//if orientation is positive, return 1, if negative return 0
 	if (acceleration > 0) { //sensor postive direction aligns with vertical
 		orientation = 1;
+		return orientation;
 	}
 	else {//orientationSum < 0
 		orientation = -1;
+		return orientation;
 	}
 }
 
@@ -75,9 +77,9 @@ int32_t IMU::map(const int32_t& input,
 /* Choose which accelerometer to use for generating generic acceleration used in filters and flight logic
  * Returns 1 if measurement is below 16 g's, 0 if MPU sensor is pegged > 16 g's
  */
-bool IMU::chooseAccelerometer(const int16_t& signedAccelMPU) {
+bool IMU::chooseAccelerometer(const int16_t& signedBytesMPU) {
 
-	if (signedAccelMPU > -TWO_BYTES + 5 && signedAccelMPU < TWO_BYTES - 5) { //above 16 g's
+	if (signedBytesMPU > -TWO_BYTES + 5 && signedBytesMPU < TWO_BYTES - 5) { //above 16 g's
 		return 1;
 	}
 	else { //above 16 g's

@@ -13,7 +13,8 @@
 #ifndef _ALT_IMU_h
 #define _ALT_IMU_h
 
-#include "sensorOffset.h"
+//#include "sensorOffset.h"
+#include <inttypes.h>
 
 //values used for mapping each accelerometer raw to engineering units 
 #define TWO_BYTES		32767
@@ -32,15 +33,14 @@ public:
 									const int16_t& bytesAccelH3LIS, 
 									const int16_t& bytesOffsetH3LIS); //multiply orientation, subtract offsets, choose which accelerometer to use, map data
 
-private:
-	int8_t orientation; //up (1) or down (-1) orientation of altimeter on pad. 
-
-	void setOrientation(const int16_t& acceleration); //determine orientation of altimeter on pad
-	int32_t map(const int32_t& input, 
-				const int32_t& inputMin, const int32_t& inputMax, 
-				const int32_t& outputMin, const int32_t& outputMax); //map input byte data to engineering values
-	bool chooseAccelerometer(const int16_t& signedAccelMPU);// choose which accelerometer to use for generating generic "acceleration" used in filters and flight logic
+//Private
+	int8_t setOrientation(const int16_t& acceleration); //determine orientation of altimeter on pad
+	int32_t map(const int32_t& input,
+		const int32_t& inputMin, const int32_t& inputMax,
+		const int32_t& outputMin, const int32_t& outputMax); //map input byte data to engineering values
+	bool chooseAccelerometer(const int16_t& signedBytesMPU);// choose which accelerometer to use for generating generic "acceleration" used in filters and flight logic
 	int32_t mapAcceleration(const int32_t& bytesData, const int32_t& scaleIn, const int32_t& scaleOut);
+	int8_t orientation; //up (1) or down (-1) orientation of altimeter on pad. 
 };
 
 #endif
