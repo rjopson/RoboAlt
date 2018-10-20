@@ -5,10 +5,10 @@
 */
 
 #include <Wire.h>
-#include "src/I2C.h"
-#include "src/H3LIS331DL.h"
-#include "src/MPU6050.h"
-#include "src/MS5607.h"
+#include "driver/I2C.h"
+#include "driver/H3LIS331DL.h"
+#include "driver/MPU6050.h"
+#include "driver/MS5607.h"
 
 #include "src/sensorOffset.h"
 #include "src/IMU.h"
