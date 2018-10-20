@@ -82,6 +82,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\baroAndTemp.cpp" />
+    <ClCompile Include="src\calculateAltitude.cpp" />
     <ClCompile Include="src\H3LIS331DL.cpp" />
     <ClCompile Include="src\I2C.cpp" />
     <ClCompile Include="src\IMU.cpp" />
@@ -90,6 +92,8 @@
     <ClCompile Include="src\sensorOffset.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\baroAndTemp.h" />
+    <ClInclude Include="src\calculateAltitude.h" />
     <ClInclude Include="src\H3LIS331DL.h" />
     <ClInclude Include="src\I2C.h" />
     <ClInclude Include="src\IMU.h" />

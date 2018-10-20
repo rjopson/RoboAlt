@@ -155,10 +155,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\embedded\src\baroAndTemp.cpp" />
+    <ClCompile Include="..\embedded\src\calculateAltitude.cpp" />
     <ClCompile Include="..\embedded\src\IMU.cpp" />
     <ClCompile Include="unitTest.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\embedded\src\baroAndTemp.h" />
+    <ClInclude Include="..\embedded\src\calculateAltitude.h" />
     <ClInclude Include="..\embedded\src\IMU.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

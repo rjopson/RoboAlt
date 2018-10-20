@@ -21,9 +21,21 @@
     <ClCompile Include="..\embedded\src\IMU.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\embedded\src\baroAndTemp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\embedded\src\calculateAltitude.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\embedded\src\IMU.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\embedded\src\baroAndTemp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\embedded\src\calculateAltitude.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
