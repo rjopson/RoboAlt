@@ -45,6 +45,9 @@
     <ClCompile Include="driver\AT45DB641.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="driver\buzzer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\IMU.h">
@@ -75,6 +78,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="driver\pins.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="driver\buzzer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

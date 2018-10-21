@@ -9,6 +9,8 @@
 
 //Drivers
 #include "driver/pins.h"
+#include "driver/AT45DB641.h"
+#include "driver/buzzer.h"
 #include "driver/I2C.h"
 #include "driver/H3LIS331DL.h"
 #include "driver/MPU6050.h"

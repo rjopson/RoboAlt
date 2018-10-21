@@ -13,4 +13,7 @@
 #define PIN_SLAVESELECT				10 //ss
 #define PIN_WRITE_PROTECT			7 //WP pin for write protection 
 
+//buzzer
+#define PIN_BEEPER_DIGITAL_PIN		6 //output digital pin which controls buzzer
+
 #endif
