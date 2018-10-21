@@ -20,6 +20,6 @@ public:
 
 	int32_t calculateAltitudeAGL(const int32_t& pressure, const int32_t& pressureGround);
 	int32_t calculateAltitudeMSL(const int32_t& pressure);
-	int32_t altitudeLookup(const uint8_t& index);
+	int32_t altitudeLookup(const uint8_t& index); //lookup table of altitude values
 };
 #endif

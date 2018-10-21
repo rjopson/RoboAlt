@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "unitTest", "unitTest\unitTe
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Wire", "..\..\..\..\..\AppData\Local\arduino15\packages\arduino\hardware\samd\1.6.19\libraries\Wire\Wire.vcxitems", "{D0EE87F1-7CAF-4963-94F0-887669AF1F87}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SPI", "..\..\..\..\..\AppData\Local\arduino15\packages\arduino\hardware\samd\1.6.19\libraries\SPI\SPI.vcxitems", "{3EB4A571-2C91-4DD7-855B-F706FE7778B0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64

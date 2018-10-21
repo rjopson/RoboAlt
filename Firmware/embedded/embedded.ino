@@ -4,7 +4,11 @@
  Author:	Jim
 */
 
+#include <SPI.h>
 #include <Wire.h>
+
+//Drivers
+#include "driver/pins.h"
 #include "driver/I2C.h"
 #include "driver/H3LIS331DL.h"
 #include "driver/MPU6050.h"

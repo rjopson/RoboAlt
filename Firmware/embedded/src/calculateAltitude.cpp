@@ -48,12 +48,12 @@ int32_t calculateAltitude::calculateAltitudeMSL(const int32_t& pressure) {
 /* Returns altitude in 100*meters for input index. 
  * -altitude every 2^10 Pascals
  * -highest to lowest altitude (lowest to highest pressure)
- *
  */
 int32_t calculateAltitude::altitudeLookup(const uint8_t& index) {
 
 	int32_t altitudeTable[104] = {
 
+	//Altitude,  pressure
 		3089890, //1024
 		2632770, //2048
 		2369640, //3072

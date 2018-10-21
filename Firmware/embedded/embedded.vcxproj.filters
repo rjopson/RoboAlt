@@ -42,6 +42,9 @@
     <ClCompile Include="driver\H3LIS331DL.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="driver\AT45DB641.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\IMU.h">
@@ -66,6 +69,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="driver\H3LIS331DL.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="driver\AT45DB641.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="driver\pins.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
