@@ -84,6 +84,7 @@
   <ItemGroup>
     <ClCompile Include="driver\AT45DB641.cpp" />
     <ClCompile Include="driver\buzzer.cpp" />
+    <ClCompile Include="driver\pyro.cpp" />
     <ClCompile Include="src\baroAndTemp.cpp" />
     <ClCompile Include="src\calculateAltitude.cpp" />
     <ClCompile Include="driver\H3LIS331DL.cpp" />
@@ -97,6 +98,7 @@
     <ClInclude Include="driver\AT45DB641.h" />
     <ClInclude Include="driver\buzzer.h" />
     <ClInclude Include="driver\pins.h" />
+    <ClInclude Include="driver\pyro.h" />
     <ClInclude Include="src\baroAndTemp.h" />
     <ClInclude Include="src\calculateAltitude.h" />
     <ClInclude Include="driver\H3LIS331DL.h" />

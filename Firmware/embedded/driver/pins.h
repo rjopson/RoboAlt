@@ -1,10 +1,9 @@
 /*
- * Pins.h
+ * pins.h
 */
 
 #ifndef _PINS_H
 #define _PINS_H
-
 
 //AT45DB641
 #define PIN_DATAOUT 				11 //MOSI
@@ -15,5 +14,13 @@
 
 //buzzer
 #define PIN_BEEPER_DIGITAL_PIN		6 //output digital pin which controls buzzer
+
+//Pyro Channels
+#define ALT_APO_CONTINUITY			A2
+#define ALT_MAIN_CONTINUITY			A3
+#define ALT_THIRD_CONTINUITY		A4
+#define ALT_APO_OUTPUT				2//atmega328 4
+#define ALT_MAIN_OUTPUT				3//atmega328 3
+#define ALT_THIRD_OUTPUT			4//atmega328 5
 
 #endif
