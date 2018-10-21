@@ -162,3 +162,20 @@ void AT45DB641::transferBufferToMemory(const uint8_t& bufferSwitchInput, const u
 	//Wait for signal from chip to confirm successful memory transfer
 	confirmTransfer();
 }
+
+/* Public function to erase page of data
+ *
+ */
+void AT45DB641::erasePage(const uint16_t& pageAddressInput) {
+	
+	spiToggleCS(); //toggle to send command
+	spiTransfer(AT45DB641_PAGE_ERASE); //send page erase
+
+	//Send 15 page address bits which specify page in main memory and 9 dummy bits
+	spiTransfer((unsigned char)(pageAddressInput >> 7));
+	spiTransfer((unsigned char)(pageAddressInput << 1));
+	spiTransfer(0x00); //dummy bits
+
+	//Wait for signal from chip to confirm successful memory transfer
+	confirmTransfer();
+}
