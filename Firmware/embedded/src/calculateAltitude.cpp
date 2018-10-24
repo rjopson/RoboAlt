@@ -22,7 +22,6 @@ int32_t calculateAltitude::calculateAltitudeAGL(const int32_t& pressure, const i
  * -Sensor is good to 10 mbar (1000 Pa, which is about 2^10). 
  * -Lookup table is every 2^10 Pascals (104 altitudes)
  * -Between altitude values, linear interpolation
- *
  */
 int32_t calculateAltitude::calculateAltitudeMSL(const int32_t& pressure) {
 
