@@ -7,7 +7,9 @@
 #ifndef _PYRO_h
 #define _PYRO_h
 
+#include <inttypes.h>
 #include "Arduino.h"
+#include "pins.h"
 
 //pyroSelectionIn selection, input to determine which digital output pin and analogRead pin
 #define ALT_APO		1

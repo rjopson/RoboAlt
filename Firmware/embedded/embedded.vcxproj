@@ -89,6 +89,7 @@
     <ClCompile Include="src\calculateAltitude.cpp" />
     <ClCompile Include="driver\H3LIS331DL.cpp" />
     <ClCompile Include="driver\I2C.cpp" />
+    <ClCompile Include="src\flightLogic.cpp" />
     <ClCompile Include="src\IMU.cpp" />
     <ClCompile Include="driver\MPU6050.cpp" />
     <ClCompile Include="driver\MS5607.cpp" />
@@ -103,6 +104,7 @@
     <ClInclude Include="src\calculateAltitude.h" />
     <ClInclude Include="driver\H3LIS331DL.h" />
     <ClInclude Include="driver\I2C.h" />
+    <ClInclude Include="src\flightLogic.h" />
     <ClInclude Include="src\IMU.h" />
     <ClInclude Include="driver\MPU6050.h" />
     <ClInclude Include="driver\MS5607.h" />

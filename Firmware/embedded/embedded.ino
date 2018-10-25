@@ -20,6 +20,7 @@
 #include "src/IMU.h"
 #include "src/baroAndTemp.h"
 #include "src/calculateAltitude.h"
+#include "src/flightLogic.h"
 
 
 // the setup function runs once when you press reset or power the board

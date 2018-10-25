@@ -32,18 +32,18 @@ void pyro::setPins() {
 	switch (pyroSelection) {
 
 	case ALT_APO:
-		pin = ALT_APO_OUTPUT;
-		continuity = ALT_APO_CONTINUITY;
+		pin = APO_OUTPUT;
+		continuity = APO_CONTINUITY;
 		break;
 
 	case ALT_MAIN:
-		pin = ALT_MAIN_OUTPUT;
-		continuity = ALT_MAIN_CONTINUITY;
+		pin = MAIN_OUTPUT;
+		continuity = MAIN_CONTINUITY;
 		break;
 
 	case ALT_THIRD:
-		pin = ALT_THIRD_OUTPUT;
-		continuity = ALT_THIRD_CONTINUITY;
+		pin = THIRD_OUTPUT;
+		continuity = THIRD_CONTINUITY;
 		break;
 	}
 }
