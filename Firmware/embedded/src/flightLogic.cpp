@@ -30,7 +30,7 @@ void flightLogic::initialize(int32_t altitudeMainDeployUser) {
 *
 */
 uint8_t flightLogic::update(const int32_t& acceleration, const int32_t& velocity, const int32_t& altitude,
-							const int16_t& gyroX, const int16_t& gyroY, const int16_t& gyroZ) {
+						const int16_t& gyroX, const int16_t& gyroY, const int16_t& gyroZ) {
 
 	switch (flightStatus) {
 

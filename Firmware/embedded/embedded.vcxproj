@@ -104,6 +104,7 @@
     <ClInclude Include="src\calculateAltitude.h" />
     <ClInclude Include="driver\H3LIS331DL.h" />
     <ClInclude Include="driver\I2C.h" />
+    <ClInclude Include="src\dataRecord.h" />
     <ClInclude Include="src\flightLogic.h" />
     <ClInclude Include="src\IMU.h" />
     <ClInclude Include="driver\MPU6050.h" />
