@@ -24,6 +24,7 @@
 #include "src/flightLogic.h"
 
 #include "src/dataStorage.h"
+#include "src/userSettings.h"
 
 
 // the setup function runs once when you press reset or power the board

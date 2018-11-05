@@ -95,6 +95,7 @@
     <ClCompile Include="driver\MPU6050.cpp" />
     <ClCompile Include="driver\MS5607.cpp" />
     <ClCompile Include="src\sensorOffset.cpp" />
+    <ClCompile Include="src\userSettings.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="driver\AT45DB641.h" />
@@ -112,6 +113,7 @@
     <ClInclude Include="driver\MPU6050.h" />
     <ClInclude Include="driver\MS5607.h" />
     <ClInclude Include="src\sensorOffset.h" />
+    <ClInclude Include="src\userSettings.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

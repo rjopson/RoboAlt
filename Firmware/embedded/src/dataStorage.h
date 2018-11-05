@@ -29,7 +29,7 @@ public:
 	uint16_t readInt16();
 	uint32_t readInt32();
 
-	AT45DB641 dataFlash;
+	AT45DB641 dataFlashChip;
 	uint8_t bufferSwitch; //track which buffer is being read from/written to
 	uint16_t bufferCount; //track location within page data being read/written
 	uint16_t pageCount; //track page number data being read/written. Update within class

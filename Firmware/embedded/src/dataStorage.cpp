@@ -39,7 +39,7 @@ void dataStorage::endWrite() {
 
 	if (bufferCount != 0) { //make sure page wasn't just written
 
-		dataFlash.bufferToMemory(bufferSwitch, pageCount);
+		dataFlashChip.bufferToMemory(bufferSwitch, pageCount);
 		pageCount++;
 		bufferCount = 0;
 	}
@@ -50,15 +50,15 @@ void dataStorage::endWrite() {
  * -bufferCount - between 0 and 264, if equal to 264 write buffer to page
  * -pageCount - if above happens, add 1 to page count
  */
-void dataStorage::writeByte(const byte& data) {
+void dataStorage::writeByte(const uint8_t& data) {
 
-	dataFlash.writeByteToBuffer(bufferSwitch, bufferCount, data);
+	dataFlashChip.writeByteToBuffer(bufferSwitch, bufferCount, data);
 	bufferCount++;
 
 	//if max bytes in buffer is reached, transfer to memory
 	if (bufferCount == BUFFER_LENGTH) {
 
-		dataFlash.bufferToMemory(bufferSwitch, pageCount);
+		dataFlashChip.bufferToMemory(bufferSwitch, pageCount);
 		pageCount++;
 		bufferCount = 0;
 		flipBuffer();
@@ -90,7 +90,7 @@ void dataStorage::startRead(const uint16_t& pageAddress) {
 	bufferSwitch = 1;
 
 	//Transfer page of data from main memory to buffer to begin read and update count
-	dataFlash.memoryToBuffer(bufferSwitch, pageCount);
+	dataFlashChip.memoryToBuffer(bufferSwitch, pageCount);
 }
 
 /* Read byte of data to flash. Updates internal variables:
@@ -101,7 +101,7 @@ void dataStorage::startRead(const uint16_t& pageAddress) {
 uint8_t dataStorage::readByte() {
 
 	uint8_t data;
-	data = dataFlash.readByteFromBuffer(bufferSwitch, bufferCount);
+	data = dataFlashChip.readByteFromBuffer(bufferSwitch, bufferCount);
 	bufferCount++;
 
 	//if buffer count reaches size of page, get new page and update buffer and page numbers
@@ -109,7 +109,7 @@ uint8_t dataStorage::readByte() {
 
 		flipBuffer();
 		pageCount++;
-		dataFlash.memoryToBuffer(bufferSwitch, pageCount);
+		dataFlashChip.memoryToBuffer(bufferSwitch, pageCount);
 		bufferCount = 0;
 	}
 }
