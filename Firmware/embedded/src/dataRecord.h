@@ -35,9 +35,9 @@ public:
 	uint32_t MS5607_pressure; //raw 4 byte pressure value from sensor
 	uint32_t MS5607_temperature; //raw 4 byte temperature value from sensor		
 	uint16_t voltageAnalog; //10 bit arduino
-	uint16_t continuityApo; //1 is good continuity, 0 is no continuity
-	uint16_t continuityMain; //1 is good continuity, 0 is no continuity
-	uint16_t continuityThird; //1 is good continuity, 0 is no continuity
+	uint16_t continuityApo; 
+	uint16_t continuityMain; 
+	uint16_t continuityThird; 
 
 	//offsets at liftoff
 	int16_t mpuOffset; //16 bit number, -16->16 g's

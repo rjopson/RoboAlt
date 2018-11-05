@@ -1,5 +1,5 @@
 /*
- * AT45DB641.h
+ * AT45DB641.cpp
  */
 
 #include "AT45DB641.h"
@@ -81,10 +81,10 @@ void AT45DB641::confirmTransfer() {
 /* Read byte of data from SRAM buffer
  *
  */
-uint8_t AT45DB641::readByteFromBuffer(const uint8_t& bufferSwitchInput, const uint16_t& bufferAddressInput) {
+uint8_t AT45DB641::readByteFromBuffer(const uint8_t& bufferSwitch, const uint16_t& bufferAddress) {
 	
 	spiToggleCS(); //toggle to send command
-	if (bufferSwitchInput == 1) {
+	if (bufferSwitch == 1) {
 		spiTransfer(AT45DB641_BUFFER_1_READ);
 	}
 	else { //bufferSwitchInput == 2
@@ -93,8 +93,8 @@ uint8_t AT45DB641::readByteFromBuffer(const uint8_t& bufferSwitchInput, const ui
 
 	//Send 15 dummy bits, 9 buffer address bits (BFA8-BFA0) to choose location to pull from 264 byte buffer
 	spiTransfer(0x00);
-	spiTransfer((unsigned char)(bufferAddressInput >> 8)); //Most significant bit
-	spiTransfer((unsigned char)(bufferAddressInput));
+	spiTransfer((unsigned char)(bufferAddress >> 8)); //Most significant bit
+	spiTransfer((unsigned char)(bufferAddress));
 	spiTransfer(0x00);
 	return spiTransfer(0x00); //send dummy byte to read result
 }
@@ -102,10 +102,10 @@ uint8_t AT45DB641::readByteFromBuffer(const uint8_t& bufferSwitchInput, const ui
 /* Transfer page of data from memory to SRAM buffer
  *
  */
-void AT45DB641::memoryToBuffer(const uint8_t& bufferSwitchInput, const uint16_t& pageAddressInput) {
+void AT45DB641::memoryToBuffer(const uint8_t& bufferSwitch, const uint16_t& pageAddress) {
 
 	spiToggleCS(); //toggle to send command
-	if (bufferSwitchInput == 1) {
+	if (bufferSwitch == 1) {
 		spiTransfer(AT45DB641_MEMORY_PAGE_TO_BUFFER_1);
 	}
 	else { //bufferSwitchInput == 2
@@ -113,8 +113,8 @@ void AT45DB641::memoryToBuffer(const uint8_t& bufferSwitchInput, const uint16_t&
 	}
 
 	//Send 15 page address bits which specify page in main memory and 9 dummy bits
-	spiTransfer((unsigned char)(pageAddressInput >> 7));
-	spiTransfer((unsigned char)(pageAddressInput << 1));
+	spiTransfer((unsigned char)(pageAddress >> 7));
+	spiTransfer((unsigned char)(pageAddress << 1));
 	spiTransfer(0x00); //dummy bits
 
 	//Wait for signal from chip to confirm successful memory transfer
@@ -124,7 +124,7 @@ void AT45DB641::memoryToBuffer(const uint8_t& bufferSwitchInput, const uint16_t&
 /* Write byte of data to SRAM buffer
  *
  */
-void AT45DB641::writeByteToBuffer(const uint8_t& bufferSwitchInput, const uint16_t& bufferAddressInput, const uint16_t& dataInput) {
+void AT45DB641::writeByteToBuffer(const uint8_t& bufferSwitchInput, const uint16_t& bufferAddress, const uint16_t& dataInput) {
 
 	spiToggleCS(); //toggle to send command
 	if (bufferSwitchInput == 1) {
@@ -136,18 +136,18 @@ void AT45DB641::writeByteToBuffer(const uint8_t& bufferSwitchInput, const uint16
 
 	//Send 15 dummy bits, 9 buffer address bits (BFA8-BFA0) to choose location to place in 264 byte buffer
 	spiTransfer(0x00);
-	spiTransfer((unsigned char)(bufferAddressInput >> 8)); //Most significant bit
-	spiTransfer((unsigned char)(bufferAddressInput));
+	spiTransfer((unsigned char)(bufferAddress>> 8)); //Most significant bit
+	spiTransfer((unsigned char)(bufferAddress));
 	spiTransfer(dataInput);
 }
 
 /* Write page of data from SRAM buffer to main memory
  *
  */
-void AT45DB641::transferBufferToMemory(const uint8_t& bufferSwitchInput, const uint16_t& pageAddressInput) {
+void AT45DB641::bufferToMemory(const uint8_t& bufferSwitch, const uint16_t& pageAddress) {
 
 	spiToggleCS(); //toggle to send command
-	if (bufferSwitchInput == 1) {
+	if (bufferSwitch == 1) {
 		spiTransfer(AT45DB641_BUFFER_1_TO_MEMORY);
 	}
 	else { //bufferSwitchInput == 2
@@ -155,8 +155,8 @@ void AT45DB641::transferBufferToMemory(const uint8_t& bufferSwitchInput, const u
 	}
 
 	//Send 15 page address bits which specify page in main memory and 9 dummy bits
-	spiTransfer((unsigned char)(pageAddressInput >> 7));
-	spiTransfer((unsigned char)(pageAddressInput << 1));
+	spiTransfer((unsigned char)(pageAddress >> 7));
+	spiTransfer((unsigned char)(pageAddress << 1));
 	spiTransfer(0x00); //dummy bits
 
 	//Wait for signal from chip to confirm successful memory transfer
@@ -166,14 +166,14 @@ void AT45DB641::transferBufferToMemory(const uint8_t& bufferSwitchInput, const u
 /* Public function to erase page of data
  *
  */
-void AT45DB641::erasePage(const uint16_t& pageAddressInput) {
+void AT45DB641::erasePage(const uint16_t& pageAddress) {
 	
 	spiToggleCS(); //toggle to send command
 	spiTransfer(AT45DB641_PAGE_ERASE); //send page erase
 
 	//Send 15 page address bits which specify page in main memory and 9 dummy bits
-	spiTransfer((unsigned char)(pageAddressInput >> 7));
-	spiTransfer((unsigned char)(pageAddressInput << 1));
+	spiTransfer((unsigned char)(pageAddress >> 7));
+	spiTransfer((unsigned char)(pageAddress << 1));
 	spiTransfer(0x00); //dummy bits
 
 	//Wait for signal from chip to confirm successful memory transfer

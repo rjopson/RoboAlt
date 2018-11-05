@@ -60,10 +60,10 @@ public:
 	unsigned char readRegisterStatus(); //Read register status and return. 
 	bool checkTimeout(); //make sure we haven't been waiting longer than timeout
 	void confirmTransfer(); //wait for success code for memory transfer functions
-	uint8_t readByteFromBuffer(const uint8_t& bufferSwitchInput, const uint16_t& bufferAddressInput);
-	void memoryToBuffer(const uint8_t& bufferSwitchInput, const uint16_t& pageAddressInput);
-	void writeByteToBuffer(const uint8_t& bufferSwitchInput, const uint16_t& bufferAddressInput, const uint16_t& dataInput);
-	void transferBufferToMemory(const uint8_t& bufferSwitchInput, const uint16_t& pageAddressInput);
-	void erasePage(const uint16_t& pageAddressInput);
+	uint8_t readByteFromBuffer(const uint8_t& bufferSwitch, const uint16_t& bufferAddress);
+	void memoryToBuffer(const uint8_t& bufferSwitch, const uint16_t& pageAddress);
+	void writeByteToBuffer(const uint8_t& bufferSwitch, const uint16_t& bufferAddress, const uint16_t& data);
+	void bufferToMemory(const uint8_t& bufferSwitch, const uint16_t& pageAddress);
+	void erasePage(const uint16_t& pageAddress);
 };
 #endif

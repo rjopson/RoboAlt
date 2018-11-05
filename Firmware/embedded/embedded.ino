@@ -16,11 +16,14 @@
 #include "driver/MPU6050.h"
 #include "driver/MS5607.h"
 
+#include "src/dataRecord.h"
 #include "src/sensorOffset.h"
 #include "src/IMU.h"
 #include "src/baroAndTemp.h"
 #include "src/calculateAltitude.h"
 #include "src/flightLogic.h"
+
+#include "src/dataStorage.h"
 
 
 // the setup function runs once when you press reset or power the board
