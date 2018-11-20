@@ -27,6 +27,9 @@
     <ClCompile Include="..\embedded\src\calculateAltitude.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\embedded\src\matrixMath.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\embedded\src\IMU.h">
@@ -37,6 +40,9 @@
     </ClInclude>
     <ClInclude Include="..\embedded\src\calculateAltitude.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\embedded\src\matrixMath.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

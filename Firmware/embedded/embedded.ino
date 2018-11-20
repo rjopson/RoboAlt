@@ -24,6 +24,7 @@
 #include "src/baroAndTemp.h"
 #include "src/calculateAltitude.h"
 #include "src/flightLogic.h"
+#include "src/matrixMath.h"
 
 #include "src/dataStorage.h"
 #include "src/userSettings.h"
