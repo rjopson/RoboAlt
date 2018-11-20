@@ -23,4 +23,7 @@
 #define ALT_MAIN_OUTPUT				3//atmega328 3
 #define ALT_THIRD_OUTPUT			4//atmega328 5
 
+//Define battery voltage pin
+#define ALT_VOLTAGE_BATTERY_PIN		A1 //analogRead pin for battery voltage readings
+
 #endif

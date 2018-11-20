@@ -15,8 +15,10 @@
 #include "driver/H3LIS331DL.h"
 #include "driver/MPU6050.h"
 #include "driver/MS5607.h"
+#include "driver/voltage.h"
+#include "src/manageSensors.h"
 
-#include "src/dataRecord.h"
+#include "src/dataStructures.h"
 #include "src/sensorOffset.h"
 #include "src/IMU.h"
 #include "src/baroAndTemp.h"

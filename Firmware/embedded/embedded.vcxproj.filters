@@ -60,6 +60,9 @@
     <ClCompile Include="src\userSettings.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\managesSensors.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\IMU.h">
@@ -101,13 +104,16 @@
     <ClInclude Include="src\flightLogic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\dataRecord.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\dataStorage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\userSettings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\manageSensors.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dataStructures.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
