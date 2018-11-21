@@ -13,7 +13,11 @@ matrixMath::matrixMath(const uint8_t& rowsIn, const uint8_t& columnsIn) {
 	rows = rowsIn;
 	columns = columnsIn;
 	lengthTotal = rows * columns;
+	
 	elements = new float[lengthTotal]();
+	for (int i = 0; i != lengthTotal; i++) {
+		elements[i] = 0;
+	}
 }
 
 matrixMath::matrixMath(const uint8_t& rowsIn, const uint8_t& columnsIn, const float *elementsIn) {
@@ -25,6 +29,17 @@ matrixMath::matrixMath(const uint8_t& rowsIn, const uint8_t& columnsIn, const fl
 	elements = new float[lengthTotal]();
 	for (int i = 0; i != lengthTotal; i++) {
 		elements[i] = elementsIn[i];
+	}
+}
+
+matrixMath::matrixMath(const matrixMath& matrixIn) {
+	rows = matrixIn.rows;
+	columns = matrixIn.columns;
+	lengthTotal = rows * columns;
+
+	elements = new float[lengthTotal]();
+	for (int i = 0; i != lengthTotal; i++) {
+		elements[i] = matrixIn.elements[i];
 	}
 }
 
@@ -44,50 +59,55 @@ float matrixMath::getValue(const uint8_t& row, const uint8_t& column) const {
 	return elements[location];
 }
 
-matrixMath matrixMath::operator+(const matrixMath& a) {
+matrixMath matrixMath::operator+(const matrixMath& a) const {
 
 	matrixMath result(rows, columns);
-	for (int i = 0; i != rows; i++) {
-		for (int j = 0; j != columns; j++) {
-			result.setValue(i, j, (getValue(i, j) + a.getValue(i, j)));
-		}
+
+	if (rows == a.rows && columns == a.columns) {
+		for (int i = 0; i != rows; i++) {
+			for (int j = 0; j != columns; j++) {
+				result.setValue(i, j, (getValue(i, j) + a.getValue(i, j)));
+			}
+		}		
 	}
 	return result;
 }
 
-matrixMath matrixMath::operator-(const matrixMath& a) {
+matrixMath matrixMath::operator-(const matrixMath& a) const {
 
 	matrixMath result(rows, columns);
-	for (int i = 0; i != rows; i++) {
-		for (int j = 0; j != columns; j++) {
-			result.setValue(i, j, getValue(i, j) - a.getValue(i, j));
-		}
-	}
-	return result;
-}
 
-matrixMath matrixMath::operator*(const matrixMath& a) {
-
-	matrixMath result(rows, a.columns);
-
-	for (int i = 0; i != rows; i++) {
-		for (int j = 0; j != a.columns; j++) {
-
-			for (int k = 0; k != columns; k++) {
-				result.setValue(i, j, getValue(i, k) * a.getValue(k, i));
+	if (rows == a.rows && columns == a.columns) {
+		for (int i = 0; i != rows; i++) {
+			for (int j = 0; j != columns; j++) {
+				result.setValue(i, j, getValue(i, j) - a.getValue(i, j));
 			}
 		}
 	}
 	return result;
 }
 
-matrixMath matrixMath::operator=(const matrixMath& a) {
+matrixMath matrixMath::operator*(const matrixMath& a) const {
 
-	matrixMath result(rows, columns);
-	for (int i = 0; i != result.lengthTotal; i++) {
-		result.elements[i] = a.elements[i];
+	matrixMath result(rows, a.columns);
+
+	if (columns == a.rows) {
+		for (int i = 0; i != rows; i++) {
+			for (int j = 0; j != a.columns; j++) {
+				for (int k = 0; k != columns; k++) {
+					result.setValue(i, j, result.getValue(i, j) + getValue(i, k) * a.getValue(k, j));
+				}
+			}
+		}
 	}
 	return result;
+}
+
+void matrixMath::operator=(const matrixMath& a) const {
+
+	for (int i = 0; i != lengthTotal; i++) {
+		elements[i] = a.elements[i];
+	}
 }
 
 matrixMath matrixMath::transpose() {
@@ -95,7 +115,6 @@ matrixMath matrixMath::transpose() {
 	matrixMath result(columns, rows);
 	for (int i = 0; i != rows; i++) {
 		for (int j = 0; j != columns; j++) {
-
 			result.setValue(j, i, getValue(i, j));
 		}
 	}

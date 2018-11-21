@@ -17,6 +17,7 @@ class matrixMath {
 public:
 	matrixMath(const uint8_t& rowsIn, const uint8_t& columnsIn);
 	matrixMath(const uint8_t& rowsIn, const uint8_t& columnsIn, const float *elementsIn);
+	matrixMath(const matrixMath& matrixIn);
 	~matrixMath();
 
 	uint8_t rows;
@@ -27,10 +28,10 @@ public:
 	void setValue(const uint8_t& row, const uint8_t& column, const float& data);
 	float getValue(const uint8_t& row, const uint8_t& column) const;
 
-	matrixMath operator+(const matrixMath& a);
-	matrixMath operator-(const matrixMath& a);
-	matrixMath operator*(const matrixMath& a);
-	matrixMath operator=(const matrixMath& a);
+	matrixMath operator+(const matrixMath& a) const;
+	matrixMath operator-(const matrixMath& a) const;
+	matrixMath operator*(const matrixMath& a) const;
+	void operator=(const matrixMath& a) const;
 	matrixMath transpose();
 	matrixMath inverse2x2();
 	float determinant2x2();
