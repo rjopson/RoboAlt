@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -94,6 +94,7 @@
     <ClCompile Include="src\IMU.cpp" />
     <ClCompile Include="driver\MPU6050.cpp" />
     <ClCompile Include="driver\MS5607.cpp" />
+    <ClCompile Include="src\kalman.cpp" />
     <ClCompile Include="src\managesSensors.cpp" />
     <ClCompile Include="src\matrixMath.cpp" />
     <ClCompile Include="src\sensorOffset.cpp" />
@@ -114,6 +115,7 @@
     <ClInclude Include="src\IMU.h" />
     <ClInclude Include="driver\MPU6050.h" />
     <ClInclude Include="driver\MS5607.h" />
+    <ClInclude Include="src\kalman.h" />
     <ClInclude Include="src\manageSensors.h" />
     <ClInclude Include="src\matrixMath.h" />
     <ClInclude Include="src\sensorOffset.h" />

@@ -25,6 +25,7 @@
 #include "src/calculateAltitude.h"
 #include "src/flightLogic.h"
 #include "src/matrixMath.h"
+#include "src/kalman.h"
 
 #include "src/dataStorage.h"
 #include "src/userSettings.h"
