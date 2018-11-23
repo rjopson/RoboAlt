@@ -22,36 +22,20 @@ class kalman {
 
 public:
 	kalman();
-	void initialize();
-	void setUncertainties();
-	void initializeMatricies();
-	
-	void update();
+	void initialize(uint32_t time);
+	void setUncertainties();	
+	void update(const uint32_t& time, const int32_t& altitudeMeasure, const int32_t& accelerationMeasure, int32_t* altitude, int32_t* velocity, int32_t* acceleration);
 
-	//Matrices required to implement
-	matrixMath x_k_p; //current state vector, contains filtered position, velocity, acceleration data in 100*m/s
-	matrixMath x_k_m; //previous state vector
-	matrixMath x_k1_p; //previous state vector
-	matrixMath x_k1_m; //previous state vector
-	matrixMath z_k; //matrix of latest measurements
-
+	//Matrices saved to calculate k+1 iteration
 	matrixMath P_k1_p; //error covariance
-	matrixMath P_k1_m; //error covariance
-	matrixMath Q_k; //model covariance
-	matrixMath R_k; //measurement covariance
-	matrixMath identity; //3x3 identity matrix
-	matrixMath H_k;
-	matrixMath H_k_T;
-	matrixMath omega_k;
-	matrixMath omega_k_T;
-	matrixMath K_k; //Kalman gains
+	matrixMath x_k1_p; //previous state vector
 
 	//Measurement and model errors
 	float sigma_m;
 	float sigma_s;
 	float sigma_a; //MPU error
 
+	//Save previous time to calculate deltaT
 	float time_k1;
-	float time_k;
 };
 #endif

@@ -67,6 +67,5 @@ struct reducedData {
 	uint32_t pressure; //(Pascal)
 	int32_t temperature; //(100*degC)
 	int16_t voltage; //voltage in mV
-
 };
 #endif
