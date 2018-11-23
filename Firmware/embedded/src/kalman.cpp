@@ -78,7 +78,7 @@ void kalman::update(const uint32_t& time, const int32_t& altitudeMeasure, const 
 	x_k1_p = x_k_p;
 
 	//Output results to pointers
-	*altitude = x_k_p.getValue(0, 0);
-	*velocity = x_k_p.getValue(1, 0);
-	*acceleration = x_k_p.getValue(2, 0);
+	*altitude = (int32_t)x_k_p.getValue(0, 0)*100;
+	*velocity = (int32_t)x_k_p.getValue(1, 0)*100;
+	*acceleration = (int32_t)x_k_p.getValue(2, 0)*100;
 }
