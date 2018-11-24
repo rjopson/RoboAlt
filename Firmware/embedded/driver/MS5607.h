@@ -25,9 +25,10 @@
 #define MS5607_PROM_C5					0xAA //calibration coefficient C5 read command
 #define MS5607_PROM_C6					0xAC //calibration coefficient C6 read command
 
-#define MS5607_D1						0x48 //initiate digital conversion for pressure
-#define MS5607_D2						0x58 //initiate digital conversion for temperature
+#define MS5607_D1						0x40 //initiate digital conversion for pressure  0x48 for highest oversampling ratio. Slows read time to 10ms instead of 1
+#define MS5607_D2						0x50 //initiate digital conversion for temperature 0x58 for highest oversampling ratio. Slows read time to 10ms instead of 1
 #define MS5607_ADC_READ					0x00 //I2C ADC read sequence to get 24 bit raw pressure or temp data
+#define SAMPLE_READ_TIME				1 //time taken for sampling. 1 for lowest oversampling ratio, 10 for highest
 
 #define MS5607_AVERAGE_VALUES			10 //number of values to average for getAverage functions. Careful of increasing this number past 32 bit overflow
 

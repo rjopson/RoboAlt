@@ -53,7 +53,7 @@ uint32_t MS5607::getRawPressure() {
 	Wire.beginTransmission(devAddr);
 	Wire.write(MS5607_D1);
 	Wire.endTransmission();
-	delay(10);
+	delay(SAMPLE_READ_TIME);
 
 	//Read returned data
 	I2C::read(devAddr, MS5607_ADC_READ, 3, buffer);
@@ -73,7 +73,7 @@ uint32_t MS5607::getRawTemperature() {
 	Wire.beginTransmission(devAddr);
 	Wire.write(MS5607_D2);
 	Wire.endTransmission();
-	delay(10);
+	delay(SAMPLE_READ_TIME);
 
 	//Read returned data
 	I2C::read(devAddr, MS5607_ADC_READ, 3, buffer);

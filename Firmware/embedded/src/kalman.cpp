@@ -51,7 +51,7 @@ void kalman::update(const uint32_t& time, const int32_t& altitudeMeasure, const 
 	setConsistentUnits(time, &time_k, altitudeMeasure, &altitudeMeasureConsistent, accelerationMeasure, &accelerationMeasureConsistent);
 
 	//Calculate deltaT
-	float deltaT = time_k - time_k1;
+	float dT = time_k - time_k1;
 	time_k1 = time_k;
 
 	//Update measurement matrix
@@ -59,7 +59,7 @@ void kalman::update(const uint32_t& time, const int32_t& altitudeMeasure, const 
 	matrixMath z_k(2, 1, z_k_data);
 
 	//Calculate Omega
-	float Omega_k_data[9] = { 1, deltaT, deltaT*deltaT / 2, 0, 1, deltaT, 0, 0, 1 };
+	float Omega_k_data[9] = { 1, dT, dT*dT / 2, 0, 1, dT, 0, 0, 1 };
 	matrixMath Omega_k(3, 3, Omega_k_data);
 	matrixMath Omega_k_T(Omega_k.transpose());
 
