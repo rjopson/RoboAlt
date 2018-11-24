@@ -47,7 +47,7 @@ struct calibrationData {
 	uint16_t C[6];
 };
 struct sensorData {
-	uint32_t time;
+
 	int16_t accelX, accelY, accelZ; //(16bit at 16g resolution) low g accelerometer measurements
 	int16_t gyroX, gyroY, gyroZ; //(16bit at 2000deg/s resolution) gyro measurements
 	int16_t accelY_highG; //16bit at 200g seolution high g accelerometer

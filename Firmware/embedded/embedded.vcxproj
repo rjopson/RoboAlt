@@ -85,6 +85,7 @@
     <ClCompile Include="driver\AT45DB641.cpp" />
     <ClCompile Include="driver\buzzer.cpp" />
     <ClCompile Include="driver\pyro.cpp" />
+    <ClCompile Include="driver\voltage.cpp" />
     <ClCompile Include="src\baroAndTemp.cpp" />
     <ClCompile Include="src\calculateAltitude.cpp" />
     <ClCompile Include="driver\H3LIS331DL.cpp" />
@@ -95,6 +96,7 @@
     <ClCompile Include="driver\MPU6050.cpp" />
     <ClCompile Include="driver\MS5607.cpp" />
     <ClCompile Include="src\kalman.cpp" />
+    <ClCompile Include="src\manageDataReduction.cpp" />
     <ClCompile Include="src\managesSensors.cpp" />
     <ClCompile Include="src\matrixMath.cpp" />
     <ClCompile Include="src\sensorOffset.cpp" />
@@ -105,6 +107,7 @@
     <ClInclude Include="driver\buzzer.h" />
     <ClInclude Include="driver\pins.h" />
     <ClInclude Include="driver\pyro.h" />
+    <ClInclude Include="driver\voltage.h" />
     <ClInclude Include="src\baroAndTemp.h" />
     <ClInclude Include="src\calculateAltitude.h" />
     <ClInclude Include="driver\H3LIS331DL.h" />
@@ -116,6 +119,7 @@
     <ClInclude Include="driver\MPU6050.h" />
     <ClInclude Include="driver\MS5607.h" />
     <ClInclude Include="src\kalman.h" />
+    <ClInclude Include="src\manageDataReduction.h" />
     <ClInclude Include="src\manageSensors.h" />
     <ClInclude Include="src\matrixMath.h" />
     <ClInclude Include="src\sensorOffset.h" />

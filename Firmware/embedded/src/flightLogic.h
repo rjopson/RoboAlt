@@ -45,7 +45,7 @@ public:
 	uint8_t flightStatus; //keeps track of system state using flight logic above
 	int32_t altitudeMainDeploy; //(cm) altitude to deploy main parachute
 
-	void initialize(int32_t altitudeMainDeployUser);
+	void initialize(const int32_t& altitudeMainDeployUser);
 	uint8_t update(const int32_t& acceleration, const int32_t& velocity, const int32_t& altitude,
 					const int16_t& gyroX, const int16_t& gyroY, const int16_t& gyroZ);
 	void launchDetect(const int32_t& acceleration, const int32_t& velocity); //detect launch

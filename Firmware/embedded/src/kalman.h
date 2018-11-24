@@ -25,6 +25,8 @@ public:
 	void initialize(uint32_t time);
 	void setUncertainties();	
 	void setConsistentUnits(const uint32_t& timeIn, float* time, const int32_t& altitudeIn, float* altitude, const int32_t& accelerationIn, float* acceleration);
+	void setOutputUnits(const float& altitudeIn, int32_t* altitude, const float& velocityIn, int32_t* velocity, const float& accelerationIn, int32_t* acceleration);
+
 	void update(const uint32_t& time, const int32_t& altitudeMeasure, const int32_t& accelerationMeasure, int32_t* altitude, int32_t* velocity, int32_t* acceleration);
 
 	//Matrices saved to calculate k+1 iteration

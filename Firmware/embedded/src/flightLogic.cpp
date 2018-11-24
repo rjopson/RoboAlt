@@ -16,7 +16,7 @@ flightLogic::flightLogic() {
 /* Initialize flight logic with input user altitude main deploy. 
  *
  */
-void flightLogic::initialize(int32_t altitudeMainDeployUser) {
+void flightLogic::initialize(const int32_t& altitudeMainDeployUser) {
 
 	if (altitudeMainDeployUser > (int32_t)ALTITUDE_MAIN_DETECT) { //make sure user input is greater than minimum
 		altitudeMainDeploy = altitudeMainDeployUser;
