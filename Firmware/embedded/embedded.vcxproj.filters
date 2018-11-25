@@ -69,10 +69,13 @@
     <ClCompile Include="src\kalman.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="driver\voltage.cpp">
+    <ClCompile Include="src\processData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\manageDataReduction.cpp">
+    <ClCompile Include="src\voltage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="driver\analogPinRead.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -134,10 +137,13 @@
     <ClInclude Include="src\kalman.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="driver\voltage.h">
+    <ClInclude Include="src\processData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\manageDataReduction.h">
+    <ClInclude Include="src\voltage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="driver\analogPinRead.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

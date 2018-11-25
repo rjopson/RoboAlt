@@ -28,6 +28,9 @@ void manageSensors::initialize(sensorData* data) {
  */
 void manageSensors::getData(sensorData* data) {
 
+	//Time
+	data->time = millis();
+
 	//Accelerometers
 	accelGyroHighSensitivity.getAcceleration(&data->accelX, &data->accelY, &data->accelZ);
 	data->accelY_highG = accelLowSensitivity.getAccelerationY();

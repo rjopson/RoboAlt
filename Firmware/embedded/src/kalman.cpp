@@ -17,7 +17,7 @@ kalman::kalman()
 void kalman::initialize(uint32_t time) {
 
 	//set initial time
-	time_k1 = (float)time;
+	time_k1 = (float)time/1000.0;
 }
 
 void kalman::setUncertainties() {

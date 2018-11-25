@@ -25,6 +25,7 @@ class IMU {
 
 public:
 	IMU();
+	void initialize(const int16_t& acceleration);
 
 	int32_t mapAccelerationMPU(const int16_t& bytesData); //map mpu raw acceleration to engineering units
 	int32_t mapAccelerationH3LIS(const int16_t& bytesData); //map h3lis raw acceleration to engineering units
@@ -33,7 +34,6 @@ public:
 									const int16_t& bytesAccelH3LIS, 
 									const int16_t& bytesOffsetH3LIS); //multiply orientation, subtract offsets, choose which accelerometer to use, map data
 
-//Private
 	int8_t setOrientation(const int16_t& acceleration); //determine orientation of altimeter on pad
 	int32_t map(const int32_t& input,
 		const int32_t& inputMin, const int32_t& inputMax,

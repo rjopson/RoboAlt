@@ -8,13 +8,14 @@
 #define _MANAGESENSORS_h
 
 #include <inttypes.h>
+#include "Arduino.h"
 #include "dataStructures.h"
 
 //Sensor classes
 #include "../driver/H3LIS331DL.h"
 #include "../driver/MPU6050.h"
 #include "../driver/MS5607.h"
-#include "../driver/voltage.h"
+#include "../driver/analogPinRead.h"
 
 class manageSensors {
 
@@ -27,7 +28,7 @@ public:
 	MPU6050 accelGyroHighSensitivity;
 	H3LIS331DL accelLowSensitivity;
 	MS5607 baroTemp;
-	voltage battery;
+	analogPinRead battery;
 
 };
 #endif

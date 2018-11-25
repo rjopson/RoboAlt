@@ -11,6 +11,10 @@ IMU::IMU() {
 
 }
 
+void IMU::initialize(const int16_t& acceleration) {
+	setOrientation(acceleration);
+}
+
 /* Map MPU raw 2 byte data to acceleration in 100*m/s^2
  * Includes gravity
  * Signed result

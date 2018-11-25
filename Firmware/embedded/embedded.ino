@@ -15,7 +15,7 @@
 #include "driver/H3LIS331DL.h"
 #include "driver/MPU6050.h"
 #include "driver/MS5607.h"
-#include "driver/voltage.h"
+#include "driver/analogPinRead.h"
 #include "src/manageSensors.h"
 
 #include "src/dataStructures.h"
@@ -26,6 +26,7 @@
 #include "src/flightLogic.h"
 #include "src/matrixMath.h"
 #include "src/kalman.h"
+#include "src/processData.h"
 
 #include "src/dataStorage.h"
 #include "src/userSettings.h"
