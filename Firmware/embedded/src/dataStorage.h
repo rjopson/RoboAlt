@@ -16,8 +16,8 @@ class dataStorage {
 public:
 	dataStorage();
 
+	void initialize();
 	void flipBuffer();
-
 	void startWrite(const uint16_t& pageAddress);
 	void endWrite();
 	void writeByte(const uint8_t& data);

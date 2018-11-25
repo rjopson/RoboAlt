@@ -91,11 +91,13 @@
     <ClCompile Include="driver\H3LIS331DL.cpp" />
     <ClCompile Include="driver\I2C.cpp" />
     <ClCompile Include="src\dataStorage.cpp" />
+    <ClCompile Include="src\flightDataStorage.cpp" />
     <ClCompile Include="src\flightLogic.cpp" />
     <ClCompile Include="src\IMU.cpp" />
     <ClCompile Include="driver\MPU6050.cpp" />
     <ClCompile Include="driver\MS5607.cpp" />
     <ClCompile Include="src\kalman.cpp" />
+    <ClCompile Include="src\manageDataStorage.cpp" />
     <ClCompile Include="src\processData.cpp" />
     <ClCompile Include="src\managesSensors.cpp" />
     <ClCompile Include="src\matrixMath.cpp" />
@@ -115,11 +117,13 @@
     <ClInclude Include="driver\I2C.h" />
     <ClInclude Include="src\dataStorage.h" />
     <ClInclude Include="src\dataStructures.h" />
+    <ClInclude Include="src\flightDataStorage.h" />
     <ClInclude Include="src\flightLogic.h" />
     <ClInclude Include="src\IMU.h" />
     <ClInclude Include="driver\MPU6050.h" />
     <ClInclude Include="driver\MS5607.h" />
     <ClInclude Include="src\kalman.h" />
+    <ClInclude Include="src\manageDataStorage.h" />
     <ClInclude Include="src\processData.h" />
     <ClInclude Include="src\manageSensors.h" />
     <ClInclude Include="src\matrixMath.h" />

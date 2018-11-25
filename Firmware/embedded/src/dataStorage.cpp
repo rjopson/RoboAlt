@@ -10,6 +10,10 @@ dataStorage::dataStorage() {
 
 }
 
+void dataStorage::initialize() {
+	dataFlashChip.initialize();
+}
+
 /* Flip buffer between 1 and 2
  *
  */
