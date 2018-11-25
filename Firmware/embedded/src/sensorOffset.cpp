@@ -49,9 +49,11 @@ T sensorOffset<T>::lowPassFilter(const T& sensorData, const T& previousData, con
 	int32_t weightedPreviousData = (255 - gain)*previousData;
 	int32_t weightedNewData = gain * sensorData;
 
-	return (T)((weightedPreviousData + weightedNewData) / (int32_t)255);
+	return (T)((weightedPreviousData + weightedNewData) / (T)255);
 }
 
 //Explicit instantiation
 template class sensorOffset<int16_t>;
 template class sensorOffset<int32_t>;
+template class sensorOffset<uint32_t>;
+

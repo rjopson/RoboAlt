@@ -98,10 +98,12 @@
     <ClCompile Include="driver\MS5607.cpp" />
     <ClCompile Include="src\kalman.cpp" />
     <ClCompile Include="src\manageDataStorage.cpp" />
+    <ClCompile Include="src\manageSensorsAndControl.cpp" />
     <ClCompile Include="src\processData.cpp" />
     <ClCompile Include="src\managesSensors.cpp" />
     <ClCompile Include="src\matrixMath.cpp" />
     <ClCompile Include="src\sensorOffset.cpp" />
+    <ClCompile Include="src\sensors.cpp" />
     <ClCompile Include="src\userSettings.cpp" />
     <ClCompile Include="src\voltage.cpp" />
   </ItemGroup>
@@ -124,10 +126,12 @@
     <ClInclude Include="driver\MS5607.h" />
     <ClInclude Include="src\kalman.h" />
     <ClInclude Include="src\manageDataStorage.h" />
+    <ClInclude Include="src\manageSensorsAndControl.h" />
     <ClInclude Include="src\processData.h" />
     <ClInclude Include="src\manageSensors.h" />
     <ClInclude Include="src\matrixMath.h" />
     <ClInclude Include="src\sensorOffset.h" />
+    <ClInclude Include="src\sensors.h" />
     <ClInclude Include="src\userSettings.h" />
     <ClInclude Include="src\voltage.h" />
   </ItemGroup>

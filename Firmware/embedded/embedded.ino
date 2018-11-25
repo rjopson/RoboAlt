@@ -16,7 +16,7 @@
 #include "driver/MPU6050.h"
 #include "driver/MS5607.h"
 #include "driver/analogPinRead.h"
-#include "src/manageSensors.h"
+#include "src/sensors.h"
 
 #include "src/dataStructures.h"
 #include "src/sensorOffset.h"
