@@ -13,8 +13,6 @@
 #include "Arduino.h"
 #include "Wire.h"
 
-#define I2C_READ_TIMEOUT 100
-
 class I2C {
 public:
 	I2C();

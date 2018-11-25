@@ -26,19 +26,15 @@ bool I2C::read(const uint8_t& devAddr, const uint8_t& regAddr, const uint8_t& le
 	Wire.endTransmission();
 	Wire.requestFrom(devAddr, length);
 
-	int8_t count = 0; //count to place read data into data array
-	uint32_t time = millis(); //time read begins, to make sure exit while loop if timeout passed
-	while (Wire.available() && (I2C_READ_TIMEOUT > (millis() - time))) { //make sure we don't pass timeout
-		data[count] = Wire.read();
-		count++;
-	}
-
-	if (count != length) {
+	int n = Wire.available();
+	if (n != length) {
 		return 1; //read has failed
 	}
-	else {
-		return 0; //read, no error
+	for (int i = 0; i < n; i++) {   //count to place read data into data array
+		data[i] = Wire.read();
 	}
+
+	return 0; //read, no error
 }
 
 /* Write data to I2C device at specified registry
