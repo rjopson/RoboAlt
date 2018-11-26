@@ -24,7 +24,7 @@ void processData::initialize(const uint32_t& time, const calibrationData& calibr
 	kalmanFilter.initialize(time);
 }
 
-void processData::processSensorData(const sensorData& sensorData, const calibrationData& offsets, engineeringData* engineeringData) {
+void processData::sensors(const sensorData& sensorData, const calibrationData& offsets, engineeringData* engineeringData) {
 
 	//Time
 	engineeringData->time = sensorData.time;

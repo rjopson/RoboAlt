@@ -17,12 +17,15 @@
 #include "../driver/MS5607.h"
 #include "../driver/analogPinRead.h"
 
+#define NUMBER_SAMPLES_AVERAGE		50
+
 class sensors {
 
 public:
 	sensors();
 	void initialize(sensorData* data); //initialize sensors and filter classes
 	void getData(sensorData* data); //get raw sensor readings from accelerometers, gyros, temp, pressure and voltage
+	void initializeCalibration(calibrationData* calibration); //initialize offset values 
 
 	//Sensor drivers
 	MPU6050 accelGyroHighSensitivity;

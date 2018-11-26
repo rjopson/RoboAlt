@@ -23,7 +23,7 @@ class processData {
 public:
 	processData();
 	void initialize(const uint32_t& time, const calibrationData& calibration);
-	void processSensorData(const sensorData& sensorData, const calibrationData& offsets, engineeringData* engineeringData);
+	void sensors(const sensorData& sensorData, const calibrationData& offsets, engineeringData* engineeringData);
 	void filterStateData(const engineeringData& engineeringData, stateData* stateData);
 
 	baroAndTemp baroTemp;

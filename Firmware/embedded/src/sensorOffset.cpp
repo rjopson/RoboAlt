@@ -27,7 +27,7 @@ void sensorOffset<T>::initialize(const T& offsetInitial, const uint8_t& filterGa
  * Filter data, if it's been longer than UPDATE_TIME, set future offset to current
  */
 template <class T>
-void sensorOffset<T>::updateOffset(const T& sensorData, const uint32_t& time) {
+T sensorOffset<T>::updateOffset(const T& sensorData, const uint32_t& time) {
 
 	//Filter incoming sensor data
 	offsetFuture = lowPassFilter(sensorData, offsetFuture, filterGain);
@@ -38,6 +38,8 @@ void sensorOffset<T>::updateOffset(const T& sensorData, const uint32_t& time) {
 		offsetCurrent = offsetFuture;
 		timeOffsetCurrent = time;
 	}
+
+	return offsetCurrent;
 }
 
 /* Implements simple low pass filter where gain is a value 0 < gain < 255 for int

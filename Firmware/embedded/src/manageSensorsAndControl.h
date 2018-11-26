@@ -13,17 +13,19 @@
 #include "sensors.h"
 #include "sensorOffset.h"
 #include "processData.h"
+#include "kalman.h"
 #include "flightLogic.h"
 
 class manageSensorsAndControl {
 
 public:
 	manageSensorsAndControl();
-	void initialize();
+	void initialize(const int32_t& altitudeMainDeployUser);
 	void update();
 
 	//Data structures
 	sensorData sensor_data;
+	calibrationData calibration_data;
 	engineeringData engineering_data;
 	stateData state_data;
 
@@ -32,7 +34,9 @@ public:
 	sensorOffset<int16_t> mpuOffset;
 	sensorOffset<int16_t> h3lisOffset;
 	sensorOffset<uint32_t> pressureOffset;
+	sensorOffset<uint32_t> temperatureOffset;
 	processData process_data;
+	kalman filter;
 	flightLogic logic;
 };
 #endif

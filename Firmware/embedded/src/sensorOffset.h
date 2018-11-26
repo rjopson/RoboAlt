@@ -23,7 +23,7 @@ public:
 	T offsetCurrent; //value of current offset to be used in data reduction calculations in other classes
 
 	void initialize(const T& offsetInitial, const uint8_t& filterGainIn); //set initial offset and filter gain	
-	void updateOffset(const T& sensorData, const uint32_t& time); //update offset with new data and time
+	T updateOffset(const T& sensorData, const uint32_t& time); //update offset with new data and time
 
 private:
 	uint32_t timeOffsetCurrent; //time of most recent set, current offset
