@@ -11,6 +11,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Wire", "..\..\..\..\..\AppD
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SPI", "..\..\..\..\..\AppData\Local\arduino15\packages\arduino\hardware\samd\1.6.19\libraries\SPI\SPI.vcxitems", "{3EB4A571-2C91-4DD7-855B-F706FE7778B0}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "processDataTest", "processDataTest\processDataTest.vcxproj", "{D581872E-2C1A-4B2E-94F6-6510EE283C23}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -33,6 +35,14 @@ Global
 		{4A39B329-F3A9-4E0C-BE21-377F1D5964D4}.Release|x64.Build.0 = Release|x64
 		{4A39B329-F3A9-4E0C-BE21-377F1D5964D4}.Release|x86.ActiveCfg = Release|Win32
 		{4A39B329-F3A9-4E0C-BE21-377F1D5964D4}.Release|x86.Build.0 = Release|Win32
+		{D581872E-2C1A-4B2E-94F6-6510EE283C23}.Debug|x64.ActiveCfg = Debug|x64
+		{D581872E-2C1A-4B2E-94F6-6510EE283C23}.Debug|x64.Build.0 = Debug|x64
+		{D581872E-2C1A-4B2E-94F6-6510EE283C23}.Debug|x86.ActiveCfg = Debug|Win32
+		{D581872E-2C1A-4B2E-94F6-6510EE283C23}.Debug|x86.Build.0 = Debug|Win32
+		{D581872E-2C1A-4B2E-94F6-6510EE283C23}.Release|x64.ActiveCfg = Release|x64
+		{D581872E-2C1A-4B2E-94F6-6510EE283C23}.Release|x64.Build.0 = Release|x64
+		{D581872E-2C1A-4B2E-94F6-6510EE283C23}.Release|x86.ActiveCfg = Release|Win32
+		{D581872E-2C1A-4B2E-94F6-6510EE283C23}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
