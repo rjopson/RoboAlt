@@ -91,6 +91,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>C:\Users\Jim\Documents\Rockets\Altimeters\RoboDev\Firmware\processDataTest\src;C:\Users\Jim\Documents\Rockets\Altimeters\RoboDev\Firmware\embedded\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -151,7 +152,30 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\embedded\src\baroAndTemp.cpp" />
+    <ClCompile Include="..\embedded\src\calculateAltitude.cpp" />
+    <ClCompile Include="..\embedded\src\flightLogic.cpp" />
+    <ClCompile Include="..\embedded\src\IMU.cpp" />
+    <ClCompile Include="..\embedded\src\kalman.cpp" />
+    <ClCompile Include="..\embedded\src\matrixMath.cpp" />
+    <ClCompile Include="..\embedded\src\sensorOffset.cpp" />
+    <ClCompile Include="..\embedded\src\voltage.cpp" />
     <ClCompile Include="processDataTest.cpp" />
+    <ClCompile Include="src\dataIO.cpp" />
+    <ClCompile Include="src\sensors.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\embedded\src\baroAndTemp.h" />
+    <ClInclude Include="..\embedded\src\calculateAltitude.h" />
+    <ClInclude Include="..\embedded\src\dataStructures.h" />
+    <ClInclude Include="..\embedded\src\flightLogic.h" />
+    <ClInclude Include="..\embedded\src\IMU.h" />
+    <ClInclude Include="..\embedded\src\kalman.h" />
+    <ClInclude Include="..\embedded\src\matrixMath.h" />
+    <ClInclude Include="..\embedded\src\sensorOffset.h" />
+    <ClInclude Include="..\embedded\src\voltage.h" />
+    <ClInclude Include="src\dataIO.h" />
+    <ClInclude Include="src\sensors.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

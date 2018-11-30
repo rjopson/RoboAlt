@@ -10,7 +10,7 @@
 #include <inttypes.h>
 #include "dataStructures.h"
 
-#include "sensors.h"
+#include "../driver/sensors.h"
 #include "sensorOffset.h"
 #include "processData.h"
 #include "kalman.h"
@@ -29,7 +29,7 @@ public:
 	engineeringData engineering_data;
 	stateData state_data;
 
-	//Classes to get data nad reduce it
+	//Classes to get data and reduce it
 	sensors drivers;
 	sensorOffset<int16_t> mpuOffset;
 	sensorOffset<int16_t> h3lisOffset;

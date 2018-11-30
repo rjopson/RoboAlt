@@ -103,7 +103,7 @@
     <ClCompile Include="src\managesSensors.cpp" />
     <ClCompile Include="src\matrixMath.cpp" />
     <ClCompile Include="src\sensorOffset.cpp" />
-    <ClCompile Include="src\sensors.cpp" />
+    <ClCompile Include="driver\sensors.cpp" />
     <ClCompile Include="src\userSettings.cpp" />
     <ClCompile Include="src\voltage.cpp" />
   </ItemGroup>
@@ -131,7 +131,7 @@
     <ClInclude Include="src\manageSensors.h" />
     <ClInclude Include="src\matrixMath.h" />
     <ClInclude Include="src\sensorOffset.h" />
-    <ClInclude Include="src\sensors.h" />
+    <ClInclude Include="driver\sensors.h" />
     <ClInclude Include="src\userSettings.h" />
     <ClInclude Include="src\voltage.h" />
   </ItemGroup>

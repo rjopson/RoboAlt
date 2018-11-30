@@ -17,7 +17,7 @@
 #include "driver/MS5607.h"
 #include "driver/analogPinRead.h"
 #include "driver/pyro.h"
-#include "src/sensors.h"
+#include "driver/sensors.h"
 
 #include "src/dataStructures.h"
 #include "src/sensorOffset.h"

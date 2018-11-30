@@ -84,10 +84,10 @@
     <ClCompile Include="src\manageDataStorage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\sensors.cpp">
+    <ClCompile Include="src\manageSensorsAndControl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\manageSensorsAndControl.cpp">
+    <ClCompile Include="driver\sensors.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -164,10 +164,10 @@
     <ClInclude Include="src\manageDataStorage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\sensors.h">
+    <ClInclude Include="src\manageSensorsAndControl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\manageSensorsAndControl.h">
+    <ClInclude Include="driver\sensors.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

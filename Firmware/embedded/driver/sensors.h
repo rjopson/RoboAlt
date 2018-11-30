@@ -9,7 +9,7 @@
 
 #include <inttypes.h>
 #include "Arduino.h"
-#include "dataStructures.h"
+#include "../src/dataStructures.h"
 
 //Sensor classes
 #include "../driver/H3LIS331DL.h"

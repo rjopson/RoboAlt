@@ -15,7 +15,7 @@
 #include "calculateAltitude.h"
 #include "IMU.h"
 #include "voltage.h"
-#include "sensorOffset.h"
+//#include "sensorOffset.h"
 #include "kalman.h"
 
 class processData {
