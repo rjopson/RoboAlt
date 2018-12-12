@@ -35,8 +35,8 @@ struct savedFlightData {
 	uint16_t continuityApo;
 	uint16_t continuityMain;
 	uint16_t continuityThird;
-
 };
+
 struct calibrationData {
 
 	//offsets
