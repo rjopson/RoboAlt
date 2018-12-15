@@ -21,9 +21,13 @@ using namespace std;
 class dataIO {
 
 public:
-	dataIO(string filePathRead, string filePathWrite);
+	dataIO(string filePathReadIn, string filePathWriteIn);
+
+	string filePathRead;
+	string filePathWrite;
+
 	vector<savedFlightData> readFromCSV();
-	void writeToCSV(vector<savedFlightData>);
+	void writeToCSV(vector<savedFlightData> flightData);
 	vector<vector<int>> mapStructureToArray(vector<savedFlightData> flightDataStructure);
 	vector<savedFlightData> mapArrayToStructure(vector<vector<int>> flightDataArray);
 };

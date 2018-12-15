@@ -8,15 +8,46 @@
 
 /* Default constructor
  */
-dataIO::dataIO(string filePathRead, string filePathWrite) {
-
+dataIO::dataIO(string filePathReadIn, string filePathWriteIn) {
+	filePathRead = filePathReadIn;
+	filePathWrite = filePathWriteIn;
 }
 
 vector<savedFlightData> dataIO::readFromCSV() {
+	
+	//Define variables used to read data 
+	const int bufferLength = 100;
+	char buffer[bufferLength];
+	vector<vector<int>> flightDataArray;
+
+	stringstream ss;
+	ifstream readFile(filePathRead);
+
+	if (!readFile.is_open()) {
+		cout << "Unable to open file" << '\n';
+	}
+	else {
+
+		//read file
+		while (ss) {
+			vector<int> row;
+			readFile.getline(buffer, bufferLength);
+			ss << buffer;
+
+			for (int j = 0; j != columns; j++) {
+				ss.getline(buffer, 20, ',');
+				row.push_back(atoi(buffer));
+			}
+			flightDataArray.push_back(row);
+
+			ss << "";
+			ss.clear();
+		}
+	}
 
 }
 
-void dataIO::writeToCSV(vector<savedFlightData>) {
+void dataIO::writeToCSV(vector<savedFlightData> flightData) {
 
 }
 
