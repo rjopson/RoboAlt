@@ -6,7 +6,7 @@
  * -convert raw 3 byte MS5607 baro and temp data to engineering units per equations from datasheet
  *		+pressure in (Pa)
  *		+temperature in 100*degC
- * -Calculate altitude in 100*m using standard atmposphere. Good to 30,480 m, according to datasheet
+ * -Calculate altitude in 1000*m using standard atmposphere. Good to 30,480 m, according to datasheet
  */
 
 #ifndef _BAROANDTEMP_h

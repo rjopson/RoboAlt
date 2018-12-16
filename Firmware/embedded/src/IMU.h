@@ -18,8 +18,8 @@
 
 //values used for mapping each accelerometer raw to engineering units 
 #define TWO_BYTES		32767
-#define MPU_MAPPING		15690 //100 * 16g's * 9.806 m/s^2
-#define H3LIS_MAPPING	196130 //100 * 200g's * 9.806 m/s^2
+#define MPU_MAPPING		156900 //1000 * 16g's * 9.806 m/s^2
+#define H3LIS_MAPPING	1961300 //1000 * 200g's * 9.806 m/s^2
 
 class IMU {
 

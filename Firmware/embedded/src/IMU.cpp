@@ -15,7 +15,7 @@ void IMU::initialize(const int16_t& acceleration) {
 	setOrientation(acceleration);
 }
 
-/* Map MPU raw 2 byte data to acceleration in 100*m/s^2
+/* Map MPU raw 2 byte data to acceleration in 1000*m/s^2
  * Includes gravity
  * Signed result
  */
@@ -23,7 +23,7 @@ int32_t IMU::mapAccelerationMPU(const int16_t& bytesData) {
 	return mapAcceleration(bytesData, TWO_BYTES, MPU_MAPPING);
 }
 
-/* Map H3LIS raw 2 byte data to acceleration in 100*m/s^2
+/* Map H3LIS raw 2 byte data to acceleration in 1000*m/s^2
  * Includes gravity
  * Signed result
  */
@@ -31,7 +31,7 @@ int32_t IMU::mapAccelerationH3LIS(const int16_t& bytesData) {
 	return mapAcceleration(bytesData, TWO_BYTES, H3LIS_MAPPING);
 }
 
-/* Acceleration result in 100*m/s^2
+/* Acceleration result in 1000*m/s^2
  * Gravity subtracted (by subtracting offset)
  * Signed, but acceleration in the vertical direction is always positive because multiplied by orientation value
  */

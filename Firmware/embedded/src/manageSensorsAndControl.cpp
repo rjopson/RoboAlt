@@ -48,4 +48,7 @@ void manageSensorsAndControl::update() {
 	//Process Data
 	process_data.sensors(sensor_data, calibration_data, &engineering_data);
 	process_data.filterStateData(engineering_data, &state_data);
+
+	//Determine phase of flight
+	logic.update(state_data.acceleration, state_data.velocity, state_data.altitude, sensor_data.gyroX, sensor_data.gyroY, sensor_data.gyroZ);
 }

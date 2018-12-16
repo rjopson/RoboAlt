@@ -93,16 +93,17 @@ void dataIO::mapHeaderArrayToStructure(const vector<int>& headerArray) {
 
 	version = headerArray[0];
 	dataMemoryBank = headerArray[1];
-	calibration.mpuPad = headerArray[2];
-	calibration.h3lisPad = headerArray[3];
-	calibration.pressurePad = headerArray[4];
-	calibration.temperaturePad = headerArray[5];
-	calibration.C[0] = headerArray[6];
-	calibration.C[1] = headerArray[7];
-	calibration.C[2] = headerArray[8];
-	calibration.C[3] = headerArray[9];
-	calibration.C[4] = headerArray[10];
-	calibration.C[5] = headerArray[11];
+	lineCount = headerArray[2];
+	calibration.mpuPad = headerArray[3];
+	calibration.h3lisPad = headerArray[4];
+	calibration.pressurePad = headerArray[5];
+	calibration.temperaturePad = headerArray[6];
+	calibration.C[0] = headerArray[7];
+	calibration.C[1] = headerArray[8];
+	calibration.C[2] = headerArray[9];
+	calibration.C[3] = headerArray[10];
+	calibration.C[4] = headerArray[11];
+	calibration.C[5] = headerArray[12];
 }
 
 vector<int> dataIO::mapHeaderArrayToStructure() {
@@ -111,6 +112,7 @@ vector<int> dataIO::mapHeaderArrayToStructure() {
 
 	headerArray.push_back(version);
 	headerArray.push_back(dataMemoryBank);
+	headerArray.push_back(lineCount);
 	headerArray.push_back(calibration.mpuPad);
 	headerArray.push_back(calibration.h3lisPad);
 	headerArray.push_back(calibration.pressurePad);

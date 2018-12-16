@@ -31,6 +31,7 @@ public:
 	//Full flight data information
 	int version;
 	int dataMemoryBank;
+	int lineCount;
 	calibrationData calibration;
 	vector<debugFlightData> flightData;
 

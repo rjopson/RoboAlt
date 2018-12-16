@@ -12,10 +12,10 @@
 
 /** Flight logic
 *		Value		Description				Wait For
-*		0			Launch Detect			vel > define cm/s && a > define (cm/s^2) (takeoff)
-*		1			CoastDetect			    acc < 0 cm/s^2 (motor burnout)
-*		2			ApogeeDetect		    vel < 0 cm/s (apogee)
-*		3 			mainDetect				alt < 0 (cm) (main deployment)
+*		0			Launch Detect			vel > define mm/s && a > define (mm/s^2) (takeoff)
+*		1			CoastDetect			    acc < 0 mm/s^2 (motor burnout)
+*		2			ApogeeDetect		    vel < 0 mm/s (apogee)
+*		3 			mainDetect				alt < 0 (mm) (main deployment)
 *		4 			groundDetect		    gyroX, gyroY, gyroZ < 200 for 100 count in a row (on ground)
 *		5			On Ground
 */
@@ -23,17 +23,17 @@
 //Event state machine definitions			Value	Wait For
 #define STATE_MACHINE_LAUNCH_DETECT			0		
 #define STATE_MACHINE_MOTOR_BURN			1		//vel > define cm/s && a > define (cm/s^2) (takeoff)
-#define STATE_MACHINE_COAST					2		//acc < 0 cm/s^2 (motor burnout)
-#define	STATE_MACHINE_DROGUE_DESCENT		3		//vel < 0 cm/s (apogee)
-#define STATE_MACHINE_MAIN_DESCENT			4		//alt < 0 (cm) (main deployment)
+#define STATE_MACHINE_COAST					2		//acc < 0 mm/s^2 (motor burnout)
+#define	STATE_MACHINE_DROGUE_DESCENT		3		//vel < 0 mm/s (apogee)
+#define STATE_MACHINE_MAIN_DESCENT			4		//alt < 0 (mm) (main deployment)
 #define STATE_MACHINE_GROUND				5		//gyroX, gyroY, gyroZ < 200 for 100 count in a row (on ground)
 
 //Control on when to detect events
-#define VELOCITY_LAUNCH_DETECT				1500 //(cm/s)
-#define ACCELAXIAL_LAUNCH_DETECT			490 //(cm/s^2) (gravity subtracted from this input)
-#define ACCELERATION_COAST_DETECT			0 //(cm/s^2)
-#define VELOCITY_APOGEE_DETECT				0 //(cm/s)
-#define ALTITUDE_MAIN_DETECT				5000 //(cm) minimum main detect value - superseded by user value if user value is greater
+#define VELOCITY_LAUNCH_DETECT				15000 //(mm/s)
+#define ACCELAXIAL_LAUNCH_DETECT			4900 //(mm/s^2) (gravity subtracted from this input)
+#define ACCELERATION_COAST_DETECT			0 //(mm/s^2)
+#define VELOCITY_APOGEE_DETECT				0 //(mm/s)
+#define ALTITUDE_MAIN_DETECT				50000 //(mm) minimum main detect value - superseded by user value if user value is greater
 #define GYRO_GROUND_DETECT					200 //2 byte result
 #define GROUND_COUNT_DETECT					100 //number of gyro counts required on ground
 

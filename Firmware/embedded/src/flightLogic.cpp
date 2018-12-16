@@ -63,7 +63,7 @@ uint8_t flightLogic::update(const int32_t& acceleration, const int32_t& velocity
 		//On ground, don't do anything to advance flightStatus
 		return flightStatus;
 		break;
-	}
+	} 
 }
 
 /* detect launch detect based on:

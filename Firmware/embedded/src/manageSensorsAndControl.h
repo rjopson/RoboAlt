@@ -10,11 +10,13 @@
 #include <inttypes.h>
 #include "dataStructures.h"
 
-#include "../driver/sensors.h"
+#include "sensors.h"
 #include "sensorOffset.h"
 #include "processData.h"
 #include "kalman.h"
 #include "flightLogic.h"
+
+#include <iostream>
 
 class manageSensorsAndControl {
 

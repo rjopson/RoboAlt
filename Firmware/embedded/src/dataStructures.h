@@ -19,11 +19,11 @@ struct debugFlightData {
 	//data to be used in flight logic and/or recorded
 	uint32_t time; //(ms) //time used for filtering functions
 	uint8_t flightStatus;
-	int32_t altitude; //(cm) Kalman filtered altitude used in flight logic
-	int32_t velocity; //(cm/s) Kalman filtered velocity used in flight logic
-	int32_t acceleration; //(cm/s^2) Kalman filtered acceleration used in flight logic	
-	int32_t altitudeBaro; //(cm) unfiltered barometric altitude
-	int32_t accelAxial; //(cm/s^2) axial acceleration, chosen between MPU and H3LIS converted to engineering units, gravity subtracted
+	int32_t altitude; //(mm) Kalman filtered altitude used in flight logic
+	int32_t velocity; //(mm/s) Kalman filtered velocity used in flight logic
+	int32_t acceleration; //(mm/s^2) Kalman filtered acceleration used in flight logic	
+	int32_t altitudeBaro; //(mm) unfiltered barometric altitude
+	int32_t accelAxial; //(mm/s^2) axial acceleration, chosen between MPU and H3LIS converted to engineering units, gravity subtracted
 	uint32_t pressure; //(Pascal)
 	int32_t temperature; //(100*degC)
 	int16_t MPU_accelX, MPU_accelY, MPU_accelZ; //(16bit at 16g resolution) low g accelerometer measurements
@@ -46,9 +46,9 @@ struct userFlightData {
 	//data to be used in flight logic and/or recorded
 	uint32_t time; //(ms) //time used for filtering functions
 	uint8_t flightStatus;
-	int32_t altitude; //(cm) Kalman filtered altitude used in flight logic
-	int32_t velocity; //(cm/s) Kalman filtered velocity used in flight logic
-	int32_t acceleration; //(cm/s^2) Kalman filtered acceleration used in flight logic	
+	int32_t altitude; //(mm) Kalman filtered altitude used in flight logic
+	int32_t velocity; //(mm/s) Kalman filtered velocity used in flight logic
+	int32_t acceleration; //(mm/s^2) Kalman filtered acceleration used in flight logic	
 	uint32_t pressure; //(Pascal)
 	int32_t temperature; //(100*degC)
 	int16_t MPU_accelX, MPU_accelY, MPU_accelZ; //(16bit at 16g resolution) low g accelerometer measurements
@@ -84,8 +84,8 @@ struct sensorData {
 struct engineeringData {
 
 	uint32_t time; //(ms) //time used for filtering functions
-	int32_t altitudeBaro; //(cm) unfiltered barometric altitude
-	int32_t accelAxial; //(cm/s^2) axial acceleration, chosen between MPU and H3LIS converted to engineering units, gravity subtracted
+	int32_t altitudeBaro; //(mm) unfiltered barometric altitude
+	int32_t accelAxial; //(mm/s^2) axial acceleration, chosen between MPU and H3LIS converted to engineering units, gravity subtracted
 	uint32_t pressure; //(Pascal)
 	int32_t temperature; //(100*degC)
 	int16_t voltageBattery; //voltage in mV
@@ -93,8 +93,8 @@ struct engineeringData {
 
 struct stateData {
 
-	int32_t altitude; //(cm) Kalman filtered altitude used in flight logic
-	int32_t velocity; //(cm/s) Kalman filtered velocity used in flight logic
-	int32_t acceleration; //(cm/s^2) Kalman filtered acceleration used in flight logic	
+	int32_t altitude; //(mm) Kalman filtered altitude used in flight logic
+	int32_t velocity; //(mm/s) Kalman filtered velocity used in flight logic
+	int32_t acceleration; //(mm/s^2) Kalman filtered acceleration used in flight logic	
 };
 #endif
