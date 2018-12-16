@@ -10,6 +10,7 @@
 #include <inttypes.h>
 #include <iostream>
 #include <fstream>
+#include <iterator>
 #include <sstream>
 #include <string>
 #include <vector>
@@ -18,17 +19,34 @@
 
 using namespace std;
 
+struct flightData {
+
+};
+
 class dataIO {
 
 public:
-	dataIO(string filePathReadIn, string filePathWriteIn);
+	dataIO();
 
-	string filePathRead;
-	string filePathWrite;
+	//Full flight data information
+	int version;
+	int dataMemoryBank;
+	calibrationData calibration;
+	vector<debugFlightData> flightData;
 
-	vector<savedFlightData> readFromCSV();
-	void writeToCSV(vector<savedFlightData> flightData);
-	vector<vector<int>> mapStructureToArray(vector<savedFlightData> flightDataStructure);
-	vector<savedFlightData> mapArrayToStructure(vector<vector<int>> flightDataArray);
+	void readFromCSV(const string& filePathRead);
+	void writeToCSV(const string& filePathWrite);
+
+private:
+
+	string filePath;
+	char delimeter;
+
+	vector<int> splitLine(const string& line);	
+	string writeDelimeter(const int& i, const int& length);
+	void mapHeaderArrayToStructure(const vector<int>& headerArray);
+	vector<int> mapHeaderArrayToStructure();
+	vector<vector<int>> mapFlightStructureToArray();
+	void mapFlightArrayToStructure(const vector<vector<int>>& flightDataArray);
 };
 #endif
