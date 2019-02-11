@@ -1,4 +1,4 @@
-# KiCad Hardware files
+# KiCad Hardware Files
 
 The Hardware folder contains all the KiCad hardware design files:
 + .pro is the project file - KiCad opens this
