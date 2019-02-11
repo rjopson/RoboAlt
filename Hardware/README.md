@@ -1,3 +1,5 @@
+# KiCad Hardware files
+
 The Hardware folder contains all the KiCad hardware design files:
 + .pro is the project file - KiCad opens this
 + .sch is the schematic file
