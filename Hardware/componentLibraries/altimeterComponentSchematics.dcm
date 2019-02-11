@@ -1,5 +1,10 @@
 EESchema-DOCLIB  Version 2.0
 #
+$CMP Crystal
+D Two pin crystal
+K Quartz, Ceramic, Filter, Resonator
+$ENDCMP
+#
 $CMP DMN2008LFU
 D 60V Vds 0.5A Id, N-Channel MOSFET, SOT-23
 K N-Channel MOSFET
