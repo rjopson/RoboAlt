@@ -67,6 +67,51 @@ void dataIO::writeToCSV(const string& filePathWrite) {
 	file.close();
 }
 
+void dataIO::getDataInfo(const int& versionIn, const int& dataMemoryBankIn, const int& lineCountIn) {
+	version = versionIn;
+	dataMemoryBank = dataMemoryBankIn;
+	lineCount = lineCountIn;
+}
+void dataIO::getCalibration(const calibrationData& calibrationIn) {
+	calibration.mpuPad = calibrationIn.mpuPad;
+	calibration.h3lisPad = calibrationIn.h3lisPad;
+	calibration.pressurePad = calibrationIn.pressurePad;
+	calibration.temperaturePad = calibrationIn.temperaturePad;
+
+	for (int i = 0; i != 6; i++) {
+		calibration.C[i] = calibrationIn.C[i];
+	}
+}
+void dataIO::getDataLine(const debugFlightData& data) {
+	
+	debugFlightData dataLine;
+	
+	dataLine.time = data.time;
+	dataLine.flightStatus = data.flightStatus;
+	dataLine.altitude = data.altitude;
+	dataLine.velocity = data.velocity;
+	dataLine.acceleration = data.acceleration;
+	dataLine.altitudeBaro = data.altitudeBaro;
+	dataLine.accelAxial = data.accelAxial;
+	dataLine.pressure = data.pressure;
+	dataLine.temperature = data.temperature;
+	dataLine.MPU_accelX = data.MPU_accelX;
+	dataLine.MPU_accelY = data.MPU_accelY;
+	dataLine.MPU_accelZ = data.MPU_accelZ;
+	dataLine.MPU_gyroX = data.MPU_gyroX;
+	dataLine.MPU_gyroY = data.MPU_gyroY;
+	dataLine.MPU_gyroZ = data.MPU_gyroZ;
+	dataLine.H3LIS_accelY = data.H3LIS_accelY;
+	dataLine.MS5607_pressure = data.MS5607_pressure;
+	dataLine.MS5607_temperature = data.MS5607_temperature;
+	dataLine.voltageAnalog = data.voltageAnalog;
+	dataLine.continuityApo = data.continuityApo;
+	dataLine.continuityMain = data.continuityMain;
+	dataLine.continuityThird = data.continuityThird;
+
+	flightData.push_back(dataLine);
+}
+
 string dataIO::writeDelimeter(const int& i, const int& length) {
 
 	if (i < length-1) {

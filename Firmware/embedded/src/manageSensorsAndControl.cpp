@@ -52,3 +52,28 @@ void manageSensorsAndControl::update() {
 	//Determine phase of flight
 	logic.update(state_data.acceleration, state_data.velocity, state_data.altitude, sensor_data.gyroX, sensor_data.gyroY, sensor_data.gyroZ);
 }
+
+debugFlightData manageSensorsAndControl::getDebugFlightData() {
+
+	debugFlightData data;
+	data.time = engineering_data.time;
+	data.flightStatus = logic.flightStatus;
+	data.altitude = state_data.altitude;
+	data.velocity = state_data.velocity;
+	data.acceleration = state_data.acceleration;
+	data.altitudeBaro = engineering_data.altitudeBaro;
+	data.accelAxial = engineering_data.accelAxial;
+	data.pressure = engineering_data.pressure;
+	data.temperature = engineering_data.temperature;
+	data.MPU_accelX = sensor_data.accelX;
+	data.MPU_accelY = sensor_data.accelY;
+	data.MPU_accelZ = sensor_data.accelZ;
+	data.MPU_gyroX = sensor_data.gyroX;
+	data.MPU_gyroY = sensor_data.gyroY;
+	data.MPU_gyroZ = sensor_data.gyroZ;
+	data.H3LIS_accelY = sensor_data.accelY_highG;
+	data.MS5607_pressure = sensor_data.pressure;
+	data.MS5607_temperature = sensor_data.temperature;
+	data.voltageAnalog = sensor_data.voltageBattery;
+	return data;
+}

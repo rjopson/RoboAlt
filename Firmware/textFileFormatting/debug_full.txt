@@ -4,11 +4,11 @@ time (ms), flightStatus, altitude (cm), velocity (cm/s), acceleration (cm/s2), a
 For readability, data row:
 0	time (ms)
 1	flightStatus
-2	altitude (cm)
-3	velocity (cm/s)
-4	acceleration (cm/s2)
-5	altitudeBaro (cm)
-6	accelAxial (cm/s2)
+2	altitude (mm)
+3	velocity (mm/s)
+4	acceleration (mm/s2)
+5	altitudeBaro (mm)
+6	accelAxial (mm/s2)
 7	pressure (Pa)
 8	temperature (100*degC)
 9	MPU_accelX (2byte 16g)

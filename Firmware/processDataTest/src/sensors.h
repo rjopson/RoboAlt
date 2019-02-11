@@ -19,10 +19,11 @@ public:
 	void initialize(sensorData* data); //initialize sensors and filter classes
 	void getData(sensorData* data); //get raw sensor readings from accelerometers, gyros, temp, pressure and voltage
 	void initializeCalibration(calibrationData* calibration); //initialize offset values 
+	void getDataIO(dataIO* sensorTestDataIn);
 
 	//dataIO replaces sensor drivers 
 	string filePathRead;
-	dataIO sensorTestData;
+	dataIO* sensorTestData;
 	int count; //number of lines of data that have been read 
 };
 #endif

@@ -16,14 +16,13 @@
 #include "kalman.h"
 #include "flightLogic.h"
 
-#include <iostream>
-
 class manageSensorsAndControl {
 
 public:
 	manageSensorsAndControl();
 	void initialize(const int32_t& altitudeMainDeployUser);
 	void update();
+	debugFlightData getDebugFlightData();
 
 	//Data structures
 	sensorData sensor_data;

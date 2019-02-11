@@ -37,6 +37,9 @@ public:
 
 	void readFromCSV(const string& filePathRead);
 	void writeToCSV(const string& filePathWrite);
+	void getDataInfo(const int& versionIn, const int& dataMemoryBankIn, const int& lineCountIn);
+	void getCalibration(const calibrationData& calibrationIn);
+	void getDataLine(const debugFlightData& data);
 
 private:
 
