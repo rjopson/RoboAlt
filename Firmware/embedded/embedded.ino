@@ -71,7 +71,7 @@ void loop() {
 	sensorsAndControl.update();
 
 	//Update pyro pins
-	pyroApo.update(sensorsAndControl.sensor_data.time, sensorsAndControl.logic.flightStatus);
-	pyroMain.update(sensorsAndControl.sensor_data.time, sensorsAndControl.logic.flightStatus);
-	pyroThird.update(sensorsAndControl.sensor_data.time, sensorsAndControl.logic.flightStatus);
+	//pyroApo.update(sensorsAndControl.sensor_data.time, sensorsAndControl.logic.flightStatus);
+	//pyroMain.update(sensorsAndControl.sensor_data.time, sensorsAndControl.logic.flightStatus);
+	//pyroThird.update(sensorsAndControl.sensor_data.time, sensorsAndControl.logic.flightStatus);
 }

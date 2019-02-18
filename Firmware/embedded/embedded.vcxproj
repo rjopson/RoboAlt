@@ -132,6 +132,7 @@
     <ClInclude Include="driver\sensors.h" />
     <ClInclude Include="src\userSettings.h" />
     <ClInclude Include="src\voltage.h" />
+    <ClInclude Include="__vm\.embedded.vsarduino.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
