@@ -11,5 +11,5 @@ Overview of the Firmware folder organization:
   + cpp program which simulates flight using flightTests data. All code is tested with the exception of the hardware drivers. flightTests data replaces this.
 + textFileFormatting
   + contains example of ascii text file output from altimeter
-+ unit testing 
++ unitTest
   + cpp program which uses gtest to impliment unit tests on classes which contain flight logic, process sensor data
