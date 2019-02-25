@@ -794,7 +794,7 @@ U 1 1 5C73BF1B
 P 10550 3150
 F 0 "C16" H 10400 3250 50  0000 L CNN
 F 1 "10uF" H 10350 3050 50  0000 L CNN
-F 2 "altimeterComponentFootprints:C_0603" H 10588 3000 50  0001 C CNN
+F 2 "altimeterComponentFootprints:C_array_2x_0805" H 10588 3000 50  0001 C CNN
 F 3 "" H 10550 3150 50  0000 C CNN
 	1    10550 3150
 	1    0    0    -1  
