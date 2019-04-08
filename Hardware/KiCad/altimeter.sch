@@ -237,7 +237,7 @@ U 1 1 5C6A396D
 P 1350 6800
 F 0 "Q1" H 1250 6950 50  0000 L CNN
 F 1 "DMN2008LFU" V 1650 6600 50  0000 L CNN
-F 2 "altimeterComponentFootprints:6-UFDFN_Exposed_Pad" V 1550 6700 50  0000 L CIN
+F 2 "altimeterComponentFootprints:6-UFDFN_Exposed_Pad" V 1550 6700 50  0001 L CIN
 F 3 "" H 1350 6800 50  0000 L CNN
 	1    1350 6800
 	1    0    0    -1  
@@ -318,7 +318,7 @@ U 1 1 5C6A4A38
 P 2850 6800
 F 0 "Q3" H 2750 6950 50  0000 L CNN
 F 1 "DMN2008LFU" V 3150 6600 50  0000 L CNN
-F 2 "altimeterComponentFootprints:6-UFDFN_Exposed_Pad" V 3050 6700 50  0000 L CIN
+F 2 "altimeterComponentFootprints:6-UFDFN_Exposed_Pad" V 3050 6700 50  0001 L CIN
 F 3 "" H 2850 6800 50  0000 L CNN
 	1    2850 6800
 	1    0    0    -1  
@@ -381,7 +381,7 @@ U 1 1 5C6A5DCD
 P 4400 6800
 F 0 "Q4" H 4300 6950 50  0000 L CNN
 F 1 "DMN2008LFU" V 4700 6600 50  0000 L CNN
-F 2 "altimeterComponentFootprints:6-UFDFN_Exposed_Pad" V 4600 6700 50  0000 L CIN
+F 2 "altimeterComponentFootprints:6-UFDFN_Exposed_Pad" V 4600 6700 50  0001 L CIN
 F 3 "" H 4400 6800 50  0000 L CNN
 	1    4400 6800
 	1    0    0    -1  
@@ -794,7 +794,7 @@ U 1 1 5C73BF1B
 P 10550 3150
 F 0 "C16" H 10400 3250 50  0000 L CNN
 F 1 "10uF" H 10350 3050 50  0000 L CNN
-F 2 "altimeterComponentFootprints:C_array_2x_0805" H 10588 3000 50  0001 C CNN
+F 2 "altimeterComponentFootprints:C_0603" H 10588 3000 50  0001 C CNN
 F 3 "" H 10550 3150 50  0000 C CNN
 	1    10550 3150
 	1    0    0    -1  
@@ -1756,7 +1756,7 @@ U 1 1 5C75EA86
 P 1750 3400
 F 0 "C1" H 1600 3300 50  0000 L CNN
 F 1 "10uF" H 1550 3500 50  0000 L CNN
-F 2 "altimeterComponentFootprints:C_0603" H 1788 3250 50  0001 C CNN
+F 2 "altimeterComponentFootprints:C_array_2x_0805" H 1788 3250 50  0001 C CNN
 F 3 "" H 1750 3400 50  0000 C CNN
 	1    1750 3400
 	-1   0    0    1   
@@ -1767,7 +1767,7 @@ U 2 1 5C75EB48
 P 1300 3400
 F 0 "C1" H 1150 3300 50  0000 L CNN
 F 1 "10uF" H 1100 3500 50  0000 L CNN
-F 2 "altimeterComponentFootprints:C_0603" H 1338 3250 50  0001 C CNN
+F 2 "altimeterComponentFootprints:C_array_2x_0805" H 1338 3250 50  0001 C CNN
 F 3 "" H 1300 3400 50  0000 C CNN
 	2    1300 3400
 	-1   0    0    1   
@@ -1980,7 +1980,7 @@ U 1 1 5C778F61
 P 2700 1250
 F 0 "Q2" H 2600 1400 50  0000 L CNN
 F 1 "DMN2008LFU" V 3000 1050 50  0000 L CNN
-F 2 "altimeterComponentFootprints:6-UFDFN_Exposed_Pad" V 2900 1150 50  0000 L CIN
+F 2 "altimeterComponentFootprints:6-UFDFN_Exposed_Pad" V 2900 1150 50  0001 L CIN
 F 3 "" H 2700 1250 50  0000 L CNN
 	1    2700 1250
 	0    -1   -1   0   
