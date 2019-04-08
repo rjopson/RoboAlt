@@ -37,7 +37,7 @@ void manageSensorsAndControl::update() {
 	drivers.getData(&sensor_data);
 
 	//Update offsts
-	if (logic.flightStatus == 0) {
+	if (logic.flightPhase == flightLogic::detectLaunch) {
 		
 		calibration_data.mpuPad = mpuOffset.updateOffset(sensor_data.accelY, sensor_data.time);
 		calibration_data.h3lisPad = h3lisOffset.updateOffset(sensor_data.accelY_highG, sensor_data.time);

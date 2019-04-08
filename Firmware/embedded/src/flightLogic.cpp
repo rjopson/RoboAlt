@@ -10,6 +10,7 @@
 /* Default constructor
  */
 flightLogic::flightLogic() {
+	flightPhase = detectLaunch;
 	flightStatus = 0;
 }
 
@@ -34,33 +35,39 @@ uint8_t flightLogic::update(const int32_t& acceleration, const int32_t& velocity
 
 	switch (flightStatus) {
 
-	case STATE_MACHINE_LAUNCH_DETECT: //launch detect
+	case detectLaunch: //launch detect
 		launchDetect(acceleration, velocity);
+		flightStatus = 0;
 		return flightStatus;
 		break;
 
-	case STATE_MACHINE_MOTOR_BURN: //coast detect
+	case motorBurn: //coast detect
 		coastDetect(acceleration);
+		flightStatus = 1;
 		return flightStatus;
 		break;
 
-	case STATE_MACHINE_COAST: //apogee detect
+	case coast: //apogee detect
 		apogeeDetect(velocity);
+		flightStatus = 2;
 		return flightStatus;
 		break;
 
-	case STATE_MACHINE_DROGUE_DESCENT:
+	case drogueDescent:
 		mainDetect(altitude);
+		flightStatus = 3;
 		return flightStatus;
 		break;
 
-	case STATE_MACHINE_MAIN_DESCENT:
+	case mainDescent:
 		landingDetect(gyroX, gyroY, gyroZ);
+		flightStatus = 4;
 		return flightStatus;
 		break;
 
-	case STATE_MACHINE_GROUND:
+	case ground:
 		//On ground, don't do anything to advance flightStatus
+		flightStatus = 5;
 		return flightStatus;
 		break;
 	} 
@@ -72,7 +79,7 @@ uint8_t flightLogic::update(const int32_t& acceleration, const int32_t& velocity
 void flightLogic::launchDetect(const int32_t& acceleration, const int32_t& velocity) {
 
 	if (velocity > (int32_t)VELOCITY_LAUNCH_DETECT && acceleration > (int32_t)ACCELAXIAL_LAUNCH_DETECT) {
-		flightStatus = 1;
+		flightStatus = motorBurn;
 	}
 }
 
@@ -82,7 +89,7 @@ void flightLogic::launchDetect(const int32_t& acceleration, const int32_t& veloc
 void flightLogic::coastDetect(const int32_t& acceleration) {
 
 	if (acceleration < (int32_t)ACCELERATION_COAST_DETECT) {
-		flightStatus = 2;
+		flightStatus = coast;
 	}
 }
 
@@ -92,7 +99,7 @@ void flightLogic::coastDetect(const int32_t& acceleration) {
 void flightLogic::apogeeDetect(const int32_t& velocity) {
 
 	if (velocity < (int32_t)VELOCITY_APOGEE_DETECT) {
-		flightStatus = 3;
+		flightStatus = drogueDescent;
 	}
 }
 
@@ -104,7 +111,7 @@ void flightLogic::mainDetect(const int32_t& altitude) {
 	static int8_t countBaro = 0;
 
 	if (altitude < altitudeMainDeploy) {
-		flightStatus = 4;
+		flightStatus = mainDescent;
 	}
 }
 
@@ -126,7 +133,7 @@ void flightLogic::landingDetect(const int16_t& gyroX, const int16_t& gyroY, cons
 
 	//if landingCount gets to 100, altimeter has been still long enough to be on ground
 	if (landingCount > GROUND_COUNT_DETECT) {
-		flightStatus = 5;
+		flightStatus = ground;
 	}
 }
 
