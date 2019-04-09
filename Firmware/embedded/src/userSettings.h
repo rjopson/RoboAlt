@@ -27,6 +27,5 @@ public:
 	uint32_t apoTimeDelay;
 	uint32_t mainTimeDelay;
 	uint32_t thirdTimeDelay;
-
 };
 #endif

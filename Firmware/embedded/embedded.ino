@@ -31,6 +31,7 @@
 
 #include "src/dataStorage.h"
 #include "src/userSettings.h"
+#include "src/flightDataStorage.h"
 
 #include "src/manageSensorsAndControl.h"
 

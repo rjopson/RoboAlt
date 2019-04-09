@@ -60,13 +60,28 @@ struct userFlightData {
 	uint16_t continuityThird;
 };
 
+struct rawFlightData {
+
+	//data to be used in flight logic and/or recorded
+	uint32_t time; //(ms) //time used for filtering functions
+	int16_t MPU_accelX, MPU_accelY, MPU_accelZ; //(16bit at 16g resolution) low g accelerometer measurements
+	int16_t MPU_gyroX, MPU_gyroY, MPU_gyroZ; //(16bit at 2000deg/s resolution) gyro measurements
+	int16_t H3LIS_accelY; //16bit at 200g seolution high g accelerometer
+	uint32_t MS5607_pressure; //raw 4 byte pressure value from sensor
+	uint32_t MS5607_temperature; //raw 4 byte temperature value from sensor		
+	uint16_t voltageAnalog; //10 bit arduino
+	uint16_t continuityApo;
+	uint16_t continuityMain;
+	uint16_t continuityThird;
+};
+
 struct calibrationData {
 
 	//offsets
 	int16_t mpuPad; //16 bit number, -16->16 g's
 	int16_t h3lisPad; //16 bit number, -200->200 g's
-	int32_t pressurePad; //32 bit number
-	int32_t temperaturePad; //32 bit number
+	int32_t pressurePad; //32 bit number, raw
+	int32_t temperaturePad; //32 bit number, raw
 	int16_t voltageStartup; //
 
 	//Barometer coefficients
