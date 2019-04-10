@@ -82,7 +82,7 @@ struct calibrationData {
 	int16_t h3lisPad; //16 bit number, -200->200 g's
 	int32_t pressurePad; //32 bit number, raw
 	int32_t temperaturePad; //32 bit number, raw
-	int16_t voltageStartup; //
+	int16_t voltageStartup; //16 bit number
 
 	//Barometer coefficients
 	uint16_t C[6];

@@ -21,6 +21,7 @@ class manageSensorsAndControl {
 public:
 	manageSensorsAndControl();
 	void initialize(const int32_t& altitudeMainDeployUser);
+	void checkDataValidity();
 	void update();
 	debugFlightData getDebugFlightData();
 
@@ -29,6 +30,9 @@ public:
 	calibrationData calibration_data;
 	engineeringData engineering_data;
 	stateData state_data;
+
+	//enum dataValidity {good, pressureBad, temperatureBad, };
+	//bool validData; //true if data is clean, false if data has problem.
 
 	//Classes to get data and reduce it
 	sensors drivers;

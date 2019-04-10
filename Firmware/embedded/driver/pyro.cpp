@@ -31,19 +31,19 @@ void pyro::setPins() {
 
 	switch (pyroSelection) {
 
-	case ALT_APO:
-		pin = APO_OUTPUT;
-		continuity = APO_CONTINUITY;
+	case apogee:
+		pinOutput = APO_OUTPUT;
+		pinContinuity = APO_CONTINUITY;
 		break;
 
-	case ALT_MAIN:
-		pin = MAIN_OUTPUT;
-		continuity = MAIN_CONTINUITY;
+	case main:
+		pinOutput = MAIN_OUTPUT;
+		pinContinuity = MAIN_CONTINUITY;
 		break;
 
-	case ALT_THIRD:
-		pin = THIRD_OUTPUT;
-		continuity = THIRD_CONTINUITY;
+	case third:
+		pinOutput = THIRD_OUTPUT;
+		pinContinuity = THIRD_CONTINUITY;
 		break;
 	}
 }
@@ -55,9 +55,10 @@ void pyro::initialize(const uint8_t& flightEventIn, const int32_t& timeDelayIn) 
 
 	flightEvent = flightEventIn;
 	timeDelay = timeDelayIn;
+	readContinuity();
 }
 
-/* Used to manage pyro channels from outer look in code
+/* Used to manage pyro channels from outer loop in code
  *
  */
 void pyro::update(const int32_t& time, const uint8_t& flightStatusIn) {
@@ -70,13 +71,22 @@ void pyro::update(const int32_t& time, const uint8_t& flightStatusIn) {
 	else if (controlLogicPyroOff(time)) { //check whether to turn off pyro again
 		pyroOutputOff();
 	}
+
+	readContinuity();
 }
 
 /* Check continuity of output
  * analog value read in test. Greater than value of 125 indicates good continuity
  */
-uint16_t pyro::readContinuity() {
-	return analogRead(continuity);
+void pyro::readContinuity() {
+	continuityAnalog = analogRead(pinContinuity);
+
+	if (continuityAnalog > ANALOG_CONTINUITY_TRUE) {
+		continuityBool = true;
+	}
+	else {
+		continuityBool = false;
+	}
 }
 
 /* Fire pyro
@@ -85,7 +95,7 @@ void pyro::pyroOutputOn() {
 
 	if (active == true) { //test whether user has disabled pyro channel
 		pinState = HIGH; //set pinState to high
-		digitalWrite(pin, pinState); //set output pin to pinState
+		digitalWrite(pinOutput, pinState); //set output pin to pinState
 		timePyroBegin = millis(); //mark time that charge fired
 		firedStatus = true; //update firedStatus to mark that charge has been fired
 	}
@@ -96,7 +106,7 @@ void pyro::pyroOutputOn() {
 
 void pyro::pyroOutputOff() {
 	pinState = LOW; //set pinState back to low
-	digitalWrite(pin, pinState); //turn off output
+	digitalWrite(pinOutput, pinState); //turn off output
 }
 
 /* check whether flight event to fire charge is current/passed, start timer

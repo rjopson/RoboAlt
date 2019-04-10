@@ -36,32 +36,52 @@
 #include "src/manageSensorsAndControl.h"
 
 //Define global variables
-pyro pyroApo(true, 1, 800);
-pyro pyroMain(true, 2, 800);
-pyro pyroThird(true, 3, 800);
+
+//Pyro control and output
+pyro pyroApo(true, pyro::apogee, 800);
+pyro pyroMain(true, pyro::main, 800);
+pyro pyroThird(true, pyro::third, 800);
+
+//All sensors and data reduction
 manageSensorsAndControl sensorsAndControl;
 
+//Saved user settings and flight data
+dataStorage* data_storage;
+userSettings user_settings(data_storage);
+flightDataStorage flightData_storage(data_storage);
+
+//Buzzer
+buzzer buzzer_(1);
 
 // the setup function runs once when you press reset or power the board
 void setup() {
 	
 	//Set pyro pins low
-	pinMode(pyroApo.pin, OUTPUT);
-	pinMode(pyroMain.pin, OUTPUT);
-	pinMode(pyroThird.pin, OUTPUT);
-	digitalWrite(pyroApo.pin, LOW);
-	digitalWrite(pyroMain.pin, LOW);
-	digitalWrite(pyroThird.pin, LOW);
+	pinMode(pyroApo.pinOutput, OUTPUT);
+	pinMode(pyroMain.pinOutput, OUTPUT);
+	pinMode(pyroThird.pinOutput, OUTPUT);
+	digitalWrite(pyroApo.pinOutput, LOW);
+	digitalWrite(pyroMain.pinOutput, LOW);
+	digitalWrite(pyroThird.pinOutput, LOW);
 
-	//Read user settings
+	//Beep to indicate power
+	buzzer_.toneStartup();
+
+	//Initialize flash chip, read user settings, initialize flightDataStorage
+	data_storage->initialize();
+	user_settings.readCurrentSettings();
+	flightData_storage.initialize();
 
 	//Initialize sensors, data processing and filtering
-	sensorsAndControl.initialize(50000);
+	sensorsAndControl.initialize(user_settings.altitudeMainDeploy);
 
 	//Initialize pyro pins
-	//pyroApo.initialize(userSettings.apoFlightEvent, userSettings.apoTimeDelay);
-	//pyroMain.initialize(userSettings.mainFlightEvent, userSettings.mainTimeDelay);
-	//pyroThird.initialize(userSettings.thirdFlightEvent, userSettings.thirdTimeDelay);
+	pyroApo.initialize(user_settings.apoFlightEvent, user_settings.apoTimeDelay);
+	pyroMain.initialize(user_settings.mainFlightEvent, user_settings.mainTimeDelay);
+	pyroThird.initialize(user_settings.thirdFlightEvent, user_settings.thirdTimeDelay);
+
+	//Get one line of sensor data
+	sensorsAndControl.update();
 
 }
 
@@ -72,7 +92,10 @@ void loop() {
 	sensorsAndControl.update();
 
 	//Update pyro pins
-	//pyroApo.update(sensorsAndControl.sensor_data.time, sensorsAndControl.logic.flightStatus);
-	//pyroMain.update(sensorsAndControl.sensor_data.time, sensorsAndControl.logic.flightStatus);
-	//pyroThird.update(sensorsAndControl.sensor_data.time, sensorsAndControl.logic.flightStatus);
+	pyroApo.update(sensorsAndControl.sensor_data.time, sensorsAndControl.logic.flightStatus);
+	pyroMain.update(sensorsAndControl.sensor_data.time, sensorsAndControl.logic.flightStatus);
+	pyroThird.update(sensorsAndControl.sensor_data.time, sensorsAndControl.logic.flightStatus);
+
+	//Save flight data
+
 }
