@@ -48,9 +48,11 @@ private:
 
 	vector<int> splitLine(const string& line);	
 	string writeDelimeter(const int& i, const int& length);
-	void mapHeaderArrayToStructure(const vector<int>& headerArray);
-	vector<int> mapHeaderArrayToStructure();
+	void mapStartupArrayToStructure(const vector<int>& startupArray);
+	vector<int> mapStartupArrayToStructure();
+	vector<string> setStartupHeader();
 	vector<vector<int>> mapFlightStructureToArray();
+	vector<string> setFlightDataHeader();
 	void mapFlightArrayToStructure(const vector<vector<int>>& flightDataArray);
 };
 #endif
