@@ -14,7 +14,7 @@ dataIO::dataIO() {
 
 void dataIO::readFromCSV(const string& filePathRead) {
 	
-	vector<int> headerArray;
+	vector<int> startupArray;
 	vector<vector<int>> flightDataArray;
 	
 	ifstream file(filePathRead);
@@ -31,11 +31,11 @@ void dataIO::readFromCSV(const string& filePathRead) {
 			
 			vector<int> row;
 			row = splitLine(line);
-			if (count == 0) { headerArray = row; }
-			if (count > 0) { flightDataArray.push_back(row); }
+			if (count == 1) { startupArray = row; }
+			if (count > 2) { flightDataArray.push_back(row); }
 			count++;
 		}
-		mapHeaderArrayToStructure(headerArray);
+		mapStartupArrayToStructure(startupArray);
 		mapFlightArrayToStructure(flightDataArray);
 	}
 }
@@ -50,10 +50,22 @@ void dataIO::writeToCSV(const string& filePathWrite) {
 	}
 	else {
 
-		vector<int> header = mapHeaderArrayToStructure();
-		for (int i = 0; i != header.size(); i++) {
-			file << header[i];
-			file << writeDelimeter(i, header.size());
+		vector<string> startupHeader = setStartupHeader();
+		for (int i = 0; i != startupHeader.size(); i++) {
+			file << startupHeader[i];
+			file << writeDelimeter(i, startupHeader.size());
+		}
+
+		vector<int> startup = mapStartupArrayToStructure();
+		for (int i = 0; i != startup.size(); i++) {
+			file << startup[i];
+			file << writeDelimeter(i, startup.size());
+		}
+
+		vector<string> flightDataHeader = setFlightDataHeader();
+		for (int i = 0; i != flightDataHeader.size(); i++) {
+			file << flightDataHeader[i];
+			file << writeDelimeter(i, flightDataHeader.size());
 		}
 
 		vector<vector<int>> flightDataArray = mapFlightStructureToArray();
@@ -134,42 +146,63 @@ vector<int> dataIO::splitLine(const string& line) {
 	return dataLine;
 }
 
-void dataIO::mapHeaderArrayToStructure(const vector<int>& headerArray) {
+void dataIO::mapStartupArrayToStructure(const vector<int>& startupArray) {
 
-	version = headerArray[0];
-	dataMemoryBank = headerArray[1];
-	lineCount = headerArray[2];
-	calibration.mpuPad = headerArray[3];
-	calibration.h3lisPad = headerArray[4];
-	calibration.pressurePad = headerArray[5];
-	calibration.temperaturePad = headerArray[6];
-	calibration.C[0] = headerArray[7];
-	calibration.C[1] = headerArray[8];
-	calibration.C[2] = headerArray[9];
-	calibration.C[3] = headerArray[10];
-	calibration.C[4] = headerArray[11];
-	calibration.C[5] = headerArray[12];
+	version = startupArray[0];
+	dataMemoryBank = startupArray[1];
+	lineCount = startupArray[2];
+	calibration.mpuPad = startupArray[3];
+	calibration.h3lisPad = startupArray[4];
+	calibration.pressurePad = startupArray[5];
+	calibration.temperaturePad = startupArray[6];
+	calibration.C[0] = startupArray[7];
+	calibration.C[1] = startupArray[8];
+	calibration.C[2] = startupArray[9];
+	calibration.C[3] = startupArray[10];
+	calibration.C[4] = startupArray[11];
+	calibration.C[5] = startupArray[12];
 }
 
-vector<int> dataIO::mapHeaderArrayToStructure() {
+vector<int> dataIO::mapStartupArrayToStructure() {
 
-	vector<int> headerArray;
+	vector<int> startupArray;
 
-	headerArray.push_back(version);
-	headerArray.push_back(dataMemoryBank);
-	headerArray.push_back(lineCount);
-	headerArray.push_back(calibration.mpuPad);
-	headerArray.push_back(calibration.h3lisPad);
-	headerArray.push_back(calibration.pressurePad);
-	headerArray.push_back(calibration.temperaturePad);
-	headerArray.push_back(calibration.C[0]);
-	headerArray.push_back(calibration.C[1]);
-	headerArray.push_back(calibration.C[2]);
-	headerArray.push_back(calibration.C[3]);
-	headerArray.push_back(calibration.C[4]);
-	headerArray.push_back(calibration.C[5]);
+	startupArray.push_back(version);
+	startupArray.push_back(dataMemoryBank);
+	startupArray.push_back(lineCount);
+	startupArray.push_back(calibration.mpuPad);
+	startupArray.push_back(calibration.h3lisPad);
+	startupArray.push_back(calibration.pressurePad);
+	startupArray.push_back(calibration.temperaturePad);
+	startupArray.push_back(calibration.C[0]);
+	startupArray.push_back(calibration.C[1]);
+	startupArray.push_back(calibration.C[2]);
+	startupArray.push_back(calibration.C[3]);
+	startupArray.push_back(calibration.C[4]);
+	startupArray.push_back(calibration.C[5]);
 
-	return headerArray; 
+	return startupArray; 
+}
+
+vector<string> dataIO::setStartupHeader() {
+
+	vector<string> startupHeader;
+
+	startupHeader.push_back("Version");
+	startupHeader.push_back("Memory Bank");
+	startupHeader.push_back("Line Count");
+	startupHeader.push_back("MPU Pad");
+	startupHeader.push_back("H3LIS Pad");
+	startupHeader.push_back("MS5607 Pressure Pad");
+	startupHeader.push_back("Ms5607 Temperature Pad");
+	startupHeader.push_back("C1");
+	startupHeader.push_back("C2");
+	startupHeader.push_back("C3");
+	startupHeader.push_back("C4");
+	startupHeader.push_back("C5");
+	startupHeader.push_back("C6");
+
+	return startupHeader;
 }
 
 vector<vector<int>> dataIO::mapFlightStructureToArray() {
@@ -205,6 +238,36 @@ vector<vector<int>> dataIO::mapFlightStructureToArray() {
 		flightDataArray.push_back(flightDataLine);
 	}
 	return flightDataArray;
+}
+
+vector<string> dataIO::setFlightDataHeader() {
+
+	vector<string> flightDataHeader;
+
+	flightDataHeader.push_back("Time (ms)");
+	flightDataHeader.push_back("Status");
+	flightDataHeader.push_back("Altitude (mm)");
+	flightDataHeader.push_back("Velocity (mm/s)");
+	flightDataHeader.push_back("Acceleration (mm/s2)");
+	flightDataHeader.push_back("Altitude Barometric (mm)");
+	flightDataHeader.push_back("Acceleration Axial (mm/s2)");
+	flightDataHeader.push_back("Pressure (Pa)");
+	flightDataHeader.push_back("Temperature (100*degC)");
+	flightDataHeader.push_back("Acceleration MPU_X (2byte 16g)");
+	flightDataHeader.push_back("Acceleration MPU_Y (2byte 16g)");
+	flightDataHeader.push_back("Acceleration MPU_Z (2byte 16g)");
+	flightDataHeader.push_back("Rotation MPU_X (2byte 2000deg/s)");
+	flightDataHeader.push_back("Rotation MPU_Y (2byte 2000deg/s)");
+	flightDataHeader.push_back("Rotation MPU_Z (2byte 2000deg/s)");
+	flightDataHeader.push_back("Acceleration H3LIS Y (2byte 200g)");
+	flightDataHeader.push_back("MS5607 Pressure (4byte)");
+	flightDataHeader.push_back("MS5607 Temperature (4byte)");
+	flightDataHeader.push_back("Voltage (10bit)");
+	flightDataHeader.push_back("Continuity Apogee (10bit)");
+	flightDataHeader.push_back("Continuity Main (10bit)");
+	flightDataHeader.push_back("Continuity Third (10bit)");
+
+	return flightDataHeader;
 }
 
 void dataIO::mapFlightArrayToStructure(const vector<vector<int>>& flightDataArray) {

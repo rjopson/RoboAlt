@@ -54,9 +54,6 @@
     <ClCompile Include="..\embedded\src\processData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="lib\matplotpp\matplotpp.cc">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\embedded\src\baroAndTemp.h">
@@ -96,9 +93,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\embedded\src\processData.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="lib\matplotpp\matplotpp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
