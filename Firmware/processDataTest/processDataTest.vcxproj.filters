@@ -36,6 +36,9 @@
     <ClCompile Include="..\embedded\src\matrixMath.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\embedded\src\processData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\embedded\src\sensorOffset.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -49,9 +52,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\embedded\src\manageSensorsAndControl.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\embedded\src\processData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -77,6 +77,9 @@
     <ClInclude Include="..\embedded\src\matrixMath.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\embedded\src\processData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\embedded\src\sensorOffset.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -90,9 +93,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\embedded\src\manageSensorsAndControl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\embedded\src\processData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

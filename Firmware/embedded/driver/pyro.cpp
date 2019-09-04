@@ -10,7 +10,7 @@
   * -sets appropriate analog read and digital output pins
   * -sets constructor active, timeOn values. 
   */
-pyro::pyro(const bool& activeIn, const uint8_t& pyroSelectionIn, const int16_t& timeOnIn) {
+pyro::pyro(const bool& activeIn, pyroSelections pyroSelectionIn, const int16_t& timeOnIn) {
 
 	active = activeIn;
 	pyroSelection = pyroSelectionIn;
@@ -95,9 +95,7 @@ void pyro::pyroOutputOn() {
 
 	if (active == true) { //test whether user has disabled pyro channel
 		pinState = HIGH; //set pinState to high
-		digitalWrite(pinOutput, pinState); //set output pin to pinState
-		timePyroBegin = millis(); //mark time that charge fired
-		firedStatus = true; //update firedStatus to mark that charge has been fired
+		digitalWrite(pinOutput, pinState); //set output pin to pinState		
 	}
 }
 
@@ -116,6 +114,7 @@ bool pyro::lookForFlightEvent(const int32_t& time, const uint8_t& flightStatusIn
 	bool flightStatusTest = flightStatusIn >= flightEvent; //check whether flight status to fire in active or passed
 
 	if (flightStatusTest && timeFlightEventActivate == 0) {
+		timeFlightEventActivate = time;
 		return true;
 	}
 	else
@@ -129,6 +128,8 @@ bool pyro::controlLogicPyroOn(const int32_t& time) {
 	bool timeTest = (time - timeFlightEventActivate > timeDelay); //check whether time delay after flightEvent sensed has been passed. Usually this is 0 delay.
 
 	if (!firedStatus && timeFlightEventActivate != 0 && timeTest) {
+		firedStatus = true;
+		timePyroBegin = time;
 		return true;
 	}
 	else {

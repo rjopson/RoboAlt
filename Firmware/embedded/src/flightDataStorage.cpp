@@ -10,6 +10,8 @@ flightDataStorage::flightDataStorage(dataStorage* dataFlashIn) {
 	dataFlash = dataFlashIn;
 	pageWriteCount = 0;
 	flightInformationSaved = 0;
+	descentPeriod = ALT_DESCENT_PERIOD;
+	timePreviousRecording = 0;
 }
 
 /* Initialize function. Requires dataFlash object to be initialized.
@@ -22,28 +24,32 @@ void flightDataStorage::initialize() {
 
 /*public function to save data in logging thread
 */
-void flightDataStorage::writeData(const flightLogic::flightPhases& flightPhaseIn, const rawFlightData* dataIn, const calibrationData* calibrationIn) {
+void flightDataStorage::writeData(const uint32_t& time, const flightLogic::flightPhases& flightPhaseIn, const rawFlightData* dataIn, const calibrationData* calibrationIn, const debugFlightData* debugDataIn) {
 
 	switch (flightPhaseIn) {
 
 	case flightLogic::detectLaunch: //launch detect
-		writePreflightData(dataIn);
+		writePreflightData(dataIn, debugDataIn);
 		break;
 
 	case flightLogic::motorBurn: //coast detect
-		writeFlightData(dataIn);
+		writeFlightData(dataIn, debugDataIn);
 		break;
 
 	case flightLogic::coast: //apogee detect
-		writeFlightData(dataIn);
+		writeFlightData(dataIn, debugDataIn);
 		break;
 
 	case flightLogic::drogueDescent:
-		writeFlightData(dataIn);
+		if (checkDescentPeriod(time)) {
+			writeFlightData(dataIn, debugDataIn);
+		}
 		break;
 
 	case flightLogic::mainDescent:
-		writeFlightData(dataIn);
+		if (checkDescentPeriod(time)) {
+			writeFlightData(dataIn, debugDataIn);
+		}
 		break;
 
 	case flightLogic::ground:
@@ -52,12 +58,22 @@ void flightDataStorage::writeData(const flightLogic::flightPhases& flightPhaseIn
 	}
 }
 
+bool flightDataStorage::checkDescentPeriod(const uint32_t& time) {
+
+	if (time - timePreviousRecording > ALT_DESCENT_PERIOD) {
+		timePreviousRecording = time;
+		return true;
+	}
+	else {
+		return false;
+	}
+}
 
 /*public function to read flight data from Qt
 */
-void flightDataStorage::readData(const uint8_t& flightID_readIn) { 
+void flightDataStorage::readData(const uint8_t& requestID) { 
 	
-	setPageNumbers(flightID_readIn); //set pages number for flight to be read
+	setPageNumbers(requestID); //set pages number for flight to be read
 	readFlightInformation(); //get buffer and flight lengths
 	readPreFlightData(); //read preflight data with buffers
 	readFlightData(); //read flight data
@@ -117,6 +133,8 @@ void flightDataStorage::updateFlightID() {
 		flightID_update = 0;
 	}
 
+	flightID = flightID_update;
+
 	//write updated flightID
 	dataFlash->startWrite(ALT_PAGE_FLIGHT_ID);
 	dataFlash->writeByte(flightID_update);
@@ -129,8 +147,19 @@ void flightDataStorage::updateFlightID() {
 * 2bit - 11
 * 34bits per line
 */
-void flightDataStorage::writeDataLine(const rawFlightData* dataIn) {
+void flightDataStorage::writeDataLine(const rawFlightData* dataIn, const debugFlightData* debugDataIn) {
+	
 	dataFlash->writeInt32(dataIn->time);
+
+	dataFlash->writeByte(debugDataIn->flightStatus);
+	dataFlash->writeInt32(debugDataIn->altitude);
+	dataFlash->writeInt32(debugDataIn->velocity);
+	dataFlash->writeInt32(debugDataIn->acceleration);
+	dataFlash->writeInt32(debugDataIn->altitudeBaro);
+	dataFlash->writeInt32(debugDataIn->accelAxial);
+	dataFlash->writeInt32(debugDataIn->pressure);
+	dataFlash->writeInt32(debugDataIn->temperature);
+
 	dataFlash->writeInt16(dataIn->MPU_accelX);
 	dataFlash->writeInt16(dataIn->MPU_accelY);
 	dataFlash->writeInt16(dataIn->MPU_accelZ);
@@ -151,7 +180,17 @@ void flightDataStorage::writeDataLine(const rawFlightData* dataIn) {
  * Comma delimited printout
  */
 void flightDataStorage::readDataline() {
-	Serial.print(dataFlash->readInt32());Serial.print(","); //time
+
+	Serial.print((uint32_t)dataFlash->readInt32());Serial.print(","); //time
+	Serial.print((uint8_t)dataFlash->readByte()); Serial.print(","); //flightStatus
+	Serial.print(dataFlash->readInt32()); Serial.print(","); //altitude
+	Serial.print(dataFlash->readInt32()); Serial.print(","); //velocity
+	Serial.print(dataFlash->readInt32()); Serial.print(","); //acceleration
+	Serial.print(dataFlash->readInt32()); Serial.print(","); //altitudeBaro
+	Serial.print(dataFlash->readInt32()); Serial.print(","); //accelAxial
+	Serial.print((uint32_t)dataFlash->readInt32()); Serial.print(","); //pressure
+	Serial.print(dataFlash->readInt32()); Serial.print(","); //temperature
+
 	Serial.print(dataFlash->readInt16()); Serial.print(","); //MPU_accelX
 	Serial.print(dataFlash->readInt16()); Serial.print(","); //MPU_accelY
 	Serial.print(dataFlash->readInt16()); Serial.print(","); //MPU_accelZ
@@ -159,19 +198,20 @@ void flightDataStorage::readDataline() {
 	Serial.print(dataFlash->readInt16()); Serial.print(","); //MPU_gyroY
 	Serial.print(dataFlash->readInt16()); Serial.print(","); //MPU_gyroZ
 	Serial.print(dataFlash->readInt16()); Serial.print(","); //H3LIS
-	Serial.print(dataFlash->readInt32()); Serial.print(","); //MS5607_pressure
-	Serial.print(dataFlash->readInt32()); Serial.print(","); //MS5607_temperature
-	Serial.print(dataFlash->readInt16()); Serial.print(","); //voltageAnalog
-	Serial.print(dataFlash->readInt16()); Serial.print(","); //continuityApo
-	Serial.print(dataFlash->readInt16()); Serial.print(","); //continuityMain
-	Serial.print(dataFlash->readInt16()); Serial.print(","); //continuityThird
+	Serial.print((uint32_t)dataFlash->readInt32()); Serial.print(","); //MS5607_pressure
+	Serial.print((uint32_t)dataFlash->readInt32()); Serial.print(","); //MS5607_temperature
+	Serial.print((uint16_t)dataFlash->readInt16()); Serial.print(","); //voltageAnalog
+	Serial.print((uint16_t)dataFlash->readInt16()); Serial.print(","); //continuityApo
+	Serial.print((uint16_t)dataFlash->readInt16()); Serial.print(","); //continuityMain
+	Serial.print((uint16_t)dataFlash->readInt16()); Serial.print(","); //continuityThird
+	Serial.println();
 }
 
 /**Double buffer to save preflight data.
  * Designed to save ~15s of data before takeoff
  *
  */
-void flightDataStorage::writePreflightData(const rawFlightData* dataIn) {
+void flightDataStorage::writePreflightData(const rawFlightData* dataIn, const debugFlightData* debugDataIn) {
 	
 	if (preFlightBufferLine == 0) { //writing hasn't begun yet, only ever 0 before function has run once(at bottom of function, preFlightBufferLine always incremented)
 		dataFlash->startWrite(pageBufferOneStart); //start writing at beginning of first buffer
@@ -191,7 +231,7 @@ void flightDataStorage::writePreflightData(const rawFlightData* dataIn) {
 	}
 
 	//save line of data to location defined in logic above
-	writeDataLine(dataIn);
+	writeDataLine(dataIn, debugDataIn);
 
 	//increment preFlightBufferLine
 	preFlightBufferLine++;
@@ -204,6 +244,19 @@ void flightDataStorage::readPreFlightData() {
 
 	//number of lines written to buffers (one buffer will always be full, other will be filled to length of preFlightBufferLine
 	for (long i = 0; i != ALT_LINELENGTH_BUFFER_MAX + preFlightBufferLine; i++) {
+
+		//Serial.print(preFlightBufferLine); Serial.print(" ");
+		//Serial.print(i); Serial.print(" ");
+		//
+		//uint8_t test;
+		//if (preFlightBufferCurrent_== flightDataStorage::bufferOne) {
+		//	test = 1;
+		//}
+		//else {
+		//	test = 2;
+		//}
+		//Serial.println(test);
+		
 
 		//Set page to read based on whether buffer 1 or buffer 2 was written into last
 		if (i == 0 && preFlightBufferCurrent_ == flightDataStorage::bufferOne) { //buffer 2 full, buffer 1 partially filled
@@ -225,7 +278,7 @@ void flightDataStorage::readPreFlightData() {
 
 /*save ascent and descent flight data
 */
-void flightDataStorage::writeFlightData(const rawFlightData* dataIn) {
+void flightDataStorage::writeFlightData(const rawFlightData* dataIn, const debugFlightData* debugDataIn) {
 	
 	if (flightLine == 0) { //flight data has not been written yet
 		dataFlash->endWrite();
@@ -233,7 +286,7 @@ void flightDataStorage::writeFlightData(const rawFlightData* dataIn) {
 	}
 
 	if (pageWriteCount != ALT_PAGELENGTH_INFLIGHT) { //make sure data doesn't overflow into another flight
-		writeDataLine(dataIn); //save line of data to location defined in logic above
+		writeDataLine(dataIn, debugDataIn); //save line of data to location defined in logic above
 		flightLine++; //increment number of lines of flight data written
 	}
 }
@@ -288,7 +341,9 @@ void flightDataStorage::writeFlightInformation(const calibrationData* dataIn) {
 
 		//Make sure above only written once after alt back on ground
 		flightInformationSaved = 1;
-	}
+		
+		Serial.println("complete");	
+	}	
 }
 
 /* read offsets, buffer values and number of lines written
@@ -300,15 +355,16 @@ void flightDataStorage::readFlightInformation() {
 	//Read offsets
 	Serial.print(dataFlash->readInt16()); Serial.print(","); //mpuPad
 	Serial.print(dataFlash->readInt16()); Serial.print(","); //h3lisPad
-	Serial.print(dataFlash->readInt32()); Serial.print(","); //pressurePad
+	Serial.print((uint32_t)dataFlash->readInt32()); Serial.print(","); //pressurePad
 	Serial.print(dataFlash->readInt32()); Serial.print(","); //temperaturePad
 	Serial.print(dataFlash->readInt16()); Serial.print(","); //voltageStartup
-	Serial.print(dataFlash->readInt16()); Serial.print(","); //C0
-	Serial.print(dataFlash->readInt16()); Serial.print(","); //C1
-	Serial.print(dataFlash->readInt16()); Serial.print(","); //C2
-	Serial.print(dataFlash->readInt16()); Serial.print(","); //C3
-	Serial.print(dataFlash->readInt16()); Serial.print(","); //C4
-	Serial.print(dataFlash->readInt16()); Serial.print(","); //C5
+	Serial.print((uint16_t)dataFlash->readInt16()); Serial.print(","); //C0
+	Serial.print((uint16_t)dataFlash->readInt16()); Serial.print(","); //C1
+	Serial.print((uint16_t)dataFlash->readInt16()); Serial.print(","); //C2
+	Serial.print((uint16_t)dataFlash->readInt16()); Serial.print(","); //C3
+	Serial.print((uint16_t)dataFlash->readInt16()); Serial.print(","); //C4
+	Serial.print((uint16_t)dataFlash->readInt16()); Serial.print(","); //C5
+	//Serial.println();
 
 	//Read preflight buffer information
 	preFlightBufferLine = dataFlash->readInt16();
@@ -325,4 +381,10 @@ void flightDataStorage::readFlightInformation() {
 
 	//Print number of lines of data
 	Serial.println(ALT_LINELENGTH_BUFFER_MAX + preFlightBufferLine + flightLine);
+}
+
+void flightDataStorage::getFlightID() {
+	dataFlash->startRead(ALT_PAGE_FLIGHT_ID);
+	Serial.print("Current Flight ID: ");
+	Serial.println(dataFlash->readByte());
 }

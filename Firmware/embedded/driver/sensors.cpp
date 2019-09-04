@@ -17,6 +17,8 @@ sensors::sensors() {
  */
 void sensors::initialize(sensorData* data) {
 
+	Wire.begin();
+
 	//Initialize sensors
 	accelGyroHighSensitivity.initialize();
 	accelLowSensitivity.initialize();
@@ -38,19 +40,23 @@ void sensors::initializeCalibration(calibrationData* calibration) {
 	int16_t mpuOffsetX, mpuOffsetY, mpuOffsetZ;
 	int32_t mpuOffsetSum = 0;
 	int32_t h3lisOffsetSum = 0;
-	uint32_t pressureOffsetSum = 0;
-	uint32_t temperatureOffsetSum = 0;
+	int64_t pressureOffsetSum = 0;
+	int64_t temperatureOffsetSum = 0;
 	for (i = 0; i != NUMBER_SAMPLES_AVERAGE; i++) {
 		accelGyroHighSensitivity.getAcceleration(&mpuOffsetX, &mpuOffsetY, &mpuOffsetZ);
 		mpuOffsetSum += mpuOffsetY;
 		h3lisOffsetSum += accelLowSensitivity.getAccelerationY();
+
+		delay(1);
 		pressureOffsetSum += baroTemp.getRawPressure();
+		delay(1);
 		temperatureOffsetSum += baroTemp.getRawTemperature();
+		delay(10);
 	}
 	calibration->mpuPad = mpuOffsetSum / ((int32_t)NUMBER_SAMPLES_AVERAGE);
 	calibration->h3lisPad = h3lisOffsetSum / ((int32_t)NUMBER_SAMPLES_AVERAGE);
-	calibration->pressurePad = pressureOffsetSum / ((int32_t)NUMBER_SAMPLES_AVERAGE);
-	calibration->temperaturePad = temperatureOffsetSum / ((int32_t)NUMBER_SAMPLES_AVERAGE);
+	calibration->pressurePad =  (int32_t)(pressureOffsetSum / ((int32_t)NUMBER_SAMPLES_AVERAGE));
+	calibration->temperaturePad = (int32_t)(temperatureOffsetSum / ((int32_t)NUMBER_SAMPLES_AVERAGE));
 }
 
 /* get new line of data from sensors
@@ -69,10 +75,14 @@ void sensors::getData(sensorData* data) {
 	accelGyroHighSensitivity.getRotation(&data->gyroX, &data->gyroY, &data->gyroZ);
 
 	//Barometer
+	delay(1); 
 	data->pressure = baroTemp.getRawPressure();
+	
 
 	//Thermometer
+	delay(1); 
 	data->temperature = baroTemp.getRawTemperature();
+	
 
 	//battery voltage
 	data->voltageBattery = analogData.getBatteryVoltage();

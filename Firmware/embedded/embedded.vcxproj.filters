@@ -78,13 +78,16 @@
     <ClCompile Include="src\flightDataStorage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\manageDataStorage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\manageSensorsAndControl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="driver\sensors.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\manageIO.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\validateSensorData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -155,9 +158,6 @@
     <ClInclude Include="src\flightDataStorage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\manageDataStorage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\manageSensorsAndControl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -167,5 +167,19 @@
     <ClInclude Include="__vm\.embedded.vsarduino.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\manageIO.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\validateSensorData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="embedded.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

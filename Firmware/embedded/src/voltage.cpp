@@ -17,5 +17,7 @@ voltage::voltage() {
  *
  */
 int16_t voltage::battery(const int16_t& analogReadingIn) {
-	return (int16_t)((int32_t)VOLTAGE_BATTERY_DIVIDER*(int32_t)VOLTAGE_ATMEGA*(int32_t)analogReadingIn) >> 10;
+
+	int32_t reading = (int32_t)analogReadingIn;
+	return ((int32_t)(VOLTAGE_BATTERY_DIVIDER*VOLTAGE_ATMEGA*reading)) >> 10;
 }

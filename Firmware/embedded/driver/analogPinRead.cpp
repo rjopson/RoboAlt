@@ -16,5 +16,5 @@ analogPinRead::analogPinRead() {
  *
  */
 uint16_t analogPinRead::getBatteryVoltage() {
-	return analogRead(VOLTAGE_BATTERY_PIN);
+	return (uint16_t)analogRead(VOLTAGE_BATTERY_PIN);
 }

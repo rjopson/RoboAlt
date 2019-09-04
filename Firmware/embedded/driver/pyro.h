@@ -10,7 +10,13 @@
 #include <inttypes.h>
 #include "Arduino.h"
 #include "pins.h"
+
+#if TEST_SWITCH == 1
+#include "flightLogic.h"
+#else 
 #include "../src/flightLogic.h"
+#endif
+
 
 //Pyro Channels (from pins.h)
 #define APO_CONTINUITY			ALT_APO_CONTINUITY	

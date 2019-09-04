@@ -10,7 +10,7 @@
 
 #include <inttypes.h>
 
-#define		VOLTAGE_BATTERY_DIVIDER			720 //(v*100) voltage divider multiplier
+#define		VOLTAGE_BATTERY_DIVIDER			470 //(v*100) voltage divider multiplier
 #define		VOLTAGE_ATMEGA					33 //(v*10) voltage arduino logic run at
 
 class voltage {

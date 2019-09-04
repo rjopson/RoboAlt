@@ -18,8 +18,10 @@ void AT45DB641::initialize() {
 	//Set slave and write protect pins
 	pinMode(SLAVESELECT, OUTPUT); //ss
 	pinMode(WRITE_PROTECT, OUTPUT); //WP
+	pinMode(RESET, OUTPUT);
 	digitalWrite(SLAVESELECT, HIGH); //disable device
 	digitalWrite(WRITE_PROTECT, HIGH); //Write protect high
+	digitalWrite(RESET, HIGH);
 
 	//Initialize Arduino SPI class
 	SPI.begin();
@@ -57,7 +59,7 @@ unsigned char AT45DB641::readRegisterStatus() {
 /* make sure we haven't been waiting longer than timeout
  *
  */
-bool AT45DB641::checkTimeout() {
+bool AT45DB641::checkTimeout(uint32_t timeStartTimeout) {
 
 	int32_t deltaTime = millis() - timeStartTimeout;
 	if (AT45DB641_TRANSFER_TIMEOUT > deltaTime) {
@@ -74,8 +76,8 @@ bool AT45DB641::checkTimeout() {
 void AT45DB641::confirmTransfer() {	
 	
 	spiToggleCS(); //toggle to send command
-	uint32_t time = millis(); //time read begins, to make sure exit while loop if timeout passed
-	while (readRegisterStatus() != 0xBC && checkTimeout()) {}; //monitor status register until busy status is high
+	uint32_t timeStart = millis(); //time read begins, to make sure exit while loop if timeout passed
+	while (readRegisterStatus() != 0xBC && checkTimeout(timeStart)) {}; //monitor status register until busy status is high
 }
 
 /* Read byte of data from SRAM buffer

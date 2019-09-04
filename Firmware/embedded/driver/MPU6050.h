@@ -11,6 +11,7 @@
 #ifndef _MPU6050_h
 #define _MPU6050_h
 
+#include "Arduino.h"
 #include "I2C.h"
 
 #define MPU6050_ADDRESS_AD0_LOW		0x68 // address pin low 

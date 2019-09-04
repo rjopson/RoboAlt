@@ -53,7 +53,7 @@ void manageSensorsAndControl::update() {
 	logic.update(state_data.acceleration, state_data.velocity, state_data.altitude, sensor_data.gyroX, sensor_data.gyroY, sensor_data.gyroZ);
 }
 
-debugFlightData manageSensorsAndControl::getDebugFlightData() {
+debugFlightData manageSensorsAndControl::getDebugFlightData(const pyroContinuity& continuity) {
 
 	debugFlightData data;
 	data.time = engineering_data.time;
@@ -75,5 +75,30 @@ debugFlightData manageSensorsAndControl::getDebugFlightData() {
 	data.MS5607_pressure = sensor_data.pressure;
 	data.MS5607_temperature = sensor_data.temperature;
 	data.voltageAnalog = sensor_data.voltageBattery;
+	data.continuityApo = continuity.apo;
+	data.continuityMain = continuity.main;
+	data.continuityThird = continuity.third;
+	
+	return data;
+}
+
+rawFlightData manageSensorsAndControl::getRawFlightData(const pyroContinuity& continuity) {
+
+	rawFlightData data;
+	data.time = engineering_data.time;
+	data.MPU_accelX = sensor_data.accelX;
+	data.MPU_accelY = sensor_data.accelY;
+	data.MPU_accelZ = sensor_data.accelZ;
+	data.MPU_gyroX = sensor_data.gyroX;
+	data.MPU_gyroY = sensor_data.gyroY;
+	data.MPU_gyroZ = sensor_data.gyroZ;
+	data.H3LIS_accelY = sensor_data.accelY_highG;
+	data.MS5607_pressure = sensor_data.pressure;
+	data.MS5607_temperature = sensor_data.temperature;
+	data.voltageAnalog = sensor_data.voltageBattery;
+	data.continuityApo = continuity.apo;
+	data.continuityMain = continuity.main;
+	data.continuityThird = continuity.third;
+	
 	return data;
 }

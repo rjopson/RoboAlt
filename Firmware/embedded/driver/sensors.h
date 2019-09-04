@@ -9,13 +9,24 @@
 
 #include <inttypes.h>
 #include "Arduino.h"
-#include "../src/dataStructures.h"
 
+#if TEST_SWITCH == 1
+ //Sensor classes
+#include "H3LIS331DL.h"
+#include "MPU6050.h"
+#include "MS5607.h"
+#include "analogPinRead.h"
+#include "dataStructures.h"
+
+#else 
+#include "../src/dataStructures.h"
 //Sensor classes
 #include "../driver/H3LIS331DL.h"
 #include "../driver/MPU6050.h"
 #include "../driver/MS5607.h"
 #include "../driver/analogPinRead.h"
+
+#endif
 
 #define NUMBER_SAMPLES_AVERAGE		50
 

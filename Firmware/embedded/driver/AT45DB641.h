@@ -40,11 +40,12 @@
 #define AT45DB641_STATUS_REGISTER_READ						0xD7
 
 //Hardware pins
-#define DATAOUT 											PIN_DATAOUT 		
-#define DATAIN												PIN_DATAIN			
-#define SPICLOCK											PIN_SPICLOCK		
+//#define DATAOUT 											PIN_DATAOUT 		
+//#define DATAIN											PIN_DATAIN			
+//#define SPICLOCK											PIN_SPICLOCK		
 #define SLAVESELECT											PIN_SLAVESELECT		
 #define WRITE_PROTECT										PIN_WRITE_PROTECT	
+#define RESET												PIN_FLASH_RESET
 
 #define AT45DB641_TRANSFER_TIMEOUT							100 //time in ms to exit while loops checking for successful transfer
 
@@ -52,13 +53,11 @@ class AT45DB641 {
 public:
 	AT45DB641();
 
-	uint32_t timeStartTimeout;
-
 	void initialize();
 	void spiToggleCS(); //toggle CS pin high then low to send instructions
 	unsigned char spiTransfer(unsigned char data); //transfer data
 	unsigned char readRegisterStatus(); //Read register status and return. 
-	bool checkTimeout(); //make sure we haven't been waiting longer than timeout
+	bool checkTimeout(uint32_t timeStartTimeout); //make sure we haven't been waiting longer than timeout
 	void confirmTransfer(); //wait for success code for memory transfer functions
 	uint8_t readByteFromBuffer(const uint8_t& bufferSwitch, const uint16_t& bufferAddress);
 	void memoryToBuffer(const uint8_t& bufferSwitch, const uint16_t& pageAddress);

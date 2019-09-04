@@ -30,6 +30,12 @@
     <ClCompile Include="..\embedded\src\matrixMath.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\embedded\src\flightLogic.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\embedded\src\voltage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\embedded\src\IMU.h">
@@ -43,6 +49,12 @@
     </ClInclude>
     <ClInclude Include="..\embedded\src\matrixMath.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\embedded\src\flightLogic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\embedded\src\voltage.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

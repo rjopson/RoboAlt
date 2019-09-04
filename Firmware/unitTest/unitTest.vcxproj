@@ -29,13 +29,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -157,15 +157,19 @@
   <ItemGroup>
     <ClCompile Include="..\embedded\src\baroAndTemp.cpp" />
     <ClCompile Include="..\embedded\src\calculateAltitude.cpp" />
+    <ClCompile Include="..\embedded\src\flightLogic.cpp" />
     <ClCompile Include="..\embedded\src\IMU.cpp" />
     <ClCompile Include="..\embedded\src\matrixMath.cpp" />
+    <ClCompile Include="..\embedded\src\voltage.cpp" />
     <ClCompile Include="unitTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\embedded\src\baroAndTemp.h" />
     <ClInclude Include="..\embedded\src\calculateAltitude.h" />
+    <ClInclude Include="..\embedded\src\flightLogic.h" />
     <ClInclude Include="..\embedded\src\IMU.h" />
     <ClInclude Include="..\embedded\src\matrixMath.h" />
+    <ClInclude Include="..\embedded\src\voltage.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

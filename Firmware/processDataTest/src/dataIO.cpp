@@ -148,38 +148,65 @@ vector<int> dataIO::splitLine(const string& line) {
 
 void dataIO::mapStartupArrayToStructure(const vector<int>& startupArray) {
 
-	version = startupArray[0];
-	dataMemoryBank = startupArray[1];
-	lineCount = startupArray[2];
-	calibration.mpuPad = startupArray[3];
-	calibration.h3lisPad = startupArray[4];
-	calibration.pressurePad = startupArray[5];
-	calibration.temperaturePad = startupArray[6];
-	calibration.C[0] = startupArray[7];
-	calibration.C[1] = startupArray[8];
-	calibration.C[2] = startupArray[9];
-	calibration.C[3] = startupArray[10];
-	calibration.C[4] = startupArray[11];
-	calibration.C[5] = startupArray[12];
+	//version = startupArray[0];
+	//dataMemoryBank = startupArray[1];
+	//lineCount = startupArray[2];
+	//calibration.mpuPad = startupArray[3];
+	//calibration.h3lisPad = startupArray[4];
+	//calibration.pressurePad = startupArray[5];
+	//calibration.temperaturePad = startupArray[6];
+	//calibration.C[0] = startupArray[7];
+	//calibration.C[1] = startupArray[8];
+	//calibration.C[2] = startupArray[9];
+	//calibration.C[3] = startupArray[10];
+	//calibration.C[4] = startupArray[11];
+	//calibration.C[5] = startupArray[12];
+
+	
+	calibration.mpuPad = startupArray[0];
+	calibration.h3lisPad = startupArray[1];
+	calibration.pressurePad = startupArray[2];
+	calibration.temperaturePad = startupArray[3];
+	calibration.voltageStartup = startupArray[4];
+	calibration.C[0] = startupArray[5];
+	calibration.C[1] = startupArray[6];
+	calibration.C[2] = startupArray[7];
+	calibration.C[3] = startupArray[8];
+	calibration.C[4] = startupArray[9];
+	calibration.C[5] = startupArray[10];
+	lineCount = startupArray[11];
 }
 
 vector<int> dataIO::mapStartupArrayToStructure() {
 
 	vector<int> startupArray;
 
-	startupArray.push_back(version);
-	startupArray.push_back(dataMemoryBank);
-	startupArray.push_back(lineCount);
+	//startupArray.push_back(version);
+	//startupArray.push_back(dataMemoryBank);
+	//startupArray.push_back(lineCount);
+	//startupArray.push_back(calibration.mpuPad);
+	//startupArray.push_back(calibration.h3lisPad);
+	//startupArray.push_back(calibration.pressurePad);
+	//startupArray.push_back(calibration.temperaturePad);
+	//startupArray.push_back(calibration.C[0]);
+	//startupArray.push_back(calibration.C[1]);
+	//startupArray.push_back(calibration.C[2]);
+	//startupArray.push_back(calibration.C[3]);
+	//startupArray.push_back(calibration.C[4]);
+	//startupArray.push_back(calibration.C[5]);
+	
 	startupArray.push_back(calibration.mpuPad);
 	startupArray.push_back(calibration.h3lisPad);
 	startupArray.push_back(calibration.pressurePad);
 	startupArray.push_back(calibration.temperaturePad);
+	startupArray.push_back(calibration.voltageStartup);
 	startupArray.push_back(calibration.C[0]);
 	startupArray.push_back(calibration.C[1]);
 	startupArray.push_back(calibration.C[2]);
 	startupArray.push_back(calibration.C[3]);
 	startupArray.push_back(calibration.C[4]);
 	startupArray.push_back(calibration.C[5]);
+	startupArray.push_back(lineCount);
 
 	return startupArray; 
 }
@@ -188,19 +215,32 @@ vector<string> dataIO::setStartupHeader() {
 
 	vector<string> startupHeader;
 
-	startupHeader.push_back("Version");
-	startupHeader.push_back("Memory Bank");
-	startupHeader.push_back("Line Count");
+	//startupHeader.push_back("Version");
+	//startupHeader.push_back("Memory Bank");
+	//startupHeader.push_back("Line Count");
+	//startupHeader.push_back("MPU Pad");
+	//startupHeader.push_back("H3LIS Pad");
+	//startupHeader.push_back("MS5607 Pressure Pad");
+	//startupHeader.push_back("Ms5607 Temperature Pad");
+	//startupHeader.push_back("C1");
+	//startupHeader.push_back("C2");
+	//startupHeader.push_back("C3");
+	//startupHeader.push_back("C4");
+	//startupHeader.push_back("C5");
+	//startupHeader.push_back("C6");
+
 	startupHeader.push_back("MPU Pad");
 	startupHeader.push_back("H3LIS Pad");
 	startupHeader.push_back("MS5607 Pressure Pad");
-	startupHeader.push_back("Ms5607 Temperature Pad");
+	startupHeader.push_back("MS5607 Temperature Pad");
+	startupHeader.push_back("Voltage Pad");
 	startupHeader.push_back("C1");
 	startupHeader.push_back("C2");
 	startupHeader.push_back("C3");
 	startupHeader.push_back("C4");
 	startupHeader.push_back("C5");
 	startupHeader.push_back("C6");
+	startupHeader.push_back("Line Count");
 
 	return startupHeader;
 }

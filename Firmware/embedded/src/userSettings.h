@@ -10,7 +10,7 @@
 
 #include "dataStorage.h"
 
-#define DATAFLASH_SETTINGS_PAGE		0
+#define DATAFLASH_SETTINGS_PAGE		1
 
 class userSettings {
 public:
@@ -20,6 +20,7 @@ public:
 	void writeNewSettings();
 
 	dataStorage* dataFlash;
+	bool settingsInFlash;
 	int32_t altitudeMainDeploy;
 	uint8_t apoFlightEvent;
 	uint8_t mainFlightEvent;
@@ -27,5 +28,6 @@ public:
 	uint32_t apoTimeDelay;
 	uint32_t mainTimeDelay;
 	uint32_t thirdTimeDelay;
+	uint8_t buzzerSwitch;
 };
 #endif

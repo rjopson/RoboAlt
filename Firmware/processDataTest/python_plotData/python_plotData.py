@@ -10,7 +10,8 @@ import numpy as np     # installed with matplotlib
 import matplotlib.pyplot as plt
 
 def readDebugCsv():
-    with open('../Output/processData_output.csv') as csv_file:
+    #with open('../Output/processData_output.csv') as csv_file:
+    with open('../../flightTests/3DPME_29mm_H180_TriCities_9-2019.csv') as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
         line_count = 0
         time = np.array([])

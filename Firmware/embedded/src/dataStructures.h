@@ -75,6 +75,12 @@ struct rawFlightData {
 	uint16_t continuityThird;
 };
 
+struct pyroContinuity {
+	uint16_t apo;
+	uint16_t main;
+	uint16_t third;
+};
+
 struct calibrationData {
 
 	//offsets
@@ -105,6 +111,7 @@ struct engineeringData {
 	uint32_t pressure; //(Pascal)
 	int32_t temperature; //(100*degC)
 	int16_t voltageBattery; //voltage in mV
+	int32_t test;
 };
 
 struct stateData {
@@ -113,4 +120,5 @@ struct stateData {
 	int32_t velocity; //(mm/s) Kalman filtered velocity used in flight logic
 	int32_t acceleration; //(mm/s^2) Kalman filtered acceleration used in flight logic	
 };
+
 #endif

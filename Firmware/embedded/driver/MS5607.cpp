@@ -78,6 +78,6 @@ uint32_t MS5607::getRawTemperature() {
 	//Read returned data
 	I2C::read(devAddr, MS5607_ADC_READ, 3, buffer);
 	return	(uint32_t)buffer[0] << 16 |
-		(uint32_t)buffer[1] << 8 |
-		(uint32_t)buffer[2];
+			(uint32_t)buffer[1] << 8 |
+			(uint32_t)buffer[2];
 }

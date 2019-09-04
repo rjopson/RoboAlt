@@ -6,11 +6,12 @@
 #define _PINS_H
 
 //AT45DB641
-#define PIN_DATAOUT 				11 //MOSI
-#define PIN_DATAIN					12 //MISO
-#define PIN_SPICLOCK				13 //sck
+//#define PIN_DATAOUT 				23 //MOSI
+//#define PIN_DATAIN				22 //MISO
+//#define PIN_SPICLOCK				24 //sck
 #define PIN_SLAVESELECT				10 //ss
 #define PIN_WRITE_PROTECT			7 //WP pin for write protection 
+#define PIN_FLASH_RESET				8
 
 //buzzer
 #define PIN_BEEPER_DIGITAL_PIN		6 //output digital pin which controls buzzer
