@@ -313,6 +313,7 @@ void flightDataStorage::writeFlightInformation(const calibrationData* dataIn) {
 		dataFlash->startWrite(pageFlightInfo); //location to begin writing
 
 		//Write offsets
+		//dataFlash->writeByte(ALT_SOFTWARE_VERSION);
 		dataFlash->writeInt16(dataIn->mpuPad);
 		dataFlash->writeInt16(dataIn->h3lisPad);
 		dataFlash->writeInt32(dataIn->pressurePad);
@@ -353,6 +354,8 @@ void flightDataStorage::readFlightInformation() {
 	dataFlash->startRead(pageFlightInfo); //location to begin reading
 
 	//Read offsets
+	//Serial.print(dataFlash->readByte()); Serial.print(","); //version 
+	Serial.print(ALT_SOFTWARE_VERSION); Serial.print(","); //version
 	Serial.print(dataFlash->readInt16()); Serial.print(","); //mpuPad
 	Serial.print(dataFlash->readInt16()); Serial.print(","); //h3lisPad
 	Serial.print((uint32_t)dataFlash->readInt32()); Serial.print(","); //pressurePad

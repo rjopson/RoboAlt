@@ -27,6 +27,7 @@
 #define ALT_PAGELENGTH_INFLIGHT				8000 //number of pages used for flight recording
 #define ALT_LINELENGTH_BUFFER_MAX			200 //number 
 #define ALT_DESCENT_PERIOD					100 //period data is recorded at during descent
+#define ALT_SOFTWARE_VERSION				0.1 //replace with global define
 
 class flightDataStorage {
 public:

@@ -1,0 +1,81 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>9154220c-191f-4373-8857-aac13195b0c2</ProjectGuid>
+    <ProjectHome>
+    </ProjectHome>
+    <StartupFile>simulation.py</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <Name>Interface</Name>
+    <RootNamespace>Interface</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="aerodynamic_forces\aerodynamic_forces.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="aerodynamic_forces\atmosphere_model.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="aerodynamic_forces\drag_model_open_rocket.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="aerodynamic_forces\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="aerodynamic_forces\stability_model_open_rocket.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="constants.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="entities\flight_data_entities.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="entities\motor_data_entities.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="entities\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="file_io.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="filters.py" />
+    <Compile Include="flight_phase.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="gravity_model.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="simulation.py" />
+    <Compile Include="entities\rocket_entities.py" />
+    <Compile Include="simulation_engine.py">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="aerodynamic_forces\" />
+    <Folder Include="entities\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
+  <!-- Uncomment the CoreCompile target to enable the Build command in
+       Visual Studio and specify your pre- and post-build commands in
+       the BeforeBuild and AfterBuild targets below. -->
+  <!--<Target Name="CoreCompile" />-->
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+</Project>
