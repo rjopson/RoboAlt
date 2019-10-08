@@ -8,7 +8,7 @@ class FlightPhase():
         
         #Phase criteria
         self.velocity_takeoff = 10.0
-        self.acceleration_takeoff = 5.0 
+        self.acceleration_takeoff = 15.0 
         self.acceleration_coast = 0.0
         self.velocity_apogee = 0.0
         self.gyro_ground_detect = 200.0
@@ -30,7 +30,7 @@ class FlightPhase():
 
     def launch_detect(self, velocity, acceleration):
 
-        if velocity > self.velocity_takeoff and acceleration > self.acceleration_takeoff:
+        if velocity > self.velocity_takeoff:# and acceleration > self.acceleration_takeoff:
             self.flight_phase = 1
 
     def coast_detect(self, acceleration):

@@ -6,13 +6,30 @@ class Material():
     def __init__(self, name, density):
         self.name = name
         self.density = density
+
+class Rocket():
+
+    def __init__(self, name, comments):
+        self.name = name 
+        self.comments = comments
+        self.configuration_list = []
+        self.part_list = []
+
+    def add_configuration(self, config):
+        self.configuration_list.append(config)
+
+    def add_part(self, part):
+        self.part_list.append(part)
+       
+
 class Configuration():
     ACTIVE_YES, ACTIVE_NO = range(2)
 
-    def __init__(self, name, part_list, configuration_list, mass_empty_override, cg_override, comments):
+    def __init__(self, name, rocket, mass_empty_override, cg_override, comments):
         self.name = name
-        self.part_list = part_list 
-        self.configuration_list = configuration_list
+        self.part_list = []
+        self.simulation_list = []
+        self.flight_data_list = []
         self.mass_empty_override = mass_empty_override
         self.mass_empty_override_bool = False
         self.cg_empty_override = cg_override
@@ -22,6 +39,8 @@ class Configuration():
 
         self.active = Configuration.ACTIVE_YES
 
+        rocket.add_configuration(self)
+
         #Cached properties 
         self._area_body_wet = None
         self._area_fins_wet = None
@@ -30,9 +49,16 @@ class Configuration():
         self._fineness_ratio = None
         self._area_reference = None
         
-        #Calculate properties 
-        self.calculate_properties()
+    def add_part(self, part, index):
+        self.part_list.insert(index, part)
+        self.updated_attributes()
         self.get_part_locations_from_nose()
+
+    def add_simulation(self, simulation):
+        self.simulation_list.append(simulation)
+
+    def add_flight_data(self, flight_data):
+        self.flight_data_list.append(flight_data)
 
     def calculate_properties(self):   
         self.area_body_wet
@@ -130,16 +156,18 @@ class Part():
     EXTERNAL, INTERNAL = range(2)
     ROUGH, UNFINISHED, PAINT, POLISH = range(4)
     
-    def __init__(self, name, parent, material, surface_finish, mass_override, cg_override, position_from_parent_type, position_from_parent_value, comments):
+    def __init__(self, name, rocket, material, parent=None,
+                 mass_override=0.0, cg_override=0.0, 
+                 position_from_parent_type=0.0, position_from_parent_value=0.0, 
+                 comments=""):
         self.name = name
-        self.material = material
-        self.surface_finish = surface_finish
+        self.material = material        
         self.mass_override = mass_override
         self.mass_override_bool = False
         self.cg_override = cg_override
         self.cg_override_bool = False
         self.position_from_parent_type = position_from_parent_type 
-        self.position_from_parent_value = position_from_parent_value
+        self.position_from_parent_value = position_from_parent_value        
         self.comments = comments
 
         self.distance_from_nose = None
@@ -149,7 +177,9 @@ class Part():
         self.children = []
 
         #Cached
-        self._position_from_parent_top = None 
+        self._position_from_parent_top = None   
+        
+        rocket.add_part(self)
 
         #Calculate properties 
         #self.calculate_generic_part_properties()
@@ -186,43 +216,21 @@ class Part():
         self.children.append(child)
         child.parent = self
 
-    def output_dict(self):
-        #keys_generic = ["name", "material", "surface_finish", 
-        #                "mass_override", "cg_override", 
-        #                "position_from_parent_type", "position_from_parent_value", "comments"]
-        keys_generic = ["name", "surface_finish", 
-                        "mass_override", "cg_override", 
-                        "position_from_parent_type", "position_from_parent_value", "comments"]
-
-        if type(self) == TubeBody:
-            keys_part_specific = ["length", "diameter_outer", "diameter_inner", "thickness"]
-        elif type(self) == Nosecone:
-            keys_part_specific = ["nose_type", "shape_parameter", "length_nose", "diameter_outer", "length_base", 
-                                  "diameter_shoulder", "length_shoulder", "thickness_shoulder"]
-        elif type(self) == Fins:
-            keys_part_specific = ["fin_shape", "number", "cross_section", "thickness", "radius_fillet"]
-        elif type(self) == FinShapeTrapezoidal:
-            keys_part_specific = ["chord_root", "chord_tip", "span", "length_sweep", "angle_sweep_LE"]
-
-        keys = keys_generic + keys_part_specific
-        full_dict = self.__dict__
-        return {keys_out: full_dict[keys_out] for keys_out in keys}
-
-    #def get_output_keys(self):
-
 
 class TubeBody(Part):
     name_default = 'Body tube'
 
-    def __init__(self, length, diameter_outer, diameter_inner, thickness, *args, **kwargs):
+    def __init__(self, length, diameter_outer, thickness, surface_finish, config=None, config_index=None, *args, **kwargs):
+        self.part_type = "TubeBody"
         self.length = length
         self.diameter_outer = diameter_outer
-        self.diameter_inner = diameter_inner
         self.thickness = thickness
         self.part_use = "EXTERNAL"
+        self.surface_finish = surface_finish
         super(TubeBody, self).__init__(*args, **kwargs)
 
         #Cached properties 
+        self._diameter_inner = None
         self._area_surface = None
         self._volume = None
         self._volume_material = None
@@ -234,8 +242,17 @@ class TubeBody(Part):
         #Calculate properties 
         self.calculate_properties()
         self.calculate_generic_part_properties()
+        config.add_part(self, config_index)
 
+    def named_attributes(self):
+        return {"Part Type":self.part_type, "Length":self.length, "Thickness":self.thickness, "Diameter Outer":self.diameter_outer,
+                "Part Use":self.part_use, "Surface Finish":self.surface_finish,
+                "Mass Override":self.mass_override, "Mass Override Check":self.mass_override_bool,
+                "Cg Override":self.cg_override, "Cg Override Check":self.cg_override_bool,
+                "Comments":self.comments}    
+        
     def calculate_properties(self):
+        self.diameter_inner
         self.area_surface
         self.volume
         self.volume_material
@@ -255,7 +272,12 @@ class TubeBody(Part):
 
         #Realculate properties 
         self.calculate_properties()
-
+   
+    @property
+    def diameter_inner(self):
+        if self._diameter_inner is None:
+            self._diameter_inner = self.diameter_outer - 2*self.thickness
+        return self._diameter_inner
     @property
     def area_surface(self):
         if self._area_surface is None:
@@ -295,7 +317,11 @@ class Nosecone(Part):
     CONICAL, OGIVE, HAACK, VON_KARMEN = range(4)
     name_default = 'Nosecone'
 
-    def __init__(self, nose_type, shape_parameter, length_nose, thickness, diameter_base, length_base, diameter_shoulder, length_shoulder, thickness_shoulder, *args, **kwargs):
+    def __init__(self, nose_type, shape_parameter, length_nose, thickness, diameter_base, 
+                 length_base, diameter_shoulder, length_shoulder, thickness_shoulder, surface_finish, 
+                 config=None, config_index=None, *args, **kwargs):
+
+        self.part_type = "Nosecone"
         self.nose_type = nose_type
         self.shape_parameter = shape_parameter
         self.length_nose = length_nose
@@ -306,6 +332,7 @@ class Nosecone(Part):
         self.length_shoulder = length_shoulder
         self.thickness_shoulder = thickness_shoulder 
         self.part_use = "EXTERNAL"
+        self.surface_finish = surface_finish
         super(Nosecone, self).__init__(*args, **kwargs)    
 
         #Cached properties 
@@ -323,6 +350,17 @@ class Nosecone(Part):
         #Calculate properties 
         self.calculate_properties()
         self.calculate_generic_part_properties()
+        config.add_part(self, config_index)
+
+    def named_attributes(self):
+        return {"Part Type":self.part_type, "Nosecone Type":self.nose_type, "Shape Parameter":self.shape_parameter,
+                "Length Nose":self.length_nose, "Length Base":self.length_base, "Length Shoulder":self.length_shoulder,
+                "Thickness":self.thickness, "Thickness Shoulder":self.thickness_shoulder,
+                "Diameter Outer":self.diameter_outer, "Diameter Shoulder":self.diameter_shoulder,
+                "Part Use":self.part_use, "Surface Finish":self.surface_finish,
+                "Mass Override":self.mass_override, "Mass Override Check":self.mass_override_bool,
+                "Cg Override":self.cg_override, "Cg Override Check":self.cg_override_bool,
+                "Comments":self.comments}
 
     def calculate_properties(self):
         self.radius
@@ -410,7 +448,8 @@ class Fins(Part):
     SQUARE, ROUNDED, AIRFOIL, DOUBLE_WEDGE = range(4)
     name_default = 'Fin set'
 
-    def __init__(self, fin_shape, number, cross_section, thickness, radius_fillet, *args, **kwargs):
+    def __init__(self, fin_shape, number, cross_section, thickness, radius_fillet, surface_finish, *args, **kwargs):
+        self.part_type = "Fins"
         self.fin_shape = fin_shape
         self.number = number
         self.cross_section = cross_section
@@ -418,6 +457,7 @@ class Fins(Part):
         self.radius_fillet = radius_fillet
         
         self.part_use = "EXTERNAL"
+        self.surface_finish = surface_finish
         super(Fins, self).__init__(*args, **kwargs)
 
         #Cached properties 
@@ -431,6 +471,14 @@ class Fins(Part):
         #Calculate properties 
         self.calculate_properties()
         self.calculate_generic_part_properties()
+
+    def named_attributes(self):
+        return {"Part Type":self.part_type, "Number":self.number, 
+                "Thickness":self.thickness, "Cross Section":self.cross_section, "Fillet Radius":self.radius_fillet,
+                "Part Use":self.part_use, "Surface Finish":self.surface_finish,
+                "Mass Override":self.mass_override, "Mass Override Check":self.mass_override_bool,
+                "Cg Override":self.cg_override, "Cg Override Check":self.cg_override_bool,
+                "Comments":self.comments}    
 
     def calculate_properties(self):
         self.area_surface
@@ -550,6 +598,7 @@ class TubeInner(Part):
     name_default = 'Inner tube'
 
     def __init__(self, length, diameter_outer, diameter_inner, thickness, *args, **kwargs):
+        self.part_type = "TubeInner"
         self.length = length
         self.diameter_outer = diameter_outer
         self.diameter_nneri = diameter_inner

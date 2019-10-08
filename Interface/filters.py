@@ -22,14 +22,14 @@ class Kalman():
 
     def up_update(self, time_k, altitude_sensor, acceleration_sensor, state_previous):
 
-        if state_previous[1] < 330:
-            self.sigma_m = 2.0;
-            self.sigma_s = 0.3;
-            self.sigma_a = 0.2;
+        if state_previous[0] < altitude_sensor - 20.0:
+            self.sigma_a = 1
+            self.sigma_s = 500
+            self.sigma_m = 3
         else:
-            self.sigma_m = 2.0;
-            self.sigma_s = 30.0;
-            self.sigma_a = 0.2;
+            self.sigma_a = 1
+            self.sigma_s = 5
+            self.sigma_m = 1
 
         #Model and measurement covariance 
         self.Q_k = np.matrix([[0,0,0],[0,0,0],[0,0,self.sigma_m**2]])

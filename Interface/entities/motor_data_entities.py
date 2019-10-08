@@ -24,8 +24,7 @@ class MotorTestData():
         self._impulse_specific = None 
         self._thrust_average = None
         self._time_burn = None
-        self._impulse_function = None
-        
+        self._impulse_function = None        
 
         #Calculate properties
         self.calculate_properties()

@@ -21,23 +21,6 @@ def dynamic_pressure(density_air, velocity_rocket):
 def beta(mach_number):
     return math.sqrt(abs(mach_number**2 - 1))
 
-def get_drag_and_drag_coefficient(config, position, velocity, alpha):
-    
-    #Calculate atmospheric properties
-    atmosphere_flight = atmosphere.StandardAtmosphere()
-    density_air = atmosphere_flight.get_density(position)
-    speed_sound = atmosphere_flight.get_speed_sound(position)
-
-    #Calculate drag coefficient
-    M = mach_number(velocity_rocket=velocity, speed_sound=speed_sound)
-    Re = reynolds_number(velocity_rocket=velocity, length_rocket=config.length)
-    C_D_axial = drag_coefficient_axial_config(config, M, Re)
-
-    #Calculate drag 
-    drag_axial = 0.5 * density_air * velocity**2 * config.area_reference * C_D_axial
-
-    return drag_axial, C_D_axial
-
 def get_drag(config, position, velocity, alpha):
 
     #Calculate atmospheric properties

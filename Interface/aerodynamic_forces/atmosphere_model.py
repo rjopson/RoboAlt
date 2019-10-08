@@ -4,14 +4,15 @@ import constants
 #calculate air density 
 #calculate speed of sound 
 
+#Implements International Standard Atmosphere 
 class StandardAtmosphere():
 
     #Base values in arrays 
-    #[MSL, 11km, 25km, 47km, 53km, 79km, 90km]
-    p1 = {"MSL":101325.0, "11km":22634.0, "25km":2489.19, "47km":120.49, "53km":58.35, "79km":1.01, "90km":0.105} #Pa
-    T1 = {"MSL":288.16, "11km":216.66, "25km":216.66, "47km":282.66, "53km":282.66, "79km":165.66, "90km":165.66} #K
-    h1 = {"MSL":0.0, "11km":11000.0, "25km":25000.0, "47km":47000.0, "53km":53000.0, "79km":79000.0, "90km":90000.0} #m
-    a = {"MSL":-6.5e-3, "11km":None, "25km":3.0e-3, "47km":None, "53km":-4.5e-3, "79km":None, "90km":4.0e-3} #K/m
+    #[0km, 11km, 20km, 32km, 47km, 51km, 71km, 84.9km]
+    p1 = {"0km":101325.0, "11km":22632.0, "20km":5474.9, "32km":868.02, "47km":110.91, "51km":67.0, "71km":3.9564, "84.9km":0.3734} #Pa
+    T1 = {"0km":292.15, "11km":216.65, "20km":216.65, "32km":228.65, "47km":270.65, "51km":270.65, "71km":214.65, "84.9km":186.87} #K
+    h1 = {"0km":0.0, "11km":11000.0, "20km":20000.0, "32km":32000.0, "47km":47000.0, "51km":51000.0, "71km":71000.0, "84.9km":84900.0} #m
+    a = {"0km":-0.0065, "11km":0.0, "20km":0.001, "32km":0.0028, "47km":0.0, "51km":-0.0028, "71km":-0.002, "84.9km":0.0} #K/m
 
     asd = 8
 
@@ -25,37 +26,67 @@ class StandardAtmosphere():
     def test_me(self):
         return self.asd
 
-    def get_region(self, height):
+    def get_region_from_height(self, height):
 
         if height < 11000.0:
-            return "MSL", "gradient"
-        elif height < 25000.0:
+            return "0km", "gradient"
+        elif height < 20000.0:
             return "11km", "iso"
+        elif height < 32000.0:
+            return "20km", "gradient"
         elif height < 47000.0:
-            return "25km", "gradient"
-        elif height < 53000.0:
+            return "32km", "gradient"
+        elif height < 51000.0:
             return "47km", "iso"
-        elif height < 79000.0:
-            return "53km", "gradient"
-        elif height < 90000.0:
-            return "79km", "iso"
+        elif height < 71000.0:
+            return "51km", "gradient"
+        elif height < 84900.0:
+            return "71km", "gradient"
         else:
-            return "90km", "gradient"
+            return "84.9km", "iso"
+
+    def get_region_from_pressure(self, pressure):
+
+        if pressure < 0.3734:
+            return "84.9km", "iso"
+        elif pressure < 3.9564:
+            return "71km", "gradient"
+        elif pressure < 67.0:
+            return "51km", "gradient"
+        elif pressure < 110.91:
+            return "47km", "iso"
+        elif pressure < 868.02:
+            return "32km", "gradient"
+        elif pressure < 5474.9:
+            return "20km", "gradient"
+        elif pressure < 22632.0:
+            return "11km", "iso"
+        else:
+            return "0km", "gradient"
     def get_temperature(self, height):
 
-        [region_current, type_current] = self.get_region(height)
+        [region_current, type_current] = self.get_region_from_height(height)
         if type_current == "gradient":
             return self.temperature_gradient_region(self.T1[region_current], self.h1[region_current], height, self.a[region_current])
         else:
             return self.T1[region_current]    
     def get_pressure(self, height):
 
-        [region_current, type_current] = self.get_region(height)
+        [region_current, type_current] = self.get_region_from_height(height)
 
         if type_current == "gradient":
-            return self.pressure_gradient_region(self.p1[region_current], self.T1[region_current], self.get_temperature(height),self. g0, self.a[region_current], self.R)
+            return self.pressure_gradient_region(self.p1[region_current], self.T1[region_current], self.get_temperature(height), self.g0, self.a[region_current], self.R)
         else:
             return self.pressure_isothermal_region(self.p1[region_current], self.get_temperature(height), self.h1[region_current], height, self.g0, self.R)
+    def get_altitude(self, pressure):
+
+        [region_current, type_current] = self.get_region_from_pressure(pressure)
+
+        if type_current == "gradient":
+            return self.altitude_gradient_region(self.T1[region_current], self.a[region_current], pressure, self.p1[region_current], self.R, self.g0, self.h1[region_current])
+        else:
+            return self.altitude_isothermal_region(self.R, self.T1[region_current], self.g0, pressure, self.p1[region_current], self.h1[region_current])        
+
     def get_density(self, height):
 
         return self.density_standard_atmosphere(self.get_pressure(height), self.get_temperature(height), self.R)
@@ -74,20 +105,12 @@ class StandardAtmosphere():
     def density_standard_atmosphere(self, p, T, R):
     
         return (p)/(R*T)
+    def altitude_isothermal_region(self, R, T1, g0, p, p1, h1):
 
-'''
-def calculate_base_pressures():
-    
-    p1_11k = atmosphere_model.pressure_gradient_region(101325.0, 288.16, 216.66, constants.GRAVITY, -6.5e-3, constants.R_SPECIFIC)
-    p1_25k = atmosphere_model.pressure_isothermal_region(p1_11k, 216.66, 11000.0, 25000.0, constants.GRAVITY, constants.R_SPECIFIC)
-    p1_47k = atmosphere_model.pressure_gradient_region(p1_25k, 216.66, 282.66, constants.GRAVITY, 3.0e-3, constants.R_SPECIFIC)
-    p1_53k = atmosphere_model.pressure_isothermal_region(p1_47k, 282.66, 47000.0, 53000.0, constants.GRAVITY, constants.R_SPECIFIC)
-    p1_79k = atmosphere_model.pressure_gradient_region(p1_53k, 282.66, 165.66, constants.GRAVITY, -4.5e-3, constants.R_SPECIFIC)
-    p1_90k = atmosphere_model.pressure_isothermal_region(p1_79k, 165.66, 79000.0, 90000.0, constants.GRAVITY, constants.R_SPECIFIC)
-'''
+        return ((R*T1)/g0)*log(p/p1) + h1
+    def altitude_gradient_region(self, T1, a, p, p1, R, g0, h1):
 
-
-#def pressure_standard_atmosphere()
+        return (T1/(-a))*(1 - (p/p1)**((R*(-a))/g0)) + h1
 
 
 #calculate wind velocity 
