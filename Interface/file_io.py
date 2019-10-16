@@ -29,11 +29,24 @@ class WriteRocketHDF5():
 
             self.hf_config = self.hf_config_group.create_group(config.name)
 
+            #Write parts list 
+            self.hf_config_part_list = self.hf_config.create_group("External Parts")
             part_array = np.array([])
             for part in config.part_list:
                 part_array = np.append(part_array, bytes(part.name, encoding="ascii"))
             string_dt = h5py.special_dtype(vlen=str)
-            self.hf_config.create_dataset("Part List", data=part_array, dtype=string_dt)
+            self.hf_config_part_list.create_dataset("External Part List", data=part_array, dtype=string_dt)
+
+            #Write simulation list
+            self.hf_config_simulation_list = self.hf_config.create_group("Simulations")
+            #sim_array = np.array([])
+            #for simulation in config.simulation_list:
+            #    sim_array = np.append(sim_array, bytes(simulation.name, encoding="ascii"))
+            #string_dt = h5py.special_dtype(vlen=str)
+            #self.hf_config_simulation_list.create_dataset("Part List", data=part_array, dtype=string_dt)
+
+            #Write flight data list 
+            self.hf_config_part_list = self.hf_config.create_group("Flights")
 
     def write_parts(self):
         self.hf_part_group = self.hf.create_group("Parts")

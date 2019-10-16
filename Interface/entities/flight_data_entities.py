@@ -47,6 +47,9 @@ class SimulationData():
 
         config.add_simulation(self)
 
+    def named_attributes(self):
+        return {"Motor":self.motor.name, "Pad Elevation":self.elevation_pad, "Comments":self.comments} 
+
     @property 
     def index_liftoff(self):
         if self._index_liftoff is None:
