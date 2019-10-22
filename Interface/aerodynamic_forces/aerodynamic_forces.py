@@ -39,12 +39,10 @@ def get_drag(config, position, velocity, alpha):
 def drag_coefficient_axial_config(config, M, Re):
 
     C_D = 0
-    for part in config.part_list:
+    for part in config.get_flat_part_list():
         
         if part.part_use == "EXTERNAL":            
             C_D += drag_coefficient_part(config, part, Re, M)
-            for child in part.children:
-                C_D += drag_coefficient_part(config, child, Re, M)
         else:
             pass
     return C_D
@@ -67,7 +65,7 @@ def drag_coefficient_pressure_part(config, part, M):
         return None
 def drag_coefficient_base_part(config, part, M):
     
-    if part.name == config.part_list[-1].name:
+    if part.name == config.instance_list[-1].part.name:
         return drag.base_drag_coefficient(M)
     else:
         return 0

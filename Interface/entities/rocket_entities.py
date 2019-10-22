@@ -1,12 +1,6 @@
 import math
 import scipy.integrate
 
-class Material():
-
-    def __init__(self, name, density):
-        self.name = name
-        self.density = density
-
 class Rocket():
 
     def __init__(self, name, comments):
@@ -27,7 +21,7 @@ class Configuration():
 
     def __init__(self, name, rocket, mass_empty_override, cg_override, comments):
         self.name = name
-        self.part_list = []
+        self.instance_list = []
         self.simulation_list = []
         self.flight_data_list = []
         self.mass_empty_override = mass_empty_override
@@ -35,11 +29,10 @@ class Configuration():
         self.cg_empty_override = cg_override
         self.cg_empty_override_bool = False
 
-        self.mass = self.mass_empty_override
-
-        self.active = Configuration.ACTIVE_YES
-
         rocket.add_configuration(self)
+
+        if mass_empty_override is not None:
+            self.mass = self.mass_empty_override
 
         #Cached properties 
         self._area_body_wet = None
@@ -48,11 +41,6 @@ class Configuration():
         self._diameter_max = None
         self._fineness_ratio = None
         self._area_reference = None
-        
-    def add_part(self, part, index):
-        self.part_list.insert(index, part)
-        self.updated_attributes()
-        self.get_part_locations_from_nose()
 
     def add_simulation(self, simulation):
         self.simulation_list.append(simulation)
@@ -68,7 +56,7 @@ class Configuration():
         self.fineness_ratio
         self.area_reference
 
-    def updated_attributes(self):
+    def updated_properties(self):
         self._area_body_wet = None
         self._area_fins_wet = None
         self._length = None
@@ -86,45 +74,45 @@ class Configuration():
         self.diameter_max = self.get_diameter_max()
         self.fineness_ratio = self.get_fineness_ratio()
         self.area_reference = self.get_area_reference()
-        self.get_part_locations_from_nose()
 
     @property 
     def area_body_wet(self):
         if self._area_body_wet is None:
             area = 0
-            for part in self.part_list:
-                if part.part_use == "EXTERNAL":
-                    area += part.area_surface
+            for instance in self.instance_list:
+                if instance.part.part_use == "EXTERNAL":
+                    area += instance.part.area_surface
+                for child in instance.get_flat_list():
+                    if child.part.part_use == "EXTERNAL":
+                        area += child.part.area_surface
             self._area_body_wet = area
         return self._area_body_wet
     @property 
     def area_fins_wet(self):
         if self._area_fins_wet is None:
             area = 0
-            for part in self.part_list:
-                for child in part.children:
-                    if type(child) == Fins:
-                        area += part.area_surface
-
+            for instance in self.instance_list:
+                for child in instance.get_flat_list():
+                    if type(child.part) == Fins:
+                        area += instance.part.area_surface
             area_fins_wet = area 
         return self._area_fins_wet
     @property 
     def length(self):
         if self._length is None:
             length = 0
-            for part in self.part_list:
-                if part.part_use == "EXTERNAL":
-                    length += part.length
+            for instance in self.instance_list:
+                if instance.part.part_use == "EXTERNAL":
+                    length += instance.part.length
             self._length = length
         return self._length
     @property 
     def diameter_max(self):
         if self._diameter_max is None:
             diameter_list = []
-            for part in self.part_list:
-                if part.part_use == "EXTERNAL":
-                    diameter_list.append(part.diameter_outer)
-                
+            for instance in self.instance_list:
+                if instance.part.part_use == "EXTERNAL":
+                    diameter_list.append(instance.part.diameter_outer)                
             self._diameter_max = max(diameter_list)
         return self._diameter_max
     @property 
@@ -137,90 +125,116 @@ class Configuration():
         if self._area_reference is None:
             self._area_reference = math.pi*(self.diameter_max/2)**2
         return self._area_reference
-    
-    def get_part_locations_from_nose(self):
 
+    def get_instance_locations_from_nose(self):        
         location_from_nose = 0.0
-        for part in self.part_list:
-
+        for instance in self.instance_list:
             #get part distance 
-            part.distance_from_nose = location_from_nose
-
+            instance.distance_from_nose = location_from_nose
             #get any children distances 
-            for child in part.children:        
+            for child in instance.get_flat_list():        
                 child.distance_from_nose = location_from_nose + child.position_from_parent_top
-
             #add total length of current part for next iteration
-            location_from_nose += part.length
+            location_from_nose += instance.part.length
+
+    def add_instance_to_list(self, instance, index=None):
+        if index is None:
+            self.instance_list.append(instance)
+        else:
+            self.instance_list.insert(index, instance)
+
+    def remove_instance_from_list(self, instance):
+        self.instance_list.remove(instance)
+
+    def get_flat_part_list(self):
+        part_list = []
+        for instance in self.instance_list:
+            part_list.append(instance.part)
+            nested_children = instance.get_flat_list()
+            for child in nested_children:
+                part_list.append(child.part)
+        return part_list 
+    
+class Instance():
+    def __init__(self, part, parent, config, index=None, position_type="FOREWARD", position_from=0.0):
+        self.part = part
+        self.parent = parent
+        self.config = config
+        self.children = []
+        self.position_type = position_type
+        self.position_from = position_from 
+        self.position_from_nose = None
+
+        #Cached properties 
+        self._position_from_parent_top = None
+
+        if parent is not None:
+            parent.add_child(self, index)            
+        else:
+            config.add_instance_to_list(self, index)
+            config.get_instance_locations_from_nose()
+
+    def calculate_properties(self):
+        self.position_from_parent_top
+
+    def update_properties(self):
+        self._position_from_parent_top = None
+        self.calculate_properties()
+
+    @property
+    def position_from_parent_top(self):
+        if self._position_from_parent_top is None and self.parent is not None:
+            if self.position_type == "FOREWARD":
+                self._position_from_parent_top = self.position_from
+            elif self.position_type == "AFT":
+                self._position_from_parent_top = self.parent.part.length - self.part.length + self.position_from
+            else:
+                self._position_from_parent_top = None
+        else:
+            self._position_from_parent_top = None
+        return self._position_from_parent_top
+
+    def add_child(self, child, index):
+        if index is None:
+            self.children.append(child)
+        else:
+            self.children.insert(index, child)
+
+    def remove_child(self, child):
+        self.children.remove(child)
+
+    def get_nested_children(self, instance, flat_list):
+        flat_list.append(instance)
+        if len(instance.children) > 0:
+            for child in instance.children:
+                self.get_nested_children(child, flat_list)
+
+    def get_flat_list(self):
+        flat_list = []
+        self.get_nested_children(self, flat_list)
+        flat_list.pop(0)
+        return flat_list
+
 class Part():
     EXTERNAL, INTERNAL = range(2)
     ROUGH, UNFINISHED, PAINT, POLISH = range(4)
     
-    def __init__(self, name, rocket, material, parent=None,
-                 mass_override=0.0, cg_override=0.0, 
-                 position_from_parent_type=0.0, position_from_parent_value=0.0, 
-                 comments=""):
+    def __init__(self, name, rocket, material,
+                 mass_override=0.0, cg_override=0.0, comments=""):
         self.name = name
-        self.material = material        
+        self.material = material     
         self.mass_override = mass_override
         self.mass_override_bool = False
         self.cg_override = cg_override
-        self.cg_override_bool = False
-        self.position_from_parent_type = position_from_parent_type 
-        self.position_from_parent_value = position_from_parent_value        
+        self.cg_override_bool = False      
         self.comments = comments
 
-        self.distance_from_nose = None
-        #self.part_use = None
-        
-        self.add_parent(parent)
-        self.children = []
-
-        #Cached
-        self._position_from_parent_top = None   
-        
         rocket.add_part(self)
-
-        #Calculate properties 
-        #self.calculate_generic_part_properties()
-
-    def calculate_generic_part_properties(self):
-        self.position_from_parent_top
-
-    def updated_attributes(self):
-        self._position_from_parent_top = None
-        
-        #Realculate properties 
-        self.calculate_generic_part_properties()
-
-    @property
-    def position_from_parent_top(self):
-        if self._position_from_parent_top is None:
-            if self.parent != None:
-                if self.position_from_parent_type == "FOREWARD":
-                    self._position_from_parent_top = self.position_from_parent_value
-                elif self.position_from_parent_type == "AFT":
-                    self._position_from_parent_top = self.parent.length - self.length + self.position_from_parent_value
-            else:
-                self._position_from_parent_top = None 
-        return self._position_from_parent_top
-
-    def add_parent(self, parent):
-        if parent != None:
-            self.parent = parent
-            parent.children.append(self)
-        else:
-            self.parent = None
-
-    def add_child(self, child):
-        self.children.append(child)
-        child.parent = self
-
 
 class TubeBody(Part):
     name_default = 'Body tube'
 
-    def __init__(self, length, diameter_outer, thickness, surface_finish, config=None, config_index=None, *args, **kwargs):
+    def __init__(self, length, diameter_outer, thickness, surface_finish, *args, **kwargs):
         self.part_type = "TubeBody"
         self.length = length
         self.diameter_outer = diameter_outer
@@ -241,8 +255,6 @@ class TubeBody(Part):
 
         #Calculate properties 
         self.calculate_properties()
-        self.calculate_generic_part_properties()
-        config.add_part(self, config_index)
 
     def named_attributes(self):
         return {"Part Type":self.part_type, "Length":self.length, "Thickness":self.thickness, "Diameter Outer":self.diameter_outer,
@@ -261,7 +273,7 @@ class TubeBody(Part):
         self.area_forward
         self.area_aft
 
-    def updated_attributes(self):
+    def updated_properties(self):
         self._area_surface = None
         self._volume = None
         self._volume_material = None
@@ -318,8 +330,7 @@ class Nosecone(Part):
     name_default = 'Nosecone'
 
     def __init__(self, nose_type, shape_parameter, length_nose, thickness, diameter_base, 
-                 length_base, diameter_shoulder, length_shoulder, thickness_shoulder, surface_finish, 
-                 config=None, config_index=None, *args, **kwargs):
+                 length_base, diameter_shoulder, length_shoulder, thickness_shoulder, surface_finish, *args, **kwargs):
 
         self.part_type = "Nosecone"
         self.nose_type = nose_type
@@ -349,8 +360,6 @@ class Nosecone(Part):
 
         #Calculate properties 
         self.calculate_properties()
-        self.calculate_generic_part_properties()
-        config.add_part(self, config_index)
 
     def named_attributes(self):
         return {"Part Type":self.part_type, "Nosecone Type":self.nose_type, "Shape Parameter":self.shape_parameter,
@@ -374,7 +383,7 @@ class Nosecone(Part):
         self.area_forward
         self.area_aft
     
-    def updated_attributes(self):
+    def updated_properties(self):
         self._radius = None
         self._length = None
         self._area_surface = None
@@ -464,13 +473,12 @@ class Fins(Part):
         self._area_surface = None
         self._volume = None
         self._area_frontal = None
-        self._radius_parent_body = None
-        self._position_from_parent_top = None
+        #self._radius_parent_body = None
+        #self._position_from_parent_top = None
         self._length = None
         
         #Calculate properties 
         self.calculate_properties()
-        self.calculate_generic_part_properties()
 
     def named_attributes(self):
         return {"Part Type":self.part_type, "Number":self.number, 
@@ -484,16 +492,16 @@ class Fins(Part):
         self.area_surface
         self.volume
         self.area_frontal
-        self.radius_parent_body
-        self.position_from_parent_top
+        #self.radius_parent_body
+        #self.position_from_parent_top
         self.length 
 
-    def updated_attributes(self):
+    def updated_properties(self):
         self._area_surface = None
         self._volume = None
         self._area_frontal = None
-        self._radius_parent_body = None
-        self._position_from_parent_top = None
+        #self._radius_parent_body = None
+        #self._position_from_parent_top = None
         self._length
 
         #Recalculate properties 
@@ -514,16 +522,17 @@ class Fins(Part):
         if self._area_frontal is None:
             self._area_frontal = self.number*self.fin_shape.span*self.thickness
         return self._area_frontal
-    @property
-    def radius_parent_body(self):
-        if self._radius_parent_body is None:
-            self._radius_parent_body = self.parent.diameter_outer/2
-        return self._radius_parent_body
+    #@property
+    #def radius_parent_body(self):
+    #    if self._radius_parent_body is None:
+    #        self._radius_parent_body = self.parent.diameter_outer/2
+    #    return self._radius_parent_body
     @property
     def length(self):
         if self._length is None:
             self._length = self.fin_shape.chord_root
         return self._length
+
 class FinShapeTrapezoidal():
 
     def __init__(self, chord_root, chord_tip, span, length_sweep, angle_sweep_LE):
@@ -552,7 +561,7 @@ class FinShapeTrapezoidal():
         self.angle_sweep_mid
         self.aspect_ratio
 
-    def updated_attributes(self):
+    def updated_properties(self):
         self._area_planform = None
         self._MAC = None
         self._MAC_y = None
@@ -625,4 +634,11 @@ class Mass(Part):
         self.diameter = diameter
         self.part_use = "INTERNAL"
         super(Mass, self).__init__(*args, **kwargs)
+
+
+class Material():
+
+    def __init__(self, name, density):
+        self.name = name
+        self.density = density
         

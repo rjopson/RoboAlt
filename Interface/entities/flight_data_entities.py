@@ -48,7 +48,7 @@ class SimulationData():
         config.add_simulation(self)
 
     def named_attributes(self):
-        return {"Motor":self.motor.name, "Pad Elevation":self.elevation_pad, "Comments":self.comments} 
+        return {"Name":self.name, "Motor":self.motor.name, "Pad Elevation":self.elevation_pad, "Comments":self.comments} 
 
     @property 
     def index_liftoff(self):
@@ -224,7 +224,7 @@ class SimulationData():
 
 class FlightData():
 
-    def __init__(self, config, data_string_list, name, location, date, elevation_pad, mass_pad, length, motor, mass_propellant, comments):
+    def __init__(self, config, recorded_data, name, location, date, elevation_pad, mass_pad, length, motor, mass_propellant, comments):
 
         #Data input by user 
         self.config = config
@@ -246,8 +246,13 @@ class FlightData():
         config.add_flight_data(self)
 
         #Initialize data structures for recorded data import and data derived from recorded data         
-        self.recorded_data = RecordedFlightData(data_string_list)
+        self.recorded_data = recorded_data #RecordedFlightData(data_string_list)
         self.derived_data = DerivedFlightData(self, self.recorded_data)
+
+    def named_attributes(self):
+        return {"Name":self.name, "Location":self.location, "Date":self.date, "Pad Elevation":self.elevation_pad,
+                "Motor":self.motor, "Rocket Pad Mass":self.mass_pad, "Propellant Mass":self.mass_propellant, "Rocket Length":self.length,
+                "Comments":self.comments}
 
     @property
     def mass_burnout(self):
@@ -262,11 +267,9 @@ class FlightData():
 #Structure which is used for raw recorded altimeter and data derived from this 
 class RecordedFlightData():
 
-    def __init__(self, data_string_list):
+    def __init__(self, length):        
 
-        self.data_string_list = data_string_list
-        self.length = len(self.data_string_list[2:])
-
+        self.length = length
         self.mpuPad = None
         self.h3lisPad = None
         self.pressurePad = None
@@ -296,59 +299,6 @@ class RecordedFlightData():
         self.continuity_apogee = np.full(self.length, 0.0)
         self.continuity_main = np.full(self.length, 0.0)
         self.continuity_third = np.full(self.length, 0.0) 
-
-        #Parse data into data structure
-        self.parse_raw()
-
-    def parse_raw(self):
-
-        version = float(self.data_string_list[0])
-
-        #Parse version 0.1 type file
-        if version == 0.1:
-
-            #header line 
-            line_list = self.data_string_list[1].split(",")
-            self.mpuPad = int(line_list[0])
-            self.h3lisPad = int(line_list[1])
-            self.pressurePad = float(line_list[2])
-            self.temperaturePad = int(line_list[3])
-            self.voltageStartup = int(line_list[4]) 
-            self.C[0] = line_list[5]
-            self.C[1] = line_list[6]
-            self.C[2] = line_list[7]
-            self.C[3] = line_list[8]
-            self.C[4] = line_list[9]
-            self.C[5] = line_list[10]          
-
-            #Read through flight data 
-            for i, line in enumerate(self.data_string_list[2:]):
-                
-                line_list = line.split(",")
-                self.time[i] = float(line_list[0])
-                self.flight_status[i] = int(line_list[1])
-                self.altitude[i] = float(line_list[2])
-                self.velocity[i] = float(line_list[3])
-                self.acceleration[i] = float(line_list[4])
-                self.altitude_baro[i] = float(line_list[5])
-                self.acceleration_axial[i] = float(line_list[6])
-                self.pressure[i] = float(line_list[7])
-                self.temperature[i] = float(line_list[8])
-                self.acceleration_x[i] = float(line_list[9])
-                self.acceleration_y[i] = float(line_list[10])
-                self.acceleration_z[i] = float(line_list[11])
-                self.gyro_x[i] = float(line_list[12])
-                self.gyro_y[i] = float(line_list[13])
-                self.gyro_z[i] = float(line_list[14])
-                self.acceleration_high[i] = float(line_list[15])
-                self.pressure_raw[i] = float(line_list[16])
-                self.temperature_raw[i] = float(line_list[17])
-                self.voltage[i] = float(line_list[18])
-                self.continuity_apogee[i] = float(line_list[19])
-                self.continuity_main[i] = float(line_list[20])
-                self.continuity_third[i] = float(line_list[21])
-        else:
-            pass
 
 class DerivedFlightData():
 
