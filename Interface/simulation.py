@@ -1,11 +1,12 @@
 
 import entities.rocket_entities as rocket_entities 
+import entities.flight_data_entities as flight_data
 import entities.motor_data_entities as motor_entities
+import entities.event_entities as event_entities
 import aerodynamic_forces.aerodynamic_forces as aero_force
 import aerodynamic_forces.atmosphere_model as atmosphere_model
 import constants
 import file_io
-import entities.flight_data_entities as flight_data
 
 import json
 
@@ -14,59 +15,80 @@ from math import radians
 import numpy as np     # installed with matplotlib
 import matplotlib.pyplot as plt
 
-'''
-#part_list=[nosecone, tubeMain, tubeDrogue, tubeExtension, fincan]
-rocket = rocket_entities.Rocket(name="3DPME_29mm_v1", comments="test")
+rkt = rocket_entities.Rocket(name="3DPME_29mm_v1", comments="test")
 
-PLA = rocket_entities.Material(name="PLA", density=1380)
+PLA = rocket_entities.Material(name="PLA", density=1380.0)
 
 nosecone = rocket_entities.Nosecone(nose_type="VON_KARMEN", shape_parameter=0,
-                                    length_nose=0.157, thickness=0.002, diameter_base=0.03139, length_base=0.0, 
+                                    length_nose=0.157, thickness=0.002, diameter_outer=0.03139, length_base=0.0, 
                                     diameter_shoulder=0.0, length_shoulder=0.0, thickness_shoulder=0.0, surface_finish='UNFINISHED',
-                                    name="Nosecone", rocket=rocket, material=PLA, comments="test")
+                                    name="Nosecone", rocket=rkt, material=PLA, comments="test")
 
 tubeMain = rocket_entities.TubeBody(length=0.076, diameter_outer=0.03139, thickness=0.001, surface_finish='UNFINISHED',
-                                   name="tubeMain", rocket=rocket, material=PLA, comments="test")
+                                   name="tubeMain", rocket=rkt, material=PLA, comments="test")
 
 tubeDrogue = rocket_entities.TubeBody(length=0.19, diameter_outer=0.03139, thickness=0.001, surface_finish='UNFINISHED',
-                                   name="tubeDrogue", rocket=rocket, material=PLA, comments="test")
+                                   name="tubeDrogue", rocket=rkt, material=PLA, comments="test")
 
-#0.04
-tubeExtension = rocket_entities.TubeBody(length=0.001, diameter_outer=0.03139, thickness=0.001, surface_finish='UNFINISHED',
-                                   name="tubeExtension", rocket=rocket, material=PLA, comments="test")
+#tubeExtension1 = rocket_entities.TubeBody(length=0.001, diameter_outer=0.03139, thickness=0.001, surface_finish='UNFINISHED',
+#                                   name="tubeExtension180", rocket=rkt, material=PLA, comments="test")
+
+tubeExtension2 = rocket_entities.TubeBody(length=0.04, diameter_outer=0.03139, thickness=0.001, surface_finish='UNFINISHED',
+                                   name="tubeExtension240", rocket=rkt, material=PLA, comments="test")
 
 fincan = rocket_entities.TubeBody(length=0.114, diameter_outer=0.03139, thickness=0.001, surface_finish='UNFINISHED',
-                                   name="fincan", rocket=rocket, material=PLA, comments="test")
+                                   name="fincan", rocket=rkt, material=PLA, comments="test")
 
-trap_fin_shape = rocket_entities.FinShapeTrapezoidal(chord_root=0.102, chord_tip=0.013, span=0.051, length_sweep=0.076, angle_sweep_LE=56.3)
+trap_fin_shape = rocket_entities.FinShapeTrapezoidal(chord_root=0.102, chord_tip=0.013, span=0.051, length_sweep=0.076)
 fin_set = rocket_entities.Fins(fin_shape=trap_fin_shape, number=3, cross_section="AIRFOIL", thickness=0.003, radius_fillet=0.005, surface_finish='UNFINISHED',
-                             name="Fin set", rocket=rocket, material=PLA, comments="test")
+                             name="Fin set", rocket=rkt, material=PLA, comments="test")
 
-config = rocket_entities.Configuration(name="Config1", rocket=rocket, mass_empty_override=0.1809, cg_override=None, comments="test")
-nosecone_inst = rocket_entities.Instance(nosecone, None, config)
-tubeMain_inst = rocket_entities.Instance(tubeMain, None, config)
-tubeDrogue_inst = rocket_entities.Instance(tubeDrogue, None, config)
-tubeExtension_inst = rocket_entities.Instance(tubeExtension, None, config)
-fincan_inst = rocket_entities.Instance(fincan, None, config)
-fin_set_inst = rocket_entities.Instance(fin_set, fincan_inst, config, position_type="AFT", position_from=0.0063)
-'''
+config180 = rocket_entities.Configuration(name="Config180", rocket=rkt, 
+                                        mass_empty_override=0.1809, 
+                                        mass_empty_override_bool=True, cg_empty_override_bool=False,
+                                        comments="test")
+nosecone_inst = rocket_entities.Instance(nosecone, None, config180)
+tubeMain_inst = rocket_entities.Instance(tubeMain, None, config180)
+tubeDrogue_inst = rocket_entities.Instance(tubeDrogue, None, config180)
+#tubeExtension_inst = rocket_entities.Instance(tubeExtension1, None, config180)
+fincan_inst = rocket_entities.Instance(fincan, None, config180)
+fin_set_inst = rocket_entities.Instance(fin_set, fincan_inst, config180, position_type="AFT", position_from=0.0063)
 
-#mass h180 = 0.195
-#mass h128 = 0.1809
-#motor = motor_entities.MotorTestData(file_io.read_text_file("AeroTech_H128.eng"))
-#read_data = file_io.read_text_file("C:/Users/Jim/Documents/Rockets/Altimeters/RoboDev/Firmware/flightTests/3DPME_29mm_H128_TriCities_9-2019.csv")
-#recorded_data = file_io.parse_string_to_recorded_data(read_data)
-#alt = flight_data.FlightData(config, recorded_data, "3DPME_H128", "Tri Cities", "9/6/2019", 167.74, 0.3825, 0.52705, "H128", 0.09408, "")
-#sim = flight_data.SimulationData("3DPME_H128", config, motor, 167.74, "")
+config240 = rocket_entities.Configuration(name="Config240", rocket=rkt, 
+                                        mass_empty_override=0.195, 
+                                        mass_empty_override_bool=True, cg_empty_override_bool=False,
+                                        comments="test")
+nosecone_inst2 = rocket_entities.Instance(nosecone, None, config240)
+tubeMain_inst2 = rocket_entities.Instance(tubeMain, None, config240)
+tubeDrogue_inst2 = rocket_entities.Instance(tubeDrogue, None, config240)
+tubeExtension_inst2 = rocket_entities.Instance(tubeExtension2, None, config240)
+fincan_inst2 = rocket_entities.Instance(fincan, None, config240)
+fin_set_inst2 = rocket_entities.Instance(fin_set, fincan_inst2, config240, position_type="AFT", position_from=0.0063)
 
-#motor = motor_entities.MotorTestData(file_io.read_text_file("AeroTech_H180.eng"))
-#read_data = file_io.read_text_file("C:/Users/Jim/Documents/Rockets/Altimeters/RoboDev/Firmware/flightTests/3DPME_29mm_H180_TriCities_9-2019.csv")
-#alt = flight_data.FlightData(config, read_data, "3DPME_H180", "Tri Cities", "9/7/2019", 167.74, 0.441, 0.578, "H180", 0.12096, "")
-#sim = flight_data.SimulationData("3DPME_H80", config, motor, 167.74, "")
+motor_data1 = file_io.parse_eng_string_to_motor(file_io.read_text_file("AeroTech_H128.eng"))
+recorded_data1 = file_io.parse_string_to_recorded_data(file_io.read_text_file("C:/Users/Jim/Documents/Rockets/Altimeters/RoboDev/Firmware/flightTests/3DPME_29mm_H128_TriCities_9-2019.csv"))
+alt1 = flight_data.FlightData(config180, recorded_data1, "3DPME_H128", "Tri Cities", "9/6/2019", 167.74, 0.3825, 0.52705, "H128", 0.09408, "")
+event_list = [event_entities.SimulationEvent(None, "GROUND", 6.0)]
+sim1 = flight_data.SimulationData("3DPME_H128", config180, motor_data1, 167.74, event_list)
 
-#file_io.serialize_objects_to_JSON(config)
-#file_io.WriteRocketHDF5("", rocket)
-file_io.ReadRocketHDF5("3DPME_29mm_v1.h5")
+#motor_data2 = file_io.parse_eng_string_to_motor(file_io.read_text_file("AeroTech_H180.eng"))
+#recorded_data2 = file_io.parse_string_to_recorded_data(file_io.read_text_file("C:/Users/Jim/Documents/Rockets/Altimeters/RoboDev/Firmware/flightTests/3DPME_29mm_H128_TriCities_9-2019.csv"))
+#alt2 = flight_data.FlightData(config240, recorded_data2, "3DPME_H180", "Tri Cities", "9/6/2019", 167.74, 0.3825, 0.52705, "H128", 0.09408, "")
+#sim2 = flight_data.SimulationData("3DPME_H180", config240, motor_data2, 167.74)
+
+#file_io.WriteRocketHDF5("", rkt)
+#test = file_io.ReadRocketHDF5("3DPME_29mm_v1.h5")
+
+#test_data = test.rocket.configuration_list[0].flight_data_list[0]
+#sim_data = test.rocket.configuration_list[0].simulation_list[0]
+#plt.plot(test_data.derived_data.time, test_data.derived_data.altitude)
+#plt.plot(test_data.derived_data.time, test_data.derived_data.altitude_baro)
+#plt.plot(sim_data.time, sim_data.altitude)
+
+plt.plot(alt1.derived_data.time, alt1.derived_data.altitude, label='filter')
+plt.plot(alt1.derived_data.time, alt1.derived_data.altitude_baro, label='baro')
+#plt.plot(alt1.derived_data.time, alt1.derived_data.altitude_accelerometer, label='accel')
+plt.plot(sim1.time, sim1.altitude, label='sim')
 
 #plt.plot(alt.derived_data.time[:alt.derived_data.index_apogee], alt.derived_data.altitude[:alt.derived_data.index_apogee], label='filter')
 #plt.plot(alt.derived_data.time[:alt.derived_data.index_apogee], alt.derived_data.altitude_baro[:alt.derived_data.index_apogee], label='baro')
@@ -120,7 +142,7 @@ file_io.ReadRocketHDF5("3DPME_29mm_v1.h5")
 #plt.show()
 
 
-#plt.plot()
-#plt.ylabel('Result')
-#plt.legend(loc='upper left')
-#plt.show()
+plt.plot()
+plt.ylabel('Result')
+plt.legend(loc='upper left')
+plt.show()

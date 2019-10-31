@@ -8,30 +8,62 @@ class Rocket():
         self.comments = comments
         self.configuration_list = []
         self.part_list = []
+        self.material_list = []
+        self.motor_list = []
 
     def add_configuration(self, config):
         self.configuration_list.append(config)
 
     def add_part(self, part):
-        self.part_list.append(part)
+        if part not in self.part_list:
+            self.part_list.append(part)
+
+    def get_part(self, part_name):
+        for part in self.part_list:
+            if part.name == part_name:
+                return part
+
+    def add_material(self, material):
+        if material not in self.material_list:
+            self.material_list.append(material)
+
+    def get_material(self, material_name):
+        for material in self.material_list:
+            if material.name == material_name:
+                return material            
+
+    def add_motor(self, motor):
+        if motor not in self.motor_list:
+            self.motor_list.append(motor)
+
+    def get_motor(self, motor_name):
+        for motor in self.motor_list:
+            if motor.name == motor_name:
+                return motor
+
+    def named_attributes(self):
+        return {"name":self.name, "comments":self.comments}
        
 
 class Configuration():
     ACTIVE_YES, ACTIVE_NO = range(2)
 
-    def __init__(self, name, rocket, mass_empty_override, cg_override, comments):
+    def __init__(self, name, rocket, mass_empty_override=0.0, cg_empty_override=0.0, 
+                 mass_empty_override_bool=False, cg_empty_override_bool=False, comments=""):
         self.name = name
         self.instance_list = []
         self.simulation_list = []
         self.flight_data_list = []
         self.mass_empty_override = mass_empty_override
-        self.mass_empty_override_bool = False
-        self.cg_empty_override = cg_override
-        self.cg_empty_override_bool = False
+        self.mass_empty_override_bool=mass_empty_override_bool
+        self.cg_empty_override = cg_empty_override
+        self.cg_empty_override_bool = cg_empty_override_bool
+        self.comments = comments 
 
+        self.rocket = rocket
         rocket.add_configuration(self)
 
-        if mass_empty_override is not None:
+        if mass_empty_override_bool is True:
             self.mass = self.mass_empty_override
 
         #Cached properties 
@@ -41,6 +73,11 @@ class Configuration():
         self._diameter_max = None
         self._fineness_ratio = None
         self._area_reference = None
+
+    def named_attributes(self):
+        return {"mass_empty_override":self.mass_empty_override, "mass_empty_override_bool":self.mass_empty_override_bool,
+                "cg_empty_override":self.cg_empty_override, "cg_empty_override_bool":self.cg_empty_override_bool,
+                "comments":self.comments}
 
     def add_simulation(self, simulation):
         self.simulation_list.append(simulation)
@@ -132,7 +169,7 @@ class Configuration():
             #get part distance 
             instance.distance_from_nose = location_from_nose
             #get any children distances 
-            for child in instance.get_flat_list():        
+            for child in instance.get_flat_list():  
                 child.distance_from_nose = location_from_nose + child.position_from_parent_top
             #add total length of current part for next iteration
             location_from_nose += instance.part.length
@@ -154,6 +191,7 @@ class Configuration():
             for child in nested_children:
                 part_list.append(child.part)
         return part_list 
+
     
 class Instance():
     def __init__(self, part, parent, config, index=None, position_type="FOREWARD", position_from=0.0):
@@ -174,6 +212,9 @@ class Instance():
             config.add_instance_to_list(self, index)
             config.get_instance_locations_from_nose()
 
+    def named_attributes(self):
+        return {"position_type":self.position_type, "position_from":self.position_from}
+
     def calculate_properties(self):
         self.position_from_parent_top
 
@@ -183,15 +224,14 @@ class Instance():
 
     @property
     def position_from_parent_top(self):
-        if self._position_from_parent_top is None and self.parent is not None:
-            if self.position_type == "FOREWARD":
-                self._position_from_parent_top = self.position_from
-            elif self.position_type == "AFT":
-                self._position_from_parent_top = self.parent.part.length - self.part.length + self.position_from
-            else:
-                self._position_from_parent_top = None
-        else:
-            self._position_from_parent_top = None
+        if self._position_from_parent_top is None:
+           if self.parent is not None:
+                if self.position_type == "FOREWARD":
+                    self._position_from_parent_top = self.position_from
+                elif self.position_type == "AFT":
+                    self._position_from_parent_top = self.parent.part.length - self.part.length + self.position_from
+                else:
+                    self._position_from_parent_top = None
         return self._position_from_parent_top
 
     def add_child(self, child, index):
@@ -215,21 +255,24 @@ class Instance():
         flat_list.pop(0)
         return flat_list
 
+
 class Part():
     EXTERNAL, INTERNAL = range(2)
     ROUGH, UNFINISHED, PAINT, POLISH = range(4)
     
     def __init__(self, name, rocket, material,
-                 mass_override=0.0, cg_override=0.0, comments=""):
+                 mass_override=0.0, mass_override_bool=False, cg_override=0.0, cg_override_bool=False, comments=""):
         self.name = name
         self.material = material     
         self.mass_override = mass_override
-        self.mass_override_bool = False
+        self.mass_override_bool = mass_override_bool
         self.cg_override = cg_override
-        self.cg_override_bool = False      
+        self.cg_override_bool = cg_override_bool     
         self.comments = comments
 
         rocket.add_part(self)
+        rocket.add_material(material)
+
 
 class TubeBody(Part):
     name_default = 'Body tube'
@@ -257,11 +300,11 @@ class TubeBody(Part):
         self.calculate_properties()
 
     def named_attributes(self):
-        return {"Part Type":self.part_type, "Length":self.length, "Thickness":self.thickness, "Diameter Outer":self.diameter_outer,
-                "Part Use":self.part_use, "Surface Finish":self.surface_finish,
-                "Mass Override":self.mass_override, "Mass Override Check":self.mass_override_bool,
-                "Cg Override":self.cg_override, "Cg Override Check":self.cg_override_bool,
-                "Comments":self.comments}    
+        return {"part_type":self.part_type, "length":self.length, "thickness":self.thickness, "diameter_outer":self.diameter_outer,
+                "surface_finish":self.surface_finish,
+                "material":self.material.name, "mass_override":self.mass_override, "mass_override_bool":self.mass_override_bool,
+                "cg_override":self.cg_override, "cg_override_bool":self.cg_override_bool,
+                "comments":self.comments}    
         
     def calculate_properties(self):
         self.diameter_inner
@@ -325,11 +368,13 @@ class TubeBody(Part):
         if self._area_aft is None:
             self._area_aft = self.area_ref
         return self._area_aft
+
+
 class Nosecone(Part):
     CONICAL, OGIVE, HAACK, VON_KARMEN = range(4)
     name_default = 'Nosecone'
 
-    def __init__(self, nose_type, shape_parameter, length_nose, thickness, diameter_base, 
+    def __init__(self, nose_type, shape_parameter, length_nose, thickness, diameter_outer, 
                  length_base, diameter_shoulder, length_shoulder, thickness_shoulder, surface_finish, *args, **kwargs):
 
         self.part_type = "Nosecone"
@@ -337,7 +382,7 @@ class Nosecone(Part):
         self.shape_parameter = shape_parameter
         self.length_nose = length_nose
         self.thickness = thickness
-        self.diameter_outer = diameter_base
+        self.diameter_outer = diameter_outer
         self.length_base = length_base
         self.diameter_shoulder = diameter_shoulder 
         self.length_shoulder = length_shoulder
@@ -362,14 +407,14 @@ class Nosecone(Part):
         self.calculate_properties()
 
     def named_attributes(self):
-        return {"Part Type":self.part_type, "Nosecone Type":self.nose_type, "Shape Parameter":self.shape_parameter,
-                "Length Nose":self.length_nose, "Length Base":self.length_base, "Length Shoulder":self.length_shoulder,
-                "Thickness":self.thickness, "Thickness Shoulder":self.thickness_shoulder,
-                "Diameter Outer":self.diameter_outer, "Diameter Shoulder":self.diameter_shoulder,
-                "Part Use":self.part_use, "Surface Finish":self.surface_finish,
-                "Mass Override":self.mass_override, "Mass Override Check":self.mass_override_bool,
-                "Cg Override":self.cg_override, "Cg Override Check":self.cg_override_bool,
-                "Comments":self.comments}
+        return {"part_type":self.part_type, "nose_type":self.nose_type, "shape_parameter":self.shape_parameter,
+                "length_nose":self.length_nose, "length_base":self.length_base, "length_shoulder":self.length_shoulder,
+                "thickness":self.thickness, "thickness_shoulder":self.thickness_shoulder,
+                "diameter_outer":self.diameter_outer, "diameter_shoulder":self.diameter_shoulder,
+                "surface_finish":self.surface_finish,
+                "material":self.material.name, "mass_override":self.mass_override, "mass_override_bool":self.mass_override_bool,
+                "cg_override":self.cg_override, "cg_override_bool":self.cg_override_bool,
+                "comments":self.comments}
 
     def calculate_properties(self):
         self.radius
@@ -453,6 +498,8 @@ class Nosecone(Part):
         if self._area_forward is None:
             self._area_forward = 0
         return self._area_forward
+
+
 class Fins(Part):
     SQUARE, ROUNDED, AIRFOIL, DOUBLE_WEDGE = range(4)
     name_default = 'Fin set'
@@ -481,12 +528,12 @@ class Fins(Part):
         self.calculate_properties()
 
     def named_attributes(self):
-        return {"Part Type":self.part_type, "Number":self.number, 
-                "Thickness":self.thickness, "Cross Section":self.cross_section, "Fillet Radius":self.radius_fillet,
-                "Part Use":self.part_use, "Surface Finish":self.surface_finish,
-                "Mass Override":self.mass_override, "Mass Override Check":self.mass_override_bool,
-                "Cg Override":self.cg_override, "Cg Override Check":self.cg_override_bool,
-                "Comments":self.comments}    
+        return {"part_type":self.part_type, "number":self.number, 
+                "thickness":self.thickness, "cross_section":self.cross_section, "radius_fillet":self.radius_fillet,
+                "surface_finish":self.surface_finish,
+                "material":self.material.name, "mass_override":self.mass_override, "mass_override_bool":self.mass_override_bool,
+                "cg_override":self.cg_override, "cg_override_bool":self.cg_override_bool,
+                "comments":self.comments}    
 
     def calculate_properties(self):
         self.area_surface
@@ -533,14 +580,15 @@ class Fins(Part):
             self._length = self.fin_shape.chord_root
         return self._length
 
+
 class FinShapeTrapezoidal():
 
-    def __init__(self, chord_root, chord_tip, span, length_sweep, angle_sweep_LE):
+    def __init__(self, chord_root, chord_tip, span, length_sweep):
+        self.shape_type = "Trapezoidal"
         self.chord_root = chord_root
         self.chord_tip = chord_tip
         self.span = span
         self.length_sweep = length_sweep
-        self.angle_sweep_LE = angle_sweep_LE
         
         #Cached properties 
         self._area_planform = None
@@ -549,9 +597,14 @@ class FinShapeTrapezoidal():
         self._MAC_LE_from_root_LE = None
         self._angle_sweep_mid = None
         self._aspect_ratio = None
+        self._angle_sweep_LE = None
 
         #Calculate properties 
         self.calculate_properties()
+
+    def named_attributes(self):
+        return {"shape_type":self.shape_type, "chord_root":self.chord_root, "chord_tip":self.chord_tip,
+                "span":self.span, "length_sweep":self.length_sweep} 
 
     def calculate_properties(self):
         self.area_planform 
@@ -560,6 +613,7 @@ class FinShapeTrapezoidal():
         self.MAC_LE_from_root_LE
         self.angle_sweep_mid
         self.aspect_ratio
+        self.angle_sweep_LE
 
     def updated_properties(self):
         self._area_planform = None
@@ -568,6 +622,7 @@ class FinShapeTrapezoidal():
         self._MAC_LE_from_root_LE = None
         self._angle_sweep_mid = None
         self._aspect_ratio = None
+        self._angle_sweep_LE = None
 
         #recalculate properties
         self.calculate_properties()
@@ -579,30 +634,37 @@ class FinShapeTrapezoidal():
         return self._area_planform
     @property
     def MAC(self):
-        if self._MAC  is None:
+        if self._MAC is None:
             taper = self.chord_tip/self.chord_root 
             self._MAC = self.chord_root * (2/3) * ((1 + taper + taper**2)/(1 + taper))
         return self._MAC
     @property
     def MAC_y(self):
-        if self._MAC_y  is None:
+        if self._MAC_y is None:
             self._MAC_y = (self.span/3)*((self.chord_root + 2*self.chord_tip)/(self.chord_root + self.chord_tip))
         return self._MAC_y
     @property
     def MAC_LE_from_root_LE(self):
-        if self._MAC_LE_from_root_LE  is None:
+        if self._MAC_LE_from_root_LE is None:
             self._MAC_LE_from_root_LE = (self.length_sweep/self.span)*self.MAC_y
         return self._MAC_LE_from_root_LE
     @property
+    def angle_sweep_LE(self):
+        if self._angle_sweep_LE is None:
+            self._angle_sweep_LE = math.degrees(math.atan2(self.length_sweep, self.span))
+        return self._angle_sweep_LE
+    @property
     def angle_sweep_mid(self):
-        if self._angle_sweep_mid  is None:
+        if self._angle_sweep_mid is None:
             self._angle_sweep_mid = math.degrees(math.atan2(0.5*(self.chord_tip - self.chord_root) + self.length_sweep, self.span))
         return self._angle_sweep_mid 
     @property
     def aspect_ratio(self):
-        if self._aspect_ratio  is None:
+        if self._aspect_ratio is None:
             self._aspect_ratio = (self.span**2)/self.area_planform
         return self._aspect_ratio
+
+
 class TubeInner(Part):
     name_default = 'Inner tube'
 
@@ -614,6 +676,8 @@ class TubeInner(Part):
         self.thickness = thickness
         self.part_use = "INTERNAL"
         super(TubeInner, self).__init__(*args, **kwargs)
+
+
 class Bulkhead(Part):
 
     name_default = 'Bulkhead'
@@ -622,7 +686,9 @@ class Bulkhead(Part):
         self.diameter = diameter
         self.thickness = thickness
         self.part_use = "INTERNAL"
-        super(Bulkhead, self).__init__(*args, **kwargs)    
+        super(Bulkhead, self).__init__(*args, **kwargs)  
+        
+
 class Mass(Part):
 
     name_default = 'Mass'
@@ -636,9 +702,50 @@ class Mass(Part):
         super(Mass, self).__init__(*args, **kwargs)
 
 
-class Material():
+class Parachute(Part):
 
+    name_default = 'Parachute'
+
+    def __init__(self, diameter=0.0, drag_coefficient=0.80, *args, **kwargs):
+        self.diameter = diameter
+        self.drag_coefficient = drag_coefficient
+        self.part_use = "INTERNAL"
+        super(Parachute, self).__init__(*args, **kwargs)
+        
+        #cached properties
+        self._radius = None
+        self._area = None 
+
+        #Calculate properties 
+        self.calculate_properties()
+
+    def calculate_properties(self):
+        self.radius
+        self.area
+
+    def updated_properties(self):
+        self._radius = None
+        self._area = None 
+        self.calculate_properties()
+
+    @property
+    def radius(self):
+        if self._radius is None:
+            self._radius = self.diameter/2
+        return self._radius
+
+    @property
+    def area(self):
+        if self._area is None:
+            self._area = math.pi*(self.radius**2)
+        return self._area
+
+
+
+class Material():
     def __init__(self, name, density):
         self.name = name
         self.density = density
-        
+
+    def named_attributes(self):
+        return {"name":self.name, "density":self.density}  

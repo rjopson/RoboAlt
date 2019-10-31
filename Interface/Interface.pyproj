@@ -40,6 +40,9 @@
     <Compile Include="constants.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="entities\event_entities.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="entities\flight_data_entities.py">
       <SubType>Code</SubType>
     </Compile>

@@ -19,12 +19,15 @@ def drag_coefficient(Re, M, surface_finish, A_ref,
     C_D_pressure_nose = pressure_drag_coefficient_nose(M, fineness_nose, type_nose)
 
     return C_D_f + C_D_base + C_D_pressure_fins + C_D_pressure_nose
+
 def surface_roughness_height(surface_finish):
     surface_roughness_height_lib = {'ROUGH':250.0e-6, 'UNFINISHED':90.0e-6, 'PAINT':30.0e-6, 'POLISH':2.0e-6} 
     return surface_roughness_height_lib[surface_finish]
+
 def reynolds_critical(R_s, L):
    
    return 51 * ((R_s/L)**-1.039)
+
 def skin_friction_coefficient(Re, M, surface_finish, L):
 
     #Calculate critical Reynolds number
@@ -50,17 +53,21 @@ def skin_friction_coefficient(Re, M, surface_finish, L):
         C_f_c_rough = C_f_rough/(1 + 0.18*M**2)
 
     return max(C_f_c, C_f_c_rough)
+
 def skin_friction_drag_coefficient_fins(C_f_c, number_fins, A_planform, A_ref):
     
     return 2*number_fins*C_f_c*(A_planform/A_ref)
+
 def skin_friction_drag_coefficient_body(C_f_c, fineness, A_wet, A_ref):
     
     return (1 + 0.5/fineness)*C_f_c*(A_wet/A_ref)
+
 def base_drag_coefficient(M):
     if M < 1:
         return 0.12 + 0.13*M**2
     else:
         return 0.25/M
+
 def pressure_drag_coefficient_fins_rounded(M, angle_sweep_LE, A_frontal, A_ref):
 
     #Leading edge 
@@ -77,6 +84,7 @@ def pressure_drag_coefficient_fins_rounded(M, angle_sweep_LE, A_frontal, A_ref):
 
     #Total
     return (C_D_LE + C_D_TE)*(A_frontal/A_ref)
+
 def pressure_drag_coefficient_nose(M, f_n, type):
     
     #Drag coefficient of nosecone with fineness of 0 
@@ -93,6 +101,7 @@ def pressure_drag_coefficient_nose(M, f_n, type):
         return C_D_0 * (C_D_3_test/C_D_0)**math.log(f_n+1,4)
     else:
         return 0.0
+
 def pressure_drag_coefficient_test(type, M):
 
     #Data from Stoney zero lift drag data

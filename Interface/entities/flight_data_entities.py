@@ -12,14 +12,26 @@ import math
 
 class SimulationData():
 
-    def __init__(self, name, config, motor, elevation_pad, comments):
+    def __init__(self, name, config, motor, elevation_pad, event_list=None, time=None, altitude=None, velocity=None, alpha=None, comments=""):
         self.name = name
         self.config = config
         self.motor = motor
         self.elevation_pad = elevation_pad
+        self.event_list = event_list
+        self.timestep = 0.05
         self.comments = comments 
 
-        self.timestep = 0.05
+        config.rocket.add_motor(motor)
+        config.add_simulation(self)
+
+        #If being initialized from existing data in file, read in data. Otherwise run simulation
+        if time is None:
+            self.run_simulation()
+        else:
+            self.time = time
+            self.altitude = altitude
+            self.velocity = velocity
+            self.alpha = alpha                
         
         #Cached data 
         self._flight_status = None
@@ -42,13 +54,10 @@ class SimulationData():
         self._index_main_deploy = None 
         self._index_landing = None        
         
-        self.run_simulation()
-        self.calculate_properties()
-
-        config.add_simulation(self)
+        self.calculate_properties()        
 
     def named_attributes(self):
-        return {"Name":self.name, "Motor":self.motor.name, "Pad Elevation":self.elevation_pad, "Comments":self.comments} 
+        return {"motor":self.motor.name, "elevation_pad":self.elevation_pad, "comments":self.comments} 
 
     @property 
     def index_liftoff(self):
@@ -60,6 +69,7 @@ class SimulationData():
                     self._index_liftoff = i
                     break 
         return self._index_liftoff
+
     @property 
     def index_burnout(self):
         if self._index_burnout is None:
@@ -70,6 +80,7 @@ class SimulationData():
                     self._index_burnout = i
                     break 
         return self._index_burnout
+
     @property 
     def index_apogee(self):
         if self._index_apogee is None:
@@ -80,6 +91,7 @@ class SimulationData():
                     self._index_apogee = i
                     break 
         return self._index_apogee
+
     @property 
     def index_main_deploy(self):
         if self._index_main_deploy is None:
@@ -90,6 +102,7 @@ class SimulationData():
                     self._index_main_deploy = i
                     break 
         return self._index_main_deploy
+
     @property 
     def index_landing(self):
         if self._index_landing is None:
@@ -100,6 +113,7 @@ class SimulationData():
                     self._index_landing = i
                     break 
         return self._index_landing
+
     @property
     def flight_status(self):
         if self._flight_status is None:
@@ -109,6 +123,7 @@ class SimulationData():
                 phase.update(self.altitude[i], self.velocity[i], self.acceleration[i], 1)
                 self._flight_status[i] = phase.flight_phase
         return self._flight_status
+
     @property
     def mach_number(self):
         if self._mach_number is None:
@@ -118,6 +133,7 @@ class SimulationData():
                 speed_sound = atmosphere.get_speed_sound(self.altitude[i])
                 self._mach_number[i] = aero_force.mach_number(v, speed_sound)
         return self._mach_number
+
     @property
     def reynolds_number(self):
         if self._reynolds_number is None:
@@ -125,6 +141,7 @@ class SimulationData():
             for i, v in enumerate(self.velocity):
                 self._reynolds_number[i] = aero_force.reynolds_number(v, self.config.length)
         return self._reynolds_number
+
     @property
     def q(self):
         if self._q is None:
@@ -133,6 +150,7 @@ class SimulationData():
             for i, v in enumerate(self.velocity):
                 self._q[i] = aero_force.dynamic_pressure(atmosphere.get_density(self.altitude[i]), self.velocity[i])
         return self._q
+
     @property
     def drag(self):
         if self._drag is None:
@@ -140,6 +158,7 @@ class SimulationData():
             for i, v in enumerate(self.velocity):
                 self._drag[i] = aero_force.get_drag(self.config, self.altitude[i], self.velocity[i], 1)
         return self._drag
+
     @property
     def Cd(self):
         if self._Cd is None:
@@ -148,6 +167,7 @@ class SimulationData():
                 
                 self._Cd[i] = aero_force.drag_coefficient_axial_config(self.config, self.mach_number[i], self.reynolds_number[i])
         return self._Cd
+
     @property
     def thrust(self):
         if self._thrust is None:
@@ -155,6 +175,7 @@ class SimulationData():
             for i, t in enumerate(self.time):
                 self._thrust[i] = self.motor.thrust_at_time(t)
         return self._thrust
+
     @property
     def mass(self):
         if self._mass is None:
@@ -162,6 +183,7 @@ class SimulationData():
             for i, t in enumerate(self.time):
                 self._mass[i] = self.config.mass + self.motor.mass_at_time(t)
         return self._mass
+
     @property
     def pressure(self):
         if self._pressure is None:
@@ -170,6 +192,7 @@ class SimulationData():
             for i, v in enumerate(self.velocity):
                 self._pressure[i] = atmosphere.get_pressure(self.altitude[i])
         return self._pressure
+
     @property
     def temperature(self):
         if self._temperature is None:
@@ -178,6 +201,7 @@ class SimulationData():
             for i, v in enumerate(self.velocity):
                 self._temperature[i] = atmosphere.get_temperature(self.altitude[i])  
         return self._temperature
+
     @property
     def acceleration(self):
         if self._acceleration is None:
@@ -188,6 +212,7 @@ class SimulationData():
                 else:
                     self._acceleration[i] = 1.0
         return self._acceleration
+
     @property
     def drag_force(self):
         if self._drag_force is None:
@@ -216,11 +241,9 @@ class SimulationData():
         self.acceleration
         self.drag_force
 
-    def run_simulation(self):
-        
-        [self.time, self.altitude, self.velocity, self.alpha] = simulation_engine.run(self.config, self.motor, self.elevation_pad, 0.0, 288.0, 1000.0, self.timestep)
+    def run_simulation(self):        
+        [self.time, self.altitude, self.velocity, self.alpha] = simulation_engine.run(self.config, self.motor, self.event_list, self.elevation_pad, 0.0, 0.0, 288.0, 1000.0, self.timestep)
 
-        #Pitch angle 
 
 class FlightData():
 
@@ -250,9 +273,9 @@ class FlightData():
         self.derived_data = DerivedFlightData(self, self.recorded_data)
 
     def named_attributes(self):
-        return {"Name":self.name, "Location":self.location, "Date":self.date, "Pad Elevation":self.elevation_pad,
-                "Motor":self.motor, "Rocket Pad Mass":self.mass_pad, "Propellant Mass":self.mass_propellant, "Rocket Length":self.length,
-                "Comments":self.comments}
+        return {"location":self.location, "date":self.date, "elevation_pad":self.elevation_pad,
+                "motor":self.motor, "mass_pad":self.mass_pad, "mass_propellant":self.mass_propellant, "length":self.length,
+                "comments":self.comments}
 
     @property
     def mass_burnout(self):
@@ -299,6 +322,7 @@ class RecordedFlightData():
         self.continuity_apogee = np.full(self.length, 0.0)
         self.continuity_main = np.full(self.length, 0.0)
         self.continuity_third = np.full(self.length, 0.0) 
+
 
 class DerivedFlightData():
 
@@ -608,33 +632,36 @@ class DerivedFlightData():
         self.drag_coefficient
         self.acceleration_z_total
     def filter_state_data(self):
-        kalman = filters.Kalman(self.time_from_power_on[0])
+
+        state_initial = np.array([0.0,0.0,0.0])
+        kalman = filters.KalmanAltitudeAcceleration(self.time_from_power_on[0], 0.0, 0.0, 0.0)
 
         phase = flight_phase.FlightPhase(500)
 
-        x_k_p = np.array([0,0,0])
+        x_k_p = np.array([0.0,0.0,0.0])
         self.altitude[0] = x_k_p[0]
         self.velocity[0] = x_k_p[1]
         self.acceleration[0] = x_k_p[2]
+
+        switch = False
         
         for i, time_k in enumerate(self.time_from_power_on[1:]):
 
             phase.update(x_k_p[0], x_k_p[1], x_k_p[2], 1)     
-
-            #if phase.flight_phase is 0:
-            #    acceleration = self.acceleration_z[i] - self.acceleration_pad                
-            #    x_k_p = kalman.up_update(time_k, self.altitude_baro[i], acceleration, x_k_p)
+           
             if phase.flight_phase < 3:
-                x_k_p = kalman.up_update(time_k, self.altitude_baro[i], self.acceleration_z[i]- self.acceleration_pad, x_k_p)
+                x_k_p = kalman.update(time_k, self.altitude_baro[i], self.acceleration_z[i]- self.acceleration_pad, x_k_p)
+            elif phase.flight_phase >=3 and switch is False:
+                switch = True
+                kalman_descent = filters.KalmanAltitude(self.time_from_power_on[i-1], self.altitude[i-2], self.velocity[i-2], self.acceleration[i-2])
+                x_k_p = kalman_descent.update(time_k, self.altitude_baro[i], x_k_p)
             else:
-                x_k_p = kalman.up_update(time_k, self.altitude_baro[i], self.acceleration_z[i]- self.acceleration_pad, x_k_p)
+                x_k_p = kalman_descent.update(time_k, self.altitude_baro[i], x_k_p)
 
             self.flight_status[i] = phase.flight_phase
             self.altitude[i] = x_k_p[0]
             self.velocity[i] = x_k_p[1]
             self.acceleration[i] = x_k_p[2]
-
-        #self.acceleration = np.add(self.acceleration, self.acceleration_pad)
 
     def integrate_accelerometer_data(self):
 

@@ -5,19 +5,16 @@ import constants
 
 class MotorTestData():
 
-    def __init__(self, eng_string_list):
-        self.name = None
-        self.diameter = None
-        self.length = None
-        self.delays = None
-        self.mass_propellant = None
-        self.mass_total = None
-        self.manufacturer = None
-        self.time_data = []
-        self.thrust_data = []
-
-        #parse file passed to object 
-        self.parse_eng(eng_string_list)
+    def __init__(self, name, diameter, length, delays, mass_propellant, mass_total, manufacturer, time_data, thrust_data):
+        self.name = name
+        self.diameter = diameter
+        self.length = length
+        self.delays = delays
+        self.mass_propellant = mass_propellant
+        self.mass_total = mass_total
+        self.manufacturer = manufacturer
+        self.time_data = time_data
+        self.thrust_data = thrust_data
 
         #Chached properties 
         self._impulse = None 
@@ -28,6 +25,11 @@ class MotorTestData():
 
         #Calculate properties
         self.calculate_properties()
+
+    def named_attributes(self):
+        return {"name":self.name, "diameter":self.diameter, "length":self.length,
+                "delays":self.delays, "mass_propellant":self.mass_propellant, "mass_total":self.mass_total,
+                "manufacturer":self.manufacturer}
 
     #calculate cached properties 
     def calculate_properties(self):
@@ -105,37 +107,5 @@ class MotorTestData():
     def thrust_at_time(self, time):
 
         return np.interp(time, self.time_data, self.thrust_data)
-    def parse_eng(self, eng_string_list):
-        
-            header_reached = False
-
-            for line in eng_string_list:
-
-                #comment line
-                if line[0] == ";":
-                    pass
-
-                #header line
-                elif header_reached == False:
-
-                    header_reached = True 
-
-                    line_list = line.split(" ")
-                    self.name = line_list[0]
-                    self.diameter = int(line_list[1])
-                    self.length = int(line_list[2])
-                    self.delays = line_list[3]
-                    self.mass_propellant = float(line_list[4])
-                    self.mass_total = float(line_list[5])
-                    self.manufacturer = line_list[6]
-            
-                #data line 
-                else:
-                    line_list = line.split(" ")
-                    self.time_data.append(float(line_list[-2]))
-                    self.thrust_data.append(float(line_list[-1].rstrip()))
-
-            if self.time_data[0] > 0.0:
-                self.time_data.insert(0, 0)
-                self.thrust_data.insert(0, 0)
+    
 
