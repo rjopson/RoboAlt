@@ -5,9 +5,9 @@ import numpy as np
 import entities.rocket_entities as rocket_entities 
 import entities.event_entities as event_entities
 import entities.motor_data_entities as motor_entities
-import aerodynamic_forces.aerodynamic_forces as aero_force
-import aerodynamic_forces.atmosphere_model as atmosphere
-import flight_phase
+import simulation.aerodynamic_forces.aerodynamic_forces as aero_force
+import simulation.aerodynamic_forces.atmosphere_model as atmosphere
+import simulation.flight_phase as flight_phase
 
 import constants
 
@@ -67,6 +67,8 @@ def run(config, motor, user_events, elevation_pad, velocity_initial, alpha_initi
     altitude = np.array([elevation_pad], np.float64)
     velocity = np.array([velocity_initial], np.float64)
     time = np.array([t_start], np.float64)
+    flight_status = {} 
+    index = 0
 
     for event in flight_events:
         
@@ -82,7 +84,7 @@ def run(config, motor, user_events, elevation_pad, velocity_initial, alpha_initi
 
         #Check if any user event set here
         for user_event in user_events:
-            if user_event.event == event:                
+            if user_event.event == event:       
 
                 #If simulation should continue after event triggered, continue simulation
                 if user_event.time_delay != 0.0:
@@ -94,8 +96,10 @@ def run(config, motor, user_events, elevation_pad, velocity_initial, alpha_initi
 
                 #Apply action of user event 
                 user_event.apply_action()
+        index = len(altitude)
+        flight_status[event] = index
 
     #remove pad height from simulation
     altitude = np.subtract(altitude, elevation_pad)
 
-    return time, altitude, velocity, alpha
+    return time, flight_status, altitude, velocity, alpha

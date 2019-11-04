@@ -3,8 +3,8 @@ import entities.rocket_entities as rocket_entities
 import entities.flight_data_entities as flight_data
 import entities.motor_data_entities as motor_entities
 import entities.event_entities as event_entities
-import aerodynamic_forces.aerodynamic_forces as aero_force
-import aerodynamic_forces.atmosphere_model as atmosphere_model
+import simulation.aerodynamic_forces.aerodynamic_forces as aero_force
+import simulation.aerodynamic_forces.atmosphere_model as atmosphere_model
 import constants
 import file_io
 
@@ -94,15 +94,17 @@ file_io.WriteRocketHDF5("", rkt)
 #plt.plot(test_data.derived_data.time, test_data.derived_data.altitude_baro)
 #plt.plot(sim_data.time, sim_data.altitude)
 
-#plt.plot(alt1.derived_data.time, alt1.derived_data.altitude, label='filter')
-#plt.plot(alt1.derived_data.time, alt1.derived_data.altitude_baro, label='baro')
+plt.plot(alt1.derived_data.time, alt1.derived_data.altitude, label='filter')
+plt.plot(alt1.derived_data.time, alt1.derived_data.altitude_baro, label='baro')
 #plt.plot(alt1.derived_data.time, alt1.derived_data.altitude_accelerometer, label='accel')
-#plt.plot(sim1.time, sim1.altitude, label='sim')
+plt.plot(sim1.time, sim1.altitude, label='sim')
 
-plt.plot(alt2.derived_data.time, alt2.derived_data.altitude, label='filter')
-plt.plot(alt2.derived_data.time, alt2.derived_data.altitude_baro, label='baro')
+print(sim1.test)
+
+#plt.plot(alt2.derived_data.time, alt2.derived_data.altitude, label='filter')
+#plt.plot(alt2.derived_data.time, alt2.derived_data.altitude_baro, label='baro')
 #plt.plot(alt2.derived_data.time, alt2.derived_data.altitude_accelerometer, label='accel')
-plt.plot(sim2.time, sim2.altitude, label='sim')
+#plt.plot(sim2.time, sim2.altitude, label='sim')
 
 #plt.plot(alt.derived_data.time[:alt.derived_data.index_apogee], alt.derived_data.altitude[:alt.derived_data.index_apogee], label='filter')
 #plt.plot(alt.derived_data.time[:alt.derived_data.index_apogee], alt.derived_data.altitude_baro[:alt.derived_data.index_apogee], label='baro')
@@ -132,8 +134,8 @@ plt.plot(sim2.time, sim2.altitude, label='sim')
 #plt.plot(sim.time[sim.index_burnout:sim.index_apogee], sim.drag[sim.index_burnout:sim.index_apogee], label='sim')
 
 #x=100
-#plt.plot(alt.derived_data.mach_number[alt.derived_data.index_burnout:alt.derived_data.index_apogee-x], alt.derived_data.drag_coefficient[alt.derived_data.index_burnout:alt.derived_data.index_apogee-x], label='test')
-#plt.plot(sim.mach_number[sim.index_burnout:sim.index_apogee], sim.Cd[sim.index_burnout:sim.index_apogee], label='sim')
+#plt.plot(alt1.derived_data.mach_number[alt1.derived_data.index_burnout:alt1.derived_data.index_apogee-x], alt1.derived_data.drag_coefficient[alt1.derived_data.index_burnout:alt1.derived_data.index_apogee-x], label='test')
+#plt.plot(sim1.mach_number[sim1.index_burnout:sim1.index_apogee], sim1.Cd[sim1.index_burnout:sim1.index_apogee], label='sim')
 
 #plt.plot(alt.derived_data.velocity2[alt.derived_data.index_burnout:alt.derived_data.index_apogee-x], alt.derived_data.acceleration[alt.derived_data.index_burnout:alt.derived_data.index_apogee-x], label='test')
 #plt.plot(alt.derived_data.velocity2[alt.derived_data.index_burnout:alt.derived_data.index_apogee-x], alt.derived_data.velocity[alt.derived_data.index_burnout:alt.derived_data.index_apogee-x], label='test')

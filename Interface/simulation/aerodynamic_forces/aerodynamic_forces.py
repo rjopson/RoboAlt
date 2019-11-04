@@ -1,9 +1,9 @@
 
 import math
 
-import aerodynamic_forces.drag_model_open_rocket as drag
-import aerodynamic_forces.stability_model_open_rocket as stability
-import aerodynamic_forces.atmosphere_model as atmosphere
+import simulation.aerodynamic_forces.drag_model_open_rocket as drag
+import simulation.aerodynamic_forces.stability_model_open_rocket as stability
+import simulation.aerodynamic_forces.atmosphere_model as atmosphere
 import entities.rocket_entities as entity
 
 def mach_number(velocity_rocket, speed_sound):

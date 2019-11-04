@@ -1,19 +1,37 @@
 
 class FlightPhase():
 
-    def __init__(self, altitude_main_deploy):
+    def __init__(self, type, altitude_main_deploy):
 
-        self.flight_phase = 0
+        #type = "SIMULATION", "FLIGHT"
+        #{"LIFTOFF":index, "BURNOUT":index "APOGEE":index, "MAIN_ALTITUDE":index, "GROUND":index}
+        self.flight_phase = {}
         self.altitude_main_deploy = altitude_main_deploy
         
         #Phase criteria
         self.velocity_takeoff = 5.0
         self.acceleration_takeoff = 5.0 
-        self.acceleration_coast = 0.0
-        self.velocity_apogee = 0.0
+        self.acceleration_coast = 0.01
+        self.velocity_apogee = 0.01
+        self.altitude_ground_detect = 0.01
         self.gyro_ground_detect = 200.0
 
-    def update(self, altitude, velocity, acceleration, gyro):
+    def update_from_simulation(self, flight_event):
+        
+        if flight_event == "LIFTOFF":
+            self.flight_phase = 0
+        elif flight_event == "BURNOUT":
+            self.flight_phase = 1
+        elif flight_event == "APOGEE":
+            self.flight_phase = 2
+        elif flight_event == "MAIN_ALTITUDE":
+            self.flight_phase = 3
+        elif flight_event == "GROUND":
+            self.flight_phase = 4
+        else:
+            self.flight_phase = 5
+
+    def update_from_flight(self, altitude, velocity, acceleration, gyro):
         
         if self.flight_phase == 0:
             self.launch_detect(velocity, acceleration)

@@ -21,7 +21,7 @@ def drag_coefficient(Re, M, surface_finish, A_ref,
     return C_D_f + C_D_base + C_D_pressure_fins + C_D_pressure_nose
 
 def surface_roughness_height(surface_finish):
-    surface_roughness_height_lib = {'ROUGH':250.0e-6, 'UNFINISHED':90.0e-6, 'PAINT':30.0e-6, 'POLISH':2.0e-6} 
+    surface_roughness_height_lib = {'ROUGH':200.0e-6, 'UNFINISHED':100.0e-6, 'PAINT':30.0e-6, 'POLISH':2.0e-6} 
     return surface_roughness_height_lib[surface_finish]
 
 def reynolds_critical(R_s, L):
@@ -35,7 +35,7 @@ def skin_friction_coefficient(Re, M, surface_finish, L):
     Re_cr = reynolds_critical(R_s, L)
 
     #Calculate skin friction coefficient
-    if Re < 1e3:
+    if Re < 1e4:
         return 1.48e-2
     if Re < 5e5:
         C_f = 1.328/math.sqrt(Re)

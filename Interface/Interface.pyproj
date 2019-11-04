@@ -22,19 +22,19 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="aerodynamic_forces\aerodynamic_forces.py">
+    <Compile Include="simulation\aerodynamic_forces\aerodynamic_forces.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="aerodynamic_forces\atmosphere_model.py">
+    <Compile Include="simulation\aerodynamic_forces\atmosphere_model.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="aerodynamic_forces\drag_model_open_rocket.py">
+    <Compile Include="simulation\aerodynamic_forces\drag_model_open_rocket.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="aerodynamic_forces\__init__.py">
+    <Compile Include="simulation\aerodynamic_forces\__init__.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="aerodynamic_forces\stability_model_open_rocket.py">
+    <Compile Include="simulation\aerodynamic_forces\stability_model_open_rocket.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="constants.py">
@@ -56,21 +56,23 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="filters.py" />
-    <Compile Include="flight_phase.py">
+    <Compile Include="simulation\flight_phase.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="gravity_model.py">
+    <Compile Include="simulation\gravity_model.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="simulation.py" />
     <Compile Include="entities\rocket_entities.py" />
-    <Compile Include="simulation_engine.py">
+    <Compile Include="simulation\simulation_engine.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="simulation\__init__.py" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="aerodynamic_forces\" />
+    <Folder Include="simulation\aerodynamic_forces\" />
     <Folder Include="entities\" />
+    <Folder Include="simulation\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

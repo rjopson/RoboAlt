@@ -1,11 +1,11 @@
 
-import simulation_engine
+import simulation.simulation_engine as simulation_engine
 import entities.motor_data_entities as motor_entities
-import aerodynamic_forces.aerodynamic_forces as aero_force
-import aerodynamic_forces.atmosphere_model as atmosphere_model
+import simulation.aerodynamic_forces.aerodynamic_forces as aero_force
+import simulation.aerodynamic_forces.atmosphere_model as atmosphere_model
 import numpy as np
 import filters
-import flight_phase
+import simulation.flight_phase as flight_phase
 from scipy import integrate
 import constants
 import math
@@ -266,7 +266,7 @@ class SimulationData():
         self._altitude_main_deploy
 
     def run_simulation(self):        
-        [self.time, self.altitude, self.velocity, self.alpha] = simulation_engine.run(self.config, self.motor, self.user_events, self.elevation_pad, 0.0, 0.0, 288.0, 1000.0, self.timestep)
+        [self.time, self.test, self.altitude, self.velocity, self.alpha] = simulation_engine.run(self.config, self.motor, self.user_events, self.elevation_pad, 0.0, 0.0, 288.0, 1000.0, self.timestep)
 
 
 class FlightData():
