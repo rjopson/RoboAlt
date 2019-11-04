@@ -78,12 +78,12 @@ user_events = [event_entities.SimulationEvent(event="APOGEE", action="DEPLOY_PAR
                event_entities.SimulationEvent(event="MAIN_ALTITUDE", action="DEPLOY_PARACHUTE", instance=main_chute_inst)]
 sim1 = flight_data.SimulationData("3DPME_H128", config180, motor_data1, 167.74, user_events)
 
-motor_data2 = file_io.parse_eng_string_to_motor(file_io.read_text_file("AeroTech_H180.eng"))
-recorded_data2 = file_io.parse_string_to_recorded_data(file_io.read_text_file("../Firmware/flightTests/3DPME_29mm_H128_TriCities_9-2019.csv"))
-alt2 = flight_data.FlightData(config240, recorded_data2, "3DPME_H180", "Tri Cities", "9/6/2019", 167.74, 0.3825, 0.52705, "H128", 0.09408, "")
-user_events2 = [event_entities.SimulationEvent(event="APOGEE", action="DEPLOY_PARACHUTE", instance=drogue_chute_inst2, time_delay=0.0),
-               event_entities.SimulationEvent(event="MAIN_ALTITUDE", action="DEPLOY_PARACHUTE", instance=main_chute_inst2)]
-sim2 = flight_data.SimulationData("3DPME_H180", config240, motor_data2, 167.74, user_events2)
+#motor_data2 = file_io.parse_eng_string_to_motor(file_io.read_text_file("AeroTech_H180.eng"))
+#recorded_data2 = file_io.parse_string_to_recorded_data(file_io.read_text_file("../Firmware/flightTests/3DPME_29mm_H128_TriCities_9-2019.csv"))
+#alt2 = flight_data.FlightData(config240, recorded_data2, "3DPME_H180", "Tri Cities", "9/6/2019", 167.74, 0.3825, 0.52705, "H128", 0.09408, "")
+#user_events2 = [event_entities.SimulationEvent(event="APOGEE", action="DEPLOY_PARACHUTE", instance=drogue_chute_inst2, time_delay=0.0),
+#               event_entities.SimulationEvent(event="MAIN_ALTITUDE", action="DEPLOY_PARACHUTE", instance=main_chute_inst2)]
+#sim2 = flight_data.SimulationData("3DPME_H180", config240, motor_data2, 167.74, user_events2)
 
 file_io.WriteRocketHDF5("", rkt)
 #test = file_io.ReadRocketHDF5("3DPME_29mm_v1.h5")
