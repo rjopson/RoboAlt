@@ -12,12 +12,12 @@ import math
 
 class SimulationData():
 
-    def __init__(self, name, config, motor, elevation_pad, event_list=None, time=None, altitude=None, velocity=None, alpha=None, comments=""):
+    def __init__(self, name, config, motor, elevation_pad, user_events=None, time=None, altitude=None, velocity=None, alpha=None, comments=""):
         self.name = name
         self.config = config
         self.motor = motor
         self.elevation_pad = elevation_pad
-        self.event_list = event_list
+        self.user_events = user_events
         self.timestep = 0.05
         self.comments = comments 
 
@@ -46,6 +46,11 @@ class SimulationData():
         self._temperature = None
         self._acceleration = None
         self._drag_force = None
+
+        self._altitude_max = None 
+        self._velocity_max = None
+        self._acceleration_max = None
+        self._altitude_main_deploy = None 
 
         #Indexes 
         self._index_liftoff = None
@@ -118,7 +123,7 @@ class SimulationData():
     def flight_status(self):
         if self._flight_status is None:
             self._flight_status = np.full(len(self.time), 0.0)
-            phase = flight_phase.FlightPhase(500)            
+            phase = flight_phase.FlightPhase(self.altitude_main_deploy)            
             for i, v in enumerate(self.velocity):
                 phase.update(self.altitude[i], self.velocity[i], self.acceleration[i], 1)
                 self._flight_status[i] = phase.flight_phase
@@ -222,6 +227,23 @@ class SimulationData():
                 self._drag_force[i] = -(self.mass[i+self.index_burnout])*(accel + constants.GRAVITY)
         return self._drag_force
 
+    @property
+    def altitude_max(self):
+        if self._altitude_max is None:
+            self._altitude_max = max(self.altitude)
+        return self._altitude_max 
+
+    @property
+    def altitude_main_deploy(self):
+        if self._altitude_main_deploy is None:
+            
+            for user_event in self.user_events:
+                if user_event.event == "MAIN_ALTITUDE":
+                    self._altitude_main_deploy = user_event.altitude_main_deploy
+                    return self._altitude_main_deploy
+
+        self._altitude_main_deploy = self.altitude_max
+
     def calculate_properties(self):
         self.index_liftoff
         self.index_burnout
@@ -240,9 +262,11 @@ class SimulationData():
         self.temperature
         self.acceleration
         self.drag_force
+        self._altitude_max
+        self._altitude_main_deploy
 
     def run_simulation(self):        
-        [self.time, self.altitude, self.velocity, self.alpha] = simulation_engine.run(self.config, self.motor, self.event_list, self.elevation_pad, 0.0, 0.0, 288.0, 1000.0, self.timestep)
+        [self.time, self.altitude, self.velocity, self.alpha] = simulation_engine.run(self.config, self.motor, self.user_events, self.elevation_pad, 0.0, 0.0, 288.0, 1000.0, self.timestep)
 
 
 class FlightData():
@@ -631,6 +655,7 @@ class DerivedFlightData():
         self.drag
         self.drag_coefficient
         self.acceleration_z_total
+        
     def filter_state_data(self):
 
         state_initial = np.array([0.0,0.0,0.0])
@@ -683,8 +708,14 @@ class DerivedFlightData():
         return (value_delta*output_delta)/input_delta + output_min
 
 
+'''
+self._velocity_max = None
+self._acceleration_max = None
+self._time_of_flight = None 
+self._time_burn = None 
+self._time_apogee = None 
 
-
+'''
 
 
 

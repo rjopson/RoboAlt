@@ -707,8 +707,9 @@ class Parachute(Part):
     name_default = 'Parachute'
 
     def __init__(self, diameter=0.0, drag_coefficient=0.80, *args, **kwargs):
+        self.part_type = "Parachute"
         self.diameter = diameter
-        self.drag_coefficient = drag_coefficient
+        self.drag_coefficient = drag_coefficient        
         self.part_use = "INTERNAL"
         super(Parachute, self).__init__(*args, **kwargs)
         
@@ -718,6 +719,12 @@ class Parachute(Part):
 
         #Calculate properties 
         self.calculate_properties()
+
+    def named_attributes(self):
+        return {"diameter":self.diameter, "drag_coefficient":self.drag_coefficient,
+                "material":self.material.name, "mass_override":self.mass_override, "mass_override_bool":self.mass_override_bool,
+                "cg_override":self.cg_override, "cg_override_bool":self.cg_override_bool,
+                "comments":self.comments}    
 
     def calculate_properties(self):
         self.radius
@@ -738,9 +745,7 @@ class Parachute(Part):
     def area(self):
         if self._area is None:
             self._area = math.pi*(self.radius**2)
-        return self._area
-
-
+        return self._area    
 
 class Material():
     def __init__(self, name, density):

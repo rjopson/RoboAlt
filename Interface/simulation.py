@@ -43,6 +43,9 @@ trap_fin_shape = rocket_entities.FinShapeTrapezoidal(chord_root=0.102, chord_tip
 fin_set = rocket_entities.Fins(fin_shape=trap_fin_shape, number=3, cross_section="AIRFOIL", thickness=0.003, radius_fillet=0.005, surface_finish='UNFINISHED',
                              name="Fin set", rocket=rkt, material=PLA, comments="test")
 
+drogue_chute = rocket_entities.Parachute(0.17,0.8,name="drogue chute", rocket=rkt, material=PLA)
+main_chute = rocket_entities.Parachute(0.37,0.8,name="main chute", rocket=rkt, material=PLA)
+
 config180 = rocket_entities.Configuration(name="Config180", rocket=rkt, 
                                         mass_empty_override=0.1809, 
                                         mass_empty_override_bool=True, cg_empty_override_bool=False,
@@ -50,9 +53,10 @@ config180 = rocket_entities.Configuration(name="Config180", rocket=rkt,
 nosecone_inst = rocket_entities.Instance(nosecone, None, config180)
 tubeMain_inst = rocket_entities.Instance(tubeMain, None, config180)
 tubeDrogue_inst = rocket_entities.Instance(tubeDrogue, None, config180)
-#tubeExtension_inst = rocket_entities.Instance(tubeExtension1, None, config180)
 fincan_inst = rocket_entities.Instance(fincan, None, config180)
 fin_set_inst = rocket_entities.Instance(fin_set, fincan_inst, config180, position_type="AFT", position_from=0.0063)
+drogue_chute_inst = rocket_entities.Instance(drogue_chute, tubeDrogue_inst, config180)
+main_chute_inst = rocket_entities.Instance(main_chute, tubeMain_inst, config180)
 
 config240 = rocket_entities.Configuration(name="Config240", rocket=rkt, 
                                         mass_empty_override=0.195, 
@@ -64,19 +68,24 @@ tubeDrogue_inst2 = rocket_entities.Instance(tubeDrogue, None, config240)
 tubeExtension_inst2 = rocket_entities.Instance(tubeExtension2, None, config240)
 fincan_inst2 = rocket_entities.Instance(fincan, None, config240)
 fin_set_inst2 = rocket_entities.Instance(fin_set, fincan_inst2, config240, position_type="AFT", position_from=0.0063)
+drogue_chute_inst2 = rocket_entities.Instance(drogue_chute, tubeDrogue_inst2, config240)
+main_chute_inst2 = rocket_entities.Instance(main_chute, tubeMain_inst2, config240)
 
 motor_data1 = file_io.parse_eng_string_to_motor(file_io.read_text_file("AeroTech_H128.eng"))
-recorded_data1 = file_io.parse_string_to_recorded_data(file_io.read_text_file("C:/Users/Jim/Documents/Rockets/Altimeters/RoboDev/Firmware/flightTests/3DPME_29mm_H128_TriCities_9-2019.csv"))
+recorded_data1 = file_io.parse_string_to_recorded_data(file_io.read_text_file("../Firmware/flightTests/3DPME_29mm_H128_TriCities_9-2019.csv"))
 alt1 = flight_data.FlightData(config180, recorded_data1, "3DPME_H128", "Tri Cities", "9/6/2019", 167.74, 0.3825, 0.52705, "H128", 0.09408, "")
-event_list = [event_entities.SimulationEvent(None, "GROUND", 6.0)]
-sim1 = flight_data.SimulationData("3DPME_H128", config180, motor_data1, 167.74, event_list)
+user_events = [event_entities.SimulationEvent(event="APOGEE", action="DEPLOY_PARACHUTE", instance=drogue_chute_inst, time_delay=0.0),
+               event_entities.SimulationEvent(event="MAIN_ALTITUDE", action="DEPLOY_PARACHUTE", instance=main_chute_inst)]
+sim1 = flight_data.SimulationData("3DPME_H128", config180, motor_data1, 167.74, user_events)
 
-#motor_data2 = file_io.parse_eng_string_to_motor(file_io.read_text_file("AeroTech_H180.eng"))
-#recorded_data2 = file_io.parse_string_to_recorded_data(file_io.read_text_file("C:/Users/Jim/Documents/Rockets/Altimeters/RoboDev/Firmware/flightTests/3DPME_29mm_H128_TriCities_9-2019.csv"))
-#alt2 = flight_data.FlightData(config240, recorded_data2, "3DPME_H180", "Tri Cities", "9/6/2019", 167.74, 0.3825, 0.52705, "H128", 0.09408, "")
-#sim2 = flight_data.SimulationData("3DPME_H180", config240, motor_data2, 167.74)
+motor_data2 = file_io.parse_eng_string_to_motor(file_io.read_text_file("AeroTech_H180.eng"))
+recorded_data2 = file_io.parse_string_to_recorded_data(file_io.read_text_file("../Firmware/flightTests/3DPME_29mm_H128_TriCities_9-2019.csv"))
+alt2 = flight_data.FlightData(config240, recorded_data2, "3DPME_H180", "Tri Cities", "9/6/2019", 167.74, 0.3825, 0.52705, "H128", 0.09408, "")
+user_events2 = [event_entities.SimulationEvent(event="APOGEE", action="DEPLOY_PARACHUTE", instance=drogue_chute_inst2, time_delay=0.0),
+               event_entities.SimulationEvent(event="MAIN_ALTITUDE", action="DEPLOY_PARACHUTE", instance=main_chute_inst2)]
+sim2 = flight_data.SimulationData("3DPME_H180", config240, motor_data2, 167.74, user_events2)
 
-#file_io.WriteRocketHDF5("", rkt)
+file_io.WriteRocketHDF5("", rkt)
 #test = file_io.ReadRocketHDF5("3DPME_29mm_v1.h5")
 
 #test_data = test.rocket.configuration_list[0].flight_data_list[0]
@@ -85,10 +94,15 @@ sim1 = flight_data.SimulationData("3DPME_H128", config180, motor_data1, 167.74, 
 #plt.plot(test_data.derived_data.time, test_data.derived_data.altitude_baro)
 #plt.plot(sim_data.time, sim_data.altitude)
 
-plt.plot(alt1.derived_data.time, alt1.derived_data.altitude, label='filter')
-plt.plot(alt1.derived_data.time, alt1.derived_data.altitude_baro, label='baro')
+#plt.plot(alt1.derived_data.time, alt1.derived_data.altitude, label='filter')
+#plt.plot(alt1.derived_data.time, alt1.derived_data.altitude_baro, label='baro')
 #plt.plot(alt1.derived_data.time, alt1.derived_data.altitude_accelerometer, label='accel')
-plt.plot(sim1.time, sim1.altitude, label='sim')
+#plt.plot(sim1.time, sim1.altitude, label='sim')
+
+plt.plot(alt2.derived_data.time, alt2.derived_data.altitude, label='filter')
+plt.plot(alt2.derived_data.time, alt2.derived_data.altitude_baro, label='baro')
+#plt.plot(alt2.derived_data.time, alt2.derived_data.altitude_accelerometer, label='accel')
+plt.plot(sim2.time, sim2.altitude, label='sim')
 
 #plt.plot(alt.derived_data.time[:alt.derived_data.index_apogee], alt.derived_data.altitude[:alt.derived_data.index_apogee], label='filter')
 #plt.plot(alt.derived_data.time[:alt.derived_data.index_apogee], alt.derived_data.altitude_baro[:alt.derived_data.index_apogee], label='baro')

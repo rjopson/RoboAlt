@@ -7,8 +7,8 @@ class FlightPhase():
         self.altitude_main_deploy = altitude_main_deploy
         
         #Phase criteria
-        self.velocity_takeoff = 10.0
-        self.acceleration_takeoff = 15.0 
+        self.velocity_takeoff = 5.0
+        self.acceleration_takeoff = 5.0 
         self.acceleration_coast = 0.0
         self.velocity_apogee = 0.0
         self.gyro_ground_detect = 200.0

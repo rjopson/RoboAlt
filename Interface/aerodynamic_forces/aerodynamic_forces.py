@@ -21,7 +21,7 @@ def dynamic_pressure(density_air, velocity_rocket):
 def beta(mach_number):
     return math.sqrt(abs(mach_number**2 - 1))
 
-def get_drag(config, position, velocity, alpha):
+def get_drag(config, position, velocity, alpha, user_events=[]):
 
     #Calculate atmospheric properties
     atmosphere_flight = atmosphere.StandardAtmosphere()
@@ -31,21 +31,34 @@ def get_drag(config, position, velocity, alpha):
     #Calculate drag coefficient
     M = mach_number(velocity_rocket=velocity, speed_sound=speed_sound)
     Re = reynolds_number(velocity_rocket=velocity, length_rocket=config.length)
-    C_D_axial = drag_coefficient_axial_config(config, M, Re)
 
-    #Calculate drag 
-    return 0.5 * density_air * velocity**2 * config.area_reference * C_D_axial
+    drag_deployed = get_drag_deployed(config, user_events, density_air, velocity)
+    if drag_deployed > 0.0:
+        return drag_deployed
+    else:
+        C_D_axial = drag_coefficient_axial_config(config, M, Re) 
+        return 0.5 * density_air * velocity**2 * config.area_reference * C_D_axial
+
+def get_drag_deployed(config, user_events, density_air, velocity):
+    
+    drag_deployed = 0.0
+    for user_event in user_events:
+        if user_event.action == "DEPLOY_PARACHUTE":
+            if user_event.deployed is True:
+                drag_deployed += 0.5 * density_air * velocity**2 * user_event.instance.part.area * user_event.instance.part.drag_coefficient
+
+    return drag_deployed
 
 def drag_coefficient_axial_config(config, M, Re):
 
-    C_D = 0
-    for part in config.get_flat_part_list():
-        
+    C_D = 0.0
+    for part in config.get_flat_part_list():        
         if part.part_use == "EXTERNAL":            
             C_D += drag_coefficient_part(config, part, Re, M)
         else:
             pass
     return C_D
+
 def drag_coefficient_part(config, part, Re, M):
     
     C_D_p = drag_coefficient_pressure_part(config, part, M)

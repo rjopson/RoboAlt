@@ -235,6 +235,11 @@ class WriteRocketHDF5():
         hf_sim = h5_group.create_group(simulation.name)
         self.write_attributes(hf_sim, simulation.named_attributes())
 
+        hf_user_events = hf_sim.create_group("User Events")
+        for event in simulation.user_events:
+            hf_event = hf_user_events.create_group(event.name)
+            self.write_attributes(hf_user_events, event.named_attributes())
+
         hf_sim.create_dataset("Time (s)", data=simulation.time)
         hf_sim.create_dataset("Altitude (m)", data=simulation.altitude)
         hf_sim.create_dataset("Velocity (m.s)", data=simulation.velocity)
