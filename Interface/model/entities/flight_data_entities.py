@@ -20,7 +20,8 @@ class SimulationData():
         self.motor = motor
         self.elevation_pad = elevation_pad
         self.user_events = user_events
-        self.timestep = 0.05
+        self.timestep_ascent = 0.05
+        self.timestep_descent = 5.0
         self.comments = comments 
 
         config.rocket.add_motor(motor)
@@ -93,7 +94,8 @@ class SimulationData():
         if self._drag is None:
             self._drag = np.empty(self.length)
             for i, v in enumerate(self.velocity):
-                self._drag[i] = aero_force.get_drag(self.config, self.altitude[i], self.velocity[i], 1)
+                #self._drag[i] = aero_force.get_drag(self.config, self.altitude[i], self.velocity[i], 1)
+                self._drag[i] = abs((self.acceleration[i] + constants.GRAVITY)*(self.config.mass + self.motor.mass_at_time(self.time[i])) - self.motor.thrust_at_time(self.time[i]))
         return self._drag
 
     @property
@@ -146,7 +148,7 @@ class SimulationData():
         if self._acceleration is None:
             self._acceleration = np.full(len(self.time), 0.0)
             for i, t in enumerate(self.time):
-                if self.thrust[i] > self.mass[i]*constants.GRAVITY or t >= self.motor.time_burn-2*self.timestep:
+                if self.thrust[i] > self.mass[i]*constants.GRAVITY or t >= self.motor.time_burn-2*self.timestep_ascent:
                     self._acceleration[i] = (self.thrust[i] - self.drag[i])/self.mass[i]  - constants.GRAVITY  
                 else:
                     self._acceleration[i] = 1.0
@@ -180,34 +182,23 @@ class SimulationData():
 
     def calculate_properties(self):
         
-        
         self.mach_number
         self.reynolds_number
         self.q            
-        self.drag    
-        
-        self.Cd    
-        
+        self.drag   
+        self.Cd          
         self.thrust   
         self.mass
         self.pressure
-        self.temperature
-        import time
-        start = time.time()
-        self.acceleration
-        print(time.time()-start)
-        self.drag_force
+        self.temperature        
+        self.acceleration        
+        #self.drag_force
         self._altitude_max
-        self._altitude_main_deploy
-        
-        
+        self._altitude_main_deploy        
 
     def run_simulation(self):       
-        import time
-        start = time.time()
-        [self.time, self.flight_events, self.altitude, self.velocity, self.alpha] = simulation_engine.run(self.config, self.motor, self.user_events, self.elevation_pad, 0.0, 0.0, 288.0, 1000.0, self.timestep)
-        print("engine: ", time.time()-start)
-
+        [self.time, self.flight_events, self.altitude, self.velocity, self.alpha] = simulation_engine.run(self.config, self.motor, self.user_events, self.elevation_pad, 0.0, 0.0, 288.0, 1000.0, self.timestep_ascent, self.timestep_descent)
+        
 class FlightData():
 
     def __init__(self, config, recorded_data, name, location, date, elevation_pad, mass_pad, length, motor, mass_propellant, comments):

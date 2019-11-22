@@ -5,7 +5,7 @@ import numpy as np
 import model.file_io as file_io
 import model.entities.rocket_entities as entities
 import model.test_rocket as test_rocket
-#import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 
 '''
 class MainFrame(wx.Frame):
@@ -38,10 +38,10 @@ if __name__ == '__main__':
     #frame.Show()
     #app.MainLoop()
     
-    #rkt = test_rocket.create_rocket()    
-    #file_io.WriteRocketHDF5("", rkt)
+    rkt = test_rocket.create_rocket()    
+    file_io.WriteRocketHDF5("", rkt)
 
-    rkt = file_io.ReadRocketHDF5("3DPME_29mm_v1.h5") 
+    #rkt = file_io.ReadRocketHDF5("3DPME_29mm_v1.h5").rocket
 
     length = 3000
     data_sets = 20
@@ -53,6 +53,19 @@ if __name__ == '__main__':
             test = np.full(length,0.0)
        
     #print(time.time() - start)
+
+    sim_time = rkt.configuration_list[1].simulation_list[0].time
+    sim_alt = rkt.configuration_list[1].simulation_list[0].altitude     
+    flight_time = rkt.configuration_list[1].flight_data_list[0].derived_data.time
+    flight_alt_filter = rkt.configuration_list[1].flight_data_list[0].derived_data.altitude
+    flight_alt_baro = rkt.configuration_list[1].flight_data_list[0].derived_data.altitude_baro
+
+    plt.plot(flight_time, flight_alt_filter, label='filter')
+    plt.plot(flight_time, flight_alt_baro, label='baro')
+    plt.plot(sim_time, sim_alt, label='sim')
+    plt.ylabel('Result')
+    plt.legend(loc='upper left')
+    plt.show()
     
 
     print("Complete")

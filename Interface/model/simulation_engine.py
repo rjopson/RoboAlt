@@ -11,7 +11,7 @@ import model.flight_phase as flight_phase
 
 import model.constants as constants
 
-def run(config, motor, user_events, elevation_pad, velocity_initial, alpha_initial, temperature_pad, time_max, timestep):
+def run(config, motor, user_events, elevation_pad, velocity_initial, alpha_initial, temperature_pad, time_max, timestep_ascent, timestep_descent):
 
     alpha = 0.0
     t_start = 0.0
@@ -52,7 +52,7 @@ def run(config, motor, user_events, elevation_pad, velocity_initial, alpha_initi
         if motor.thrust_at_time(t) > (config.mass + motor.mass_at_time(t))*constants.GRAVITY or t >= motor.time_burn-2*timestep:           
             return [S[1], acceleration(t,S)]
         else:
-            return [0.0, 0.0]
+            return [0, 0]
 
     #check whether main deployment is an event. If it is, set altitude 
     main_check = False
@@ -66,7 +66,6 @@ def run(config, motor, user_events, elevation_pad, velocity_initial, alpha_initi
     #initialize arrays data will be saved to
     altitude = np.array([elevation_pad], np.float32)
     velocity = np.array([velocity_initial], np.float32)
-    acceleration = np.array([0.0], np.float32)
     time = np.array([t_start], np.float32)
     index = 0
 
@@ -75,6 +74,11 @@ def run(config, motor, user_events, elevation_pad, velocity_initial, alpha_initi
         S0 = [altitude[-1], velocity[-1]]
         t_start = time[-1]
         t_end = time_max
+
+        if event in ["ALTITUDE_MAIN", "TOUCHDOWN"]:
+            timestep = timestep_descent
+        else:
+            timestep = timestep_ascent
 
         #Run simulation at this phase of flight
         solution = solve_ivp(fun=eom, t_span=[t_start, t_end], y0=S0, dense_output=True, events=flight_events[event], max_step=timestep)
