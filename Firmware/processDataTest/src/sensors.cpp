@@ -27,13 +27,13 @@ void sensors::initializeCalibration(calibrationData* calibration) {
 
 	//Get MS5607 calibration coefficients
 	for (int i = 0; i != 6; i++) {
-		calibration->C[i] = sensorTestData->calibration.C[i];
+		calibration->C[i] = calibrationTest->C[i];
 	}
 	
-	calibration->mpuPad = sensorTestData->calibration.mpuPad;
-	calibration->h3lisPad = sensorTestData->calibration.h3lisPad;
-	calibration->pressurePad = sensorTestData->calibration.pressurePad;
-	calibration->temperaturePad = sensorTestData->calibration.temperaturePad;
+	calibration->mpuPad = calibrationTest->mpuPad;
+	calibration->h3lisPad = calibrationTest->h3lisPad;
+	calibration->pressurePad = calibrationTest->pressurePad;
+	calibration->temperaturePad = calibrationTest->temperaturePad;
 }
 
 /* get new line of data from sensors
@@ -42,31 +42,33 @@ void sensors::initializeCalibration(calibrationData* calibration) {
 void sensors::getData(sensorData* data) {
 
 	//Time
-	data->time = sensorTestData->flightData[count].time;
+	data->time = flightTestData[count].time;
 
 	//Accelerometers
-	data->accelX = sensorTestData->flightData[count].MPU_accelX;
-	data->accelY = sensorTestData->flightData[count].MPU_accelY;
-	data->accelZ = sensorTestData->flightData[count].MPU_accelZ;
-	data->accelY_highG = sensorTestData->flightData[count].H3LIS_accelY;
+	data->accelX = flightTestData[count].MPU_accelX;
+	data->accelY = flightTestData[count].MPU_accelY;
+	data->accelZ = flightTestData[count].MPU_accelZ;
+	data->accelY_highG = flightTestData[count].H3LIS_accelY;
 
 	//Gyros
-	data->gyroX = sensorTestData->flightData[count].MPU_gyroX;
-	data->gyroY = sensorTestData->flightData[count].MPU_gyroY;
-	data->gyroZ = sensorTestData->flightData[count].MPU_gyroZ;
+	data->gyroX = flightTestData[count].MPU_gyroX;
+	data->gyroY = flightTestData[count].MPU_gyroY;
+	data->gyroZ = flightTestData[count].MPU_gyroZ;
 
 	//Barometer
-	data->pressure = sensorTestData->flightData[count].MS5607_pressure;
+	data->pressure = flightTestData[count].MS5607_pressure;
 
 	//Thermometer
-	data->temperature = sensorTestData->flightData[count].MS5607_temperature;
+	data->temperature = flightTestData[count].MS5607_temperature;
 
 	//battery voltage
-	data->voltageBattery = sensorTestData->flightData[count].voltageAnalog;
+	data->voltageBattery = flightTestData[count].voltageAnalog;
 
 	count++;
 }
 
-void sensors::getDataIO(dataIO* sensorTestDataIn) {
-	sensorTestData = sensorTestDataIn;
+void sensors::getTestData(calibrationData* calibrationIn, vector<debugFlightData> flightDataIn) {
+	
+	calibrationTest = calibrationIn;
+	flightTestData = flightDataIn;
 }

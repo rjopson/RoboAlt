@@ -156,7 +156,7 @@ void loop() {
 		//GUI_IO.printRawDataLine(*recordData);
 
 		//Save flight data
-		flightData_storage.writeData(sensorsAndControl.engineering_data.time, sensorsAndControl.logic.flightPhase, recordData, &sensorsAndControl.calibration_data, debugData);
+		flightData_storage.writeData(sensorsAndControl.engineering_data.time, sensorsAndControl.logic.flightPhase, user_settings.altitudeMainDeploy, recordData, &sensorsAndControl.calibration_data, debugData);
 	}
 
 	//flight ready beep

@@ -11,24 +11,21 @@ import matplotlib.pyplot as plt
 
 def readDebugCsv():
     #with open('../Output/processData_output.csv') as csv_file:
-    with open('../../flightTests/3DPME_29mm_H180_TriCities_9-2019.csv') as csv_file:
+    with open('../../../FlightTests/3DPME_29mm_H128_TriCities_9-2019_v2.csv') as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
-        line_count = 0
         time = np.array([])
         altitude = np.array([])
         velocity = np.array([])
         acceleration = np.array([])
 
         for row in csv_reader:
-            if line_count < 4:
-                
-                line_count += 1
+            if row[0][0] == '*':
+                pass
             else:
                 time = np.append(time, float(row[0]))
                 altitude = np.append(altitude, float(row[2]))
                 velocity = np.append(velocity, float(row[3]))
                 acceleration = np.append(acceleration, float(row[4]))
-                line_count += 1
         results = np.array([time, altitude, velocity, acceleration])
         
     return results

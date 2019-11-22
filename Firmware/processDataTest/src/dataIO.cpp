@@ -8,336 +8,227 @@
 
 /* Default constructor
  */
-dataIO::dataIO() {
-	delimeter = ',';
+dataIO::dataIO(const string& filePathIn) {
+	filePath = filePathIn;
 }
 
-void dataIO::readFromCSV(const string& filePathRead) {
-	
-	vector<int> startupArray;
-	vector<vector<int>> flightDataArray;
-	
-	ifstream file(filePathRead);
+void dataIO::readFromCSV(userSettings_benchTest* userSettings,
+	calibrationData* calibration, vector<debugFlightData> &flightData) {
+
+	ifstream file(filePath);
+	string line;
+	string command;
 
 	if (!file.is_open()) {
 		cout << "Unable to open file" << '\n';
 	}
 	else {
 
-		//Iterate through each line, split at delimeter, sort into data structure
-		string line = "";
-		int count = 0;
 		while (getline(file, line)) {
-			
-			vector<int> row;
-			row = splitLine(line);
-			if (count == 1) { startupArray = row; }
-			if (count > 2) { flightDataArray.push_back(row); }
-			count++;
-		}
-		mapStartupArrayToStructure(startupArray);
-		mapFlightArrayToStructure(flightDataArray);
-	}
-}
 
-void dataIO::writeToCSV(const string& filePathWrite) {
-	
-	ofstream file(filePathWrite);
-	file.clear();
+			if (line.at(0) == '*') { //Get command line
+				command = dataIO::parseCommand(line, userSettings, calibration);
+			}
 
-	if (!file.is_open()) {
-		cout << "Unable to open file" << '\n';
-	}
-	else {
-
-		vector<string> startupHeader = setStartupHeader();
-		for (int i = 0; i != startupHeader.size(); i++) {
-			file << startupHeader[i];
-			file << writeDelimeter(i, startupHeader.size());
-		}
-
-		vector<int> startup = mapStartupArrayToStructure();
-		for (int i = 0; i != startup.size(); i++) {
-			file << startup[i];
-			file << writeDelimeter(i, startup.size());
-		}
-
-		vector<string> flightDataHeader = setFlightDataHeader();
-		for (int i = 0; i != flightDataHeader.size(); i++) {
-			file << flightDataHeader[i];
-			file << writeDelimeter(i, flightDataHeader.size());
-		}
-
-		vector<vector<int>> flightDataArray = mapFlightStructureToArray();
-		for (int i = 0; i != flightDataArray.size(); i++) {
-			for (int j = 0; j != flightDataArray[0].size(); j++) {
-				file << flightDataArray[i][j];
-				file << writeDelimeter(j, flightDataArray[0].size());
+			else if (command == "*DATA") {
+				flightData.push_back(dataIO::parseFlightDataLine(line));
 			}
 		}
 	}
 	file.close();
 }
 
-void dataIO::getDataInfo(const int& versionIn, const int& dataMemoryBankIn, const int& lineCountIn) {
-	version = versionIn;
-	dataMemoryBank = dataMemoryBankIn;
-	lineCount = lineCountIn;
-}
-void dataIO::getCalibration(const calibrationData& calibrationIn) {
-	calibration.mpuPad = calibrationIn.mpuPad;
-	calibration.h3lisPad = calibrationIn.h3lisPad;
-	calibration.pressurePad = calibrationIn.pressurePad;
-	calibration.temperaturePad = calibrationIn.temperaturePad;
-
-	for (int i = 0; i != 6; i++) {
-		calibration.C[i] = calibrationIn.C[i];
+string dataIO::parseCommand(const string& line, userSettings_benchTest* userSettings, calibrationData* calibration) {
+	
+	istringstream dataStream(line);
+	vector<string> stringList;
+	string data;
+	
+	while (getline(dataStream, data, ',')) {
+		stringList.push_back(data);
 	}
+
+	if (stringList[0] == "*PAD_MPU") {
+		calibration->mpuPad = stoi(stringList[1]);
+	}
+	else if (stringList[0] == "*PAD_H3LIS") {
+		calibration->h3lisPad = stoi(stringList[1]);
+	}
+	else if (stringList[0] == "*PAD_PRESSURE") {
+		calibration->pressurePad = stoi(stringList[1]);
+	}
+	else if (stringList[0] == "*PAD_TEMPERATURE") {
+		calibration->temperaturePad = stoi(stringList[1]);
+	}
+	else if (stringList[0] == "*CALIBRATION_MS5607") {
+		for (int i = 0; i != 6; i++) {
+			calibration->C[i] = stoi(stringList[i+1]);
+		}
+	}
+	else if (stringList[0] == "*PAD_VOLTAGE") {
+		calibration->voltageStartup = stoi(stringList[1]);
+	}
+	else if (stringList[0] == "*APO_EVENT") {
+		userSettings->apoFlightEvent = stoi(stringList[1]);
+	}
+	else if (stringList[0] == "*APO_DELAY") {
+		userSettings->apoTimeDelay = stoi(stringList[1]);
+	}
+	else if (stringList[0] == "*MAIN_EVENT") {
+		userSettings->mainFlightEvent = stoi(stringList[1]);
+	}
+	else if (stringList[0] == "*MAIN_DELAY") {
+		userSettings->mainTimeDelay = stoi(stringList[1]);
+	}
+	else if (stringList[0] == "*3RD_EVENT") {
+		userSettings->thirdFlightEvent = stoi(stringList[1]);
+	}
+	else if (stringList[0] == "*3RD_DELAY") {
+		userSettings->thirdTimeDelay = stoi(stringList[1]);
+	}
+	else if (stringList[0] == "*ALTITUDE_MAIN") {
+		userSettings->altitudeMainDeploy = stoi(stringList[1]);
+	}
+	else if (stringList[0] == "*DATA") {
+		dataLines = stoi(stringList[1]);
+	}	
+	return stringList[0];
 }
-void dataIO::getDataLine(const debugFlightData& data) {
-	
-	debugFlightData dataLine;
-	
-	dataLine.time = data.time;
-	dataLine.flightStatus = data.flightStatus;
-	dataLine.altitude = data.altitude;
-	dataLine.velocity = data.velocity;
-	dataLine.acceleration = data.acceleration;
-	dataLine.altitudeBaro = data.altitudeBaro;
-	dataLine.accelAxial = data.accelAxial;
-	dataLine.pressure = data.pressure;
-	dataLine.temperature = data.temperature;
-	dataLine.MPU_accelX = data.MPU_accelX;
-	dataLine.MPU_accelY = data.MPU_accelY;
-	dataLine.MPU_accelZ = data.MPU_accelZ;
-	dataLine.MPU_gyroX = data.MPU_gyroX;
-	dataLine.MPU_gyroY = data.MPU_gyroY;
-	dataLine.MPU_gyroZ = data.MPU_gyroZ;
-	dataLine.H3LIS_accelY = data.H3LIS_accelY;
-	dataLine.MS5607_pressure = data.MS5607_pressure;
-	dataLine.MS5607_temperature = data.MS5607_temperature;
-	dataLine.voltageAnalog = data.voltageAnalog;
-	dataLine.continuityApo = data.continuityApo;
-	dataLine.continuityMain = data.continuityMain;
-	dataLine.continuityThird = data.continuityThird;
 
-	flightData.push_back(dataLine);
+debugFlightData dataIO::parseFlightDataLine(string line) {
+
+	istringstream dataStream(line);
+	vector<string> stringList;
+	string data;
+
+	while (getline(dataStream, data, ',')) {
+		stringList.push_back(data);
+	}
+
+	debugFlightData flightDataLine;	
+
+	flightDataLine.time = stoi(stringList[0]);
+	flightDataLine.flightStatus = stoi(stringList[1]);
+	flightDataLine.altitude = stoi(stringList[2]);
+	flightDataLine.velocity = stoi(stringList[3]);
+	flightDataLine.acceleration = stoi(stringList[4]);
+	flightDataLine.altitudeBaro = stoi(stringList[5]);
+	flightDataLine.accelAxial = stoi(stringList[6]);
+	flightDataLine.pressure = stoi(stringList[7]);
+	flightDataLine.temperature = stoi(stringList[8]);
+	flightDataLine.MPU_accelX = stoi(stringList[9]);
+	flightDataLine.MPU_accelY = stoi(stringList[10]);
+	flightDataLine.MPU_accelZ = stoi(stringList[11]);
+	flightDataLine.MPU_gyroX = stoi(stringList[12]);
+	flightDataLine.MPU_gyroY = stoi(stringList[13]);
+	flightDataLine.MPU_gyroZ = stoi(stringList[14]);
+	flightDataLine.H3LIS_accelY = stoi(stringList[15]);
+	flightDataLine.MS5607_pressure = stoi(stringList[16]);
+	flightDataLine.MS5607_temperature = stoi(stringList[17]);
+	flightDataLine.voltageAnalog = stoi(stringList[18]);
+	flightDataLine.continuityApo = stoi(stringList[19]);
+	flightDataLine.continuityMain = stoi(stringList[20]);
+	flightDataLine.continuityThird = stoi(stringList[21]);
+
+	return flightDataLine;
 }
 
-string dataIO::writeDelimeter(const int& i, const int& length) {
 
-	if (i < length-1) {
-		return string(1, delimeter);
+void dataIO::writeToCSV(const userSettings_benchTest& userSettings,
+	const calibrationData& calibration, vector<debugFlightData> flightData) {
+
+	ofstream file(filePath);
+	file.clear();
+
+	if (!file.is_open()) {
+		cout << "Unable to open file" << '\n';
 	}
 	else {
-		return "\n";
+		file << dataIO::writeHeader(userSettings, calibration, flightData.size());
+
+		for (int i = 0; i != flightData.size()-1; i++) {
+			file << dataIO::writeFlightDataLine(flightData[i]);
+		}
 	}
+	file.close();
 }
 
-vector<int> dataIO::splitLine(const string& line) {
+string dataIO::writeHeader(const userSettings_benchTest& userSettings, const calibrationData& calibration, const int& dataLength) {
 
-	vector<int> dataLine;
-	string data;
-	istringstream dataStream(line);
+	string header;
 
-	while (getline(dataStream, data, delimeter)) {
-		dataLine.push_back(atoi(data.c_str()));
+	header.append("*VERSION,0.2\n");
+	header.append(dataIO::writeHeaderLine("*PAD_MPU", calibration.mpuPad));
+	header.append(dataIO::writeHeaderLine("*PAD_H3LIS", calibration.h3lisPad));
+	header.append(dataIO::writeHeaderLine("*PAD_PRESSURE", calibration.pressurePad));
+	header.append(dataIO::writeHeaderLine("*PAD_TEMPERATURE", calibration.temperaturePad));
+	header.append(dataIO::writeHeaderLine("*CALIBRATION_MS5607", vector<int>(calibration.C, calibration.C + sizeof calibration.C / sizeof calibration.C[0])));
+	header.append(dataIO::writeHeaderLine("*PAD_VOLTAGE", calibration.voltageStartup));
+	header.append(dataIO::writeHeaderLine("*APO_EVENT", userSettings.apoFlightEvent));
+	header.append(dataIO::writeHeaderLine("*APO_DELAY", userSettings.apoTimeDelay));
+	header.append(dataIO::writeHeaderLine("*MAIN_EVENT", userSettings.mainFlightEvent));
+	header.append(dataIO::writeHeaderLine("*MAIN_DELAY", userSettings.mainTimeDelay));
+	header.append(dataIO::writeHeaderLine("*3RD_EVENT", userSettings.thirdFlightEvent));
+	header.append(dataIO::writeHeaderLine("*3RD_DELAY", userSettings.thirdTimeDelay));
+	header.append(dataIO::writeHeaderLine("*ALTITUDE_MAIN", userSettings.altitudeMainDeploy));
+	header.append(dataIO::writeHeaderLine("*DATA", dataLength));
+
+	return header;
+}
+
+string dataIO::writeHeaderLine(const string& command, const int& data) {
+
+	string line;
+	line.append(command + ',');
+	line.append(to_string(data) + '\n');
+	return line;
+}
+
+string dataIO::writeHeaderLine(const string& command, const vector<int> data) {
+
+	string line;
+	line.append(command + ',');
+
+	for (int i = 0; i != data.size(); i++) {
+		line.append(to_string(data[i]));
+		
+		if (i != data.size() - 1) {
+			line.append(",");
+		}
+		else {
+			line.append("\n");
+		}
 	}
-	return dataLine;
+	return line;
 }
 
-void dataIO::mapStartupArrayToStructure(const vector<int>& startupArray) {
+string dataIO::writeFlightDataLine(const debugFlightData& dataLine) {
 
-	//version = startupArray[0];
-	//dataMemoryBank = startupArray[1];
-	//lineCount = startupArray[2];
-	//calibration.mpuPad = startupArray[3];
-	//calibration.h3lisPad = startupArray[4];
-	//calibration.pressurePad = startupArray[5];
-	//calibration.temperaturePad = startupArray[6];
-	//calibration.C[0] = startupArray[7];
-	//calibration.C[1] = startupArray[8];
-	//calibration.C[2] = startupArray[9];
-	//calibration.C[3] = startupArray[10];
-	//calibration.C[4] = startupArray[11];
-	//calibration.C[5] = startupArray[12];
+	string dataString;
 
-	
-	calibration.mpuPad = startupArray[0];
-	calibration.h3lisPad = startupArray[1];
-	calibration.pressurePad = startupArray[2];
-	calibration.temperaturePad = startupArray[3];
-	calibration.voltageStartup = startupArray[4];
-	calibration.C[0] = startupArray[5];
-	calibration.C[1] = startupArray[6];
-	calibration.C[2] = startupArray[7];
-	calibration.C[3] = startupArray[8];
-	calibration.C[4] = startupArray[9];
-	calibration.C[5] = startupArray[10];
-	lineCount = startupArray[11];
+	dataString.append(to_string(dataLine.time) + ',');
+	dataString.append(to_string(dataLine.flightStatus) + ',');
+	dataString.append(to_string(dataLine.altitude) + ',');
+	dataString.append(to_string(dataLine.velocity) + ',');
+	dataString.append(to_string(dataLine.acceleration) + ',');
+	dataString.append(to_string(dataLine.altitudeBaro) + ',');
+	dataString.append(to_string(dataLine.accelAxial) + ',');
+	dataString.append(to_string(dataLine.pressure) + ',');
+	dataString.append(to_string(dataLine.temperature) + ',');
+	dataString.append(to_string(dataLine.MPU_accelX) + ',');
+	dataString.append(to_string(dataLine.MPU_accelY) + ',');
+	dataString.append(to_string(dataLine.MPU_accelZ) + ',');
+	dataString.append(to_string(dataLine.MPU_gyroX) + ',');
+	dataString.append(to_string(dataLine.MPU_gyroY) + ',');
+	dataString.append(to_string(dataLine.MPU_gyroZ) + ',');
+	dataString.append(to_string(dataLine.H3LIS_accelY) + ',');
+	dataString.append(to_string(dataLine.MS5607_pressure) + ',');
+	dataString.append(to_string(dataLine.MS5607_temperature) + ',');
+	dataString.append(to_string(dataLine.voltageAnalog) + ',');
+	dataString.append(to_string(dataLine.continuityApo) + ',');
+	dataString.append(to_string(dataLine.continuityMain) + ',');
+	dataString.append(to_string(dataLine.continuityThird) + "\n");
+
+	return dataString;
 }
 
-vector<int> dataIO::mapStartupArrayToStructure() {
-
-	vector<int> startupArray;
-
-	//startupArray.push_back(version);
-	//startupArray.push_back(dataMemoryBank);
-	//startupArray.push_back(lineCount);
-	//startupArray.push_back(calibration.mpuPad);
-	//startupArray.push_back(calibration.h3lisPad);
-	//startupArray.push_back(calibration.pressurePad);
-	//startupArray.push_back(calibration.temperaturePad);
-	//startupArray.push_back(calibration.C[0]);
-	//startupArray.push_back(calibration.C[1]);
-	//startupArray.push_back(calibration.C[2]);
-	//startupArray.push_back(calibration.C[3]);
-	//startupArray.push_back(calibration.C[4]);
-	//startupArray.push_back(calibration.C[5]);
-	
-	startupArray.push_back(calibration.mpuPad);
-	startupArray.push_back(calibration.h3lisPad);
-	startupArray.push_back(calibration.pressurePad);
-	startupArray.push_back(calibration.temperaturePad);
-	startupArray.push_back(calibration.voltageStartup);
-	startupArray.push_back(calibration.C[0]);
-	startupArray.push_back(calibration.C[1]);
-	startupArray.push_back(calibration.C[2]);
-	startupArray.push_back(calibration.C[3]);
-	startupArray.push_back(calibration.C[4]);
-	startupArray.push_back(calibration.C[5]);
-	startupArray.push_back(lineCount);
-
-	return startupArray; 
-}
-
-vector<string> dataIO::setStartupHeader() {
-
-	vector<string> startupHeader;
-
-	//startupHeader.push_back("Version");
-	//startupHeader.push_back("Memory Bank");
-	//startupHeader.push_back("Line Count");
-	//startupHeader.push_back("MPU Pad");
-	//startupHeader.push_back("H3LIS Pad");
-	//startupHeader.push_back("MS5607 Pressure Pad");
-	//startupHeader.push_back("Ms5607 Temperature Pad");
-	//startupHeader.push_back("C1");
-	//startupHeader.push_back("C2");
-	//startupHeader.push_back("C3");
-	//startupHeader.push_back("C4");
-	//startupHeader.push_back("C5");
-	//startupHeader.push_back("C6");
-
-	startupHeader.push_back("MPU Pad");
-	startupHeader.push_back("H3LIS Pad");
-	startupHeader.push_back("MS5607 Pressure Pad");
-	startupHeader.push_back("MS5607 Temperature Pad");
-	startupHeader.push_back("Voltage Pad");
-	startupHeader.push_back("C1");
-	startupHeader.push_back("C2");
-	startupHeader.push_back("C3");
-	startupHeader.push_back("C4");
-	startupHeader.push_back("C5");
-	startupHeader.push_back("C6");
-	startupHeader.push_back("Line Count");
-
-	return startupHeader;
-}
-
-vector<vector<int>> dataIO::mapFlightStructureToArray() {
-
-	vector<vector<int>> flightDataArray;
-
-	for (int i = 0; i != flightData.size(); i++) {
-
-		vector<int> flightDataLine;
-		flightDataLine.push_back(flightData[i].time);
-		flightDataLine.push_back(flightData[i].flightStatus);
-		flightDataLine.push_back(flightData[i].altitude);
-		flightDataLine.push_back(flightData[i].velocity);
-		flightDataLine.push_back(flightData[i].acceleration);
-		flightDataLine.push_back(flightData[i].altitudeBaro);
-		flightDataLine.push_back(flightData[i].accelAxial);
-		flightDataLine.push_back(flightData[i].pressure);
-		flightDataLine.push_back(flightData[i].temperature);
-		flightDataLine.push_back(flightData[i].MPU_accelX);
-		flightDataLine.push_back(flightData[i].MPU_accelY);
-		flightDataLine.push_back(flightData[i].MPU_accelZ);
-		flightDataLine.push_back(flightData[i].MPU_gyroX);
-		flightDataLine.push_back(flightData[i].MPU_gyroY);
-		flightDataLine.push_back(flightData[i].MPU_gyroZ);
-		flightDataLine.push_back(flightData[i].H3LIS_accelY);
-		flightDataLine.push_back(flightData[i].MS5607_pressure);
-		flightDataLine.push_back(flightData[i].MS5607_temperature);
-		flightDataLine.push_back(flightData[i].voltageAnalog);
-		flightDataLine.push_back(flightData[i].continuityApo);
-		flightDataLine.push_back(flightData[i].continuityMain);
-		flightDataLine.push_back(flightData[i].continuityThird);
-
-		flightDataArray.push_back(flightDataLine);
-	}
-	return flightDataArray;
-}
-
-vector<string> dataIO::setFlightDataHeader() {
-
-	vector<string> flightDataHeader;
-
-	flightDataHeader.push_back("Time (ms)");
-	flightDataHeader.push_back("Status");
-	flightDataHeader.push_back("Altitude (mm)");
-	flightDataHeader.push_back("Velocity (mm/s)");
-	flightDataHeader.push_back("Acceleration (mm/s2)");
-	flightDataHeader.push_back("Altitude Barometric (mm)");
-	flightDataHeader.push_back("Acceleration Axial (mm/s2)");
-	flightDataHeader.push_back("Pressure (Pa)");
-	flightDataHeader.push_back("Temperature (100*degC)");
-	flightDataHeader.push_back("Acceleration MPU_X (2byte 16g)");
-	flightDataHeader.push_back("Acceleration MPU_Y (2byte 16g)");
-	flightDataHeader.push_back("Acceleration MPU_Z (2byte 16g)");
-	flightDataHeader.push_back("Rotation MPU_X (2byte 2000deg/s)");
-	flightDataHeader.push_back("Rotation MPU_Y (2byte 2000deg/s)");
-	flightDataHeader.push_back("Rotation MPU_Z (2byte 2000deg/s)");
-	flightDataHeader.push_back("Acceleration H3LIS Y (2byte 200g)");
-	flightDataHeader.push_back("MS5607 Pressure (4byte)");
-	flightDataHeader.push_back("MS5607 Temperature (4byte)");
-	flightDataHeader.push_back("Voltage (10bit)");
-	flightDataHeader.push_back("Continuity Apogee (10bit)");
-	flightDataHeader.push_back("Continuity Main (10bit)");
-	flightDataHeader.push_back("Continuity Third (10bit)");
-
-	return flightDataHeader;
-}
-
-void dataIO::mapFlightArrayToStructure(const vector<vector<int>>& flightDataArray) {
-
-	for (int i = 0; i != flightDataArray.size(); i++) {
-
-		debugFlightData flightDataLine;
-		flightDataLine.time =				flightDataArray[i][0];
-		flightDataLine.flightStatus =		flightDataArray[i][1];
-		flightDataLine.altitude =			flightDataArray[i][2];
-		flightDataLine.velocity =			flightDataArray[i][3];
-		flightDataLine.acceleration =		flightDataArray[i][4];
-		flightDataLine.altitudeBaro =		flightDataArray[i][5];
-		flightDataLine.accelAxial =			flightDataArray[i][6];
-		flightDataLine.pressure =			flightDataArray[i][7];
-		flightDataLine.temperature =		flightDataArray[i][8];
-		flightDataLine.MPU_accelX =			flightDataArray[i][9];
-		flightDataLine.MPU_accelY =			flightDataArray[i][10];
-		flightDataLine.MPU_accelZ =			flightDataArray[i][11];
-		flightDataLine.MPU_gyroX =			flightDataArray[i][12];
-		flightDataLine.MPU_gyroY =			flightDataArray[i][13];
-		flightDataLine.MPU_gyroZ =			flightDataArray[i][14];
-		flightDataLine.H3LIS_accelY =		flightDataArray[i][15];
-		flightDataLine.MS5607_pressure =	flightDataArray[i][16];
-		flightDataLine.MS5607_temperature = flightDataArray[i][17];
-		flightDataLine.voltageAnalog =		flightDataArray[i][18];
-		flightDataLine.continuityApo =		flightDataArray[i][19];
-		flightDataLine.continuityMain =		flightDataArray[i][20];
-		flightDataLine.continuityThird =	flightDataArray[i][21];
-
-		flightData.push_back(flightDataLine);
-	} 
-}

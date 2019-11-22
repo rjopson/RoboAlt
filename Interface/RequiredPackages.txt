@@ -1,0 +1,8 @@
+
+requests
+matplotlib
+h5py
+numpy
+scipy
+math
+defusedxml

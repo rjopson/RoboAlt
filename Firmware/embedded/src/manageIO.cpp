@@ -197,47 +197,47 @@ int8_t manageIO::mapFlightID_serialToALT(const int& SerialFlightID_in) {
 */
 void manageIO::printDataLine(const debugFlightData& dataIn) {
 
-	Serial.print(dataIn.time);							Serial.print(F(",")); //time
-	Serial.print(dataIn.flightStatus);					Serial.print(F(",")); //flightStatus
-	Serial.print(dataIn.altitude);						Serial.print(F(",")); //altitude
-	Serial.print(dataIn.velocity);						Serial.print(F(",")); //velocity
-	Serial.print(dataIn.acceleration);					Serial.print(F(",")); //acceleration
-	Serial.print(dataIn.altitudeBaro);					Serial.print(F(",")); //altitudeBaro
-	Serial.print(dataIn.accelAxial);					Serial.print(F(",")); //accelAxial
-	Serial.print(dataIn.pressure);						Serial.print(F(",")); //pressure
-	Serial.print(dataIn.temperature);					Serial.print(F(",")); //temperature
-	Serial.print(dataIn.MPU_accelX);					Serial.print(F(",")); //MPU_accelX
-	Serial.print(dataIn.MPU_accelY);					Serial.print(F(",")); //MPU_accelY
-	Serial.print(dataIn.MPU_accelZ);					Serial.print(F(",")); //MPU_accelZ
+	Serial.print(dataIn.time);						Serial.print(F(",")); //time
+	Serial.print(dataIn.flightStatus);				Serial.print(F(",")); //flightStatus
+	Serial.print(dataIn.altitude);					Serial.print(F(",")); //altitude
+	Serial.print(dataIn.velocity);					Serial.print(F(",")); //velocity
+	Serial.print(dataIn.acceleration);				Serial.print(F(",")); //acceleration
+	Serial.print(dataIn.altitudeBaro);				Serial.print(F(",")); //altitudeBaro
+	Serial.print(dataIn.accelAxial);				Serial.print(F(",")); //accelAxial
+	Serial.print(dataIn.pressure);					Serial.print(F(",")); //pressure
+	Serial.print(dataIn.temperature);				Serial.print(F(",")); //temperature
+	Serial.print(dataIn.MPU_accelX);				Serial.print(F(",")); //MPU_accelX
+	Serial.print(dataIn.MPU_accelY);				Serial.print(F(",")); //MPU_accelY
+	Serial.print(dataIn.MPU_accelZ);				Serial.print(F(",")); //MPU_accelZ
 	Serial.print(dataIn.MPU_gyroX);					Serial.print(F(",")); //MPU_gyroX
 	Serial.print(dataIn.MPU_gyroY);					Serial.print(F(",")); //MPU_gyroY
 	Serial.print(dataIn.MPU_gyroZ);					Serial.print(F(",")); //MPU_gyroZ
-	Serial.print(dataIn.H3LIS_accelY);					Serial.print(F(",")); //H3LIS_accelY
-	Serial.print(dataIn.MS5607_pressure);				Serial.print(F(",")); //MS5607_pressure(4 byte)
-	Serial.print(dataIn.MS5607_temperature);			Serial.print(F(",")); //MS5607_temperature(4 byte)	
+	Serial.print(dataIn.H3LIS_accelY);				Serial.print(F(",")); //H3LIS_accelY
+	Serial.print(dataIn.MS5607_pressure);			Serial.print(F(",")); //MS5607_pressure(4 byte)
+	Serial.print(dataIn.MS5607_temperature);		Serial.print(F(",")); //MS5607_temperature(4 byte)	
 	Serial.print(dataIn.voltageAnalog);				Serial.print(F(",")); //voltage
 	Serial.print(dataIn.continuityApo);				Serial.print(F(",")); //continuityApo
-	Serial.print(dataIn.continuityMain);				Serial.print(F(",")); //continuityMain
-	Serial.println(dataIn.continuityThird);				   //continuityThird
+	Serial.print(dataIn.continuityMain);			Serial.print(F(",")); //continuityMain
+	Serial.println(dataIn.continuityThird);								  //continuityThird
 	Serial.flush();
 }
 
 void manageIO::printRawDataLine(const rawFlightData& dataIn) {
 
-	Serial.print(dataIn.time);							Serial.print(F(",")); //time
-	Serial.print(dataIn.MPU_accelX);					Serial.print(F(",")); //MPU_accelX
-	Serial.print(dataIn.MPU_accelY);					Serial.print(F(",")); //MPU_accelY
-	Serial.print(dataIn.MPU_accelZ);					Serial.print(F(",")); //MPU_accelZ
+	Serial.print(dataIn.time);						Serial.print(F(",")); //time
+	Serial.print(dataIn.MPU_accelX);				Serial.print(F(",")); //MPU_accelX
+	Serial.print(dataIn.MPU_accelY);				Serial.print(F(",")); //MPU_accelY
+	Serial.print(dataIn.MPU_accelZ);				Serial.print(F(",")); //MPU_accelZ
 	Serial.print(dataIn.MPU_gyroX);					Serial.print(F(",")); //MPU_gyroX
 	Serial.print(dataIn.MPU_gyroY);					Serial.print(F(",")); //MPU_gyroY
 	Serial.print(dataIn.MPU_gyroZ);					Serial.print(F(",")); //MPU_gyroZ
-	Serial.print(dataIn.H3LIS_accelY);					Serial.print(F(",")); //H3LIS_accelY
-	Serial.print(dataIn.MS5607_pressure);				Serial.print(F(",")); //MS5607_pressure(4 byte)
-	Serial.print(dataIn.MS5607_temperature);			Serial.print(F(",")); //MS5607_temperature(4 byte)	
+	Serial.print(dataIn.H3LIS_accelY);				Serial.print(F(",")); //H3LIS_accelY
+	Serial.print(dataIn.MS5607_pressure);			Serial.print(F(",")); //MS5607_pressure(4 byte)
+	Serial.print(dataIn.MS5607_temperature);		Serial.print(F(",")); //MS5607_temperature(4 byte)	
 	Serial.print(dataIn.voltageAnalog);				Serial.print(F(",")); //voltage
 	Serial.print(dataIn.continuityApo);				Serial.print(F(",")); //continuityApo
-	Serial.print(dataIn.continuityMain);				Serial.print(F(",")); //continuityMain
-	Serial.println(dataIn.continuityThird);				   //continuityThird
+	Serial.print(dataIn.continuityMain);			Serial.print(F(",")); //continuityMain
+	Serial.println(dataIn.continuityThird);								  //continuityThird
 	Serial.flush();
 }
 

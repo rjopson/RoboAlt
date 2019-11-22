@@ -24,7 +24,7 @@ void flightDataStorage::initialize() {
 
 /*public function to save data in logging thread
 */
-void flightDataStorage::writeData(const uint32_t& time, const flightLogic::flightPhases& flightPhaseIn, const rawFlightData* dataIn, const calibrationData* calibrationIn, const debugFlightData* debugDataIn) {
+void flightDataStorage::writeData(const uint32_t& time, const flightLogic::flightPhases& flightPhaseIn, const int32_t& altitudeMainDeploy, const rawFlightData* dataIn, const calibrationData* calibrationIn, const debugFlightData* debugDataIn) {
 
 	switch (flightPhaseIn) {
 
@@ -53,7 +53,7 @@ void flightDataStorage::writeData(const uint32_t& time, const flightLogic::fligh
 		break;
 
 	case flightLogic::ground:
-		writeFlightInformation(calibrationIn);
+		writeFlightInformation(altitudeMainDeploy, calibrationIn);
 		break;
 	}
 }
@@ -304,7 +304,7 @@ void flightDataStorage::readFlightData() {
 
 /*save sensor offsets, buffer values, number of lines written
 */
-void flightDataStorage::writeFlightInformation(const calibrationData* dataIn) {
+void flightDataStorage::writeFlightInformation(const userSettings* settingsIn, const calibrationData* dataIn) {
 
 	if (flightInformationSaved == 0) {
 
@@ -313,18 +313,25 @@ void flightDataStorage::writeFlightInformation(const calibrationData* dataIn) {
 		dataFlash->startWrite(pageFlightInfo); //location to begin writing
 
 		//Write offsets
-		//dataFlash->writeByte(ALT_SOFTWARE_VERSION);
+		dataFlash->writeByte(ALT_SOFTWARE_VERSION);		
 		dataFlash->writeInt16(dataIn->mpuPad);
 		dataFlash->writeInt16(dataIn->h3lisPad);
 		dataFlash->writeInt32(dataIn->pressurePad);
-		dataFlash->writeInt32(dataIn->temperaturePad);
-		dataFlash->writeInt16(dataIn->voltageStartup);
+		dataFlash->writeInt32(dataIn->temperaturePad);		
 		dataFlash->writeInt16(dataIn->C[0]);
 		dataFlash->writeInt16(dataIn->C[1]);
 		dataFlash->writeInt16(dataIn->C[2]);
 		dataFlash->writeInt16(dataIn->C[3]);
 		dataFlash->writeInt16(dataIn->C[4]);
 		dataFlash->writeInt16(dataIn->C[5]);
+		dataFlash->writeInt16(dataIn->voltageStartup);
+		dataFlash->writeByte(settingsIn->apoFlightEvent);
+		dataFlash->writeInt32(settingsIn->apoTimeDelay);
+		dataFlash->writeByte(settingsIn->mainFlightEvent);
+		dataFlash->writeInt32(settingsIn->mainTimeDelay);
+		dataFlash->writeByte(settingsIn->thirdFlightEvent);
+		dataFlash->writeInt32(settingsIn->thirdTimeDelay);
+		dataFlash->writeInt32(settingsIn->altitudeMainDeploy);
 
 		//Write saved data lengths - preflight
 		dataFlash->writeInt16(preFlightBufferLine);
@@ -355,19 +362,27 @@ void flightDataStorage::readFlightInformation() {
 
 	//Read offsets
 	//Serial.print(dataFlash->readByte()); Serial.print(","); //version 
-	Serial.print(ALT_SOFTWARE_VERSION); Serial.print(","); //version
-	Serial.print(dataFlash->readInt16()); Serial.print(","); //mpuPad
-	Serial.print(dataFlash->readInt16()); Serial.print(","); //h3lisPad
-	Serial.print((uint32_t)dataFlash->readInt32()); Serial.print(","); //pressurePad
-	Serial.print(dataFlash->readInt32()); Serial.print(","); //temperaturePad
-	Serial.print(dataFlash->readInt16()); Serial.print(","); //voltageStartup
-	Serial.print((uint16_t)dataFlash->readInt16()); Serial.print(","); //C0
+	Serial.print("*VERSION,");  Serial.println(ALT_SOFTWARE_VERSION); //Serial.print(","); //version
+	Serial.print("*PAD_MPU,");  Serial.println(dataFlash->readInt16()); //mpuPad
+	Serial.print("*PAD_H3LIS,");  Serial.println(dataFlash->readInt16()); //h3lisPad
+	Serial.print("*PAD_PRESSURE,");  Serial.println((uint32_t)dataFlash->readInt32()); //pressurePad
+	Serial.print("*PAD_TEMPERATURE,");  Serial.println(dataFlash->readInt32()); //temperaturePad	
+	Serial.print("*CALIBRATION_MS5607,");  Serial.print((uint16_t)dataFlash->readInt16()); Serial.print(","); //C0
 	Serial.print((uint16_t)dataFlash->readInt16()); Serial.print(","); //C1
 	Serial.print((uint16_t)dataFlash->readInt16()); Serial.print(","); //C2
 	Serial.print((uint16_t)dataFlash->readInt16()); Serial.print(","); //C3
 	Serial.print((uint16_t)dataFlash->readInt16()); Serial.print(","); //C4
-	Serial.print((uint16_t)dataFlash->readInt16()); Serial.print(","); //C5
-	//Serial.println();
+	Serial.println((uint16_t)dataFlash->readInt16());//C5
+	Serial.print("*PAD_VOLTAGE");  Serial.println(dataFlash->readInt16()); //voltageStartup
+	Serial.print("*APO_EVENT,");  Serial.println(dataFlash->readByte()); //Apogee event
+	Serial.print("*APO_DELAY,");  Serial.println(dataFlash->readInt32()); //Apogee delay
+	Serial.print("*MAIN_EVENT,");  Serial.println(dataFlash->readByte()); //Main event
+	Serial.print("*MAIN_DELAY,");  Serial.println(dataFlash->readInt32()); //Main delay
+	Serial.print("*3RD_EVENT,");  Serial.println(dataFlash->readByte()); //3rd event
+	Serial.print("*3RD_DELAY,");  Serial.println(dataFlash->readInt32()); //3rd delay
+	Serial.print("*ALTITUDE_MAIN,");  Serial.println(dataFlash->readInt32()); //Altitude main
+	Serial.print("*DATA_LINES,");  Serial.println(dataFlash->readInt32()); //data lines 
+	Serial.println("*DATA");
 
 	//Read preflight buffer information
 	preFlightBufferLine = dataFlash->readInt16();

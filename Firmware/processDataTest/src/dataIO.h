@@ -26,33 +26,25 @@ struct flightData {
 class dataIO {
 
 public:
-	dataIO();
+	dataIO(const string& filePathIn);
 
-	//Full flight data information
-	int version;
-	int dataMemoryBank;
-	int lineCount;
-	calibrationData calibration;
-	vector<debugFlightData> flightData;
+	void readFromCSV(userSettings_benchTest* userSettings,
+		calibrationData* calibration, vector<debugFlightData> &flightData);
 
-	void readFromCSV(const string& filePathRead);
-	void writeToCSV(const string& filePathWrite);
-	void getDataInfo(const int& versionIn, const int& dataMemoryBankIn, const int& lineCountIn);
-	void getCalibration(const calibrationData& calibrationIn);
-	void getDataLine(const debugFlightData& data);
+	void writeToCSV(const userSettings_benchTest& userSettings,
+		const calibrationData& calibration, vector<debugFlightData> flightData);
+	
+	int dataLines;
 
 private:
+	string parseCommand(const string& line, userSettings_benchTest* userSettings, calibrationData* calibration);
+	debugFlightData parseFlightDataLine(string line);
+
+	string writeHeader(const userSettings_benchTest& userSettings, const calibrationData& calibration, const int& dataLength);
+	string writeHeaderLine(const string& command, const vector<int> data);
+	string writeHeaderLine(const string& command, const int& data);
+	string writeFlightDataLine(const debugFlightData& dataLine);
 
 	string filePath;
-	char delimeter;
-
-	vector<int> splitLine(const string& line);	
-	string writeDelimeter(const int& i, const int& length);
-	void mapStartupArrayToStructure(const vector<int>& startupArray);
-	vector<int> mapStartupArrayToStructure();
-	vector<string> setStartupHeader();
-	vector<vector<int>> mapFlightStructureToArray();
-	vector<string> setFlightDataHeader();
-	void mapFlightArrayToStructure(const vector<vector<int>>& flightDataArray);
 };
 #endif

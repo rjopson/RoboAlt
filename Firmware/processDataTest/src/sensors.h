@@ -19,11 +19,13 @@ public:
 	void initialize(sensorData* data); //initialize sensors and filter classes
 	void getData(sensorData* data); //get raw sensor readings from accelerometers, gyros, temp, pressure and voltage
 	void initializeCalibration(calibrationData* calibration); //initialize offset values 
-	void getDataIO(dataIO* sensorTestDataIn);
+	void getTestData(calibrationData* calibrationIn, vector<debugFlightData> flightDataIn);
+
+	//These data structures replace data from hardware
+	calibrationData* calibrationTest;
+	vector<debugFlightData> flightTestData;
 
 	//dataIO replaces sensor drivers 
-	string filePathRead;
-	dataIO* sensorTestData;
 	int count; //number of lines of data that have been read 
 };
 #endif

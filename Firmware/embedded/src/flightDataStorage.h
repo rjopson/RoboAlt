@@ -11,6 +11,7 @@
 #include "dataStorage.h"
 #include "flightLogic.h"
 #include "dataStructures.h"
+#include "userSettings.h"
 
 #if defined(ARDUINO_SAMD_ZERO) && defined(SERIAL_PORT_USBVIRTUAL)
 // Required for Serial on Zero based boards
@@ -36,7 +37,7 @@ public:
 	dataStorage* dataFlash;
 
 	void initialize();
-	void writeData(const uint32_t& time, const flightLogic::flightPhases& flightPhase, const rawFlightData* dataIn, const calibrationData* calibrationIn, const debugFlightData* debugDataIn); //public function to save data in logging thread
+	void writeData(const uint32_t& time, const flightLogic::flightPhases& flightPhase, const int32_t& altitudeMainDeploy, const rawFlightData* dataIn, const calibrationData* calibrationIn, const debugFlightData* debugDataIn); //public function to save data in logging thread
 	void readData(const uint8_t& requestID); //public function to read flight data from Serial
 	void setFlightID(const uint8_t& flightID_in); //Used to set flight ID to flash memory for first time, when setting up altimeter
 	void getFlightID();	
@@ -53,7 +54,7 @@ private:
 	void writeDataLine(const rawFlightData* dataIn, const debugFlightData* debugDataIn); //save line of flight data
 	void writePreflightData(const rawFlightData* dataIn, const debugFlightData* debugDataIn); //double buffer saved data before takeoff
 	void writeFlightData(const rawFlightData* dataIn, const debugFlightData* debugDataIn); //save ascent and descent flight data
-	void writeFlightInformation(const calibrationData* dataIn); //save sensor offsets, buffer values, number of lines written
+	void writeFlightInformation(const userSettings* settingsIn, const calibrationData* dataIn); //save sensor offsets, buffer values, number of lines written
 
 	//Read functions
 	void readDataline(); //read line of data	

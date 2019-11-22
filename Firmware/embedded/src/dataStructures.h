@@ -93,6 +93,7 @@ struct calibrationData {
 	//Barometer coefficients
 	uint16_t C[6];
 };
+
 struct sensorData {
 
 	uint32_t time; //(ms) //time used for filtering functions
@@ -119,6 +120,19 @@ struct stateData {
 	int32_t altitude; //(mm) Kalman filtered altitude used in flight logic
 	int32_t velocity; //(mm/s) Kalman filtered velocity used in flight logic
 	int32_t acceleration; //(mm/s^2) Kalman filtered acceleration used in flight logic	
+};
+
+struct userSettings_benchTest {
+	
+	bool settingsInFlash;
+	int32_t altitudeMainDeploy;
+	uint8_t apoFlightEvent;
+	uint8_t mainFlightEvent;
+	uint8_t thirdFlightEvent;
+	uint32_t apoTimeDelay;
+	uint32_t mainTimeDelay;
+	uint32_t thirdTimeDelay;
+	uint8_t buzzerSwitch;
 };
 
 #endif
