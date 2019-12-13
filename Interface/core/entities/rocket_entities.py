@@ -1,6 +1,45 @@
 import math
 import scipy.integrate
 
+from enum import Enum
+
+class PartUse(Enum):
+    EXTERNAL = 1
+    INTERNAL = 2
+
+class PartType(Enum):
+    TUBE_BODY = 1
+    NOSECONE = 2
+    FINS = 3
+    TUBE_INNER = 4
+    BULKHEAD = 5
+    PARACHUTE = 6
+
+class SurfaceFinish(Enum):
+    ROUGH = 1
+    UNFINISHED = 2
+    PAINT = 3
+    POLISH = 4
+    
+class PartPosition(Enum):
+    FOREWARD = 1
+    AFT = 2
+
+class NoseconeType(Enum):
+    CONICAL = 1
+    OGIVE = 2
+    HAACK = 3
+    VON_KARMEN = 4
+
+class FinCrossSection(Enum):
+    SQUARE = 1
+    ROUNDED = 2
+    AIRFOIL = 3
+    DOUBLE_WEDGE = 4
+
+class FinShape(Enum):
+    TRAPEZOIDAL = 1
+
 class Rocket():
 
     def __init__(self, name, comments):
@@ -46,7 +85,6 @@ class Rocket():
        
 
 class Configuration():
-    ACTIVE_YES, ACTIVE_NO = range(2)
 
     def __init__(self, name, rocket, mass_empty_override=0.0, cg_empty_override=0.0, 
                  mass_empty_override_bool=False, cg_empty_override_bool=False, comments=""):
@@ -117,10 +155,10 @@ class Configuration():
         if self._area_body_wet is None:
             area = 0
             for instance in self.instance_list:
-                if instance.part.part_use == "EXTERNAL":
+                if instance.part.part_use == PartUse.EXTERNAL:
                     area += instance.part.area_surface
                 for child in instance.get_flat_list():
-                    if child.part.part_use == "EXTERNAL":
+                    if child.part.part_use == PartUse.EXTERNAL:
                         area += child.part.area_surface
             self._area_body_wet = area
         return self._area_body_wet
@@ -139,7 +177,7 @@ class Configuration():
         if self._length is None:
             length = 0
             for instance in self.instance_list:
-                if instance.part.part_use == "EXTERNAL":
+                if instance.part.part_use == PartUse.EXTERNAL:
                     length += instance.part.length
             self._length = length
         return self._length
@@ -148,7 +186,7 @@ class Configuration():
         if self._diameter_max is None:
             diameter_list = []
             for instance in self.instance_list:
-                if instance.part.part_use == "EXTERNAL":
+                if instance.part.part_use == PartUse.EXTERNAL:
                     diameter_list.append(instance.part.diameter_outer)                
             self._diameter_max = max(diameter_list)
         return self._diameter_max
@@ -182,6 +220,20 @@ class Configuration():
 
     def remove_instance_from_list(self, instance):
         self.instance_list.remove(instance)
+    
+    def get_instance(self, instance_name):
+        for instance in self.get_flat_instance_list:
+            if instance.name == part_name:
+                return instance
+
+    def get_flat_instance_list(self):
+        instance_list = []
+        for instance in self.instance_list:
+            instance_list.append(instance)
+            nested_children = instance.get_flat_list()
+            for child in nested_children:
+                instance_list.append(child)
+        return instance_list 
 
     def get_flat_part_list(self):
         part_list = []
@@ -192,9 +244,8 @@ class Configuration():
                 part_list.append(child.part)
         return part_list 
 
-    
 class Instance():
-    def __init__(self, part, parent, config, index=None, position_type="FOREWARD", position_from=0.0):
+    def __init__(self, part, parent, config, index=None, position_type=PartPosition.FOREWARD, position_from=0.0):
         self.part = part
         self.parent = parent
         self.config = config
@@ -226,9 +277,9 @@ class Instance():
     def position_from_parent_top(self):
         if self._position_from_parent_top is None:
            if self.parent is not None:
-                if self.position_type == "FOREWARD":
+                if self.position_type == PartPosition.FOREWARD:
                     self._position_from_parent_top = self.position_from
-                elif self.position_type == "AFT":
+                elif self.position_type == PartPosition.AFT:
                     self._position_from_parent_top = self.parent.part.length - self.part.length + self.position_from
                 else:
                     self._position_from_parent_top = None
@@ -255,10 +306,7 @@ class Instance():
         flat_list.pop(0)
         return flat_list
 
-
 class Part():
-    EXTERNAL, INTERNAL = range(2)
-    ROUGH, UNFINISHED, PAINT, POLISH = range(4)
     
     def __init__(self, name, rocket, material,
                  mass_override=0.0, mass_override_bool=False, cg_override=0.0, cg_override_bool=False, comments=""):
@@ -273,16 +321,14 @@ class Part():
         rocket.add_part(self)
         rocket.add_material(material)
 
-
 class TubeBody(Part):
-    name_default = 'Body tube'
 
     def __init__(self, length, diameter_outer, thickness, surface_finish, *args, **kwargs):
-        self.part_type = "TubeBody"
+        self.part_type = PartType.TUBE_BODY
         self.length = length
         self.diameter_outer = diameter_outer
         self.thickness = thickness
-        self.part_use = "EXTERNAL"
+        self.part_use = PartUse.EXTERNAL
         self.surface_finish = surface_finish
         super(TubeBody, self).__init__(*args, **kwargs)
 
@@ -369,15 +415,12 @@ class TubeBody(Part):
             self._area_aft = self.area_ref
         return self._area_aft
 
-
 class Nosecone(Part):
-    CONICAL, OGIVE, HAACK, VON_KARMEN = range(4)
-    name_default = 'Nosecone'
 
     def __init__(self, nose_type, shape_parameter, length_nose, thickness, diameter_outer, 
                  length_base, diameter_shoulder, length_shoulder, thickness_shoulder, surface_finish, *args, **kwargs):
 
-        self.part_type = "Nosecone"
+        self.part_type = PartType.NOSECONE
         self.nose_type = nose_type
         self.shape_parameter = shape_parameter
         self.length_nose = length_nose
@@ -387,7 +430,7 @@ class Nosecone(Part):
         self.diameter_shoulder = diameter_shoulder 
         self.length_shoulder = length_shoulder
         self.thickness_shoulder = thickness_shoulder 
-        self.part_use = "EXTERNAL"
+        self.part_use = PartUse.EXTERNAL
         self.surface_finish = surface_finish
         super(Nosecone, self).__init__(*args, **kwargs)    
 
@@ -457,7 +500,7 @@ class Nosecone(Part):
     def area_surface(self):
         if self._area_surface is None:
             area_base = self.diameter_outer*math.pi*self.length_base
-            if self.nose_type == "VON_KARMEN":
+            if self.nose_type == NoseconeType.VON_KARMEN:
                 self._area_surface = self.area_conical + area_base
         return self._area_surface
     @property
@@ -483,13 +526,13 @@ class Nosecone(Part):
     @property    
     def area_planform(self):
         if self._area_planform is None:
-            if self.nose_type == "VON_KARMEN":
+            if self.nose_type == NoseconeType.VON_KARMEN:
                 self._area_planform = self.diameter_outer*self.length*(2/3)
         return self._area_planform
     @property
     def volume(self):
         if self._volume is None:
-            if self.nose_type == "VON_KARMEN":
+            if self.nose_type == NoseconeType.VON_KARMEN:
                 f = lambda x:math.pi*(((self.diameter_outer/2)/math.sqrt(math.pi))*math.sqrt(math.acos(1-(2*x)/self.length_nose) - 0.5*math.sin(2*math.acos(1-(2*x)/self.length_nose))))**2
             self._volume = scipy.integrate.quad(f, 0, self.length)[0] + math.pi*(self.diameter_outer/2)**2*self.length_base
         return self._volume
@@ -505,14 +548,14 @@ class Fins(Part):
     name_default = 'Fin set'
 
     def __init__(self, fin_shape, number, cross_section, thickness, radius_fillet, surface_finish, *args, **kwargs):
-        self.part_type = "Fins"
+        self.part_type = PartType.FINS
         self.fin_shape = fin_shape
         self.number = number
         self.cross_section = cross_section
         self.thickness = thickness
         self.radius_fillet = radius_fillet
         
-        self.part_use = "EXTERNAL"
+        self.part_use = PartUse.EXTERNAL
         self.surface_finish = surface_finish
         super(Fins, self).__init__(*args, **kwargs)
 
@@ -584,7 +627,7 @@ class Fins(Part):
 class FinShapeTrapezoidal():
 
     def __init__(self, chord_root, chord_tip, span, length_sweep):
-        self.shape_type = "Trapezoidal"
+        self.shape_type = FinShape.TRAPEZOIDAL
         self.chord_root = chord_root
         self.chord_tip = chord_tip
         self.span = span
@@ -669,12 +712,12 @@ class TubeInner(Part):
     name_default = 'Inner tube'
 
     def __init__(self, length, diameter_outer, diameter_inner, thickness, *args, **kwargs):
-        self.part_type = "TubeInner"
+        self.part_type = PartType.TUBE_INNER
         self.length = length
         self.diameter_outer = diameter_outer
         self.diameter_nneri = diameter_inner
         self.thickness = thickness
-        self.part_use = "INTERNAL"
+        self.part_use = PartUse.INTERNAL
         super(TubeInner, self).__init__(*args, **kwargs)
 
 
@@ -683,9 +726,10 @@ class Bulkhead(Part):
     name_default = 'Bulkhead'
 
     def __init__(self, diameter, thickness, *args, **kwargs):
+        self.part_type = PartType.BULKHEAD
         self.diameter = diameter
         self.thickness = thickness
-        self.part_use = "INTERNAL"
+        self.part_use = PartUse.INTERNAL
         super(Bulkhead, self).__init__(*args, **kwargs)  
         
 
@@ -694,11 +738,12 @@ class Mass(Part):
     name_default = 'Mass'
 
     def __init__(self, mass_type, mass, length, diameter, *args, **kwargs):
+        self.part_type = PartType.MASS
         self.mass_type = mass_type
         self.mass = mass
         self.length = length
         self.diameter = diameter
-        self.part_use = "INTERNAL"
+        self.part_use = PartUse.INTERNAL
         super(Mass, self).__init__(*args, **kwargs)
 
 
@@ -707,10 +752,10 @@ class Parachute(Part):
     name_default = 'Parachute'
 
     def __init__(self, diameter=0.0, drag_coefficient=0.80, *args, **kwargs):
-        self.part_type = "Parachute"
+        self.part_type = PartType.PARACHUTE
         self.diameter = diameter
         self.drag_coefficient = drag_coefficient        
-        self.part_use = "INTERNAL"
+        self.part_use = PartUse.INTERNAL
         super(Parachute, self).__init__(*args, **kwargs)
         
         #cached properties
@@ -754,3 +799,4 @@ class Material():
 
     def named_attributes(self):
         return {"name":self.name, "density":self.density}  
+  

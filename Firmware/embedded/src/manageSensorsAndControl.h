@@ -4,7 +4,7 @@
  * This class ties together all sensor driver, engineering unit and filtering classes. 
  */
 
-#define TEST_SWITCH 1
+//#define TEST_SWITCH 1
 
 #ifndef _MANAGE_SENSORS_AND_CONTROL_h
 #define _MANAGE_SENSORS_AND_CONTROL_h

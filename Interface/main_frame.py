@@ -2,10 +2,12 @@
 #import wx
 import time
 import numpy as np
-import model.file_io as file_io
-import model.entities.rocket_entities as entities
-import model.test_rocket as test_rocket
 import matplotlib.pyplot as plt
+
+import core.file_io as file_io
+import core.entities.rocket_entities as entities
+import core.test_rocket as test_rocket
+
 
 '''
 class MainFrame(wx.Frame):
@@ -38,19 +40,13 @@ if __name__ == '__main__':
     #frame.Show()
     #app.MainLoop()
     
-    rkt = test_rocket.create_rocket()    
-    file_io.WriteRocketHDF5("", rkt)
+    #start = time.time()
+    #rkt = test_rocket.create_rocket()    
+    #file_io.WriteRocketHDF5(rkt.name+'.h5', rkt)
 
-    #rkt = file_io.ReadRocketHDF5("3DPME_29mm_v1.h5").rocket
+    rkt = file_io.ReadRocketHDF5("3DPME_29mm_v1.h5").rocket
 
-    length = 3000
-    data_sets = 20
-    flights = 2
-
-    start = time.time()
-    for i in range(0,flights):
-        for j in range(0,data_sets):
-            test = np.full(length,0.0)
+    #print(rkt.configuration_list[0].simulation_list[0].velocity_max)
        
     #print(time.time() - start)
 
@@ -60,9 +56,19 @@ if __name__ == '__main__':
     flight_alt_filter = rkt.configuration_list[1].flight_data_list[0].derived_data.altitude
     flight_alt_baro = rkt.configuration_list[1].flight_data_list[0].derived_data.altitude_baro
 
+    sim_velocity = rkt.configuration_list[0].simulation_list[0].velocity     
+    flight_velocity = rkt.configuration_list[0].flight_data_list[0].derived_data.velocity
+
+    sim_accel= rkt.configuration_list[0].simulation_list[0].acceleration     
+    flight_accel = rkt.configuration_list[0].flight_data_list[0].derived_data.acceleration
+    
     plt.plot(flight_time, flight_alt_filter, label='filter')
     plt.plot(flight_time, flight_alt_baro, label='baro')
     plt.plot(sim_time, sim_alt, label='sim')
+    #plt.plot(flight_time, flight_velocity, label='baro')
+    #plt.plot(sim_time, sim_velocity, label='sim')
+    #plt.plot(flight_time, flight_accel, label='baro')
+    #plt.plot(sim_time, sim_accel, label='sim')
     plt.ylabel('Result')
     plt.legend(loc='upper left')
     plt.show()

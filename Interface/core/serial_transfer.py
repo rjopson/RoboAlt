@@ -2,7 +2,8 @@
 
 import serial
 from serial.tools import list_ports
-import model.entities.event_entities as event_entities
+
+import core.entities.event_entities as event_entities
 
 
 class SerialTransfer():

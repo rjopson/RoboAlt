@@ -1,10 +1,11 @@
 
 import math
 
-import model.aerodynamic_forces.drag_model_open_rocket as drag
-import model.aerodynamic_forces.stability_model_open_rocket as stability
-import model.aerodynamic_forces.atmosphere_model as atmosphere
-import model.entities.rocket_entities as entity
+import core.aerodynamic_forces.drag_model_open_rocket as drag
+import core.aerodynamic_forces.stability_model_open_rocket as stability
+import core.aerodynamic_forces.atmosphere_model as atmosphere
+import core.entities.rocket_entities as entity
+import core.entities.event_entities as event_entities
 
 def mach_number(velocity_rocket, speed_sound):
     return velocity_rocket/speed_sound
@@ -43,7 +44,7 @@ def get_drag_deployed(config, user_events, density_air, velocity):
     
     drag_deployed = 0.0
     for user_event in user_events:
-        if user_event.action == "DEPLOY_PARACHUTE":
+        if user_event.action == event_entities.Action.DEPLOY_PARACHUTE:
             if user_event.deployed is True:
                 drag_deployed += 0.5 * density_air * velocity**2 * user_event.instance.part.area * user_event.instance.part.drag_coefficient
 
@@ -53,7 +54,7 @@ def drag_coefficient_axial_config(config, M, Re):
 
     C_D = 0.0
     for part in config.get_flat_part_list():   
-        if part.part_use == "EXTERNAL":            
+        if part.part_use == entity.PartUse.EXTERNAL:            
             C_D += drag_coefficient_part(config, part, Re, M)
         else:
             pass
@@ -98,7 +99,7 @@ def normal_force_derivative_coefficient_config(config, M, alpha, beta, gamma):
     
     cn_sum = 0.0
     for part in config.part_list:
-        if part.part_use == "EXTERNAL": 
+        if part.part_use == entity.PartUse.EXTERNAL: 
             cn_part = normal_force_derivative_coefficient_part(config=config, part=part, M=M, alpha=alpha, beta=beta, gamma=gamma)
             cn_sum += cn_part 
             #print(part.name, cn_part)
@@ -122,7 +123,7 @@ def center_pressure_location_config(config, M, alpha, beta, gamma):
     cn_sum = 0.0 
     cp_moment_sum = 0.0
     for part in config.part_list:
-        if part.part_use == "EXTERNAL": 
+        if part.part_use == entity.PartUse.EXTERNAL: 
             cn_part = normal_force_derivative_coefficient_part(config=config, part=part, M=M, alpha=alpha, beta=beta, gamma=gamma)
             cp_dist = center_pressure_location_part(config=config, part=part, M=M, beta=beta)
             cn_sum += cn_part

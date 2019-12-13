@@ -36,8 +36,8 @@ public:
 
 	dataStorage* dataFlash;
 
-	void initialize();
-	void writeData(const uint32_t& time, const flightLogic::flightPhases& flightPhase, const int32_t& altitudeMainDeploy, const rawFlightData* dataIn, const calibrationData* calibrationIn, const debugFlightData* debugDataIn); //public function to save data in logging thread
+	void initialize(userSettings* settingsIn);
+	void writeData(const uint32_t& time, const flightLogic::flightPhases& flightPhase, const rawFlightData* dataIn, const calibrationData* calibrationIn, const debugFlightData* debugDataIn); //public function to save data in logging thread
 	void readData(const uint8_t& requestID); //public function to read flight data from Serial
 	void setFlightID(const uint8_t& flightID_in); //Used to set flight ID to flash memory for first time, when setting up altimeter
 	void getFlightID();	
@@ -81,5 +81,6 @@ private:
 	uint32_t flightLine; //number of lines written during flight
 	uint32_t pageWriteCount; //number of pages that have been written to
 	bool flightInformationSaved; //0 if flight information not saved, 1 if it is 
+	userSettings* user_settings; //used to write out user settings which were used for flight
 };
 #endif

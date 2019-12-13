@@ -2,14 +2,13 @@
 from scipy.integrate import solve_ivp
 import numpy as np
 
-import model.entities.rocket_entities as rocket_entities 
-import model.entities.event_entities as event_entities
-import model.entities.motor_data_entities as motor_entities
-import model.aerodynamic_forces.aerodynamic_forces as aero_force
-import model.aerodynamic_forces.atmosphere_model as atmosphere
-import model.flight_phase as flight_phase
-
-import model.constants as constants
+import core.entities.rocket_entities as rocket_entities 
+import core.entities.event_entities as event_entities
+import core.entities.motor_data_entities as motor_entities
+import core.aerodynamic_forces.aerodynamic_forces as aero_force
+import core.aerodynamic_forces.atmosphere_model as atmosphere
+import core.flight_phase as flight_phase
+import core.constants as constants
 
 def run(config, motor, user_events, elevation_pad, velocity_initial, alpha_initial, temperature_pad, time_max, timestep_ascent, timestep_descent):
 
@@ -45,7 +44,7 @@ def run(config, motor, user_events, elevation_pad, velocity_initial, alpha_initi
         return (motor.thrust_at_time(t) - np.sign(S[1])*aero_force.get_drag(config, S[0], S[1], alpha, user_events))/(config.mass + motor.mass_at_time(t)) - constants.GRAVITY
 
     #Relate event class string to function which controls when to terminate ODE solve
-    flight_events = {"LIFTOFF": liftoff, "BURNOUT": burnout, "APOGEE": apogee, "ALTITUDE_MAIN": altitude_main, "TOUCHDOWN": touchdown}
+    flight_events = {event_entities.Event.LIFTOFF: liftoff, event_entities.Event.BURNOUT: burnout, event_entities.Event.APOGEE: apogee, event_entities.Event.ALTITUDE_MAIN: altitude_main, event_entities.Event.TOUCHDOWN: touchdown}
 
     #S[0] = x, S[1] = v, S[2] = a
     def eom(t, S):
@@ -57,16 +56,18 @@ def run(config, motor, user_events, elevation_pad, velocity_initial, alpha_initi
     #check whether main deployment is an event. If it is, set altitude 
     main_check = False
     for user_event in user_events:
-        if user_event.event == "ALTITUDE_MAIN":
+        if user_event.event == event_entities.Event.ALTITUDE_MAIN:
             altitude_main_deploy = user_event.altitude_main_deploy
             main_check = True
     if main_check is False:
-        del(flight_events["ALTITUDE_MAIN"])
+        del(flight_events[event_entities.Event.ALTITUDE_MAIN])
 
     #initialize arrays data will be saved to
     altitude = np.array([elevation_pad], np.float32)
     velocity = np.array([velocity_initial], np.float32)
     time = np.array([t_start], np.float32)
+    flight_event_index = {}
+
     index = 0
 
     for event in flight_events:
@@ -75,7 +76,7 @@ def run(config, motor, user_events, elevation_pad, velocity_initial, alpha_initi
         t_start = time[-1]
         t_end = time_max
 
-        if event in ["ALTITUDE_MAIN", "TOUCHDOWN"]:
+        if event in [event_entities.Event.ALTITUDE_MAIN, event_entities.Event.TOUCHDOWN]:
             timestep = timestep_descent
         else:
             timestep = timestep_ascent
@@ -88,7 +89,7 @@ def run(config, motor, user_events, elevation_pad, velocity_initial, alpha_initi
 
         #Check if any user event set here
         for user_event in user_events:
-            if user_event.event == event:       
+            if user_event.event.value == event.value:       
 
                 #If simulation should continue after event triggered, continue simulation
                 if user_event.time_delay != 0.0:
@@ -101,9 +102,9 @@ def run(config, motor, user_events, elevation_pad, velocity_initial, alpha_initi
                 #Apply action of user event 
                 user_event.apply_action()
         index = len(altitude)
-        flight_events[event] = index
+        flight_event_index[event.name] = index
 
     #remove pad height from simulation
     altitude = np.subtract(altitude, elevation_pad)
 
-    return time, flight_events, altitude, velocity, alpha
+    return time, flight_event_index, altitude, velocity, alpha

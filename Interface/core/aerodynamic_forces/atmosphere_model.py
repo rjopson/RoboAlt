@@ -1,5 +1,5 @@
 import math
-import model.constants as constants
+import core.constants as constants
 
 #calculate air density 
 #calculate speed of sound 

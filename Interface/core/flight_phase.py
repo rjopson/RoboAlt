@@ -62,7 +62,7 @@ class FlightPhase():
         
         if velocity < self.velocity_apogee:
             self.flight_phase = "ALTITUDE_MAIN_DETECT"
-            self.flight_event = "ALTITUDE"
+            self.flight_event = "ALTITUDE_MAIN"
 
     def main_detect(self, altitude):
         

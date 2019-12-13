@@ -16,15 +16,16 @@ flightDataStorage::flightDataStorage(dataStorage* dataFlashIn) {
 
 /* Initialize function. Requires dataFlash object to be initialized.
 */
-void flightDataStorage::initialize() {
+void flightDataStorage::initialize(userSettings* settingsIn) {
 	dataFlash->startRead(ALT_PAGE_FLIGHT_ID);
 	flightID = dataFlash->readByte();
 	setPageNumbers(flightID);
+	user_settings = settingsIn;
 }
 
 /*public function to save data in logging thread
 */
-void flightDataStorage::writeData(const uint32_t& time, const flightLogic::flightPhases& flightPhaseIn, const int32_t& altitudeMainDeploy, const rawFlightData* dataIn, const calibrationData* calibrationIn, const debugFlightData* debugDataIn) {
+void flightDataStorage::writeData(const uint32_t& time, const flightLogic::flightPhases& flightPhaseIn, const rawFlightData* dataIn, const calibrationData* calibrationIn, const debugFlightData* debugDataIn) {
 
 	switch (flightPhaseIn) {
 
@@ -53,7 +54,7 @@ void flightDataStorage::writeData(const uint32_t& time, const flightLogic::fligh
 		break;
 
 	case flightLogic::ground:
-		writeFlightInformation(altitudeMainDeploy, calibrationIn);
+		writeFlightInformation(user_settings, calibrationIn);
 		break;
 	}
 }

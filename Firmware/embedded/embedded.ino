@@ -85,7 +85,7 @@ void setup() {
 	//Initialize flash chip, read user settings, initialize flightDataStorage
 	data_storage->initialize();
 	user_settings.readCurrentSettings();
-	flightData_storage.initialize();
+	flightData_storage.initialize(&user_settings);
 	
 	//Beep to indicate power
 	buzzer_.onOffSwitch(user_settings.buzzerSwitch);
@@ -156,7 +156,7 @@ void loop() {
 		//GUI_IO.printRawDataLine(*recordData);
 
 		//Save flight data
-		flightData_storage.writeData(sensorsAndControl.engineering_data.time, sensorsAndControl.logic.flightPhase, user_settings.altitudeMainDeploy, recordData, &sensorsAndControl.calibration_data, debugData);
+		//flightData_storage.writeData(sensorsAndControl.engineering_data.time, sensorsAndControl.logic.flightPhase, user_settings.altitudeMainDeploy, recordData, &sensorsAndControl.calibration_data, debugData);
 	}
 
 	//flight ready beep

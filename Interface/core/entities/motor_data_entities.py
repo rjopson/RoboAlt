@@ -1,7 +1,7 @@
 import numpy as np
 from scipy import integrate
 
-import model.constants as constants
+import core.constants as constants
 
 class MotorTestData():
 

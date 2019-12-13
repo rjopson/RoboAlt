@@ -3,8 +3,9 @@ import requests
 import xml.etree.ElementTree as ET
 import defusedxml.ElementTree as ET2
 import base64
-import model.entities.motor_data_entities as motor_entities
-import model.file_io as file_io
+
+import core.entities.motor_data_entities as motor_entities
+import core.file_io as file_io
 
 #Example usage to generate .h5 database
 #motor_list = thrust_curve_data_retrieve.get_motor_list()

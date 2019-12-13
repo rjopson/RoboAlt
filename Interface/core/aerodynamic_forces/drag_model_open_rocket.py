@@ -1,6 +1,7 @@
 
 import math
 import numpy as np
+import core.entities.rocket_entities as entity
 
 def drag_coefficient(Re, M, surface_finish, A_ref, 
                      fineness_body, length_body, A_wet_body, 
@@ -21,7 +22,7 @@ def drag_coefficient(Re, M, surface_finish, A_ref,
     return C_D_f + C_D_base + C_D_pressure_fins + C_D_pressure_nose
 
 def surface_roughness_height(surface_finish):
-    surface_roughness_height_lib = {'ROUGH':200.0e-6, 'UNFINISHED':100.0e-6, 'PAINT':30.0e-6, 'POLISH':2.0e-6} 
+    surface_roughness_height_lib = {entity.SurfaceFinish.ROUGH:200.0e-6, entity.SurfaceFinish.UNFINISHED:100.0e-6, entity.SurfaceFinish.PAINT:30.0e-6, entity.SurfaceFinish.POLISH:2.0e-6} 
     return surface_roughness_height_lib[surface_finish]
 
 def reynolds_critical(R_s, L):
@@ -105,7 +106,7 @@ def pressure_drag_coefficient_nose(M, f_n, type):
 def pressure_drag_coefficient_test(type, M):
 
     #Data from Stoney zero lift drag data
-    if type == "VON_KARMEN":
+    if type == entity.NoseconeType.VON_KARMEN:
         M_data_list = [0, 0.9, 0.95, 1.0, 1.05, 1.1, 1.2, 1.4, 1.6, 1.8, 2.0, 3.0, 5.0]
         C_D_data_list = [0, 0, 0.01, 0.025, 0.06, 0.07, 0.075, 0.088, 0.09, 0.08, 0.075, 0.075, 0.075]
 

@@ -1,10 +1,14 @@
 
 import time
-import model.entities.rocket_entities as rocket_entities
-import model.entities.flight_data_entities as flight_data_entities
-import model.entities.motor_data_entities as motor_data_entities
 import h5py 
 import numpy as np
+from enum import Enum
+
+import core.entities.rocket_entities as rocket_entities
+import core.entities.flight_data_entities as flight_data_entities
+import core.entities.motor_data_entities as motor_data_entities
+import core.entities.event_entities as event_entities
+
 
 def read_text_file(file_path):
     file = open(file_path,"r")
@@ -140,7 +144,7 @@ class WriteRocketHDF5():
     def __init__(self, file_path, rocket):
         self.file_path = file_path
         self.rocket = rocket
-        self.hf = h5py.File(file_path+self.rocket.name+'.h5', 'w')
+        self.hf = h5py.File(file_path, 'w')
         self.write_hdf5()
         self.hf.close
 
@@ -259,7 +263,7 @@ class WriteRocketHDF5():
         hf_user_events = hf_sim.create_group("User Events")
         for event in simulation.user_events:
             hf_event = hf_user_events.create_group(event.name)
-            write_attributes(hf_user_events, event.named_attributes())
+            write_attributes(hf_event, event.named_attributes())
 
         hf_flight_events = hf_sim.create_group("Flight Events")
         write_attributes(hf_flight_events, simulation.flight_events)
@@ -279,13 +283,16 @@ def write_motor_database(file_path, motor_list):
     hf.close
 
 def write_attributes(group, dict): 
+
         for key, value in dict.items():
             if type(value) is str:
                 group.attrs[key] = bytes(value, encoding="ascii")
+            elif isinstance(value, Enum):
+                group.attrs[key] = bytes(value.name, encoding="ascii")
             elif type(value) in [float, bool, int]:
                 group.attrs[key] = value
             elif type(value) is type(None):
-                group.attrs[key] = np.empty
+                group.attrs[key] = np.empty            
             else:
                 pass   
 
@@ -350,25 +357,35 @@ class ReadRocketHDF5():
             dictionary = self.dictionary_from_group_attributes(hf_part)
             dictionary["name"] = hf_part.name.split("/")[-1]
             dictionary["rocket"] = rocket
-            dictionary["material"] = rocket.get_material(dictionary["material"])
-            part_type = dictionary["part_type"]
+            dictionary["material"] = rocket.get_material(dictionary["material"])            
+            part_type = rocket_entities.PartType[dictionary["part_type"]]
             del dictionary["part_type"]
 
-            if part_type == "TubeBody":
+            if part_type == rocket_entities.PartType.TUBE_BODY:
+                dictionary["surface_finish"] = rocket_entities.SurfaceFinish[dictionary["surface_finish"]]
                 part = rocket_entities.TubeBody(**dictionary)
-            elif part_type == "Nosecone":
+
+            elif part_type == rocket_entities.PartType.NOSECONE:
+                dictionary["surface_finish"] = rocket_entities.SurfaceFinish[dictionary["surface_finish"]]
+                dictionary["nose_type"] = rocket_entities.NoseconeType[dictionary["nose_type"]]
                 part = rocket_entities.Nosecone(**dictionary)
-            elif part_type == "Fins":
+
+            elif part_type == rocket_entities.PartType.FINS:
+                dictionary["surface_finish"] = rocket_entities.SurfaceFinish[dictionary["surface_finish"]]
+                dictionary["cross_section"] = rocket_entities.FinCrossSection[dictionary["cross_section"]]
                 dictionary_child = self.dictionary_from_group_attributes(hf_part.__getitem__("fin_shape"))
-                if dictionary_child["shape_type"] == "Trapezoidal":
+                dictionary_child["shape_type"] = rocket_entities.FinShape[dictionary_child["shape_type"]]
+                if dictionary_child["shape_type"] == rocket_entities.FinShape.TRAPEZOIDAL:
                     del dictionary_child["shape_type"]
                     fin_shape = rocket_entities.FinShapeTrapezoidal(**dictionary_child)
                     dictionary["fin_shape"] = fin_shape
                 else:
                     pass
                 part = rocket_entities.Fins(**dictionary)
-            elif part_type == "Parachute":
+
+            elif part_type == rocket_entities.PartType.PARACHUTE:
                 part = rocket_entities.Parachute(**dictionary)
+
             else:
                 pass
 
@@ -387,10 +404,24 @@ class ReadRocketHDF5():
         for hf_instance in hf_instance_hierarchy.values():
             self.create_nested_instances(hf_instance, None, config, rocket)
 
+    def create_nested_instances(self, hf_instance, instance_parent, config, rocket):
+        dictionary = self.dictionary_from_group_attributes(hf_instance)
+        dictionary["part"] = rocket.get_part(hf_instance.name.split("/")[-1])
+        dictionary["parent"] = instance_parent
+        dictionary["config"] = config
+        dictionary["index"] = None
+        dictionary["position_type"] = rocket_entities.PartPosition[dictionary["position_type"]]
+        instance = rocket_entities.Instance(**dictionary)
+
+        if len(hf_instance.values()) > 0:
+            for hf_child in hf_instance.values():
+                self.create_nested_instances(hf_child, instance, config, rocket)
+
     def create_flight_data(self, hf_flights, config, rocket):
         for hf_flight in hf_flights.values():
             dictionary = self.dictionary_from_group_attributes(hf_flight)
             dictionary["config"] = config 
+            dictionary["motor"] = rocket.get_motor(dictionary["motor"])
 
             #start = time.time()
             dictionary["recorded_data"] = self.create_recorded_flight_data(hf_flight)            
@@ -441,6 +472,7 @@ class ReadRocketHDF5():
             dictionary["name"] = hf_simulation.name.split("/")[-1]
             dictionary["config"] = config 
             dictionary["motor"] = rocket.get_motor(dictionary["motor"])
+            dictionary["user_events"] = self.create_user_events(hf_simulation.__getitem__("User Events"))
 
             #Saved data
             dictionary["time"] = hf_simulation.__getitem__("Time (s)")[()]
@@ -451,19 +483,21 @@ class ReadRocketHDF5():
 
             #start = time.time()
             simulation = flight_data_entities.SimulationData(**dictionary)
-            #print("simulation post: ", time.time()-start)
+            #print("simulation post: ", time.time()-start)                
 
-    def create_nested_instances(self, hf_instance, instance_parent, config, rocket):
-        dictionary = self.dictionary_from_group_attributes(hf_instance)
-        dictionary["part"] = rocket.get_part(hf_instance.name.split("/")[-1])
-        dictionary["parent"] = instance_parent
-        dictionary["config"] = config
-        dictionary["index"] = None
-        instance = rocket_entities.Instance(**dictionary)
+    def create_user_events(self, hf_user_events):
 
-        if len(hf_instance.values()) > 0:
-            for hf_child in hf_instance.values():
-                self.create_nested_instances(hf_child, instance, config, rocket)
+        user_events = []
+
+        for hf_user_event in hf_user_events.values():
+            dictionary = self.dictionary_from_group_attributes(hf_user_event)
+            dictionary["event"] = event_entities.Event[dictionary["event"]]
+            dictionary["action"] = event_entities.Action[dictionary["action"]]
+            #dictionary["instance"]  = simulation.config.get_instance(dictionary["instance"])
+
+            user_events.append(event_entities.SimulationEvent(**dictionary))
+
+        return user_events
 
     def dictionary_from_group_attributes(self, group):
         dictionary = {}

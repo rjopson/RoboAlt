@@ -22,49 +22,49 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="model\aerodynamic_forces\aerodynamic_forces.py">
+    <Compile Include="core\aerodynamic_forces\aerodynamic_forces.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="model\aerodynamic_forces\atmosphere_model.py">
+    <Compile Include="core\aerodynamic_forces\atmosphere_model.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="model\aerodynamic_forces\drag_model_open_rocket.py">
+    <Compile Include="core\aerodynamic_forces\drag_model_open_rocket.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="model\aerodynamic_forces\stability_model_open_rocket.py">
+    <Compile Include="core\aerodynamic_forces\stability_model_open_rocket.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="model\constants.py">
+    <Compile Include="core\constants.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="model\entities\event_entities.py">
+    <Compile Include="core\entities\event_entities.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="model\entities\flight_data_entities.py">
+    <Compile Include="core\entities\flight_data_entities.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="model\entities\motor_data_entities.py">
+    <Compile Include="core\entities\motor_data_entities.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="model\file_io.py">
+    <Compile Include="core\file_io.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="model\filters.py" />
-    <Compile Include="model\flight_phase.py">
+    <Compile Include="core\filters.py" />
+    <Compile Include="core\flight_phase.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="model\gravity_model.py">
+    <Compile Include="core\gravity_model.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="model\serial_transfer.py">
+    <Compile Include="core\serial_transfer.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="model\test_rocket.py" />
-    <Compile Include="model\entities\rocket_entities.py" />
-    <Compile Include="model\simulation_engine.py">
+    <Compile Include="core\test_rocket.py" />
+    <Compile Include="core\entities\rocket_entities.py" />
+    <Compile Include="core\simulation_engine.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="model\thrust_curve_data_retrieve.py">
+    <Compile Include="core\thrust_curve_data_retrieve.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="main_frame.py">
@@ -72,10 +72,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="model\aerodynamic_forces\" />
-    <Folder Include="model\entities\" />
-    <Folder Include="model\" />
-    <Folder Include="view\" />
+    <Folder Include="core\aerodynamic_forces\" />
+    <Folder Include="core\entities\" />
+    <Folder Include="core\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="RequiredPackages.txt" />
