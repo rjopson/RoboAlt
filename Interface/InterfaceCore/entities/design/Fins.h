@@ -34,10 +34,10 @@ public:
 	//Overridden virtual functions 
 	double areaReference();
 	double areaWet();
-	double dragCoefficient(const double& in_areaReference, const double& in_machNumber, const double& in_skinFrictionCoefficient);
-	double dragCoefficientFriction(const double& in_skinFrictionCoefficient, const double& in_areaReference);
+	double dragCoefficient(const double& in_areaReference, const double& in_finenessRocket, const double& in_machNumber, const double& in_skinFrictionCoefficient, const bool& in_aftMostPart, const double& in_areaThrusting);
+	double dragCoefficientFriction(const double& in_skinFrictionCoefficient, const double& in_areaReference, const double& in_finenessRocket);
 	double dragCoefficientPressure(const double& in_machNumber, const double& in_areaReference);
-	double dragCoefficientBase(const double& in_machNumber, const double& in_areaReference);
+	double dragCoefficientBase(const bool& in_aftMostPart, const double& in_machNumber, const double& in_areaThrusting, const double& in_areaReference);
 
 
 private:

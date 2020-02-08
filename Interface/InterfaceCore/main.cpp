@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 
+
 #include "Configuration.h"
 #include "Fins.h"
 #include "FinShape.h"
@@ -12,6 +13,13 @@
 #include "Part.h"
 #include "TubeBody.h"
 
+#include "MathUtilities.h"
+
+double f(double x) {
+	return 5;
+}
+
+//template<class function>
 
 int main() {
 
@@ -41,10 +49,16 @@ int main() {
 	Instance* instFincan = new Instance(fincan, config180->instanceHierarchy, NULL, PartPosition::FOREWARD, 0.0);
 	Instance* instFinset = new Instance(finset, instFincan, NULL, PartPosition::AFT, 0.0063);
 
-	std::cout << config180->instanceFlatList().size() << std::endl;
-	for (auto instance : config180->instanceFlatList()) {
-		std::cout << instance->part->name << std::endl;
-	}
+	double mach = 1.01;
+	config180->printDragCoefficients(mach, false);
+	std::cout << "total: " << config180->dragCoefficient(mach, 0.00066) << std::endl;
+
+	std::vector<double> x{ 0.0, 0.1, 0.2 };
+	std::vector<double> y{ 5.6, 1.8, 2.2 };
+	//std::cout << MathUtilities::integrate(x, y)[2] << std::endl;
+	
+	std::cout << MathUtilities::integrate(f, 0.0, 8.6, 10000) << std::endl;	
+	std::cout << MathUtilities::derivative(f, 12.75, 0.000001) << std::endl;
 
 	std::cout << "Complete" << std::endl;
 	std::getchar();

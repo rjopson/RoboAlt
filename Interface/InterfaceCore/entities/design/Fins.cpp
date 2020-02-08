@@ -44,13 +44,13 @@ double Fins::areaWet() {
 	return Fins::areaSurface();
 }
 
-double Fins::dragCoefficient(const double& in_areaReference, const double& in_machNumber, const double& in_skinFrictionCoefficient) {
-	return Fins::dragCoefficientFriction(in_skinFrictionCoefficient, in_areaReference) +
+double Fins::dragCoefficient(const double& in_areaReference, const double& in_finenessRocket, const double& in_machNumber, const double& in_skinFrictionCoefficient, const bool& in_aftMostPart, const double& in_areaThrusting) {
+	return Fins::dragCoefficientFriction(in_skinFrictionCoefficient, in_areaReference, in_finenessRocket) +
 		Fins::dragCoefficientPressure(in_machNumber, in_areaReference) +
-		Fins::dragCoefficientBase(in_machNumber, in_areaReference);
+		Fins::dragCoefficientBase(in_aftMostPart, in_machNumber, in_areaThrusting, in_areaReference);
 }
 
-double Fins::dragCoefficientFriction(const double& in_skinFrictionCoefficient, const double& in_areaReference) {
+double Fins::dragCoefficientFriction(const double& in_skinFrictionCoefficient, const double& in_areaReference, const double& in_finenessRocket) {
 	return Aerodynamics::dragCoefficientFrictionFins(in_skinFrictionCoefficient, Fins::areaWet(), in_areaReference);
 }
 
@@ -59,7 +59,7 @@ double Fins::dragCoefficientPressure(const double& in_machNumber, const double& 
 		Fins::areaFrontal(), in_areaReference);
 }
 
-double Fins::dragCoefficientBase(const double& in_machNumber, const double& in_areaReference) {
+double Fins::dragCoefficientBase(const bool& in_aftMostPart, const double& in_machNumber, const double& in_areaThrusting, const double& in_areaReference) {
 	return Aerodynamics::dragCoefficientBaseFins(in_machNumber, Fins::areaFrontal(), in_areaReference);
 }
 

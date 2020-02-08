@@ -42,8 +42,8 @@ public:
 	virtual double areaWet();
 
 	//need to implement these
-	virtual double volumeMaterial();
-	double calculateMass();
+	//virtual double volumeMaterial();
+	//double calculateMass();
 
 	//drag calculations 
 	virtual double dragCoefficient(const double& in_areaReference, const double& in_finenessRocket, const double& in_machNumber, const double& in_skinFrictionCoefficient, const bool& in_aftMostPart, const double& in_areaThrusting);

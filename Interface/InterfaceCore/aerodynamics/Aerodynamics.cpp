@@ -31,6 +31,18 @@ double Aerodynamics::drag(const double& in_density, const double& in_velocity, c
 	return 0.5*in_density*std::pow(in_velocity, 2)*in_dragCoefficient*in_areaRef;
 }
 
+double Aerodynamics::surfaceRoughness(SurfaceFinish surfaceFinish) {
+
+	if (surfaceFinish == SurfaceFinish::ROUGH)
+		return 0.0002;
+	else if (surfaceFinish == SurfaceFinish::UNFINISHED)
+		return 0.0001;
+	else if (surfaceFinish == SurfaceFinish::PAINTED)
+		return 0.00003;
+	else if (surfaceFinish == SurfaceFinish::POLISHED)
+		return 0.000002;
+}
+
 double Aerodynamics::skinFrictionCoefficient(const double& in_surfaceRoughness, const double& in_length, 
 	const double& in_velocity, const double& in_machNumber) {
 
@@ -179,7 +191,7 @@ double Aerodynamics::dragCoefficientPressureFinsRounded(const double& in_machNum
 	}
 
 	//correct cd for sweep
-	double cd_sweep = cd * std::pow(std::cos(in_angleSweep*(180.0/PI)), 2);
+	double cd_sweep = cd * std::pow(std::cos(in_angleSweep*(PI/180.0)), 2);
 
 	//put in config reference area
 	return cd_sweep * (in_areaFinsFrontal / in_areaReference);

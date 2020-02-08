@@ -1,10 +1,13 @@
-
 #ifndef _MOTOR_H
 #define _MOTOR_H
 
+#include <cmath>
 #include <iostream>
 #include <vector>
 
+#include "MathUtilities.h"
+
+#define PI 3.141592653589793
 
 class Motor
 {
@@ -13,8 +16,6 @@ public:
 		double in_diameter, double in_length, std::vector<double> in_delay, double in_massPropellant, double in_massTotal,
 		std::vector<double> in_dataTime, std::vector<double> in_dataThrust);
 	~Motor();
-
-private:
 
 	std::string name;
 	double diameter;
@@ -26,6 +27,14 @@ private:
 	std::vector<double> dataTime;
 	std::vector<double> dataThrust;
 	std::string comments;
-};
+
+	double getMass(const double& in_time); //interpolate data for single mass value
+	double getThrust(const double& in_time); //interpolate data for single thrust value
+	double area();
+
+	//double isp();
+	//double impulse();
+}; 
 #endif
+
 

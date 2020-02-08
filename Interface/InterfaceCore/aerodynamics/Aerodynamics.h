@@ -36,6 +36,7 @@ public:
 	static double reynoldsNumber(const double& in_velocity, const double& in_length);
 	static double prandtlFactor(const double& in_machNumber);
 	static double beta(const double& in_machNumber);
+	static double dynamicPressure();
 
 	//drag
 	static double drag(const double& in_density, const double& in_velocity, const double& in_dragCoefficient, const double& in_areaRef);
@@ -50,6 +51,7 @@ public:
 		const double& in_areaReferencePart, const double& in_areaReference);
 	static double dragCoefficientPressureFinsRounded(const double& in_machNumber, const double& in_angleSweep,
 		const double& in_areaFinsFrontal, const double& in_areaReference);
+	static double surfaceRoughness(SurfaceFinish surfaceFinish);
 
 	//skin friction drag
 	static double skinFrictionCoefficient(const double& in_surfaceRoughness, const double& in_length,

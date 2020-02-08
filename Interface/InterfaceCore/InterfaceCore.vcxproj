@@ -20,43 +20,51 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="aerodynamics\Aerodynamics.cpp" />
-    <ClCompile Include="aerodynamics\Atmosphere.cpp" />
-    <ClCompile Include="entities\Bulkhead.cpp" />
-    <ClCompile Include="entities\Configuration.cpp" />
-    <ClCompile Include="entities\Fins.cpp" />
-    <ClCompile Include="entities\FinShape.cpp" />
-    <ClCompile Include="entities\Instance.cpp" />
-    <ClCompile Include="entities\ManageMass.cpp" />
-    <ClCompile Include="entities\Mass.cpp" />
-    <ClCompile Include="entities\Material.cpp" />
-    <ClCompile Include="entities\Motor.cpp" />
-    <ClCompile Include="entities\Nosecone.cpp" />
-    <ClCompile Include="entities\Parachute.cpp" />
-    <ClCompile Include="entities\Part.cpp" />
-    <ClCompile Include="entities\Rocket.cpp" />
-    <ClCompile Include="entities\TubeBody.cpp" />
-    <ClCompile Include="entities\TubeInner.cpp" />
+    <ClCompile Include="entities\design\Bulkhead.cpp" />
+    <ClCompile Include="entities\design\Configuration.cpp" />
+    <ClCompile Include="entities\design\Fins.cpp" />
+    <ClCompile Include="entities\design\FinShape.cpp" />
+    <ClCompile Include="entities\design\Instance.cpp" />
+    <ClCompile Include="entities\design\ManageMass.cpp" />
+    <ClCompile Include="entities\design\Mass.cpp" />
+    <ClCompile Include="entities\design\Material.cpp" />
+    <ClCompile Include="entities\design\Nosecone.cpp" />
+    <ClCompile Include="entities\design\Parachute.cpp" />
+    <ClCompile Include="entities\design\Part.cpp" />
+    <ClCompile Include="entities\design\TubeBody.cpp" />
+    <ClCompile Include="entities\design\TubeInner.cpp" />
+    <ClCompile Include="entities\flight\SimulationEvent.cpp" />
+    <ClCompile Include="entities\models\Atmosphere.cpp" />
+    <ClCompile Include="entities\models\Drag.cpp" />
+    <ClCompile Include="entities\models\Motor.cpp" />
+    <ClCompile Include="entities\flight\FlightData.cpp" />
+    <ClCompile Include="entities\flight\Experimental.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="entities\flight\Simulation.cpp" />
     <ClCompile Include="utils\MathUtilities.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="aerodynamics\Aerodynamics.h" />
-    <ClInclude Include="aerodynamics\Atmosphere.h" />
-    <ClInclude Include="entities\Bulkhead.h" />
-    <ClInclude Include="entities\Configuration.h" />
-    <ClInclude Include="entities\Fins.h" />
-    <ClInclude Include="entities\FinShape.h" />
-    <ClInclude Include="entities\Instance.h" />
-    <ClInclude Include="entities\ManageMass.h" />
-    <ClInclude Include="entities\Mass.h" />
-    <ClInclude Include="entities\Material.h" />
-    <ClInclude Include="entities\Motor.h" />
-    <ClInclude Include="entities\Nosecone.h" />
-    <ClInclude Include="entities\Parachute.h" />
-    <ClInclude Include="entities\Part.h" />
-    <ClInclude Include="entities\Rocket.h" />
-    <ClInclude Include="entities\TubeBody.h" />
-    <ClInclude Include="entities\TubeInner.h" />
+    <ClInclude Include="entities\design\Bulkhead.h" />
+    <ClInclude Include="entities\design\Configuration.h" />
+    <ClInclude Include="entities\design\Fins.h" />
+    <ClInclude Include="entities\design\FinShape.h" />
+    <ClInclude Include="entities\design\Instance.h" />
+    <ClInclude Include="entities\design\ManageMass.h" />
+    <ClInclude Include="entities\design\Mass.h" />
+    <ClInclude Include="entities\design\Material.h" />
+    <ClInclude Include="entities\design\Nosecone.h" />
+    <ClInclude Include="entities\design\Parachute.h" />
+    <ClInclude Include="entities\design\Part.h" />
+    <ClInclude Include="entities\design\TubeBody.h" />
+    <ClInclude Include="entities\design\TubeInner.h" />
+    <ClInclude Include="entities\flight\SimulationEvent.h" />
+    <ClInclude Include="entities\models\Atmosphere.h" />
+    <ClInclude Include="entities\models\Drag.h" />
+    <ClInclude Include="entities\models\Motor.h" />
+    <ClInclude Include="entities\flight\FlightData.h" />
+    <ClInclude Include="entities\flight\Simulation.h" />
+    <ClInclude Include="entities\flight\Experimental.h" />
     <ClInclude Include="utils\MathUtilities.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -119,7 +127,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)aerodynamics;$(ProjectDir)utils;$(ProjectDir)solver;$(ProjectDir)entities;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)aerodynamics;$(ProjectDir)utils;$(ProjectDir)solver;$(ProjectDir)entities\models;$(ProjectDir)entities\flight;$(ProjectDir)entities\design;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
