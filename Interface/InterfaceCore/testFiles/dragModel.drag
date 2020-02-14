@@ -1,0 +1,37 @@
+*VERSION, 0.1
+*TYPE, Rocket
+*NAME, Rob's scratch build
+*MANUFACTURER, scratch
+*AREA_REFERENCE, 0.0067
+*MOTOR_AREA, 0.0067
+**comment example
+**mach, drag coefficient unpowered
+0.0,0.05
+0.1,0.04
+0.2,0.05
+0.3,0.06
+**
+**mach, drag coefficient powered
+0.0,0.06
+0.1,0.05
+0.2,0.06
+0.3,0.07
+
+*TYPE, Parachute
+*NAME, 12in orange
+*MANUFACTURER, Top Flight Recovery
+*AREA_REFERENCE, 0.073
+**comment
+**mach, drag coefficient
+0.0,0.8
+0.8,0.8
+
+*TYPE, Parachute
+*NAME, 29mm drogueless experimental
+*MANUFACTURER, scratch
+*AREA_REFERENCE, 0.02
+**comment
+**mach, drag coefficient
+0.0,0.8
+0.8,0.8
+

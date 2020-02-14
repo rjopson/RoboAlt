@@ -2,11 +2,6 @@
 #ifndef _SIMULATION_EVENT_H
 #define _SIMULATION_EVENT_H
 
-#define VELOCITY_LAUNCH_DETECT				1.0 //(m/s)
-#define ACCELERATION_LAUNCH_DETECT			1.0 //(m/s^2) (gravity subtracted from this input)
-#define ACCELERATION_COAST_DETECT			0.0 //(m/s^2)
-#define VELOCITY_APOGEE_DETECT				0.0 //(m/s)
-
 #include <vector>
 
 enum class Event {
@@ -18,7 +13,9 @@ enum class Event {
 	AT_TIME_DELAY
 };
 
-enum class Action {
+enum class Action {	
+	SEPARATE_STAGE,
+	LIGHT_STAGE,
 	DEPLOY_DROGUE,
 	DEPLOY_MAIN
 };
@@ -32,21 +29,12 @@ public:
 
 	Event event;
 	Action action;
-	bool complete;	
+	bool complete;
 	double altitudeMainDeploy;
 
 	double delayTimeFromEvent;
 	double delayTimeOfFlight;
 
 	void setDelayTimeOfFlight(const double & in_timeOfFlight);
-
-	//bool detect(std::vector<double>& state);
-
-	static bool launchDetect(const std::vector<double>& state);
-	static bool coastDetect(const std::vector<double>& state);
-	static bool apogeeDetect(const std::vector<double>& state);
-	static bool mainDetect(const std::vector<double>& state);
-	static bool groundDetect(const std::vector<double>& state);
 };
 #endif
-

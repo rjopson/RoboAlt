@@ -1,7 +1,7 @@
 
+#include <functional>
 #include <iostream>
 #include <string>
-
 
 #include "Configuration.h"
 #include "Fins.h"
@@ -13,10 +13,11 @@
 #include "Part.h"
 #include "TubeBody.h"
 
+//#include "Parse.h"
 #include "MathUtilities.h"
 
-double f(double x) {
-	return 5;
+double func(double x) {
+	return sin(x)*cos(x)*cos(x);
 }
 
 //template<class function>
@@ -49,16 +50,26 @@ int main() {
 	Instance* instFincan = new Instance(fincan, config180->instanceHierarchy, NULL, PartPosition::FOREWARD, 0.0);
 	Instance* instFinset = new Instance(finset, instFincan, NULL, PartPosition::AFT, 0.0063);
 
-	double mach = 1.01;
-	config180->printDragCoefficients(mach, false);
-	std::cout << "total: " << config180->dragCoefficient(mach, 0.00066) << std::endl;
-
-	std::vector<double> x{ 0.0, 0.1, 0.2 };
-	std::vector<double> y{ 5.6, 1.8, 2.2 };
-	//std::cout << MathUtilities::integrate(x, y)[2] << std::endl;
+	//Gather data for the simulation
+	Motor h128("C:/Users/Jim/Documents/Rockets/Altimeters/RoboDev/Interface/InterfaceCore/testFiles/AeroTech_H128.eng");
 	
-	std::cout << MathUtilities::integrate(f, 0.0, 8.6, 10000) << std::endl;	
-	std::cout << MathUtilities::derivative(f, 12.75, 0.000001) << std::endl;
+	//Generate drag data 
+	Drag config180_h128("3dpme", "scratch", "");
+	
+
+	//let's see if simulation works...
+	Atmosphere atmosphere;
+	std::vector<double> initial{ 167.0, 0.0 };
+	Simulation sim_h128("h128", "", .3825, 167.74);
+	sim_h128.motor = &h128;
+	sim_h128.drag = &config180_h128;
+	sim_h128.atmosphere = &atmosphere;
+	sim_h128.run(initial, 0.01, 2);
+	
+	for (int i = 0; i != sim_h128.altitude.size(); i++) {
+		//std::cout << sim_h128.time[i] << " " << sim_h128.altitude[i] << " "
+			//<< sim_h128.velocity[i] << " " << sim_h128.acceleration[i] << std::endl;
+	}
 
 	std::cout << "Complete" << std::endl;
 	std::getchar();

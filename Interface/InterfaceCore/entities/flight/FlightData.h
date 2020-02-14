@@ -20,7 +20,8 @@ public:
 	std::string comments;
 
 	Atmosphere* atmosphere;
-	Drag* drag;
+	std::vector<Drag*> dragRocket; //drag for each stage 
+	Drag* dragDrogue, dragMain;
 	Motor* motor;	
 
 	double elevationPad;

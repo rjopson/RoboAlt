@@ -28,7 +28,7 @@ public:
 
 	double areaSurface();
 	double areaFrontal();
-	double volume();
+	double volumeMaterial();
 	double length();
 
 	//Overridden virtual functions 

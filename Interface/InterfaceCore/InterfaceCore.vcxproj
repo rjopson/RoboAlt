@@ -20,12 +20,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="aerodynamics\Aerodynamics.cpp" />
+    <ClCompile Include="Database.cpp" />
+    <ClCompile Include="entities\models\Atmosphere.cpp" />
     <ClCompile Include="entities\design\Bulkhead.cpp" />
     <ClCompile Include="entities\design\Configuration.cpp" />
     <ClCompile Include="entities\design\Fins.cpp" />
     <ClCompile Include="entities\design\FinShape.cpp" />
     <ClCompile Include="entities\design\Instance.cpp" />
-    <ClCompile Include="entities\design\ManageMass.cpp" />
+    <ClCompile Include="entities\design\InertialOverride.cpp" />
     <ClCompile Include="entities\design\Mass.cpp" />
     <ClCompile Include="entities\design\Material.cpp" />
     <ClCompile Include="entities\design\Nosecone.cpp" />
@@ -34,23 +36,28 @@
     <ClCompile Include="entities\design\TubeBody.cpp" />
     <ClCompile Include="entities\design\TubeInner.cpp" />
     <ClCompile Include="entities\flight\SimulationEvent.cpp" />
-    <ClCompile Include="entities\models\Atmosphere.cpp" />
+    <ClCompile Include="aerodynamics\Atmosphere_ISA.cpp" />
     <ClCompile Include="entities\models\Drag.cpp" />
     <ClCompile Include="entities\models\Motor.cpp" />
     <ClCompile Include="entities\flight\FlightData.cpp" />
     <ClCompile Include="entities\flight\Experimental.cpp" />
+    <ClCompile Include="entities\design\Rocket.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="entities\flight\Simulation.cpp" />
+    <ClCompile Include="entities\design\Stage.cpp" />
+    <ClCompile Include="utils\Parse.cpp" />
     <ClCompile Include="utils\MathUtilities.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="aerodynamics\Aerodynamics.h" />
+    <ClInclude Include="Database.h" />
+    <ClInclude Include="entities\models\Atmosphere.h" />
     <ClInclude Include="entities\design\Bulkhead.h" />
     <ClInclude Include="entities\design\Configuration.h" />
     <ClInclude Include="entities\design\Fins.h" />
     <ClInclude Include="entities\design\FinShape.h" />
     <ClInclude Include="entities\design\Instance.h" />
-    <ClInclude Include="entities\design\ManageMass.h" />
+    <ClInclude Include="entities\design\InertialOverride.h" />
     <ClInclude Include="entities\design\Mass.h" />
     <ClInclude Include="entities\design\Material.h" />
     <ClInclude Include="entities\design\Nosecone.h" />
@@ -59,12 +66,15 @@
     <ClInclude Include="entities\design\TubeBody.h" />
     <ClInclude Include="entities\design\TubeInner.h" />
     <ClInclude Include="entities\flight\SimulationEvent.h" />
-    <ClInclude Include="entities\models\Atmosphere.h" />
+    <ClInclude Include="aerodynamics\Atmosphere_ISA.h" />
     <ClInclude Include="entities\models\Drag.h" />
     <ClInclude Include="entities\models\Motor.h" />
     <ClInclude Include="entities\flight\FlightData.h" />
     <ClInclude Include="entities\flight\Simulation.h" />
     <ClInclude Include="entities\flight\Experimental.h" />
+    <ClInclude Include="entities\design\Rocket.h" />
+    <ClInclude Include="entities\design\Stage.h" />
+    <ClInclude Include="utils\Parse.h" />
     <ClInclude Include="utils\MathUtilities.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

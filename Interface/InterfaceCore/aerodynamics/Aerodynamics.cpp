@@ -197,3 +197,7 @@ double Aerodynamics::dragCoefficientPressureFinsRounded(const double& in_machNum
 	return cd_sweep * (in_areaFinsFrontal / in_areaReference);
 }
 
+double Aerodynamics::dragCoefficientParachute() {
+	return 0.8;
+}
+

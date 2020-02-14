@@ -33,7 +33,8 @@ double MathUtilities::interpolateLinear(std::vector<double>& in_x_data, std::vec
 
 //https://math.stackexchange.com/questions/721076/help-with-using-the-runge-kutta-4th-order-method-on-a-system-of-2-first-order-od
 std::vector<std::vector<double>> MathUtilities::rk45(const std::vector<double>& initialValues,
-	std::vector<double> (*ode)(const double&, const std::vector<double>&), bool (*event)(const std::vector<double>&),
+	std::function<std::vector<double>(const double&, const std::vector<double>&)> ode,
+	std::function<bool(const std::vector<double>&)> event,
 	const double& xStart, const double& xEnd, const double& step) {
 
 	int iterations = (xEnd - xStart) / step;
@@ -58,11 +59,14 @@ std::vector<std::vector<double>> MathUtilities::rk45(const std::vector<double>& 
 		//Save state for Y_x_np1 result
 		std::vector<double> stepResult; //saves x, and all solutions for Y_x_np1 step
 		stepResult.push_back(x_n + step); //save x_n+1
+		for (int i = 0; i != Y_x_np1.size(); i++) {
+			stepResult.push_back(Y_x_np1[i]);
+		}
 		stepResult.push_back(ode(x_n + step, Y_x_np1).back()); //saves solution to lowest order ode - if ode's solve, position, velocity, this would be acceleration result
 		Y.push_back(stepResult);
 
 		//if an event is reached, break the integration early
-		if (event(Y_x_np1) == true) {
+		if (event(stepResult) == true) {
 			break;
 		}
 
@@ -73,7 +77,7 @@ std::vector<std::vector<double>> MathUtilities::rk45(const std::vector<double>& 
 }
 
 //integrate a function between a and b with form y = f(x). Divided into n segments
-double MathUtilities::integrate(double(*f)(double), const double& a, const double& b, int n) {
+double MathUtilities::integrate(std::function<double(double)> f, const double& a, const double& b, int n) {
 
 	//check if n is even
 	if (!(n % 2 == 0)) {
@@ -117,7 +121,7 @@ std::vector<double> MathUtilities::integrate(std::vector<double>& x, std::vector
 }
 
 //derivative of a function at location x using step h, with form y = f(x)
-double MathUtilities::derivative(double(*f)(double), const double& x, const double& h) {
+double MathUtilities::derivative(std::function<double(double)> f, const double& x, const double& h) {
 
 	double f_x_h = f(x + h);
 	double f_x = f(x);

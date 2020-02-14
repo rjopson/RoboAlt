@@ -28,7 +28,7 @@ double Fins::areaFrontal() {
 	return ((double)number*shape->span()*thickness);
 }
 
-double Fins::volume() {
+double Fins::volumeMaterial() {
 	return areaSurface()*thickness;
 }
 

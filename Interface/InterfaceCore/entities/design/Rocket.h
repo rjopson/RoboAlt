@@ -14,13 +14,10 @@ private:
 	std::string name;
 	std::string comments;
 
-	//configuration list
-	//instance list
-	//part list
-	//material list
-	//motor list
-	//simulation list
-	//flight list
+	/*Hold:
+	-configuration list
+	-part list
+	*/
 
 };
 #endif

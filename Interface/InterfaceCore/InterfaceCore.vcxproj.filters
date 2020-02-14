@@ -61,13 +61,17 @@
     <ClCompile Include="entities\design\TubeInner.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="entities\models\Atmosphere.cpp" />
     <ClCompile Include="entities\models\Motor.cpp" />
     <ClCompile Include="entities\models\Drag.cpp" />
     <ClCompile Include="entities\flight\FlightData.cpp" />
     <ClCompile Include="entities\flight\Simulation.cpp" />
     <ClCompile Include="entities\flight\Experimental.cpp" />
     <ClCompile Include="entities\flight\SimulationEvent.cpp" />
+    <ClCompile Include="utils\Parse.cpp" />
+    <ClCompile Include="aerodynamics\Atmosphere_ISA.cpp" />
+    <ClCompile Include="entities\models\Atmosphere.cpp" />
+    <ClCompile Include="entities\design\Rocket.cpp" />
+    <ClCompile Include="Database.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="aerodynamics\Aerodynamics.h">
@@ -115,12 +119,16 @@
     <ClInclude Include="entities\design\TubeInner.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="entities\models\Atmosphere.h" />
     <ClInclude Include="entities\models\Motor.h" />
     <ClInclude Include="entities\models\Drag.h" />
     <ClInclude Include="entities\flight\FlightData.h" />
     <ClInclude Include="entities\flight\Simulation.h" />
     <ClInclude Include="entities\flight\Experimental.h" />
     <ClInclude Include="entities\flight\SimulationEvent.h" />
+    <ClInclude Include="utils\Parse.h" />
+    <ClInclude Include="aerodynamics\Atmosphere_ISA.h" />
+    <ClInclude Include="entities\models\Atmosphere.h" />
+    <ClInclude Include="entities\design\Rocket.h" />
+    <ClInclude Include="Database.h" />
   </ItemGroup>
 </Project>

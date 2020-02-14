@@ -1,10 +1,12 @@
 #include "Instance.h"
 
-Instance::Instance() {
+Instance::Instance(std::string in_name, int in_index, PartPosition in_positionType, double in_positionFrom) {
 
+	name = in_name;
 	part = NULL;
 	parent = NULL;
-	positionFrom = NULL;
+	positionType = in_positionType;
+	positionFrom = in_positionFrom;
 }
 
 Instance::Instance(Part* in_part, Instance* in_parent, int in_index, PartPosition in_positionType, double in_positionFrom) {

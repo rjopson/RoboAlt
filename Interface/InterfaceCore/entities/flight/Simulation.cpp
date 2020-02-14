@@ -22,33 +22,51 @@
 Simulation::Simulation(std::string in_name, std::string in_comments, const double& in_massPad, const double& in_elevationPad) :
 	FlightData(in_name, in_comments, in_massPad, in_elevationPad) {
 
-	phase = FlightPhase::DETECT_LAUNCH;
-	odeStep = 0.05;
-	timeMax = 100.0;
+	//odeStep = 0.05;
+	timeMax = 500.0;
 }
 
 Simulation::~Simulation() {
 
 }
 
-void Simulation::run(const std::vector<double>& initialValues) {
+void Simulation::run(const std::vector<double>& initialValues, const double& odeStepAscent, const double& odeStepDescent) {
 
 	FlightPhase phase = FlightPhase::DETECT_LAUNCH;
 
 	double timeStart = 0.0;
 	double timeRun = timeMax;
 	double timeOfFlight = 0.0;
+	std::vector<double> initial = initialValues;
 
 	while (phase != FlightPhase::GROUND) {
 
-		Event event = runPhase(phase, initialValues, timeStart, timeRun); //calculate current phase
-		timeOfFlight = simResult.back()[0]; //current time of flight in loop
+		Event event;
+		if (phase == FlightPhase::DETECT_LAUNCH ||
+			phase == FlightPhase::ASCENT_POWERED ||
+			phase == FlightPhase::ASCENT_UNPOWERED ||
+			phase == FlightPhase::DESCENT_UNPOWERED) {
+
+			event = runPhase(phase, initial, timeOfFlight, timeRun, odeStepAscent); //calculate current phase
+		}
+		else {
+			event = runPhase(phase, initial, timeOfFlight, timeRun, odeStepDescent); //calculate current phase
+		}
+
+		//update current time and initial conditions
+		timeOfFlight = simResult.back()[0]; 
+		initial.clear();
+		initial.push_back(simResult.back()[1]); 
+		initial.push_back(simResult.back()[2]);
+
 		phase = setPhase(event, timeOfFlight);
 	}
 	updateFlightData();
 }	
 
 FlightPhase Simulation::setPhase(Event event, const double& timeOfFlight) {
+
+	FlightPhase phase;
 
 	bool userEventUsed = false;
 	for (int i = 0; i != userEvents.size(); i++) {
@@ -62,9 +80,11 @@ FlightPhase Simulation::setPhase(Event event, const double& timeOfFlight) {
 
 				case Action::DEPLOY_DROGUE:
 					phase = FlightPhase::DESCSENT_DROGUE;
+					break;
 
 				case Action::DEPLOY_MAIN:
 					phase = FlightPhase::DESCENT_MAIN;
+					break;
 				}
 			}
 			else { //there is a time delay so can't run user action immediately. Save to list of uncomplete actions
@@ -87,85 +107,90 @@ FlightPhase Simulation::setPhase(Event event, const double& timeOfFlight) {
 
 				case Action::DEPLOY_DROGUE:
 					phase = FlightPhase::DESCSENT_DROGUE;
+					break;
 
 				case Action::DEPLOY_MAIN:
 					phase = FlightPhase::DESCENT_MAIN;
+					break;
 				}
 			}
 		}
 	}
 
 	if (!userEventUsed) { //there are no user actions to determine new phase of flight. Go to next default
-				
+		
 		switch (event) {
 
 		case Event::LIFTOFF:
 			phase = FlightPhase::ASCENT_POWERED;
+			break;
 
 		case Event::BURNOUT:
 			phase = FlightPhase::ASCENT_UNPOWERED;
+			break;
 
 		case Event::APOGEE:
 			phase = FlightPhase::DESCENT_UNPOWERED;
+			break;
 
 		case Event::ALTITUDE_MAIN:
 			phase = FlightPhase::DESCENT_MAIN;		
+			break;
 
 		case Event::GROUND:
 			phase = FlightPhase::GROUND;
-		}
+			break;
+		} 
 	}
-
 	return phase;
 }
 
-void Simulation::testRK45(Simulation* in_sim, 
-	std::vector<double> (Simulation::* mf)(const double&, const std::vector<double>)) {
-
-	std::vector<double> initialValues{ 0.0, 0.0 };
-
-	MathUtilities::rk45(initialValues, in_sim->*mf, SimulationEvent::coastDetect, 0, 5, odeStep);
-}
-
-//void f(TestClass * obj, void (TestClass::* mf)()) { (obj->*mf)(); } and call it like f(this, &TestClass::function1)
-
 Event Simulation::runPhase(FlightPhase phase, 
-	const std::vector<double>& initialValues, const double& timeStart, const double& timeRun) {
+	const std::vector<double>& initialValues, const double& timeStart, const double& timeRun, const double& odeStep) {
 
 	std::vector<std::vector<double>> result;
 	Event event;
+	std::function<std::vector<double>(const double&, const std::vector<double>&)> eom;
 
 	double timeEnd = timeStart + timeRun;
 
 	switch (phase) {
 
 	case FlightPhase::DETECT_LAUNCH:
-		//result = MathUtilities::rk45(initialValues, &Simulation::eomAscentPowered, SimulationEvent::launchDetect, timeStart, timeEnd, odeStep);
+		eom = std::bind(&Simulation::eomAscentPowered, this, std::placeholders::_1, std::placeholders::_2);
+		result = MathUtilities::rk45(initialValues, eom, Simulation::launchDetect, timeStart, timeEnd, odeStep);
 		event = Event::LIFTOFF;		
 		break;
 
 	case FlightPhase::ASCENT_POWERED:
-		//result = MathUtilities::rk45(initialValues, &eomAscentPowered, SimulationEvent::coastDetect, timeStart, timeEnd, odeStep);
+		eom = std::bind(&Simulation::eomAscentPowered, this, std::placeholders::_1, std::placeholders::_2);
+		result = MathUtilities::rk45(initialValues, eom, Simulation::coastDetect, timeStart, timeEnd, odeStep);
 		event = Event::BURNOUT;
 		break;
 
 	case FlightPhase::ASCENT_UNPOWERED:
-		//result = MathUtilities::rk45(initialValues, &eomAscentUnpowered, SimulationEvent::apogeeDetect, timeStart, timeEnd, odeStep);
+		eom = std::bind(&Simulation::eomAscentUnpowered, this, std::placeholders::_1, std::placeholders::_2);
+		result = MathUtilities::rk45(initialValues, eom, Simulation::apogeeDetect, timeStart, timeEnd, odeStep);
 		event = Event::APOGEE;
 		break;
 
 	case FlightPhase::DESCENT_UNPOWERED:
-		//result = MathUtilities::rk45(initialValues, &eomAscentUnpowered, SimulationEvent::groundDetect, timeStart, timeEnd, odeStep);
+		eom = std::bind(&Simulation::eomDescentUnpowered, this, std::placeholders::_1, std::placeholders::_2);
+		result = MathUtilities::rk45(initialValues, eom, Simulation::groundDetect, timeStart, timeEnd, odeStep);
 		event = Event::GROUND;
 		break;
 
 	case FlightPhase::DESCSENT_DROGUE:
-		//result = MathUtilities::rk45(initialValues, &eomDescentDrogue, SimulationEvent::mainDetect, timeStart, timeEnd, odeStep);
+		eom = std::bind(&Simulation::eomDescentDrogue, this, std::placeholders::_1, std::placeholders::_2); 
+		std::function<bool(const std::vector<double>&)> main;
+		main = std::bind(&Simulation::mainDetect, this, std::placeholders::_1);
+		result = MathUtilities::rk45(initialValues, eom, main, timeStart, timeEnd, odeStep);
 		event = Event::ALTITUDE_MAIN;
 		break;
 
 	case FlightPhase::DESCENT_MAIN:
-		//result = MathUtilities::rk45(initialValues, &eomDescentMain, SimulationEvent::groundDetect, timeStart, timeEnd, odeStep);
+		eom = std::bind(&Simulation::eomDescentMain, this, std::placeholders::_1, std::placeholders::_2); 
+		result = MathUtilities::rk45(initialValues, eom, Simulation::groundDetect, timeStart, timeEnd, odeStep);
 		event = Event::GROUND;
 		break;
 
@@ -178,12 +203,14 @@ Event Simulation::runPhase(FlightPhase phase,
 
 	//add current phase to results
 	simResult.insert(simResult.end(), result.begin(), result.end());
+
+	return event;
 }
 
 std::vector<double> Simulation::eomAscentPowered(const double& time, const std::vector<double>& state) {
 
 	//Get acceleration
-	double forceSum = motor->getThrust(time) - drag->getDragPowered(atmosphere->density(state[0]), state[1], atmosphere->speedOfSound(state[0]));
+	double forceSum = motor->getThrust(time) - drag->getDrag(true, atmosphere->density(state[0]), std::abs(state[1]), atmosphere->speedOfSound(state[0]));
 	double mass = massPad - motor->massTotal + motor->getMass(time);
 	double acceleration = (forceSum / mass) - GRAVITY;
 
@@ -205,7 +232,7 @@ std::vector<double> Simulation::eomAscentPowered(const double& time, const std::
 std::vector<double> Simulation::eomAscentUnpowered(const double& time, const std::vector<double>& state) {
 	
 	//Get acceleration
-	double forceSum = -drag->getDragUnpowered(atmosphere->density(state[0]), state[1], atmosphere->speedOfSound(state[0]));
+	double forceSum = -1.0*drag->getDrag(false, atmosphere->density(state[0]), std::abs(state[1]), atmosphere->speedOfSound(state[0]));
 	double mass = massPad - motor->massPropellant;
 	double acceleration = (forceSum / mass) - GRAVITY;
 
@@ -217,7 +244,7 @@ std::vector<double> Simulation::eomAscentUnpowered(const double& time, const std
 std::vector<double> Simulation::eomDescentUnpowered(const double& time, const std::vector<double>& state) {
 
 	//Get acceleration
-	double forceSum = drag->getDragUnpowered(atmosphere->density(state[0]), state[1], atmosphere->speedOfSound(state[0]));
+	double forceSum = drag->getDrag(false, atmosphere->density(state[0]), std::abs(state[1]), atmosphere->speedOfSound(state[0]));
 	double mass = massPad - motor->massPropellant;
 	double acceleration = (forceSum / mass) - GRAVITY;
 
@@ -229,7 +256,7 @@ std::vector<double> Simulation::eomDescentUnpowered(const double& time, const st
 std::vector<double> Simulation::eomDescentDrogue(const double& time, const std::vector<double>& state) {
 
 	//Get acceleration
-	double forceSum = drag->getDragDrogue(atmosphere->density(state[0]), state[1], atmosphere->speedOfSound(state[0]));
+	double forceSum = drag->getDragDrogue(atmosphere->density(state[0]), std::abs(state[1]), atmosphere->speedOfSound(state[0]));
 	double mass = massPad - motor->massPropellant;
 	double acceleration = (forceSum / mass) - GRAVITY;
 
@@ -241,8 +268,8 @@ std::vector<double> Simulation::eomDescentDrogue(const double& time, const std::
 std::vector<double> Simulation::eomDescentMain(const double& time, const std::vector<double>& state) {
 	
 	//Get acceleration
-	double forceSum = drag->getDragDrogue(atmosphere->density(state[0]), state[1], atmosphere->speedOfSound(state[0])) +
-		drag->getDragMain(atmosphere->density(state[0]), state[1], atmosphere->speedOfSound(state[0]));
+	double forceSum = drag->getDragDrogue(atmosphere->density(state[0]), std::abs(state[1]), atmosphere->speedOfSound(state[0])) +
+		drag->getDragMain(atmosphere->density(state[0]), std::abs(state[1]), atmosphere->speedOfSound(state[0]));
 	
 	double mass = massPad - motor->massPropellant;
 	double acceleration = (forceSum / mass) - GRAVITY;
@@ -264,6 +291,56 @@ void Simulation::updateFlightData() {
 		altitude.push_back(line[1]);
 		velocity.push_back(line[2]);
 		acceleration.push_back(line[3]);
+	}
+}
+
+bool Simulation::launchDetect(const std::vector<double>& state) {
+
+	if (state[2] > VELOCITY_LAUNCH_DETECT && state[3] > ACCELERATION_LAUNCH_DETECT) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+bool Simulation::coastDetect(const std::vector<double>& state) {
+
+	if (state[3] < ACCELERATION_COAST_DETECT) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+bool Simulation::apogeeDetect(const std::vector<double>& state) {
+
+	if (state[2] < VELOCITY_APOGEE_DETECT) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+bool Simulation::mainDetect(const std::vector<double>& state) {
+
+	if (state[1] < altitudeMainDeploy) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+bool Simulation::groundDetect(const std::vector<double>& state) {
+
+	if (state[1] <= 0.0) {
+		return true;
+	}
+	else {
+		return false;
 	}
 }
 

@@ -2,9 +2,12 @@
 #define _MOTOR_H
 
 #include <cmath>
+#include <fstream>
 #include <iostream>
+#include <sstream>
 #include <vector>
 
+#include "Parse.h"
 #include "MathUtilities.h"
 
 #define PI 3.141592653589793
@@ -15,6 +18,7 @@ public:
 	Motor(std::string in_name, std::string in_manufacturer, std::string in_comments,
 		double in_diameter, double in_length, std::vector<double> in_delay, double in_massPropellant, double in_massTotal,
 		std::vector<double> in_dataTime, std::vector<double> in_dataThrust);
+	Motor(std::string filePath);
 	~Motor();
 
 	std::string name;
@@ -33,7 +37,8 @@ public:
 	double area();
 
 	//double isp();
-	//double impulse();
+	double impulseTotal();
+	std::vector<double> impulse();
 }; 
 #endif
 

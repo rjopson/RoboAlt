@@ -2,149 +2,201 @@
 
 #include "Configuration.h"
 
-Configuration::Configuration(std::string in_name, std::string in_comments, SurfaceFinish in_surfaceFinish,
-	bool in_massOverrideSwitch, double in_massOverride,
-	bool in_cgOverrideSwitch, double in_cgOverride) :
-
-	mass(0.0, in_massOverrideSwitch, in_massOverride, in_cgOverrideSwitch, in_cgOverride) {
+Configuration::Configuration(std::string in_name, std::string in_comments, SurfaceFinish in_surfaceFinish) {
 
 	name = in_name;
 	comments = in_comments;
 	surfaceFinish = in_surfaceFinish;
 
-	instanceHierarchy = new Instance();
+	stageList.push_back(new Stage("sustainer", 0, PartPosition::FOREWARD, 0.0));
 }
 
 Configuration::~Configuration() {
 
+	//delete stages
+	for (auto it_stage = stageList.begin(); it_stage != stageList.end(); it_stage++) {
+		delete (*it_stage);
+	}
+
+	for (auto it_ex = experimentalFlightList.begin(); it_ex != experimentalFlightList.end(); it_ex++) {
+		delete (*it_ex);
+	}
+
+	for (auto it_sim = simulationFlightList.begin(); it_sim != simulationFlightList.end(); it_sim++) {
+		delete (*it_sim);
+	}
 }
 
-std::vector<Instance*> Configuration::instanceFlatList() {
+std::vector<Instance*> Configuration::instanceFlatList(const Stage* stage) {
 
 	std::vector<Instance*> flatList;
 
-	instanceFlatListRecursive(instanceHierarchy, flatList);
-	flatList.erase(flatList.begin()); //remove the instance root
-
+	//loop through stages including input stage
+	for (auto it = stageList.begin(); it != 1+std::find(stageList.begin(), stageList.end(), stage); it++) {
+		(*it)->instanceFlatListRecursive((*it)->instanceRoot, flatList);
+		flatList.erase(flatList.begin()); //remove the stage root
+	}
 	return flatList;
 }
 
-double Configuration::areaReference() {
-	return PI * std::pow(diameterMax() / 2.0, 2.0);
+double Configuration::areaReference(const Stage* stage) {
+	return PI * std::pow(diameterMax(stage) / 2.0, 2.0);
 }
 
-double Configuration::length() {
+double Configuration::length(const Stage* stage) {
 
 	double lengthSum = 0.0;
 
-	for (auto instance : instanceHierarchy->childList) {
+	for (auto it = stageList.begin(); it != 1 + std::find(stageList.begin(), stageList.end(), stage); it++) {
+		for (auto instance : (*it)->instanceRoot->childList) {
 
-		if (instance->part->type == PartType::NOSECONE || instance->part->type == PartType::TUBE_BODY) {
-			lengthSum += instance->part->lengthAirflow();
+			if (instance->part->type == PartType::NOSECONE || instance->part->type == PartType::TUBE_BODY) {
+				lengthSum += instance->part->lengthAirflow();
+			}
 		}
 	}
 	return lengthSum;
 }
 
-double Configuration::diameterMax() {
+double Configuration::diameterMax(const Stage* stage) {
 
 	double diameter = 0.0;
 
-	for (auto instance : instanceHierarchy->childList) {
-
-		if (instance->part->type == PartType::NOSECONE || instance->part->type == PartType::TUBE_BODY) {
-			if (instance->part->diameterAirflow() > diameter) {
-				diameter = instance->part->diameterAirflow();
+	for (auto it = stageList.begin(); it != 1 + std::find(stageList.begin(), stageList.end(), stage); it++) { //loop through each stage
+		for (auto instance : (*it)->instanceRoot->childList) { //loop through each child in top level instances
+			if (instance->part->type == PartType::NOSECONE || instance->part->type == PartType::TUBE_BODY) {
+				if (instance->part->diameterAirflow() > diameter) {
+					diameter = instance->part->diameterAirflow();
+				}
 			}
 		}
 	}
 	return diameter;
 }
 
-double Configuration::finenessRatio() {
-	return length() / diameterMax();
+double Configuration::finenessRatio(const Stage* stage) {
+	return length(stage) / diameterMax(stage);
 }
 
-void Configuration::instanceFlatListRecursive(Instance* parent, std::vector<Instance*> &flatList) {
+double Configuration::getStageMass(const Stage* stage) {
 
-	flatList.push_back(parent);
-
-	if (!parent->childList.empty()) { //additional instances in child list
-		for (auto child : parent->childList) {
-			instanceFlatListRecursive(child, flatList);
+	if (stage->inertial.massOverrideSwitch) { //user wants stage mass to be overridden
+		return stage->inertial.massOverride;
+	}
+	else { //calculate mass for stage
+		double mass = 0.0;
+		for (auto it = stageList.begin(); it != 1 + std::find(stageList.begin(), stageList.end(), stage); it++) { //loop through each stage
+			for (auto instance : (*it)->instanceRoot->childList) { //loop through each child in top level instances
+				mass += instance->part->mass();
+			}
 		}
+		return mass;
+	}	
+}
+
+double Configuration::getStageCg(const Stage* stage) {
+
+	if (stage->inertial.cgOverrideSwitch) { //user wants stage mass to be overridden
+		return stage->inertial.cgOverride;
+	}
+	else { //calculate mass for stage
+		return 0.0;
+		//still need to write equation to calculate cg
 	}
 }
 
-double Configuration::dragCoefficient(const double& in_machNumber, const double& in_areaThrusting) {
-	return dragCoefficientFriction(in_machNumber) + 
-		dragCoefficientPressure(in_machNumber) + 
-		dragCoefficientBase(in_machNumber, in_areaThrusting);
+Drag Configuration::getDragModel(const Stage* stage, const double& machMin, const double& machMax, const double& steps, const double& motorArea) {
+
+	std::vector<double> mach;
+	std::vector<double> cd_powerOff;
+	std::vector<double> cd_powerOn;
+	Drag drag("Internal Model", DragType::ROCKET, "", "");
+
+	for (int i = 0; i != steps; i++) {
+
+		double m = (double)i*(machMax / ((double)steps));
+		mach.push_back(m);
+		cd_powerOff.push_back(dragCoefficient(stage, m, 0.0));
+		cd_powerOn.push_back(dragCoefficient(stage, m, motorArea));
+	}
+	drag.areaReference = areaReference(stage);
+	drag.dataMachUnpowered = mach;
+	drag.dataCdUnpowered = cd_powerOff;
+	drag.dataMachPowered = mach;
+	drag.dataCdPowered = cd_powerOn;
+
+	return drag;
 }
 
-double Configuration::dragCoefficientFriction(const double& in_machNumber) {
+double Configuration::dragCoefficient(const Stage* stage, const double& in_machNumber, const double& in_areaThrusting) {
+	return dragCoefficientFriction(stage, in_machNumber) + 
+		dragCoefficientPressure(stage, in_machNumber) + 
+		dragCoefficientBase(stage, in_machNumber, in_areaThrusting);
+}
+
+double Configuration::dragCoefficientFriction(const Stage* stage, const double& in_machNumber) {
 
 	double cd = 0.0;
 
-	for (double cd_part : dragCoefficientFrictionParts(in_machNumber)) {
+	for (double cd_part : dragCoefficientFrictionParts(stage, in_machNumber)) {
 		cd += cd_part;
 	}
 	return cd;
 }
 
-double Configuration::dragCoefficientPressure(const double& in_machNumber) {
+double Configuration::dragCoefficientPressure(const Stage* stage, const double& in_machNumber) {
 
 	double cd = 0.0;
 
-	for (double cd_part : dragCoefficientPressureParts(in_machNumber)) {
+	for (double cd_part : dragCoefficientPressureParts(stage, in_machNumber)) {
 		cd += cd_part;
 	}
 	return cd;
 }
 
-double Configuration::dragCoefficientBase(const double& in_machNumber, const double& in_areaThrusting) {
+double Configuration::dragCoefficientBase(const Stage* stage, const double& in_machNumber, const double& in_areaThrusting) {
 
 	double cd = 0.0;
 
-	for (double cd_part : dragCoefficientBaseParts(in_machNumber, in_areaThrusting)) {
+	for (double cd_part : dragCoefficientBaseParts(stage, in_machNumber, in_areaThrusting)) {
 		cd += cd_part;
 	}
 	return cd;
 }
 
-std::vector<double> Configuration::dragCoefficientFrictionParts(const double& in_machNumber) {
+std::vector<double> Configuration::dragCoefficientFrictionParts(const Stage* stage, const double& in_machNumber) {
 
 	std::vector<double> cd;
 
-	Atmosphere atmosphere;
+	Atmosphere_ISA atmosphere;
 	double velocity = in_machNumber * atmosphere.speedOfSound(0.0);
 
-	double cf = Aerodynamics::skinFrictionCoefficient(Aerodynamics::surfaceRoughness(surfaceFinish), length(), velocity, in_machNumber);
+	double cf = Aerodynamics::skinFrictionCoefficient(Aerodynamics::surfaceRoughness(surfaceFinish), length(stage), velocity, in_machNumber);
 
-	for (auto instance : instanceFlatList()) {
-		cd.push_back(instance->part->dragCoefficientFriction(cf, areaReference(), finenessRatio()));
+	for (auto instance : instanceFlatList(stage)) {
+		cd.push_back(instance->part->dragCoefficientFriction(cf, areaReference(stage), finenessRatio(stage)));
 	}
 	return cd;
 }
 
-std::vector<double> Configuration::dragCoefficientPressureParts(const double& in_machNumber) {
+std::vector<double> Configuration::dragCoefficientPressureParts(const Stage* stage, const double& in_machNumber) {
 
 	std::vector<double> cd;
 
-	for (auto instance : instanceFlatList()) {
-		cd.push_back(instance->part->dragCoefficientPressure(in_machNumber, areaReference()));
+	for (auto instance : instanceFlatList(stage)) {
+		cd.push_back(instance->part->dragCoefficientPressure(in_machNumber, areaReference(stage)));
 	}
 	return cd;
 }
 
-std::vector<double> Configuration::dragCoefficientBaseParts(const double& in_machNumber, const double& in_areaThrusting) {
+std::vector<double> Configuration::dragCoefficientBaseParts(const Stage* stage, const double& in_machNumber, const double& in_areaThrusting) {
 
 	std::vector<double> cd;
 
-	for (auto instance : instanceFlatList()) {
+	for (auto instance : instanceFlatList(stage)) {
 
-		if (instance == instanceHierarchy->childList.back()) { //Get last part 			
-			cd.push_back(instanceHierarchy->childList.back()->part->dragCoefficientBase(true, in_machNumber, in_areaThrusting, areaReference()));
+		if (instance == stage->instanceRoot->childList.back()) { //Get last part 			
+			cd.push_back(instance->part->dragCoefficientBase(true, in_machNumber, in_areaThrusting, areaReference()));
 		}
 		else {
 			cd.push_back(0.0);
@@ -153,13 +205,13 @@ std::vector<double> Configuration::dragCoefficientBaseParts(const double& in_mac
 	return cd;
 }
 
-void Configuration::printDragCoefficients(const double& in_machNumber, const double& in_areaThrusting) {
+void Configuration::printDragCoefficients(const Stage* stage, const double& in_machNumber, const double& in_areaThrusting) {
 
-	std::vector<double> cd_friction = dragCoefficientFrictionParts(in_machNumber);
-	std::vector<double> cd_pressure = dragCoefficientPressureParts(in_machNumber);
-	std::vector<double> cd_base = dragCoefficientBaseParts(in_machNumber, in_areaThrusting);
+	std::vector<double> cd_friction = dragCoefficientFrictionParts(stage, in_machNumber);
+	std::vector<double> cd_pressure = dragCoefficientPressureParts(stage, in_machNumber);
+	std::vector<double> cd_base = dragCoefficientBaseParts(stage, in_machNumber, in_areaThrusting);
 
-	std::vector<Instance*> inst = instanceFlatList();
+	std::vector<Instance*> inst = instanceFlatList(stage);
 
 	for (auto it = inst.begin(); it != inst.end(); it++) {
 

@@ -53,6 +53,8 @@ public:
 		const double& in_areaFinsFrontal, const double& in_areaReference);
 	static double surfaceRoughness(SurfaceFinish surfaceFinish);
 
+	static double dragCoefficientParachute();
+
 	//skin friction drag
 	static double skinFrictionCoefficient(const double& in_surfaceRoughness, const double& in_length,
 		const double& in_velocity, const double& in_machNumber);

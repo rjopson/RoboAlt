@@ -2,6 +2,7 @@
 #define _DRAG_H
 
 #include <cmath>
+#include <functional>
 #include <iostream>
 #include <vector>
 
@@ -9,39 +10,29 @@
 
 //need enum to select between internal drag model and external tabular data
 enum class DragType {
-	INTERNAL,
-	EXTERNAL
+	ROCKET,
+	PARACHUTE
 };
 
 class Drag
 {
 public:
-	Drag(std::string in_name, std::string in_manufacturer, std::string in_comments,
-		std::vector<double> in_dataMachNumber, std::vector<double> in_dataCd);
+	Drag(std::string in_name, DragType in_type, std::string in_manufacturer, std::string in_comments);
 	~Drag();
 
 	std::string name;
-	double areaReferenceRocket, areaReferenceDrogue, areaReferenceMain;
-	std::vector<double> dataMachNumber;
-	std::vector<double> dataCdPowered;
-	std::vector<double> dataCdUnpowered;
-	std::vector<double> dataCdDrogue;
-	std::vector<double> dataCdMain;
+	std::string manufacturer;
 	std::string comments;
+	DragType type;
+	double areaReference;
+	std::vector<double> dataMachUnpowered;
+	std::vector<double> dataCdUnpowered;
+	std::vector<double> dataMachPowered;
+	std::vector<double> dataCdPowered;	
 
 	double getDynamicPressure(const double& in_density, const double& in_velocity);
-
-	double getCdPowered(const double& in_machNumber); //interpolate data for single mach number
-	double getCdUnpowered(const double& in_machNumber); //interpolate data for single mach number
-	double getCdDrogue(const double& in_machNumber); //interpolate data for single mach number
-	double getCdMain(const double& in_machNumber); //interpolate data for single mach number
-
-	double getDragPowered(const double& in_density, const double& in_velocity, const double& in_speedOfSound); //interpolate data for single drag
-	double getDragUnpowered(const double& in_density, const double& in_velocity, const double& in_speedOfSound);
-	double getDragDrogue(const double& in_density, const double& in_velocity, const double& in_speedOfSound);
-	double getDragMain(const double& in_density, const double& in_velocity, const double& in_speedOfSound);
-
-
+	double getCd(bool powered, const double& in_machNumber); //interpolate data for single mach number
+	double getDrag(bool powered, const double& in_density, const double& in_velocity, const double& in_speedOfSound); //interpolate data for single drag
 };
 #endif
 
