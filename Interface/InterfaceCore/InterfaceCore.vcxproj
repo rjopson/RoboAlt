@@ -45,6 +45,8 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="entities\flight\Simulation.cpp" />
     <ClCompile Include="entities\design\Stage.cpp" />
+    <ClCompile Include="entities\flight\SimulationStage.cpp" />
+    <ClCompile Include="utils\Matrix.cpp" />
     <ClCompile Include="utils\Parse.cpp" />
     <ClCompile Include="utils\MathUtilities.cpp" />
   </ItemGroup>
@@ -74,6 +76,8 @@
     <ClInclude Include="entities\flight\Experimental.h" />
     <ClInclude Include="entities\design\Rocket.h" />
     <ClInclude Include="entities\design\Stage.h" />
+    <ClInclude Include="entities\flight\SimulationStage.h" />
+    <ClInclude Include="utils\Matrix.h" />
     <ClInclude Include="utils\Parse.h" />
     <ClInclude Include="utils\MathUtilities.h" />
   </ItemGroup>

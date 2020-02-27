@@ -3,6 +3,7 @@
 #define _SIMULATION_EVENT_H
 
 #include <vector>
+#include "Parachute.h"
 
 enum class Event {
 	LIFTOFF,
@@ -23,18 +24,20 @@ enum class Action {
 class SimulationEvent
 {
 public:
-	SimulationEvent(Event in_event, Action in_action, const double& in_timeDelay);
-	SimulationEvent(Event in_event, Action in_action, const double& in_timeDelay, const double& altitudeMainDeploy);
+	SimulationEvent(Event in_event, Action in_action, const double& in_timeDelay, 
+		Parachute* in_parachute, const double& altitudeMainDeploy); 
 	~SimulationEvent();
 
 	Event event;
 	Action action;
-	bool complete;
+	//bool complete;
+
 	double altitudeMainDeploy;
+	Parachute* parachute;
 
-	double delayTimeFromEvent;
-	double delayTimeOfFlight;
+	double timeDelay;
+	double timeToActivateAction;
 
-	void setDelayTimeOfFlight(const double & in_timeOfFlight);
+	void setTimeToActivateAction(const double & in_timeOfFlight);
 };
 #endif

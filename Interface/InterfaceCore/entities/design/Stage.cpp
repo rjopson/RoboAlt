@@ -12,18 +12,6 @@ Stage::Stage(const std::string& in_name, const double& in_distanceOverlap, const
 
 Stage::~Stage(){
 
-	//delete drag data 
-	for (auto it = dragRocketList.begin(); it != dragRocketList.end(); it++) {
-		delete (*it);
-	}
-
-	for (auto it = dragDrogueList.begin(); it != dragDrogueList.end(); it++) {
-		delete (*it);
-	}
-
-	for (auto it = dragMainList.begin(); it != dragMainList.end(); it++) {
-		delete (*it);
-	}
 }
 
 void Stage::instanceFlatListRecursive(Instance* parent, std::vector<Instance*> &flatList) {
@@ -35,4 +23,32 @@ void Stage::instanceFlatListRecursive(Instance* parent, std::vector<Instance*> &
 			instanceFlatListRecursive(child, flatList);
 		}
 	}
+}
+
+double Stage::massEmpty() {
+
+	if (inertial.massOverrideSwitch) {//user wants override value to be used
+		return inertial.massOverride;
+	}
+	else {
+
+		double mass = 0.0;
+		for (auto instance : instanceRoot->childList) { //loop through each child in top level instances
+			mass += instance->part->mass();
+		}
+		return mass;
+	}
+}
+
+Drag Stage::getDragDrogueModel() {
+	
+	for (auto userEvent : userEventsCurrent) {
+		if (userEvent.action == Action::DEPLOY_DROGUE) {
+			return 
+		}
+	}
+}
+
+Drag Stage::getDragMainModel() {
+
 }

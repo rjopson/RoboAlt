@@ -32,7 +32,7 @@ double MathUtilities::interpolateLinear(std::vector<double>& in_x_data, std::vec
 }
 
 //https://math.stackexchange.com/questions/721076/help-with-using-the-runge-kutta-4th-order-method-on-a-system-of-2-first-order-od
-std::vector<std::vector<double>> MathUtilities::rk45(const std::vector<double>& initialValues,
+Matrix<double> MathUtilities::rk45(const std::vector<double>& initialValues,
 	std::function<std::vector<double>(const double&, const std::vector<double>&)> ode,
 	std::function<bool(const std::vector<double>&)> event,
 	const double& xStart, const double& xEnd, const double& step) {
@@ -42,8 +42,8 @@ std::vector<std::vector<double>> MathUtilities::rk45(const std::vector<double>& 
 	std::vector<double> k1, k2, k3, k4;
 	std::vector<double> Y_x_n = initialValues; //solutions to all 1st order ode's - Y_n[0] is highest order
 	std::vector<double> Y_x_np1; //n+1 step of solution
-	std::vector<std::vector<double>> Y; //used to store solutions of all ode's at every timestep
-	
+	Matrix<double> Y(iterations,initialValues.size()+2); //used to store solutions of all ode's at every timestep. For example, if initial values were [position, velocity] each Y row is [time, position, velocity, acceleration]
+	int finalIteration;
 
 	for (int i = 0; i != iterations; i++) {
 
@@ -63,16 +63,18 @@ std::vector<std::vector<double>> MathUtilities::rk45(const std::vector<double>& 
 			stepResult.push_back(Y_x_np1[i]);
 		}
 		stepResult.push_back(ode(x_n + step, Y_x_np1).back()); //saves solution to lowest order ode - if ode's solve, position, velocity, this would be acceleration result
-		Y.push_back(stepResult);
+		Y.insertRow(i, stepResult);
 
 		//if an event is reached, break the integration early
 		if (event(stepResult) == true) {
+			finalIteration = i;
 			break;
 		}
 
 		//Update state for next iteration.
 		Y_x_n = Y_x_np1;
 	}
+	Y.resize(finalIteration, initialValues.size() + 2);
 	return Y;
 }
 

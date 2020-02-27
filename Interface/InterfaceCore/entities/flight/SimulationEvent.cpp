@@ -1,26 +1,19 @@
 #include "SimulationEvent.h"
 
-SimulationEvent::SimulationEvent(Event in_event, Action in_action, const double& in_timeDelay) {
+SimulationEvent::SimulationEvent(Event in_event, Action in_action, const double& in_timeDelay, Parachute* in_parachute, const double& in_altitudeMainDeploy) {
 	event = in_event;
 	action = in_action;
-	delayTimeFromEvent = in_timeDelay;
-
-	complete = false;
-}
-
-SimulationEvent::SimulationEvent(Event in_event, Action in_action, const double& in_timeDelay, const double& in_altitudeMainDeploy) {
-	event = in_event;
-	action = in_action;
-	delayTimeFromEvent = in_timeDelay; 
+	timeDelay = in_timeDelay; 
 	altitudeMainDeploy = in_altitudeMainDeploy;
+	parachute = in_parachute;
 
-	complete = false;
+	//complete = false;
 }
 
 SimulationEvent::~SimulationEvent() {
 }
 
-void SimulationEvent::setDelayTimeOfFlight(const double & in_timeOfFlight) {
-	delayTimeOfFlight = in_timeOfFlight + delayTimeFromEvent;
+void SimulationEvent::setTimeToActivateAction(const double & in_timeOfFlight) {
+	timeToActivateAction = in_timeOfFlight + timeDelay;
 }
 

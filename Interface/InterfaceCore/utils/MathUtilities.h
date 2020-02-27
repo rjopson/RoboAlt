@@ -6,6 +6,8 @@
 #include <iostream>
 #include <vector>
 
+#include "Matrix.h"
+
 class MathUtilities
 {
 public:
@@ -16,7 +18,7 @@ public:
 	static double interpolateLinear(std::vector<double>& in_x_data, std::vector<double>& in_y_data, const double& in_x);
 
 	//ODE's
-	static std::vector<std::vector<double>> rk45(const std::vector<double>& initialValues, 
+	static Matrix<double> rk45(const std::vector<double>& initialValues, 
 		std::function<std::vector<double>(const double&, const std::vector<double>&)> ode, 
 		std::function<bool(const std::vector<double>&)> event,
 		const double& xStart, const double& xEnd, const double& step);
@@ -32,4 +34,4 @@ public:
 
 private:
 };
-#endif // !_MATH_UTILITIES_h
+#endif 

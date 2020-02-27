@@ -1,5 +1,6 @@
 #include "Instance.h"
 
+//for root instances
 Instance::Instance(std::string in_name, int in_index, PartPosition in_positionType, double in_positionFrom) {
 
 	name = in_name;
@@ -9,6 +10,7 @@ Instance::Instance(std::string in_name, int in_index, PartPosition in_positionTy
 	positionFrom = in_positionFrom;
 }
 
+//for all other instances
 Instance::Instance(Part* in_part, Instance* in_parent, int in_index, PartPosition in_positionType, double in_positionFrom) {
 
 	part = in_part;

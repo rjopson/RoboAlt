@@ -1,14 +1,12 @@
 #include "Atmosphere_ISA.h"
 
-
-
 Atmosphere_ISA::Atmosphere_ISA() {
 
-	//-610km, 11km, 20km, 32km, 47km, 51km, 71km, 84.9km
+	//-610m, 11km, 20km, 32km, 47km, 51km, 71km, 84.9km
     p1.insert(p1.end(), {108900.0, 22632.0, 5474.9, 868.02, 110.91, 67.0, 3.9564, 0.3734});
 	t1.insert(t1.end(), {292.15, 216.65, 216.65, 228.65, 270.65, 270.65, 214.65, 186.87});
 	h1.insert(h1.end(), {-610.0, 11000.0, 20000.0, 32000.0, 47000.0, 51000.0, 71000.0, 84900.0});
-	a.insert(a.end(), {-0.0065, 0.0, 0.001, 0.0028, 0.0, -0.0028, -0.002, 0.0});
+	a.insert(a.end(), {-0.0065, 0.0, 0.001, 0.0028, 0.0, -0.0028, -0.002, 0.0});	
 }
 
 Atmosphere_ISA::~Atmosphere_ISA() {
@@ -59,6 +57,24 @@ double Atmosphere_ISA::height(const double& in_pressure) {
 	else { //gradient region
 		return (t1[region] / (-a[region]))*(1 - pow(in_pressure / p1[region], (R_SPECIFIC*(-a[region])) / GRAVITY) + h1[region]);
 	}
+}
+
+//returns vector of {height, pressure, temperature}
+Atmosphere Atmosphere_ISA::getModel() {
+
+	std::vector<double> heightData(heightMaximum - heightMinimum + heightStep);
+	std::vector<double> pressureData(heightMaximum - heightMinimum + heightStep);
+	std::vector<double> temperatureData(heightMaximum - heightMinimum + heightStep);
+
+	for (int i = 0; i != heightMaximum - heightMinimum + heightStep; i += heightStep) {
+
+		double heightCurrent = (double)(i - heightMinimum);
+		heightData[i] = heightCurrent;
+		pressureData[i] = pressure(heightCurrent);
+		temperatureData[i] = temperature(heightCurrent);
+	}
+
+	return Atmosphere(true, "Internal model", "", heightData, pressureData, temperatureData);
 }
 
 int Atmosphere_ISA::regionFromHeight(const double& in_height) {

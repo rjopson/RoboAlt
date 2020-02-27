@@ -2,13 +2,7 @@
 #ifndef _STAGE_H
 #define _STAGE_H
 
-#include "Aerodynamics.h"
-#include "Atmosphere_ISA.h"
-#include "Drag.h"
-#include "Fins.h"
 #include "InertialOverride.h"
-#include "Nosecone.h"
-#include "TubeBody.h"
 #include "Instance.h"
 
 class Stage
@@ -21,12 +15,11 @@ public:
 	std::string name;
 	std::string comments;
 	double distanceOverlap; //amount this stage overlaps the one in front of it 
-
 	InertialOverride inertial;
 
-	std::vector<Drag*> dragRocketList; //flight data or external data which has been imported
-	std::vector<Drag*> dragDrogueList; //flight data or external data which has been imported
-	std::vector<Drag*> dragMainList; //flight data or external data which has been imported
+	SurfaceFinish surfaceFinish;
+	
+	double massEmpty();
 
 	Instance* instanceRoot; 
 	void instanceFlatListRecursive(Instance* parent, std::vector<Instance*> &flatList);

@@ -5,27 +5,12 @@
 #include <iostream>
 #include <vector>
 
-#include "Atmosphere.h"
-#include "Drag.h"
-#include "MathUtilities.h"
-#include "Motor.h"
 
 class FlightData
 {
 public:
-	FlightData(std::string in_name, std::string in_comments, const double& in_massPad, const double& in_elevationPad);
-	~FlightData();
-
-	std::string name;
-	std::string comments;
-
-	Atmosphere* atmosphere;
-	std::vector<Drag*> dragRocket; //drag for each stage 
-	Drag* dragDrogue, dragMain;
-	Motor* motor;	
-
-	double elevationPad;
-	double massPad;
+	FlightData();
+	~FlightData();	
 
 	std::vector<double> time;
 	std::vector<double> altitude, velocity, acceleration;

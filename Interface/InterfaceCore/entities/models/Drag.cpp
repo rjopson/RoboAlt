@@ -1,10 +1,9 @@
 #include "Drag.h"
 
-
-
-Drag::Drag(std::string in_name, DragType in_type, std::string in_manufacturer, std::string in_comments) {
+Drag::Drag(bool in_internallyCalculated, std::string in_name, DragType in_type, std::string in_manufacturer, std::string in_comments) {
 
 	name = in_name;
+	internallyCalculated = in_internallyCalculated;
 	manufacturer = in_manufacturer;
 	comments = in_comments;
 	type = in_type;

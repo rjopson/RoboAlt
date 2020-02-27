@@ -9,55 +9,62 @@
 #define ACCELERATION_COAST_DETECT			0.0 //(m/s^2)
 #define VELOCITY_APOGEE_DETECT				0.0 //(m/s)
 
-
+#include "Atmosphere.h"
+#include "Drag.h"
 #include "FlightData.h"
+#include "Motor.h"
 #include "SimulationEvent.h"
+#include "SimulationStage.h"
 #include "Stage.h"
 
-enum class FlightPhase {
+#include "Matrix.h"
+
+enum class Phase {
 	DETECT_LAUNCH,
 	ASCENT_POWERED,
-	ASCENT_UNPOWERED,
-	DESCENT_UNPOWERED,
-	DESCSENT_DROGUE,
+	ASCENT_UNPOWERED_STACKED,
+	ASCENT_UNPOWERED_UNSTACKED,
+	DESCENT_UNPOWERED_STACKED,
+	DESCENT_UNPOWERED_UNSTACKED,
+	DESCENT_DROGUE,
 	DESCENT_MAIN,
 	GROUND
 };
 
-struct StageSetup {
-	double massEmpty; //might not need this?
-	Motor motor;
-	Drag dragRocket, dragDrogue, dragMain;
-	std::vector<SimulationEvent> userEvents;
-}; 
+class Simulation {
 
-class Simulation :
-	public FlightData
-{
 public:
-	Simulation(std::string in_name, std::string in_comments, const double& in_massPad, const double& in_elevationPad);
+	Simulation(std::string in_name, std::string in_comments, Atmosphere* in_atmosphere,
+		const double& in_heightPad, const double& in_angleLaunchRod, const double& in_lengthLaunchRod);
 	~Simulation();
+	
+	double heightPad;
+	double angleLaunchRod;
+	double lengthLaunchRod;
 
-	//std::vector<StageSetup> stages;
+	Atmosphere* atmosphere;
+	std::vector<SimulationStage> simStageList;
 
-	void run(const std::vector<double>& initialValues, const double& odeStepAscent, const double& odeStepDescent);
-	Event runPhase(FlightPhase phase, const std::vector<double>& initialValues, const double& timeStart, const double& timeRun, const double& odeStep);
-
+	void run();
 
 private:
-	double timeMax;
-	
-	std::vector<SimulationEvent> uncompleteUserEvents;
-	FlightPhase setPhase(Event event, const double& timeOfFlight);
-	std::vector<std::vector<double>> simResult; //t, S, V, A - used to populate FlightData vectors
-	void updateFlightData();
+	double timeMax; //limits time the ode solver can run. Shouldn't ever be met unless something goes wrong with code
+	//Matrix<double> runStage();
+	Event runPhase(Matrix<double>& resultPhaseCurrent, Phase phase, const std::vector<double>& initialConditions,
+		const double& timeStart, const double& timeEnd, const double& odeStep);
+	Phase getNextPhase(Event eventCurrent, const double& timeOfFlight);
+	double getMotorMassStagesAbove();
+
+	double massEmptyCurrent;
+	SimulationStage simStageCurrent;
+	Drag* dragCurrent;
+	std::vector<SimulationEvent> uncompleteUserEventList;
+
+	double getTimeEndNextPhase(const double& timeOfFlight);
 
 	//return solution of ode for timestep. S[0] = position, S[1] = velocity for next time step
-	std::vector<double> eomAscentPowered(const double& time, const std::vector<double>& state);
-	std::vector<double> eomAscentUnpowered(const double& time, const std::vector<double>& state);
-	std::vector<double> eomDescentUnpowered(const double& time, const std::vector<double>& state);
-	std::vector<double> eomDescentDrogue(const double& time, const std::vector<double>& state);
-	std::vector<double> eomDescentMain(const double& time, const std::vector<double>& state);
+	std::vector<double> eomAscent(const double& time, const std::vector<double>& state);
+	std::vector<double> eomDescent(const double& time, const std::vector<double>& state);
 
 	//events
 	static bool launchDetect(const std::vector<double>& state);
@@ -65,6 +72,7 @@ private:
 	static bool apogeeDetect(const std::vector<double>& state);
 	bool mainDetect(const std::vector<double>& state);
 	static bool groundDetect(const std::vector<double>& state);
+
 };
 #endif
 

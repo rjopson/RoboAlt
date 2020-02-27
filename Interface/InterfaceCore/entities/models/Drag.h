@@ -17,10 +17,12 @@ enum class DragType {
 class Drag
 {
 public:
-	Drag(std::string in_name, DragType in_type, std::string in_manufacturer, std::string in_comments);
+	Drag() {}
+	Drag(bool in_internallyCalculated, std::string in_name, DragType in_type, std::string in_manufacturer, std::string in_comments);
 	~Drag();
 
 	std::string name;
+	bool internallyCalculated;
 	std::string manufacturer;
 	std::string comments;
 	DragType type;

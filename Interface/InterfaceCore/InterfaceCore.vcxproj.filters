@@ -34,9 +34,6 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="entities\design\ManageMass.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="entities\design\Mass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -72,6 +69,10 @@
     <ClCompile Include="entities\models\Atmosphere.cpp" />
     <ClCompile Include="entities\design\Rocket.cpp" />
     <ClCompile Include="Database.cpp" />
+    <ClCompile Include="entities\design\InertialOverride.cpp" />
+    <ClCompile Include="entities\design\Stage.cpp" />
+    <ClCompile Include="utils\Matrix.cpp" />
+    <ClCompile Include="entities\flight\SimulationStage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="aerodynamics\Aerodynamics.h">
@@ -90,9 +91,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="entities\design\Instance.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="entities\design\ManageMass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="entities\design\Mass.h">
@@ -130,5 +128,9 @@
     <ClInclude Include="entities\models\Atmosphere.h" />
     <ClInclude Include="entities\design\Rocket.h" />
     <ClInclude Include="Database.h" />
+    <ClInclude Include="entities\design\InertialOverride.h" />
+    <ClInclude Include="entities\design\Stage.h" />
+    <ClInclude Include="utils\Matrix.h" />
+    <ClInclude Include="entities\flight\SimulationStage.h" />
   </ItemGroup>
 </Project>
