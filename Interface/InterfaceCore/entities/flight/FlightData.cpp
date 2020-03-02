@@ -2,12 +2,18 @@
 
 
 
-FlightData::FlightData(std::string in_name, std::string in_comments) {
+FlightData::FlightData() {
 
-	name = in_name;
-	comments = in_comments;
 }
 
 FlightData::~FlightData() {
 
+}
+
+void FlightData::populate(const Matrix<double>& data) {
+
+	time = data.getColumn(0);
+	altitude = data.getColumn(1);
+	velocity = data.getColumn(2);
+	acceleration = data.getColumn(3);
 }

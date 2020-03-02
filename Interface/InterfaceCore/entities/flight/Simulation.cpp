@@ -23,7 +23,7 @@
 #include "Simulation.h"
 
 Simulation::Simulation(std::string in_name, std::string in_comments, Atmosphere* in_atmosphere,
-	const double& in_heightPad, const double& in_angleLaunchRod, const double& in_lengthLaunchRod) {
+	const double& in_heightPad, const double& in_angleLaunchRod, const double& in_lengthLaunchRod,) {
 
 	timeMax = 500.0;
 }
@@ -32,33 +32,63 @@ Simulation::~Simulation() {
 
 }
 
-void Simulation::run() {
+void Simulation::run(const double& odeStepAscent, const double& odeStepDescent) {
 
 	//data which will be returned from function. For use in future stages
+	std::vector<double> initialData { 0.0, heightPad, 0.0, 0.0 };
+	Matrix<double> stageData(0, 4, initialData);
 	Matrix<double> nextStageData(0, 4);
-	bool dataSaved = false;
+	bool nextStageDataSaved = false;
 
+	//initialize times
+	double timeStart = 0.0;
+	double timeEnd = timeMax;
+
+	//initial conditions for ode
 	std::vector<double> initialConditions { heightPad, 0.0 };
 	Phase phase = Phase::DETECT_LAUNCH;
 
+	//loop through each stage starting with booster
 	for (auto it = simStageList.rbegin(); it != simStageList.rend(); ++it) {
 
 		simStageCurrent = (*it);
 
+		//run full simulation for this stage until it's back on the ground. Then start the next one
 		while (phase != Phase::GROUND) {
 
 			Event event;
+			Matrix<double> phaseData(0, 4);
+
 			if (phase == Phase::DESCENT_DROGUE ||
 				phase == Phase::DESCENT_MAIN) {
 
-				event = runPhase(nextStageData, phase, initialConditions, timeStart, timeEnd, odeStepDescent); //calculate current phase
+				event = runPhase(phaseData, phase, initialConditions, timeStart, timeEnd, odeStepDescent); //calculate current phase
 			}
 			else {
-				event = runPhase(nextStageData, phase, initialConditions, timeStart, timeEnd, odeStepAscent); //calculate current phase
+				event = runPhase(phaseData, phase, initialConditions, timeStart, timeEnd, odeStepAscent); //calculate current phase
 			}
 
+			//Update initial conditions for next phase
+			initialConditions.clear();
+			initialConditions.push_back(phaseData.getLastRow()[1]);
+			initialConditions.push_back(phaseData.getLastRow()[2]);
 
+			//Determine next phase of flight
+			phase = setPhase(event, phaseData.getLastRow()[0]);
+
+			//Add data from current phase to current stage flight data
+			stageData.expandRows(phaseData);
+
+			//If stages separate, save data to pass to next stage simulation
+			if (!nextStageDataSaved) { //stages haven't separated yet, keep saving data for next stage
+			nextStageData = stageData;
+			}
+			if (phase == Phase::ASCENT_UNPOWERED_UNSTACKED && !nextStageDataSaved) {
+				nextStageDataSaved = true;
+			}			
 		}
+		simStageCurrent.flightData.populate(stageData);
+		stageData = nextStageData;
 	}
 }
 
@@ -138,6 +168,10 @@ Event Simulation::runPhase(Matrix<double>& resultPhaseCurrent, Phase phase, cons
 		event = Event::GROUND;
 		break;
 	}
+
+	if (resultPhaseCurrent.getLastRow()[0] == timeEnd) {
+		event = Event::AT_TIME_DELAY;
+	}
 	return event;
 }
 
@@ -157,7 +191,7 @@ Phase Simulation::getNextPhase(Event eventCurrent, const double& timeOfFlight) {
 			switch (uncompleteUserEventList[i].action) {
 
 			case Action::DEPLOY_DROGUE:
-				phase = Phase::DESCSENT_DROGUE;
+				phase = Phase::DESCENT_DROGUE;
 				break;
 
 			case Action::DEPLOY_MAIN:
@@ -187,7 +221,7 @@ Phase Simulation::getNextPhase(Event eventCurrent, const double& timeOfFlight) {
 				switch (simStageCurrent.userEvents[i].action) {
 
 				case Action::DEPLOY_DROGUE:
-					phase = Phase::DESCSENT_DROGUE;
+					phase = Phase::DESCENT_DROGUE;
 					break;
 
 				case Action::DEPLOY_MAIN:

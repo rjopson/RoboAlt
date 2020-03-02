@@ -5,12 +5,16 @@
 #include <iostream>
 #include <vector>
 
+#include "Matrix.h"
+
 
 class FlightData
 {
 public:
 	FlightData();
 	~FlightData();	
+
+	void populate(const Matrix<double>& data);
 
 	std::vector<double> time;
 	std::vector<double> altitude, velocity, acceleration;

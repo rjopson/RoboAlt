@@ -45,7 +45,7 @@ public:
 	Atmosphere* atmosphere;
 	std::vector<SimulationStage> simStageList;
 
-	void run();
+	void run(const double& odeStepAscent, const double& odeStepDescent);
 
 private:
 	double timeMax; //limits time the ode solver can run. Shouldn't ever be met unless something goes wrong with code
