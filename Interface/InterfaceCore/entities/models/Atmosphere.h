@@ -13,6 +13,7 @@
 class Atmosphere
 {
 public:
+	Atmosphere();
 	Atmosphere(bool in_internallyCalculated, std::string in_name, std::string in_comments,
 		const std::vector<double>& in_height, const std::vector<double>& in_pressure, const std::vector<double>& in_temperature);
 	Atmosphere(std::string filePath);
@@ -35,6 +36,8 @@ public:
 
 	//pressure-->standard atmosphere calcs
 	double height(const double& in_pressure);
+
+	void print();
 };
 #endif
 

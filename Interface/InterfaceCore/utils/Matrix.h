@@ -2,6 +2,7 @@
 #ifndef _MATRIX_H
 #define _MATRIX_H
 
+#include <iostream>
 #include <vector>
 
 template <class T>
@@ -16,11 +17,11 @@ public:
 	void resize(const int& in_rows, const int& in_columns);
 
 	//get values
-	T getValue(const int& row, const int& column);
-	std::vector<T> getRow(const int& row);
-	std::vector<T> getColumn(const int& column);
-	std::vector<T> getLastRow();
-	std::vector<T> getLastColumn();
+	T getValue(const int& row, const int& column) const;
+	std::vector<T> getRow(const int& row) const;
+	std::vector<T> getColumn(const int& column) const;
+	std::vector<T> getLastRow() const;
+	std::vector<T> getLastColumn() const;
 
 	//set values
 	void setValue(const int& row, const int& column, const T& value);
@@ -31,18 +32,20 @@ public:
 	void addColumn(const std::vector<T>& column); //slow...
 
 	//operators
-	Matrix operator+(const Matrix& a) const;
-	Matrix operator-(const Matrix& a) const;
-	Matrix operator*(const Matrix& a) const;
-	void operator=(const Matrix& a) const;	
+	Matrix<T> operator+(const Matrix<T>& a) const;
+	Matrix<T> operator-(const Matrix<T>& a) const;
+	Matrix<T> operator*(const Matrix<T>& a) const;
+	void operator=(const Matrix<T>& a);
 
 	//matrix math
-	Matrix addScalar(const T& scalar);
-	Matrix multiplyScalar(const T& scalar);
-	Matrix transpose();
-	Matrix inverse();
+	//Matrix<T> addScalar(T& scalar);
+	//Matrix<T> multiplyScalar(T& scalar);
+	//Matrix<T> transpose();
+	//Matrix<T> inverse();
 	
 	//float determinant2x2();
+
+	void print(); //for debugging
 
 //private:
 

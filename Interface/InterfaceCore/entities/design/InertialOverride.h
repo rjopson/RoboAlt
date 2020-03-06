@@ -17,7 +17,7 @@ public:
 	void setOverrideMass(const double& in_mass);
 	void setOverrideCg(const double& in_cg);
 	void setModelMass();
-	void setModelMass();
+	void setModelCg();
 };
 #endif
 

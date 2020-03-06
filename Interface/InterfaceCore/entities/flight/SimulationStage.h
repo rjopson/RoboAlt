@@ -16,51 +16,40 @@
 class SimulationStage
 {
 public:
-	SimulationStage(std::vector<Stage*> in_stageList, Motor* in_motor,
-		Drag* in_dragIncludeStagesAbove, Drag* in_dragThisStageOnly, Drag* in_dragDrogue, Drag* in_dragMain,
-		std::vector<SimulationEvent> in_userEvents);
+	SimulationStage(Stage* in_stage);
 	~SimulationStage();
 
 	//Data generated for this stage during simulation
 	FlightData flightData; 
 
-	//current stage and stages stacked above. Last stage in this list becomes separated stage
-	std::vector<Stage*> stageList; 
-	std::vector<Instance*> instanceFlatList(bool includeStagesAbove);
+	//current stage and stages stacked above. Contains data for case where stage has sustainer(s) on top or is already separated
+	Stage* stage; 	
 
 	//Motor for this stage
 	Motor* motor;
 
-	//Drag data
-	Drag* dragIncludeStagesAbove; bool dragIncludeStagesAbove_interalCalc;
-	Drag* dragThisStageOnly; bool dragThisStageOnly_interalCalc;
-	Drag* dragDrogue; bool dragDrogue_interalCalc;
-	Drag* dragMain; bool dragMain_interalCalc;
-
 	//User events for this stage
-	std::vector<SimulationEvent> userEvents;
+	std::vector<SimulationEvent*> userEvents;
+	void addUserEvent();
+	void deleteUserEvent(const double& index);
 
-	//Mass calculations
-	double getMassEmpty(bool includeStagesAbove);
+	//Drag data	
+	Drag* getDragWithStagesAbove();
+	Drag* getDragWithoutStagesAbove();
+	Drag* getDragDrogue();
+	Drag* getDragMain();
 
-	//geometric calculations
-	double areaReference(bool includeStagesAbove);
-	double length(bool includeStagesAbove);
-	double diameterMax(bool includeStagesAbove);
-	double finenessRatio(bool includeStagesAbove);
+	void populateModelDrag();
 
-	//Drag model calculations
-	Drag getDragModel(bool includeStagesAbove, const double& machMin, const double& machMax, const double& steps);
-	double dragCoefficient(bool includeStagesAbove, const double& in_machNumber, const double& in_areaThrusting);
-	double dragCoefficientFriction(bool includeStagesAbove, const double& in_machNumber); //assume a speed of sound to pass velocity
-	double dragCoefficientPressure(bool includeStagesAbove, const double& in_machNumber);
-	double dragCoefficientBase(bool includeStagesAbove, const double& in_machNumber, const double& in_areaThrusting);
-	std::vector<double> dragCoefficientFrictionParts(bool includeStagesAbove, const double& in_machNumber);
-	std::vector<double> dragCoefficientPressureParts(bool includeStagesAbove, const double& in_machNumber);
-	std::vector<double> dragCoefficientBaseParts(bool includeStagesAbove, const double& in_machNumber, const double& in_areaThrusting);
-	SurfaceFinish getSurfaceFinish(bool includeStagesAbove);
+	Drag* dragExternalWithStagesAbove;
+	Drag* dragExternalWithoutStagesAbove;
+	Drag* dragExternalDrogue;
+	Drag* dragExternalMain;
 
-	//debugging
-	void printDragCoefficients(bool includeStagesAbove, const double& in_machNumber, const double& in_areaThrusting);
+private:
+	Drag* dragWithStagesAbove;
+	Drag* dragWithoutStagesAbove;
+	Drag* dragDrogue;
+	Drag* dragMain;
 };
 #endif

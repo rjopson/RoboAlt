@@ -30,17 +30,18 @@ void Matrix<T>::resize(const int& in_rows, const int& in_columns) {
 }
 
 template <class T>
-T Matrix<T>::getValue(const int& row, const int& column) {
+T Matrix<T>::getValue(const int& row, const int& column)  const {
 	int location = row * columns + column;
 	return elements[location];
 }
 
 template <class T>
-std::vector<T> Matrix<T>::getRow(const int& row) {
-	std::vector<T> result;
-	for (int i = 0; i != columns; i++) {
-		int location = row * columns + i;
-		result.push_back(elements[location]);
+std::vector<T> Matrix<T>::getRow(const int& row)  const {
+	std::vector<T> result(columns);
+
+	for (int column = 0; column != columns; column++) {
+		int location = row * columns + column;
+		result[column] = elements[location];
 	}
 	return result;
 }
@@ -54,29 +55,29 @@ std::vector<T> Matrix<T>::getRow(const int& row) {
 length is 3*3 = 9
 */
 template <class T>
-std::vector<T> Matrix<T>::getColumn(const int& column) {
-	std::vector<T> result;
-	for (int i = 0; i != rows; i++) {
-		int location = i*columns + column ;
-		result.push_back(elements[location]);
+std::vector<T> Matrix<T>::getColumn(const int& column)  const {
+	std::vector<T> result(rows);
+	for (int row = 0; row != rows; row++) {
+		int location = row *columns + column ;
+		result[row] = elements[location];
 	}
 	return result;
 }
 
 template <class T>
-std::vector<T> Matrix<T>::getLastRow() {
+std::vector<T> Matrix<T>::getLastRow()  const {
 	return getRow(rows - 1);
 }
 
 template <class T>
-std::vector<T> Matrix<T>::getLastColumn() {
+std::vector<T> Matrix<T>::getLastColumn()  const {
 	return getColumn(columns - 1);
 }
 
 template <class T>
 void Matrix<T>::setValue(const int& row, const int& column, const T& value) {
 	int location = row * columns + column;
-	elements[location] = data;
+	elements[location] = value;
 }
 
 template <class T>
@@ -91,17 +92,20 @@ void Matrix<T>::addRow(const std::vector<T>& row) {
 template <class T>
 void Matrix<T>::insertRow(const int& row, const std::vector<T>& data) {
 
-	elements.insert(elements.begin() + row * columns, data.begin(), data.end());
+	for (int i = 0; i != columns; i++) {
+		int location = i + row * columns;
+		elements[location] = data[i];
+	}
 }
 
 template <class T>
-void Matrix<T>::expandRows(const Matrix& a) {
+void Matrix<T>::expandRows(const Matrix<T>& a) {
 
 	int rowsOriginal = rows;
-	resize(rows + a.rows, columns + in_columns);
+	resize(rows + a.rows, columns);
 
 	for (int i = 0; i != a.rows; i++) {
-		insertRow(i + rowsOriginal, a.getRow(i); i++);
+		insertRow(i + rowsOriginal, a.getRow(i));
 	}
 }
 
@@ -119,9 +123,9 @@ void Matrix<T>::addColumn(const std::vector<T>& column) {
 }
 
 template <class T>
-Matrix<T> Matrix<T>::operator+(const Matrix& a) const {
+Matrix<T> Matrix<T>::operator+(const Matrix<T>& a)  const {
 
-	Matrix result(rows, columns);
+	Matrix<T> result(rows, columns);
 
 	if (rows == a.rows && columns == a.columns) {
 		for (int i = 0; i != rows; i++) {
@@ -134,9 +138,9 @@ Matrix<T> Matrix<T>::operator+(const Matrix& a) const {
 }
 
 template <class T>
-Matrix<T> Matrix<T>::operator-(const Matrix& a) const {
+Matrix<T> Matrix<T>::operator-(const Matrix<T>& a)  const {
 
-	Matrix result(rows, columns);
+	Matrix<T> result(rows, columns);
 
 	if (rows == a.rows && columns == a.columns) {
 		for (int i = 0; i != rows; i++) {
@@ -149,9 +153,9 @@ Matrix<T> Matrix<T>::operator-(const Matrix& a) const {
 }
 
 template <class T>
-Matrix<T> Matrix<T>::operator*(const Matrix& a) const {
+Matrix<T> Matrix<T>::operator*(const Matrix<T>& a)  const {
 
-	Matrix result(rows, a.columns);
+	Matrix<T> result(rows, a.columns);
 
 	if (columns == a.rows) {
 		for (int i = 0; i != rows; i++) {
@@ -166,14 +170,27 @@ Matrix<T> Matrix<T>::operator*(const Matrix& a) const {
 }
 
 template <class T>
-void Matrix<T>::operator=(const Matrix& a) const {
-	a.resize(rows, columns);
+void Matrix<T>::operator=(const Matrix<T>& a)  {
 
-	for (int i = 0; i != rows*columns; i++) {
+	resize(a.rows, a.columns);
+
+	for (int i = 0; i != rows * columns; i++) {
 		elements[i] = a.elements[i];
+	}	
+}
+
+template <class T>
+void Matrix<T>::print() {
+
+	for (int row = 0; row != rows; row++) {
+		for (int column = 0; column != columns; column++) {
+			std::cout << elements[column + row * columns] << ", ";
+		}
+		std::cout << std::endl;
 	}
 }
 
-//matrix<int>
-//matrix<double>
+
+//template class Matrix<int>;
+template class Matrix<double>;
 

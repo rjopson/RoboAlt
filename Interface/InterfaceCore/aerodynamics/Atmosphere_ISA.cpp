@@ -62,13 +62,15 @@ double Atmosphere_ISA::height(const double& in_pressure) {
 //returns vector of {height, pressure, temperature}
 Atmosphere Atmosphere_ISA::getModel() {
 
-	std::vector<double> heightData(heightMaximum - heightMinimum + heightStep);
-	std::vector<double> pressureData(heightMaximum - heightMinimum + heightStep);
-	std::vector<double> temperatureData(heightMaximum - heightMinimum + heightStep);
+	int iterations = (heightMaximum - heightMinimum) / heightStep;
 
-	for (int i = 0; i != heightMaximum - heightMinimum + heightStep; i += heightStep) {
+	std::vector<double> heightData(iterations);
+	std::vector<double> pressureData(iterations);
+	std::vector<double> temperatureData(iterations);
+	
+	for (int i = 0; i != iterations; i++) {
 
-		double heightCurrent = (double)(i - heightMinimum);
+		double heightCurrent = (double)(i*heightStep + heightMinimum);		
 		heightData[i] = heightCurrent;
 		pressureData[i] = pressure(heightCurrent);
 		temperatureData[i] = temperature(heightCurrent);

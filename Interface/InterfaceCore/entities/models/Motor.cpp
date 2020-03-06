@@ -99,3 +99,12 @@ double Motor::getThrust(const double& in_time) {
 
 	return MathUtilities::interpolateLinear(dataTime, dataThrust, in_time);
 }
+
+void Motor::print() {
+
+	//std::vector<double> time(1000);
+
+	for (int i = 0; i != 2000; i++) {
+		std::cout << (double)i / 1000.0 << ", " << getThrust((double)i/1000.0) << std::endl;
+	}	
+}

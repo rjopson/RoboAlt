@@ -29,7 +29,7 @@ void InertialOverride::setModelMass() {
 	massOverrideSwitch = false;
 }
 
-void InertialOverride::setModelMass() {
+void InertialOverride::setModelCg() {
 	cgOverrideSwitch = false;
 }
 

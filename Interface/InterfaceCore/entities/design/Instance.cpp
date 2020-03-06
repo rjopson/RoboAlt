@@ -1,6 +1,6 @@
 #include "Instance.h"
 
-//for root instances
+/*
 Instance::Instance(std::string in_name, int in_index, PartPosition in_positionType, double in_positionFrom) {
 
 	name = in_name;
@@ -8,17 +8,22 @@ Instance::Instance(std::string in_name, int in_index, PartPosition in_positionTy
 	parent = NULL;
 	positionType = in_positionType;
 	positionFrom = in_positionFrom;
+} */
+
+Instance::Instance() {
+	part = NULL;
+	parent = NULL;
 }
 
 //for all other instances
-Instance::Instance(Part* in_part, Instance* in_parent, int in_index, PartPosition in_positionType, double in_positionFrom) {
+Instance::Instance(Part* in_part, Instance* in_parent, PartPosition in_positionType, double in_positionFrom) {
 
 	part = in_part;
 	parent = in_parent;
 	positionType = in_positionType;
 	positionFrom = in_positionFrom;
 
-	parent->addChild(this, NULL);
+	parent->addChild(this);
 }
 
 Instance::~Instance() {
@@ -34,17 +39,10 @@ Instance::~Instance() {
 	}
 }
 
-void Instance::addChild(Instance* in_child, int in_index) {
+void Instance::addChild(Instance* in_child) {
 
 	in_child->parent = this;
-
-	if (in_index == NULL) {
-		childList.push_back(in_child);
-	}
-	else {
-		auto it = std::next(childList.begin(), in_index);
-		childList.insert(it, in_child);
-	}
+	childList.push_back(in_child);
 }
 
 void Instance::removeChild(Instance* in_child) {

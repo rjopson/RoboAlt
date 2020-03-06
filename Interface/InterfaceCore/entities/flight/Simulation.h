@@ -6,10 +6,11 @@
 
 #define VELOCITY_LAUNCH_DETECT				1.0 //(m/s)
 #define ACCELERATION_LAUNCH_DETECT			1.0 //(m/s^2) (gravity subtracted from this input)
-#define ACCELERATION_COAST_DETECT			0.0 //(m/s^2)
+//#define ACCELERATION_COAST_DETECT			0.0 //(m/s^2)
 #define VELOCITY_APOGEE_DETECT				0.0 //(m/s)
 
 #include "Atmosphere.h"
+#include "Atmosphere_ISA.h"
 #include "Drag.h"
 #include "FlightData.h"
 #include "Motor.h"
@@ -31,10 +32,10 @@ enum class Phase {
 	GROUND
 };
 
-class Simulation {
-
+class Simulation 
+{
 public:
-	Simulation(std::string in_name, std::string in_comments, Atmosphere* in_atmosphere,
+	Simulation(std::string in_name, std::string in_comments,
 		const double& in_heightPad, const double& in_angleLaunchRod, const double& in_lengthLaunchRod);
 	~Simulation();
 	
@@ -42,25 +43,27 @@ public:
 	double angleLaunchRod;
 	double lengthLaunchRod;
 
-	Atmosphere* atmosphere;
-	std::vector<SimulationStage> simStageList;
+	Atmosphere* atmosphere; bool atmosphere_internalCalc;
+	std::vector<SimulationStage*> simStageList;
 
 	void run(const double& odeStepAscent, const double& odeStepDescent);
 
 private:
 	double timeMax; //limits time the ode solver can run. Shouldn't ever be met unless something goes wrong with code
-	//Matrix<double> runStage();
 	Event runPhase(Matrix<double>& resultPhaseCurrent, Phase phase, const std::vector<double>& initialConditions,
 		const double& timeStart, const double& timeEnd, const double& odeStep);
 	Phase getNextPhase(Event eventCurrent, const double& timeOfFlight);
-	double getMotorMassStagesAbove();
-
-	double massEmptyCurrent;
-	SimulationStage simStageCurrent;
-	Drag* dragCurrent;
-	std::vector<SimulationEvent> uncompleteUserEventList;
-
+	double getMotorMassStagesAbove();	
 	double getTimeEndNextPhase(const double& timeOfFlight);
+	double timeMotorLit; //time current stage motor lit 
+	//double timeStageSeparate;
+
+	//Current stage simulation inputs
+	double massEmptyCurrent;
+	SimulationStage* simStageCurrent;
+	Drag* dragCurrent;
+	std::vector<SimulationEvent*> uncompleteUserEventList;
+	FlightData populateStageFlightData(Matrix<double> stageResult);	
 
 	//return solution of ode for timestep. S[0] = position, S[1] = velocity for next time step
 	std::vector<double> eomAscent(const double& time, const std::vector<double>& state);
@@ -68,11 +71,10 @@ private:
 
 	//events
 	static bool launchDetect(const std::vector<double>& state);
-	static bool coastDetect(const std::vector<double>& state);
+	bool coastDetect(const std::vector<double>& state);
 	static bool apogeeDetect(const std::vector<double>& state);
 	bool mainDetect(const std::vector<double>& state);
-	static bool groundDetect(const std::vector<double>& state);
-
+	bool groundDetect(const std::vector<double>& state);
 };
 #endif
 

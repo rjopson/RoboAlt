@@ -24,6 +24,17 @@ private:
 	std::vector<Drag*> dragRocketList; //external drag data 
 	std::vector<Drag*> dragParachutesList; //external drag data 
 
+	void createConfiguration();
+	void deleteConfiguration(); //get rid of config, stages, instances, simulations, flights
+
+	void createBulkhead();
+	void createFins();
+	void createNosecone();
+	void createParachute();
+	void createTubeBody();
+	void createTubeInner();
+	void deletePart(); //get rid of part, any instances used 
+
 	/*Hold:
 	-configuration list
 	-part list

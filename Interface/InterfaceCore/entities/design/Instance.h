@@ -14,23 +14,22 @@ enum class PartPosition {
 class Instance
 {
 public:
-	Instance(std::string in_name, int in_index, PartPosition in_positionType, double in_positionFrom);
-	Instance(Part* in_part, Instance* in_parent, int in_index, PartPosition in_positionType, double in_positionFrom);
+	Instance(Part* in_part, Instance* in_parent, PartPosition in_positionType, double in_positionFrom);
+	Instance(); //for root 	
 	~Instance();	
 	
-	std::string name; //name if instance is a stage
 	Part* part;
 	Instance* parent;
 	std::vector<Instance*> childList;
 	
 	PartPosition positionType;
 	double positionFrom;
-
-	void addChild(Instance* in_child, int in_index);
+	
+	void addChild(Instance* in_child);
 	void removeChild(Instance* in_child);
 	double positionFromParentFront();
 
 private:
-
+	
 };
 #endif

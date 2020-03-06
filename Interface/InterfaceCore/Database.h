@@ -3,6 +3,8 @@
 #define _DATABASE_H
 
 #include "Atmosphere.h"
+#include "Material.h"
+#include "Motor.h"
 #include "Rocket.h"
 #include <vector>
 
@@ -13,14 +15,17 @@ public:
 	~Database();
 
 	std::vector<Atmosphere*> atmosphereList;
+	std::vector<Material*> materialList;
+	std::vector<Motor*> motorList;
 	std::vector<Rocket*> rocketList;
 
-	/*Hold:
-	-rockets
-	-motors (read databases on open of program)
-	-materials (read databases on open of program)
-	-atmosphere models
-	*/
+	void addDatabaseMaterials(std::string in_path);
+	void addDatabaseMotors(std::string in_path);
+	void addUserMaterials(std::string in_path);
+	void addUserMotors(std::string in_path);
+
+	void createRocket();
+	void deleteRocket();
 };
 #endif
 

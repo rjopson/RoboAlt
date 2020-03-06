@@ -10,10 +10,14 @@ FlightData::~FlightData() {
 
 }
 
-void FlightData::populate(const Matrix<double>& data) {
+void FlightData::print() {
 
-	time = data.getColumn(0);
-	altitude = data.getColumn(1);
-	velocity = data.getColumn(2);
-	acceleration = data.getColumn(3);
+	for (int i = 0; i != lengthVector; i++) {
+		std::cout 
+			<< time[i] << ", "
+			<< altitudeMSL[i] << ", "
+			<< velocity[i] << ", "
+			<< acceleration[i]
+			<< std::endl;
+	}			
 }

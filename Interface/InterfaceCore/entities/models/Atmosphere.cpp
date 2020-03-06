@@ -1,5 +1,9 @@
 #include "Atmosphere.h"
 
+Atmosphere::Atmosphere() {
+
+}
+
 Atmosphere::Atmosphere(bool in_internallyCalculated, std::string in_name, std::string in_comments,
 	const std::vector<double>& in_height, const std::vector<double>& in_pressure, const std::vector<double>& in_temperature) {
 
@@ -33,6 +37,18 @@ double Atmosphere::speedOfSound(const double& in_height) {
 
 double Atmosphere::height(const double& in_pressure) {
 	return MathUtilities::interpolateLinear(pressureData, heightData, in_pressure);
+}
+
+void Atmosphere::print() {
+
+	for (auto height : heightData) {
+
+		std::cout << height << ", ";
+		std::cout << temperature(height) << ", ";
+		std::cout << pressure(height) << ", ";
+		std::cout << density(height) << ", ";
+		std::cout << speedOfSound(height) << std::endl;
+	}
 }
 
 

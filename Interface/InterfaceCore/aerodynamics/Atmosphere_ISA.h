@@ -34,7 +34,7 @@ public:
     double density(const double& in_height);
     double speedOfSound(const double& in_height);    
 
-	//returns vector of {height, pressure, temperature}
+	//returns generic atmosphere class
 	Atmosphere getModel();
     
     //pressure-->standard atmosphere calcs

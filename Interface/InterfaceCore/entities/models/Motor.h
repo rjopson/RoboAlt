@@ -39,6 +39,8 @@ public:
 	//double isp();
 	double impulseTotal();
 	std::vector<double> impulse();
+
+	void print();
 }; 
 #endif
 

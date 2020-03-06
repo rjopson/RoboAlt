@@ -11,24 +11,32 @@ MathUtilities::~MathUtilities() {
 
 double MathUtilities::interpolateLinear(std::vector<double>& in_x_data, std::vector<double>& in_y_data, const double& in_x) {
 
-	double x1, x2, y1, y2;
+	double x0, x1, y0, y1;
 
-	for (auto it = in_x_data.begin() + 1; it  != in_x_data.end(); it++) {
+	if (in_x < in_x_data[0]) { //don't have data to interpolate. Use first y value
+		return in_y_data[0];
+	}
+	else if (in_x > in_x_data.back()) {
+		return in_y_data.back();
+	}
+	else {
+		//we have data to interpolate
+		for (int i = 1; i != in_x_data.size(); i++) {
 
-		auto it_prev = it-1;
+			int i_prev = i - 1;
 
-		if (((*it_prev) <= in_x && (*it) > in_x) || ((*it_prev) >= in_x && (*it) < in_x)) {
-			x1 = (*it_prev);
-			x2 = (*it);
+			if ((in_x_data[i_prev] <= in_x && in_x_data[i] > in_x) ||
+				(in_x_data[i_prev] >= in_x && in_x_data[i] < in_x)) { //in between data points now
 
-			int i = std::distance(in_x_data.begin(), it);
-			y1 = in_y_data[i];
-			y2 = in_y_data[i - 1];
+				x0 = in_x_data[i_prev];
+				x1 = in_x_data[i];
 
-			break;
+				y0 = in_y_data[i_prev];
+				y1 = in_y_data[i];
+				return y0 + (in_x - x0)*((y1 - y0) / (x1 - x0));
+			}
 		}
 	}
-	return y1 + (in_x - x1)*((y2 - y1) / (x2 - x1));
 }
 
 //https://math.stackexchange.com/questions/721076/help-with-using-the-runge-kutta-4th-order-method-on-a-system-of-2-first-order-od
@@ -43,6 +51,7 @@ Matrix<double> MathUtilities::rk45(const std::vector<double>& initialValues,
 	std::vector<double> Y_x_n = initialValues; //solutions to all 1st order ode's - Y_n[0] is highest order
 	std::vector<double> Y_x_np1; //n+1 step of solution
 	Matrix<double> Y(iterations,initialValues.size()+2); //used to store solutions of all ode's at every timestep. For example, if initial values were [position, velocity] each Y row is [time, position, velocity, acceleration]
+	std::vector<double> stepResult(initialValues.size() + 2); //saves x, and all solutions for Y_x_np1 step
 	int finalIteration;
 
 	for (int i = 0; i != iterations; i++) {
@@ -56,14 +65,19 @@ Matrix<double> MathUtilities::rk45(const std::vector<double>& initialValues,
 		k4 = multiplyScalarVector(step, ode(x_n + step, addVectors(Y_x_n, k3)));
 		Y_x_np1 = addVectors(Y_x_n, multiplyScalarVector(1.0 / 6.0, addVectors(addVectors(addVectors(k1, multiplyScalarVector(2.0, k2)), multiplyScalarVector(2.0, k3)), k4)));
 
-		//Save state for Y_x_np1 result
-		std::vector<double> stepResult; //saves x, and all solutions for Y_x_np1 step
-		stepResult.push_back(x_n + step); //save x_n+1
+		//Save state for Y_x_np1 result		
+		stepResult[0] = x_n + step; //save x_n+1
 		for (int i = 0; i != Y_x_np1.size(); i++) {
-			stepResult.push_back(Y_x_np1[i]);
+			stepResult[i+1] = Y_x_np1[i];
 		}
-		stepResult.push_back(ode(x_n + step, Y_x_np1).back()); //saves solution to lowest order ode - if ode's solve, position, velocity, this would be acceleration result
+		stepResult[initialValues.size()+1] = ode(x_n + step, Y_x_np1).back(); //saves solution to lowest order ode - if ode's solve, position, velocity, this would be acceleration result
 		Y.insertRow(i, stepResult);
+
+		//for (int i = 0; i != stepResult.size(); i++) {
+		//	std::cout << stepResult[i] << ", ";
+		//}
+		//std::cout << i;
+		//std::cout << std::endl;
 
 		//if an event is reached, break the integration early
 		if (event(stepResult) == true) {
@@ -74,7 +88,7 @@ Matrix<double> MathUtilities::rk45(const std::vector<double>& initialValues,
 		//Update state for next iteration.
 		Y_x_n = Y_x_np1;
 	}
-	Y.resize(finalIteration, initialValues.size() + 2);
+	Y.resize(1+finalIteration, initialValues.size() + 2);
 	return Y;
 }
 
