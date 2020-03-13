@@ -27,6 +27,7 @@ public:
 	
 	void addChild(Instance* in_child);
 	void removeChild(Instance* in_child);
+	void reposition(const double& indexInParentList);
 	double positionFromParentFront();
 
 private:

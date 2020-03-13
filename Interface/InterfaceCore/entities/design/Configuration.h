@@ -21,14 +21,15 @@ public:
 	std::string name;
 	std::string comments;
 
+	//create/delete stage
+	//create/delete simulation
+	//create/delete flight
+
 	std::vector<Stage*> stageList; //{sustainer, stage2, booster}	
-
-	std::vector<Simulation*> simulationList;
-
 	void addStage();
 	void deleteStage();
-	
-	//void deleteFlight();
+
+	std::vector<Simulation*> simulationList;	
 	void addSimulation(Simulation* simulation);
 	void deleteSimulation();
 

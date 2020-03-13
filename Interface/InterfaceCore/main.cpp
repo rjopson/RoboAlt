@@ -46,7 +46,6 @@ int main() {
 
 	//Gather data for the simulation
 	Motor h128("C:/Users/Jim/Documents/Rockets/Altimeters/RoboDev/Interface/InterfaceCore/testFiles/AeroTech_H128.eng");	
-	//h128.print();
 
 	//let's see if simulation works...
 	Simulation sim1("test", "", 167.0, 0.0, 2.5);

@@ -40,7 +40,7 @@ public:
 	Instance* instanceRoot; 
 	std::vector<Instance*> instanceFlatList(bool includeStagesAbove);
 	void instanceFlatListRecursive(Instance* parent, std::vector<Instance*> &flatList);
-	void deleteInstance();
+	//create/delete instance 
 
 	//Drag model calculations
 	Drag getDragModel(bool includeStagesAbove, const double& areaMotor,
