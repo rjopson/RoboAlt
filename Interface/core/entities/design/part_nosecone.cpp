@@ -1,0 +1,120 @@
+#include "part_nosecone.h"
+
+Nosecone::Nosecone(std::string name, std::string comments, Material* material,
+    NoseconeType nose_type, const double& shape_parameter,
+    const double& length_nose, const double& length_base, const double& length_shoulder,
+    const double& thickness, const double& thickness_shoulder,
+    const double& diameter_outer, const double& diameter_shoulder,
+    bool mass_override_switch, const double& mass_override, bool cg_override_switch, const double& cg_override) 
+    
+    : Part(name, comments, material, mass_override_switch, mass_override, cg_override_switch, cg_override),
+      nose_type_(nose_type),
+      shape_parameter_(shape_parameter),
+      length_nose_(length_nose),
+      length_base_(length_base),
+      length_shoulder_(length_shoulder),
+      thickness_(thickness),
+      thickness_shoulder_(thickness_shoulder),
+      diameter_outer_(diameter_outer),
+      diameter_shoulder_(diameter_shoulder) {
+
+    type_ = PartType::NOSECONE;
+}
+
+Nosecone::~Nosecone() {}
+
+double Nosecone::Radius() {
+    return diameter_outer_ / 2.0;
+}
+
+double Nosecone::Length() {
+    return length_nose_ + length_base_;
+}
+
+double Nosecone::AreaSurface() {
+    
+    double base = length_base_ *kPi*diameter_outer_;
+
+    //approximate all surface areas using conical function for now
+    //TODO: replace this function with the MathUtilities integration function 
+    double nose = kPi * length_nose_*Radius()*std::sqrt(std::pow(Radius() / length_nose_, 2.0) + 1);
+
+    return base + nose;
+}
+
+double Nosecone::AreaPlanform() {
+
+    //approixmate all planform areas using conical function
+    return diameter_outer_ *Length()*(2.0 / 3.0);
+}
+
+double Nosecone::AreaForward() {
+    return 0.0;
+}
+
+double Nosecone::AreaAft() {
+    return kPi * std::pow(Radius(), 2.0);
+}
+
+double Nosecone::VolumeMaterial() {
+    return AreaSurface()*thickness_;
+}
+
+double Nosecone::VolumeInterior() {
+
+}
+
+double Nosecone::FinenessRatio() {
+    return length_nose_ / diameter_outer_;
+}
+
+double Nosecone::DiameterAirflow() {
+    return diameter_outer_;
+}
+
+double Nosecone::LengthAirflow() {
+    return Length();
+}
+
+double Nosecone::AreaReference() {
+    return std::max(AreaForward(), AreaAft());
+}
+
+double Nosecone::AreaWet() {
+    return AreaSurface();
+}
+
+double Nosecone::DragCoefficient(const double& area_reference, const double& fineness_rocket,
+    const double& mach_number, const double& skin_friction_coefficient,
+    const bool& aft_most_part, const double& area_thrusting) {
+    
+    return DragCoefficientFriction(skin_friction_coefficient, area_reference, fineness_rocket) +
+        DragCoefficientPressure(mach_number, area_reference) +
+        DragCoefficientBase(aft_most_part, mach_number, area_thrusting, area_reference);
+}
+
+double Nosecone::DragCoefficientFriction(const double& skin_friction_coefficient,
+    const double& area_reference, const double& fineness_rocket) {
+    
+    return Aerodynamics::DragCoefficientFrictionBody(skin_friction_coefficient, fineness_rocket, AreaWet(), area_reference);
+}
+
+double Nosecone::DragCoefficientPressure(const double& mach_number, const double& area_reference) {
+    
+    return Aerodynamics::DragCoefficientPressureNose(mach_number, 
+        FinenessRatio(), nose_type_, AreaReference(), area_reference);
+}
+
+double Nosecone::DragCoefficientBase(const bool& aft_most_part,
+    const double& mach_number, const double& area_thrusting, const double& area_reference) {
+    
+    return Aerodynamics::DragCoefficientBase(aft_most_part, mach_number, AreaReference(), area_thrusting, area_reference);
+}
+
+double Nosecone::CurveVonKarmen(const double& x) {
+
+}
+
+double Nosecone::CurveConic(const double& x) {
+    return x * (Radius() / length_nose_);
+}

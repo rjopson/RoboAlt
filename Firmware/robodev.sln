@@ -33,7 +33,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "voltageTest_raw", "hardware
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "userSettings_test", "hardwareTests\userSettings_test\userSettings_test.vcxproj", "{AE987B91-D635-4BCA-926D-BD828E8D1D2C}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "InterfaceCore", "..\Interface\InterfaceCore\InterfaceCore.vcxproj", "{3885BC2A-1C0C-43A1-BD47-AA4E2F1E9C0F}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "interface_core", "..\Interface\core\interface_core.vcxproj", "{3885BC2A-1C0C-43A1-BD47-AA4E2F1E9C0F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
