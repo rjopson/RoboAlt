@@ -11,3 +11,7 @@ Mass::Mass(std::string name, std::string comments, Material* material,
 }
 
 Mass::~Mass() {}
+
+double Mass::VolumeMaterial() const {
+    return mass_ / material_->density_;
+}

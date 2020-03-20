@@ -11,15 +11,17 @@ class Parachute : public Part {
         bool mass_override_switch, const double& mass_override, bool cg_override_switch, const double& cg_override);
     ~Parachute();
 
-    double Area();
-    Drag DragModel();
+    Drag DragModel() const;
 
     //Overridden virtual functions
-    double DragCoefficient();
-    double VolumeMaterial();    
+    double DragCoefficient() const;
+    double VolumeMaterial() const;
 
     double thickness_;
     double diameter_;    
+
+  private:
+    double Area() const;
 };
 #endif 
 

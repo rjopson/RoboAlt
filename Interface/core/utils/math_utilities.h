@@ -14,7 +14,7 @@ class MathUtilities {
     ~MathUtilities();
 
     //Interpolation
-    static double InterpolateLinear(std::vector<double>& x_data, std::vector<double>& y_data, const double& x);
+    static double InterpolateLinear(const std::vector<double>& x_data, const std::vector<double>& y_data, const double& x);
 
     //ODE's
     static Matrix<double> RK45(const std::vector<double>& initial_values, 

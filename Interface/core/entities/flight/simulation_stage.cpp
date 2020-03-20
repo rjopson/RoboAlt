@@ -1,7 +1,12 @@
 #include "simulation_stage.h"
 
+int SimulationStage::id_counter = 0;
+
 SimulationStage::SimulationStage(Stage* stage) 
     : stage_(stage) {
+
+    id_counter++;
+    id_ = id_counter;
 
     //Set drag data to use. If user didn't provide, generate internally
     drag_with_stages_above_ = new Drag();

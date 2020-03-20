@@ -13,3 +13,15 @@ TubeInner::TubeInner(std::string name, std::string comments, Material* material,
 }
 
 TubeInner::~TubeInner() {}
+
+double TubeInner::VolumeMaterial() const {
+    return AreaSurface()*thickness_;
+}
+
+double TubeInner::DiameterInner() const {
+    return diameter_outer_ - 2.0 * thickness_;
+}
+
+double TubeInner::AreaSurface() const {
+    return diameter_outer_ * kPi*length_;
+}

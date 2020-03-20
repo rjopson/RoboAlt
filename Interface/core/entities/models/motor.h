@@ -21,13 +21,13 @@ public:
 	Motor(std::string file_path);
 	~Motor();
 
-	double GetMass(const double& time); //interpolate data for single mass value
-	double GetThrust(const double& time); //interpolate data for single thrust value
-	double Area();
-	double Isp();
-	double ImpulseTotal();
-	std::vector<double> Impulse();
-	void Print();
+	double GetMass(const double& time) const; //interpolate data for single mass value
+	double GetThrust(const double& time) const; //interpolate data for single thrust value
+	double Area() const;
+	double Isp() const;
+	double ImpulseTotal() const;
+	std::vector<double> Impulse() const;
+	void Print() const;
 
     std::string name_;
     std::string manufacturer_;
@@ -38,8 +38,7 @@ public:
     double mass_propellant_;
     double mass_total_;    
     std::vector<double> data_time_;
-    std::vector<double> data_thrust_;
-    
+    std::vector<double> data_thrust_;    
 }; 
 #endif
 

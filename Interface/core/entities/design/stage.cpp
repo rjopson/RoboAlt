@@ -1,5 +1,7 @@
 #include "Stage.h"
 
+int Stage::id_counter = 0;
+
 Stage::Stage(const std::string& name, const std::string& comments, 
     std::vector<Stage*> stages_above, SurfaceFinish surface_finish, const double& distance_overlap,
     bool mass_override_switch, const double& mass_override, bool cg_override_switch, const double& cg_override) 
@@ -10,6 +12,9 @@ Stage::Stage(const std::string& name, const std::string& comments,
       surface_finish_(surface_finish),
       distance_overlap_(distance_overlap),
       inertial_(mass_override_switch, mass_override, cg_override_switch, cg_override) {
+
+    id_counter++;
+    id_ = id_counter;
 
     instance_root_ = new Instance();
 }
@@ -162,8 +167,7 @@ Drag Stage::DragModel(bool include_stages_above, const double& area_motor,
 
     std::vector<double> mach(steps);
     std::vector<double> cd_power_off(steps);
-    std::vector<double> cd_power_on(steps);
-    Drag drag("Internal Model", "", true, DragType::ROCKET, "");
+    std::vector<double> cd_power_on(steps);    
 
     for (int i = 0; i != steps; i++) {
 
@@ -173,11 +177,9 @@ Drag Stage::DragModel(bool include_stages_above, const double& area_motor,
         cd_power_on[i] = DragCoefficient(include_stages_above, m, area_motor);
     }
 
-    drag.area_reference_ = AreaReference(include_stages_above);
-    drag.data_mach_unpowered_ = mach;
-    drag.data_cd_unpowered_ = cd_power_off;
-    drag.data_mach_powered_ = mach;
-    drag.data_cd_powered_ = cd_power_on;
+    Drag drag("Internal Model", "", true, DragType::ROCKET, "", AreaReference(include_stages_above), 
+        mach, cd_power_off,
+        mach, cd_power_on);
 
     return drag;
 }

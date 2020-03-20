@@ -10,6 +10,8 @@ class Mass : public Part {
         bool mass_override_switch, const double& mass_override, bool cg_override_switch, const double& cg_override);
     ~Mass();
 
+    double VolumeMaterial() const;
+
     double mass_;
 };
 #endif 

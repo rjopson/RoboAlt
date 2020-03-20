@@ -74,31 +74,31 @@ Motor::Motor(std::string file_path) {
 
 Motor::~Motor() {}
 
-double Motor::Area() {
+double Motor::Area() const {
 	return kPi * std::pow(diameter_ / 2.0, 2);
 }
 
-double Motor::ImpulseTotal() {
+double Motor::ImpulseTotal() const {
 	return MathUtilities::Integrate(data_time_, data_thrust_).back();
 }
 
-std::vector<double> Motor::Impulse() {
+std::vector<double> Motor::Impulse() const {
 	return MathUtilities::Integrate(data_time_, data_thrust_);
 }
 
-double Motor::GetMass(const double& time) {
+double Motor::GetMass(const double& time) const {
 
 	std::vector<double> impulse_function = Impulse();
 
 	return mass_total_ - (mass_propellant_ / impulse_function.back())*MathUtilities::InterpolateLinear(data_time_, impulse_function, time);
 }
 
-double Motor::GetThrust(const double& time) {
+double Motor::GetThrust(const double& time) const {
 
 	return MathUtilities::InterpolateLinear(data_time_, data_thrust_, time);
 }
 
-void Motor::Print() {
+void Motor::Print() const {
 
 	//std::vector<double> time(1000);
 

@@ -23,15 +23,15 @@ class Atmosphere {
     ~Atmosphere();   
 
     //height-->standard atmosphere calcs
-    double Temperature(const double& height);
-    double Pressure(const double& height);
-    double Density(const double& height);
-    double SpeedOfSound(const double& height);
+    double Temperature(const double& height) const;
+    double Pressure(const double& height) const;
+    double Density(const double& height) const;
+    double SpeedOfSound(const double& height) const;
 
     //pressure-->standard atmosphere calcs
-    double Height(const double& in_pressure);
+    double Height(const double& in_pressure) const;
 
-    void Print();
+    void Print() const;
 
     std::string name_;
     std::string comments_;

@@ -1,9 +1,14 @@
 #include "Configuration.h"
 
+int Configuration::id_counter = 0;
+
 Configuration::Configuration(std::string name, std::string comments) 
 
     : name_(name),
       comments_(comments) {
+
+    id_counter++;
+    id_ = id_counter;
 
     stages_.push_back(new Stage("Sustainer", "", stages_, SurfaceFinish::PAINTED, 0.0, false, 0.0, false, 0.0));
 }
@@ -28,7 +33,7 @@ void Configuration::CreateSimulation(std::string name, std::string comments,
     }
 }
 
-std::vector<Stage*> Configuration::GetStageListWithStagesAbove(Stage* stage) {
+std::vector<Stage*> Configuration::GetStageListWithStagesAbove(Stage* stage) const {
 
     std::vector<Stage*> stages;
 

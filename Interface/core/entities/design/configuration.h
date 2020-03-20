@@ -17,8 +17,6 @@ class Configuration {
     Configuration(std::string name, std::string comments);
     ~Configuration();
 
-    void AddStage();
-    void DeleteStage();
     void CreateSimulation(std::string name, std::string comments,
         const double& height_pad, const double& angle_launch_rod, const double& length_launch_rod);
     void DeleteSimulation();
@@ -26,10 +24,13 @@ class Configuration {
     std::string name_;
     std::string comments_;
     std::vector<Stage*> stages_; //{sustainer, stage2, booster}	
-    std::vector<Simulation*> simulations_;    
+    std::vector<Simulation*> simulations_; 
+    int id_;
 
   private:
-    std::vector<Stage*> GetStageListWithStagesAbove(Stage* stage);
+    std::vector<Stage*> GetStageListWithStagesAbove(Stage* stage) const;
+
+    static int id_counter;
 };
 #endif
 

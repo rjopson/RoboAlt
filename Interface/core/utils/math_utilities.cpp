@@ -4,7 +4,7 @@ MathUtilities::MathUtilities() {}
 
 MathUtilities::~MathUtilities() {}
 
-double MathUtilities::InterpolateLinear(std::vector<double>& x_data, std::vector<double>& y_data, const double& x) {
+double MathUtilities::InterpolateLinear(const std::vector<double>& x_data, const std::vector<double>& y_data, const double& x) {
 
     double x0, x1, y0, y1;
 

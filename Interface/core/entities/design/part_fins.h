@@ -17,30 +17,31 @@ class Fins : public Part {
         FinShape* shape, const FinCrossSection& cross_section, 
         const int& number, const double& thickness, const double& radius_fillet,
         bool mass_override_switch, const double& mass_override, bool cg_override_switch, const double& cg_override);
-    ~Fins();
-
-    double AreaSurface();
-    double AreaFrontal();
-    double VolumeMaterial();
-    double Length();
+    ~Fins();    
 
     //Overridden virtual functions 
-    double AreaReference();
-    double AreaWet();
+    double VolumeMaterial() const;
+    double AreaReference() const;
+    double AreaWet() const;
     double DragCoefficient(const double& area_reference, const double& fineness_rocket,
         const double& mach_number, const double& skin_friction_coefficient,
-        const bool& aft_most_part, const double& area_thrusting);
+        const bool& aft_most_part, const double& area_thrusting) const;
     double DragCoefficientFriction(const double& skin_friction_coefficient,
-        const double& area_reference, const double& fineness_rocket);
-    double DragCoefficientPressure(const double& mach_number, const double& area_reference);
+        const double& area_reference, const double& fineness_rocket) const;
+    double DragCoefficientPressure(const double& mach_number, const double& area_reference) const;
     double DragCoefficientBase(const bool& aft_most_part,
-        const double& mach_number, const double& area_thrusting, const double& area_reference);
+        const double& mach_number, const double& area_thrusting, const double& area_reference) const;
 
     FinShape* shape_;
     FinCrossSection cross_section_;
     int number_;
     double thickness_;
     double radius_fillet_;
+
+  private:
+    double AreaSurface() const;
+    double AreaFrontal() const;    
+    double Length() const;
 };
 #endif // !_FINS_H
 

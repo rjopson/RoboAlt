@@ -16,27 +16,27 @@ Atmosphere::Atmosphere(std::string name, std::string comments, bool internally_c
 
 Atmosphere::~Atmosphere() {}
 
-double Atmosphere::Temperature(const double& height) {
+double Atmosphere::Temperature(const double& height) const {
     return MathUtilities::InterpolateLinear(height_data_, temperature_data_, height);
 }
 
-double Atmosphere::Pressure(const double& height) {
+double Atmosphere::Pressure(const double& height) const {
     return MathUtilities::InterpolateLinear(height_data_, pressure_data_, height);
 }
 
-double Atmosphere::Density(const double& height) {
+double Atmosphere::Density(const double& height) const {
     return Pressure(height) / (kR_Specific*Temperature(height));
 }
 
-double Atmosphere::SpeedOfSound(const double& height) {
+double Atmosphere::SpeedOfSound(const double& height) const {
     return std::sqrt(kGamma*kR_Specific*Temperature(height));
 }
 
-double Atmosphere::Height(const double& in_pressure) {
+double Atmosphere::Height(const double& in_pressure) const {
     return MathUtilities::InterpolateLinear(pressure_data_, height_data_, in_pressure);
 }
 
-void Atmosphere::Print() {
+void Atmosphere::Print() const {
 
     for (auto height : height_data_) {
 

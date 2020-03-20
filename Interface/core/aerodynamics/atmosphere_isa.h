@@ -20,20 +20,20 @@ class AtmosphereISA {
     ~AtmosphereISA();    
     
     //height-->standard atmosphere calcs
-    double Temperature(const double& height);
-    double Pressure(const double& height);
-    double Density(const double& height);
-    double SpeedOfSound(const double& height);    
+    double Temperature(const double& height) const;
+    double Pressure(const double& height) const;
+    double Density(const double& height) const;
+    double SpeedOfSound(const double& height) const;
 
     //returns generic atmosphere class
-    Atmosphere GetModel();
+    Atmosphere GetModel() const;
     
     //pressure-->standard atmosphere calcs
-    double Height(const double& pressure);
+    double Height(const double& pressure) const;
     
   private:
-      int RegionFromHeight(const double& height);
-      int RegionFromPressure(const double& pressure);
+      int RegionFromHeight(const double& height) const;
+      int RegionFromPressure(const double& pressure) const;
 
     //-610m, 1:11km, 2:20km, 3:32km, 4:47km, 5:51km, 6:71km, 7:84.9im
     std::vector<double> p1_;

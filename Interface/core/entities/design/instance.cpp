@@ -1,5 +1,7 @@
 #include "instance.h"
 
+int Instance::id_counter = 0;
+
 Instance::Instance() {
     part_ = NULL;
     parent_ = NULL;
@@ -12,6 +14,9 @@ Instance::Instance(Part* part, Instance* parent, PartPosition position_type, con
       parent_(parent),
       position_type_(position_type),
       position_from_(position_from) {
+
+    id_counter++;
+    id_ = id_counter;
 
     parent->AddChild(this);
 }

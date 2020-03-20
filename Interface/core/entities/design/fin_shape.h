@@ -11,17 +11,17 @@ class FinShape {
     FinShape();
     virtual ~FinShape() = 0;
 
-    virtual double ChordRoot() = 0;
-    virtual double ChordTip() = 0;
-    virtual double Span() = 0;
-    virtual double LengthSweep() = 0;
-    virtual double AreaPlanform() = 0;
-    virtual double Mac() = 0;
-    virtual double MacY() = 0;
-    virtual double MacLE_FromRoot_LE() = 0;
-    virtual double AngleSweepMid() = 0;
-    virtual double AngleSweepLE() = 0;
-    virtual double AspectRatio() = 0;
+    virtual double ChordRoot() const = 0;
+    virtual double ChordTip() const = 0;
+    virtual double Span() const = 0;
+    virtual double LengthSweep() const = 0;
+    virtual double AreaPlanform() const = 0;
+    virtual double Mac() const = 0;
+    virtual double MacY() const = 0;
+    virtual double MacLE_FromRoot_LE() const = 0;
+    virtual double AngleSweepMid() const = 0;
+    virtual double AngleSweepLE() const = 0;
+    virtual double AspectRatio() const = 0;
 };
 #endif
 
@@ -34,17 +34,17 @@ class FinShapeTrapezoidal : public FinShape {
     FinShapeTrapezoidal(const double& chord_root, const double& chord_tip, const double& span, const double& length_sweep);
     ~FinShapeTrapezoidal();    
 
-    double ChordRoot();
-    double ChordTip();
-    double Span();
-    double LengthSweep();
-    double AreaPlanform();
-    double Mac();
-    double MacY();
-    double MacLE_FromRoot_LE();
-    double AngleSweepMid();
-    double AngleSweepLE();
-    double AspectRatio();
+    double ChordRoot() const;
+    double ChordTip() const;
+    double Span() const;
+    double LengthSweep() const;
+    double AreaPlanform() const;
+    double Mac() const;
+    double MacY() const;
+    double MacLE_FromRoot_LE() const;
+    double AngleSweepMid() const;
+    double AngleSweepLE() const;
+    double AspectRatio() const;
 
   private:
     double chord_root_;

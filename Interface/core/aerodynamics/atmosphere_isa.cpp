@@ -11,7 +11,7 @@ AtmosphereISA::AtmosphereISA() {
 
 AtmosphereISA::~AtmosphereISA() {}
 
-double AtmosphereISA::Temperature(const double& height) {
+double AtmosphereISA::Temperature(const double& height) const {
     
     int region = RegionFromHeight(height);
 
@@ -23,7 +23,7 @@ double AtmosphereISA::Temperature(const double& height) {
     }
 }
 
-double AtmosphereISA::Pressure(const double& height) {
+double AtmosphereISA::Pressure(const double& height) const {
     
     int region = RegionFromHeight(height);
 
@@ -35,17 +35,17 @@ double AtmosphereISA::Pressure(const double& height) {
     }
 }
 
-double AtmosphereISA::Density(const double& height) {
+double AtmosphereISA::Density(const double& height) const {
     
     return Pressure(height) / (kR_Specific*Temperature(height));
 }
 
-double AtmosphereISA::SpeedOfSound(const double& height) {
+double AtmosphereISA::SpeedOfSound(const double& height) const {
     
     return std::sqrt(kGamma*kR_Specific*Temperature(height));
 }
 
-double AtmosphereISA::Height(const double& pressure) {
+double AtmosphereISA::Height(const double& pressure) const {
 
     int region = RegionFromPressure(pressure);
 
@@ -58,7 +58,7 @@ double AtmosphereISA::Height(const double& pressure) {
 }
 
 //returns vector of {height, pressure, temperature}
-Atmosphere AtmosphereISA::GetModel() {
+Atmosphere AtmosphereISA::GetModel() const {
 
     int iterations = (kHeightMax - kHeightMin) / kHeightStep;
 
@@ -77,7 +77,7 @@ Atmosphere AtmosphereISA::GetModel() {
     return Atmosphere("Internal model", "", true, height_data, pressure_data, temperature_data);
 }
 
-int AtmosphereISA::RegionFromHeight(const double& height) {
+int AtmosphereISA::RegionFromHeight(const double& height) const {
     
     int i = 0;
     
@@ -91,7 +91,7 @@ int AtmosphereISA::RegionFromHeight(const double& height) {
     }
 }
 
-int AtmosphereISA::RegionFromPressure(const double& pressure) {
+int AtmosphereISA::RegionFromPressure(const double& pressure) const {
     
     int i = 0;
 

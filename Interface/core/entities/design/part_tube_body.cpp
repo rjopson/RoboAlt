@@ -14,47 +14,30 @@ TubeBody::TubeBody(std::string name, std::string comments, Material* material,
 
 TubeBody::~TubeBody() {}
 
-double TubeBody::DiameterInner() {
-    return diameter_outer_ - 2.0 * thickness_;
-}
-
-double TubeBody::AreaSurface() {
-    return diameter_outer_ *kPi*length_;
-}
-
-double TubeBody::VolumeMaterial() {
-    return AreaSurface()*thickness_;
-}
-
-double TubeBody::VolumeInterior() {
-    double radius = diameter_outer_ / 2.0;
-    return length_*kPi*std::pow(radius, 2.0);
-}
-
-double TubeBody::AreaPlanform() {
-    return diameter_outer_ *length_;
-}
-
-double TubeBody::DiameterAirflow() {
+double TubeBody::DiameterAirflow() const {
     return diameter_outer_;
 }
 
-double TubeBody::LengthAirflow() {
+double TubeBody::LengthAirflow() const {
     return length_;
 }
 
-double TubeBody::AreaReference() {
+double TubeBody::AreaReference() const {
     double radius = diameter_outer_ / 2.0;
     return kPi * std::pow(radius, 2.0);
 }
 
-double TubeBody::AreaWet() {
+double TubeBody::AreaWet() const {
     return AreaSurface();
+}
+
+double TubeBody::VolumeMaterial() const {
+    return AreaSurface() * thickness_;
 }
 
 double TubeBody::DragCoefficient(const double& area_reference, const double& fineness_rocket,
     const double& mach_number, const double& skin_friction_coefficient,
-    const bool& aft_most_part, const double& area_thrusting) {
+    const bool& aft_most_part, const double& area_thrusting) const {
     
     return TubeBody::DragCoefficientFriction(skin_friction_coefficient, area_reference, fineness_rocket) +
         DragCoefficientPressure(mach_number, area_reference) +
@@ -62,13 +45,30 @@ double TubeBody::DragCoefficient(const double& area_reference, const double& fin
 }
 
 double TubeBody::DragCoefficientFriction(const double& skin_friction_coefficient,
-    const double& area_reference, const double& fineness_rocket) {
+    const double& area_reference, const double& fineness_rocket) const {
     
     return Aerodynamics::DragCoefficientFrictionBody(skin_friction_coefficient, fineness_rocket, AreaWet(), area_reference);
 }
 
 double TubeBody::DragCoefficientBase(const bool& aft_most_part,
-    const double& mach_number, const double& area_thrusting, const double& area_reference) {
+    const double& mach_number, const double& area_thrusting, const double& area_reference) const {
     
     return Aerodynamics::DragCoefficientBase(aft_most_part, mach_number, AreaReference(), area_thrusting, area_reference);
+}
+
+double TubeBody::DiameterInner() const {
+    return diameter_outer_ - 2.0 * thickness_;
+}
+
+double TubeBody::AreaSurface() const {
+    return diameter_outer_ * kPi * length_;
+}
+
+double TubeBody::VolumeInterior() const {
+    double radius = diameter_outer_ / 2.0;
+    return length_ * kPi * std::pow(radius, 2.0);
+}
+
+double TubeBody::AreaPlanform() const {
+    return diameter_outer_ * length_;
 }

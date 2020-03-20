@@ -1,12 +1,18 @@
 #include "Part.h"
 
+int Part::id_counter = 0;
+
 Part::Part(std::string name, std::string comments, Material* material,
     bool mass_override_switch, const double& mass_override, bool cg_override_switch, const double& cg_override) 
     
     : name_(name),
       comments_(comments),
       material_(material),
-      inertial_(mass_override_switch, mass_override, cg_override_switch, cg_override) {}
+      inertial_(mass_override_switch, mass_override, cg_override_switch, cg_override) {
+
+    id_counter++;
+    id_ = id_counter;
+}
 
 Part::~Part() {}
 
@@ -30,10 +36,10 @@ double Part::Cg() {
     }
 }
 
-double Part::CalculateModelMass() {
+double Part::CalculateModelMass() const {
     return material_->density_*VolumeMaterial();
 }
 
-double Part::CalculateModelCg() {
+double Part::CalculateModelCg() const {
     return 0.0;
 }

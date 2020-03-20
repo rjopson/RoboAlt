@@ -10,9 +10,16 @@ class TubeInner : public Part {
         bool mass_override_switch, const double& mass_override, bool cg_override_switch, const double& cg_override);
     ~TubeInner();
 
+    //overridden virtual functions 
+    double VolumeMaterial() const;
+
     double length_;
     double diameter_outer_;
     double thickness_;
+
+private:
+    double DiameterInner() const;
+    double AreaSurface() const;
 };
 #endif // !_TUBE_INNER_H
 

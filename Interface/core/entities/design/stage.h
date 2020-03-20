@@ -16,7 +16,7 @@ class Stage {
     Stage(const std::string& name, const std::string& comments, 
         std::vector<Stage*> stages_above, SurfaceFinish surface_finish, const double& overlap_distance,
         bool mass_override_switch, const double& mass_override, bool cg_override_switch, const double& cg_override);
-    ~Stage();    
+    ~Stage();   
 
     //Mass calculations
     double MassEmpty(bool include_stages_above);
@@ -52,6 +52,10 @@ class Stage {
     double distance_overlap_; //amount this stage overlaps the one in front of it 
     Instance* instance_root_;
     InertialOverride inertial_;
+    int id_;
+
+  private:
+    static int id_counter;
 };
 #endif
 

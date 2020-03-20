@@ -12,3 +12,7 @@ Bulkhead::Bulkhead(std::string name, std::string comments, Material* material,
 }
 
 Bulkhead::~Bulkhead() {}
+
+double Bulkhead::VolumeMaterial()  const {
+    return kPi * std::pow(diameter_ / 2.0, 2.0)*thickness_;
+}

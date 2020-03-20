@@ -11,31 +11,22 @@ class Nosecone : public Part {
         const double& thickness, const double& thickness_shoulder, 
         const double& diameter_outer, const double& diameter_shoulder,
         bool mass_override_switch, const double& mass_override, bool cg_override_switch, const double& cg_override);    
-    ~Nosecone();    
-
-    double Radius();
-    double Length();
-    double AreaSurface();
-    double AreaPlanform();
-    double AreaForward();
-    double AreaAft();    
-    double VolumeInterior();
-    double FinenessRatio();
+    ~Nosecone();        
 
     //Overridden virtual functions 
-    double DiameterAirflow();
-    double LengthAirflow();
-    double AreaReference();
-    double AreaWet(); 
-    double VolumeMaterial();
+    double DiameterAirflow() const;
+    double LengthAirflow() const;
+    double AreaReference() const;
+    double AreaWet() const;
+    double VolumeMaterial() const;
     double DragCoefficient(const double& area_reference, const double& fineness_rocket,
         const double& mach_number, const double& skin_friction_coefficient,
-        const bool& aft_most_part, const double& area_thrusting);
+        const bool& aft_most_part, const double& area_thrusting) const;
     double DragCoefficientFriction(const double& skin_friction_coefficient,
-        const double& area_reference, const double& fineness_rocket);
-    double DragCoefficientPressure(const double& mach_number, const double& area_reference);
+        const double& area_reference, const double& fineness_rocket) const;
+    double DragCoefficientPressure(const double& mach_number, const double& area_reference) const;
     double DragCoefficientBase(const bool& aft_most_part,
-        const double& mach_number, const double& area_thrusting, const double& area_reference);
+        const double& mach_number, const double& area_thrusting, const double& area_reference) const;
 
     NoseconeType nose_type_;
     double shape_parameter_;
@@ -48,6 +39,14 @@ class Nosecone : public Part {
     double diameter_shoulder_;
 
   private:	
+    double Radius() const;
+    double Length() const;
+    double AreaSurface() const;
+    double AreaPlanform() const;
+    double AreaForward() const;
+    double AreaAft() const;
+    double VolumeInterior() const;
+    double FinenessRatio() const;
     double CurveVonKarmen(const double& x);
     double CurveConic(const double& x);
 };

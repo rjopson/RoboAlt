@@ -10,28 +10,29 @@ class TubeBody : public Part {
         bool mass_override_switch, const double& mass_override, bool cg_override_switch, const double& cg_override);
     ~TubeBody();    
 
-    double DiameterInner();
-    double AreaSurface();    
-    double VolumeInterior();
-    double AreaPlanform();
-
     //Overridden virtual functions 
-    double DiameterAirflow();
-    double LengthAirflow();
-    double AreaReference();
-    double AreaWet();
-    double VolumeMaterial();
+    double DiameterAirflow() const;
+    double LengthAirflow() const;
+    double AreaReference() const;
+    double AreaWet() const;
+    double VolumeMaterial() const;
     double DragCoefficient(const double& area_reference, const double& fineness_rocket,
         const double& mach_number, const double& skin_friction_coefficient,
-        const bool& aft_most_part, const double& area_thrusting);
+        const bool& aft_most_part, const double& area_thrusting) const;
     double DragCoefficientFriction(const double& skin_friction_coefficient,
-        const double& area_reference, const double& fineness_rocket);
+        const double& area_reference, const double& fineness_rocket) const;
     double DragCoefficientBase(const bool& aft_most_part,
-        const double& mach_number, const double& area_thrusting, const double& area_reference);
+        const double& mach_number, const double& area_thrusting, const double& area_reference) const;
     
     double length_;
     double diameter_outer_;
     double thickness_;
+
+  private:
+    double DiameterInner() const;
+    double AreaSurface() const;
+    double VolumeInterior() const;
+    double AreaPlanform() const;
 };
 #endif // !_TUBE_BODY_H
 

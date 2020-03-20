@@ -13,28 +13,25 @@ Parachute::Parachute(std::string name, std::string comments, Material* material,
 
 Parachute::~Parachute() {}
 
-double Parachute::Area() {
-    return kPi * std::pow(diameter_ / 2.0, 2.0);
-}
-
-double Parachute::DragCoefficient() {
+double Parachute::DragCoefficient() const {
     return Aerodynamics::DragCoefficientParachute();
 }
 
-double Parachute::VolumeMaterial() {
+double Parachute::VolumeMaterial() const {
     return Area()*thickness_;
 }
 
-Drag Parachute::DragModel() {
+Drag Parachute::DragModel() const {
 
     std::vector<double> mach{ 0.0, 0.8 };
     std::vector<double> cd{ DragCoefficient(), DragCoefficient() };
 
-    Drag drag("Internal Model", "", true, DragType::PARACHUTE, "");
-
-    drag.area_reference_ = Area();
-    drag.data_mach_unpowered_ = mach;
-    drag.data_cd_unpowered_ = cd;
+    Drag drag("Internal Model", "", true, DragType::PARACHUTE, "", Area(),
+        mach, cd, mach, cd);
 
     return drag;
+}
+
+double Parachute::Area() const {
+    return kPi * std::pow(diameter_ / 2.0, 2.0);
 }

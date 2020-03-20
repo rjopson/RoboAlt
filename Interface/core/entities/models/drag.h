@@ -17,25 +17,28 @@ enum class DragType {
 class Drag {
   public:
     Drag() {}
-    Drag(std::string name, std::string comments, bool internally_calculated, DragType type, std::string manufacturer);
+    Drag(std::string name, std::string comments, bool internally_calculated, DragType type, std::string manufacturer,
+        const double& area_reference, 
+        const std::vector<double>& data_mach_unpowered, const std::vector<double>& data_cd_unpowered,
+        const std::vector<double>& data_mach_powered, const std::vector<double>& data_cd_powered);
     ~Drag();   
 
-    double GetDynamicPressure(const double& density, const double& velocity);
-    double GetCd(bool powered, const double& mach_number); //interpolate data for single mach number
-    double GetDrag(bool powered, const double& density, const double& velocity, const double& speed_sound); //interpolate data for single drag
+    double GetDynamicPressure(const double& density, const double& velocity) const;
+    double GetCd(bool powered, const double& mach_number) const; //interpolate data for single mach number
+    double GetDrag(bool powered, const double& density, const double& velocity, const double& speed_sound) const; //interpolate data for single drag
 
     std::string name_;
     bool internally_calculated_;
     std::string manufacturer_;
     std::string comments_;
+
+  private:
+    DragType type_;
     double area_reference_;
     std::vector<double> data_mach_unpowered_;
     std::vector<double> data_cd_unpowered_;
     std::vector<double> data_mach_powered_;
-    std::vector<double> data_cd_powered_;
-
-private:    
-    DragType type_;    
+    std::vector<double> data_cd_powered_;       
 };
 #endif
 

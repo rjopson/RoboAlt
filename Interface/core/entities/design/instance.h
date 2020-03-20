@@ -27,5 +27,9 @@ class Instance {
     std::vector<Instance*> children_;
     PartPosition position_type_;
     double position_from_;
+    int id_;
+
+  private:
+    static int id_counter;
 };
 #endif
