@@ -1,7 +1,7 @@
-Data structure:
+# Data structure:
 
-+rocket1
-  +Configuration1
++ rocket1
+  + Configuration1
     +Stage1
       +Instance1 (pointer to part1)
       +instance2 (pointer to part2)
