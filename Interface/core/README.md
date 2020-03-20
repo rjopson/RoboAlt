@@ -1,5 +1,7 @@
-# Data structure:
+# Example
++ main file is essentially a script which builds all the necessary parts, puts them in a configuration and runs a simulation
 
+# Data structure
 + rocket1
   + Configuration1
     + Stage1
