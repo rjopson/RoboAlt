@@ -28,10 +28,7 @@ class Stage {
     double FinenessRatio(bool include_stages_above);    
 
     //instance functions    
-    std::vector<Instance*> InstanceFlatList(bool include_stages_above);
-    void InstanceFlatListRecursive(Instance* parent, std::vector<Instance*> &flat_list);
-    void CreateInstance(Part* part, PartPosition position_type, const double& position_from);
-    void DeleteInstance();
+    std::vector<Instance*> InstanceList(bool include_stages_above);
 
     //Drag model calculations
     Drag DragModel(bool include_stages_above, const double& area_motor,
@@ -46,16 +43,21 @@ class Stage {
     void PrintDragCoefficients(bool include_stages_above, const double& mach_number, const double& area_thrusting);
 
     std::string name_;
-    std::string comments_;
-    std::vector<Stage*> stages_above_; //stages above this one (could be zero if this is the sustainer...)    
+    std::string comments_;     
     SurfaceFinish surface_finish_;
-    double distance_overlap_; //amount this stage overlaps the one in front of it 
-    Instance* instance_root_;
-    InertialOverride inertial_;
-    int id_;
+    double distance_overlap_; //amount this stage overlaps the one in front of it     
+      
 
   private:
-    static int id_counter;
+    static int id_counter;    
+
+    int id_;
+    InertialOverride inertial_;
+    Instance* instance_root_;
+    std::vector<Stage*> stages_above_; //stages above this one (could be zero if this is the sustainer...)       
 };
 #endif
+
+//void CreateInstance(Part* part, PartPosition position_type, const double& position_from);
+//void DeleteInstance();
 

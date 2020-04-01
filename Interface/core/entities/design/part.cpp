@@ -22,7 +22,7 @@ double Part::Mass() {
         return inertial_.mass_override_;
     }
     else {
-        return CalculateModelMass();
+        return material_->density_ * VolumeMaterial();
     }
 }
 
@@ -32,14 +32,6 @@ double Part::Cg() {
         return inertial_.cg_override_;
     }
     else {
-        return CalculateModelCg();
+        return 0.0;
     }
-}
-
-double Part::CalculateModelMass() const {
-    return material_->density_*VolumeMaterial();
-}
-
-double Part::CalculateModelCg() const {
-    return 0.0;
 }

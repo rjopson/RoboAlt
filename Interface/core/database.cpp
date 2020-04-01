@@ -7,6 +7,7 @@ Database::Database() {
 Database::~Database() {
 }
 
+/*
 void Database::CreateRocket(std::string name, std::string comments) {
     rockets_.push_back(new Rocket(name, comments));
 }
@@ -91,3 +92,4 @@ SimulationStage* Database::GetSimulationStage(const int& id) {
     }
     return nullptr;
 }
+*/

@@ -13,27 +13,52 @@ class Database {
 	Database();
 	~Database();
 
-	void CreateRocket(std::string name, std::string comments);
-	Rocket* GetRocket(const int& id);
-	Configuration* GetConfiguration(const int& id);
-	Stage* GetStage(const int& id);
-	Instance* GetInstance(const int& id);
-	Part* GetPart(const int& id);
-	SimulationStage* GetSimulationStage(const int& id);	
+    bool CurrentConfiguration(const int& id);
+    Configuration* CurrentConfiguration();
+    Rocket* CurrentRocket();
 
-private:
+    bool CreateRocket();
+    bool CreateConfiguration(const int& id_rocket);
+    bool CreateStage(const int& id_configuration);
+    bool CreateSimulation(const int& id_configuration);
+    bool CreateInstance(const int& id_instance_parent);
+    bool CreatePart(PartType part_type, const int& id_rocket);
+    bool CreateMaterial();
+    bool CreateMotor();
+    bool CreateAtmosphere();
+    bool CreateDrag(const int& id_rocket);
+
+    bool DeleteRocket(const int& id);
+    bool DeleteConfiguration(const int& id);
+    bool DeleteStage(const int& id);
+    bool DeleteSimulation(const int& id);
+    bool DeleteInstance(const int& id);
+    bool DeletePart(const int& id);  
+
+    //T* GetEntity(EntityType entity_type, const int& id);
+
+private:     
+    /*Rocket* GetRocket(const int& id);
+    Configuration* GetConfiguration(const int& id);
+    Stage* GetStage(const int& id);
+    Simulation* GetSimulation(const int& id);
+    Instance* GetInstance(const int& id);
+    Part* GetPart(const int& id);
+    Material* GetMaterial(const int& id);
+    Motor* GetMotor(const int& id);
+    Atmosphere* GetAtmosphere(const int& id);
+    Drag* GetDrag(const int& id); */    
+
 	std::vector<Rocket*> rockets_;
-
+    std::vector<Configuration*> configurations_;
+    std::vector<Stage*> stages_;
+    std::vector<Simulation*> simulations_;
+    std::vector<Instance*> instances_;
+    std::vector<Part*> parts_;
+    std::vector<Material*> materials_;
+    std::vector<Motor*> motors_;
+    std::vector<Atmosphere*> atmosphere_models_;
+    std::vector<Drag*> drag_models_;
 };
 #endif
-
-//std::vector<Atmosphere*> atmosphereList;
-	//std::vector<Material*> materialList;
-	//std::vector<Motor*> motorList;
-
-
-	//void addDatabaseMaterials(std::string in_path);
-	//void addDatabaseMotors(std::string in_path);
-	//void addUserMaterials(std::string in_path);
-	//void addUserMotors(std::string in_path);
 

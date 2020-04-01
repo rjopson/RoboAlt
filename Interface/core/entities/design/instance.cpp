@@ -2,11 +2,6 @@
 
 int Instance::id_counter = 0;
 
-Instance::Instance() {
-    part_ = NULL;
-    parent_ = NULL;
-}
-
 //for all other instances
 Instance::Instance(Part* part, Instance* parent, PartPosition position_type, const double& position_from) 
 
@@ -25,7 +20,7 @@ Instance::~Instance() {
 
     //remove the instance from it's parent list
     if (parent_ != NULL) {
-        parent_->DeleteChild(this);
+        //parent_->DeleteChild(this);
     }
 
     //Delete all children if parent is deleted - these have no meaning
@@ -34,15 +29,18 @@ Instance::~Instance() {
     }
 }
 
-void Instance::CreateChild(Part* part, PartPosition position_type, const double& position_from) {
-    new Instance(part, this, position_type, position_from);
-}
-
 void Instance::AddChild(Instance* child) {
 
     child->parent_ = this;
     children_.push_back(child);
 }
+
+/*
+void Instance::CreateChild(Part* part, PartPosition position_type, const double& position_from) {
+    new Instance(part, this, position_type, position_from);
+}
+
+
 
 void Instance::DeleteChild(Instance* child) {
 
@@ -53,6 +51,7 @@ void Instance::DeleteChild(Instance* child) {
         }
     }
 }
+*/
 
 double Instance::PositionFromParentFront() {
 
@@ -61,6 +60,30 @@ double Instance::PositionFromParentFront() {
     }
     else {
         return parent_->part_->LengthAirflow() - part_->LengthAirflow() + position_from_;
+    }
+}
+
+std::vector<Instance*> Instance::Children(bool recursive) {
+
+    std::vector<Instance*> flat_list;
+
+    if (recursive) {
+        InstanceFlatListRecursive(this, flat_list);
+    }
+    else {
+        flat_list = children_;
+    }
+    return flat_list;
+}
+
+void Instance::InstanceFlatListRecursive(Instance* parent, std::vector<Instance*>& flat_list) {
+
+    flat_list.push_back(parent);
+
+    if (!parent->children_.empty()) { //additional instances in child list
+        for (auto child : parent->children_) {
+            InstanceFlatListRecursive(child, flat_list);
+        }
     }
 }
 

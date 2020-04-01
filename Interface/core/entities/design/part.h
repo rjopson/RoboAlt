@@ -50,15 +50,13 @@ class Part {
     std::string name_;
     std::string comments_;
     Material* material_;
-    PartType type_;
-    InertialOverride inertial_;
-    int id_;
+    PartType type_;     
 
   private:
-    double CalculateModelMass() const;
-    double CalculateModelCg() const;
-
-    static int id_counter;
+    static int id_counter;      
+    
+    int id_;
+    InertialOverride inertial_;
 };
 #endif
 

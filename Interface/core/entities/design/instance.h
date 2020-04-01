@@ -12,24 +12,28 @@ enum class PartPosition {
 
 class Instance {
   public:
-    Instance(); //for root 
     Instance(Part* part, Instance* parent, PartPosition position_type, const double& position_from);	
-    ~Instance();	    
+    ~Instance();	  
     
-    void CreateChild(Part* part, PartPosition position_type, const double& position_from);
-    void AddChild(Instance* child);
-    void DeleteChild(Instance* child);
-    void Reposition(const double& index_parent_list);
     double PositionFromParentFront();
+    std::vector<Instance*> Children(bool recursive);
+    void AddChild(Instance* child);
 
-    Part* part_;
+    Part* part_;    
     Instance* parent_;
-    std::vector<Instance*> children_;
     PartPosition position_type_;
-    double position_from_;
-    int id_;
+    double position_from_;    
 
   private:
     static int id_counter;
+
+    void InstanceFlatListRecursive(Instance* parent, std::vector<Instance*>& flat_list);
+    
+    int id_;
+    std::vector<Instance*> children_;
 };
 #endif
+
+//void CreateChild(Part* part, PartPosition position_type, const double& position_from);    //
+    //void DeleteChild(Instance* child);
+    //void Reposition(const double& index_parent_list);

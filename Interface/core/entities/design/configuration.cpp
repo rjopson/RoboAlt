@@ -21,6 +21,7 @@ Configuration::~Configuration() {
     }	
 }
 
+/*
 void Configuration::CreateSimulation(std::string name, std::string comments,
     const double& height_pad, const double& angle_launch_rod, const double& length_launch_rod) {
 
@@ -31,7 +32,7 @@ void Configuration::CreateSimulation(std::string name, std::string comments,
         SimulationStage* sim_stage = new SimulationStage(stage);
         simulations_.back()->sim_stages_.push_back(sim_stage);
     }
-}
+}*/
 
 std::vector<Stage*> Configuration::GetStageListWithStagesAbove(Stage* stage) const {
 
