@@ -11,9 +11,16 @@ class Bulkhead : public Part {
         bool mass_override_switch, const double& mass_override, bool cg_override_switch, const double& cg_override);
     ~Bulkhead();
 
+    //Properties
+    void SetDiameter(const double& diameter);
+    void SetThickness(const double& thickness);
+    double Diameter() const;
+    double Thickness() const;
+
     //virtual functions
     double VolumeMaterial() const;
 
+  private:
     double diameter_;
     double thickness_;
 };

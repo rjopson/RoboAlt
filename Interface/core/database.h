@@ -17,28 +17,56 @@ class Database {
     Configuration* CurrentConfiguration();
     Rocket* CurrentRocket();
 
-    bool CreateRocket();
-    bool CreateConfiguration(const int& id_rocket);
-    bool CreateStage(const int& id_configuration);
-    bool CreateSimulation(const int& id_configuration);
-    bool CreateInstance(const int& id_instance_parent);
-    bool CreatePart(PartType part_type, const int& id_rocket);
-    bool CreateMaterial();
-    bool CreateMotor();
-    bool CreateAtmosphere();
-    bool CreateDrag(const int& id_rocket);
+    void CreateMaterial();
+    void DeleteMaterial(Material* material);
+    Material* GetMaterial(const int& id);
 
-    bool DeleteRocket(const int& id);
-    bool DeleteConfiguration(const int& id);
-    bool DeleteStage(const int& id);
-    bool DeleteSimulation(const int& id);
-    bool DeleteInstance(const int& id);
-    bool DeletePart(const int& id);  
+    void CreateRocket();
+    void DeleteRocket(Rocket* rocket);
+    Rocket* GetRocket(const int& id);
+    Rocket* GetRocket(const std::string& name);
 
-    //T* GetEntity(EntityType entity_type, const int& id);
+    void CreateConfiguration(Rocket* rocket);
+    void DeleteConfiguration(Configuration* configuration);
+    Configuration* GetConfiguration(const int& id);
+
+    void CreateStage(Configuration* configuration);
+    void DeleteStage(Stage* stage);
+    void CreateSimulation(Configuration* configuration);
+    void DeleteSimulation(Simulation* simulation);
+    void CreateInstance(Part* part, Instance* parent);
+    void DeleteInstance(Instance* instance);
+    void CreatePart(PartType part_type, Rocket* rocket);
+    void DeletePart(Part* part);
+    
+    void CreateMotor();
+    void CreateAtmosphere();
+    void CreateDrag(Rocket* rocket);       
 
 private:     
-    /*Rocket* GetRocket(const int& id);
+    //Rocket* GetRocket(const int& id);
+
+    template <class T>
+    T* GetEntity(std::vector<T*> list, const int& id) {
+        for (auto it = list.begin(); it != list.end(); it++) {
+            if ((*it)->Id() == id) {
+                return (*it);
+            }
+        }
+        throw std::invalid_argument("Entity does not exist.");
+    }
+
+    template <class T>
+    T* GetEntity(std::vector<T*> list, const std::string& name) {
+        for (auto it = list.begin(); it != list.end(); it++) {
+            if ((*it)->Name() == name) {
+                return (*it);
+            }
+        }
+        throw std::invalid_argument("Entity does not exist.");
+    }
+
+    /*
     Configuration* GetConfiguration(const int& id);
     Stage* GetStage(const int& id);
     Simulation* GetSimulation(const int& id);

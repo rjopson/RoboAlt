@@ -14,6 +14,47 @@ TubeBody::TubeBody(std::string name, std::string comments, Material* material,
 
 TubeBody::~TubeBody() {}
 
+void TubeBody::SetLength(const double& length) {
+    length_ = length;
+}
+
+void TubeBody::SetDiameterOuter(const double& diameter_outer) {
+    diameter_outer_ = diameter_outer;
+}
+
+void TubeBody::SetThickness(const double& thickness) {
+    thickness_ = thickness;
+}
+
+double TubeBody::Length() const {
+    return length_;
+}
+
+double TubeBody::DiameterOuter() const {
+    return diameter_outer_;
+}
+
+double TubeBody::Thickness() const {
+    return thickness_;
+}
+
+double TubeBody::DiameterInner() const {
+    return diameter_outer_ - 2.0 * thickness_;
+}
+
+double TubeBody::AreaSurface() const {
+    return diameter_outer_ * kPi * length_;
+}
+
+double TubeBody::VolumeInterior() const {
+    double radius = diameter_outer_ / 2.0;
+    return length_ * kPi * std::pow(radius, 2.0);
+}
+
+double TubeBody::AreaPlanform() const {
+    return diameter_outer_ * length_;
+}
+
 double TubeBody::DiameterAirflow() const {
     return diameter_outer_;
 }
@@ -54,21 +95,4 @@ double TubeBody::DragCoefficientBase(const bool& aft_most_part,
     const double& mach_number, const double& area_thrusting, const double& area_reference) const {
     
     return Aerodynamics::DragCoefficientBase(aft_most_part, mach_number, AreaReference(), area_thrusting, area_reference);
-}
-
-double TubeBody::DiameterInner() const {
-    return diameter_outer_ - 2.0 * thickness_;
-}
-
-double TubeBody::AreaSurface() const {
-    return diameter_outer_ * kPi * length_;
-}
-
-double TubeBody::VolumeInterior() const {
-    double radius = diameter_outer_ / 2.0;
-    return length_ * kPi * std::pow(radius, 2.0);
-}
-
-double TubeBody::AreaPlanform() const {
-    return diameter_outer_ * length_;
 }

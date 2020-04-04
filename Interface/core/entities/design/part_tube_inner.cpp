@@ -14,6 +14,30 @@ TubeInner::TubeInner(std::string name, std::string comments, Material* material,
 
 TubeInner::~TubeInner() {}
 
+void TubeInner::SetLength(const double& length) {
+    length_ = length;
+}
+
+void TubeInner::SetDiameterOuter(const double& diameter_outer) {
+    diameter_outer_ = diameter_outer;
+}
+
+void TubeInner::SetThickness(const double& thickness) {
+    thickness_ = thickness;
+}
+
+double TubeInner::Length() const {
+    return length_;
+}
+
+double TubeInner::DiameterOuter() const {
+    return diameter_outer_;
+}
+
+double TubeInner::Thickness() const {
+    return thickness_;
+}
+
 double TubeInner::VolumeMaterial() const {
     return AreaSurface()*thickness_;
 }

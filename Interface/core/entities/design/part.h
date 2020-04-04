@@ -16,19 +16,27 @@ enum class PartType {
     TUBE_INNER,
     BULKHEAD,
     PARACHUTE,
-    MASS
+    POINT_MASS
 };
 
 class Part {
   public:
     static constexpr double kPi = 3.141592653589793;    
 
-    Part(std::string name, std::string comments, Material* material,
+    Part(const std::string& name, const std::string& comments, Material* material,
         bool mass_override_switch, const double& mass_override, bool cg_override_switch, const double& cg_override);
-    ~Part();     
-
-    double Mass();
-    double Cg();
+    ~Part(); 
+    
+    //Properties    
+    void SetMaterial(Material* material);
+    void SetOverrideMass(const double& mass);
+    void SetModelMass();
+    Material* AssignedMaterial() const;
+    PartType Type() const;    
+    
+    //Inertial
+    double Mass() const;
+    double Cg() const;    
 
     //Geometric calculations
     virtual double DiameterAirflow()  const { return 0.0; }
@@ -45,18 +53,17 @@ class Part {
         const double& area_reference, const double& fineness_rocket)  const {return 0.0;}
     virtual double DragCoefficientPressure(const double& mach_number, const double& area_reference)  const { return 0.0; }
     virtual double DragCoefficientBase(const bool& aft_most_part,
-        const double& mach_number, const double& area_thrusting, const double& area_reference)  const {return 0.0;}
-
-    std::string name_;
-    std::string comments_;
-    Material* material_;
-    PartType type_;     
+        const double& mach_number, const double& area_thrusting, const double& area_reference)  const {return 0.0;}     
 
   private:
-    static int id_counter;      
+    static unsigned int id_counter;
     
-    int id_;
-    InertialOverride inertial_;
+    unsigned int id_;
+    InertialOverride inertial_;    
+    Material* material_;
+
+  protected:
+    PartType type_;
 };
 #endif
 

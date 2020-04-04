@@ -19,6 +19,18 @@ class Fins : public Part {
         bool mass_override_switch, const double& mass_override, bool cg_override_switch, const double& cg_override);
     ~Fins();    
 
+    //Properties
+    void SetFinShape(FinShape* shape);
+    void SetFinCrossSection(FinCrossSection cross_section);
+    void SetNumber(const double& number);
+    void SetThickness(const double& thickness);
+    void SetRadiusFillet(const double& radius_fillet);
+    FinShape* AssignedFinShape() const;
+    FinCrossSection CrossSection() const;
+    int Number() const;
+    double Thickness() const;
+    double RadiusFillet() const;
+
     //Overridden virtual functions 
     double VolumeMaterial() const;
     double AreaReference() const;
@@ -30,18 +42,18 @@ class Fins : public Part {
         const double& area_reference, const double& fineness_rocket) const;
     double DragCoefficientPressure(const double& mach_number, const double& area_reference) const;
     double DragCoefficientBase(const bool& aft_most_part,
-        const double& mach_number, const double& area_thrusting, const double& area_reference) const;
+        const double& mach_number, const double& area_thrusting, const double& area_reference) const;    
+
+  private:
+    double AreaSurface() const;
+    double AreaFrontal() const;    
+    double Length() const;
 
     FinShape* shape_;
     FinCrossSection cross_section_;
     int number_;
     double thickness_;
     double radius_fillet_;
-
-  private:
-    double AreaSurface() const;
-    double AreaFrontal() const;    
-    double Length() const;
 };
 #endif // !_FINS_H
 

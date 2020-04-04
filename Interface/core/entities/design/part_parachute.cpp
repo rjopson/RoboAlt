@@ -13,6 +13,26 @@ Parachute::Parachute(std::string name, std::string comments, Material* material,
 
 Parachute::~Parachute() {}
 
+void Parachute::SetThickness(const double& thickness) {
+    thickness_ = thickness;
+}
+
+void Parachute::SetDiameter(const double& diameter) {
+    diameter_ = diameter;
+}
+
+double Parachute::Thickness() const {
+    return thickness_;
+}
+
+double Parachute::Diameter() const {
+    return diameter_;
+}
+
+double Parachute::Area() const {
+    return kPi * std::pow(diameter_ / 2.0, 2.0);
+}
+
 double Parachute::DragCoefficient() const {
     return Aerodynamics::DragCoefficientParachute();
 }
@@ -30,8 +50,4 @@ Drag Parachute::DragModel() const {
         mach, cd, mach, cd);
 
     return drag;
-}
-
-double Parachute::Area() const {
-    return kPi * std::pow(diameter_ / 2.0, 2.0);
 }

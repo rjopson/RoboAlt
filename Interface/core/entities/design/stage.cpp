@@ -1,6 +1,6 @@
 #include "Stage.h"
 
-int Stage::id_counter = 0;
+unsigned int Stage::id_counter = 0;
 
 Stage::Stage(const std::string& name, const std::string& comments, 
     std::vector<Stage*> stages_above, SurfaceFinish surface_finish, const double& distance_overlap,
@@ -19,8 +19,40 @@ Stage::Stage(const std::string& name, const std::string& comments,
     instance_root_ = new Instance(nullptr, nullptr, PartPosition::FOREWARD, 0.0);
 }
 
-Stage::~Stage(){
+Stage::~Stage() {
     delete instance_root_;
+}
+
+void Stage::SetName(const std::string& name) {
+    name_ = name;
+}
+
+void Stage::SetComments(const std::string& comments) {
+    comments_ = comments;
+}
+
+void Stage::SetSurfaceFinish(SurfaceFinish surface_finish) {
+    surface_finish_ = surface_finish;
+}
+
+void Stage::SetDistanceOverlap(const double& distance_overlap) {
+    distance_overlap_ = distance_overlap;
+}
+
+std::string Stage::Name() const {
+    return name_;
+}
+
+std::string Stage::Comments() const {
+    return comments_;
+}
+
+SurfaceFinish Stage::AssignedSurfaceFinish() const {
+    return surface_finish_;
+}
+
+double Stage::DistanceOverlap() const {
+    return distance_overlap_;
 }
 
 std::vector<Instance*> Stage::InstanceList(bool include_stages_above) {
@@ -66,7 +98,7 @@ double Stage::Length(bool include_stages_above) {
     for (auto stage : stages) {
         for (auto instance : stage->instance_root_->Children(false)) {
 
-            length_sum += instance->part_->LengthAirflow();
+            length_sum += instance->AssignedPart()->LengthAirflow();
         }
     }
     return length_sum;
@@ -87,9 +119,9 @@ double Stage::DiameterMax(bool include_stages_above) {
 
     for (auto stage : stages) {
         for (auto instance : stage->instance_root_->Children(false)) { //loop through each child in top level instances
-            if (instance->part_->type_ == PartType::NOSECONE || instance->part_->type_ == PartType::TUBE_BODY) {
-                if (instance->part_->DiameterAirflow() > diameter) {
-                    diameter = instance->part_->DiameterAirflow();
+            if (instance->AssignedPart()->Type() == PartType::NOSECONE || instance->AssignedPart()->Type() == PartType::TUBE_BODY) {
+                if (instance->AssignedPart()->DiameterAirflow() > diameter) {
+                    diameter = instance->AssignedPart()->DiameterAirflow();
                 }
             }
         }
@@ -121,7 +153,7 @@ double Stage::MassEmpty(bool include_stages_above) {
         }
         else {
             for (auto instance : instance_root_->Children(true)) { //loop through each child 
-                mass += instance->part_->Mass();
+                mass += instance->AssignedPart()->Mass();
             }
         }
     }
@@ -186,7 +218,7 @@ double Stage::DragCoefficientFriction(bool include_stages_above, const double& m
     double cf = Aerodynamics::SkinFrictionCoefficient(Aerodynamics::SurfaceRoughness(GetSurfaceFinish(include_stages_above)), Length(include_stages_above), velocity, mach_number);
 
     for (auto instance : InstanceList(include_stages_above)) {
-        cd += instance->part_->DragCoefficientFriction(cf, AreaReference(include_stages_above), FinenessRatio(include_stages_above));
+        cd += instance->AssignedPart()->DragCoefficientFriction(cf, AreaReference(include_stages_above), FinenessRatio(include_stages_above));
     }
 
     return cd;
@@ -197,7 +229,7 @@ double Stage::DragCoefficientPressure(bool include_stages_above, const double& m
     double cd = 0.0;
 
     for (auto instance : InstanceList(include_stages_above)) {
-        cd += instance->part_->DragCoefficientPressure(mach_number, AreaReference(include_stages_above));
+        cd += instance->AssignedPart()->DragCoefficientPressure(mach_number, AreaReference(include_stages_above));
     }
     return cd;
 }
@@ -213,7 +245,7 @@ double Stage::DragCoefficientBase(bool include_stages_above, const double& mach_
         if (instance == instance_root_->Children(false).back()) {
             aft_most = true;
         }
-        cd += instance->part_->DragCoefficientBase(aft_most, mach_number, area_thrusting, AreaReference(include_stages_above));
+        cd += instance->AssignedPart()->DragCoefficientBase(aft_most, mach_number, area_thrusting, AreaReference(include_stages_above));
     }
     return cd;
 }
@@ -235,11 +267,11 @@ void Stage::PrintDragCoefficients(bool include_stages_above, const double& mach_
             }
         }
         
-        std::cout << instance->part_->name_ 
-            << " " << instance->part_->DragCoefficientFriction(cf, AreaReference(include_stages_above), FinenessRatio(include_stages_above))
-            << " " << instance->part_->DragCoefficientPressure(mach_number, AreaReference(include_stages_above))
-            << " " << instance->part_->DragCoefficientBase(aft_most, mach_number, area_thrusting, AreaReference(include_stages_above))
-            << " " << instance->part_->DragCoefficient(AreaReference(include_stages_above), FinenessRatio(include_stages_above), mach_number, cf, aft_most, area_thrusting)
+        std::cout << instance->AssignedPart()->Name()
+            << " " << instance->AssignedPart()->DragCoefficientFriction(cf, AreaReference(include_stages_above), FinenessRatio(include_stages_above))
+            << " " << instance->AssignedPart()->DragCoefficientPressure(mach_number, AreaReference(include_stages_above))
+            << " " << instance->AssignedPart()->DragCoefficientBase(aft_most, mach_number, area_thrusting, AreaReference(include_stages_above))
+            << " " << instance->AssignedPart()->DragCoefficient(AreaReference(include_stages_above), FinenessRatio(include_stages_above), mach_number, cf, aft_most, area_thrusting)
             << std::endl;
     }
     std::cout << "total "

@@ -1,8 +1,8 @@
 #include "Part.h"
 
-int Part::id_counter = 0;
+unsigned int Part::id_counter = 0;
 
-Part::Part(std::string name, std::string comments, Material* material,
+Part::Part(const std::string& name, const std::string& comments, Material* material,
     bool mass_override_switch, const double& mass_override, bool cg_override_switch, const double& cg_override) 
     
     : name_(name),
@@ -16,17 +16,38 @@ Part::Part(std::string name, std::string comments, Material* material,
 
 Part::~Part() {}
 
-double Part::Mass() {
+void Part::SetMaterial(Material* material) {
+    material_ = material;
+}
+
+void Part::SetOverrideMass(const double& mass) {
+    inertial_.mass_override_switch_ = true;
+    inertial_.mass_override_ = mass;
+}
+
+void Part::SetModelMass() {
+    inertial_.mass_override_switch_ = false;
+}
+
+Material* Part::AssignedMaterial() const {
+    return material_;
+}
+
+PartType Part::Type() const {
+    return type_;
+}
+
+double Part::Mass() const {
 
     if (inertial_.mass_override_switch_) {//user wants override value to be used
         return inertial_.mass_override_;
     }
     else {
-        return material_->density_ * VolumeMaterial();
+        return material_->Density() * VolumeMaterial();
     }
 }
 
-double Part::Cg() {
+double Part::Cg() const {
     
     if (inertial_.cg_override_switch_) {//user wants override value to be used
         return inertial_.cg_override_;

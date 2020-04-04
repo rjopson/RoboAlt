@@ -16,9 +16,11 @@ int main() {
 
 	std::cout << "Creating rocket" << std::endl;
 
-	Material* pla = new Material("PLA", 1380.0);
+	//Material* pla = new Material("PLA", 1380.0);
     Database* db = new Database();
-    //db->CreateRocket("29mm 3DPME", "");
+    db->CreateRocket();
+    std::cout << db->GetRocket(1)->Name() << std::endl;
+    std::cout << db->GetRocket("rocket1")->Name() << std::endl;
 
 	//Parts
     //db->GetRocket(1)->CreateNosecone("Nosecone", "", pla, NoseconeType::VON_KARMEN,
@@ -46,7 +48,8 @@ int main() {
 
     
 	//Gather data for the simulation
-	Motor* h128 = new Motor("D:/Personal/Rockets/RoboAlt/Interface/core/testFiles/AeroTech_H128.eng");	
+	//Motor* h128 = new Motor("D:/Personal/Rockets/RoboAlt/Interface/core/testFiles/AeroTech_H128.eng");
+    Motor* h128 = new Motor("C:/Users/rober/Documents/Rockets/Altimeters/Interface/core/testFiles/AeroTech_H128.eng");
 
 	//let's see if simulation works...
 	//db->GetConfiguration(1)->CreateSimulation("sim1", "", 167.0, 0.0, 2.5);
@@ -67,7 +70,8 @@ int main() {
     //db->GetInstance(11)->CreateChild(db->GetPart(6), PartPosition::FOREWARD, 0.0063);
 
     //Gather data for the simulation
-    Motor* h180 = new Motor("D:/Personal/Rockets/RoboAlt/Interface/core/testFiles/AeroTech_H180.eng");
+    //Motor* h180 = new Motor("D:/Personal/Rockets/RoboAlt/Interface/core/testFiles/AeroTech_H180.eng");
+    Motor* h180 = new Motor("C:/Users/rober/Documents/Rockets/Altimeters/Interface/core/testFiles/AeroTech_H180.eng");
 
     //let's see if simulation works...
     //db->GetConfiguration(2)->CreateSimulation("sim2", "", 167.0, 0.0, 2.5);

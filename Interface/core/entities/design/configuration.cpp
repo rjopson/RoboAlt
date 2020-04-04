@@ -21,6 +21,22 @@ Configuration::~Configuration() {
     }	
 }
 
+void Configuration::SetName(const std::string& name) {
+    name_ = name;
+}
+
+void Configuration::SetComments(const std::string& comments) {
+    comments_ = comments;
+}
+
+std::string Configuration::Name() const {
+    return name_;
+}
+
+std::string Configuration::Comments() const {
+    return comments_;
+}
+
 /*
 void Configuration::CreateSimulation(std::string name, std::string comments,
     const double& height_pad, const double& angle_launch_rod, const double& length_launch_rod) {

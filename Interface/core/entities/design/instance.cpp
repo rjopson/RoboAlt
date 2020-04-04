@@ -1,6 +1,6 @@
 #include "instance.h"
 
-int Instance::id_counter = 0;
+unsigned int Instance::id_counter = 0;
 
 //for all other instances
 Instance::Instance(Part* part, Instance* parent, PartPosition position_type, const double& position_from) 
@@ -16,17 +16,30 @@ Instance::Instance(Part* part, Instance* parent, PartPosition position_type, con
     parent->AddChild(this);
 }
 
-Instance::~Instance() {
+Instance::~Instance() {}
 
-    //remove the instance from it's parent list
-    if (parent_ != NULL) {
-        //parent_->DeleteChild(this);
-    }
+void Instance::SetPositionType(PartPosition position_type) {
+    position_type_ = position_type;
+}
 
-    //Delete all children if parent is deleted - these have no meaning
-    for (auto it = children_.begin(); it != children_.end(); it++) {
-        delete (*it);
-    }
+void Instance::MovePosition(const double& position) {
+    position_from_ = position;
+}
+
+Part* Instance::AssignedPart() const {
+    return part_;
+}
+
+PartPosition Instance::PositionType() const {
+    return position_type_;
+}
+
+double Instance::PositionFrom() const {
+    return position_from_;
+}
+
+Instance* Instance::Parent() const {
+    return parent_;
 }
 
 void Instance::AddChild(Instance* child) {
@@ -35,23 +48,17 @@ void Instance::AddChild(Instance* child) {
     children_.push_back(child);
 }
 
-/*
-void Instance::CreateChild(Part* part, PartPosition position_type, const double& position_from) {
-    new Instance(part, this, position_type, position_from);
+void Instance::RemoveChild(Instance* child) {
+    auto it = std::find(children_.begin(), children_.end(), child);
+
+    if (it != children_.end()) {
+        children_.erase(it);
+    }    
 }
 
-
-
-void Instance::DeleteChild(Instance* child) {
-
-    for (auto it = children_.begin(); it != children_.end(); it++) {
-        if ((*it) == child) {
-            delete (*it);
-            children_.erase(it);
-        }
-    }
+void Instance::RemoveFromParent() {
+    parent_->RemoveChild(this);
 }
-*/
 
 double Instance::PositionFromParentFront() {
 

@@ -14,26 +14,31 @@ class Instance {
   public:
     Instance(Part* part, Instance* parent, PartPosition position_type, const double& position_from);	
     ~Instance();	  
+
+    //Properties
+    void SetPositionType(PartPosition position_type);
+    void MovePosition(const double& position);
+    Part* AssignedPart() const;
+    PartPosition PositionType() const;
+    double PositionFrom() const;
+    Instance* Parent() const;
     
     double PositionFromParentFront();
     std::vector<Instance*> Children(bool recursive);
-    void AddChild(Instance* child);
-
-    Part* part_;    
-    Instance* parent_;
-    PartPosition position_type_;
-    double position_from_;    
+    void AddChild(Instance* child);   
+    void RemoveChild(Instance* child);
+    void RemoveFromParent();
 
   private:
-    static int id_counter;
+    static unsigned int id_counter;
 
     void InstanceFlatListRecursive(Instance* parent, std::vector<Instance*>& flat_list);
     
-    int id_;
+    unsigned int id_;
     std::vector<Instance*> children_;
+    Part* part_;
+    Instance* parent_;
+    PartPosition position_type_;
+    double position_from_;
 };
 #endif
-
-//void CreateChild(Part* part, PartPosition position_type, const double& position_from);    //
-    //void DeleteChild(Instance* child);
-    //void Reposition(const double& index_parent_list);

@@ -1,6 +1,6 @@
 #include "rocket.h"
 
-int Rocket::id_counter = 0;
+unsigned int Rocket::id_counter = 0;
 
 Rocket::Rocket(std::string name, std::string comments) 
     : name_(name),
@@ -13,6 +13,53 @@ Rocket::Rocket(std::string name, std::string comments)
 Rocket::~Rocket() {
 }
 
+void Rocket::SetName(const std::string& name) {
+    name_ = name;
+}
+
+void Rocket::SetComments(const std::string& comments) {
+    comments_ = comments;
+}
+
+std::string Rocket::Name() const {
+    return name_;
+}
+
+std::string Rocket::Comments() const {
+    return comments_;
+}
+
+unsigned int Rocket::Id() const {
+    return id_;
+}
+
+void Rocket::AddConfiguration(Configuration* configuration) {
+    configurations_.push_back(configuration);
+}
+
+void Rocket::AddDrag(Drag* drag) {
+    //drag_
+}
+
+void Rocket::AddPart(Part* part) {
+    parts_.push_back(part);
+}
+
+void Rocket::RemoveConfiguration(Configuration* configuration) {
+    auto it = std::find(configurations_.begin(), configurations_.end(), configuration);
+    configurations_.erase(it);
+}
+
+void Rocket::RemoveDrag(Drag* drag) {
+  
+}
+
+void Rocket::RemovePart(Part* part) {
+    auto it = std::find(parts_.begin(), parts_.end(), part);
+    parts_.erase(it);
+}
+
+/*
 void Rocket::CreateConfiguration(std::string name, std::string comments) {
     configurations_.push_back(new Configuration(name, comments));
 }
@@ -53,7 +100,7 @@ void Rocket::CreateFins(std::string name, std::string comments, Material* materi
 
 void Rocket::CreateMass(std::string name, std::string comments, Material* material, const double& mass) {
 
-    masses_.push_back(new Mass(name, comments, material, mass,
+    masses_.push_back(new PointMass(name, comments, material, mass,
         false, 0.0, false, 0.0));
 }
 
@@ -91,5 +138,5 @@ void Rocket::CreateTubeInner(std::string name, std::string comments, Material* m
 
     inner_tubes_.push_back(new TubeInner(name, comments, material, length, diameter_outer, thickness,
         mass_override_switch, mass_override, cg_override_switch, cg_override));
-}
+} */
 

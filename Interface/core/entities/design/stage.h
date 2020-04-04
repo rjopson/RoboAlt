@@ -18,6 +18,16 @@ class Stage {
         bool mass_override_switch, const double& mass_override, bool cg_override_switch, const double& cg_override);
     ~Stage();   
 
+    //Properties
+    void SetName(const std::string& name);
+    void SetComments(const std::string& comments);
+    void SetSurfaceFinish(SurfaceFinish surface_finish);
+    void SetDistanceOverlap(const double& distance_overlap);
+    std::string Name() const;
+    std::string Comments() const;
+    SurfaceFinish AssignedSurfaceFinish() const;
+    double DistanceOverlap() const;
+
     //Mass calculations
     double MassEmpty(bool include_stages_above);
 
@@ -29,6 +39,8 @@ class Stage {
 
     //instance functions    
     std::vector<Instance*> InstanceList(bool include_stages_above);
+    void AddPart();
+    bool RemovePart();
 
     //Drag model calculations
     Drag DragModel(bool include_stages_above, const double& area_motor,
@@ -40,24 +52,19 @@ class Stage {
     SurfaceFinish GetSurfaceFinish(bool include_stages_above);
 
     //debugging
-    void PrintDragCoefficients(bool include_stages_above, const double& mach_number, const double& area_thrusting);
-
-    std::string name_;
-    std::string comments_;     
-    SurfaceFinish surface_finish_;
-    double distance_overlap_; //amount this stage overlaps the one in front of it     
-      
+    void PrintDragCoefficients(bool include_stages_above, const double& mach_number, const double& area_thrusting);      
 
   private:
-    static int id_counter;    
+    static unsigned int id_counter;
 
-    int id_;
+    std::string name_;
+    std::string comments_;
+    SurfaceFinish surface_finish_;
+    double distance_overlap_; //amount this stage overlaps the one in front of it     
+    unsigned int id_;
     InertialOverride inertial_;
     Instance* instance_root_;
     std::vector<Stage*> stages_above_; //stages above this one (could be zero if this is the sustainer...)       
 };
 #endif
-
-//void CreateInstance(Part* part, PartPosition position_type, const double& position_from);
-//void DeleteInstance();
 

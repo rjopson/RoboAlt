@@ -17,6 +17,46 @@ Fins::Fins(std::string name, std::string comments, Material* material,
 
 Fins::~Fins() {}
 
+void Fins::SetFinShape(FinShape* shape) {
+    shape_ = shape;
+}
+
+void Fins::SetFinCrossSection(FinCrossSection cross_section) {
+    cross_section_ = cross_section;
+}
+
+void Fins::SetNumber(const double& number) {
+    number_ = number;
+}
+
+void Fins::SetThickness(const double& thickness) {
+    thickness_ = thickness;
+}
+
+void Fins::SetRadiusFillet(const double& radius_fillet) {
+    radius_fillet_ = radius_fillet;
+}
+
+FinShape* Fins::AssignedFinShape() const {
+    return shape_;
+}
+
+FinCrossSection Fins::CrossSection() const {
+    return cross_section_;
+}
+
+int Fins::Number() const {
+    return number_;
+}
+
+double Fins::Thickness() const {
+    return thickness_;
+}
+
+double Fins::RadiusFillet() const {
+    return radius_fillet_;
+}
+
 double Fins::VolumeMaterial() const {
     return AreaSurface() * thickness_;
 }
