@@ -3,34 +3,13 @@
 unsigned int Rocket::id_counter = 0;
 
 Rocket::Rocket(std::string name, std::string comments) 
-    : name_(name),
-      comments_(comments) {
+    : Entity(name, comments) {
 
     id_counter++;
     id_ = id_counter;
 }
 
 Rocket::~Rocket() {
-}
-
-void Rocket::SetName(const std::string& name) {
-    name_ = name;
-}
-
-void Rocket::SetComments(const std::string& comments) {
-    comments_ = comments;
-}
-
-std::string Rocket::Name() const {
-    return name_;
-}
-
-std::string Rocket::Comments() const {
-    return comments_;
-}
-
-unsigned int Rocket::Id() const {
-    return id_;
 }
 
 void Rocket::AddConfiguration(Configuration* configuration) {

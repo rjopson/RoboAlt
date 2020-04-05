@@ -7,30 +7,20 @@
 
 #include "atmosphere.h"
 #include "atmosphere_isa.h"
-
+#include "entity.h"
 #include "simulation.h"
 #include "stage.h"
 
-class Configuration {
+class Configuration : Entity {
   public:
     Configuration(std::string name, std::string comments);
     ~Configuration();    
-
-    //Properties
-    void SetName(const std::string& name);
-    void SetComments(const std::string& comments);
-    std::string Name() const;
-    std::string Comments() const;
-    int Id() const;
 
   private:
     static int id_counter;
 
     std::vector<Stage*> GetStageListWithStagesAbove(Stage* stage) const;
 
-    std::string name_;
-    std::string comments_;
-    int id_;
     std::vector<Stage*> stages_; //{sustainer, stage2, booster}	
     std::vector<Simulation*> simulations_;       
 };

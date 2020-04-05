@@ -6,6 +6,7 @@
 #include <iostream>
 
 #include "aerodynamics.h"
+#include "entity.h"
 #include "inertial_override.h"
 #include "material.h"
 
@@ -19,7 +20,7 @@ enum class PartType {
     POINT_MASS
 };
 
-class Part {
+class Part : public Entity {
   public:
     static constexpr double kPi = 3.141592653589793;    
 
@@ -56,9 +57,8 @@ class Part {
         const double& mach_number, const double& area_thrusting, const double& area_reference)  const {return 0.0;}     
 
   private:
-    static unsigned int id_counter;
-    
-    unsigned int id_;
+    static unsigned int id_counter_;
+
     InertialOverride inertial_;    
     Material* material_;
 

@@ -2,23 +2,21 @@
 
 #include "Material.h"
 
-Material::Material(std::string name, const double& density) 
-	: name_(name),
-	  density_(density) {}
+unsigned int Material::id_counter_ = 0;
+
+Material::Material(const std::string& name, const std::string& comments, const double& density)
+	: Entity(name, comments),
+	  density_(density) {
+
+	id_counter_++;
+	id_ = id_counter_;
+}
 
 
 Material::~Material() {}
 
-void Material::SetName(const std::string& name) {
-	name_ = name;
-}
-
 void Material::SetDensity(const double& density) {
 	density_ = density;
-}
-
-std::string Material::Name() const {
-	return name_;
 }
 
 double Material::Density() const {

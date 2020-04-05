@@ -6,10 +6,11 @@
 
 #include "atmosphere_isa.h"
 #include "drag.h"
+#include "entity.h"
 #include "inertial_override.h"
 #include "instance.h"
 
-class Stage {
+class Stage : public Entity {
   public:
     static constexpr double kPi = 3.141592653589793;
 
@@ -19,12 +20,8 @@ class Stage {
     ~Stage();   
 
     //Properties
-    void SetName(const std::string& name);
-    void SetComments(const std::string& comments);
     void SetSurfaceFinish(SurfaceFinish surface_finish);
     void SetDistanceOverlap(const double& distance_overlap);
-    std::string Name() const;
-    std::string Comments() const;
     SurfaceFinish AssignedSurfaceFinish() const;
     double DistanceOverlap() const;
 
@@ -55,13 +52,10 @@ class Stage {
     void PrintDragCoefficients(bool include_stages_above, const double& mach_number, const double& area_thrusting);      
 
   private:
-    static unsigned int id_counter;
+    static unsigned int id_counter_;
 
-    std::string name_;
-    std::string comments_;
     SurfaceFinish surface_finish_;
     double distance_overlap_; //amount this stage overlaps the one in front of it     
-    unsigned int id_;
     InertialOverride inertial_;
     Instance* instance_root_;
     std::vector<Stage*> stages_above_; //stages above this one (could be zero if this is the sustainer...)       

@@ -4,19 +4,19 @@
 
 #include <iostream>
 
-class Material
-{
+#include "entity.h"
+
+class Material : public Entity {
   public:
-	Material(std::string name, const double& density);
+	Material(const std::string& name, const std::string& comments, const double& density);
 	~Material();
 
-	void SetName(const std::string& name);
 	void SetDensity(const double& density);
-	std::string Name() const;
 	double Density() const;
 
   private:
-	std::string name_;
+	static unsigned int id_counter_;
+
 	double density_;
 };
 #endif

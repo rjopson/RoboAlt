@@ -1,20 +1,19 @@
 #include "Stage.h"
 
-unsigned int Stage::id_counter = 0;
+unsigned int Stage::id_counter_ = 0;
 
 Stage::Stage(const std::string& name, const std::string& comments, 
     std::vector<Stage*> stages_above, SurfaceFinish surface_finish, const double& distance_overlap,
     bool mass_override_switch, const double& mass_override, bool cg_override_switch, const double& cg_override) 
     
-    : name_(name),
-      comments_(comments),
+    : Entity(name, comments),
       stages_above_(stages_above),
       surface_finish_(surface_finish),
       distance_overlap_(distance_overlap),
       inertial_(mass_override_switch, mass_override, cg_override_switch, cg_override) {
 
-    id_counter++;
-    id_ = id_counter;
+    id_counter_++;
+    id_ = id_counter_;
 
     instance_root_ = new Instance(nullptr, nullptr, PartPosition::FOREWARD, 0.0);
 }
@@ -23,28 +22,12 @@ Stage::~Stage() {
     delete instance_root_;
 }
 
-void Stage::SetName(const std::string& name) {
-    name_ = name;
-}
-
-void Stage::SetComments(const std::string& comments) {
-    comments_ = comments;
-}
-
 void Stage::SetSurfaceFinish(SurfaceFinish surface_finish) {
     surface_finish_ = surface_finish;
 }
 
 void Stage::SetDistanceOverlap(const double& distance_overlap) {
     distance_overlap_ = distance_overlap;
-}
-
-std::string Stage::Name() const {
-    return name_;
-}
-
-std::string Stage::Comments() const {
-    return comments_;
 }
 
 SurfaceFinish Stage::AssignedSurfaceFinish() const {

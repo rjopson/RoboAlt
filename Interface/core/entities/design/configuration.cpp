@@ -4,8 +4,7 @@ int Configuration::id_counter = 0;
 
 Configuration::Configuration(std::string name, std::string comments) 
 
-    : name_(name),
-      comments_(comments) {
+    : Entity(name, comments) {
 
     id_counter++;
     id_ = id_counter;
@@ -19,22 +18,6 @@ Configuration::~Configuration() {
     for (auto it_stage = stages_.begin(); it_stage != stages_.end(); it_stage++) {
         delete (*it_stage);
     }	
-}
-
-void Configuration::SetName(const std::string& name) {
-    name_ = name;
-}
-
-void Configuration::SetComments(const std::string& comments) {
-    comments_ = comments;
-}
-
-std::string Configuration::Name() const {
-    return name_;
-}
-
-std::string Configuration::Comments() const {
-    return comments_;
 }
 
 /*

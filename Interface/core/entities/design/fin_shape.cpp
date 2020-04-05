@@ -12,9 +12,28 @@ FinShapeTrapezoidal::FinShapeTrapezoidal(const double& chord_root, const double&
       chord_root_(chord_root),
       chord_tip_(chord_tip),
       span_(span),
-      length_sweep_(length_sweep) {}
+      length_sweep_(length_sweep) {
+
+    type_ = FinShapeType::TRAPEZOIDAL;
+}
 
 FinShapeTrapezoidal::~FinShapeTrapezoidal() {}
+
+void FinShapeTrapezoidal::SetChordRoot(const double& chord_root) {
+    chord_root_ = chord_root;
+}
+
+void FinShapeTrapezoidal::SetChordTip(const double& chord_tip) {
+    chord_tip_ = chord_tip;
+}
+
+void FinShapeTrapezoidal::SetSpan(const double& span) {
+    span_ = span;
+}
+
+void FinShapeTrapezoidal::SetLengthSweep(const double& length_sweep) {
+    length_sweep_ = length_sweep;
+}
 
 double FinShapeTrapezoidal::ChordRoot() const {
     return chord_root_;

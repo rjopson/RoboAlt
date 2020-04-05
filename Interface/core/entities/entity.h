@@ -15,6 +15,7 @@ class Entity {
     void SetComments(const std::string& comments);
     std::string Name() const;
     std::string Comments() const;
+    unsigned int Id() const;
 
   private:
     std::string name_;

@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="aerodynamics\aerodynamics.cpp" />
     <ClCompile Include="database.cpp" />
+    <ClCompile Include="entities\entity.cpp" />
     <ClCompile Include="entities\models\atmosphere.cpp" />
     <ClCompile Include="entities\design\part_bulkhead.cpp" />
     <ClCompile Include="entities\design\configuration.cpp" />
@@ -41,7 +42,6 @@
     <ClCompile Include="entities\models\motor.cpp" />
     <ClCompile Include="entities\flight\flight_data.cpp" />
     <ClCompile Include="entities\design\rocket.cpp" />
-    <ClCompile Include="entity.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="entities\flight\simulation.cpp" />
     <ClCompile Include="entities\design\stage.cpp" />
@@ -53,6 +53,7 @@
   <ItemGroup>
     <ClInclude Include="aerodynamics\aerodynamics.h" />
     <ClInclude Include="database.h" />
+    <ClInclude Include="entities\entity.h" />
     <ClInclude Include="entities\models\atmosphere.h" />
     <ClInclude Include="entities\design\part_bulkhead.h" />
     <ClInclude Include="entities\design\configuration.h" />
@@ -76,7 +77,6 @@
     <ClInclude Include="entities\design\rocket.h" />
     <ClInclude Include="entities\design\stage.h" />
     <ClInclude Include="entities\flight\simulation_stage.h" />
-    <ClInclude Include="entity.h" />
     <ClInclude Include="utils\matrix.h" />
     <ClInclude Include="utils\parse.h" />
     <ClInclude Include="utils\math_utilities.h" />
@@ -163,7 +163,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\rober\Documents\Rockets\Altimeters\Interface\core\utils;C:\Users\rober\Documents\Rockets\Altimeters\Interface\core\entities\models;C:\Users\rober\Documents\Rockets\Altimeters\Interface\core\entities\flight;C:\Users\rober\Documents\Rockets\Altimeters\Interface\core\entities\design;C:\Users\rober\Documents\Rockets\Altimeters\Interface\core\aerodynamics;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\rober\Documents\Rockets\Altimeters\Interface\core\entities;C:\Users\rober\Documents\Rockets\Altimeters\Interface\core\utils;C:\Users\rober\Documents\Rockets\Altimeters\Interface\core\entities\models;C:\Users\rober\Documents\Rockets\Altimeters\Interface\core\entities\flight;C:\Users\rober\Documents\Rockets\Altimeters\Interface\core\entities\design;C:\Users\rober\Documents\Rockets\Altimeters\Interface\core\aerodynamics;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -174,7 +174,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\rober\Documents\Rockets\Altimeters\Interface\core\utils;C:\Users\rober\Documents\Rockets\Altimeters\Interface\core\entities\models;C:\Users\rober\Documents\Rockets\Altimeters\Interface\core\entities\flight;C:\Users\rober\Documents\Rockets\Altimeters\Interface\core\entities\design;C:\Users\rober\Documents\Rockets\Altimeters\Interface\core\aerodynamics;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\rober\Documents\Rockets\Altimeters\Interface\core\entities;C:\Users\rober\Documents\Rockets\Altimeters\Interface\core\utils;C:\Users\rober\Documents\Rockets\Altimeters\Interface\core\entities\models;C:\Users\rober\Documents\Rockets\Altimeters\Interface\core\entities\flight;C:\Users\rober\Documents\Rockets\Altimeters\Interface\core\entities\design;C:\Users\rober\Documents\Rockets\Altimeters\Interface\core\aerodynamics;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>

@@ -13,31 +13,36 @@ class Database {
 	Database();
 	~Database();
 
-    bool CurrentConfiguration(const int& id);
-    Configuration* CurrentConfiguration();
-    Rocket* CurrentRocket();
+    //bool CurrentConfiguration(const int& id);
+    //Configuration* CurrentConfiguration();
+    //Rocket* CurrentRocket();
 
-    void CreateMaterial();
+    void CreateMaterial(const std::string& name);
     void DeleteMaterial(Material* material);
-    Material* GetMaterial(const int& id);
+    Material* GetMaterial(const std::string& name);
 
-    void CreateRocket();
+    void CreateRocket(const std::string& name);
     void DeleteRocket(Rocket* rocket);
-    Rocket* GetRocket(const int& id);
+    //Rocket* GetRocket(const int& id);
     Rocket* GetRocket(const std::string& name);
 
-    void CreateConfiguration(Rocket* rocket);
+    void CreatePart(const std::string& name, PartType part_type, Rocket* rocket);
+    void DeletePart(Part* part);
+    Fins* GetFins(const std::string& name);
+    Nosecone* GetNosecone(const std::string& name);
+    TubeBody* GetTubeBody(const std::string& name);
+
+    void CreateConfiguration(const std::string& name, Rocket* rocket);
     void DeleteConfiguration(Configuration* configuration);
     Configuration* GetConfiguration(const int& id);
 
-    void CreateStage(Configuration* configuration);
+    void CreateStage(const std::string& name, Configuration* configuration);
     void DeleteStage(Stage* stage);
     void CreateSimulation(Configuration* configuration);
     void DeleteSimulation(Simulation* simulation);
     void CreateInstance(Part* part, Instance* parent);
     void DeleteInstance(Instance* instance);
-    void CreatePart(PartType part_type, Rocket* rocket);
-    void DeletePart(Part* part);
+    
     
     void CreateMotor();
     void CreateAtmosphere();
@@ -81,12 +86,21 @@ private:
     std::vector<Configuration*> configurations_;
     std::vector<Stage*> stages_;
     std::vector<Simulation*> simulations_;
-    std::vector<Instance*> instances_;
-    std::vector<Part*> parts_;
+    std::vector<Instance*> instances_;    
     std::vector<Material*> materials_;
     std::vector<Motor*> motors_;
     std::vector<Atmosphere*> atmosphere_models_;
     std::vector<Drag*> drag_models_;
+
+    //Parts
+    std::vector<Part*> parts_;
+    std::vector<Bulkhead*> bulkheads_;
+    std::vector<Fins*> fins_;
+    std::vector<PointMass*> masses_;
+    std::vector<Nosecone*> nosecones_;
+    std::vector<Parachute*> parachutes_;
+    std::vector<TubeBody*> body_tubes_;
+    std::vector<TubeInner*> inner_tubes_;
 };
 #endif
 

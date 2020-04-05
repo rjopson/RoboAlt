@@ -16,22 +16,73 @@ int main() {
 
 	std::cout << "Creating rocket" << std::endl;
 
-	//Material* pla = new Material("PLA", 1380.0);
     Database* db = new Database();
-    db->CreateRocket();
-    std::cout << db->GetRocket(1)->Name() << std::endl;
-    std::cout << db->GetRocket("rocket1")->Name() << std::endl;
+
+    db->CreateRocket("29mm 3DPME v2019");
+    std::cout << db->GetRocket("29mm 3DPME v2019")->Name() << std::endl;
+
+    db->CreateMaterial("PLA");
+    db->GetMaterial("PLA")->SetDensity(1380.0);
 
 	//Parts
-    //db->GetRocket(1)->CreateNosecone("Nosecone", "", pla, NoseconeType::VON_KARMEN,
-    // 1.0, 0.157, 0.01, 0.0, 0.002, 0.0, 0.03139, 0.0, false, 0, false, 0);
-    //db->GetRocket(1)->CreateTubeBody("tubeMain", "", pla, 0.076, 0.03139, 0.001, false, 0, false, 0);
-    //db->GetRocket(1)->CreateTubeBody("tubeDrogue", "", pla, 0.19, 0.03139, 0.001, false, 0, false, 0);
-    //db->GetRocket(1)->CreateTubeBody("tubeExtension180", "", pla, 0.001, 0.03139, 0.001, false, 0, false, 0);
-    //db->GetRocket(1)->CreateTubeBody("Fincan", "", pla, 0.114, 0.03139, 0.001, false, 0, false, 0);
-    //db->GetRocket(1)->CreateFins("Fin set", "", pla, FinCrossSection::ROUNDED, 3, 0.003, 0.005, 0.102, 0.013, 0.051, 0.076,
-    // false, 0.0, false, 0.0);
-    //db->GetRocket(1)->CreateTubeBody("tubeExtension240", "", pla, 0.04, 0.03139, 0.001, false, 0, false, 0);
+    //Nosecone
+    db->CreatePart("Nosecone", PartType::NOSECONE, db->GetRocket("29mm 3DPME v2019"));
+    db->GetNosecone("Nosecone")->SetMaterial(db->GetMaterial("PLA"));
+    db->GetNosecone("Nosecone")->SetNoseType(NoseconeType::VON_KARMEN);
+    db->GetNosecone("Nosecone")->SetShapeParameter(1.0);
+    db->GetNosecone("Nosecone")->SetLengthNose(0.157);
+    db->GetNosecone("Nosecone")->SetLengthBase(0.01);
+    db->GetNosecone("Nosecone")->SetLengthShoulder(0.0);
+    db->GetNosecone("Nosecone")->SetThickness(0.01);
+    db->GetNosecone("Nosecone")->SetThicknessShoulder(0.0);
+    db->GetNosecone("Nosecone")->SetDiameterOuter(0.03139);
+    db->GetNosecone("Nosecone")->SetDiameterShoulder(0.0);
+
+    //Main tube
+    db->CreatePart("tubeMain", PartType::TUBE_BODY, db->GetRocket("29mm 3DPME v2019"));
+    db->GetTubeBody("tubeMain")->SetMaterial(db->GetMaterial("PLA"));
+    db->GetTubeBody("tubeMain")->SetLength(0.076);
+    db->GetTubeBody("tubeMain")->SetDiameterOuter(0.03139);
+    db->GetTubeBody("tubeMain")->SetThickness(0.001);
+
+    //Drogue tube
+    db->CreatePart("tubeDrogue", PartType::TUBE_BODY, db->GetRocket("29mm 3DPME v2019"));
+    db->GetTubeBody("tubeDrogue")->SetMaterial(db->GetMaterial("PLA"));
+    db->GetTubeBody("tubeDrogue")->SetLength(0.19);
+    db->GetTubeBody("tubeDrogue")->SetDiameterOuter(0.03139);
+    db->GetTubeBody("tubeDrogue")->SetThickness(0.001);
+
+    //Extension tube
+    db->CreatePart("tubeExtension180", PartType::TUBE_BODY, db->GetRocket("29mm 3DPME v2019"));
+    db->GetTubeBody("tubeExtension180")->SetMaterial(db->GetMaterial("PLA"));
+    db->GetTubeBody("tubeExtension180")->SetLength(0.001);
+    db->GetTubeBody("tubeExtension180")->SetDiameterOuter(0.03139);
+    db->GetTubeBody("tubeExtension180")->SetThickness(0.001);
+
+    db->CreatePart("tubeExtension240", PartType::TUBE_BODY, db->GetRocket("29mm 3DPME v2019"));
+    db->GetTubeBody("tubeExtension240")->SetMaterial(db->GetMaterial("PLA"));
+    db->GetTubeBody("tubeExtension240")->SetLength(0.04);
+    db->GetTubeBody("tubeExtension240")->SetDiameterOuter(0.03139);
+    db->GetTubeBody("tubeExtension240")->SetThickness(0.001);
+
+    //Fincan tube
+    db->CreatePart("tubeFincan", PartType::TUBE_BODY, db->GetRocket("29mm 3DPME v2019"));
+    db->GetTubeBody("tubeFincan")->SetMaterial(db->GetMaterial("PLA"));
+    db->GetTubeBody("tubeFincan")->SetLength(0.114);
+    db->GetTubeBody("tubeFincan")->SetDiameterOuter(0.03139);
+    db->GetTubeBody("tubeFincan")->SetThickness(0.001);
+
+    //Fins
+    db->CreatePart("Fin set", PartType::FINS, db->GetRocket("29mm 3DPME v2019"));
+    db->GetFins("Fin set")->SetMaterial(db->GetMaterial("PLA"));
+    static_cast<FinShapeTrapezoidal*>(db->GetFins("Fin set")->AssignedFinShape())->SetChordRoot(0.102);
+    static_cast<FinShapeTrapezoidal*>(db->GetFins("Fin set")->AssignedFinShape())->SetChordTip(0.013);
+    static_cast<FinShapeTrapezoidal*>(db->GetFins("Fin set")->AssignedFinShape())->SetSpan(0.051);
+    static_cast<FinShapeTrapezoidal*>(db->GetFins("Fin set")->AssignedFinShape())->SetLengthSweep(0.076);
+    db->GetFins("Fin set")->SetFinCrossSection(FinCrossSection::ROUNDED);
+    db->GetFins("Fin set")->SetNumber(3);
+    db->GetFins("Fin set")->SetThickness(0.003);
+    db->GetFins("Fin set")->SetRadiusFillet(0.005);
 
 	//Configuration
     //db->GetRocket(1)->CreateConfiguration("180 case", "");

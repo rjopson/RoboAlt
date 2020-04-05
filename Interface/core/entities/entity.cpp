@@ -24,3 +24,7 @@ std::string Entity::Name() const {
 std::string Entity::Comments() const {
     return comments_;
 }
+
+unsigned int Entity::Id() const {
+    return id_;
+}
