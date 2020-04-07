@@ -1,6 +1,7 @@
 #ifndef _INSTANCE_H
 #define _INSTANCE_H
 
+#include <string>
 #include <vector>
 
 #include "part.h"
@@ -10,9 +11,10 @@ enum class PartPosition {
     AFT
 };
 
-class Instance {
+class Instance : public Entity {
   public:
-    Instance(Part* part, Instance* parent, PartPosition position_type, const double& position_from);	
+    Instance();
+    Instance(const std::string& name, Part* part, Instance* parent, PartPosition position_type, const double& position_from);
     ~Instance();	  
 
     //Properties
@@ -22,12 +24,10 @@ class Instance {
     PartPosition PositionType() const;
     double PositionFrom() const;
     Instance* Parent() const;
-    
     double PositionFromParentFront();
     std::vector<Instance*> Children(bool recursive);
-    void AddChild(Instance* child);   
-    void RemoveChild(Instance* child);
-    void RemoveFromParent();
+    void AddChild(Instance* child, const int& index);   //-1 to add at end, 0 to insert at beginning
+    void AddChildren(std::vector<Instance*> children, const int& index); //-1 to add at end, 0 to insert at beginning
 
   private:
     static unsigned int id_counter;

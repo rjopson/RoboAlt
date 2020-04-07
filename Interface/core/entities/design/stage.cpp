@@ -1,21 +1,15 @@
 #include "Stage.h"
 
-unsigned int Stage::id_counter_ = 0;
-
 Stage::Stage(const std::string& name, const std::string& comments, 
-    std::vector<Stage*> stages_above, SurfaceFinish surface_finish, const double& distance_overlap,
+    SurfaceFinish surface_finish, const double& distance_overlap,
     bool mass_override_switch, const double& mass_override, bool cg_override_switch, const double& cg_override) 
     
     : Entity(name, comments),
-      stages_above_(stages_above),
       surface_finish_(surface_finish),
       distance_overlap_(distance_overlap),
       inertial_(mass_override_switch, mass_override, cg_override_switch, cg_override) {
 
-    id_counter_++;
-    id_ = id_counter_;
-
-    instance_root_ = new Instance(nullptr, nullptr, PartPosition::FOREWARD, 0.0);
+    instance_root_ = new Instance();
 }
 
 Stage::~Stage() {
@@ -30,6 +24,19 @@ void Stage::SetDistanceOverlap(const double& distance_overlap) {
     distance_overlap_ = distance_overlap;
 }
 
+void Stage::SetStages(std::vector<Stage*> stages) {
+    stages_ = stages;
+}
+
+void Stage::SetOverrideMass(const double& mass) {
+    inertial_.mass_override_switch_ = true;
+    inertial_.mass_override_ = mass;
+}
+
+void Stage::SetModelMass() {
+    inertial_.mass_override_switch_ = false;
+}
+
 SurfaceFinish Stage::AssignedSurfaceFinish() const {
     return surface_finish_;
 }
@@ -41,26 +48,14 @@ double Stage::DistanceOverlap() const {
 std::vector<Instance*> Stage::InstanceList(bool include_stages_above) {
 
     std::vector<Instance*> flat_list;
+    std::vector<Stage*> stages = StageList(include_stages_above);
 
-    if (include_stages_above) {
-        for (auto it = stages_above_.begin(); it != stages_above_.end(); it++) {
-            std::vector<Instance*> flat_list_stage = (*it)->instance_root_->Children(true);
-            flat_list.insert(flat_list.end(), flat_list_stage.begin() + 1, flat_list_stage.end());
-        }
+    for (auto stage : stages) {
+        std::vector<Instance*> flat_list_stage = stage->instance_root_->Children(true);
+        flat_list.insert(flat_list.end(), flat_list_stage.begin() + 1, flat_list_stage.end());
     }
-
-    //Always do this stage
-    std::vector<Instance*> flat_list_stage = instance_root_->Children(true);
-    flat_list.insert(flat_list.end(), flat_list_stage.begin() + 1, flat_list_stage.end());
-
     return flat_list;
 }
-
-/*
-void Stage::CreateInstance(Part* part, PartPosition position_type, const double& position_from) {
-    new Instance(part, instance_root_, position_type, position_from);
-}
-*/
 
 double Stage::AreaReference(bool include_stages_above) {
     return kPi * std::pow(DiameterMax(include_stages_above) / 2.0, 2.0);
@@ -69,14 +64,7 @@ double Stage::AreaReference(bool include_stages_above) {
 double Stage::Length(bool include_stages_above) {
 
     double length_sum = 0.0;
-    std::vector<Stage*> stages;
-
-    if (include_stages_above) {
-        stages = stages_above_;
-    }
-    
-    //Add base stage always
-    stages.push_back(this);
+    std::vector<Stage*> stages = StageList(include_stages_above);
 
     for (auto stage : stages) {
         for (auto instance : stage->instance_root_->Children(false)) {
@@ -91,14 +79,7 @@ double Stage::DiameterMax(bool include_stages_above) {
 
     double diameter = 0.0;
 
-    std::vector<Stage*> stages;
-
-    if (include_stages_above) {
-        stages = stages_above_;
-    }
-
-    //Add base stage always
-    stages.push_back(this);
+    std::vector<Stage*> stages = StageList(include_stages_above);
 
     for (auto stage : stages) {
         for (auto instance : stage->instance_root_->Children(false)) { //loop through each child in top level instances
@@ -120,14 +101,7 @@ double Stage::MassEmpty(bool include_stages_above) {
 
     double mass = 0.0;
 
-    std::vector<Stage*> stages;
-
-    if (include_stages_above) {
-        stages = stages_above_;
-    }
-
-    //Add base stage always
-    stages.push_back(this);
+    std::vector<Stage*> stages = StageList(include_stages_above);
 
     for (auto stage : stages) {
 
@@ -147,14 +121,7 @@ SurfaceFinish Stage::GetSurfaceFinish(bool include_stages_above) {
 
     SurfaceFinish surface_finish = SurfaceFinish::PAINTED;
 
-    std::vector<Stage*> stages;
-
-    if (include_stages_above) {
-        stages = stages_above_;
-    }
-
-    //Add base stage always
-    stages.push_back(this);
+    std::vector<Stage*> stages = StageList(include_stages_above);
 
     for (auto stage : stages) {
         if (stage->surface_finish_ < surface_finish) {
@@ -162,6 +129,10 @@ SurfaceFinish Stage::GetSurfaceFinish(bool include_stages_above) {
         }
     }
     return surface_finish;
+}
+
+void Stage::AddInstance(Instance* instance) {
+    instance_root_->AddChild(instance, -1);
 }
 
 Drag Stage::DragModel(bool include_stages_above, const double& area_motor,
@@ -263,5 +234,17 @@ void Stage::PrintDragCoefficients(bool include_stages_above, const double& mach_
         << " " << DragCoefficientBase(mach_number, include_stages_above, area_thrusting) 
         << " " << DragCoefficient(include_stages_above, mach_number, area_thrusting) << std::endl;
 } 
+
+std::vector<Stage*> Stage::StageList(bool include_stages_above) {
+
+    if (include_stages_above) {
+        return stages_;
+    }
+    else {
+        std::vector<Stage*> noStagesAbove;
+        noStagesAbove.push_back(stages_.back());
+        return noStagesAbove;
+    }
+}
 
 

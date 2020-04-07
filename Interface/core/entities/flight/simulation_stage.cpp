@@ -1,12 +1,7 @@
 #include "simulation_stage.h"
 
-int SimulationStage::id_counter = 0;
-
 SimulationStage::SimulationStage(Stage* stage) 
     : stage_(stage) {
-
-    id_counter++;
-    id_ = id_counter;
 
     //Set drag data to use. If user didn't provide, generate internally
     drag_with_stages_above_ = new Drag();
@@ -39,6 +34,19 @@ SimulationStage::~SimulationStage() {
     delete drag_without_stages_above_;
     //delete dragDrogue_interalCalc;
     //delete dragMain_interalCalc;
+}
+
+double SimulationStage::AltitudeMainDeploy() {
+
+    double altitude_main_deploy = -1.0;
+
+    for (auto user_event : user_events_) {
+        if (user_event->event_ == Event::ALTITUDE_MAIN) {
+            altitude_main_deploy = user_event->altitude_main_deploy_;
+            break;
+        }
+    }
+    return altitude_main_deploy;
 }
 
 void SimulationStage::PopulateModelDrag() {

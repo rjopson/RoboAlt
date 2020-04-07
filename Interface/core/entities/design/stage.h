@@ -14,14 +14,16 @@ class Stage : public Entity {
   public:
     static constexpr double kPi = 3.141592653589793;
 
-    Stage(const std::string& name, const std::string& comments, 
-        std::vector<Stage*> stages_above, SurfaceFinish surface_finish, const double& overlap_distance,
+    Stage(const std::string& name, const std::string& comments, SurfaceFinish surface_finish, const double& overlap_distance,
         bool mass_override_switch, const double& mass_override, bool cg_override_switch, const double& cg_override);
     ~Stage();   
 
     //Properties
     void SetSurfaceFinish(SurfaceFinish surface_finish);
     void SetDistanceOverlap(const double& distance_overlap);
+    void SetStages(std::vector<Stage*> stages);
+    void SetOverrideMass(const double& mass);
+    void SetModelMass();
     SurfaceFinish AssignedSurfaceFinish() const;
     double DistanceOverlap() const;
 
@@ -36,8 +38,8 @@ class Stage : public Entity {
 
     //instance functions    
     std::vector<Instance*> InstanceList(bool include_stages_above);
-    void AddPart();
-    bool RemovePart();
+    void AddInstance(Instance* instance);
+    //bool RemovePart();
 
     //Drag model calculations
     Drag DragModel(bool include_stages_above, const double& area_motor,
@@ -52,13 +54,14 @@ class Stage : public Entity {
     void PrintDragCoefficients(bool include_stages_above, const double& mach_number, const double& area_thrusting);      
 
   private:
-    static unsigned int id_counter_;
+
+    std::vector<Stage*> StageList(bool include_stages_above);
 
     SurfaceFinish surface_finish_;
     double distance_overlap_; //amount this stage overlaps the one in front of it     
     InertialOverride inertial_;
     Instance* instance_root_;
-    std::vector<Stage*> stages_above_; //stages above this one (could be zero if this is the sustainer...)       
+    std::vector<Stage*> stages_; //stages above this one, AND this one     
 };
 #endif
 

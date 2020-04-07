@@ -37,10 +37,6 @@ void Database::DeleteRocket(Rocket* rocket) {
     }    
 }
 
-//Rocket* Database::GetRocket(const int& id) {
-//    return GetEntity(rockets_, id);
-//}
-
 Rocket* Database::GetRocket(const std::string& name) {
     return GetEntity(rockets_, name);
 }
@@ -77,8 +73,21 @@ void Database::CreatePart(const std::string& name, PartType part_type, Rocket* r
 
 void Database::DeletePart(Part* part) {
 
-    //delete part, remove from any rockets
-    //Delete any instances it contains
+    //remove part from the rocket it was stored in
+    for (auto it = rockets_.begin(); it != rockets_.end(); it++) {
+        (*it)->RemovePart(part);
+    }
+
+    //remove any instances which used this part
+    for (auto it = instances_.begin(); it != instances_.end(); ) {
+        if ((*it)->AssignedPart() == part) {
+            delete (*it);
+            instances_.erase(it);
+        }
+        else {
+            ++it;
+        }
+    }
 }
 
 Fins* Database::GetFins(const std::string& name) {
@@ -93,37 +102,52 @@ TubeBody* Database::GetTubeBody(const std::string& name) {
     return GetEntity(body_tubes_, name);
 }
 
-void Database::CreateInstance(Part* part, Instance* parent) {
-    instances_.push_back(new Instance(part, parent, PartPosition::FOREWARD, 0.0));
+void Database::CreateConfiguration(const std::string& name, Rocket* rocket) {
+    configurations_.push_back(new Configuration(name, ""));
+    rocket->AddConfiguration(configurations_.back());
+    
+    //Configuration always must have at least 1 stage
+    //CreateStage("Sustainer", configurations_.back());
+}
+
+void Database::DeleteConfiguration(Configuration* configuration) {
+    //lots of stuff here...
+}
+
+Configuration* Database::GetConfiguration(const std::string& name) {
+    return GetEntity(configurations_, name);
+}
+
+void Database::CreateStage(const std::string& name, Configuration* configuration) {    
+    stages_.push_back(new Stage(name, "", SurfaceFinish::PAINTED, 0.0, false, 0.0, false, 0.0));
+    configuration->AddStage(stages_.back());
+}
+
+void Database::DeleteStage(Stage* stage) {
+    //...
+}
+
+Stage* Database::GetStage(const std::string name) {
+    return GetEntity(stages_, name);
+}
+
+void Database::CreateInstance(const std::string& name, Part* part, Stage* stage) {
+    instances_.push_back(new Instance(name, part, nullptr, PartPosition::FOREWARD, 0.0));
+    stage->AddInstance(instances_.back());
+}
+
+void Database::CreateInstance(const std::string& name, Part* part, Instance* parent) {
+    instances_.push_back(new Instance(name, part, parent, PartPosition::FOREWARD, 0.0));
 }
 
 void Database::DeleteInstance(Instance* instance) {
-
-    //Remove instance from parent list 
-    instance->RemoveFromParent();
-
-    //Get list of objects to delete
-    std::vector<Instance*> toDelete = instance->Children(true);
-    toDelete.push_back(instance);
-
-    //Delete, and remove from container
-    for (auto it = toDelete.begin(); it != toDelete.end(); ) {
-        auto it_found = std::find(instances_.begin(), instances_.end(), (*it));
-        delete (*it_found);
-        instances_.erase(it_found);
+    auto it = std::find(instances_.begin(), instances_.end(), instance);
+    if (it != instances_.end()) {
+        delete (*it);
+        instances_.erase(it);
     }
 }
 
-
-//template <class T>
-//T* Database::GetEntity(std::vector<T*> list, const int& id) {
-//
-//    for (auto it = list.begin(), it != list.end(); it++) {
-//        if ((*it)->Id() == id) {
-//            return (*it);
-//        }
-//    }
-//    else {
-//        return nullptr;
-//    }
-//}
+Instance* Database::GetInstance(const std::string& name) {
+    return GetEntity(instances_, name);
+}

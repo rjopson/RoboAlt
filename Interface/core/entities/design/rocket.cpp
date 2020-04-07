@@ -35,7 +35,9 @@ void Rocket::RemoveDrag(Drag* drag) {
 
 void Rocket::RemovePart(Part* part) {
     auto it = std::find(parts_.begin(), parts_.end(), part);
-    parts_.erase(it);
+    
+    if (it != parts_.end())
+        parts_.erase(it);
 }
 
 /*

@@ -5,6 +5,7 @@
 #include "atmosphere.h"
 #include "atmosphere_ISA.h"
 #include "drag.h"
+#include "entity.h"
 #include "flight_data.h"
 #include "matrix.h"
 #include "motor.h"
@@ -24,7 +25,7 @@ enum class Phase {
     GROUND
 };
 
-class Simulation {
+class Simulation : public Entity {
   public:
       static constexpr double kGravity = 9.80665;
       static constexpr double kVelocityLaunchDetect = 1.0;
@@ -35,14 +36,15 @@ class Simulation {
         const double& height_pad, const double& angle_launch_rod, const double& length_launch_rod);
     ~Simulation();    
 
-    void Run(const double& step_ascent, const double& step_descent);
+    //Properties
+    void SetHeightPad(const double& height_pad);
+    void SetAngleLaunchRod(const double& angle_launch_rod);
+    void SetLengthLaunchRod(const double& length_launch_rod);
+    double HeightPad() const;
+    double AngleLaunchRod() const;
+    double LengthLaunchRod() const;
 
-    std::string name_;
-    std::string comments_;
-    double height_pad_;
-    double angle_launch_rod_;
-    double length_launch_rod_;
-    std::vector<SimulationStage*> sim_stages_;
+    void Run(const double& step_ascent, const double& step_descent);    
 
   private:    
     Event RunPhase(Matrix<double>& result_current_phase, Phase phase, const std::vector<double>& initial_conditions,
@@ -62,7 +64,11 @@ class Simulation {
     static bool ApogeeDetect(const std::vector<double>& state);
     bool MainDetect(const std::vector<double>& state);
     bool GroundDetect(const std::vector<double>& state);
-    
+
+    double height_pad_;
+    double angle_launch_rod_;
+    double length_launch_rod_;
+    std::vector<SimulationStage*> sim_stages_;    
     Atmosphere* atmosphere_; bool atmosphere_internal_calc_;    
     double time_max_; //limits time the ode solver can run. Shouldn't ever be met unless something goes wrong with code
     double time_motor_lit_; //time current stage motor lit 

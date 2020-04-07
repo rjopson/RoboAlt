@@ -3,8 +3,7 @@
 Simulation::Simulation(std::string name, std::string comments,
     const double& height_pad, const double& angle_launch_rod, const double& length_launch_rod)
 
-    : name_(name),
-      comments_(comments),
+    : Entity(name, comments),
       height_pad_(height_pad),
       angle_launch_rod_(angle_launch_rod),
       length_launch_rod_(length_launch_rod) {
@@ -23,6 +22,30 @@ Simulation::~Simulation() {
     if (atmosphere_internal_calc_) {
         delete atmosphere_;
     }
+}
+
+void Simulation::SetHeightPad(const double& height_pad) {
+    height_pad_ = height_pad;
+}
+
+void Simulation::SetAngleLaunchRod(const double& angle_launch_rod) {
+    angle_launch_rod_ = angle_launch_rod;
+}
+
+void Simulation::SetLengthLaunchRod(const double& length_launch_rod) {
+    length_launch_rod_ = length_launch_rod;
+}
+
+double Simulation::HeightPad() const {
+    return height_pad_;
+}
+
+double Simulation::AngleLaunchRod() const {
+    return angle_launch_rod_;
+}
+
+double Simulation::LengthLaunchRod() const {
+    return length_launch_rod_;
 }
 
 void Simulation::Run(const double& step_ascent, const double& step_descent) {
@@ -381,14 +404,7 @@ bool Simulation::ApogeeDetect(const std::vector<double>& state) {
 
 bool Simulation::MainDetect(const std::vector<double>& state) {
 
-    double altitude_main_deploy = 0.0;
-
-    for (auto user_event : sim_stage_current_->user_events_) {
-        if (user_event->event_ == Event::ALTITUDE_MAIN) {
-            altitude_main_deploy = user_event->altitude_main_deploy_;
-            break;
-        }
-    }
+    double altitude_main_deploy = sim_stage_current_->AltitudeMainDeploy();
 
     if (state[1] < altitude_main_deploy) {
         return true;

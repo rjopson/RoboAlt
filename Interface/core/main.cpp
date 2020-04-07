@@ -85,18 +85,19 @@ int main() {
     db->GetFins("Fin set")->SetRadiusFillet(0.005);
 
 	//Configuration
-    //db->GetRocket(1)->CreateConfiguration("180 case", "");
-    //db->GetStage(1)->inertial_.SetOverrideMass(0.1809);
-	//db->GetStage(1)->surface_finish_ = SurfaceFinish::ROUGH;	
+    db->CreateConfiguration("180 case", db->GetRocket("29mm 3DPME v2019"));
+    db->CreateStage("sustainer", db->GetConfiguration("180 case"));
+    db->GetStage("sustainer")->SetOverrideMass(0.1809);
+    db->GetStage("sustainer")->SetSurfaceFinish(SurfaceFinish::ROUGH);
 
 	//Instances
-    //db->GetStage(1)->CreateInstance(db->GetPart(1), PartPosition::FOREWARD, 0.0);
-    //db->GetStage(1)->CreateInstance(db->GetPart(2), PartPosition::FOREWARD, 0.0);
-    //db->GetStage(1)->CreateInstance(db->GetPart(3), PartPosition::FOREWARD, 0.0);
-    //db->GetStage(1)->CreateInstance(db->GetPart(4), PartPosition::FOREWARD, 0.0);
-    //db->GetStage(1)->CreateInstance(db->GetPart(5), PartPosition::FOREWARD, 0.0);
-    //db->GetInstance(5)->CreateChild(db->GetPart(6), PartPosition::FOREWARD, 0.0063);	
-
+    db->CreateInstance("Nosecone_1", db->GetNosecone("Nosecone"), db->GetStage("sustainer"));
+    db->CreateInstance("tubeMain_1", db->GetTubeBody("tubeMain"), db->GetStage("sustainer"));
+    db->CreateInstance("tubeDrogue_1", db->GetTubeBody("tubeDrogue"), db->GetStage("sustainer"));
+    db->CreateInstance("tubeExtension180_1", db->GetTubeBody("tubeExtension180"), db->GetStage("sustainer"));
+    db->CreateInstance("tubeFincan_1", db->GetTubeBody("tubeFincan"), db->GetStage("sustainer"));
+    db->CreateInstance("Finset_1", db->GetFins("Fin set"), db->GetInstance("tubeFincan_1"));
+    db->GetInstance("Finset_1")->MovePosition(0.0063);
     
 	//Gather data for the simulation
 	//Motor* h128 = new Motor("D:/Personal/Rockets/RoboAlt/Interface/core/testFiles/AeroTech_H128.eng");

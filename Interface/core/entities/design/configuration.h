@@ -11,13 +11,16 @@
 #include "simulation.h"
 #include "stage.h"
 
-class Configuration : Entity {
+class Configuration : public Entity {
   public:
     Configuration(std::string name, std::string comments);
-    ~Configuration();    
+    ~Configuration();
+
+    void AddStage(Stage* stage);
+    void RemoveStage(Stage* stage);
 
   private:
-    static int id_counter;
+    static int id_counter_;
 
     std::vector<Stage*> GetStageListWithStagesAbove(Stage* stage) const;
 

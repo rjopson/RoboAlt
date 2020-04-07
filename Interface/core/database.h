@@ -34,15 +34,20 @@ class Database {
 
     void CreateConfiguration(const std::string& name, Rocket* rocket);
     void DeleteConfiguration(Configuration* configuration);
-    Configuration* GetConfiguration(const int& id);
+    Configuration* GetConfiguration(const std::string& name);
 
     void CreateStage(const std::string& name, Configuration* configuration);
     void DeleteStage(Stage* stage);
+    Stage* GetStage(const std::string name);
+    
+    void CreateInstance(const std::string& name, Part* part, Instance* parent);
+    void CreateInstance(const std::string& name, Part* part, Stage* stage);
+    void DeleteInstance(Instance* instance);
+    Instance* GetInstance(const std::string& name);
+
     void CreateSimulation(Configuration* configuration);
     void DeleteSimulation(Simulation* simulation);
-    void CreateInstance(Part* part, Instance* parent);
-    void DeleteInstance(Instance* instance);
-    
+    Simulation* GetSimulation(const std::string name);    
     
     void CreateMotor();
     void CreateAtmosphere();

@@ -28,8 +28,22 @@ class SimulationEvent {
         Parachute* parachute, const double& altitude_main_deploy); 
     ~SimulationEvent();    
 
+    //Properties
+    void SetEvent(Event event);
+    void SetAction(Action action);
+    void SetTimeDelay(const double& time_delay);
+    void SetParachute(Parachute* parachute);
+    void SetAltitudeMainDeploy(const double& altitude_main_deploy);
+    Event AssignedEvent() const;
+    Action AssignedAction() const;
+    double TimeDelay() const;
+    Parachute* AssignedParachute() const;
+    double AltitudeMainDeploy() const;
+
+    bool ActivateAction(const double& time_of_flight);
     void SetTimeToActivateAction(const double& time_of_flight);
 
+  private:
     Event event_;
     Action action_;
     double altitude_main_deploy_;

@@ -1,15 +1,13 @@
 #include "Configuration.h"
 
-int Configuration::id_counter = 0;
+int Configuration::id_counter_ = 0;
 
 Configuration::Configuration(std::string name, std::string comments) 
 
     : Entity(name, comments) {
 
-    id_counter++;
-    id_ = id_counter;
-
-    stages_.push_back(new Stage("Sustainer", "", stages_, SurfaceFinish::PAINTED, 0.0, false, 0.0, false, 0.0));
+    id_counter_++;
+    id_ = id_counter_;    
 }
 
 Configuration::~Configuration() {
@@ -18,6 +16,25 @@ Configuration::~Configuration() {
     for (auto it_stage = stages_.begin(); it_stage != stages_.end(); it_stage++) {
         delete (*it_stage);
     }	
+}
+
+void Configuration::AddStage(Stage* stage) {
+    stages_.push_back(stage); 
+    stage->SetStages(stages_);    
+}
+
+void Configuration::RemoveStage(Stage* stage) {
+
+    auto it = std::find(stages_.begin(), stages_.end(), stage);
+
+    if (it != stages_.end()) {
+        stages_.erase(it);
+
+        //update stages above for all stages still existing
+        for (auto stage : stages_) {
+            stage->SetStages(GetStageListWithStagesAbove(stage));
+        }
+    }   
 }
 
 /*
