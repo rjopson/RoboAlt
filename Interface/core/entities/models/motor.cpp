@@ -106,3 +106,14 @@ void Motor::Print() const {
 		std::cout << (double)i / 1000.0 << ", " << GetThrust((double)i/1000.0) << std::endl;
 	}	
 }
+
+bool Motor::CurrentlyThrusting(const double& time) const {
+	
+	bool thrusting = false;
+
+	if (data_time_.back() <= time) {
+		thrusting = true;
+	}
+
+	return thrusting;
+}

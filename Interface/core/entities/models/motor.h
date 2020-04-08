@@ -27,6 +27,7 @@ public:
 	double Isp() const;
 	double ImpulseTotal() const;
 	std::vector<double> Impulse() const;
+	bool CurrentlyThrusting(const double& time) const; 
 	void Print() const;
 
     std::string name_;

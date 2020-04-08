@@ -36,7 +36,7 @@
     <ClCompile Include="entities\design\part.cpp" />
     <ClCompile Include="entities\design\part_tube_body.cpp" />
     <ClCompile Include="entities\design\part_tube_inner.cpp" />
-    <ClCompile Include="entities\flight\simulation_event.cpp" />
+    <ClCompile Include="entities\flight\simulation_user_command.cpp" />
     <ClCompile Include="aerodynamics\atmosphere_isa.cpp" />
     <ClCompile Include="entities\models\drag.cpp" />
     <ClCompile Include="entities\models\motor.cpp" />
@@ -68,7 +68,7 @@
     <ClInclude Include="entities\design\part.h" />
     <ClInclude Include="entities\design\part_tube_body.h" />
     <ClInclude Include="entities\design\part_tube_inner.h" />
-    <ClInclude Include="entities\flight\simulation_event.h" />
+    <ClInclude Include="entities\flight\simulation_user_command.h" />
     <ClInclude Include="aerodynamics\atmosphere_isa.h" />
     <ClInclude Include="entities\models\drag.h" />
     <ClInclude Include="entities\models\motor.h" />

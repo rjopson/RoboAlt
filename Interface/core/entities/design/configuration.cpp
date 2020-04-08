@@ -37,19 +37,6 @@ void Configuration::RemoveStage(Stage* stage) {
     }   
 }
 
-/*
-void Configuration::CreateSimulation(std::string name, std::string comments,
-    const double& height_pad, const double& angle_launch_rod, const double& length_launch_rod) {
-
-    simulations_.push_back(new Simulation(name, comments, height_pad, angle_launch_rod, length_launch_rod));
-
-    //Generate stage list 
-    for (auto stage : stages_) {
-        SimulationStage* sim_stage = new SimulationStage(stage);
-        simulations_.back()->sim_stages_.push_back(sim_stage);
-    }
-}*/
-
 std::vector<Stage*> Configuration::GetStageListWithStagesAbove(Stage* stage) const {
 
     std::vector<Stage*> stages;
@@ -58,6 +45,23 @@ std::vector<Stage*> Configuration::GetStageListWithStagesAbove(Stage* stage) con
         stages.push_back((*it));
     }
     return stages;
+}
+
+void Configuration::AddSimulation(Simulation* simulation) {
+    simulations_.push_back(simulation);
+
+    for (auto stage : stages_) {
+        simulations_.back()->AddStage(stage);
+    }
+}
+
+void Configuration::RemoveSimulation(Simulation* simulation) {
+
+    auto it = std::find(simulations_.begin(), simulations_.end(), simulation);
+
+    if (it != simulations_.end()) {
+        simulations_.erase(it);
+    }
 }
 
 

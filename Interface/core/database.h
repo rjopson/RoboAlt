@@ -45,9 +45,12 @@ class Database {
     void DeleteInstance(Instance* instance);
     Instance* GetInstance(const std::string& name);
 
-    void CreateSimulation(Configuration* configuration);
+    void CreateSimulation(const std::string& name, Configuration* configuration);
     void DeleteSimulation(Simulation* simulation);
-    Simulation* GetSimulation(const std::string name);    
+    Simulation* GetSimulation(const std::string name);  
+    void CreateSimulationUserCommand(Simulation* simulation, Stage* stage);
+    void DeleteSimulationuserCommand(SimulationUserCommand* command);
+    SimulationUserCommand* GetSimulationUserCommand();
     
     void CreateMotor();
     void CreateAtmosphere();
@@ -74,6 +77,17 @@ private:
             }
         }
         throw std::invalid_argument("Entity does not exist.");
+    }
+
+    template <class T>
+    void DeleteEntity(std::vector<T*> list, T* entity) {
+
+        auto it = std::find(list.begin(), list.end(), entity);
+        if (it != list.end()) {
+            delete (*it);
+            (*it) = nullptr;
+            list.erase(it);
+        }
     }
 
     /*

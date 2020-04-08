@@ -8,7 +8,7 @@
 #include "drag.h"
 #include "flight_data.h"
 #include "motor.h"
-#include "simulation_event.h"
+#include "simulation_user_command.h"
 #include "stage.h"
 
 class SimulationStage {
@@ -16,30 +16,36 @@ class SimulationStage {
     SimulationStage(Stage* stage);
     ~SimulationStage();
     
-    void AddUserEvent();
-    void DeleteUserEvent(const double& index);
-    double AltitudeMainDeploy(); //if a user event is main deploy, return the altitude. Otherwise return -1
+    //Properties
+    void AddUserCommand(SimulationUserCommand* user_command);
+    void RemoveUserCommand(SimulationUserCommand* user_command);
+    double AltitudeMainDeploy() const; //if a user event is main deploy, return the altitude. Otherwise return -1
+
+    //User commands
+    Command UpdateUserCommands(Event event, const double& time_of_flight);
+    double GetTimeForNearestDelayedUserCommand(const double& time_max) const; 
 
     //Drag data	
     Drag* GetDragWithStagesAbove();
     Drag* GetDragWithoutStagesAbove();
     Drag* GetDragDrogue();
     Drag* GetDragMain();
-    void PopulateModelDrag();    
+    void PopulateModelDrag();   
+
+    Stage* stage_;
+    FlightData flight_data_;
+    Motor* motor_; //Motor for this stage only  
+    Drag* drag_external_with_stages_above_;
+    Drag* drag_external_without_stages_above_;
+    Drag* drag_external_drogue_;
+    Drag* drag_external_main_;
 
   private:
     Drag* drag_with_stages_above_;
     Drag* drag_without_stages_above_;
     Drag* drag_drogue_;
     Drag* drag_main_;
-
-    Stage* stage_;
-    FlightData flight_data_;
-    Motor* motor_; //Motor for this stage only    
-    std::vector<SimulationEvent*> user_events_; //User events for this stage
-    Drag* drag_external_with_stages_above_;
-    Drag* drag_external_without_stages_above_;
-    Drag* drag_external_drogue_;
-    Drag* drag_external_main_;
+      
+    std::vector<SimulationUserCommand*> user_commands_; //User events for this stage    
 };
 #endif

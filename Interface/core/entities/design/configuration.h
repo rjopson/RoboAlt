@@ -18,6 +18,8 @@ class Configuration : public Entity {
 
     void AddStage(Stage* stage);
     void RemoveStage(Stage* stage);
+    void AddSimulation(Simulation* simulation);
+    void RemoveSimulation(Simulation* simulation);
 
   private:
     static int id_counter_;

@@ -9,7 +9,7 @@
 #include "flight_data.h"
 #include "matrix.h"
 #include "motor.h"
-#include "simulation_event.h"
+#include "simulation_user_command.h"
 #include "simulation_stage.h"
 #include "stage.h"
 
@@ -37,9 +37,15 @@ class Simulation : public Entity {
     ~Simulation();    
 
     //Properties
+    void AddStage(Stage* stage);
+    void RemoveStage(Stage* stage);
+    void AddUserCommand(SimulationUserCommand* user_command, Stage* stage);
+    void RemoveUserCommand(SimulationUserCommand* user_command, Stage* stage);
+    void SetMotor(Motor* motor, Stage* stage);
     void SetHeightPad(const double& height_pad);
     void SetAngleLaunchRod(const double& angle_launch_rod);
     void SetLengthLaunchRod(const double& length_launch_rod);
+    Motor* AssignedMotor(Stage* stage) const;
     double HeightPad() const;
     double AngleLaunchRod() const;
     double LengthLaunchRod() const;
@@ -50,7 +56,6 @@ class Simulation : public Entity {
     Event RunPhase(Matrix<double>& result_current_phase, Phase phase, const std::vector<double>& initial_conditions,
         const double& time_start, const double& time_end, const double& step);
     Phase GetNextPhase(Event event_current, const double& time_of_flight);
-    double GetTimeEndNextPhase(const double& time_of_flight);
     double GetMotorMassStagesAbove();
     FlightData PopulateStageFlightData(Matrix<double> stage_result);       
 
@@ -68,14 +73,13 @@ class Simulation : public Entity {
     double height_pad_;
     double angle_launch_rod_;
     double length_launch_rod_;
-    std::vector<SimulationStage*> sim_stages_;    
+    std::vector<SimulationStage*> stages_;    
     Atmosphere* atmosphere_; bool atmosphere_internal_calc_;    
     double time_max_; //limits time the ode solver can run. Shouldn't ever be met unless something goes wrong with code
-    double time_motor_lit_; //time current stage motor lit 
+    double time_motor_lit_; //time current stage motor lit - used to extract motor thrust data set from time=0.0
     double mass_empty_current_;    
-    SimulationStage* sim_stage_current_; 
+    SimulationStage* stage_current_; 
     Drag* drag_current_;
-    std::vector<SimulationEvent*> uncompleted_user_events_;
 };
 #endif
 

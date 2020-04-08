@@ -1,6 +1,6 @@
 
-#ifndef _SIMULATION_EVENT_H
-#define _SIMULATION_EVENT_H
+#ifndef _SIMULATION_USER_COMMAND_H
+#define _SIMULATION_USER_COMMAND_H
 
 #include <vector>
 
@@ -15,40 +15,42 @@ enum class Event {
     AT_TIME_DELAY
 };
 
-enum class Action {	
+enum class Command {	
+    NONE,
     SEPARATE_STAGE,
     LIGHT_STAGE,
     DEPLOY_DROGUE,
     DEPLOY_MAIN
 };
 
-class SimulationEvent {
+class SimulationUserCommand {
   public:
-    SimulationEvent(Event event, Action action, const double& time_delay, 
+    SimulationUserCommand(Event event, Command command, const double& time_delay, 
         Parachute* parachute, const double& altitude_main_deploy); 
-    ~SimulationEvent();    
+    ~SimulationUserCommand();    
 
     //Properties
     void SetEvent(Event event);
-    void SetAction(Action action);
+    void SetCommand(Command command);
     void SetTimeDelay(const double& time_delay);
     void SetParachute(Parachute* parachute);
     void SetAltitudeMainDeploy(const double& altitude_main_deploy);
     Event AssignedEvent() const;
-    Action AssignedAction() const;
+    Command AssignedCommand() const;
     double TimeDelay() const;
     Parachute* AssignedParachute() const;
     double AltitudeMainDeploy() const;
 
-    bool ActivateAction(const double& time_of_flight);
-    void SetTimeToActivateAction(const double& time_of_flight);
+    Command Update(Event event, const double& time_of_flight);
+    double TimeToActivateCommand() const;
 
   private:
     Event event_;
-    Action action_;
+    Command command_;
+    bool command_complete_;
     double altitude_main_deploy_;
     Parachute* parachute_;
     double time_delay_;
-    double time_to_activate_action_;
+    double time_to_activate_command_;
 };
 #endif

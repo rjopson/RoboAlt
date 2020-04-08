@@ -104,6 +104,12 @@ int main() {
     Motor* h128 = new Motor("C:/Users/rober/Documents/Rockets/Altimeters/Interface/core/testFiles/AeroTech_H128.eng");
 
 	//let's see if simulation works...
+    db->CreateSimulation("h128", db->GetConfiguration("180 case"));
+    db->GetSimulation("h128")->SetHeightPad(167.0);
+    db->GetSimulation("h128")->SetMotor(h128, db->GetStage("sustainer"));
+    db->GetSimulation("h128")->Run(0.05, 5.0);
+
+
 	//db->GetConfiguration(1)->CreateSimulation("sim1", "", 167.0, 0.0, 2.5);
 	//db->GetSimulationStage(1)->motor_ = h128;
 	//db->GetConfiguration(1)->simulations_[0]->Run(0.05, 5.0);    

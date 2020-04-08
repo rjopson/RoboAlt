@@ -12,10 +12,11 @@ void Database::CreateMaterial(const std::string& name) {
 }
 
 void Database::DeleteMaterial(Material* material) {
+    
     auto it = std::find(materials_.begin(), materials_.end(), material);
-
     if (it != materials_.end()) {
         delete (*it);
+        (*it) = nullptr;
         materials_.erase(it);
     }
 }
@@ -29,12 +30,9 @@ void Database::CreateRocket(const std::string& name) {
 }
 
 void Database::DeleteRocket(Rocket* rocket) {
-    auto it = std::find(rockets_.begin(), rockets_.end(), rocket);
-
-    if (it != rockets_.end()) {
-        delete (*it);
-        rockets_.erase(it);
-    }    
+    
+    //Lots of stuff here to delete... config, instances, parts etc.
+    DeleteEntity(rockets_, rocket);
 }
 
 Rocket* Database::GetRocket(const std::string& name) {
@@ -88,6 +86,9 @@ void Database::DeletePart(Part* part) {
             ++it;
         }
     }
+
+    //remove from database 
+    DeleteEntity(parts_, part);
 }
 
 Fins* Database::GetFins(const std::string& name) {
@@ -112,6 +113,8 @@ void Database::CreateConfiguration(const std::string& name, Rocket* rocket) {
 
 void Database::DeleteConfiguration(Configuration* configuration) {
     //lots of stuff here...
+
+    DeleteEntity(configurations_, configuration);
 }
 
 Configuration* Database::GetConfiguration(const std::string& name) {
@@ -124,7 +127,9 @@ void Database::CreateStage(const std::string& name, Configuration* configuration
 }
 
 void Database::DeleteStage(Stage* stage) {
-    //...
+    //other stuff here...
+
+    DeleteEntity(stages_, stage);
 }
 
 Stage* Database::GetStage(const std::string name) {
@@ -141,13 +146,31 @@ void Database::CreateInstance(const std::string& name, Part* part, Instance* par
 }
 
 void Database::DeleteInstance(Instance* instance) {
-    auto it = std::find(instances_.begin(), instances_.end(), instance);
-    if (it != instances_.end()) {
-        delete (*it);
-        instances_.erase(it);
-    }
+    
+    DeleteEntity(instances_, instance);
 }
 
 Instance* Database::GetInstance(const std::string& name) {
     return GetEntity(instances_, name);
+}
+
+void Database::CreateSimulation(const std::string& name, Configuration* configuration) {
+
+    simulations_.push_back(new Simulation(name, "", 0.0, 0.0, 2.0));
+    configuration->AddSimulation(simulations_.back());
+}
+
+void Database::DeleteSimulation(Simulation* simulation) {
+    
+    for (auto config : configurations_) {
+        config->RemoveSimulation(simulation);
+    }
+
+    //remove user commands set for simulation...
+
+    DeleteEntity(simulations_, simulation);
+}
+
+Simulation* Database::GetSimulation(const std::string name) {
+    return GetEntity(simulations_, name);
 }
