@@ -43,11 +43,13 @@ class FinShapeTrapezoidal : public FinShape {
     FinShapeTrapezoidal(const double& chord_root, const double& chord_tip, const double& span, const double& length_sweep);
     ~FinShapeTrapezoidal();  
 
+    //Values
     void SetChordRoot(const double& chord_root);
     void SetChordTip(const double& chord_tip);
     void SetSpan(const double& span);
     void SetLengthSweep(const double& length_sweep);
 
+    //Datanames
     double ChordRoot() const;
     double ChordTip() const;
     double Span() const;

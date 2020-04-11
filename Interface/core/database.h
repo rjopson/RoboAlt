@@ -26,35 +26,40 @@ class Database {
     //Rocket* GetRocket(const int& id);
     Rocket* GetRocket(const std::string& name);
 
-    void CreatePart(const std::string& name, PartType part_type, Rocket* rocket);
+    void CreatePart(PartType part_type, const std::string& name, Rocket* rocket);
     void DeletePart(Part* part);
-    Fins* GetFins(const std::string& name);
-    Nosecone* GetNosecone(const std::string& name);
-    TubeBody* GetTubeBody(const std::string& name);
+    Part* GetPart(const std::string& rocket_name, const std::string& part_name);
+    Fins* GetFins(const std::string& rocket_name, const std::string& part_name);
+    Nosecone* GetNosecone(const std::string& rocket_name, const std::string& part_name);
+    TubeBody* GetTubeBody(const std::string& rocket_name, const std::string& part_name);
 
     void CreateConfiguration(const std::string& name, Rocket* rocket);
     void DeleteConfiguration(Configuration* configuration);
-    Configuration* GetConfiguration(const std::string& name);
+    Configuration* GetConfiguration(const std::string& rocket_name, const std::string& configuration_name);
 
     void CreateStage(const std::string& name, Configuration* configuration);
     void DeleteStage(Stage* stage);
-    Stage* GetStage(const std::string name);
+    Stage* GetStage(const std::string& rocket_name, const std::string& configuration_name, const std::string& stage_name);
     
     void CreateInstance(const std::string& name, Part* part, Instance* parent);
     void CreateInstance(const std::string& name, Part* part, Stage* stage);
     void DeleteInstance(Instance* instance);
-    Instance* GetInstance(const std::string& name);
+    Instance* GetInstance(const std::string& rocket_name, const std::string& instance_name);
 
     void CreateSimulation(const std::string& name, Configuration* configuration);
     void DeleteSimulation(Simulation* simulation);
-    Simulation* GetSimulation(const std::string name);  
+    Simulation* GetSimulation(const std::string& rocket_name, const std::string& configuration_name, const std::string& simulation_name);
     void CreateSimulationUserCommand(Simulation* simulation, Stage* stage);
     void DeleteSimulationuserCommand(SimulationUserCommand* command);
     SimulationUserCommand* GetSimulationUserCommand();
     
     void CreateMotor();
     void CreateAtmosphere();
-    void CreateDrag(Rocket* rocket);       
+    void CreateDrag(Rocket* rocket);     
+
+    double test_function(double input) {
+        return input * 5.0;
+    }
 
 private:     
     //Rocket* GetRocket(const int& id);
@@ -76,7 +81,8 @@ private:
                 return (*it);
             }
         }
-        throw std::invalid_argument("Entity does not exist.");
+        //throw std::invalid_argument("Entity does not exist.");
+        return nullptr;
     }
 
     template <class T>

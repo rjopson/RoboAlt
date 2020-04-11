@@ -14,14 +14,13 @@
 class SimulationStage {
   public:
     SimulationStage(Stage* stage);
-    ~SimulationStage();
-    
-    //Properties
+    ~SimulationStage();    
+
     void AddUserCommand(SimulationUserCommand* user_command);
     void RemoveUserCommand(SimulationUserCommand* user_command);
     double AltitudeMainDeploy() const; //if a user event is main deploy, return the altitude. Otherwise return -1
 
-    //User commands
+
     Command UpdateUserCommands(Event event, const double& time_of_flight);
     double GetTimeForNearestDelayedUserCommand(const double& time_max) const; 
 

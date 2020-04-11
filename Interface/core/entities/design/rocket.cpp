@@ -1,15 +1,32 @@
 #include "rocket.h"
 
-unsigned int Rocket::id_counter = 0;
-
 Rocket::Rocket(std::string name, std::string comments) 
     : Entity(name, comments) {
 
-    id_counter++;
-    id_ = id_counter;
 }
 
 Rocket::~Rocket() {
+}
+
+std::vector<Configuration*> Rocket::Configurations() const {
+    return configurations_;
+}
+
+std::vector<Part*> Rocket::Parts() const {
+    return parts_;
+}
+
+std::vector<Instance*> Rocket::Instances() const {
+
+    std::vector<Instance*> list;
+
+    for (auto config : configurations_) {
+        for (auto stage : config->Stages()) {
+            std::vector<Instance*> stage_instances = stage->InstanceList(false);
+            list.insert(list.end(), stage_instances.begin(), stage_instances.end());
+        }
+    }
+    return list;
 }
 
 void Rocket::AddConfiguration(Configuration* configuration) {

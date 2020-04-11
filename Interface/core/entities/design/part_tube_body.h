@@ -10,18 +10,15 @@ class TubeBody : public Part {
         bool mass_override_switch, const double& mass_override, bool cg_override_switch, const double& cg_override);
     ~TubeBody();  
 
-    //Properties
+    //Values
     void SetLength(const double& length);
     void SetDiameterOuter(const double& diameter_outer);
     void SetThickness(const double& thickness);
+
+    //Datanames
     double Length() const;
     double DiameterOuter() const;
-    double Thickness() const;
-
-    double DiameterInner() const;
-    double AreaSurface() const;
-    double VolumeInterior() const;
-    double AreaPlanform() const;
+    double Thickness() const;    
 
     //Overridden virtual functions 
     double DiameterAirflow() const;
@@ -38,6 +35,11 @@ class TubeBody : public Part {
         const double& mach_number, const double& area_thrusting, const double& area_reference) const;
 
   private:
+    double DiameterInner() const;
+    double AreaSurface() const;
+    double VolumeInterior() const;
+    double AreaPlanform() const;
+
     double length_;
     double diameter_outer_;
     double thickness_;

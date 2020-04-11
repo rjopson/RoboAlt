@@ -5,14 +5,13 @@ Fins::Fins(std::string name, std::string comments, Material* material,
     const int& number, const double& thickness, const double& radius_fillet,
     bool mass_override_switch, const double& mass_override, bool cg_override_switch, const double& cg_override) 
     
-    : Part(name, comments, material, mass_override_switch, mass_override, cg_override_switch, cg_override),
+    : Part(PartType::FINS, name, comments, material, mass_override_switch, mass_override, cg_override_switch, cg_override),
       shape_(shape),
       cross_section_(cross_section),
       number_(number),
       thickness_(thickness),
       radius_fillet_(radius_fillet) {
     
-    type_ = PartType::FINS;
 }
 
 Fins::~Fins() {}

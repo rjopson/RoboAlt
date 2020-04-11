@@ -10,9 +10,11 @@ class Entity {
     Entity(const std::string& name, const std::string& comments);
     ~Entity();
 
-    //Properties
+    //Values
     void SetName(const std::string& name);
     void SetComments(const std::string& comments);
+
+    //Datanames
     std::string Name() const;
     std::string Comments() const;
     unsigned int Id() const;

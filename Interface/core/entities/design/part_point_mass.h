@@ -13,6 +13,7 @@ class PointMass : public Part {
     //void SetMass(const double& mass);
     //double Mass() const;
 
+    //Core functions
     double VolumeMaterial() const;
 
   private:

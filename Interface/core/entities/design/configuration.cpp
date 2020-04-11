@@ -1,13 +1,9 @@
 #include "Configuration.h"
 
-int Configuration::id_counter_ = 0;
-
 Configuration::Configuration(std::string name, std::string comments) 
 
     : Entity(name, comments) {
-
-    id_counter_++;
-    id_ = id_counter_;    
+ 
 }
 
 Configuration::~Configuration() {
@@ -16,6 +12,14 @@ Configuration::~Configuration() {
     for (auto it_stage = stages_.begin(); it_stage != stages_.end(); it_stage++) {
         delete (*it_stage);
     }	
+}
+
+std::vector<Stage*> Configuration::Stages() const {
+    return stages_;
+}
+
+std::vector<Simulation*> Configuration::Simulations() const {
+    return simulations_;
 }
 
 void Configuration::AddStage(Stage* stage) {

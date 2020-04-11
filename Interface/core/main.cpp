@@ -18,96 +18,97 @@ int main() {
 
     Database* db = new Database();
 
+    //Create rocket
     db->CreateRocket("29mm 3DPME v2019");
-    std::cout << db->GetRocket("29mm 3DPME v2019")->Name() << std::endl;
 
+    //Create material
     db->CreateMaterial("PLA");
     db->GetMaterial("PLA")->SetDensity(1380.0);
 
 	//Parts
     //Nosecone
-    db->CreatePart("Nosecone", PartType::NOSECONE, db->GetRocket("29mm 3DPME v2019"));
-    db->GetNosecone("Nosecone")->SetMaterial(db->GetMaterial("PLA"));
-    db->GetNosecone("Nosecone")->SetNoseType(NoseconeType::VON_KARMEN);
-    db->GetNosecone("Nosecone")->SetShapeParameter(1.0);
-    db->GetNosecone("Nosecone")->SetLengthNose(0.157);
-    db->GetNosecone("Nosecone")->SetLengthBase(0.01);
-    db->GetNosecone("Nosecone")->SetLengthShoulder(0.0);
-    db->GetNosecone("Nosecone")->SetThickness(0.01);
-    db->GetNosecone("Nosecone")->SetThicknessShoulder(0.0);
-    db->GetNosecone("Nosecone")->SetDiameterOuter(0.03139);
-    db->GetNosecone("Nosecone")->SetDiameterShoulder(0.0);
-
+    db->CreatePart(PartType::NOSECONE, "Nosecone", db->GetRocket("29mm 3DPME v2019"));
+    db->GetNosecone("29mm 3DPME v2019", "Nosecone")->SetMaterial(db->GetMaterial("PLA"));
+    db->GetNosecone("29mm 3DPME v2019", "Nosecone")->SetNoseType(NoseconeType::VON_KARMEN);
+    db->GetNosecone("29mm 3DPME v2019", "Nosecone")->SetShapeParameter(1.0);
+    db->GetNosecone("29mm 3DPME v2019", "Nosecone")->SetLengthNose(0.157);
+    db->GetNosecone("29mm 3DPME v2019", "Nosecone")->SetLengthBase(0.01);
+    db->GetNosecone("29mm 3DPME v2019", "Nosecone")->SetLengthShoulder(0.0);
+    db->GetNosecone("29mm 3DPME v2019", "Nosecone")->SetThickness(0.01);
+    db->GetNosecone("29mm 3DPME v2019", "Nosecone")->SetThicknessShoulder(0.0);
+    db->GetNosecone("29mm 3DPME v2019", "Nosecone")->SetDiameterOuter(0.03139);
+    db->GetNosecone("29mm 3DPME v2019", "Nosecone")->SetDiameterShoulder(0.0);
+    
     //Main tube
-    db->CreatePart("tubeMain", PartType::TUBE_BODY, db->GetRocket("29mm 3DPME v2019"));
-    db->GetTubeBody("tubeMain")->SetMaterial(db->GetMaterial("PLA"));
-    db->GetTubeBody("tubeMain")->SetLength(0.076);
-    db->GetTubeBody("tubeMain")->SetDiameterOuter(0.03139);
-    db->GetTubeBody("tubeMain")->SetThickness(0.001);
-
+    db->CreatePart(PartType::TUBE_BODY, "tubeMain", db->GetRocket("29mm 3DPME v2019"));
+    db->GetTubeBody("29mm 3DPME v2019", "tubeMain")->SetMaterial(db->GetMaterial("PLA"));
+    db->GetTubeBody("29mm 3DPME v2019", "tubeMain")->SetLength(0.076);
+    db->GetTubeBody("29mm 3DPME v2019", "tubeMain")->SetDiameterOuter(0.03139);
+    db->GetTubeBody("29mm 3DPME v2019", "tubeMain")->SetThickness(0.001);
+    
     //Drogue tube
-    db->CreatePart("tubeDrogue", PartType::TUBE_BODY, db->GetRocket("29mm 3DPME v2019"));
-    db->GetTubeBody("tubeDrogue")->SetMaterial(db->GetMaterial("PLA"));
-    db->GetTubeBody("tubeDrogue")->SetLength(0.19);
-    db->GetTubeBody("tubeDrogue")->SetDiameterOuter(0.03139);
-    db->GetTubeBody("tubeDrogue")->SetThickness(0.001);
-
+    db->CreatePart(PartType::TUBE_BODY, "tubeDrogue", db->GetRocket("29mm 3DPME v2019"));
+    db->GetTubeBody("29mm 3DPME v2019", "tubeDrogue")->SetMaterial(db->GetMaterial("PLA"));
+    db->GetTubeBody("29mm 3DPME v2019", "tubeDrogue")->SetLength(0.19);
+    db->GetTubeBody("29mm 3DPME v2019", "tubeDrogue")->SetDiameterOuter(0.03139);
+    db->GetTubeBody("29mm 3DPME v2019", "tubeDrogue")->SetThickness(0.001);
+    
     //Extension tube
-    db->CreatePart("tubeExtension180", PartType::TUBE_BODY, db->GetRocket("29mm 3DPME v2019"));
-    db->GetTubeBody("tubeExtension180")->SetMaterial(db->GetMaterial("PLA"));
-    db->GetTubeBody("tubeExtension180")->SetLength(0.001);
-    db->GetTubeBody("tubeExtension180")->SetDiameterOuter(0.03139);
-    db->GetTubeBody("tubeExtension180")->SetThickness(0.001);
+    db->CreatePart(PartType::TUBE_BODY, "tubeExtension180", db->GetRocket("29mm 3DPME v2019"));
+    db->GetTubeBody("29mm 3DPME v2019", "tubeExtension180")->SetMaterial(db->GetMaterial("PLA"));
+    db->GetTubeBody("29mm 3DPME v2019", "tubeExtension180")->SetLength(0.001);
+    db->GetTubeBody("29mm 3DPME v2019", "tubeExtension180")->SetDiameterOuter(0.03139);
+    db->GetTubeBody("29mm 3DPME v2019", "tubeExtension180")->SetThickness(0.001);
 
-    db->CreatePart("tubeExtension240", PartType::TUBE_BODY, db->GetRocket("29mm 3DPME v2019"));
-    db->GetTubeBody("tubeExtension240")->SetMaterial(db->GetMaterial("PLA"));
-    db->GetTubeBody("tubeExtension240")->SetLength(0.04);
-    db->GetTubeBody("tubeExtension240")->SetDiameterOuter(0.03139);
-    db->GetTubeBody("tubeExtension240")->SetThickness(0.001);
-
+    db->CreatePart(PartType::TUBE_BODY, "tubeExtension240", db->GetRocket("29mm 3DPME v2019"));
+    db->GetTubeBody("29mm 3DPME v2019", "tubeExtension240")->SetMaterial(db->GetMaterial("PLA"));
+    db->GetTubeBody("29mm 3DPME v2019", "tubeExtension240")->SetLength(0.04);
+    db->GetTubeBody("29mm 3DPME v2019", "tubeExtension240")->SetDiameterOuter(0.03139);
+    db->GetTubeBody("29mm 3DPME v2019", "tubeExtension240")->SetThickness(0.001);
+    
     //Fincan tube
-    db->CreatePart("tubeFincan", PartType::TUBE_BODY, db->GetRocket("29mm 3DPME v2019"));
-    db->GetTubeBody("tubeFincan")->SetMaterial(db->GetMaterial("PLA"));
-    db->GetTubeBody("tubeFincan")->SetLength(0.114);
-    db->GetTubeBody("tubeFincan")->SetDiameterOuter(0.03139);
-    db->GetTubeBody("tubeFincan")->SetThickness(0.001);
-
+    db->CreatePart(PartType::TUBE_BODY, "tubeFincan", db->GetRocket("29mm 3DPME v2019"));
+    db->GetTubeBody("29mm 3DPME v2019", "tubeFincan")->SetMaterial(db->GetMaterial("PLA"));
+    db->GetTubeBody("29mm 3DPME v2019", "tubeFincan")->SetLength(0.114);
+    db->GetTubeBody("29mm 3DPME v2019", "tubeFincan")->SetDiameterOuter(0.03139);
+    db->GetTubeBody("29mm 3DPME v2019", "tubeFincan")->SetThickness(0.001);
+    
     //Fins
-    db->CreatePart("Fin set", PartType::FINS, db->GetRocket("29mm 3DPME v2019"));
-    db->GetFins("Fin set")->SetMaterial(db->GetMaterial("PLA"));
-    static_cast<FinShapeTrapezoidal*>(db->GetFins("Fin set")->AssignedFinShape())->SetChordRoot(0.102);
-    static_cast<FinShapeTrapezoidal*>(db->GetFins("Fin set")->AssignedFinShape())->SetChordTip(0.013);
-    static_cast<FinShapeTrapezoidal*>(db->GetFins("Fin set")->AssignedFinShape())->SetSpan(0.051);
-    static_cast<FinShapeTrapezoidal*>(db->GetFins("Fin set")->AssignedFinShape())->SetLengthSweep(0.076);
-    db->GetFins("Fin set")->SetFinCrossSection(FinCrossSection::ROUNDED);
-    db->GetFins("Fin set")->SetNumber(3);
-    db->GetFins("Fin set")->SetThickness(0.003);
-    db->GetFins("Fin set")->SetRadiusFillet(0.005);
+    db->CreatePart(PartType::FINS, "Fin set", db->GetRocket("29mm 3DPME v2019"));
+    db->GetFins("29mm 3DPME v2019", "Fin set")->SetMaterial(db->GetMaterial("PLA"));
+    static_cast<FinShapeTrapezoidal*>(db->GetFins("29mm 3DPME v2019", "Fin set")->AssignedFinShape())->SetChordRoot(0.102);
+    static_cast<FinShapeTrapezoidal*>(db->GetFins("29mm 3DPME v2019", "Fin set")->AssignedFinShape())->SetChordTip(0.013);
+    static_cast<FinShapeTrapezoidal*>(db->GetFins("29mm 3DPME v2019", "Fin set")->AssignedFinShape())->SetSpan(0.051);
+    static_cast<FinShapeTrapezoidal*>(db->GetFins("29mm 3DPME v2019", "Fin set")->AssignedFinShape())->SetLengthSweep(0.076);
+    db->GetFins("29mm 3DPME v2019", "Fin set")->SetFinCrossSection(FinCrossSection::ROUNDED);
+    db->GetFins("29mm 3DPME v2019", "Fin set")->SetNumber(3);
+    db->GetFins("29mm 3DPME v2019", "Fin set")->SetThickness(0.003);
+    db->GetFins("29mm 3DPME v2019", "Fin set")->SetRadiusFillet(0.005);
 
 	//Configuration
     db->CreateConfiguration("180 case", db->GetRocket("29mm 3DPME v2019"));
-    db->CreateStage("sustainer", db->GetConfiguration("180 case"));
-    db->GetStage("sustainer")->SetOverrideMass(0.1809);
-    db->GetStage("sustainer")->SetSurfaceFinish(SurfaceFinish::ROUGH);
+    db->CreateStage("sustainer", db->GetConfiguration("29mm 3DPME v2019", "180 case"));
+    db->GetStage("29mm 3DPME v2019", "180 case", "sustainer")->SetOverrideMass(0.1809);
+    db->GetStage("29mm 3DPME v2019", "180 case", "sustainer")->SetSurfaceFinish(SurfaceFinish::ROUGH);
 
 	//Instances
-    db->CreateInstance("Nosecone_1", db->GetNosecone("Nosecone"), db->GetStage("sustainer"));
-    db->CreateInstance("tubeMain_1", db->GetTubeBody("tubeMain"), db->GetStage("sustainer"));
-    db->CreateInstance("tubeDrogue_1", db->GetTubeBody("tubeDrogue"), db->GetStage("sustainer"));
-    db->CreateInstance("tubeExtension180_1", db->GetTubeBody("tubeExtension180"), db->GetStage("sustainer"));
-    db->CreateInstance("tubeFincan_1", db->GetTubeBody("tubeFincan"), db->GetStage("sustainer"));
-    db->CreateInstance("Finset_1", db->GetFins("Fin set"), db->GetInstance("tubeFincan_1"));
-    db->GetInstance("Finset_1")->MovePosition(0.0063);
+    db->CreateInstance("Nosecone_1", db->GetNosecone("29mm 3DPME v2019", "Nosecone"), db->GetStage("29mm 3DPME v2019", "180 case", "sustainer"));
+    db->CreateInstance("tubeMain_1", db->GetTubeBody("29mm 3DPME v2019", "tubeMain"), db->GetStage("29mm 3DPME v2019", "180 case", "sustainer"));
+    db->CreateInstance("tubeDrogue_1", db->GetTubeBody("29mm 3DPME v2019", "tubeDrogue"), db->GetStage("29mm 3DPME v2019", "180 case", "sustainer"));
+    db->CreateInstance("tubeExtension180_1", db->GetTubeBody("29mm 3DPME v2019", "tubeExtension180"), db->GetStage("29mm 3DPME v2019", "180 case", "sustainer"));
+    db->CreateInstance("tubeFincan_1", db->GetTubeBody("29mm 3DPME v2019", "tubeFincan"), db->GetStage("29mm 3DPME v2019", "180 case", "sustainer"));
+    db->CreateInstance("Finset_1", db->GetFins("29mm 3DPME v2019", "Fin set"), db->GetInstance("29mm 3DPME v2019", "tubeFincan_1"));
+    db->GetInstance("29mm 3DPME v2019", "Finset_1")->MovePosition(0.0063);
     
 	//Gather data for the simulation
 	//Motor* h128 = new Motor("D:/Personal/Rockets/RoboAlt/Interface/core/testFiles/AeroTech_H128.eng");
     Motor* h128 = new Motor("C:/Users/rober/Documents/Rockets/Altimeters/Interface/core/testFiles/AeroTech_H128.eng");
 
 	//let's see if simulation works...
-    db->CreateSimulation("h128", db->GetConfiguration("180 case"));
-    db->GetSimulation("h128")->SetHeightPad(167.0);
-    db->GetSimulation("h128")->SetMotor(h128, db->GetStage("sustainer"));
-    db->GetSimulation("h128")->Run(0.05, 5.0);
+    db->CreateSimulation("h128", db->GetConfiguration("29mm 3DPME v2019", "180 case"));
+    db->GetSimulation("29mm 3DPME v2019", "180 case", "h128")->SetHeightPad(167.0);
+    db->GetSimulation("29mm 3DPME v2019", "180 case", "h128")->SetMotor(h128, db->GetStage("29mm 3DPME v2019", "180 case", "sustainer"));
+    db->GetSimulation("29mm 3DPME v2019", "180 case", "h128")->Run(0.05, 5.0);
 
 
 	//db->GetConfiguration(1)->CreateSimulation("sim1", "", 167.0, 0.0, 2.5);

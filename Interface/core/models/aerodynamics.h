@@ -8,14 +8,14 @@
 
 #include "math_utilities.h"
 
-enum class SurfaceFinish {
+enum class SurfaceFinish : uint32_t {
     ROUGH,
     UNFINISHED,
     PAINTED,
     POLISHED
 };
 
-enum class NoseconeType {
+enum class NoseconeType : uint32_t {
     VON_KARMEN,
     CONICAL,
     OGIVE,

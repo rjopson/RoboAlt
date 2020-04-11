@@ -16,24 +16,20 @@ class Configuration : public Entity {
     Configuration(std::string name, std::string comments);
     ~Configuration();
 
+    //Datanames
+    std::vector<Stage*> Stages() const;
+    std::vector<Simulation*> Simulations() const;
+
+    //Core functions
     void AddStage(Stage* stage);
     void RemoveStage(Stage* stage);
     void AddSimulation(Simulation* simulation);
     void RemoveSimulation(Simulation* simulation);
 
   private:
-    static int id_counter_;
-
     std::vector<Stage*> GetStageListWithStagesAbove(Stage* stage) const;
 
     std::vector<Stage*> stages_; //{sustainer, stage2, booster}	
     std::vector<Simulation*> simulations_;       
 };
 #endif
-
-/*
-    void CreateSimulation(std::string name, std::string comments,
-        const double& height_pad, const double& angle_launch_rod, const double& length_launch_rod);
-    void DeleteSimulation();
-    */
-

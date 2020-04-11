@@ -29,18 +29,21 @@ class SimulationUserCommand {
         Parachute* parachute, const double& altitude_main_deploy); 
     ~SimulationUserCommand();    
 
-    //Properties
+    //Values
     void SetEvent(Event event);
     void SetCommand(Command command);
     void SetTimeDelay(const double& time_delay);
     void SetParachute(Parachute* parachute);
     void SetAltitudeMainDeploy(const double& altitude_main_deploy);
+
+    //Datanames
     Event AssignedEvent() const;
     Command AssignedCommand() const;
     double TimeDelay() const;
     Parachute* AssignedParachute() const;
     double AltitudeMainDeploy() const;
 
+    //Core functions
     Command Update(Event event, const double& time_of_flight);
     double TimeToActivateCommand() const;
 

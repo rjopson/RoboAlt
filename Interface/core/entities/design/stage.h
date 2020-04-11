@@ -18,28 +18,25 @@ class Stage : public Entity {
         bool mass_override_switch, const double& mass_override, bool cg_override_switch, const double& cg_override);
     ~Stage();   
 
-    //Properties
+    //Values
     void SetSurfaceFinish(SurfaceFinish surface_finish);
-    void SetDistanceOverlap(const double& distance_overlap);
-    void SetStages(std::vector<Stage*> stages);
+    void SetDistanceOverlap(const double& distance_overlap);    
     void SetOverrideMass(const double& mass);
     void SetModelMass();
+
+    //Datanames
     SurfaceFinish AssignedSurfaceFinish() const;
     double DistanceOverlap() const;
 
-    //Mass calculations
+    //Core functions
+    void SetStages(std::vector<Stage*> stages);
     double MassEmpty(bool include_stages_above);
-
-    //geometric calculations
     double AreaReference(bool include_stages_above);
     double Length(bool include_stages_above);
     double DiameterMax(bool include_stages_above);
     double FinenessRatio(bool include_stages_above);    
-
-    //instance functions    
     std::vector<Instance*> InstanceList(bool include_stages_above);
     void AddInstance(Instance* instance);
-    //bool RemovePart();
 
     //Drag model calculations
     Drag DragModel(bool include_stages_above, const double& area_motor,

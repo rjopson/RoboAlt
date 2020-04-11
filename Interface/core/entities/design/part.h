@@ -11,42 +11,40 @@
 #include "material.h"
 
 enum class PartType {
-    TUBE_BODY,
-    NOSECONE,
+    BULKHEAD, 
     FINS,
-    TUBE_INNER,
-    BULKHEAD,
+    NOSECONE,
     PARACHUTE,
-    POINT_MASS
+    POINT_MASS,
+    TUBE_BODY,
+    TUBE_INNER    
 };
 
 class Part : public Entity {
   public:
     static constexpr double kPi = 3.141592653589793;    
 
-    Part(const std::string& name, const std::string& comments, Material* material,
+    Part(PartType type, const std::string& name, const std::string& comments, Material* material,
         bool mass_override_switch, const double& mass_override, bool cg_override_switch, const double& cg_override);
     ~Part(); 
     
-    //Properties    
+    //Values 
     void SetMaterial(Material* material);
     void SetOverrideMass(const double& mass);
     void SetModelMass();
+
+    //Datanames
     Material* AssignedMaterial() const;
     PartType Type() const;    
-    
-    //Inertial
     double Mass() const;
     double Cg() const;    
 
-    //Geometric calculations
+    //Core functions
     virtual double DiameterAirflow()  const { return 0.0; }
     virtual double LengthAirflow()  const { return 0.0; }
     virtual double AreaReference()  const { return 0.0; }
     virtual double AreaWet()  const { return 0.0; }
     virtual double VolumeMaterial() const = 0;
-
-    //Drag calculations 
     virtual double DragCoefficient(const double& area_reference, const double& fineness_rocket,
         const double& mach_number, const double& skin_friction_coefficient,
         const bool& aft_most_part, const double& area_thrusting)  const {return 0.0;}
@@ -57,12 +55,8 @@ class Part : public Entity {
         const double& mach_number, const double& area_thrusting, const double& area_reference)  const {return 0.0;}     
 
   private:
-    static unsigned int id_counter_;
-
     InertialOverride inertial_;    
     Material* material_;
-
-  protected:
     PartType type_;
 };
 #endif

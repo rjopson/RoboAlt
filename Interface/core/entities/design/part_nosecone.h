@@ -13,7 +13,7 @@ class Nosecone : public Part {
         bool mass_override_switch, const double& mass_override, bool cg_override_switch, const double& cg_override);    
     ~Nosecone();       
 
-    //Properties
+    //Values
     void SetNoseType(NoseconeType nose_type);
     void SetShapeParameter(const double& shape_parameter);
     void SetLengthNose(const double& length_nose);
@@ -23,6 +23,8 @@ class Nosecone : public Part {
     void SetThicknessShoulder(const double& thickness_shoulder);
     void SetDiameterOuter(const double& diameter_outer);
     void SetDiameterShoulder(const double& diameter_shoulder);
+
+    //Datanames
     NoseconeType NoseType() const;
     double ShapeParameter() const;
     double LengthNose() const;
@@ -32,7 +34,6 @@ class Nosecone : public Part {
     double ThicknessShoulder() const;
     double DiameterOuter() const;
     double DiameterShoulder() const;
-
     double Radius() const;
     double Length() const;
     double AreaSurface() const;
@@ -42,7 +43,7 @@ class Nosecone : public Part {
     double VolumeInterior() const;
     double FinenessRatio() const;
 
-    //Overridden virtual functions 
+    //Core functions
     double DiameterAirflow() const;
     double LengthAirflow() const;
     double AreaReference() const;

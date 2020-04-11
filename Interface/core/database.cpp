@@ -39,9 +39,9 @@ Rocket* Database::GetRocket(const std::string& name) {
     return GetEntity(rockets_, name);
 }
 
-void Database::CreatePart(const std::string& name, PartType part_type, Rocket* rocket) {
+void Database::CreatePart(PartType part_type, const std::string& name, Rocket* rocket) {
 
-    Material* material = materials_[0];
+    Material* material = nullptr;
     Part* part = nullptr;
 
     switch (part_type) {
@@ -50,18 +50,21 @@ void Database::CreatePart(const std::string& name, PartType part_type, Rocket* r
             Fins* fins = new Fins(name, "", material, shape, FinCrossSection::ROUNDED, 3, 0.003, 0.005, false, 0.0, false, 0.0);
             fins_.push_back(fins);
             part = fins;
+            break;
         }
         case PartType::NOSECONE: {
             Nosecone* nosecone = new Nosecone(name, "",
                 material, NoseconeType::VON_KARMEN, 1.0, 0.157, 0.01, 0.0, 0.002, 0.0, 0.03139, 0.0, false, 0.0, false, 0.0);
             nosecones_.push_back(nosecone);
             part = nosecone;
+            break;
         }
         case PartType::TUBE_BODY: {
             TubeBody* tube_body = new TubeBody(name, "", 
                 material, 0.076, 0.03139, 0.001, false, 0, false, 0);
             body_tubes_.push_back(tube_body);
             part = tube_body;
+            break;
         }
     }
 
@@ -91,16 +94,68 @@ void Database::DeletePart(Part* part) {
     DeleteEntity(parts_, part);
 }
 
-Fins* Database::GetFins(const std::string& name) {
-    return GetEntity(fins_, name);
+Part* Database::GetPart(const std::string& rocket_name, const std::string& part_name) {
+
+    Rocket* rocket = GetEntity(rockets_, rocket_name);
+    Part* part;
+
+    if (rocket == nullptr) {
+        return nullptr;
+    }
+    else {
+        return GetEntity(rocket->Parts(), part_name);
+    }
 }
 
-Nosecone* Database::GetNosecone(const std::string& name) {
-    return GetEntity(nosecones_, name);
+Fins* Database::GetFins(const std::string& rocket_name, const std::string& part_name) {
+
+    Part* part = GetPart(rocket_name, part_name);
+
+    if (part == nullptr) {
+        return nullptr;
+    }
+    else {
+        if (part->Type() == PartType::FINS) {
+            return static_cast<Fins*>(part);
+        }
+        else {
+            return nullptr;
+        }
+    }
 }
 
-TubeBody* Database::GetTubeBody(const std::string& name) {
-    return GetEntity(body_tubes_, name);
+Nosecone* Database::GetNosecone(const std::string& rocket_name, const std::string& part_name) {
+    
+    Part* part = GetPart(rocket_name, part_name);
+
+    if (part == nullptr) {
+        return nullptr;
+    }
+    else {
+        if (part->Type() == PartType::NOSECONE) {
+            return static_cast<Nosecone*>(part);
+        }
+        else {
+            return nullptr;
+        }
+    }
+}
+
+TubeBody* Database::GetTubeBody(const std::string& rocket_name, const std::string& part_name) {
+    
+    Part* part = GetPart(rocket_name, part_name);
+
+    if (part == nullptr) {
+        return nullptr;
+    }
+    else {
+        if (part->Type() == PartType::TUBE_BODY) {
+            return static_cast<TubeBody*>(part);
+        }
+        else {
+            return nullptr;
+        }
+    }
 }
 
 void Database::CreateConfiguration(const std::string& name, Rocket* rocket) {
@@ -117,8 +172,17 @@ void Database::DeleteConfiguration(Configuration* configuration) {
     DeleteEntity(configurations_, configuration);
 }
 
-Configuration* Database::GetConfiguration(const std::string& name) {
-    return GetEntity(configurations_, name);
+Configuration* Database::GetConfiguration(const std::string& rocket_name, const std::string& configuration_name) {
+    
+    Rocket* rocket = GetEntity(rockets_, rocket_name);
+    Configuration* config;
+
+    if (rocket == nullptr) {
+        return nullptr;
+    }
+    else {
+        return GetEntity(rocket->Configurations(), configuration_name);
+    }
 }
 
 void Database::CreateStage(const std::string& name, Configuration* configuration) {    
@@ -132,8 +196,25 @@ void Database::DeleteStage(Stage* stage) {
     DeleteEntity(stages_, stage);
 }
 
-Stage* Database::GetStage(const std::string name) {
-    return GetEntity(stages_, name);
+Stage* Database::GetStage(const std::string& rocket_name, const std::string& configuration_name, const std::string& stage_name) {
+    
+    Rocket* rocket = GetEntity(rockets_, rocket_name);
+    Configuration* config;
+    Stage* stage;
+
+    if (rocket == nullptr) {
+        return nullptr;
+    }
+    else {
+        config = GetEntity(rocket->Configurations(), configuration_name);
+    }
+
+    if (config == nullptr) {
+        return nullptr;
+    }
+    else {
+        return GetEntity(config->Stages(), stage_name);
+    }
 }
 
 void Database::CreateInstance(const std::string& name, Part* part, Stage* stage) {
@@ -150,8 +231,16 @@ void Database::DeleteInstance(Instance* instance) {
     DeleteEntity(instances_, instance);
 }
 
-Instance* Database::GetInstance(const std::string& name) {
-    return GetEntity(instances_, name);
+Instance* Database::GetInstance(const std::string& rocket_name, const std::string& instance_name) {
+    
+    Rocket* rocket = GetEntity(rockets_, rocket_name);
+
+    if (rocket == nullptr) {
+        return nullptr;
+    }
+    else {
+        return GetEntity(rocket->Instances(), instance_name);
+    }
 }
 
 void Database::CreateSimulation(const std::string& name, Configuration* configuration) {
@@ -171,6 +260,23 @@ void Database::DeleteSimulation(Simulation* simulation) {
     DeleteEntity(simulations_, simulation);
 }
 
-Simulation* Database::GetSimulation(const std::string name) {
-    return GetEntity(simulations_, name);
+Simulation* Database::GetSimulation(const std::string& rocket_name, const std::string& configuration_name, const std::string& simulation_name) {
+    
+    Rocket* rocket = GetEntity(rockets_, rocket_name);
+    Configuration* config;
+    Simulation* sim;
+
+    if (rocket == nullptr) {
+        return nullptr;
+    }
+    else {
+        config = GetEntity(rocket->Configurations(), configuration_name);
+    }
+
+    if (config == nullptr) {
+        return nullptr;
+    }
+    else {
+        return GetEntity(config->Simulations(), simulation_name);
+    }
 }

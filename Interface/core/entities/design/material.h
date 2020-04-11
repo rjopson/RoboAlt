@@ -11,12 +11,13 @@ class Material : public Entity {
 	Material(const std::string& name, const std::string& comments, const double& density);
 	~Material();
 
+	//Values
 	void SetDensity(const double& density);
+
+	//Datanames
 	double Density() const;
 
   private:
-	static unsigned int id_counter_;
-
 	double density_;
 };
 #endif

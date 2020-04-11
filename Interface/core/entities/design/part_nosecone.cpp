@@ -7,7 +7,7 @@ Nosecone::Nosecone(std::string name, std::string comments, Material* material,
     const double& diameter_outer, const double& diameter_shoulder,
     bool mass_override_switch, const double& mass_override, bool cg_override_switch, const double& cg_override) 
     
-    : Part(name, comments, material, mass_override_switch, mass_override, cg_override_switch, cg_override),
+    : Part(PartType::NOSECONE, name, comments, material, mass_override_switch, mass_override, cg_override_switch, cg_override),
       nose_type_(nose_type),
       shape_parameter_(shape_parameter),
       length_nose_(length_nose),
@@ -18,7 +18,6 @@ Nosecone::Nosecone(std::string name, std::string comments, Material* material,
       diameter_outer_(diameter_outer),
       diameter_shoulder_(diameter_shoulder) {
 
-    type_ = PartType::NOSECONE;
 }
 
 Nosecone::~Nosecone() {}

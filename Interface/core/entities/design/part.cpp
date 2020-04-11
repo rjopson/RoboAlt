@@ -1,16 +1,13 @@
 #include "Part.h"
 
-unsigned int Part::id_counter_ = 0;
-
-Part::Part(const std::string& name, const std::string& comments, Material* material,
+Part::Part(PartType type, const std::string& name, const std::string& comments, Material* material,
     bool mass_override_switch, const double& mass_override, bool cg_override_switch, const double& cg_override) 
     
-    : Entity(name, comments),
+    : type_(type),
+      Entity(name, comments),
       material_(material),
       inertial_(mass_override_switch, mass_override, cg_override_switch, cg_override) {
 
-    id_counter_++;
-    id_ = id_counter_;
 }
 
 Part::~Part() {}

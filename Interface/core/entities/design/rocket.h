@@ -22,12 +22,18 @@ class Rocket : public Entity {
     Rocket(std::string name, std::string comments);
     ~Rocket();    
 
+    //Datanames
+    std::vector<Configuration*> Configurations() const;
+    std::vector<Part*> Parts() const;
+    std::vector<Instance*> Instances() const;
+
+    //Core functions
     void AddConfiguration(Configuration* configuration);
-    void AddDrag(Drag* drag);
+    void RemoveConfiguration(Configuration* configuration);        
     void AddPart(Part* part);
-    void RemoveConfiguration(Configuration* configuration);
-    void RemoveDrag(Drag* drag);
-    void RemovePart(Part* part);
+    void RemovePart(Part* part);        
+    void AddDrag(Drag* drag);
+    void RemoveDrag(Drag* drag);    
 
   private:
     static unsigned int id_counter;

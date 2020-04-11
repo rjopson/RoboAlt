@@ -36,7 +36,7 @@ class Simulation : public Entity {
         const double& height_pad, const double& angle_launch_rod, const double& length_launch_rod);
     ~Simulation();    
 
-    //Properties
+    //Values
     void AddStage(Stage* stage);
     void RemoveStage(Stage* stage);
     void AddUserCommand(SimulationUserCommand* user_command, Stage* stage);
@@ -45,11 +45,14 @@ class Simulation : public Entity {
     void SetHeightPad(const double& height_pad);
     void SetAngleLaunchRod(const double& angle_launch_rod);
     void SetLengthLaunchRod(const double& length_launch_rod);
+
+    //Datanames
     Motor* AssignedMotor(Stage* stage) const;
     double HeightPad() const;
     double AngleLaunchRod() const;
     double LengthLaunchRod() const;
 
+    //Functions
     void Run(const double& step_ascent, const double& step_descent);    
 
   private:    

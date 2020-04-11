@@ -19,19 +19,21 @@ class Fins : public Part {
         bool mass_override_switch, const double& mass_override, bool cg_override_switch, const double& cg_override);
     ~Fins();    
 
-    //Properties
+    //Values
     void SetFinShape(FinShape* shape);
     void SetFinCrossSection(FinCrossSection cross_section);
     void SetNumber(const double& number);
     void SetThickness(const double& thickness);
     void SetRadiusFillet(const double& radius_fillet);
+
+    //Datanames
     FinShape* AssignedFinShape() const;
     FinCrossSection CrossSection() const;
     int Number() const;
     double Thickness() const;
     double RadiusFillet() const;
 
-    //Overridden virtual functions 
+    //Core functions
     double VolumeMaterial() const;
     double AreaReference() const;
     double AreaWet() const;
