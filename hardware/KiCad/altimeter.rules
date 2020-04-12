@@ -1,0 +1,130 @@
+
+(rules PCB altimeter
+  (snap_angle 
+    fortyfive_degree
+  )
+  (autoroute_settings
+    (fanout off)
+    (autoroute on)
+    (postroute on)
+    (vias on)
+    (via_costs 50)
+    (plane_via_costs 5)
+    (start_ripup_costs 100)
+    (start_pass_no 5243)
+    (layer_rule F.Cu
+      (active on)
+      (preferred_direction horizontal)
+      (preferred_direction_trace_costs 1.0)
+      (against_preferred_direction_trace_costs 3.6)
+    )
+    (layer_rule B.Cu
+      (active on)
+      (preferred_direction vertical)
+      (preferred_direction_trace_costs 1.0)
+      (against_preferred_direction_trace_costs 1.4)
+    )
+  )
+  (rule
+    (width 203.2)
+    (clear 203.4)
+    (clear 101.6 (type smd_to_turn_gap))
+    (clear 50.8 (type smd_smd))
+  )
+  (padstack "Via[0-1]_711.2:355.6_um"
+    (shape
+      (circle F.Cu 711.2 0.0 0.0)
+    )
+    (shape
+      (circle B.Cu 711.2 0.0 0.0)
+    )
+    (attach off)
+  )
+  (via 
+    "Via[0-1]_711.2:355.6_um" "Via[0-1]_711.2:355.6_um" default
+  )
+  (via 
+    "Via[0-1]_711.2:355.6_um-kicad_default" "Via[0-1]_711.2:355.6_um" "kicad_default"
+  )
+  (via 
+    "Via[0-1]_711.2:355.6_um-battery" "Via[0-1]_711.2:355.6_um" battery
+  )
+  (via 
+    "Via[0-1]_711.2:355.6_um-power" "Via[0-1]_711.2:355.6_um" power
+  )
+  (via 
+    "Via[0-1]_711.2:355.6_um-pyro" "Via[0-1]_711.2:355.6_um" pyro
+  )
+  (via_rule
+    default "Via[0-1]_711.2:355.6_um"
+  )
+  (via_rule
+    "kicad_default" "Via[0-1]_711.2:355.6_um-kicad_default"
+  )
+  (via_rule
+    battery "Via[0-1]_711.2:355.6_um-battery"
+  )
+  (via_rule
+    power "Via[0-1]_711.2:355.6_um-power"
+  )
+  (via_rule
+    pyro "Via[0-1]_711.2:355.6_um-pyro"
+  )
+  (class default
+    (clearance_class default)
+    (via_rule default)
+    (rule
+      (width 203.2)
+    )
+    (circuit 
+      (use_layer F.Cu B.Cu)
+    )
+  )
+  (class "kicad_default"
+    "Net-(C1-Pad2)" "Net-(C3-Pad1)" "Net-(C3-Pad3)" /RESET "Net-(C6-Pad1)" "Net-(C10-Pad1)" "Net-(C12-Pad1)" "Net-(C14-Pad2)"
+    "Net-(D1-Pad2)" "Net-(D2-Pad2)" /APO /3RD /MAIN /D2 "Net-(Q2-Pad1)" /D4
+    /D3 /D6 /A1 /A3 /A2 /A4 "Net-(R4-Pad1)" /SCL
+    /SDA /D8 /MOSI /SCK /MISO /SS /D7 "/DATA-"
+    /DATA+
+    (clearance_class "kicad_default")
+    (via_rule kicad_default)
+    (rule
+      (width 203.2)
+    )
+    (circuit 
+      (use_layer F.Cu B.Cu)
+    )
+  )
+  (class battery
+    "Net-(D1-Pad3)" +BATT +5V
+    (clearance_class battery)
+    (via_rule battery)
+    (rule
+      (width 508.0)
+    )
+    (circuit 
+      (use_layer F.Cu B.Cu)
+    )
+  )
+  (class power
+    GND +3V3
+    (clearance_class power)
+    (via_rule power)
+    (rule
+      (width 279.4)
+    )
+    (circuit 
+      (use_layer F.Cu B.Cu)
+    )
+  )
+  (class pyro
+    (clearance_class pyro)
+    (via_rule pyro)
+    (rule
+      (width 1270.0)
+    )
+    (circuit 
+      (use_layer F.Cu B.Cu)
+    )
+  )
+)
