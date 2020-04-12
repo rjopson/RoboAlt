@@ -45,6 +45,10 @@ double Stage::DistanceOverlap() const {
     return distance_overlap_;
 }
 
+Instance* Stage::InstanceRoot() const {
+    return instance_root_;
+}
+
 std::vector<Instance*> Stage::InstanceList(bool include_stages_above) {
 
     std::vector<Instance*> flat_list;

@@ -8,8 +8,7 @@ class Nosecone : public Part {
     Nosecone(std::string name, std::string comments, Material* material,
         NoseconeType nose_type, const double& shape_parameter,
         const double& length_nose, const double& length_base, const double& length_shoulder,
-        const double& thickness, const double& thickness_shoulder, 
-        const double& diameter_outer, const double& diameter_shoulder,
+        const double& thickness, const double& diameter_outer, const double& diameter_shoulder,
         bool mass_override_switch, const double& mass_override, bool cg_override_switch, const double& cg_override);    
     ~Nosecone();       
 
@@ -20,7 +19,6 @@ class Nosecone : public Part {
     void SetLengthBase(const double& length_base);
     void SetLengthShoulder(const double& length_shoulder);
     void SetThickness(const double& thickness);
-    void SetThicknessShoulder(const double& thickness_shoulder);
     void SetDiameterOuter(const double& diameter_outer);
     void SetDiameterShoulder(const double& diameter_shoulder);
 
@@ -31,19 +29,18 @@ class Nosecone : public Part {
     double LengthBase() const;
     double LengthShoulder() const;
     double Thickness() const;
-    double ThicknessShoulder() const;
     double DiameterOuter() const;
     double DiameterShoulder() const;
     double Radius() const;
-    double Length() const;
+    double Length() const;    
+
+    //Core functions
     double AreaSurface() const;
     double AreaPlanform() const;
     double AreaForward() const;
     double AreaAft() const;
     double VolumeInterior() const;
     double FinenessRatio() const;
-
-    //Core functions
     double DiameterAirflow() const;
     double LengthAirflow() const;
     double AreaReference() const;

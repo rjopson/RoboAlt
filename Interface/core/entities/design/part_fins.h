@@ -4,13 +4,6 @@
 #include "fin_shape.h"
 #include "part.h"
 
-enum class FinCrossSection {
-    SQUARE,
-    ROUNDED,
-    AIRFOIL,
-    DOUBLE_WEDGE
-};
-
 class Fins : public Part {
   public:
     Fins(std::string name, std::string comments, Material* material,

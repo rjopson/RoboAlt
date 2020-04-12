@@ -330,7 +330,7 @@ double Simulation::GetMotorMassStagesAbove() {
     double mass = 0.0;
 
     for (auto it = stages_.begin(); it != std::find(stages_.begin(), stages_.end(), stage_current_); it++) {
-        mass += (*it)->motor_->mass_total_;
+        mass += (*it)->motor_->MassTotal();
     }
     return mass;
 }
@@ -354,7 +354,7 @@ std::vector<double> Simulation::EomDescent(const double& time, const std::vector
 
     //Get acceleration
     double force_sum = drag_current_->GetDrag(false, atmosphere_->Density(state[0]), std::abs(state[1]), atmosphere_->SpeedOfSound(state[0]));
-    double mass = mass_empty_current_ + stage_current_->motor_->mass_total_ - stage_current_->motor_->mass_propellant_;
+    double mass = mass_empty_current_ + stage_current_->motor_->MassCase();
     double acceleration = (force_sum / mass) - kGravity;
 
     //output solution to step

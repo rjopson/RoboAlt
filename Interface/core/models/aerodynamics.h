@@ -22,6 +22,13 @@ enum class NoseconeType : uint32_t {
     HAACK
 };
 
+enum class FinCrossSection : uint32_t {
+    SQUARE,
+    ROUNDED,
+    AIRFOIL,
+    DOUBLE_WEDGE
+};
+
 class Aerodynamics {
   public:
     static constexpr double kViscosity = 0.000015;

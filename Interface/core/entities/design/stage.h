@@ -27,6 +27,7 @@ class Stage : public Entity {
     //Datanames
     SurfaceFinish AssignedSurfaceFinish() const;
     double DistanceOverlap() const;
+    Instance* InstanceRoot() const;
 
     //Core functions
     void SetStages(std::vector<Stage*> stages);

@@ -6,7 +6,7 @@
 
 #include "part.h"
 
-enum class PartPosition {
+enum class PartPosition : uint32_t {
     FOREWARD,
     AFT
 };
@@ -19,7 +19,7 @@ class Instance : public Entity {
 
     //Values
     void SetPositionType(PartPosition position_type);
-    void MovePosition(const double& position);
+    void SetPositionFrom(const double& position);
     std::vector<Instance*> Children(bool recursive);
 
     //Datanames    

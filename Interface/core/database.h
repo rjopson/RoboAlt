@@ -29,9 +29,10 @@ class Database {
     void CreatePart(PartType part_type, const std::string& name, Rocket* rocket);
     void DeletePart(Part* part);
     Part* GetPart(const std::string& rocket_name, const std::string& part_name);
-    Fins* GetFins(const std::string& rocket_name, const std::string& part_name);
-    Nosecone* GetNosecone(const std::string& rocket_name, const std::string& part_name);
-    TubeBody* GetTubeBody(const std::string& rocket_name, const std::string& part_name);
+    template <class T>
+    T* GetPart(const std::string& rocket_name, const std::string& part_name) {
+        return reinterpret_cast<T*>(GetPart(rocket_name, part_name));
+    }
 
     void CreateConfiguration(const std::string& name, Rocket* rocket);
     void DeleteConfiguration(Configuration* configuration);
@@ -42,7 +43,6 @@ class Database {
     Stage* GetStage(const std::string& rocket_name, const std::string& configuration_name, const std::string& stage_name);
     
     void CreateInstance(const std::string& name, Part* part, Instance* parent);
-    void CreateInstance(const std::string& name, Part* part, Stage* stage);
     void DeleteInstance(Instance* instance);
     Instance* GetInstance(const std::string& rocket_name, const std::string& instance_name);
 
@@ -53,13 +53,12 @@ class Database {
     void DeleteSimulationuserCommand(SimulationUserCommand* command);
     SimulationUserCommand* GetSimulationUserCommand();
     
-    void CreateMotor();
+    void CreateMotor(const std::string& file_path);
+    void DeleteMotor(Motor* motor);
+    Motor* GetMotor(const std::string& name);
+
     void CreateAtmosphere();
     void CreateDrag(Rocket* rocket);     
-
-    double test_function(double input) {
-        return input * 5.0;
-    }
 
 private:     
     //Rocket* GetRocket(const int& id);

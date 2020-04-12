@@ -13,6 +13,7 @@ class Entity {
     //Values
     void SetName(const std::string& name);
     void SetComments(const std::string& comments);
+    void AddToComments(const std::string& addition);
 
     //Datanames
     std::string Name() const;

@@ -17,6 +17,10 @@ void Entity::SetComments(const std::string& comments) {
     comments_ = comments;
 }
 
+void Entity::AddToComments(const std::string& addition) {
+    comments_.append(addition);
+}
+
 std::string Entity::Name() const {
     return name_;
 }

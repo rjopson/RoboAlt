@@ -35,7 +35,7 @@ void Instance::SetPositionType(PartPosition position_type) {
     position_type_ = position_type;
 }
 
-void Instance::MovePosition(const double& position) {
+void Instance::SetPositionFrom(const double& position) {
     position_from_ = position;
 }
 

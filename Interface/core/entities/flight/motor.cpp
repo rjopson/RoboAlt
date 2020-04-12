@@ -4,9 +4,8 @@ Motor::Motor(std::string name, std::string manufacturer, std::string comments,
     const double& diameter, const double& length, std::vector<double> delay, const double& mass_propellant, const double& mass_total,
     const std::vector<double>& data_time, const std::vector<double>& data_thrust)
 
-    : name_(name),
+    : Entity(name, comments),
       manufacturer_(manufacturer),
-      comments_(comments),
       diameter_(diameter),
       length_(length),
       delay_(delay),
@@ -15,7 +14,8 @@ Motor::Motor(std::string name, std::string manufacturer, std::string comments,
       data_time_(data_time),
       data_thrust_(data_thrust) {}
 
-Motor::Motor(std::string file_path) {
+Motor::Motor(const std::string& file_path) 
+	: Entity("", "") {
 
 	std::ifstream file(file_path);
 	std::string line;
@@ -33,14 +33,14 @@ Motor::Motor(std::string file_path) {
 			if (line.at(0) == ';') {
 				line.erase(line.begin());
 				line.append("\n");
-				comments_.append(line);
+				AddToComments(line);
 			}
 			
 			//header line
 			else if (!headerReached) {
 
 				std::vector<std::string> line_list = Parse::split(line, ' ', false);
-				name_ = line_list[0];
+				SetName(line_list[0]);
 				diameter_ = stod(line_list[1])*0.001;
 				length_ = stod(line_list[2])*0.001;
 				mass_propellant_ = stod(line_list[4]);
@@ -73,6 +73,60 @@ Motor::Motor(std::string file_path) {
 }
 
 Motor::~Motor() {}
+
+/*
+void Motor::SetManufacturer(const std::string& manufacturer) {
+	manufacturer_ = manufacturer;
+}
+
+void Motor::setDiameter(const double& diameter) {
+	diameter_ = diameter;
+}
+
+void Motor::SetLength(const double& length) {
+	length_ = length;
+}
+
+void Motor::SetDelay(const std::vector<double>& delay) {
+	delay_ = delay;
+}
+
+void Motor::setMassPropellant(const double& mass_propellant) {
+	mass_propellant_ = mass_propellant;
+}
+
+void Motor::SetMassTotal(const double& mass_total) {
+	mass_total_ = mass_total;
+}
+*/
+
+std::string Motor::Manufacturer() const {
+	return manufacturer_;
+}
+
+double Motor::Diameter() const {
+	return diameter_;
+}
+
+double Motor::Length() const {
+	return length_;
+}
+
+std::vector<double> Motor::Delay() const {
+	return delay_;
+}
+
+double Motor::MassPropellant() const {
+	return mass_propellant_;
+}
+
+double Motor::MassTotal() const {
+	return mass_total_;
+}
+
+double Motor::MassCase() const {
+	return mass_total_ - mass_propellant_;
+}
 
 double Motor::Area() const {
 	return kPi * std::pow(diameter_ / 2.0, 2);

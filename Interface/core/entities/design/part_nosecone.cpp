@@ -3,8 +3,7 @@
 Nosecone::Nosecone(std::string name, std::string comments, Material* material,
     NoseconeType nose_type, const double& shape_parameter,
     const double& length_nose, const double& length_base, const double& length_shoulder,
-    const double& thickness, const double& thickness_shoulder,
-    const double& diameter_outer, const double& diameter_shoulder,
+    const double& thickness, const double& diameter_outer, const double& diameter_shoulder,
     bool mass_override_switch, const double& mass_override, bool cg_override_switch, const double& cg_override) 
     
     : Part(PartType::NOSECONE, name, comments, material, mass_override_switch, mass_override, cg_override_switch, cg_override),
@@ -14,7 +13,6 @@ Nosecone::Nosecone(std::string name, std::string comments, Material* material,
       length_base_(length_base),
       length_shoulder_(length_shoulder),
       thickness_(thickness),
-      thickness_shoulder_(thickness_shoulder),
       diameter_outer_(diameter_outer),
       diameter_shoulder_(diameter_shoulder) {
 
@@ -44,10 +42,6 @@ void Nosecone::SetLengthShoulder(const double& length_shoulder) {
 
 void Nosecone::SetThickness(const double& thickness) {
     thickness_ = thickness;
-}
-
-void Nosecone::SetThicknessShoulder(const double& thickness_shoulder) {
-    thickness_shoulder_ = thickness_shoulder;
 }
 
 void Nosecone::SetDiameterOuter(const double& diameter_outer) {
@@ -80,10 +74,6 @@ double Nosecone::LengthShoulder() const {
 
 double Nosecone::Thickness() const {
     return thickness_;
-}
-
-double Nosecone::ThicknessShoulder() const {
-    return thickness_shoulder_;
 }
 
 double Nosecone::DiameterOuter() const {

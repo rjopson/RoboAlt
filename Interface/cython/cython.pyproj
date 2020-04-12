@@ -11,6 +11,7 @@
     <OutputPath>.</OutputPath>
     <Name>cython</Name>
     <RootNamespace>cython</RootNamespace>
+    <SuppressConfigureTestFrameworkPrompt>true</SuppressConfigureTestFrameworkPrompt>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -40,6 +41,9 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="material.pyx">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="motor.pyx">
       <SubType>Code</SubType>
     </Content>
     <Content Include="python_wrappers.pyx" />

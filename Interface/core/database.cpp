@@ -54,7 +54,7 @@ void Database::CreatePart(PartType part_type, const std::string& name, Rocket* r
         }
         case PartType::NOSECONE: {
             Nosecone* nosecone = new Nosecone(name, "",
-                material, NoseconeType::VON_KARMEN, 1.0, 0.157, 0.01, 0.0, 0.002, 0.0, 0.03139, 0.0, false, 0.0, false, 0.0);
+                material, NoseconeType::VON_KARMEN, 1.0, 0.157, 0.01, 0.0, 0.002, 0.03139, 0.0, false, 0.0, false, 0.0);
             nosecones_.push_back(nosecone);
             part = nosecone;
             break;
@@ -104,57 +104,6 @@ Part* Database::GetPart(const std::string& rocket_name, const std::string& part_
     }
     else {
         return GetEntity(rocket->Parts(), part_name);
-    }
-}
-
-Fins* Database::GetFins(const std::string& rocket_name, const std::string& part_name) {
-
-    Part* part = GetPart(rocket_name, part_name);
-
-    if (part == nullptr) {
-        return nullptr;
-    }
-    else {
-        if (part->Type() == PartType::FINS) {
-            return static_cast<Fins*>(part);
-        }
-        else {
-            return nullptr;
-        }
-    }
-}
-
-Nosecone* Database::GetNosecone(const std::string& rocket_name, const std::string& part_name) {
-    
-    Part* part = GetPart(rocket_name, part_name);
-
-    if (part == nullptr) {
-        return nullptr;
-    }
-    else {
-        if (part->Type() == PartType::NOSECONE) {
-            return static_cast<Nosecone*>(part);
-        }
-        else {
-            return nullptr;
-        }
-    }
-}
-
-TubeBody* Database::GetTubeBody(const std::string& rocket_name, const std::string& part_name) {
-    
-    Part* part = GetPart(rocket_name, part_name);
-
-    if (part == nullptr) {
-        return nullptr;
-    }
-    else {
-        if (part->Type() == PartType::TUBE_BODY) {
-            return static_cast<TubeBody*>(part);
-        }
-        else {
-            return nullptr;
-        }
     }
 }
 
@@ -217,11 +166,6 @@ Stage* Database::GetStage(const std::string& rocket_name, const std::string& con
     }
 }
 
-void Database::CreateInstance(const std::string& name, Part* part, Stage* stage) {
-    instances_.push_back(new Instance(name, part, nullptr, PartPosition::FOREWARD, 0.0));
-    stage->AddInstance(instances_.back());
-}
-
 void Database::CreateInstance(const std::string& name, Part* part, Instance* parent) {
     instances_.push_back(new Instance(name, part, parent, PartPosition::FOREWARD, 0.0));
 }
@@ -279,4 +223,16 @@ Simulation* Database::GetSimulation(const std::string& rocket_name, const std::s
     else {
         return GetEntity(config->Simulations(), simulation_name);
     }
+}
+
+void Database::CreateMotor(const std::string& file_path) {
+    motors_.push_back(new Motor(file_path));
+}
+
+void Database::DeleteMotor(Motor* motor) {
+
+}
+
+Motor* Database::GetMotor(const std::string& name) {
+    return GetEntity(motors_, name);
 }

@@ -11,3 +11,36 @@ cdef extern from "../core/entities/design/material.h":
         string Name() const
         string Comments() const        
         double Density() const
+
+cdef class PyMaterial:
+    cdef Material *ptr
+
+    def __init__(self, *args):
+        pass
+
+    @staticmethod
+    cdef PyMaterial create(Material* ptr):
+        obj = <PyMaterial>PyMaterial.__new__(PyMaterial)
+        obj.ptr = ptr
+        return obj    
+
+    @property
+    def name(self):
+        return self.ptr.Name().decode('utf-8')    
+    @name.setter
+    def name(self, val):
+        self.ptr.SetName(val.encode('utf-8'))
+
+    @property
+    def comments(self):
+        return self.ptr.Comments().decode('utf-8')
+    @comments.setter
+    def comments(self, val):
+        self.ptr.SetComments(val.encode('utf-8'))
+
+    @property
+    def density(self):
+        return self.ptr.Density()
+    @density.setter
+    def density(self, val):
+        self.ptr.SetDensity(val)
