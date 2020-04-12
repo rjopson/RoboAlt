@@ -1,3 +1,0 @@
-vk curve: (R/sqrt(PI))*sqrt(arccos(1-(2*x)/L) - 0.5*sin(2*arccos(1-(2*x)/L)) + C*sin(arccos(1-(2*x)/L))^3)
-
-vk derivative: (R ((6 C sqrt(1 - (1 - (2 x)/L)^2) (1 - (2 x)/L))/L + 2/(L sqrt(1 - (1 - (2 x)/L)^2)) - (2 cos(2 cos^(-1)(1 - (2 x)/L)))/(L sqrt(1 - (1 - (2 x)/L)^2))))/(2 sqrt(π) sqrt(C (1 - (1 - (2 x)/L)^2)^(3/2) + cos^(-1)(1 - (2 x)/L) - 0.5 sin(2 cos^(-1)(1 - (2 x)/L))))

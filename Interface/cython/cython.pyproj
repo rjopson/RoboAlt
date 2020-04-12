@@ -22,37 +22,21 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="part.pyx">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="rocket.pyx">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="test.py">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="setup.py" />
+    <Compile Include="test.py" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="configuration.pyx">
-      <SubType>Code</SubType>
-    </Content>
-    <Content Include="instance.pyx">
-      <SubType>Code</SubType>
-    </Content>
-    <Content Include="material.pyx">
-      <SubType>Code</SubType>
-    </Content>
-    <Content Include="motor.pyx">
-      <SubType>Code</SubType>
-    </Content>
-    <Content Include="python_wrappers.pyx" />
-    <Content Include="simulation.pyx">
-      <SubType>Code</SubType>
-    </Content>
-    <Content Include="stage.pyx">
-      <SubType>Code</SubType>
-    </Content>
+    <Content Include="entities/configuration.pyx" />
+    <Content Include="entities/instance.pyx" />
+    <Content Include="entities/material.pyx" />
+    <Content Include="entities/motor.pyx" />
+    <Content Include="entities/part.pyx" />
+    <Content Include="entities/simulation.pyx" />
+    <Content Include="entities/stage.pyx" />
+    <Content Include="entities\rocket.pyx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="entities\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

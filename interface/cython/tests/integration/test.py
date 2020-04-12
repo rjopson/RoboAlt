@@ -89,7 +89,7 @@ db.create_instance("tubeFincan_1", "29mm 3DPME v2019", "180 case", "tubeFincan",
 db.create_instance("Finset_1", "29mm 3DPME v2019", "180 case", "Nosecone", "tubeFincan_1")
 db.get_instance("29mm 3DPME v2019", "Finset_1").position_from = 0.0063
 
-db.create_motor("C:/Users/rober/Documents/Rockets/Altimeters/interface/core/tests/test_files/AeroTech_H128.eng")
+db.create_motor("C:/Users/rober/Documents/Rockets/Altimeters/Interface/core/testFiles/AeroTech_H128.eng")
 
 db.create_simulation("h128", "29mm 3DPME v2019", "180 case")
 print(db.get_simulation("29mm 3DPME v2019", "180 case", "h128").name)

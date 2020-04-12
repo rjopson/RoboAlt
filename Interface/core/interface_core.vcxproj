@@ -40,7 +40,7 @@
     <ClCompile Include="entities\flight\simulation_user_command.cpp" />
     <ClCompile Include="entities\flight\flight_data.cpp" />
     <ClCompile Include="entities\design\rocket.cpp" />
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="tests\integration\main.cpp" />
     <ClCompile Include="entities\flight\simulation.cpp" />
     <ClCompile Include="entities\design\stage.cpp" />
     <ClCompile Include="entities\flight\simulation_stage.cpp" />
@@ -163,7 +163,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\rober\Documents\Rockets\Altimeters\Interface\core\entities;C:\Users\rober\Documents\Rockets\Altimeters\Interface\core\utils;C:\Users\rober\Documents\Rockets\Altimeters\Interface\core\entities\models;C:\Users\rober\Documents\Rockets\Altimeters\Interface\core\entities\flight;C:\Users\rober\Documents\Rockets\Altimeters\Interface\core\entities\design;C:\Users\rober\Documents\Rockets\Altimeters\Interface\core\models;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)entities;$(ProjectDir)utils;$(ProjectDir)entities\models;$(ProjectDir)entities\flight;$(ProjectDir)entities\design;$(ProjectDir)models;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -174,7 +174,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\rober\Documents\Rockets\Altimeters\Interface\core\entities;C:\Users\rober\Documents\Rockets\Altimeters\Interface\core\utils;C:\Users\rober\Documents\Rockets\Altimeters\Interface\core\entities\models;C:\Users\rober\Documents\Rockets\Altimeters\Interface\core\entities\flight;C:\Users\rober\Documents\Rockets\Altimeters\Interface\core\entities\design;C:\Users\rober\Documents\Rockets\Altimeters\Interface\core\models;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)entities;$(ProjectDir)utils;$(ProjectDir)entities\models;$(ProjectDir)entities\flight;$(ProjectDir)entities\design;$(ProjectDir)models;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>

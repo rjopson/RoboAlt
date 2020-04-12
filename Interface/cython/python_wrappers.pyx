@@ -2,14 +2,14 @@ from libcpp.string cimport string
 from libcpp.vector cimport vector 
 from libcpp cimport bool
 
-include "configuration.pyx"
-include "instance.pyx"
-include "material.pyx"
-include "motor.pyx"
-include "part.pyx"
-include "rocket.pyx"
-include "simulation.pyx"
-include "stage.pyx"
+include "entities/configuration.pyx"
+include "entities/instance.pyx"
+include "entities/material.pyx"
+include "entities/motor.pyx"
+include "entities/part.pyx"
+include "entities/rocket.pyx"
+include "entities/simulation.pyx"
+include "entities/stage.pyx"
 
 cdef extern from "../core/database.h":
     cdef cppclass Database:

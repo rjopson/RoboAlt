@@ -908,14 +908,14 @@ static const char *__pyx_filename;
 
 static const char *__pyx_f[] = {
   "stringsource",
-  "configuration.pyx",
-  "instance.pyx",
-  "material.pyx",
-  "motor.pyx",
-  "part.pyx",
-  "rocket.pyx",
-  "simulation.pyx",
-  "stage.pyx",
+  "entities/configuration.pyx",
+  "entities/instance.pyx",
+  "entities/material.pyx",
+  "entities/motor.pyx",
+  "entities/part.pyx",
+  "entities/rocket.pyx",
+  "entities/simulation.pyx",
+  "entities/stage.pyx",
   "python_wrappers.pyx",
 };
 
@@ -935,7 +935,7 @@ struct __pyx_obj_14interface_core_PyStage;
 struct __pyx_obj_14interface_core_InterfaceCore;
 struct __pyx_obj___Pyx_EnumMeta;
 
-/* "instance.pyx":9
+/* "entities/instance.pyx":9
  *         _FOREWARD,
  *         _AFT
  * cpdef enum PyPartPosition:             # <<<<<<<<<<<<<<
@@ -947,7 +947,7 @@ enum __pyx_t_14interface_core_PyPartPosition {
   __pyx_e_14interface_core_AFT = 1
 };
 
-/* "part.pyx":15
+/* "entities/part.pyx":15
  *         _TUBE_BODY,
  *         _TUBE_INNER
  * cpdef enum PyPartType:             # <<<<<<<<<<<<<<
@@ -964,7 +964,7 @@ enum __pyx_t_14interface_core_PyPartType {
   __pyx_e_14interface_core_TUBE_INNER = 6
 };
 
-/* "part.pyx":143
+/* "entities/part.pyx":143
  *         _AIRFOIL,
  *         _DOUBLE_WEDGE
  * cpdef enum PyFinCrossSection:             # <<<<<<<<<<<<<<
@@ -978,7 +978,7 @@ enum __pyx_t_14interface_core_PyFinCrossSection {
   __pyx_e_14interface_core_DOUBLE_WEDGE = 3
 };
 
-/* "part.pyx":252
+/* "entities/part.pyx":252
  *         _OGIVE,
  *         _HAACK
  * cpdef enum PyNoseconeType:             # <<<<<<<<<<<<<<
@@ -992,7 +992,7 @@ enum __pyx_t_14interface_core_PyNoseconeType {
   __pyx_e_14interface_core_HAACK = 3
 };
 
-/* "stage.pyx":11
+/* "entities/stage.pyx":11
  *         _PAINTED,
  *         _POLISHED
  * cpdef enum PySurfaceFinish:             # <<<<<<<<<<<<<<
@@ -1006,7 +1006,7 @@ enum __pyx_t_14interface_core_PySurfaceFinish {
   __pyx_e_14interface_core_POLISHED = 3
 };
 
-/* "configuration.pyx":13
+/* "entities/configuration.pyx":13
  *         string Comments() const
  * 
  * cdef class PyConfiguration:             # <<<<<<<<<<<<<<
@@ -1020,7 +1020,7 @@ struct __pyx_obj_14interface_core_PyConfiguration {
 };
 
 
-/* "instance.pyx":28
+/* "entities/instance.pyx":28
  *         double PositionFromParentFront();
  * 
  * cdef class PyInstance:             # <<<<<<<<<<<<<<
@@ -1034,7 +1034,7 @@ struct __pyx_obj_14interface_core_PyInstance {
 };
 
 
-/* "material.pyx":15
+/* "entities/material.pyx":15
  *         double Density() const
  * 
  * cdef class PyMaterial:             # <<<<<<<<<<<<<<
@@ -1048,7 +1048,7 @@ struct __pyx_obj_14interface_core_PyMaterial {
 };
 
 
-/* "motor.pyx":21
+/* "entities/motor.pyx":21
  *         double MassCase() const;
  * 
  * cdef class PyMotor:             # <<<<<<<<<<<<<<
@@ -1062,7 +1062,7 @@ struct __pyx_obj_14interface_core_PyMotor {
 };
 
 
-/* "part.pyx":42
+/* "entities/part.pyx":42
  * 
  * #base class - never used as a standalone, only in derived classes
  * cdef class PyPart:             # <<<<<<<<<<<<<<
@@ -1075,7 +1075,7 @@ struct __pyx_obj_14interface_core_PyPart {
 };
 
 
-/* "part.pyx":92
+/* "entities/part.pyx":92
  *         double Thickness() const;
  * 
  * cdef class PyBulkhead(PyPart):             # <<<<<<<<<<<<<<
@@ -1089,7 +1089,7 @@ struct __pyx_obj_14interface_core_PyBulkhead {
 };
 
 
-/* "part.pyx":168
+/* "entities/part.pyx":168
  *         double RadiusFillet() const;
  * 
  * cdef class PyFins(PyPart):             # <<<<<<<<<<<<<<
@@ -1103,7 +1103,7 @@ struct __pyx_obj_14interface_core_PyFins {
 };
 
 
-/* "part.pyx":286
+/* "entities/part.pyx":286
  *         double Length() const;
  * 
  * cdef class PyNosecone(PyPart):             # <<<<<<<<<<<<<<
@@ -1117,7 +1117,7 @@ struct __pyx_obj_14interface_core_PyNosecone {
 };
 
 
-/* "part.pyx":377
+/* "entities/part.pyx":377
  *         double Thickness() const;
  * 
  * cdef class PyTubeBody(PyPart):             # <<<<<<<<<<<<<<
@@ -1131,7 +1131,7 @@ struct __pyx_obj_14interface_core_PyTubeBody {
 };
 
 
-/* "rocket.pyx":13
+/* "entities/rocket.pyx":13
  *         string Comments() const;
  * 
  * cdef class PyRocket:             # <<<<<<<<<<<<<<
@@ -1145,7 +1145,7 @@ struct __pyx_obj_14interface_core_PyRocket {
 };
 
 
-/* "simulation.pyx":25
+/* "entities/simulation.pyx":25
  *         void Run(double step_ascent, double step_descent);
  * 
  * cdef class PySimulation:             # <<<<<<<<<<<<<<
@@ -1159,7 +1159,7 @@ struct __pyx_obj_14interface_core_PySimulation {
 };
 
 
-/* "stage.pyx":33
+/* "entities/stage.pyx":33
  *         Instance* InstanceRoot() const;
  * 
  * cdef class PyStage:             # <<<<<<<<<<<<<<
@@ -1199,7 +1199,7 @@ struct __pyx_obj___Pyx_EnumMeta {
 
 
 
-/* "configuration.pyx":13
+/* "entities/configuration.pyx":13
  *         string Comments() const
  * 
  * cdef class PyConfiguration:             # <<<<<<<<<<<<<<
@@ -1213,7 +1213,7 @@ struct __pyx_vtabstruct_14interface_core_PyConfiguration {
 static struct __pyx_vtabstruct_14interface_core_PyConfiguration *__pyx_vtabptr_14interface_core_PyConfiguration;
 
 
-/* "instance.pyx":28
+/* "entities/instance.pyx":28
  *         double PositionFromParentFront();
  * 
  * cdef class PyInstance:             # <<<<<<<<<<<<<<
@@ -1227,7 +1227,7 @@ struct __pyx_vtabstruct_14interface_core_PyInstance {
 static struct __pyx_vtabstruct_14interface_core_PyInstance *__pyx_vtabptr_14interface_core_PyInstance;
 
 
-/* "material.pyx":15
+/* "entities/material.pyx":15
  *         double Density() const
  * 
  * cdef class PyMaterial:             # <<<<<<<<<<<<<<
@@ -1241,7 +1241,7 @@ struct __pyx_vtabstruct_14interface_core_PyMaterial {
 static struct __pyx_vtabstruct_14interface_core_PyMaterial *__pyx_vtabptr_14interface_core_PyMaterial;
 
 
-/* "motor.pyx":21
+/* "entities/motor.pyx":21
  *         double MassCase() const;
  * 
  * cdef class PyMotor:             # <<<<<<<<<<<<<<
@@ -1255,7 +1255,7 @@ struct __pyx_vtabstruct_14interface_core_PyMotor {
 static struct __pyx_vtabstruct_14interface_core_PyMotor *__pyx_vtabptr_14interface_core_PyMotor;
 
 
-/* "part.pyx":92
+/* "entities/part.pyx":92
  *         double Thickness() const;
  * 
  * cdef class PyBulkhead(PyPart):             # <<<<<<<<<<<<<<
@@ -1269,7 +1269,7 @@ struct __pyx_vtabstruct_14interface_core_PyBulkhead {
 static struct __pyx_vtabstruct_14interface_core_PyBulkhead *__pyx_vtabptr_14interface_core_PyBulkhead;
 
 
-/* "part.pyx":168
+/* "entities/part.pyx":168
  *         double RadiusFillet() const;
  * 
  * cdef class PyFins(PyPart):             # <<<<<<<<<<<<<<
@@ -1283,7 +1283,7 @@ struct __pyx_vtabstruct_14interface_core_PyFins {
 static struct __pyx_vtabstruct_14interface_core_PyFins *__pyx_vtabptr_14interface_core_PyFins;
 
 
-/* "part.pyx":286
+/* "entities/part.pyx":286
  *         double Length() const;
  * 
  * cdef class PyNosecone(PyPart):             # <<<<<<<<<<<<<<
@@ -1297,7 +1297,7 @@ struct __pyx_vtabstruct_14interface_core_PyNosecone {
 static struct __pyx_vtabstruct_14interface_core_PyNosecone *__pyx_vtabptr_14interface_core_PyNosecone;
 
 
-/* "part.pyx":377
+/* "entities/part.pyx":377
  *         double Thickness() const;
  * 
  * cdef class PyTubeBody(PyPart):             # <<<<<<<<<<<<<<
@@ -1311,7 +1311,7 @@ struct __pyx_vtabstruct_14interface_core_PyTubeBody {
 static struct __pyx_vtabstruct_14interface_core_PyTubeBody *__pyx_vtabptr_14interface_core_PyTubeBody;
 
 
-/* "rocket.pyx":13
+/* "entities/rocket.pyx":13
  *         string Comments() const;
  * 
  * cdef class PyRocket:             # <<<<<<<<<<<<<<
@@ -1325,7 +1325,7 @@ struct __pyx_vtabstruct_14interface_core_PyRocket {
 static struct __pyx_vtabstruct_14interface_core_PyRocket *__pyx_vtabptr_14interface_core_PyRocket;
 
 
-/* "simulation.pyx":25
+/* "entities/simulation.pyx":25
  *         void Run(double step_ascent, double step_descent);
  * 
  * cdef class PySimulation:             # <<<<<<<<<<<<<<
@@ -1339,7 +1339,7 @@ struct __pyx_vtabstruct_14interface_core_PySimulation {
 static struct __pyx_vtabstruct_14interface_core_PySimulation *__pyx_vtabptr_14interface_core_PySimulation;
 
 
-/* "stage.pyx":33
+/* "entities/stage.pyx":33
  *         Instance* InstanceRoot() const;
  * 
  * cdef class PyStage:             # <<<<<<<<<<<<<<
@@ -2378,7 +2378,7 @@ static PyObject *__pyx_codeobj__33;
 static PyObject *__pyx_codeobj__35;
 /* Late includes */
 
-/* "configuration.pyx":16
+/* "entities/configuration.pyx":16
  *     cdef Configuration *ptr
  * 
  *     def __init__(self, *args):             # <<<<<<<<<<<<<<
@@ -2415,7 +2415,7 @@ static int __pyx_pf_14interface_core_15PyConfiguration___init__(CYTHON_UNUSED st
   return __pyx_r;
 }
 
-/* "configuration.pyx":20
+/* "entities/configuration.pyx":20
  * 
  *     @staticmethod
  *     cdef PyConfiguration create(Configuration* ptr):             # <<<<<<<<<<<<<<
@@ -2431,7 +2431,7 @@ static struct __pyx_obj_14interface_core_PyConfiguration *__pyx_f_14interface_co
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("create", 0);
 
-  /* "configuration.pyx":21
+  /* "entities/configuration.pyx":21
  *     @staticmethod
  *     cdef PyConfiguration create(Configuration* ptr):
  *         obj = <PyConfiguration>PyConfiguration.__new__(PyConfiguration)             # <<<<<<<<<<<<<<
@@ -2446,7 +2446,7 @@ static struct __pyx_obj_14interface_core_PyConfiguration *__pyx_f_14interface_co
   __pyx_v_obj = ((struct __pyx_obj_14interface_core_PyConfiguration *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "configuration.pyx":22
+  /* "entities/configuration.pyx":22
  *     cdef PyConfiguration create(Configuration* ptr):
  *         obj = <PyConfiguration>PyConfiguration.__new__(PyConfiguration)
  *         obj.ptr = ptr             # <<<<<<<<<<<<<<
@@ -2455,7 +2455,7 @@ static struct __pyx_obj_14interface_core_PyConfiguration *__pyx_f_14interface_co
  */
   __pyx_v_obj->ptr = __pyx_v_ptr;
 
-  /* "configuration.pyx":23
+  /* "entities/configuration.pyx":23
  *         obj = <PyConfiguration>PyConfiguration.__new__(PyConfiguration)
  *         obj.ptr = ptr
  *         return obj             # <<<<<<<<<<<<<<
@@ -2467,7 +2467,7 @@ static struct __pyx_obj_14interface_core_PyConfiguration *__pyx_f_14interface_co
   __pyx_r = __pyx_v_obj;
   goto __pyx_L0;
 
-  /* "configuration.pyx":20
+  /* "entities/configuration.pyx":20
  * 
  *     @staticmethod
  *     cdef PyConfiguration create(Configuration* ptr):             # <<<<<<<<<<<<<<
@@ -2488,7 +2488,7 @@ static struct __pyx_obj_14interface_core_PyConfiguration *__pyx_f_14interface_co
   return __pyx_r;
 }
 
-/* "configuration.pyx":26
+/* "entities/configuration.pyx":26
  * 
  *     @property
  *     def name(self):             # <<<<<<<<<<<<<<
@@ -2515,7 +2515,7 @@ static PyObject *__pyx_pf_14interface_core_15PyConfiguration_4name___get__(struc
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "configuration.pyx":27
+  /* "entities/configuration.pyx":27
  *     @property
  *     def name(self):
  *         return self.ptr.Name().decode('utf-8')             # <<<<<<<<<<<<<<
@@ -2529,7 +2529,7 @@ static PyObject *__pyx_pf_14interface_core_15PyConfiguration_4name___get__(struc
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "configuration.pyx":26
+  /* "entities/configuration.pyx":26
  * 
  *     @property
  *     def name(self):             # <<<<<<<<<<<<<<
@@ -2548,7 +2548,7 @@ static PyObject *__pyx_pf_14interface_core_15PyConfiguration_4name___get__(struc
   return __pyx_r;
 }
 
-/* "configuration.pyx":29
+/* "entities/configuration.pyx":29
  *         return self.ptr.Name().decode('utf-8')
  *     @name.setter
  *     def name(self, val):             # <<<<<<<<<<<<<<
@@ -2578,7 +2578,7 @@ static int __pyx_pf_14interface_core_15PyConfiguration_4name_2__set__(struct __p
   std::string __pyx_t_4;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "configuration.pyx":30
+  /* "entities/configuration.pyx":30
  *     @name.setter
  *     def name(self, val):
  *         self.ptr.SetName(val.encode('utf-8'))             # <<<<<<<<<<<<<<
@@ -2606,7 +2606,7 @@ static int __pyx_pf_14interface_core_15PyConfiguration_4name_2__set__(struct __p
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_self->ptr->SetName(__pyx_t_4);
 
-  /* "configuration.pyx":29
+  /* "entities/configuration.pyx":29
  *         return self.ptr.Name().decode('utf-8')
  *     @name.setter
  *     def name(self, val):             # <<<<<<<<<<<<<<
@@ -2628,7 +2628,7 @@ static int __pyx_pf_14interface_core_15PyConfiguration_4name_2__set__(struct __p
   return __pyx_r;
 }
 
-/* "configuration.pyx":33
+/* "entities/configuration.pyx":33
  * 
  *     @property
  *     def comments(self):             # <<<<<<<<<<<<<<
@@ -2655,7 +2655,7 @@ static PyObject *__pyx_pf_14interface_core_15PyConfiguration_8comments___get__(s
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "configuration.pyx":34
+  /* "entities/configuration.pyx":34
  *     @property
  *     def comments(self):
  *         return self.ptr.Comments().decode('utf-8')             # <<<<<<<<<<<<<<
@@ -2669,7 +2669,7 @@ static PyObject *__pyx_pf_14interface_core_15PyConfiguration_8comments___get__(s
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "configuration.pyx":33
+  /* "entities/configuration.pyx":33
  * 
  *     @property
  *     def comments(self):             # <<<<<<<<<<<<<<
@@ -2688,7 +2688,7 @@ static PyObject *__pyx_pf_14interface_core_15PyConfiguration_8comments___get__(s
   return __pyx_r;
 }
 
-/* "configuration.pyx":36
+/* "entities/configuration.pyx":36
  *         return self.ptr.Comments().decode('utf-8')
  *     @comments.setter
  *     def comments(self, val):             # <<<<<<<<<<<<<<
@@ -2717,7 +2717,7 @@ static int __pyx_pf_14interface_core_15PyConfiguration_8comments_2__set__(struct
   std::string __pyx_t_4;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "configuration.pyx":37
+  /* "entities/configuration.pyx":37
  *     @comments.setter
  *     def comments(self, val):
  *         self.ptr.SetComments(val.encode('utf-8'))             # <<<<<<<<<<<<<<
@@ -2743,7 +2743,7 @@ static int __pyx_pf_14interface_core_15PyConfiguration_8comments_2__set__(struct
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_self->ptr->SetComments(__pyx_t_4);
 
-  /* "configuration.pyx":36
+  /* "entities/configuration.pyx":36
  *         return self.ptr.Comments().decode('utf-8')
  *     @comments.setter
  *     def comments(self, val):             # <<<<<<<<<<<<<<
@@ -2871,7 +2871,7 @@ static PyObject *__pyx_pf_14interface_core_15PyConfiguration_4__setstate_cython_
   return __pyx_r;
 }
 
-/* "instance.pyx":31
+/* "entities/instance.pyx":31
  *     cdef Instance *ptr
  * 
  *     def __init__(self, *args):             # <<<<<<<<<<<<<<
@@ -2908,7 +2908,7 @@ static int __pyx_pf_14interface_core_10PyInstance___init__(CYTHON_UNUSED struct 
   return __pyx_r;
 }
 
-/* "instance.pyx":35
+/* "entities/instance.pyx":35
  * 
  *     @staticmethod
  *     cdef PyInstance create(Instance* ptr):             # <<<<<<<<<<<<<<
@@ -2924,7 +2924,7 @@ static struct __pyx_obj_14interface_core_PyInstance *__pyx_f_14interface_core_10
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("create", 0);
 
-  /* "instance.pyx":36
+  /* "entities/instance.pyx":36
  *     @staticmethod
  *     cdef PyInstance create(Instance* ptr):
  *         obj = <PyInstance>PyInstance.__new__(PyInstance)             # <<<<<<<<<<<<<<
@@ -2939,7 +2939,7 @@ static struct __pyx_obj_14interface_core_PyInstance *__pyx_f_14interface_core_10
   __pyx_v_obj = ((struct __pyx_obj_14interface_core_PyInstance *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "instance.pyx":37
+  /* "entities/instance.pyx":37
  *     cdef PyInstance create(Instance* ptr):
  *         obj = <PyInstance>PyInstance.__new__(PyInstance)
  *         obj.ptr = ptr             # <<<<<<<<<<<<<<
@@ -2948,7 +2948,7 @@ static struct __pyx_obj_14interface_core_PyInstance *__pyx_f_14interface_core_10
  */
   __pyx_v_obj->ptr = __pyx_v_ptr;
 
-  /* "instance.pyx":38
+  /* "entities/instance.pyx":38
  *         obj = <PyInstance>PyInstance.__new__(PyInstance)
  *         obj.ptr = ptr
  *         return obj             # <<<<<<<<<<<<<<
@@ -2960,7 +2960,7 @@ static struct __pyx_obj_14interface_core_PyInstance *__pyx_f_14interface_core_10
   __pyx_r = __pyx_v_obj;
   goto __pyx_L0;
 
-  /* "instance.pyx":35
+  /* "entities/instance.pyx":35
  * 
  *     @staticmethod
  *     cdef PyInstance create(Instance* ptr):             # <<<<<<<<<<<<<<
@@ -2981,7 +2981,7 @@ static struct __pyx_obj_14interface_core_PyInstance *__pyx_f_14interface_core_10
   return __pyx_r;
 }
 
-/* "instance.pyx":41
+/* "entities/instance.pyx":41
  * 
  *     @property
  *     def name(self):             # <<<<<<<<<<<<<<
@@ -3008,7 +3008,7 @@ static PyObject *__pyx_pf_14interface_core_10PyInstance_4name___get__(struct __p
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "instance.pyx":42
+  /* "entities/instance.pyx":42
  *     @property
  *     def name(self):
  *         return self.ptr.Name().decode('utf-8')             # <<<<<<<<<<<<<<
@@ -3022,7 +3022,7 @@ static PyObject *__pyx_pf_14interface_core_10PyInstance_4name___get__(struct __p
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "instance.pyx":41
+  /* "entities/instance.pyx":41
  * 
  *     @property
  *     def name(self):             # <<<<<<<<<<<<<<
@@ -3041,7 +3041,7 @@ static PyObject *__pyx_pf_14interface_core_10PyInstance_4name___get__(struct __p
   return __pyx_r;
 }
 
-/* "instance.pyx":44
+/* "entities/instance.pyx":44
  *         return self.ptr.Name().decode('utf-8')
  *     @name.setter
  *     def name(self, val):             # <<<<<<<<<<<<<<
@@ -3071,7 +3071,7 @@ static int __pyx_pf_14interface_core_10PyInstance_4name_2__set__(struct __pyx_ob
   std::string __pyx_t_4;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "instance.pyx":45
+  /* "entities/instance.pyx":45
  *     @name.setter
  *     def name(self, val):
  *         self.ptr.SetName(val.encode('utf-8'))             # <<<<<<<<<<<<<<
@@ -3099,7 +3099,7 @@ static int __pyx_pf_14interface_core_10PyInstance_4name_2__set__(struct __pyx_ob
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_self->ptr->SetName(__pyx_t_4);
 
-  /* "instance.pyx":44
+  /* "entities/instance.pyx":44
  *         return self.ptr.Name().decode('utf-8')
  *     @name.setter
  *     def name(self, val):             # <<<<<<<<<<<<<<
@@ -3121,7 +3121,7 @@ static int __pyx_pf_14interface_core_10PyInstance_4name_2__set__(struct __pyx_ob
   return __pyx_r;
 }
 
-/* "instance.pyx":48
+/* "entities/instance.pyx":48
  * 
  *     @property
  *     def position_type(self):             # <<<<<<<<<<<<<<
@@ -3148,7 +3148,7 @@ static PyObject *__pyx_pf_14interface_core_10PyInstance_13position_type___get__(
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "instance.pyx":49
+  /* "entities/instance.pyx":49
  *     @property
  *     def position_type(self):
  *         return <PyPartPosition>self.ptr.PositionType()             # <<<<<<<<<<<<<<
@@ -3162,7 +3162,7 @@ static PyObject *__pyx_pf_14interface_core_10PyInstance_13position_type___get__(
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "instance.pyx":48
+  /* "entities/instance.pyx":48
  * 
  *     @property
  *     def position_type(self):             # <<<<<<<<<<<<<<
@@ -3181,7 +3181,7 @@ static PyObject *__pyx_pf_14interface_core_10PyInstance_13position_type___get__(
   return __pyx_r;
 }
 
-/* "instance.pyx":51
+/* "entities/instance.pyx":51
  *         return <PyPartPosition>self.ptr.PositionType()
  *     @position_type.setter
  *     def position_type(self, PyPartPosition val):             # <<<<<<<<<<<<<<
@@ -3217,7 +3217,7 @@ static int __pyx_pf_14interface_core_10PyInstance_13position_type_2__set__(struc
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "instance.pyx":52
+  /* "entities/instance.pyx":52
  *     @position_type.setter
  *     def position_type(self, PyPartPosition val):
  *         self.ptr.SetPositionType(<PartPosition><int>val)             # <<<<<<<<<<<<<<
@@ -3226,7 +3226,7 @@ static int __pyx_pf_14interface_core_10PyInstance_13position_type_2__set__(struc
  */
   __pyx_v_self->ptr->SetPositionType(((enum PartPosition)((int)__pyx_v_val)));
 
-  /* "instance.pyx":51
+  /* "entities/instance.pyx":51
  *         return <PyPartPosition>self.ptr.PositionType()
  *     @position_type.setter
  *     def position_type(self, PyPartPosition val):             # <<<<<<<<<<<<<<
@@ -3240,7 +3240,7 @@ static int __pyx_pf_14interface_core_10PyInstance_13position_type_2__set__(struc
   return __pyx_r;
 }
 
-/* "instance.pyx":55
+/* "entities/instance.pyx":55
  * 
  *     @property
  *     def position(self):             # <<<<<<<<<<<<<<
@@ -3267,7 +3267,7 @@ static PyObject *__pyx_pf_14interface_core_10PyInstance_8position___get__(struct
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "instance.pyx":56
+  /* "entities/instance.pyx":56
  *     @property
  *     def position(self):
  *         return self.ptr.PositionFromParentFront()             # <<<<<<<<<<<<<<
@@ -3281,7 +3281,7 @@ static PyObject *__pyx_pf_14interface_core_10PyInstance_8position___get__(struct
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "instance.pyx":55
+  /* "entities/instance.pyx":55
  * 
  *     @property
  *     def position(self):             # <<<<<<<<<<<<<<
@@ -3300,7 +3300,7 @@ static PyObject *__pyx_pf_14interface_core_10PyInstance_8position___get__(struct
   return __pyx_r;
 }
 
-/* "instance.pyx":58
+/* "entities/instance.pyx":58
  *         return self.ptr.PositionFromParentFront()
  *     @property
  *     def position_from(self):             # <<<<<<<<<<<<<<
@@ -3327,7 +3327,7 @@ static PyObject *__pyx_pf_14interface_core_10PyInstance_13position_from___get__(
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "instance.pyx":59
+  /* "entities/instance.pyx":59
  *     @property
  *     def position_from(self):
  *         return self.ptr.PositionFrom()             # <<<<<<<<<<<<<<
@@ -3341,7 +3341,7 @@ static PyObject *__pyx_pf_14interface_core_10PyInstance_13position_from___get__(
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "instance.pyx":58
+  /* "entities/instance.pyx":58
  *         return self.ptr.PositionFromParentFront()
  *     @property
  *     def position_from(self):             # <<<<<<<<<<<<<<
@@ -3360,7 +3360,7 @@ static PyObject *__pyx_pf_14interface_core_10PyInstance_13position_from___get__(
   return __pyx_r;
 }
 
-/* "instance.pyx":61
+/* "entities/instance.pyx":61
  *         return self.ptr.PositionFrom()
  *     @position_from.setter
  *     def position_from(self, val):             # <<<<<<<<<<<<<<
@@ -3386,7 +3386,7 @@ static int __pyx_pf_14interface_core_10PyInstance_13position_from_2__set__(struc
   double __pyx_t_1;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "instance.pyx":62
+  /* "entities/instance.pyx":62
  *     @position_from.setter
  *     def position_from(self, val):
  *         self.ptr.SetPositionFrom(val)             # <<<<<<<<<<<<<<
@@ -3394,7 +3394,7 @@ static int __pyx_pf_14interface_core_10PyInstance_13position_from_2__set__(struc
   __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(2, 62, __pyx_L1_error)
   __pyx_v_self->ptr->SetPositionFrom(__pyx_t_1);
 
-  /* "instance.pyx":61
+  /* "entities/instance.pyx":61
  *         return self.ptr.PositionFrom()
  *     @position_from.setter
  *     def position_from(self, val):             # <<<<<<<<<<<<<<
@@ -3519,7 +3519,7 @@ static PyObject *__pyx_pf_14interface_core_10PyInstance_4__setstate_cython__(CYT
   return __pyx_r;
 }
 
-/* "material.pyx":18
+/* "entities/material.pyx":18
  *     cdef Material *ptr
  * 
  *     def __init__(self, *args):             # <<<<<<<<<<<<<<
@@ -3556,7 +3556,7 @@ static int __pyx_pf_14interface_core_10PyMaterial___init__(CYTHON_UNUSED struct 
   return __pyx_r;
 }
 
-/* "material.pyx":22
+/* "entities/material.pyx":22
  * 
  *     @staticmethod
  *     cdef PyMaterial create(Material* ptr):             # <<<<<<<<<<<<<<
@@ -3572,7 +3572,7 @@ static struct __pyx_obj_14interface_core_PyMaterial *__pyx_f_14interface_core_10
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("create", 0);
 
-  /* "material.pyx":23
+  /* "entities/material.pyx":23
  *     @staticmethod
  *     cdef PyMaterial create(Material* ptr):
  *         obj = <PyMaterial>PyMaterial.__new__(PyMaterial)             # <<<<<<<<<<<<<<
@@ -3587,7 +3587,7 @@ static struct __pyx_obj_14interface_core_PyMaterial *__pyx_f_14interface_core_10
   __pyx_v_obj = ((struct __pyx_obj_14interface_core_PyMaterial *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "material.pyx":24
+  /* "entities/material.pyx":24
  *     cdef PyMaterial create(Material* ptr):
  *         obj = <PyMaterial>PyMaterial.__new__(PyMaterial)
  *         obj.ptr = ptr             # <<<<<<<<<<<<<<
@@ -3596,7 +3596,7 @@ static struct __pyx_obj_14interface_core_PyMaterial *__pyx_f_14interface_core_10
  */
   __pyx_v_obj->ptr = __pyx_v_ptr;
 
-  /* "material.pyx":25
+  /* "entities/material.pyx":25
  *         obj = <PyMaterial>PyMaterial.__new__(PyMaterial)
  *         obj.ptr = ptr
  *         return obj             # <<<<<<<<<<<<<<
@@ -3608,7 +3608,7 @@ static struct __pyx_obj_14interface_core_PyMaterial *__pyx_f_14interface_core_10
   __pyx_r = __pyx_v_obj;
   goto __pyx_L0;
 
-  /* "material.pyx":22
+  /* "entities/material.pyx":22
  * 
  *     @staticmethod
  *     cdef PyMaterial create(Material* ptr):             # <<<<<<<<<<<<<<
@@ -3629,7 +3629,7 @@ static struct __pyx_obj_14interface_core_PyMaterial *__pyx_f_14interface_core_10
   return __pyx_r;
 }
 
-/* "material.pyx":28
+/* "entities/material.pyx":28
  * 
  *     @property
  *     def name(self):             # <<<<<<<<<<<<<<
@@ -3656,7 +3656,7 @@ static PyObject *__pyx_pf_14interface_core_10PyMaterial_4name___get__(struct __p
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "material.pyx":29
+  /* "entities/material.pyx":29
  *     @property
  *     def name(self):
  *         return self.ptr.Name().decode('utf-8')             # <<<<<<<<<<<<<<
@@ -3670,7 +3670,7 @@ static PyObject *__pyx_pf_14interface_core_10PyMaterial_4name___get__(struct __p
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "material.pyx":28
+  /* "entities/material.pyx":28
  * 
  *     @property
  *     def name(self):             # <<<<<<<<<<<<<<
@@ -3689,7 +3689,7 @@ static PyObject *__pyx_pf_14interface_core_10PyMaterial_4name___get__(struct __p
   return __pyx_r;
 }
 
-/* "material.pyx":31
+/* "entities/material.pyx":31
  *         return self.ptr.Name().decode('utf-8')
  *     @name.setter
  *     def name(self, val):             # <<<<<<<<<<<<<<
@@ -3719,7 +3719,7 @@ static int __pyx_pf_14interface_core_10PyMaterial_4name_2__set__(struct __pyx_ob
   std::string __pyx_t_4;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "material.pyx":32
+  /* "entities/material.pyx":32
  *     @name.setter
  *     def name(self, val):
  *         self.ptr.SetName(val.encode('utf-8'))             # <<<<<<<<<<<<<<
@@ -3747,7 +3747,7 @@ static int __pyx_pf_14interface_core_10PyMaterial_4name_2__set__(struct __pyx_ob
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_self->ptr->SetName(__pyx_t_4);
 
-  /* "material.pyx":31
+  /* "entities/material.pyx":31
  *         return self.ptr.Name().decode('utf-8')
  *     @name.setter
  *     def name(self, val):             # <<<<<<<<<<<<<<
@@ -3769,7 +3769,7 @@ static int __pyx_pf_14interface_core_10PyMaterial_4name_2__set__(struct __pyx_ob
   return __pyx_r;
 }
 
-/* "material.pyx":35
+/* "entities/material.pyx":35
  * 
  *     @property
  *     def comments(self):             # <<<<<<<<<<<<<<
@@ -3796,7 +3796,7 @@ static PyObject *__pyx_pf_14interface_core_10PyMaterial_8comments___get__(struct
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "material.pyx":36
+  /* "entities/material.pyx":36
  *     @property
  *     def comments(self):
  *         return self.ptr.Comments().decode('utf-8')             # <<<<<<<<<<<<<<
@@ -3810,7 +3810,7 @@ static PyObject *__pyx_pf_14interface_core_10PyMaterial_8comments___get__(struct
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "material.pyx":35
+  /* "entities/material.pyx":35
  * 
  *     @property
  *     def comments(self):             # <<<<<<<<<<<<<<
@@ -3829,7 +3829,7 @@ static PyObject *__pyx_pf_14interface_core_10PyMaterial_8comments___get__(struct
   return __pyx_r;
 }
 
-/* "material.pyx":38
+/* "entities/material.pyx":38
  *         return self.ptr.Comments().decode('utf-8')
  *     @comments.setter
  *     def comments(self, val):             # <<<<<<<<<<<<<<
@@ -3859,7 +3859,7 @@ static int __pyx_pf_14interface_core_10PyMaterial_8comments_2__set__(struct __py
   std::string __pyx_t_4;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "material.pyx":39
+  /* "entities/material.pyx":39
  *     @comments.setter
  *     def comments(self, val):
  *         self.ptr.SetComments(val.encode('utf-8'))             # <<<<<<<<<<<<<<
@@ -3887,7 +3887,7 @@ static int __pyx_pf_14interface_core_10PyMaterial_8comments_2__set__(struct __py
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_self->ptr->SetComments(__pyx_t_4);
 
-  /* "material.pyx":38
+  /* "entities/material.pyx":38
  *         return self.ptr.Comments().decode('utf-8')
  *     @comments.setter
  *     def comments(self, val):             # <<<<<<<<<<<<<<
@@ -3909,7 +3909,7 @@ static int __pyx_pf_14interface_core_10PyMaterial_8comments_2__set__(struct __py
   return __pyx_r;
 }
 
-/* "material.pyx":42
+/* "entities/material.pyx":42
  * 
  *     @property
  *     def density(self):             # <<<<<<<<<<<<<<
@@ -3936,7 +3936,7 @@ static PyObject *__pyx_pf_14interface_core_10PyMaterial_7density___get__(struct 
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "material.pyx":43
+  /* "entities/material.pyx":43
  *     @property
  *     def density(self):
  *         return self.ptr.Density()             # <<<<<<<<<<<<<<
@@ -3950,7 +3950,7 @@ static PyObject *__pyx_pf_14interface_core_10PyMaterial_7density___get__(struct 
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "material.pyx":42
+  /* "entities/material.pyx":42
  * 
  *     @property
  *     def density(self):             # <<<<<<<<<<<<<<
@@ -3969,7 +3969,7 @@ static PyObject *__pyx_pf_14interface_core_10PyMaterial_7density___get__(struct 
   return __pyx_r;
 }
 
-/* "material.pyx":45
+/* "entities/material.pyx":45
  *         return self.ptr.Density()
  *     @density.setter
  *     def density(self, val):             # <<<<<<<<<<<<<<
@@ -3995,7 +3995,7 @@ static int __pyx_pf_14interface_core_10PyMaterial_7density_2__set__(struct __pyx
   double __pyx_t_1;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "material.pyx":46
+  /* "entities/material.pyx":46
  *     @density.setter
  *     def density(self, val):
  *         self.ptr.SetDensity(val)             # <<<<<<<<<<<<<<
@@ -4003,7 +4003,7 @@ static int __pyx_pf_14interface_core_10PyMaterial_7density_2__set__(struct __pyx
   __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(3, 46, __pyx_L1_error)
   __pyx_v_self->ptr->SetDensity(__pyx_t_1);
 
-  /* "material.pyx":45
+  /* "entities/material.pyx":45
  *         return self.ptr.Density()
  *     @density.setter
  *     def density(self, val):             # <<<<<<<<<<<<<<
@@ -4128,7 +4128,7 @@ static PyObject *__pyx_pf_14interface_core_10PyMaterial_4__setstate_cython__(CYT
   return __pyx_r;
 }
 
-/* "motor.pyx":24
+/* "entities/motor.pyx":24
  *     cdef Motor *ptr
  * 
  *     def __init__(self, *args):             # <<<<<<<<<<<<<<
@@ -4165,7 +4165,7 @@ static int __pyx_pf_14interface_core_7PyMotor___init__(CYTHON_UNUSED struct __py
   return __pyx_r;
 }
 
-/* "motor.pyx":28
+/* "entities/motor.pyx":28
  * 
  *     @staticmethod
  *     cdef PyMotor create(Motor* ptr):             # <<<<<<<<<<<<<<
@@ -4181,7 +4181,7 @@ static struct __pyx_obj_14interface_core_PyMotor *__pyx_f_14interface_core_7PyMo
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("create", 0);
 
-  /* "motor.pyx":29
+  /* "entities/motor.pyx":29
  *     @staticmethod
  *     cdef PyMotor create(Motor* ptr):
  *         obj = <PyMotor>PyMotor.__new__(PyMotor)             # <<<<<<<<<<<<<<
@@ -4196,7 +4196,7 @@ static struct __pyx_obj_14interface_core_PyMotor *__pyx_f_14interface_core_7PyMo
   __pyx_v_obj = ((struct __pyx_obj_14interface_core_PyMotor *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "motor.pyx":30
+  /* "entities/motor.pyx":30
  *     cdef PyMotor create(Motor* ptr):
  *         obj = <PyMotor>PyMotor.__new__(PyMotor)
  *         obj.ptr = ptr             # <<<<<<<<<<<<<<
@@ -4205,7 +4205,7 @@ static struct __pyx_obj_14interface_core_PyMotor *__pyx_f_14interface_core_7PyMo
  */
   __pyx_v_obj->ptr = __pyx_v_ptr;
 
-  /* "motor.pyx":31
+  /* "entities/motor.pyx":31
  *         obj = <PyMotor>PyMotor.__new__(PyMotor)
  *         obj.ptr = ptr
  *         return obj             # <<<<<<<<<<<<<<
@@ -4216,7 +4216,7 @@ static struct __pyx_obj_14interface_core_PyMotor *__pyx_f_14interface_core_7PyMo
   __pyx_r = __pyx_v_obj;
   goto __pyx_L0;
 
-  /* "motor.pyx":28
+  /* "entities/motor.pyx":28
  * 
  *     @staticmethod
  *     cdef PyMotor create(Motor* ptr):             # <<<<<<<<<<<<<<
@@ -4344,7 +4344,7 @@ static PyObject *__pyx_pf_14interface_core_7PyMotor_4__setstate_cython__(CYTHON_
   return __pyx_r;
 }
 
-/* "part.pyx":45
+/* "entities/part.pyx":45
  *     cdef Part *ptr_part
  * 
  *     def __init__(self, *args):             # <<<<<<<<<<<<<<
@@ -4381,7 +4381,7 @@ static int __pyx_pf_14interface_core_6PyPart___init__(CYTHON_UNUSED struct __pyx
   return __pyx_r;
 }
 
-/* "part.pyx":49
+/* "entities/part.pyx":49
  * 
  *     @property
  *     def name(self):             # <<<<<<<<<<<<<<
@@ -4408,7 +4408,7 @@ static PyObject *__pyx_pf_14interface_core_6PyPart_4name___get__(struct __pyx_ob
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "part.pyx":50
+  /* "entities/part.pyx":50
  *     @property
  *     def name(self):
  *         return self.ptr_part.Name().decode('utf-8')             # <<<<<<<<<<<<<<
@@ -4422,7 +4422,7 @@ static PyObject *__pyx_pf_14interface_core_6PyPart_4name___get__(struct __pyx_ob
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "part.pyx":49
+  /* "entities/part.pyx":49
  * 
  *     @property
  *     def name(self):             # <<<<<<<<<<<<<<
@@ -4441,7 +4441,7 @@ static PyObject *__pyx_pf_14interface_core_6PyPart_4name___get__(struct __pyx_ob
   return __pyx_r;
 }
 
-/* "part.pyx":52
+/* "entities/part.pyx":52
  *         return self.ptr_part.Name().decode('utf-8')
  *     @name.setter
  *     def name(self, val):             # <<<<<<<<<<<<<<
@@ -4471,7 +4471,7 @@ static int __pyx_pf_14interface_core_6PyPart_4name_2__set__(struct __pyx_obj_14i
   std::string __pyx_t_4;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "part.pyx":53
+  /* "entities/part.pyx":53
  *     @name.setter
  *     def name(self, val):
  *         self.ptr_part.SetName(val.encode('utf-8'))             # <<<<<<<<<<<<<<
@@ -4499,7 +4499,7 @@ static int __pyx_pf_14interface_core_6PyPart_4name_2__set__(struct __pyx_obj_14i
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_self->ptr_part->SetName(__pyx_t_4);
 
-  /* "part.pyx":52
+  /* "entities/part.pyx":52
  *         return self.ptr_part.Name().decode('utf-8')
  *     @name.setter
  *     def name(self, val):             # <<<<<<<<<<<<<<
@@ -4521,7 +4521,7 @@ static int __pyx_pf_14interface_core_6PyPart_4name_2__set__(struct __pyx_obj_14i
   return __pyx_r;
 }
 
-/* "part.pyx":56
+/* "entities/part.pyx":56
  * 
  *     @property
  *     def comments(self):             # <<<<<<<<<<<<<<
@@ -4548,7 +4548,7 @@ static PyObject *__pyx_pf_14interface_core_6PyPart_8comments___get__(struct __py
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "part.pyx":57
+  /* "entities/part.pyx":57
  *     @property
  *     def comments(self):
  *         return self.ptr_part.Comments().decode('utf-8')             # <<<<<<<<<<<<<<
@@ -4562,7 +4562,7 @@ static PyObject *__pyx_pf_14interface_core_6PyPart_8comments___get__(struct __py
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "part.pyx":56
+  /* "entities/part.pyx":56
  * 
  *     @property
  *     def comments(self):             # <<<<<<<<<<<<<<
@@ -4581,7 +4581,7 @@ static PyObject *__pyx_pf_14interface_core_6PyPart_8comments___get__(struct __py
   return __pyx_r;
 }
 
-/* "part.pyx":59
+/* "entities/part.pyx":59
  *         return self.ptr_part.Comments().decode('utf-8')
  *     @comments.setter
  *     def comments(self, val):             # <<<<<<<<<<<<<<
@@ -4611,7 +4611,7 @@ static int __pyx_pf_14interface_core_6PyPart_8comments_2__set__(struct __pyx_obj
   std::string __pyx_t_4;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "part.pyx":60
+  /* "entities/part.pyx":60
  *     @comments.setter
  *     def comments(self, val):
  *         self.ptr_part.SetComments(val.encode('utf-8'))             # <<<<<<<<<<<<<<
@@ -4639,7 +4639,7 @@ static int __pyx_pf_14interface_core_6PyPart_8comments_2__set__(struct __pyx_obj
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_self->ptr_part->SetComments(__pyx_t_4);
 
-  /* "part.pyx":59
+  /* "entities/part.pyx":59
  *         return self.ptr_part.Comments().decode('utf-8')
  *     @comments.setter
  *     def comments(self, val):             # <<<<<<<<<<<<<<
@@ -4661,7 +4661,7 @@ static int __pyx_pf_14interface_core_6PyPart_8comments_2__set__(struct __pyx_obj
   return __pyx_r;
 }
 
-/* "part.pyx":63
+/* "entities/part.pyx":63
  * 
  *     @property
  *     def material(self):             # <<<<<<<<<<<<<<
@@ -4689,7 +4689,7 @@ static PyObject *__pyx_pf_14interface_core_6PyPart_8material___get__(struct __py
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "part.pyx":64
+  /* "entities/part.pyx":64
  *     @property
  *     def material(self):
  *         mat = PyMaterial()             # <<<<<<<<<<<<<<
@@ -4701,7 +4701,7 @@ static PyObject *__pyx_pf_14interface_core_6PyPart_8material___get__(struct __py
   __pyx_v_mat = ((struct __pyx_obj_14interface_core_PyMaterial *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "part.pyx":65
+  /* "entities/part.pyx":65
  *     def material(self):
  *         mat = PyMaterial()
  *         mat = PyMaterial.create(self.ptr_part.AssignedMaterial())             # <<<<<<<<<<<<<<
@@ -4713,7 +4713,7 @@ static PyObject *__pyx_pf_14interface_core_6PyPart_8material___get__(struct __py
   __Pyx_DECREF_SET(__pyx_v_mat, ((struct __pyx_obj_14interface_core_PyMaterial *)__pyx_t_1));
   __pyx_t_1 = 0;
 
-  /* "part.pyx":66
+  /* "entities/part.pyx":66
  *         mat = PyMaterial()
  *         mat = PyMaterial.create(self.ptr_part.AssignedMaterial())
  *         return mat             # <<<<<<<<<<<<<<
@@ -4725,7 +4725,7 @@ static PyObject *__pyx_pf_14interface_core_6PyPart_8material___get__(struct __py
   __pyx_r = ((PyObject *)__pyx_v_mat);
   goto __pyx_L0;
 
-  /* "part.pyx":63
+  /* "entities/part.pyx":63
  * 
  *     @property
  *     def material(self):             # <<<<<<<<<<<<<<
@@ -4745,7 +4745,7 @@ static PyObject *__pyx_pf_14interface_core_6PyPart_8material___get__(struct __py
   return __pyx_r;
 }
 
-/* "part.pyx":68
+/* "entities/part.pyx":68
  *         return mat
  *     @material.setter
  *     def material(self, PyMaterial val):             # <<<<<<<<<<<<<<
@@ -4776,7 +4776,7 @@ static int __pyx_pf_14interface_core_6PyPart_8material_2__set__(struct __pyx_obj
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "part.pyx":69
+  /* "entities/part.pyx":69
  *     @material.setter
  *     def material(self, PyMaterial val):
  *         self.ptr_part.SetMaterial(val.ptr)             # <<<<<<<<<<<<<<
@@ -4785,7 +4785,7 @@ static int __pyx_pf_14interface_core_6PyPart_8material_2__set__(struct __pyx_obj
  */
   __pyx_v_self->ptr_part->SetMaterial(__pyx_v_val->ptr);
 
-  /* "part.pyx":68
+  /* "entities/part.pyx":68
  *         return mat
  *     @material.setter
  *     def material(self, PyMaterial val):             # <<<<<<<<<<<<<<
@@ -4799,7 +4799,7 @@ static int __pyx_pf_14interface_core_6PyPart_8material_2__set__(struct __pyx_obj
   return __pyx_r;
 }
 
-/* "part.pyx":72
+/* "entities/part.pyx":72
  * 
  *     @property
  *     def mass(self):             # <<<<<<<<<<<<<<
@@ -4826,7 +4826,7 @@ static PyObject *__pyx_pf_14interface_core_6PyPart_4mass___get__(struct __pyx_ob
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "part.pyx":73
+  /* "entities/part.pyx":73
  *     @property
  *     def mass(self):
  *         return self.ptr_part.Mass()             # <<<<<<<<<<<<<<
@@ -4840,7 +4840,7 @@ static PyObject *__pyx_pf_14interface_core_6PyPart_4mass___get__(struct __pyx_ob
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "part.pyx":72
+  /* "entities/part.pyx":72
  * 
  *     @property
  *     def mass(self):             # <<<<<<<<<<<<<<
@@ -4859,7 +4859,7 @@ static PyObject *__pyx_pf_14interface_core_6PyPart_4mass___get__(struct __pyx_ob
   return __pyx_r;
 }
 
-/* "part.pyx":74
+/* "entities/part.pyx":74
  *     def mass(self):
  *         return self.ptr_part.Mass()
  *     def override_mass(self, val):             # <<<<<<<<<<<<<<
@@ -4886,7 +4886,7 @@ static PyObject *__pyx_pf_14interface_core_6PyPart_2override_mass(struct __pyx_o
   double __pyx_t_1;
   __Pyx_RefNannySetupContext("override_mass", 0);
 
-  /* "part.pyx":75
+  /* "entities/part.pyx":75
  *         return self.ptr_part.Mass()
  *     def override_mass(self, val):
  *         self.ptr_part.SetOverrideMass(val)             # <<<<<<<<<<<<<<
@@ -4896,7 +4896,7 @@ static PyObject *__pyx_pf_14interface_core_6PyPart_2override_mass(struct __pyx_o
   __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 75, __pyx_L1_error)
   __pyx_v_self->ptr_part->SetOverrideMass(__pyx_t_1);
 
-  /* "part.pyx":74
+  /* "entities/part.pyx":74
  *     def mass(self):
  *         return self.ptr_part.Mass()
  *     def override_mass(self, val):             # <<<<<<<<<<<<<<
@@ -4916,7 +4916,7 @@ static PyObject *__pyx_pf_14interface_core_6PyPart_2override_mass(struct __pyx_o
   return __pyx_r;
 }
 
-/* "part.pyx":76
+/* "entities/part.pyx":76
  *     def override_mass(self, val):
  *         self.ptr_part.SetOverrideMass(val)
  *     def model_mass(self):             # <<<<<<<<<<<<<<
@@ -4942,7 +4942,7 @@ static PyObject *__pyx_pf_14interface_core_6PyPart_4model_mass(struct __pyx_obj_
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("model_mass", 0);
 
-  /* "part.pyx":77
+  /* "entities/part.pyx":77
  *         self.ptr_part.SetOverrideMass(val)
  *     def model_mass(self):
  *         self.ptr_part.SetModelMass()             # <<<<<<<<<<<<<<
@@ -4951,7 +4951,7 @@ static PyObject *__pyx_pf_14interface_core_6PyPart_4model_mass(struct __pyx_obj_
  */
   __pyx_v_self->ptr_part->SetModelMass();
 
-  /* "part.pyx":76
+  /* "entities/part.pyx":76
  *     def override_mass(self, val):
  *         self.ptr_part.SetOverrideMass(val)
  *     def model_mass(self):             # <<<<<<<<<<<<<<
@@ -5073,7 +5073,7 @@ static PyObject *__pyx_pf_14interface_core_6PyPart_8__setstate_cython__(CYTHON_U
   return __pyx_r;
 }
 
-/* "part.pyx":95
+/* "entities/part.pyx":95
  *     cdef Bulkhead *ptr
  * 
  *     def __init__(self, *args):             # <<<<<<<<<<<<<<
@@ -5110,7 +5110,7 @@ static int __pyx_pf_14interface_core_10PyBulkhead___init__(CYTHON_UNUSED struct 
   return __pyx_r;
 }
 
-/* "part.pyx":99
+/* "entities/part.pyx":99
  * 
  *     @staticmethod
  *     cdef PyBulkhead create(Bulkhead* ptr):             # <<<<<<<<<<<<<<
@@ -5126,7 +5126,7 @@ static struct __pyx_obj_14interface_core_PyBulkhead *__pyx_f_14interface_core_10
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("create", 0);
 
-  /* "part.pyx":100
+  /* "entities/part.pyx":100
  *     @staticmethod
  *     cdef PyBulkhead create(Bulkhead* ptr):
  *         obj = <PyBulkhead>PyBulkhead.__new__(PyBulkhead)             # <<<<<<<<<<<<<<
@@ -5141,7 +5141,7 @@ static struct __pyx_obj_14interface_core_PyBulkhead *__pyx_f_14interface_core_10
   __pyx_v_obj = ((struct __pyx_obj_14interface_core_PyBulkhead *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "part.pyx":101
+  /* "entities/part.pyx":101
  *     cdef PyBulkhead create(Bulkhead* ptr):
  *         obj = <PyBulkhead>PyBulkhead.__new__(PyBulkhead)
  *         obj.ptr = ptr             # <<<<<<<<<<<<<<
@@ -5150,7 +5150,7 @@ static struct __pyx_obj_14interface_core_PyBulkhead *__pyx_f_14interface_core_10
  */
   __pyx_v_obj->ptr = __pyx_v_ptr;
 
-  /* "part.pyx":102
+  /* "entities/part.pyx":102
  *         obj = <PyBulkhead>PyBulkhead.__new__(PyBulkhead)
  *         obj.ptr = ptr
  *         obj.ptr_part = <Part*>ptr             # <<<<<<<<<<<<<<
@@ -5159,7 +5159,7 @@ static struct __pyx_obj_14interface_core_PyBulkhead *__pyx_f_14interface_core_10
  */
   __pyx_v_obj->__pyx_base.ptr_part = ((Part *)__pyx_v_ptr);
 
-  /* "part.pyx":103
+  /* "entities/part.pyx":103
  *         obj.ptr = ptr
  *         obj.ptr_part = <Part*>ptr
  *         return obj             # <<<<<<<<<<<<<<
@@ -5171,7 +5171,7 @@ static struct __pyx_obj_14interface_core_PyBulkhead *__pyx_f_14interface_core_10
   __pyx_r = __pyx_v_obj;
   goto __pyx_L0;
 
-  /* "part.pyx":99
+  /* "entities/part.pyx":99
  * 
  *     @staticmethod
  *     cdef PyBulkhead create(Bulkhead* ptr):             # <<<<<<<<<<<<<<
@@ -5192,7 +5192,7 @@ static struct __pyx_obj_14interface_core_PyBulkhead *__pyx_f_14interface_core_10
   return __pyx_r;
 }
 
-/* "part.pyx":106
+/* "entities/part.pyx":106
  * 
  *     @property
  *     def diameter(self):             # <<<<<<<<<<<<<<
@@ -5219,7 +5219,7 @@ static PyObject *__pyx_pf_14interface_core_10PyBulkhead_8diameter___get__(struct
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "part.pyx":107
+  /* "entities/part.pyx":107
  *     @property
  *     def diameter(self):
  *         return self.ptr.Diameter()             # <<<<<<<<<<<<<<
@@ -5233,7 +5233,7 @@ static PyObject *__pyx_pf_14interface_core_10PyBulkhead_8diameter___get__(struct
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "part.pyx":106
+  /* "entities/part.pyx":106
  * 
  *     @property
  *     def diameter(self):             # <<<<<<<<<<<<<<
@@ -5252,7 +5252,7 @@ static PyObject *__pyx_pf_14interface_core_10PyBulkhead_8diameter___get__(struct
   return __pyx_r;
 }
 
-/* "part.pyx":109
+/* "entities/part.pyx":109
  *         return self.ptr.Diameter()
  *     @diameter.setter
  *     def diameter(self, val):             # <<<<<<<<<<<<<<
@@ -5279,7 +5279,7 @@ static int __pyx_pf_14interface_core_10PyBulkhead_8diameter_2__set__(struct __py
   double __pyx_t_1;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "part.pyx":110
+  /* "entities/part.pyx":110
  *     @diameter.setter
  *     def diameter(self, val):
  *         self.ptr.SetDiameter(val)             # <<<<<<<<<<<<<<
@@ -5289,7 +5289,7 @@ static int __pyx_pf_14interface_core_10PyBulkhead_8diameter_2__set__(struct __py
   __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 110, __pyx_L1_error)
   __pyx_v_self->ptr->SetDiameter(__pyx_t_1);
 
-  /* "part.pyx":109
+  /* "entities/part.pyx":109
  *         return self.ptr.Diameter()
  *     @diameter.setter
  *     def diameter(self, val):             # <<<<<<<<<<<<<<
@@ -5308,7 +5308,7 @@ static int __pyx_pf_14interface_core_10PyBulkhead_8diameter_2__set__(struct __py
   return __pyx_r;
 }
 
-/* "part.pyx":113
+/* "entities/part.pyx":113
  * 
  *     @property
  *     def thickness(self):             # <<<<<<<<<<<<<<
@@ -5335,7 +5335,7 @@ static PyObject *__pyx_pf_14interface_core_10PyBulkhead_9thickness___get__(struc
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "part.pyx":114
+  /* "entities/part.pyx":114
  *     @property
  *     def thickness(self):
  *         return self.ptr.Thickness()             # <<<<<<<<<<<<<<
@@ -5349,7 +5349,7 @@ static PyObject *__pyx_pf_14interface_core_10PyBulkhead_9thickness___get__(struc
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "part.pyx":113
+  /* "entities/part.pyx":113
  * 
  *     @property
  *     def thickness(self):             # <<<<<<<<<<<<<<
@@ -5368,7 +5368,7 @@ static PyObject *__pyx_pf_14interface_core_10PyBulkhead_9thickness___get__(struc
   return __pyx_r;
 }
 
-/* "part.pyx":116
+/* "entities/part.pyx":116
  *         return self.ptr.Thickness()
  *     @thickness.setter
  *     def thickness(self, val):             # <<<<<<<<<<<<<<
@@ -5395,7 +5395,7 @@ static int __pyx_pf_14interface_core_10PyBulkhead_9thickness_2__set__(struct __p
   double __pyx_t_1;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "part.pyx":117
+  /* "entities/part.pyx":117
  *     @thickness.setter
  *     def thickness(self, val):
  *         self.ptr.SetThickness(val)             # <<<<<<<<<<<<<<
@@ -5405,7 +5405,7 @@ static int __pyx_pf_14interface_core_10PyBulkhead_9thickness_2__set__(struct __p
   __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 117, __pyx_L1_error)
   __pyx_v_self->ptr->SetThickness(__pyx_t_1);
 
-  /* "part.pyx":116
+  /* "entities/part.pyx":116
  *         return self.ptr.Thickness()
  *     @thickness.setter
  *     def thickness(self, val):             # <<<<<<<<<<<<<<
@@ -5531,7 +5531,7 @@ static PyObject *__pyx_pf_14interface_core_10PyBulkhead_4__setstate_cython__(CYT
   return __pyx_r;
 }
 
-/* "part.pyx":171
+/* "entities/part.pyx":171
  *     cdef Fins *ptr
  * 
  *     def __init__(self, *args):             # <<<<<<<<<<<<<<
@@ -5568,7 +5568,7 @@ static int __pyx_pf_14interface_core_6PyFins___init__(CYTHON_UNUSED struct __pyx
   return __pyx_r;
 }
 
-/* "part.pyx":175
+/* "entities/part.pyx":175
  * 
  *     @staticmethod
  *     cdef PyFins create(Fins* ptr):             # <<<<<<<<<<<<<<
@@ -5584,7 +5584,7 @@ static struct __pyx_obj_14interface_core_PyFins *__pyx_f_14interface_core_6PyFin
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("create", 0);
 
-  /* "part.pyx":176
+  /* "entities/part.pyx":176
  *     @staticmethod
  *     cdef PyFins create(Fins* ptr):
  *         obj = <PyFins>PyFins.__new__(PyFins)             # <<<<<<<<<<<<<<
@@ -5599,7 +5599,7 @@ static struct __pyx_obj_14interface_core_PyFins *__pyx_f_14interface_core_6PyFin
   __pyx_v_obj = ((struct __pyx_obj_14interface_core_PyFins *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "part.pyx":177
+  /* "entities/part.pyx":177
  *     cdef PyFins create(Fins* ptr):
  *         obj = <PyFins>PyFins.__new__(PyFins)
  *         obj.ptr = ptr             # <<<<<<<<<<<<<<
@@ -5608,7 +5608,7 @@ static struct __pyx_obj_14interface_core_PyFins *__pyx_f_14interface_core_6PyFin
  */
   __pyx_v_obj->ptr = __pyx_v_ptr;
 
-  /* "part.pyx":178
+  /* "entities/part.pyx":178
  *         obj = <PyFins>PyFins.__new__(PyFins)
  *         obj.ptr = ptr
  *         obj.ptr_part = <Part*>ptr             # <<<<<<<<<<<<<<
@@ -5617,7 +5617,7 @@ static struct __pyx_obj_14interface_core_PyFins *__pyx_f_14interface_core_6PyFin
  */
   __pyx_v_obj->__pyx_base.ptr_part = ((Part *)__pyx_v_ptr);
 
-  /* "part.pyx":179
+  /* "entities/part.pyx":179
  *         obj.ptr = ptr
  *         obj.ptr_part = <Part*>ptr
  *         return obj             # <<<<<<<<<<<<<<
@@ -5629,7 +5629,7 @@ static struct __pyx_obj_14interface_core_PyFins *__pyx_f_14interface_core_6PyFin
   __pyx_r = __pyx_v_obj;
   goto __pyx_L0;
 
-  /* "part.pyx":175
+  /* "entities/part.pyx":175
  * 
  *     @staticmethod
  *     cdef PyFins create(Fins* ptr):             # <<<<<<<<<<<<<<
@@ -5650,7 +5650,7 @@ static struct __pyx_obj_14interface_core_PyFins *__pyx_f_14interface_core_6PyFin
   return __pyx_r;
 }
 
-/* "part.pyx":182
+/* "entities/part.pyx":182
  * 
  *     @property
  *     def cross_section(self):             # <<<<<<<<<<<<<<
@@ -5677,7 +5677,7 @@ static PyObject *__pyx_pf_14interface_core_6PyFins_13cross_section___get__(struc
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "part.pyx":183
+  /* "entities/part.pyx":183
  *     @property
  *     def cross_section(self):
  *         return <PyFinCrossSection>self.ptr.CrossSection()             # <<<<<<<<<<<<<<
@@ -5691,7 +5691,7 @@ static PyObject *__pyx_pf_14interface_core_6PyFins_13cross_section___get__(struc
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "part.pyx":182
+  /* "entities/part.pyx":182
  * 
  *     @property
  *     def cross_section(self):             # <<<<<<<<<<<<<<
@@ -5710,7 +5710,7 @@ static PyObject *__pyx_pf_14interface_core_6PyFins_13cross_section___get__(struc
   return __pyx_r;
 }
 
-/* "part.pyx":185
+/* "entities/part.pyx":185
  *         return <PyFinCrossSection>self.ptr.CrossSection()
  *     @cross_section.setter
  *     def cross_section(self, PyFinCrossSection val):             # <<<<<<<<<<<<<<
@@ -5746,7 +5746,7 @@ static int __pyx_pf_14interface_core_6PyFins_13cross_section_2__set__(struct __p
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "part.pyx":186
+  /* "entities/part.pyx":186
  *     @cross_section.setter
  *     def cross_section(self, PyFinCrossSection val):
  *         self.ptr.SetFinCrossSection(<FinCrossSection><int>val)             # <<<<<<<<<<<<<<
@@ -5755,7 +5755,7 @@ static int __pyx_pf_14interface_core_6PyFins_13cross_section_2__set__(struct __p
  */
   __pyx_v_self->ptr->SetFinCrossSection(((enum FinCrossSection)((int)__pyx_v_val)));
 
-  /* "part.pyx":185
+  /* "entities/part.pyx":185
  *         return <PyFinCrossSection>self.ptr.CrossSection()
  *     @cross_section.setter
  *     def cross_section(self, PyFinCrossSection val):             # <<<<<<<<<<<<<<
@@ -5769,7 +5769,7 @@ static int __pyx_pf_14interface_core_6PyFins_13cross_section_2__set__(struct __p
   return __pyx_r;
 }
 
-/* "part.pyx":189
+/* "entities/part.pyx":189
  * 
  *     @property
  *     def number(self):             # <<<<<<<<<<<<<<
@@ -5796,7 +5796,7 @@ static PyObject *__pyx_pf_14interface_core_6PyFins_6number___get__(struct __pyx_
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "part.pyx":190
+  /* "entities/part.pyx":190
  *     @property
  *     def number(self):
  *         return self.ptr.Number()             # <<<<<<<<<<<<<<
@@ -5810,7 +5810,7 @@ static PyObject *__pyx_pf_14interface_core_6PyFins_6number___get__(struct __pyx_
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "part.pyx":189
+  /* "entities/part.pyx":189
  * 
  *     @property
  *     def number(self):             # <<<<<<<<<<<<<<
@@ -5829,7 +5829,7 @@ static PyObject *__pyx_pf_14interface_core_6PyFins_6number___get__(struct __pyx_
   return __pyx_r;
 }
 
-/* "part.pyx":192
+/* "entities/part.pyx":192
  *         return self.ptr.Number()
  *     @number.setter
  *     def number(self, val):             # <<<<<<<<<<<<<<
@@ -5856,7 +5856,7 @@ static int __pyx_pf_14interface_core_6PyFins_6number_2__set__(struct __pyx_obj_1
   double __pyx_t_1;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "part.pyx":193
+  /* "entities/part.pyx":193
  *     @number.setter
  *     def number(self, val):
  *         self.ptr.SetNumber(val)             # <<<<<<<<<<<<<<
@@ -5866,7 +5866,7 @@ static int __pyx_pf_14interface_core_6PyFins_6number_2__set__(struct __pyx_obj_1
   __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 193, __pyx_L1_error)
   __pyx_v_self->ptr->SetNumber(__pyx_t_1);
 
-  /* "part.pyx":192
+  /* "entities/part.pyx":192
  *         return self.ptr.Number()
  *     @number.setter
  *     def number(self, val):             # <<<<<<<<<<<<<<
@@ -5885,7 +5885,7 @@ static int __pyx_pf_14interface_core_6PyFins_6number_2__set__(struct __pyx_obj_1
   return __pyx_r;
 }
 
-/* "part.pyx":196
+/* "entities/part.pyx":196
  * 
  *     @property
  *     def thickness(self):             # <<<<<<<<<<<<<<
@@ -5912,7 +5912,7 @@ static PyObject *__pyx_pf_14interface_core_6PyFins_9thickness___get__(struct __p
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "part.pyx":197
+  /* "entities/part.pyx":197
  *     @property
  *     def thickness(self):
  *         return self.ptr.Thickness()             # <<<<<<<<<<<<<<
@@ -5926,7 +5926,7 @@ static PyObject *__pyx_pf_14interface_core_6PyFins_9thickness___get__(struct __p
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "part.pyx":196
+  /* "entities/part.pyx":196
  * 
  *     @property
  *     def thickness(self):             # <<<<<<<<<<<<<<
@@ -5945,7 +5945,7 @@ static PyObject *__pyx_pf_14interface_core_6PyFins_9thickness___get__(struct __p
   return __pyx_r;
 }
 
-/* "part.pyx":199
+/* "entities/part.pyx":199
  *         return self.ptr.Thickness()
  *     @thickness.setter
  *     def thickness(self, val):             # <<<<<<<<<<<<<<
@@ -5972,7 +5972,7 @@ static int __pyx_pf_14interface_core_6PyFins_9thickness_2__set__(struct __pyx_ob
   double __pyx_t_1;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "part.pyx":200
+  /* "entities/part.pyx":200
  *     @thickness.setter
  *     def thickness(self, val):
  *         self.ptr.SetThickness(val)             # <<<<<<<<<<<<<<
@@ -5982,7 +5982,7 @@ static int __pyx_pf_14interface_core_6PyFins_9thickness_2__set__(struct __pyx_ob
   __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 200, __pyx_L1_error)
   __pyx_v_self->ptr->SetThickness(__pyx_t_1);
 
-  /* "part.pyx":199
+  /* "entities/part.pyx":199
  *         return self.ptr.Thickness()
  *     @thickness.setter
  *     def thickness(self, val):             # <<<<<<<<<<<<<<
@@ -6001,7 +6001,7 @@ static int __pyx_pf_14interface_core_6PyFins_9thickness_2__set__(struct __pyx_ob
   return __pyx_r;
 }
 
-/* "part.pyx":203
+/* "entities/part.pyx":203
  * 
  *     @property
  *     def radius_fillet(self):             # <<<<<<<<<<<<<<
@@ -6028,7 +6028,7 @@ static PyObject *__pyx_pf_14interface_core_6PyFins_13radius_fillet___get__(struc
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "part.pyx":204
+  /* "entities/part.pyx":204
  *     @property
  *     def radius_fillet(self):
  *         return self.ptr.RadiusFillet()             # <<<<<<<<<<<<<<
@@ -6042,7 +6042,7 @@ static PyObject *__pyx_pf_14interface_core_6PyFins_13radius_fillet___get__(struc
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "part.pyx":203
+  /* "entities/part.pyx":203
  * 
  *     @property
  *     def radius_fillet(self):             # <<<<<<<<<<<<<<
@@ -6061,7 +6061,7 @@ static PyObject *__pyx_pf_14interface_core_6PyFins_13radius_fillet___get__(struc
   return __pyx_r;
 }
 
-/* "part.pyx":206
+/* "entities/part.pyx":206
  *         return self.ptr.RadiusFillet()
  *     @radius_fillet.setter
  *     def radius_fillet(self, val):             # <<<<<<<<<<<<<<
@@ -6088,7 +6088,7 @@ static int __pyx_pf_14interface_core_6PyFins_13radius_fillet_2__set__(struct __p
   double __pyx_t_1;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "part.pyx":207
+  /* "entities/part.pyx":207
  *     @radius_fillet.setter
  *     def radius_fillet(self, val):
  *         self.ptr.SetRadiusFillet(val)             # <<<<<<<<<<<<<<
@@ -6098,7 +6098,7 @@ static int __pyx_pf_14interface_core_6PyFins_13radius_fillet_2__set__(struct __p
   __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 207, __pyx_L1_error)
   __pyx_v_self->ptr->SetRadiusFillet(__pyx_t_1);
 
-  /* "part.pyx":206
+  /* "entities/part.pyx":206
  *         return self.ptr.RadiusFillet()
  *     @radius_fillet.setter
  *     def radius_fillet(self, val):             # <<<<<<<<<<<<<<
@@ -6117,7 +6117,7 @@ static int __pyx_pf_14interface_core_6PyFins_13radius_fillet_2__set__(struct __p
   return __pyx_r;
 }
 
-/* "part.pyx":210
+/* "entities/part.pyx":210
  * 
  *     @property
  *     def chord_root(self):             # <<<<<<<<<<<<<<
@@ -6145,7 +6145,7 @@ static PyObject *__pyx_pf_14interface_core_6PyFins_10chord_root___get__(struct _
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "part.pyx":211
+  /* "entities/part.pyx":211
  *     @property
  *     def chord_root(self):
  *         shape_ptr = <FinShapeTrapezoidal*>self.ptr.AssignedFinShape()             # <<<<<<<<<<<<<<
@@ -6154,7 +6154,7 @@ static PyObject *__pyx_pf_14interface_core_6PyFins_10chord_root___get__(struct _
  */
   __pyx_v_shape_ptr = ((FinShapeTrapezoidal *)__pyx_v_self->ptr->AssignedFinShape());
 
-  /* "part.pyx":212
+  /* "entities/part.pyx":212
  *     def chord_root(self):
  *         shape_ptr = <FinShapeTrapezoidal*>self.ptr.AssignedFinShape()
  *         return shape_ptr.ChordRoot()             # <<<<<<<<<<<<<<
@@ -6168,7 +6168,7 @@ static PyObject *__pyx_pf_14interface_core_6PyFins_10chord_root___get__(struct _
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "part.pyx":210
+  /* "entities/part.pyx":210
  * 
  *     @property
  *     def chord_root(self):             # <<<<<<<<<<<<<<
@@ -6187,7 +6187,7 @@ static PyObject *__pyx_pf_14interface_core_6PyFins_10chord_root___get__(struct _
   return __pyx_r;
 }
 
-/* "part.pyx":214
+/* "entities/part.pyx":214
  *         return shape_ptr.ChordRoot()
  *     @chord_root.setter
  *     def chord_root(self, val):             # <<<<<<<<<<<<<<
@@ -6215,7 +6215,7 @@ static int __pyx_pf_14interface_core_6PyFins_10chord_root_2__set__(struct __pyx_
   double __pyx_t_1;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "part.pyx":215
+  /* "entities/part.pyx":215
  *     @chord_root.setter
  *     def chord_root(self, val):
  *         shape_ptr = <FinShapeTrapezoidal*>self.ptr.AssignedFinShape()             # <<<<<<<<<<<<<<
@@ -6224,7 +6224,7 @@ static int __pyx_pf_14interface_core_6PyFins_10chord_root_2__set__(struct __pyx_
  */
   __pyx_v_shape_ptr = ((FinShapeTrapezoidal *)__pyx_v_self->ptr->AssignedFinShape());
 
-  /* "part.pyx":216
+  /* "entities/part.pyx":216
  *     def chord_root(self, val):
  *         shape_ptr = <FinShapeTrapezoidal*>self.ptr.AssignedFinShape()
  *         shape_ptr.SetChordRoot(val)             # <<<<<<<<<<<<<<
@@ -6234,7 +6234,7 @@ static int __pyx_pf_14interface_core_6PyFins_10chord_root_2__set__(struct __pyx_
   __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 216, __pyx_L1_error)
   __pyx_v_shape_ptr->SetChordRoot(__pyx_t_1);
 
-  /* "part.pyx":214
+  /* "entities/part.pyx":214
  *         return shape_ptr.ChordRoot()
  *     @chord_root.setter
  *     def chord_root(self, val):             # <<<<<<<<<<<<<<
@@ -6253,7 +6253,7 @@ static int __pyx_pf_14interface_core_6PyFins_10chord_root_2__set__(struct __pyx_
   return __pyx_r;
 }
 
-/* "part.pyx":219
+/* "entities/part.pyx":219
  * 
  *     @property
  *     def chord_tip(self):             # <<<<<<<<<<<<<<
@@ -6281,7 +6281,7 @@ static PyObject *__pyx_pf_14interface_core_6PyFins_9chord_tip___get__(struct __p
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "part.pyx":220
+  /* "entities/part.pyx":220
  *     @property
  *     def chord_tip(self):
  *         shape_ptr = <FinShapeTrapezoidal*>self.ptr.AssignedFinShape()             # <<<<<<<<<<<<<<
@@ -6290,7 +6290,7 @@ static PyObject *__pyx_pf_14interface_core_6PyFins_9chord_tip___get__(struct __p
  */
   __pyx_v_shape_ptr = ((FinShapeTrapezoidal *)__pyx_v_self->ptr->AssignedFinShape());
 
-  /* "part.pyx":221
+  /* "entities/part.pyx":221
  *     def chord_tip(self):
  *         shape_ptr = <FinShapeTrapezoidal*>self.ptr.AssignedFinShape()
  *         return shape_ptr.ChordTip()             # <<<<<<<<<<<<<<
@@ -6304,7 +6304,7 @@ static PyObject *__pyx_pf_14interface_core_6PyFins_9chord_tip___get__(struct __p
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "part.pyx":219
+  /* "entities/part.pyx":219
  * 
  *     @property
  *     def chord_tip(self):             # <<<<<<<<<<<<<<
@@ -6323,7 +6323,7 @@ static PyObject *__pyx_pf_14interface_core_6PyFins_9chord_tip___get__(struct __p
   return __pyx_r;
 }
 
-/* "part.pyx":223
+/* "entities/part.pyx":223
  *         return shape_ptr.ChordTip()
  *     @chord_tip.setter
  *     def chord_tip(self, val):             # <<<<<<<<<<<<<<
@@ -6351,7 +6351,7 @@ static int __pyx_pf_14interface_core_6PyFins_9chord_tip_2__set__(struct __pyx_ob
   double __pyx_t_1;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "part.pyx":224
+  /* "entities/part.pyx":224
  *     @chord_tip.setter
  *     def chord_tip(self, val):
  *         shape_ptr = <FinShapeTrapezoidal*>self.ptr.AssignedFinShape()             # <<<<<<<<<<<<<<
@@ -6360,7 +6360,7 @@ static int __pyx_pf_14interface_core_6PyFins_9chord_tip_2__set__(struct __pyx_ob
  */
   __pyx_v_shape_ptr = ((FinShapeTrapezoidal *)__pyx_v_self->ptr->AssignedFinShape());
 
-  /* "part.pyx":225
+  /* "entities/part.pyx":225
  *     def chord_tip(self, val):
  *         shape_ptr = <FinShapeTrapezoidal*>self.ptr.AssignedFinShape()
  *         shape_ptr.SetChordTip(val)             # <<<<<<<<<<<<<<
@@ -6370,7 +6370,7 @@ static int __pyx_pf_14interface_core_6PyFins_9chord_tip_2__set__(struct __pyx_ob
   __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 225, __pyx_L1_error)
   __pyx_v_shape_ptr->SetChordTip(__pyx_t_1);
 
-  /* "part.pyx":223
+  /* "entities/part.pyx":223
  *         return shape_ptr.ChordTip()
  *     @chord_tip.setter
  *     def chord_tip(self, val):             # <<<<<<<<<<<<<<
@@ -6389,7 +6389,7 @@ static int __pyx_pf_14interface_core_6PyFins_9chord_tip_2__set__(struct __pyx_ob
   return __pyx_r;
 }
 
-/* "part.pyx":228
+/* "entities/part.pyx":228
  * 
  *     @property
  *     def span(self):             # <<<<<<<<<<<<<<
@@ -6417,7 +6417,7 @@ static PyObject *__pyx_pf_14interface_core_6PyFins_4span___get__(struct __pyx_ob
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "part.pyx":229
+  /* "entities/part.pyx":229
  *     @property
  *     def span(self):
  *         shape_ptr = <FinShapeTrapezoidal*>self.ptr.AssignedFinShape()             # <<<<<<<<<<<<<<
@@ -6426,7 +6426,7 @@ static PyObject *__pyx_pf_14interface_core_6PyFins_4span___get__(struct __pyx_ob
  */
   __pyx_v_shape_ptr = ((FinShapeTrapezoidal *)__pyx_v_self->ptr->AssignedFinShape());
 
-  /* "part.pyx":230
+  /* "entities/part.pyx":230
  *     def span(self):
  *         shape_ptr = <FinShapeTrapezoidal*>self.ptr.AssignedFinShape()
  *         return shape_ptr.Span()             # <<<<<<<<<<<<<<
@@ -6440,7 +6440,7 @@ static PyObject *__pyx_pf_14interface_core_6PyFins_4span___get__(struct __pyx_ob
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "part.pyx":228
+  /* "entities/part.pyx":228
  * 
  *     @property
  *     def span(self):             # <<<<<<<<<<<<<<
@@ -6459,7 +6459,7 @@ static PyObject *__pyx_pf_14interface_core_6PyFins_4span___get__(struct __pyx_ob
   return __pyx_r;
 }
 
-/* "part.pyx":232
+/* "entities/part.pyx":232
  *         return shape_ptr.Span()
  *     @span.setter
  *     def span(self, val):             # <<<<<<<<<<<<<<
@@ -6487,7 +6487,7 @@ static int __pyx_pf_14interface_core_6PyFins_4span_2__set__(struct __pyx_obj_14i
   double __pyx_t_1;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "part.pyx":233
+  /* "entities/part.pyx":233
  *     @span.setter
  *     def span(self, val):
  *         shape_ptr = <FinShapeTrapezoidal*>self.ptr.AssignedFinShape()             # <<<<<<<<<<<<<<
@@ -6496,7 +6496,7 @@ static int __pyx_pf_14interface_core_6PyFins_4span_2__set__(struct __pyx_obj_14i
  */
   __pyx_v_shape_ptr = ((FinShapeTrapezoidal *)__pyx_v_self->ptr->AssignedFinShape());
 
-  /* "part.pyx":234
+  /* "entities/part.pyx":234
  *     def span(self, val):
  *         shape_ptr = <FinShapeTrapezoidal*>self.ptr.AssignedFinShape()
  *         shape_ptr.SetSpan(val)             # <<<<<<<<<<<<<<
@@ -6506,7 +6506,7 @@ static int __pyx_pf_14interface_core_6PyFins_4span_2__set__(struct __pyx_obj_14i
   __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 234, __pyx_L1_error)
   __pyx_v_shape_ptr->SetSpan(__pyx_t_1);
 
-  /* "part.pyx":232
+  /* "entities/part.pyx":232
  *         return shape_ptr.Span()
  *     @span.setter
  *     def span(self, val):             # <<<<<<<<<<<<<<
@@ -6525,7 +6525,7 @@ static int __pyx_pf_14interface_core_6PyFins_4span_2__set__(struct __pyx_obj_14i
   return __pyx_r;
 }
 
-/* "part.pyx":237
+/* "entities/part.pyx":237
  * 
  *     @property
  *     def length_sweep(self):             # <<<<<<<<<<<<<<
@@ -6553,7 +6553,7 @@ static PyObject *__pyx_pf_14interface_core_6PyFins_12length_sweep___get__(struct
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "part.pyx":238
+  /* "entities/part.pyx":238
  *     @property
  *     def length_sweep(self):
  *         shape_ptr = <FinShapeTrapezoidal*>self.ptr.AssignedFinShape()             # <<<<<<<<<<<<<<
@@ -6562,7 +6562,7 @@ static PyObject *__pyx_pf_14interface_core_6PyFins_12length_sweep___get__(struct
  */
   __pyx_v_shape_ptr = ((FinShapeTrapezoidal *)__pyx_v_self->ptr->AssignedFinShape());
 
-  /* "part.pyx":239
+  /* "entities/part.pyx":239
  *     def length_sweep(self):
  *         shape_ptr = <FinShapeTrapezoidal*>self.ptr.AssignedFinShape()
  *         return shape_ptr.LengthSweep()             # <<<<<<<<<<<<<<
@@ -6576,7 +6576,7 @@ static PyObject *__pyx_pf_14interface_core_6PyFins_12length_sweep___get__(struct
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "part.pyx":237
+  /* "entities/part.pyx":237
  * 
  *     @property
  *     def length_sweep(self):             # <<<<<<<<<<<<<<
@@ -6595,7 +6595,7 @@ static PyObject *__pyx_pf_14interface_core_6PyFins_12length_sweep___get__(struct
   return __pyx_r;
 }
 
-/* "part.pyx":241
+/* "entities/part.pyx":241
  *         return shape_ptr.LengthSweep()
  *     @length_sweep.setter
  *     def length_sweep(self, val):             # <<<<<<<<<<<<<<
@@ -6623,7 +6623,7 @@ static int __pyx_pf_14interface_core_6PyFins_12length_sweep_2__set__(struct __py
   double __pyx_t_1;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "part.pyx":242
+  /* "entities/part.pyx":242
  *     @length_sweep.setter
  *     def length_sweep(self, val):
  *         shape_ptr = <FinShapeTrapezoidal*>self.ptr.AssignedFinShape()             # <<<<<<<<<<<<<<
@@ -6632,7 +6632,7 @@ static int __pyx_pf_14interface_core_6PyFins_12length_sweep_2__set__(struct __py
  */
   __pyx_v_shape_ptr = ((FinShapeTrapezoidal *)__pyx_v_self->ptr->AssignedFinShape());
 
-  /* "part.pyx":243
+  /* "entities/part.pyx":243
  *     def length_sweep(self, val):
  *         shape_ptr = <FinShapeTrapezoidal*>self.ptr.AssignedFinShape()
  *         shape_ptr.SetLengthSweep(val)             # <<<<<<<<<<<<<<
@@ -6642,7 +6642,7 @@ static int __pyx_pf_14interface_core_6PyFins_12length_sweep_2__set__(struct __py
   __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 243, __pyx_L1_error)
   __pyx_v_shape_ptr->SetLengthSweep(__pyx_t_1);
 
-  /* "part.pyx":241
+  /* "entities/part.pyx":241
  *         return shape_ptr.LengthSweep()
  *     @length_sweep.setter
  *     def length_sweep(self, val):             # <<<<<<<<<<<<<<
@@ -6768,7 +6768,7 @@ static PyObject *__pyx_pf_14interface_core_6PyFins_4__setstate_cython__(CYTHON_U
   return __pyx_r;
 }
 
-/* "part.pyx":289
+/* "entities/part.pyx":289
  *     cdef Nosecone *ptr
  * 
  *     def __init__(self, *args):             # <<<<<<<<<<<<<<
@@ -6805,7 +6805,7 @@ static int __pyx_pf_14interface_core_10PyNosecone___init__(CYTHON_UNUSED struct 
   return __pyx_r;
 }
 
-/* "part.pyx":293
+/* "entities/part.pyx":293
  * 
  *     @staticmethod
  *     cdef PyNosecone create(Nosecone* ptr):             # <<<<<<<<<<<<<<
@@ -6821,7 +6821,7 @@ static struct __pyx_obj_14interface_core_PyNosecone *__pyx_f_14interface_core_10
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("create", 0);
 
-  /* "part.pyx":294
+  /* "entities/part.pyx":294
  *     @staticmethod
  *     cdef PyNosecone create(Nosecone* ptr):
  *         obj = <PyNosecone>PyNosecone.__new__(PyNosecone)             # <<<<<<<<<<<<<<
@@ -6836,7 +6836,7 @@ static struct __pyx_obj_14interface_core_PyNosecone *__pyx_f_14interface_core_10
   __pyx_v_obj = ((struct __pyx_obj_14interface_core_PyNosecone *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "part.pyx":295
+  /* "entities/part.pyx":295
  *     cdef PyNosecone create(Nosecone* ptr):
  *         obj = <PyNosecone>PyNosecone.__new__(PyNosecone)
  *         obj.ptr = ptr             # <<<<<<<<<<<<<<
@@ -6845,7 +6845,7 @@ static struct __pyx_obj_14interface_core_PyNosecone *__pyx_f_14interface_core_10
  */
   __pyx_v_obj->ptr = __pyx_v_ptr;
 
-  /* "part.pyx":296
+  /* "entities/part.pyx":296
  *         obj = <PyNosecone>PyNosecone.__new__(PyNosecone)
  *         obj.ptr = ptr
  *         obj.ptr_part = <Part*>ptr             # <<<<<<<<<<<<<<
@@ -6854,7 +6854,7 @@ static struct __pyx_obj_14interface_core_PyNosecone *__pyx_f_14interface_core_10
  */
   __pyx_v_obj->__pyx_base.ptr_part = ((Part *)__pyx_v_ptr);
 
-  /* "part.pyx":297
+  /* "entities/part.pyx":297
  *         obj.ptr = ptr
  *         obj.ptr_part = <Part*>ptr
  *         return obj             # <<<<<<<<<<<<<<
@@ -6866,7 +6866,7 @@ static struct __pyx_obj_14interface_core_PyNosecone *__pyx_f_14interface_core_10
   __pyx_r = __pyx_v_obj;
   goto __pyx_L0;
 
-  /* "part.pyx":293
+  /* "entities/part.pyx":293
  * 
  *     @staticmethod
  *     cdef PyNosecone create(Nosecone* ptr):             # <<<<<<<<<<<<<<
@@ -6887,7 +6887,7 @@ static struct __pyx_obj_14interface_core_PyNosecone *__pyx_f_14interface_core_10
   return __pyx_r;
 }
 
-/* "part.pyx":300
+/* "entities/part.pyx":300
  * 
  *     @property
  *     def nosecone_type(self):             # <<<<<<<<<<<<<<
@@ -6914,7 +6914,7 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_13nosecone_type___get__(
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "part.pyx":301
+  /* "entities/part.pyx":301
  *     @property
  *     def nosecone_type(self):
  *         return <PyNoseconeType>self.ptr.NoseType()             # <<<<<<<<<<<<<<
@@ -6928,7 +6928,7 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_13nosecone_type___get__(
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "part.pyx":300
+  /* "entities/part.pyx":300
  * 
  *     @property
  *     def nosecone_type(self):             # <<<<<<<<<<<<<<
@@ -6947,7 +6947,7 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_13nosecone_type___get__(
   return __pyx_r;
 }
 
-/* "part.pyx":303
+/* "entities/part.pyx":303
  *         return <PyNoseconeType>self.ptr.NoseType()
  *     @nosecone_type.setter
  *     def nosecone_type(self, PyNoseconeType val):             # <<<<<<<<<<<<<<
@@ -6983,7 +6983,7 @@ static int __pyx_pf_14interface_core_10PyNosecone_13nosecone_type_2__set__(struc
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "part.pyx":304
+  /* "entities/part.pyx":304
  *     @nosecone_type.setter
  *     def nosecone_type(self, PyNoseconeType val):
  *         self.ptr.SetNoseType(<NoseconeType><int>val)             # <<<<<<<<<<<<<<
@@ -6992,7 +6992,7 @@ static int __pyx_pf_14interface_core_10PyNosecone_13nosecone_type_2__set__(struc
  */
   __pyx_v_self->ptr->SetNoseType(((enum NoseconeType)((int)__pyx_v_val)));
 
-  /* "part.pyx":303
+  /* "entities/part.pyx":303
  *         return <PyNoseconeType>self.ptr.NoseType()
  *     @nosecone_type.setter
  *     def nosecone_type(self, PyNoseconeType val):             # <<<<<<<<<<<<<<
@@ -7006,7 +7006,7 @@ static int __pyx_pf_14interface_core_10PyNosecone_13nosecone_type_2__set__(struc
   return __pyx_r;
 }
 
-/* "part.pyx":307
+/* "entities/part.pyx":307
  * 
  *     @property
  *     def shape_parameter(self):             # <<<<<<<<<<<<<<
@@ -7033,7 +7033,7 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_15shape_parameter___get_
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "part.pyx":308
+  /* "entities/part.pyx":308
  *     @property
  *     def shape_parameter(self):
  *         return self.ptr.ShapeParameter()             # <<<<<<<<<<<<<<
@@ -7047,7 +7047,7 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_15shape_parameter___get_
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "part.pyx":307
+  /* "entities/part.pyx":307
  * 
  *     @property
  *     def shape_parameter(self):             # <<<<<<<<<<<<<<
@@ -7066,7 +7066,7 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_15shape_parameter___get_
   return __pyx_r;
 }
 
-/* "part.pyx":310
+/* "entities/part.pyx":310
  *         return self.ptr.ShapeParameter()
  *     @shape_parameter.setter
  *     def shape_parameter(self, val):             # <<<<<<<<<<<<<<
@@ -7093,7 +7093,7 @@ static int __pyx_pf_14interface_core_10PyNosecone_15shape_parameter_2__set__(str
   double __pyx_t_1;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "part.pyx":311
+  /* "entities/part.pyx":311
  *     @shape_parameter.setter
  *     def shape_parameter(self, val):
  *         self.ptr.SetShapeParameter(val)             # <<<<<<<<<<<<<<
@@ -7103,7 +7103,7 @@ static int __pyx_pf_14interface_core_10PyNosecone_15shape_parameter_2__set__(str
   __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 311, __pyx_L1_error)
   __pyx_v_self->ptr->SetShapeParameter(__pyx_t_1);
 
-  /* "part.pyx":310
+  /* "entities/part.pyx":310
  *         return self.ptr.ShapeParameter()
  *     @shape_parameter.setter
  *     def shape_parameter(self, val):             # <<<<<<<<<<<<<<
@@ -7122,7 +7122,7 @@ static int __pyx_pf_14interface_core_10PyNosecone_15shape_parameter_2__set__(str
   return __pyx_r;
 }
 
-/* "part.pyx":314
+/* "entities/part.pyx":314
  * 
  *     @property
  *     def length_nose(self):             # <<<<<<<<<<<<<<
@@ -7149,7 +7149,7 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_11length_nose___get__(st
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "part.pyx":315
+  /* "entities/part.pyx":315
  *     @property
  *     def length_nose(self):
  *         return self.ptr.LengthNose()             # <<<<<<<<<<<<<<
@@ -7163,7 +7163,7 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_11length_nose___get__(st
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "part.pyx":314
+  /* "entities/part.pyx":314
  * 
  *     @property
  *     def length_nose(self):             # <<<<<<<<<<<<<<
@@ -7182,7 +7182,7 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_11length_nose___get__(st
   return __pyx_r;
 }
 
-/* "part.pyx":317
+/* "entities/part.pyx":317
  *         return self.ptr.LengthNose()
  *     @length_nose.setter
  *     def length_nose(self, val):             # <<<<<<<<<<<<<<
@@ -7209,7 +7209,7 @@ static int __pyx_pf_14interface_core_10PyNosecone_11length_nose_2__set__(struct 
   double __pyx_t_1;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "part.pyx":318
+  /* "entities/part.pyx":318
  *     @length_nose.setter
  *     def length_nose(self, val):
  *         self.ptr.SetLengthNose(val)             # <<<<<<<<<<<<<<
@@ -7219,7 +7219,7 @@ static int __pyx_pf_14interface_core_10PyNosecone_11length_nose_2__set__(struct 
   __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 318, __pyx_L1_error)
   __pyx_v_self->ptr->SetLengthNose(__pyx_t_1);
 
-  /* "part.pyx":317
+  /* "entities/part.pyx":317
  *         return self.ptr.LengthNose()
  *     @length_nose.setter
  *     def length_nose(self, val):             # <<<<<<<<<<<<<<
@@ -7238,7 +7238,7 @@ static int __pyx_pf_14interface_core_10PyNosecone_11length_nose_2__set__(struct 
   return __pyx_r;
 }
 
-/* "part.pyx":321
+/* "entities/part.pyx":321
  * 
  *     @property
  *     def length_base(self):             # <<<<<<<<<<<<<<
@@ -7265,7 +7265,7 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_11length_base___get__(st
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "part.pyx":322
+  /* "entities/part.pyx":322
  *     @property
  *     def length_base(self):
  *         return self.ptr.LengthBase()             # <<<<<<<<<<<<<<
@@ -7279,7 +7279,7 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_11length_base___get__(st
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "part.pyx":321
+  /* "entities/part.pyx":321
  * 
  *     @property
  *     def length_base(self):             # <<<<<<<<<<<<<<
@@ -7298,7 +7298,7 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_11length_base___get__(st
   return __pyx_r;
 }
 
-/* "part.pyx":324
+/* "entities/part.pyx":324
  *         return self.ptr.LengthBase()
  *     @length_base.setter
  *     def length_base(self, val):             # <<<<<<<<<<<<<<
@@ -7325,7 +7325,7 @@ static int __pyx_pf_14interface_core_10PyNosecone_11length_base_2__set__(struct 
   double __pyx_t_1;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "part.pyx":325
+  /* "entities/part.pyx":325
  *     @length_base.setter
  *     def length_base(self, val):
  *         self.ptr.SetLengthBase(val)             # <<<<<<<<<<<<<<
@@ -7335,7 +7335,7 @@ static int __pyx_pf_14interface_core_10PyNosecone_11length_base_2__set__(struct 
   __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 325, __pyx_L1_error)
   __pyx_v_self->ptr->SetLengthBase(__pyx_t_1);
 
-  /* "part.pyx":324
+  /* "entities/part.pyx":324
  *         return self.ptr.LengthBase()
  *     @length_base.setter
  *     def length_base(self, val):             # <<<<<<<<<<<<<<
@@ -7354,7 +7354,7 @@ static int __pyx_pf_14interface_core_10PyNosecone_11length_base_2__set__(struct 
   return __pyx_r;
 }
 
-/* "part.pyx":328
+/* "entities/part.pyx":328
  * 
  *     @property
  *     def length_shoulder(self):             # <<<<<<<<<<<<<<
@@ -7381,7 +7381,7 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_15length_shoulder___get_
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "part.pyx":329
+  /* "entities/part.pyx":329
  *     @property
  *     def length_shoulder(self):
  *         return self.ptr.LengthShoulder()             # <<<<<<<<<<<<<<
@@ -7395,7 +7395,7 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_15length_shoulder___get_
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "part.pyx":328
+  /* "entities/part.pyx":328
  * 
  *     @property
  *     def length_shoulder(self):             # <<<<<<<<<<<<<<
@@ -7414,7 +7414,7 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_15length_shoulder___get_
   return __pyx_r;
 }
 
-/* "part.pyx":331
+/* "entities/part.pyx":331
  *         return self.ptr.LengthShoulder()
  *     @length_shoulder.setter
  *     def length_shoulder(self, val):             # <<<<<<<<<<<<<<
@@ -7441,7 +7441,7 @@ static int __pyx_pf_14interface_core_10PyNosecone_15length_shoulder_2__set__(str
   double __pyx_t_1;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "part.pyx":332
+  /* "entities/part.pyx":332
  *     @length_shoulder.setter
  *     def length_shoulder(self, val):
  *         self.ptr.SetLengthShoulder(val)             # <<<<<<<<<<<<<<
@@ -7451,7 +7451,7 @@ static int __pyx_pf_14interface_core_10PyNosecone_15length_shoulder_2__set__(str
   __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 332, __pyx_L1_error)
   __pyx_v_self->ptr->SetLengthShoulder(__pyx_t_1);
 
-  /* "part.pyx":331
+  /* "entities/part.pyx":331
  *         return self.ptr.LengthShoulder()
  *     @length_shoulder.setter
  *     def length_shoulder(self, val):             # <<<<<<<<<<<<<<
@@ -7470,7 +7470,7 @@ static int __pyx_pf_14interface_core_10PyNosecone_15length_shoulder_2__set__(str
   return __pyx_r;
 }
 
-/* "part.pyx":335
+/* "entities/part.pyx":335
  * 
  *     @property
  *     def thickness(self):             # <<<<<<<<<<<<<<
@@ -7497,7 +7497,7 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_9thickness___get__(struc
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "part.pyx":336
+  /* "entities/part.pyx":336
  *     @property
  *     def thickness(self):
  *         return self.ptr.Thickness()             # <<<<<<<<<<<<<<
@@ -7511,7 +7511,7 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_9thickness___get__(struc
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "part.pyx":335
+  /* "entities/part.pyx":335
  * 
  *     @property
  *     def thickness(self):             # <<<<<<<<<<<<<<
@@ -7530,7 +7530,7 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_9thickness___get__(struc
   return __pyx_r;
 }
 
-/* "part.pyx":338
+/* "entities/part.pyx":338
  *         return self.ptr.Thickness()
  *     @thickness.setter
  *     def thickness(self, val):             # <<<<<<<<<<<<<<
@@ -7557,7 +7557,7 @@ static int __pyx_pf_14interface_core_10PyNosecone_9thickness_2__set__(struct __p
   double __pyx_t_1;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "part.pyx":339
+  /* "entities/part.pyx":339
  *     @thickness.setter
  *     def thickness(self, val):
  *         self.ptr.SetThickness(val)             # <<<<<<<<<<<<<<
@@ -7567,7 +7567,7 @@ static int __pyx_pf_14interface_core_10PyNosecone_9thickness_2__set__(struct __p
   __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 339, __pyx_L1_error)
   __pyx_v_self->ptr->SetThickness(__pyx_t_1);
 
-  /* "part.pyx":338
+  /* "entities/part.pyx":338
  *         return self.ptr.Thickness()
  *     @thickness.setter
  *     def thickness(self, val):             # <<<<<<<<<<<<<<
@@ -7586,7 +7586,7 @@ static int __pyx_pf_14interface_core_10PyNosecone_9thickness_2__set__(struct __p
   return __pyx_r;
 }
 
-/* "part.pyx":342
+/* "entities/part.pyx":342
  * 
  *     @property
  *     def diameter_outer(self):             # <<<<<<<<<<<<<<
@@ -7613,7 +7613,7 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_14diameter_outer___get__
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "part.pyx":343
+  /* "entities/part.pyx":343
  *     @property
  *     def diameter_outer(self):
  *         return self.ptr.DiameterOuter()             # <<<<<<<<<<<<<<
@@ -7627,7 +7627,7 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_14diameter_outer___get__
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "part.pyx":342
+  /* "entities/part.pyx":342
  * 
  *     @property
  *     def diameter_outer(self):             # <<<<<<<<<<<<<<
@@ -7646,7 +7646,7 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_14diameter_outer___get__
   return __pyx_r;
 }
 
-/* "part.pyx":345
+/* "entities/part.pyx":345
  *         return self.ptr.DiameterOuter()
  *     @diameter_outer.setter
  *     def diameter_outer(self, val):             # <<<<<<<<<<<<<<
@@ -7673,7 +7673,7 @@ static int __pyx_pf_14interface_core_10PyNosecone_14diameter_outer_2__set__(stru
   double __pyx_t_1;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "part.pyx":346
+  /* "entities/part.pyx":346
  *     @diameter_outer.setter
  *     def diameter_outer(self, val):
  *         self.ptr.SetDiameterOuter(val)             # <<<<<<<<<<<<<<
@@ -7683,7 +7683,7 @@ static int __pyx_pf_14interface_core_10PyNosecone_14diameter_outer_2__set__(stru
   __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 346, __pyx_L1_error)
   __pyx_v_self->ptr->SetDiameterOuter(__pyx_t_1);
 
-  /* "part.pyx":345
+  /* "entities/part.pyx":345
  *         return self.ptr.DiameterOuter()
  *     @diameter_outer.setter
  *     def diameter_outer(self, val):             # <<<<<<<<<<<<<<
@@ -7702,7 +7702,7 @@ static int __pyx_pf_14interface_core_10PyNosecone_14diameter_outer_2__set__(stru
   return __pyx_r;
 }
 
-/* "part.pyx":349
+/* "entities/part.pyx":349
  * 
  *     @property
  *     def diameter_shoulder(self):             # <<<<<<<<<<<<<<
@@ -7729,7 +7729,7 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_17diameter_shoulder___ge
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "part.pyx":350
+  /* "entities/part.pyx":350
  *     @property
  *     def diameter_shoulder(self):
  *         return self.ptr.DiameterShoulder()             # <<<<<<<<<<<<<<
@@ -7743,7 +7743,7 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_17diameter_shoulder___ge
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "part.pyx":349
+  /* "entities/part.pyx":349
  * 
  *     @property
  *     def diameter_shoulder(self):             # <<<<<<<<<<<<<<
@@ -7762,7 +7762,7 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_17diameter_shoulder___ge
   return __pyx_r;
 }
 
-/* "part.pyx":352
+/* "entities/part.pyx":352
  *         return self.ptr.DiameterShoulder()
  *     @diameter_shoulder.setter
  *     def diameter_shoulder(self, val):             # <<<<<<<<<<<<<<
@@ -7789,7 +7789,7 @@ static int __pyx_pf_14interface_core_10PyNosecone_17diameter_shoulder_2__set__(s
   double __pyx_t_1;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "part.pyx":353
+  /* "entities/part.pyx":353
  *     @diameter_shoulder.setter
  *     def diameter_shoulder(self, val):
  *         self.ptr.SetDiameterShoulder(val)             # <<<<<<<<<<<<<<
@@ -7799,7 +7799,7 @@ static int __pyx_pf_14interface_core_10PyNosecone_17diameter_shoulder_2__set__(s
   __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 353, __pyx_L1_error)
   __pyx_v_self->ptr->SetDiameterShoulder(__pyx_t_1);
 
-  /* "part.pyx":352
+  /* "entities/part.pyx":352
  *         return self.ptr.DiameterShoulder()
  *     @diameter_shoulder.setter
  *     def diameter_shoulder(self, val):             # <<<<<<<<<<<<<<
@@ -7818,7 +7818,7 @@ static int __pyx_pf_14interface_core_10PyNosecone_17diameter_shoulder_2__set__(s
   return __pyx_r;
 }
 
-/* "part.pyx":356
+/* "entities/part.pyx":356
  * 
  *     @property
  *     def radius(self):             # <<<<<<<<<<<<<<
@@ -7845,7 +7845,7 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_6radius___get__(struct _
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "part.pyx":357
+  /* "entities/part.pyx":357
  *     @property
  *     def radius(self):
  *         return self.ptr.Radius()             # <<<<<<<<<<<<<<
@@ -7859,7 +7859,7 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_6radius___get__(struct _
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "part.pyx":356
+  /* "entities/part.pyx":356
  * 
  *     @property
  *     def radius(self):             # <<<<<<<<<<<<<<
@@ -7878,7 +7878,7 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_6radius___get__(struct _
   return __pyx_r;
 }
 
-/* "part.pyx":359
+/* "entities/part.pyx":359
  *         return self.ptr.Radius()
  *     @property
  *     def length(self):             # <<<<<<<<<<<<<<
@@ -7905,7 +7905,7 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_6length___get__(struct _
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "part.pyx":360
+  /* "entities/part.pyx":360
  *     @property
  *     def length(self):
  *         return self.ptr.Length()             # <<<<<<<<<<<<<<
@@ -7919,7 +7919,7 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_6length___get__(struct _
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "part.pyx":359
+  /* "entities/part.pyx":359
  *         return self.ptr.Radius()
  *     @property
  *     def length(self):             # <<<<<<<<<<<<<<
@@ -8045,7 +8045,7 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_4__setstate_cython__(CYT
   return __pyx_r;
 }
 
-/* "part.pyx":380
+/* "entities/part.pyx":380
  *     cdef TubeBody *ptr
  * 
  *     def __init__(self, *args):             # <<<<<<<<<<<<<<
@@ -8082,7 +8082,7 @@ static int __pyx_pf_14interface_core_10PyTubeBody___init__(CYTHON_UNUSED struct 
   return __pyx_r;
 }
 
-/* "part.pyx":384
+/* "entities/part.pyx":384
  * 
  *     @staticmethod
  *     cdef PyTubeBody create(TubeBody* ptr):             # <<<<<<<<<<<<<<
@@ -8098,7 +8098,7 @@ static struct __pyx_obj_14interface_core_PyTubeBody *__pyx_f_14interface_core_10
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("create", 0);
 
-  /* "part.pyx":385
+  /* "entities/part.pyx":385
  *     @staticmethod
  *     cdef PyTubeBody create(TubeBody* ptr):
  *         obj = <PyTubeBody>PyTubeBody.__new__(PyTubeBody)             # <<<<<<<<<<<<<<
@@ -8113,7 +8113,7 @@ static struct __pyx_obj_14interface_core_PyTubeBody *__pyx_f_14interface_core_10
   __pyx_v_obj = ((struct __pyx_obj_14interface_core_PyTubeBody *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "part.pyx":386
+  /* "entities/part.pyx":386
  *     cdef PyTubeBody create(TubeBody* ptr):
  *         obj = <PyTubeBody>PyTubeBody.__new__(PyTubeBody)
  *         obj.ptr = ptr             # <<<<<<<<<<<<<<
@@ -8122,7 +8122,7 @@ static struct __pyx_obj_14interface_core_PyTubeBody *__pyx_f_14interface_core_10
  */
   __pyx_v_obj->ptr = __pyx_v_ptr;
 
-  /* "part.pyx":387
+  /* "entities/part.pyx":387
  *         obj = <PyTubeBody>PyTubeBody.__new__(PyTubeBody)
  *         obj.ptr = ptr
  *         obj.ptr_part = <Part*>ptr             # <<<<<<<<<<<<<<
@@ -8131,7 +8131,7 @@ static struct __pyx_obj_14interface_core_PyTubeBody *__pyx_f_14interface_core_10
  */
   __pyx_v_obj->__pyx_base.ptr_part = ((Part *)__pyx_v_ptr);
 
-  /* "part.pyx":388
+  /* "entities/part.pyx":388
  *         obj.ptr = ptr
  *         obj.ptr_part = <Part*>ptr
  *         return obj             # <<<<<<<<<<<<<<
@@ -8143,7 +8143,7 @@ static struct __pyx_obj_14interface_core_PyTubeBody *__pyx_f_14interface_core_10
   __pyx_r = __pyx_v_obj;
   goto __pyx_L0;
 
-  /* "part.pyx":384
+  /* "entities/part.pyx":384
  * 
  *     @staticmethod
  *     cdef PyTubeBody create(TubeBody* ptr):             # <<<<<<<<<<<<<<
@@ -8164,7 +8164,7 @@ static struct __pyx_obj_14interface_core_PyTubeBody *__pyx_f_14interface_core_10
   return __pyx_r;
 }
 
-/* "part.pyx":391
+/* "entities/part.pyx":391
  * 
  *     @property
  *     def length(self):             # <<<<<<<<<<<<<<
@@ -8191,7 +8191,7 @@ static PyObject *__pyx_pf_14interface_core_10PyTubeBody_6length___get__(struct _
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "part.pyx":392
+  /* "entities/part.pyx":392
  *     @property
  *     def length(self):
  *         return self.ptr.Length()             # <<<<<<<<<<<<<<
@@ -8205,7 +8205,7 @@ static PyObject *__pyx_pf_14interface_core_10PyTubeBody_6length___get__(struct _
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "part.pyx":391
+  /* "entities/part.pyx":391
  * 
  *     @property
  *     def length(self):             # <<<<<<<<<<<<<<
@@ -8224,7 +8224,7 @@ static PyObject *__pyx_pf_14interface_core_10PyTubeBody_6length___get__(struct _
   return __pyx_r;
 }
 
-/* "part.pyx":394
+/* "entities/part.pyx":394
  *         return self.ptr.Length()
  *     @length.setter
  *     def length(self, val):             # <<<<<<<<<<<<<<
@@ -8251,7 +8251,7 @@ static int __pyx_pf_14interface_core_10PyTubeBody_6length_2__set__(struct __pyx_
   double __pyx_t_1;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "part.pyx":395
+  /* "entities/part.pyx":395
  *     @length.setter
  *     def length(self, val):
  *         self.ptr.SetLength(val)             # <<<<<<<<<<<<<<
@@ -8261,7 +8261,7 @@ static int __pyx_pf_14interface_core_10PyTubeBody_6length_2__set__(struct __pyx_
   __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 395, __pyx_L1_error)
   __pyx_v_self->ptr->SetLength(__pyx_t_1);
 
-  /* "part.pyx":394
+  /* "entities/part.pyx":394
  *         return self.ptr.Length()
  *     @length.setter
  *     def length(self, val):             # <<<<<<<<<<<<<<
@@ -8280,7 +8280,7 @@ static int __pyx_pf_14interface_core_10PyTubeBody_6length_2__set__(struct __pyx_
   return __pyx_r;
 }
 
-/* "part.pyx":398
+/* "entities/part.pyx":398
  * 
  *     @property
  *     def diameter_outer(self):             # <<<<<<<<<<<<<<
@@ -8307,7 +8307,7 @@ static PyObject *__pyx_pf_14interface_core_10PyTubeBody_14diameter_outer___get__
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "part.pyx":399
+  /* "entities/part.pyx":399
  *     @property
  *     def diameter_outer(self):
  *         return self.ptr.DiameterOuter()             # <<<<<<<<<<<<<<
@@ -8321,7 +8321,7 @@ static PyObject *__pyx_pf_14interface_core_10PyTubeBody_14diameter_outer___get__
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "part.pyx":398
+  /* "entities/part.pyx":398
  * 
  *     @property
  *     def diameter_outer(self):             # <<<<<<<<<<<<<<
@@ -8340,7 +8340,7 @@ static PyObject *__pyx_pf_14interface_core_10PyTubeBody_14diameter_outer___get__
   return __pyx_r;
 }
 
-/* "part.pyx":401
+/* "entities/part.pyx":401
  *         return self.ptr.DiameterOuter()
  *     @diameter_outer.setter
  *     def diameter_outer(self, val):             # <<<<<<<<<<<<<<
@@ -8367,7 +8367,7 @@ static int __pyx_pf_14interface_core_10PyTubeBody_14diameter_outer_2__set__(stru
   double __pyx_t_1;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "part.pyx":402
+  /* "entities/part.pyx":402
  *     @diameter_outer.setter
  *     def diameter_outer(self, val):
  *         self.ptr.SetDiameterOuter(val)             # <<<<<<<<<<<<<<
@@ -8377,7 +8377,7 @@ static int __pyx_pf_14interface_core_10PyTubeBody_14diameter_outer_2__set__(stru
   __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 402, __pyx_L1_error)
   __pyx_v_self->ptr->SetDiameterOuter(__pyx_t_1);
 
-  /* "part.pyx":401
+  /* "entities/part.pyx":401
  *         return self.ptr.DiameterOuter()
  *     @diameter_outer.setter
  *     def diameter_outer(self, val):             # <<<<<<<<<<<<<<
@@ -8396,7 +8396,7 @@ static int __pyx_pf_14interface_core_10PyTubeBody_14diameter_outer_2__set__(stru
   return __pyx_r;
 }
 
-/* "part.pyx":405
+/* "entities/part.pyx":405
  * 
  *     @property
  *     def thickness(self):             # <<<<<<<<<<<<<<
@@ -8423,7 +8423,7 @@ static PyObject *__pyx_pf_14interface_core_10PyTubeBody_9thickness___get__(struc
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "part.pyx":406
+  /* "entities/part.pyx":406
  *     @property
  *     def thickness(self):
  *         return self.ptr.Thickness()             # <<<<<<<<<<<<<<
@@ -8437,7 +8437,7 @@ static PyObject *__pyx_pf_14interface_core_10PyTubeBody_9thickness___get__(struc
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "part.pyx":405
+  /* "entities/part.pyx":405
  * 
  *     @property
  *     def thickness(self):             # <<<<<<<<<<<<<<
@@ -8456,7 +8456,7 @@ static PyObject *__pyx_pf_14interface_core_10PyTubeBody_9thickness___get__(struc
   return __pyx_r;
 }
 
-/* "part.pyx":408
+/* "entities/part.pyx":408
  *         return self.ptr.Thickness()
  *     @thickness.setter
  *     def thickness(self, val):             # <<<<<<<<<<<<<<
@@ -8482,7 +8482,7 @@ static int __pyx_pf_14interface_core_10PyTubeBody_9thickness_2__set__(struct __p
   double __pyx_t_1;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "part.pyx":409
+  /* "entities/part.pyx":409
  *     @thickness.setter
  *     def thickness(self, val):
  *         self.ptr.SetThickness(val)             # <<<<<<<<<<<<<<
@@ -8490,7 +8490,7 @@ static int __pyx_pf_14interface_core_10PyTubeBody_9thickness_2__set__(struct __p
   __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 409, __pyx_L1_error)
   __pyx_v_self->ptr->SetThickness(__pyx_t_1);
 
-  /* "part.pyx":408
+  /* "entities/part.pyx":408
  *         return self.ptr.Thickness()
  *     @thickness.setter
  *     def thickness(self, val):             # <<<<<<<<<<<<<<
@@ -8615,7 +8615,7 @@ static PyObject *__pyx_pf_14interface_core_10PyTubeBody_4__setstate_cython__(CYT
   return __pyx_r;
 }
 
-/* "rocket.pyx":16
+/* "entities/rocket.pyx":16
  *     cdef Rocket *ptr
  * 
  *     def __init__(self, *args):             # <<<<<<<<<<<<<<
@@ -8652,7 +8652,7 @@ static int __pyx_pf_14interface_core_8PyRocket___init__(CYTHON_UNUSED struct __p
   return __pyx_r;
 }
 
-/* "rocket.pyx":20
+/* "entities/rocket.pyx":20
  * 
  *     @staticmethod
  *     cdef PyRocket create(Rocket* ptr):             # <<<<<<<<<<<<<<
@@ -8668,7 +8668,7 @@ static struct __pyx_obj_14interface_core_PyRocket *__pyx_f_14interface_core_8PyR
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("create", 0);
 
-  /* "rocket.pyx":21
+  /* "entities/rocket.pyx":21
  *     @staticmethod
  *     cdef PyRocket create(Rocket* ptr):
  *         obj = <PyRocket>PyRocket.__new__(PyRocket)             # <<<<<<<<<<<<<<
@@ -8683,7 +8683,7 @@ static struct __pyx_obj_14interface_core_PyRocket *__pyx_f_14interface_core_8PyR
   __pyx_v_obj = ((struct __pyx_obj_14interface_core_PyRocket *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "rocket.pyx":22
+  /* "entities/rocket.pyx":22
  *     cdef PyRocket create(Rocket* ptr):
  *         obj = <PyRocket>PyRocket.__new__(PyRocket)
  *         obj.ptr = ptr             # <<<<<<<<<<<<<<
@@ -8692,7 +8692,7 @@ static struct __pyx_obj_14interface_core_PyRocket *__pyx_f_14interface_core_8PyR
  */
   __pyx_v_obj->ptr = __pyx_v_ptr;
 
-  /* "rocket.pyx":23
+  /* "entities/rocket.pyx":23
  *         obj = <PyRocket>PyRocket.__new__(PyRocket)
  *         obj.ptr = ptr
  *         return obj             # <<<<<<<<<<<<<<
@@ -8704,7 +8704,7 @@ static struct __pyx_obj_14interface_core_PyRocket *__pyx_f_14interface_core_8PyR
   __pyx_r = __pyx_v_obj;
   goto __pyx_L0;
 
-  /* "rocket.pyx":20
+  /* "entities/rocket.pyx":20
  * 
  *     @staticmethod
  *     cdef PyRocket create(Rocket* ptr):             # <<<<<<<<<<<<<<
@@ -8725,7 +8725,7 @@ static struct __pyx_obj_14interface_core_PyRocket *__pyx_f_14interface_core_8PyR
   return __pyx_r;
 }
 
-/* "rocket.pyx":26
+/* "entities/rocket.pyx":26
  * 
  *     @property
  *     def name(self):             # <<<<<<<<<<<<<<
@@ -8752,7 +8752,7 @@ static PyObject *__pyx_pf_14interface_core_8PyRocket_4name___get__(struct __pyx_
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "rocket.pyx":27
+  /* "entities/rocket.pyx":27
  *     @property
  *     def name(self):
  *         return self.ptr.Name().decode('utf-8')             # <<<<<<<<<<<<<<
@@ -8766,7 +8766,7 @@ static PyObject *__pyx_pf_14interface_core_8PyRocket_4name___get__(struct __pyx_
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "rocket.pyx":26
+  /* "entities/rocket.pyx":26
  * 
  *     @property
  *     def name(self):             # <<<<<<<<<<<<<<
@@ -8785,7 +8785,7 @@ static PyObject *__pyx_pf_14interface_core_8PyRocket_4name___get__(struct __pyx_
   return __pyx_r;
 }
 
-/* "rocket.pyx":29
+/* "entities/rocket.pyx":29
  *         return self.ptr.Name().decode('utf-8')
  *     @name.setter
  *     def name(self, val):             # <<<<<<<<<<<<<<
@@ -8815,7 +8815,7 @@ static int __pyx_pf_14interface_core_8PyRocket_4name_2__set__(struct __pyx_obj_1
   std::string __pyx_t_4;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "rocket.pyx":30
+  /* "entities/rocket.pyx":30
  *     @name.setter
  *     def name(self, val):
  *         self.ptr.SetName(val.encode('utf-8'))             # <<<<<<<<<<<<<<
@@ -8843,7 +8843,7 @@ static int __pyx_pf_14interface_core_8PyRocket_4name_2__set__(struct __pyx_obj_1
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_self->ptr->SetName(__pyx_t_4);
 
-  /* "rocket.pyx":29
+  /* "entities/rocket.pyx":29
  *         return self.ptr.Name().decode('utf-8')
  *     @name.setter
  *     def name(self, val):             # <<<<<<<<<<<<<<
@@ -8865,7 +8865,7 @@ static int __pyx_pf_14interface_core_8PyRocket_4name_2__set__(struct __pyx_obj_1
   return __pyx_r;
 }
 
-/* "rocket.pyx":33
+/* "entities/rocket.pyx":33
  * 
  *     @property
  *     def comments(self):             # <<<<<<<<<<<<<<
@@ -8892,7 +8892,7 @@ static PyObject *__pyx_pf_14interface_core_8PyRocket_8comments___get__(struct __
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "rocket.pyx":34
+  /* "entities/rocket.pyx":34
  *     @property
  *     def comments(self):
  *         return self.ptr.Comments().decode('utf-8')             # <<<<<<<<<<<<<<
@@ -8906,7 +8906,7 @@ static PyObject *__pyx_pf_14interface_core_8PyRocket_8comments___get__(struct __
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "rocket.pyx":33
+  /* "entities/rocket.pyx":33
  * 
  *     @property
  *     def comments(self):             # <<<<<<<<<<<<<<
@@ -8925,7 +8925,7 @@ static PyObject *__pyx_pf_14interface_core_8PyRocket_8comments___get__(struct __
   return __pyx_r;
 }
 
-/* "rocket.pyx":36
+/* "entities/rocket.pyx":36
  *         return self.ptr.Comments().decode('utf-8')
  *     @comments.setter
  *     def comments(self, val):             # <<<<<<<<<<<<<<
@@ -8954,7 +8954,7 @@ static int __pyx_pf_14interface_core_8PyRocket_8comments_2__set__(struct __pyx_o
   std::string __pyx_t_4;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "rocket.pyx":37
+  /* "entities/rocket.pyx":37
  *     @comments.setter
  *     def comments(self, val):
  *         self.ptr.SetComments(val.encode('utf-8'))             # <<<<<<<<<<<<<<
@@ -8980,7 +8980,7 @@ static int __pyx_pf_14interface_core_8PyRocket_8comments_2__set__(struct __pyx_o
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_self->ptr->SetComments(__pyx_t_4);
 
-  /* "rocket.pyx":36
+  /* "entities/rocket.pyx":36
  *         return self.ptr.Comments().decode('utf-8')
  *     @comments.setter
  *     def comments(self, val):             # <<<<<<<<<<<<<<
@@ -9108,7 +9108,7 @@ static PyObject *__pyx_pf_14interface_core_8PyRocket_4__setstate_cython__(CYTHON
   return __pyx_r;
 }
 
-/* "simulation.pyx":28
+/* "entities/simulation.pyx":28
  *     cdef Simulation *ptr
  * 
  *     def __init__(self, *args):             # <<<<<<<<<<<<<<
@@ -9145,7 +9145,7 @@ static int __pyx_pf_14interface_core_12PySimulation___init__(CYTHON_UNUSED struc
   return __pyx_r;
 }
 
-/* "simulation.pyx":32
+/* "entities/simulation.pyx":32
  * 
  *     @staticmethod
  *     cdef PySimulation create(Simulation* ptr):             # <<<<<<<<<<<<<<
@@ -9161,7 +9161,7 @@ static struct __pyx_obj_14interface_core_PySimulation *__pyx_f_14interface_core_
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("create", 0);
 
-  /* "simulation.pyx":33
+  /* "entities/simulation.pyx":33
  *     @staticmethod
  *     cdef PySimulation create(Simulation* ptr):
  *         obj = <PySimulation>PySimulation.__new__(PySimulation)             # <<<<<<<<<<<<<<
@@ -9176,7 +9176,7 @@ static struct __pyx_obj_14interface_core_PySimulation *__pyx_f_14interface_core_
   __pyx_v_obj = ((struct __pyx_obj_14interface_core_PySimulation *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "simulation.pyx":34
+  /* "entities/simulation.pyx":34
  *     cdef PySimulation create(Simulation* ptr):
  *         obj = <PySimulation>PySimulation.__new__(PySimulation)
  *         obj.ptr = ptr             # <<<<<<<<<<<<<<
@@ -9185,7 +9185,7 @@ static struct __pyx_obj_14interface_core_PySimulation *__pyx_f_14interface_core_
  */
   __pyx_v_obj->ptr = __pyx_v_ptr;
 
-  /* "simulation.pyx":35
+  /* "entities/simulation.pyx":35
  *         obj = <PySimulation>PySimulation.__new__(PySimulation)
  *         obj.ptr = ptr
  *         return obj             # <<<<<<<<<<<<<<
@@ -9197,7 +9197,7 @@ static struct __pyx_obj_14interface_core_PySimulation *__pyx_f_14interface_core_
   __pyx_r = __pyx_v_obj;
   goto __pyx_L0;
 
-  /* "simulation.pyx":32
+  /* "entities/simulation.pyx":32
  * 
  *     @staticmethod
  *     cdef PySimulation create(Simulation* ptr):             # <<<<<<<<<<<<<<
@@ -9218,7 +9218,7 @@ static struct __pyx_obj_14interface_core_PySimulation *__pyx_f_14interface_core_
   return __pyx_r;
 }
 
-/* "simulation.pyx":38
+/* "entities/simulation.pyx":38
  * 
  *     @property
  *     def name(self):             # <<<<<<<<<<<<<<
@@ -9245,7 +9245,7 @@ static PyObject *__pyx_pf_14interface_core_12PySimulation_4name___get__(struct _
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "simulation.pyx":39
+  /* "entities/simulation.pyx":39
  *     @property
  *     def name(self):
  *         return self.ptr.Name().decode('utf-8')             # <<<<<<<<<<<<<<
@@ -9259,7 +9259,7 @@ static PyObject *__pyx_pf_14interface_core_12PySimulation_4name___get__(struct _
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "simulation.pyx":38
+  /* "entities/simulation.pyx":38
  * 
  *     @property
  *     def name(self):             # <<<<<<<<<<<<<<
@@ -9278,7 +9278,7 @@ static PyObject *__pyx_pf_14interface_core_12PySimulation_4name___get__(struct _
   return __pyx_r;
 }
 
-/* "simulation.pyx":41
+/* "entities/simulation.pyx":41
  *         return self.ptr.Name().decode('utf-8')
  *     @name.setter
  *     def name(self, val):             # <<<<<<<<<<<<<<
@@ -9308,7 +9308,7 @@ static int __pyx_pf_14interface_core_12PySimulation_4name_2__set__(struct __pyx_
   std::string __pyx_t_4;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "simulation.pyx":42
+  /* "entities/simulation.pyx":42
  *     @name.setter
  *     def name(self, val):
  *         self.ptr.SetName(val.encode('utf-8'))             # <<<<<<<<<<<<<<
@@ -9336,7 +9336,7 @@ static int __pyx_pf_14interface_core_12PySimulation_4name_2__set__(struct __pyx_
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_self->ptr->SetName(__pyx_t_4);
 
-  /* "simulation.pyx":41
+  /* "entities/simulation.pyx":41
  *         return self.ptr.Name().decode('utf-8')
  *     @name.setter
  *     def name(self, val):             # <<<<<<<<<<<<<<
@@ -9358,7 +9358,7 @@ static int __pyx_pf_14interface_core_12PySimulation_4name_2__set__(struct __pyx_
   return __pyx_r;
 }
 
-/* "simulation.pyx":45
+/* "entities/simulation.pyx":45
  * 
  *     @property
  *     def comments(self):             # <<<<<<<<<<<<<<
@@ -9385,7 +9385,7 @@ static PyObject *__pyx_pf_14interface_core_12PySimulation_8comments___get__(stru
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "simulation.pyx":46
+  /* "entities/simulation.pyx":46
  *     @property
  *     def comments(self):
  *         return self.ptr.Comments().decode('utf-8')             # <<<<<<<<<<<<<<
@@ -9399,7 +9399,7 @@ static PyObject *__pyx_pf_14interface_core_12PySimulation_8comments___get__(stru
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "simulation.pyx":45
+  /* "entities/simulation.pyx":45
  * 
  *     @property
  *     def comments(self):             # <<<<<<<<<<<<<<
@@ -9418,7 +9418,7 @@ static PyObject *__pyx_pf_14interface_core_12PySimulation_8comments___get__(stru
   return __pyx_r;
 }
 
-/* "simulation.pyx":48
+/* "entities/simulation.pyx":48
  *         return self.ptr.Comments().decode('utf-8')
  *     @comments.setter
  *     def comments(self, val):             # <<<<<<<<<<<<<<
@@ -9448,7 +9448,7 @@ static int __pyx_pf_14interface_core_12PySimulation_8comments_2__set__(struct __
   std::string __pyx_t_4;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "simulation.pyx":49
+  /* "entities/simulation.pyx":49
  *     @comments.setter
  *     def comments(self, val):
  *         self.ptr.SetComments(val.encode('utf-8'))             # <<<<<<<<<<<<<<
@@ -9476,7 +9476,7 @@ static int __pyx_pf_14interface_core_12PySimulation_8comments_2__set__(struct __
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_self->ptr->SetComments(__pyx_t_4);
 
-  /* "simulation.pyx":48
+  /* "entities/simulation.pyx":48
  *         return self.ptr.Comments().decode('utf-8')
  *     @comments.setter
  *     def comments(self, val):             # <<<<<<<<<<<<<<
@@ -9498,7 +9498,7 @@ static int __pyx_pf_14interface_core_12PySimulation_8comments_2__set__(struct __
   return __pyx_r;
 }
 
-/* "simulation.pyx":52
+/* "entities/simulation.pyx":52
  * 
  *     @property
  *     def height_pad(self):             # <<<<<<<<<<<<<<
@@ -9525,7 +9525,7 @@ static PyObject *__pyx_pf_14interface_core_12PySimulation_10height_pad___get__(s
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "simulation.pyx":53
+  /* "entities/simulation.pyx":53
  *     @property
  *     def height_pad(self):
  *         return self.ptr.HeightPad()             # <<<<<<<<<<<<<<
@@ -9539,7 +9539,7 @@ static PyObject *__pyx_pf_14interface_core_12PySimulation_10height_pad___get__(s
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "simulation.pyx":52
+  /* "entities/simulation.pyx":52
  * 
  *     @property
  *     def height_pad(self):             # <<<<<<<<<<<<<<
@@ -9558,7 +9558,7 @@ static PyObject *__pyx_pf_14interface_core_12PySimulation_10height_pad___get__(s
   return __pyx_r;
 }
 
-/* "simulation.pyx":55
+/* "entities/simulation.pyx":55
  *         return self.ptr.HeightPad()
  *     @height_pad.setter
  *     def height_pad(self, val):             # <<<<<<<<<<<<<<
@@ -9585,7 +9585,7 @@ static int __pyx_pf_14interface_core_12PySimulation_10height_pad_2__set__(struct
   double __pyx_t_1;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "simulation.pyx":56
+  /* "entities/simulation.pyx":56
  *     @height_pad.setter
  *     def height_pad(self, val):
  *         self.ptr.SetHeightPad(val)             # <<<<<<<<<<<<<<
@@ -9595,7 +9595,7 @@ static int __pyx_pf_14interface_core_12PySimulation_10height_pad_2__set__(struct
   __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(7, 56, __pyx_L1_error)
   __pyx_v_self->ptr->SetHeightPad(__pyx_t_1);
 
-  /* "simulation.pyx":55
+  /* "entities/simulation.pyx":55
  *         return self.ptr.HeightPad()
  *     @height_pad.setter
  *     def height_pad(self, val):             # <<<<<<<<<<<<<<
@@ -9614,7 +9614,7 @@ static int __pyx_pf_14interface_core_12PySimulation_10height_pad_2__set__(struct
   return __pyx_r;
 }
 
-/* "simulation.pyx":59
+/* "entities/simulation.pyx":59
  * 
  *     @property
  *     def angle_launch_rod(self):             # <<<<<<<<<<<<<<
@@ -9641,7 +9641,7 @@ static PyObject *__pyx_pf_14interface_core_12PySimulation_16angle_launch_rod___g
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "simulation.pyx":60
+  /* "entities/simulation.pyx":60
  *     @property
  *     def angle_launch_rod(self):
  *         return self.ptr.AngleLaunchRod()             # <<<<<<<<<<<<<<
@@ -9655,7 +9655,7 @@ static PyObject *__pyx_pf_14interface_core_12PySimulation_16angle_launch_rod___g
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "simulation.pyx":59
+  /* "entities/simulation.pyx":59
  * 
  *     @property
  *     def angle_launch_rod(self):             # <<<<<<<<<<<<<<
@@ -9674,7 +9674,7 @@ static PyObject *__pyx_pf_14interface_core_12PySimulation_16angle_launch_rod___g
   return __pyx_r;
 }
 
-/* "simulation.pyx":62
+/* "entities/simulation.pyx":62
  *         return self.ptr.AngleLaunchRod()
  *     @angle_launch_rod.setter
  *     def angle_launch_rod(self, val):             # <<<<<<<<<<<<<<
@@ -9701,7 +9701,7 @@ static int __pyx_pf_14interface_core_12PySimulation_16angle_launch_rod_2__set__(
   double __pyx_t_1;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "simulation.pyx":63
+  /* "entities/simulation.pyx":63
  *     @angle_launch_rod.setter
  *     def angle_launch_rod(self, val):
  *         self.ptr.SetAngleLaunchRod(val)             # <<<<<<<<<<<<<<
@@ -9711,7 +9711,7 @@ static int __pyx_pf_14interface_core_12PySimulation_16angle_launch_rod_2__set__(
   __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(7, 63, __pyx_L1_error)
   __pyx_v_self->ptr->SetAngleLaunchRod(__pyx_t_1);
 
-  /* "simulation.pyx":62
+  /* "entities/simulation.pyx":62
  *         return self.ptr.AngleLaunchRod()
  *     @angle_launch_rod.setter
  *     def angle_launch_rod(self, val):             # <<<<<<<<<<<<<<
@@ -9730,7 +9730,7 @@ static int __pyx_pf_14interface_core_12PySimulation_16angle_launch_rod_2__set__(
   return __pyx_r;
 }
 
-/* "simulation.pyx":66
+/* "entities/simulation.pyx":66
  * 
  *     @property
  *     def length_launch_rod(self):             # <<<<<<<<<<<<<<
@@ -9757,7 +9757,7 @@ static PyObject *__pyx_pf_14interface_core_12PySimulation_17length_launch_rod___
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "simulation.pyx":67
+  /* "entities/simulation.pyx":67
  *     @property
  *     def length_launch_rod(self):
  *         return self.ptr.LengthLaunchRod()             # <<<<<<<<<<<<<<
@@ -9771,7 +9771,7 @@ static PyObject *__pyx_pf_14interface_core_12PySimulation_17length_launch_rod___
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "simulation.pyx":66
+  /* "entities/simulation.pyx":66
  * 
  *     @property
  *     def length_launch_rod(self):             # <<<<<<<<<<<<<<
@@ -9790,7 +9790,7 @@ static PyObject *__pyx_pf_14interface_core_12PySimulation_17length_launch_rod___
   return __pyx_r;
 }
 
-/* "simulation.pyx":69
+/* "entities/simulation.pyx":69
  *         return self.ptr.LengthLaunchRod()
  *     @length_launch_rod.setter
  *     def length_launch_rod(self, val):             # <<<<<<<<<<<<<<
@@ -9817,7 +9817,7 @@ static int __pyx_pf_14interface_core_12PySimulation_17length_launch_rod_2__set__
   double __pyx_t_1;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "simulation.pyx":70
+  /* "entities/simulation.pyx":70
  *     @length_launch_rod.setter
  *     def length_launch_rod(self, val):
  *         self.ptr.SetLengthLaunchRod(val)             # <<<<<<<<<<<<<<
@@ -9827,7 +9827,7 @@ static int __pyx_pf_14interface_core_12PySimulation_17length_launch_rod_2__set__
   __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(7, 70, __pyx_L1_error)
   __pyx_v_self->ptr->SetLengthLaunchRod(__pyx_t_1);
 
-  /* "simulation.pyx":69
+  /* "entities/simulation.pyx":69
  *         return self.ptr.LengthLaunchRod()
  *     @length_launch_rod.setter
  *     def length_launch_rod(self, val):             # <<<<<<<<<<<<<<
@@ -9846,7 +9846,7 @@ static int __pyx_pf_14interface_core_12PySimulation_17length_launch_rod_2__set__
   return __pyx_r;
 }
 
-/* "simulation.pyx":72
+/* "entities/simulation.pyx":72
  *         self.ptr.SetLengthLaunchRod(val)
  * 
  *     def get_motor(self, PyStage stage):             # <<<<<<<<<<<<<<
@@ -9879,7 +9879,7 @@ static PyObject *__pyx_pf_14interface_core_12PySimulation_2get_motor(struct __py
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("get_motor", 0);
 
-  /* "simulation.pyx":73
+  /* "entities/simulation.pyx":73
  * 
  *     def get_motor(self, PyStage stage):
  *         motor = PyMotor()             # <<<<<<<<<<<<<<
@@ -9891,7 +9891,7 @@ static PyObject *__pyx_pf_14interface_core_12PySimulation_2get_motor(struct __py
   __pyx_v_motor = ((struct __pyx_obj_14interface_core_PyMotor *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "simulation.pyx":74
+  /* "entities/simulation.pyx":74
  *     def get_motor(self, PyStage stage):
  *         motor = PyMotor()
  *         motor = PyMotor.create(self.ptr.AssignedMotor(stage.ptr))             # <<<<<<<<<<<<<<
@@ -9903,7 +9903,7 @@ static PyObject *__pyx_pf_14interface_core_12PySimulation_2get_motor(struct __py
   __Pyx_DECREF_SET(__pyx_v_motor, ((struct __pyx_obj_14interface_core_PyMotor *)__pyx_t_1));
   __pyx_t_1 = 0;
 
-  /* "simulation.pyx":75
+  /* "entities/simulation.pyx":75
  *         motor = PyMotor()
  *         motor = PyMotor.create(self.ptr.AssignedMotor(stage.ptr))
  *         return motor             # <<<<<<<<<<<<<<
@@ -9915,7 +9915,7 @@ static PyObject *__pyx_pf_14interface_core_12PySimulation_2get_motor(struct __py
   __pyx_r = ((PyObject *)__pyx_v_motor);
   goto __pyx_L0;
 
-  /* "simulation.pyx":72
+  /* "entities/simulation.pyx":72
  *         self.ptr.SetLengthLaunchRod(val)
  * 
  *     def get_motor(self, PyStage stage):             # <<<<<<<<<<<<<<
@@ -9935,7 +9935,7 @@ static PyObject *__pyx_pf_14interface_core_12PySimulation_2get_motor(struct __py
   return __pyx_r;
 }
 
-/* "simulation.pyx":76
+/* "entities/simulation.pyx":76
  *         motor = PyMotor.create(self.ptr.AssignedMotor(stage.ptr))
  *         return motor
  *     def set_motor(self, PyMotor motor, PyStage stage):             # <<<<<<<<<<<<<<
@@ -10015,7 +10015,7 @@ static PyObject *__pyx_pf_14interface_core_12PySimulation_4set_motor(struct __py
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("set_motor", 0);
 
-  /* "simulation.pyx":77
+  /* "entities/simulation.pyx":77
  *         return motor
  *     def set_motor(self, PyMotor motor, PyStage stage):
  *         self.ptr.SetMotor(motor.ptr, stage.ptr)             # <<<<<<<<<<<<<<
@@ -10024,7 +10024,7 @@ static PyObject *__pyx_pf_14interface_core_12PySimulation_4set_motor(struct __py
  */
   __pyx_v_self->ptr->SetMotor(__pyx_v_motor->ptr, __pyx_v_stage->ptr);
 
-  /* "simulation.pyx":76
+  /* "entities/simulation.pyx":76
  *         motor = PyMotor.create(self.ptr.AssignedMotor(stage.ptr))
  *         return motor
  *     def set_motor(self, PyMotor motor, PyStage stage):             # <<<<<<<<<<<<<<
@@ -10039,7 +10039,7 @@ static PyObject *__pyx_pf_14interface_core_12PySimulation_4set_motor(struct __py
   return __pyx_r;
 }
 
-/* "simulation.pyx":79
+/* "entities/simulation.pyx":79
  *         self.ptr.SetMotor(motor.ptr, stage.ptr)
  * 
  *     def run(self, step_ascent, step_descent):             # <<<<<<<<<<<<<<
@@ -10114,7 +10114,7 @@ static PyObject *__pyx_pf_14interface_core_12PySimulation_6run(struct __pyx_obj_
   double __pyx_t_2;
   __Pyx_RefNannySetupContext("run", 0);
 
-  /* "simulation.pyx":80
+  /* "entities/simulation.pyx":80
  * 
  *     def run(self, step_ascent, step_descent):
  *         self.ptr.Run(step_ascent, step_descent)             # <<<<<<<<<<<<<<
@@ -10123,7 +10123,7 @@ static PyObject *__pyx_pf_14interface_core_12PySimulation_6run(struct __pyx_obj_
   __pyx_t_2 = __pyx_PyFloat_AsDouble(__pyx_v_step_descent); if (unlikely((__pyx_t_2 == (double)-1) && PyErr_Occurred())) __PYX_ERR(7, 80, __pyx_L1_error)
   __pyx_v_self->ptr->Run(__pyx_t_1, __pyx_t_2);
 
-  /* "simulation.pyx":79
+  /* "entities/simulation.pyx":79
  *         self.ptr.SetMotor(motor.ptr, stage.ptr)
  * 
  *     def run(self, step_ascent, step_descent):             # <<<<<<<<<<<<<<
@@ -10249,7 +10249,7 @@ static PyObject *__pyx_pf_14interface_core_12PySimulation_10__setstate_cython__(
   return __pyx_r;
 }
 
-/* "stage.pyx":36
+/* "entities/stage.pyx":36
  *     cdef Stage *ptr
  * 
  *     def __init__(self, *args):             # <<<<<<<<<<<<<<
@@ -10286,7 +10286,7 @@ static int __pyx_pf_14interface_core_7PyStage___init__(CYTHON_UNUSED struct __py
   return __pyx_r;
 }
 
-/* "stage.pyx":40
+/* "entities/stage.pyx":40
  * 
  *     @staticmethod
  *     cdef PyStage create(Stage* ptr):             # <<<<<<<<<<<<<<
@@ -10302,7 +10302,7 @@ static struct __pyx_obj_14interface_core_PyStage *__pyx_f_14interface_core_7PySt
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("create", 0);
 
-  /* "stage.pyx":41
+  /* "entities/stage.pyx":41
  *     @staticmethod
  *     cdef PyStage create(Stage* ptr):
  *         obj = <PyStage>PyStage.__new__(PyStage)             # <<<<<<<<<<<<<<
@@ -10317,7 +10317,7 @@ static struct __pyx_obj_14interface_core_PyStage *__pyx_f_14interface_core_7PySt
   __pyx_v_obj = ((struct __pyx_obj_14interface_core_PyStage *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "stage.pyx":42
+  /* "entities/stage.pyx":42
  *     cdef PyStage create(Stage* ptr):
  *         obj = <PyStage>PyStage.__new__(PyStage)
  *         obj.ptr = ptr             # <<<<<<<<<<<<<<
@@ -10326,7 +10326,7 @@ static struct __pyx_obj_14interface_core_PyStage *__pyx_f_14interface_core_7PySt
  */
   __pyx_v_obj->ptr = __pyx_v_ptr;
 
-  /* "stage.pyx":43
+  /* "entities/stage.pyx":43
  *         obj = <PyStage>PyStage.__new__(PyStage)
  *         obj.ptr = ptr
  *         return obj             # <<<<<<<<<<<<<<
@@ -10338,7 +10338,7 @@ static struct __pyx_obj_14interface_core_PyStage *__pyx_f_14interface_core_7PySt
   __pyx_r = __pyx_v_obj;
   goto __pyx_L0;
 
-  /* "stage.pyx":40
+  /* "entities/stage.pyx":40
  * 
  *     @staticmethod
  *     cdef PyStage create(Stage* ptr):             # <<<<<<<<<<<<<<
@@ -10359,7 +10359,7 @@ static struct __pyx_obj_14interface_core_PyStage *__pyx_f_14interface_core_7PySt
   return __pyx_r;
 }
 
-/* "stage.pyx":46
+/* "entities/stage.pyx":46
  * 
  *     @property
  *     def name(self):             # <<<<<<<<<<<<<<
@@ -10386,7 +10386,7 @@ static PyObject *__pyx_pf_14interface_core_7PyStage_4name___get__(struct __pyx_o
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "stage.pyx":47
+  /* "entities/stage.pyx":47
  *     @property
  *     def name(self):
  *         return self.ptr.Name().decode('utf-8')             # <<<<<<<<<<<<<<
@@ -10400,7 +10400,7 @@ static PyObject *__pyx_pf_14interface_core_7PyStage_4name___get__(struct __pyx_o
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "stage.pyx":46
+  /* "entities/stage.pyx":46
  * 
  *     @property
  *     def name(self):             # <<<<<<<<<<<<<<
@@ -10419,7 +10419,7 @@ static PyObject *__pyx_pf_14interface_core_7PyStage_4name___get__(struct __pyx_o
   return __pyx_r;
 }
 
-/* "stage.pyx":49
+/* "entities/stage.pyx":49
  *         return self.ptr.Name().decode('utf-8')
  *     @name.setter
  *     def name(self, val):             # <<<<<<<<<<<<<<
@@ -10449,7 +10449,7 @@ static int __pyx_pf_14interface_core_7PyStage_4name_2__set__(struct __pyx_obj_14
   std::string __pyx_t_4;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "stage.pyx":50
+  /* "entities/stage.pyx":50
  *     @name.setter
  *     def name(self, val):
  *         self.ptr.SetName(val.encode('utf-8'))             # <<<<<<<<<<<<<<
@@ -10477,7 +10477,7 @@ static int __pyx_pf_14interface_core_7PyStage_4name_2__set__(struct __pyx_obj_14
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_self->ptr->SetName(__pyx_t_4);
 
-  /* "stage.pyx":49
+  /* "entities/stage.pyx":49
  *         return self.ptr.Name().decode('utf-8')
  *     @name.setter
  *     def name(self, val):             # <<<<<<<<<<<<<<
@@ -10499,7 +10499,7 @@ static int __pyx_pf_14interface_core_7PyStage_4name_2__set__(struct __pyx_obj_14
   return __pyx_r;
 }
 
-/* "stage.pyx":53
+/* "entities/stage.pyx":53
  * 
  *     @property
  *     def comments(self):             # <<<<<<<<<<<<<<
@@ -10526,7 +10526,7 @@ static PyObject *__pyx_pf_14interface_core_7PyStage_8comments___get__(struct __p
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "stage.pyx":54
+  /* "entities/stage.pyx":54
  *     @property
  *     def comments(self):
  *         return self.ptr.Comments().decode('utf-8')             # <<<<<<<<<<<<<<
@@ -10540,7 +10540,7 @@ static PyObject *__pyx_pf_14interface_core_7PyStage_8comments___get__(struct __p
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "stage.pyx":53
+  /* "entities/stage.pyx":53
  * 
  *     @property
  *     def comments(self):             # <<<<<<<<<<<<<<
@@ -10559,7 +10559,7 @@ static PyObject *__pyx_pf_14interface_core_7PyStage_8comments___get__(struct __p
   return __pyx_r;
 }
 
-/* "stage.pyx":56
+/* "entities/stage.pyx":56
  *         return self.ptr.Comments().decode('utf-8')
  *     @comments.setter
  *     def comments(self, val):             # <<<<<<<<<<<<<<
@@ -10589,7 +10589,7 @@ static int __pyx_pf_14interface_core_7PyStage_8comments_2__set__(struct __pyx_ob
   std::string __pyx_t_4;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "stage.pyx":57
+  /* "entities/stage.pyx":57
  *     @comments.setter
  *     def comments(self, val):
  *         self.ptr.SetComments(val.encode('utf-8'))             # <<<<<<<<<<<<<<
@@ -10617,7 +10617,7 @@ static int __pyx_pf_14interface_core_7PyStage_8comments_2__set__(struct __pyx_ob
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_self->ptr->SetComments(__pyx_t_4);
 
-  /* "stage.pyx":56
+  /* "entities/stage.pyx":56
  *         return self.ptr.Comments().decode('utf-8')
  *     @comments.setter
  *     def comments(self, val):             # <<<<<<<<<<<<<<
@@ -10639,7 +10639,7 @@ static int __pyx_pf_14interface_core_7PyStage_8comments_2__set__(struct __pyx_ob
   return __pyx_r;
 }
 
-/* "stage.pyx":62
+/* "entities/stage.pyx":62
  *     #def mass(self):
  *     #    return self.ptr.Mass()
  *     def override_mass(self, val):             # <<<<<<<<<<<<<<
@@ -10666,7 +10666,7 @@ static PyObject *__pyx_pf_14interface_core_7PyStage_2override_mass(struct __pyx_
   double __pyx_t_1;
   __Pyx_RefNannySetupContext("override_mass", 0);
 
-  /* "stage.pyx":63
+  /* "entities/stage.pyx":63
  *     #    return self.ptr.Mass()
  *     def override_mass(self, val):
  *         self.ptr.SetOverrideMass(val)             # <<<<<<<<<<<<<<
@@ -10676,7 +10676,7 @@ static PyObject *__pyx_pf_14interface_core_7PyStage_2override_mass(struct __pyx_
   __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(8, 63, __pyx_L1_error)
   __pyx_v_self->ptr->SetOverrideMass(__pyx_t_1);
 
-  /* "stage.pyx":62
+  /* "entities/stage.pyx":62
  *     #def mass(self):
  *     #    return self.ptr.Mass()
  *     def override_mass(self, val):             # <<<<<<<<<<<<<<
@@ -10696,7 +10696,7 @@ static PyObject *__pyx_pf_14interface_core_7PyStage_2override_mass(struct __pyx_
   return __pyx_r;
 }
 
-/* "stage.pyx":64
+/* "entities/stage.pyx":64
  *     def override_mass(self, val):
  *         self.ptr.SetOverrideMass(val)
  *     def model_mass(self):             # <<<<<<<<<<<<<<
@@ -10722,7 +10722,7 @@ static PyObject *__pyx_pf_14interface_core_7PyStage_4model_mass(struct __pyx_obj
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("model_mass", 0);
 
-  /* "stage.pyx":65
+  /* "entities/stage.pyx":65
  *         self.ptr.SetOverrideMass(val)
  *     def model_mass(self):
  *         self.ptr.SetModelMass()             # <<<<<<<<<<<<<<
@@ -10731,7 +10731,7 @@ static PyObject *__pyx_pf_14interface_core_7PyStage_4model_mass(struct __pyx_obj
  */
   __pyx_v_self->ptr->SetModelMass();
 
-  /* "stage.pyx":64
+  /* "entities/stage.pyx":64
  *     def override_mass(self, val):
  *         self.ptr.SetOverrideMass(val)
  *     def model_mass(self):             # <<<<<<<<<<<<<<
@@ -10746,7 +10746,7 @@ static PyObject *__pyx_pf_14interface_core_7PyStage_4model_mass(struct __pyx_obj
   return __pyx_r;
 }
 
-/* "stage.pyx":68
+/* "entities/stage.pyx":68
  * 
  *     @property
  *     def surface_finish(self):             # <<<<<<<<<<<<<<
@@ -10773,7 +10773,7 @@ static PyObject *__pyx_pf_14interface_core_7PyStage_14surface_finish___get__(str
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "stage.pyx":69
+  /* "entities/stage.pyx":69
  *     @property
  *     def surface_finish(self):
  *         return <PySurfaceFinish> self.ptr.AssignedSurfaceFinish()             # <<<<<<<<<<<<<<
@@ -10787,7 +10787,7 @@ static PyObject *__pyx_pf_14interface_core_7PyStage_14surface_finish___get__(str
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "stage.pyx":68
+  /* "entities/stage.pyx":68
  * 
  *     @property
  *     def surface_finish(self):             # <<<<<<<<<<<<<<
@@ -10806,7 +10806,7 @@ static PyObject *__pyx_pf_14interface_core_7PyStage_14surface_finish___get__(str
   return __pyx_r;
 }
 
-/* "stage.pyx":71
+/* "entities/stage.pyx":71
  *         return <PySurfaceFinish> self.ptr.AssignedSurfaceFinish()
  *     @surface_finish.setter
  *     def surface_finish(self, PySurfaceFinish val):             # <<<<<<<<<<<<<<
@@ -10842,7 +10842,7 @@ static int __pyx_pf_14interface_core_7PyStage_14surface_finish_2__set__(struct _
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "stage.pyx":72
+  /* "entities/stage.pyx":72
  *     @surface_finish.setter
  *     def surface_finish(self, PySurfaceFinish val):
  *         self.ptr.SetSurfaceFinish(<SurfaceFinish><int>val)             # <<<<<<<<<<<<<<
@@ -10851,7 +10851,7 @@ static int __pyx_pf_14interface_core_7PyStage_14surface_finish_2__set__(struct _
  */
   __pyx_v_self->ptr->SetSurfaceFinish(((enum SurfaceFinish)((int)__pyx_v_val)));
 
-  /* "stage.pyx":71
+  /* "entities/stage.pyx":71
  *         return <PySurfaceFinish> self.ptr.AssignedSurfaceFinish()
  *     @surface_finish.setter
  *     def surface_finish(self, PySurfaceFinish val):             # <<<<<<<<<<<<<<
@@ -10865,7 +10865,7 @@ static int __pyx_pf_14interface_core_7PyStage_14surface_finish_2__set__(struct _
   return __pyx_r;
 }
 
-/* "stage.pyx":75
+/* "entities/stage.pyx":75
  * 
  *     @property
  *     def distance_overlap(self):             # <<<<<<<<<<<<<<
@@ -10892,7 +10892,7 @@ static PyObject *__pyx_pf_14interface_core_7PyStage_16distance_overlap___get__(s
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "stage.pyx":76
+  /* "entities/stage.pyx":76
  *     @property
  *     def distance_overlap(self):
  *         return self.ptr.DistanceOverlap()             # <<<<<<<<<<<<<<
@@ -10906,7 +10906,7 @@ static PyObject *__pyx_pf_14interface_core_7PyStage_16distance_overlap___get__(s
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "stage.pyx":75
+  /* "entities/stage.pyx":75
  * 
  *     @property
  *     def distance_overlap(self):             # <<<<<<<<<<<<<<
@@ -10925,7 +10925,7 @@ static PyObject *__pyx_pf_14interface_core_7PyStage_16distance_overlap___get__(s
   return __pyx_r;
 }
 
-/* "stage.pyx":78
+/* "entities/stage.pyx":78
  *         return self.ptr.DistanceOverlap()
  *     @distance_overlap.setter
  *     def distance_overlap(self, val):             # <<<<<<<<<<<<<<
@@ -10950,14 +10950,14 @@ static int __pyx_pf_14interface_core_7PyStage_16distance_overlap_2__set__(struct
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "stage.pyx":79
+  /* "entities/stage.pyx":79
  *     @distance_overlap.setter
  *     def distance_overlap(self, val):
  *         self.ptr.DistanceOverlap()             # <<<<<<<<<<<<<<
  */
   (void)(__pyx_v_self->ptr->DistanceOverlap());
 
-  /* "stage.pyx":78
+  /* "entities/stage.pyx":78
  *         return self.ptr.DistanceOverlap()
  *     @distance_overlap.setter
  *     def distance_overlap(self, val):             # <<<<<<<<<<<<<<
