@@ -2,7 +2,7 @@ from libcpp.string cimport string
 from libcpp.vector cimport vector 
 from libcpp cimport bool
 
-cdef extern from "../core/entities/design/instance.h":
+cdef extern from "instance.h":
     cdef enum PartPosition "PartPosition":
         _FOREWARD,
         _AFT
@@ -10,7 +10,7 @@ cpdef enum PyPartPosition:
     FOREWARD = 0
     AFT = 1
 
-cdef extern from "../core/entities/design/instance.h":
+cdef extern from "instance.h":
     cdef cppclass Instance:
         Instance(string name, Part* part, Instance* instance, PartPosition position_type, double position_from)        
         

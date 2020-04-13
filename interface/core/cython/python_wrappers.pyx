@@ -11,9 +11,9 @@ include "entities/rocket.pyx"
 include "entities/simulation.pyx"
 include "entities/stage.pyx"
 
-cdef extern from "../core/database.h":
-    cdef cppclass Database:
-        Database()         
+cdef extern from "entity_manager.h":
+    cdef cppclass EntityManager:
+        EntityManager()         
         void CreateMaterial(string name);
         void DeleteMaterial(Material* material);
         Material* GetMaterial(string name);
@@ -49,10 +49,10 @@ cdef extern from "../core/database.h":
         Motor* GetMotor(string name);
         
 cdef class InterfaceCore:    
-    cdef Database *ptr
+    cdef EntityManager *ptr
     
     def __cinit__(self):    
-        self.ptr = new Database()
+        self.ptr = new EntityManager()
         
     def __dealloc__(self):
         del self.ptr

@@ -3,7 +3,7 @@ from libcpp.vector cimport vector
 from libcpp cimport bool
 from libc.stdint cimport uint32_t
 
-cdef extern from "../core/entities/design/part.h":
+cdef extern from "part.h":
     cdef enum PartType "PartType":
         _BULKHEAD, 
         _FINS,
@@ -21,7 +21,7 @@ cpdef enum PyPartType:
     TUBE_BODY = 5
     TUBE_INNER = 6
 
-cdef extern from "../core/entities/design/part.h":
+cdef extern from "part.h":
     cdef cppclass Part:
         Part(string name, string comments);
         
@@ -77,7 +77,7 @@ cdef class PyPart:
         self.ptr_part.SetModelMass()
 
 
-cdef extern from "../core/entities/design/part_bulkhead.h":
+cdef extern from "part_bulkhead.h":
     cdef cppclass Bulkhead:
         Bulkhead(string name, string comments, Material* material,
             double diameter, double thickness, 
@@ -116,11 +116,11 @@ cdef class PyBulkhead(PyPart):
     def thickness(self, val):
         self.ptr.SetThickness(val)
 
-cdef extern from "../core/entities/design/fin_shape.h":
+cdef extern from "fin_shape.h":
     cdef cppclass FinShape:
         FinShape();
 
-cdef extern from "../core/entities/design/fin_shape.h":
+cdef extern from "fin_shape.h":
     cdef cppclass FinShapeTrapezoidal:
         FinShapeTrapezoidal(double chord_root, double chord_tip, double span, double length_sweep);
 
@@ -134,7 +134,7 @@ cdef extern from "../core/entities/design/fin_shape.h":
         double Span() const;
         double LengthSweep() const;
 
-cdef extern from "../core/models/aerodynamics.h":
+cdef extern from "aerodynamics.h":
     cdef enum FinCrossSection "FinCrossSection":
         _SQUARE,
         _ROUNDED,
@@ -146,7 +146,7 @@ cpdef enum PyFinCrossSection:
     AIRFOIL = 2
     DOUBLE_WEDGE = 3
 
-cdef extern from "../core/entities/design/part_fins.h":
+cdef extern from "part_fins.h":
     cdef cppclass Fins:
         Fins(string name, string comments, Material* material,
         FinShape* shape, const FinCrossSection& cross_section, 
@@ -243,7 +243,7 @@ cdef class PyFins(PyPart):
         shape_ptr.SetLengthSweep(val)
 
 
-cdef extern from "../core/models/aerodynamics.h":
+cdef extern from "aerodynamics.h":
     cdef enum NoseconeType "NoseconeType":
         _VON_KARMEN,
         _CONICAL,
@@ -255,7 +255,7 @@ cpdef enum PyNoseconeType:
     OGIVE  = 2
     HAACK  = 3
 
-cdef extern from "../core/entities/design/part_nosecone.h":
+cdef extern from "part_nosecone.h":
     cdef cppclass Nosecone:
         Nosecone(string name, string comments, Material* material,
             NoseconeType nose_type, double shape_parameter,
@@ -360,7 +360,7 @@ cdef class PyNosecone(PyPart):
         return self.ptr.Length()
 
 
-cdef extern from "../core/entities/design/part_tube_body.h":
+cdef extern from "part_tube_body.h":
     cdef cppclass TubeBody:
         TubeBody(string name, string comments, Material* material,
             double length, double diameter_outer, double thickness,

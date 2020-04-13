@@ -2,7 +2,7 @@ from libcpp.string cimport string
 from libcpp.vector cimport vector 
 from libcpp cimport bool
 
-cdef extern from "../core/models/aerodynamics.h":
+cdef extern from "aerodynamics.h":
     cdef enum SurfaceFinish "SurfaceFinish":
         _ROUGH,
         _UNFINISHED,
@@ -14,7 +14,7 @@ cpdef enum PySurfaceFinish:
     PAINTED = 2
     POLISHED = 3
 
-cdef extern from "../core/entities/design/stage.h":
+cdef extern from "stage.h":
     cdef cppclass Stage:
         Stage(string name, string comments)
         void SetName(string name)

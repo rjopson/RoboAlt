@@ -2,7 +2,7 @@ from libcpp.string cimport string
 from libcpp.vector cimport vector 
 from libcpp cimport bool
 
-cdef extern from "../core/entities/design/configuration.h":
+cdef extern from "configuration.h":
     cdef cppclass Configuration:
         Configuration(string name, string comments)
         void SetName(string name)
@@ -35,3 +35,8 @@ cdef class PyConfiguration:
     @comments.setter
     def comments(self, val):
         self.ptr.SetComments(val.encode('utf-8'))
+
+    def named_attributes(self):
+        return {"name": self.name,
+                "comments": self.comments}
+

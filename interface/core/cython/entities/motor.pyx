@@ -2,7 +2,7 @@ from libcpp.string cimport string
 from libcpp.vector cimport vector 
 from libcpp cimport bool
 
-cdef extern from "../core/entities/flight/motor.h":
+cdef extern from "motor.h":
     cdef cppclass Motor:
         Motor(string name, string manufacturer, string comments,
 		    double diameter, double length, vector[double] delay, double mass_propellant, double mass_total,

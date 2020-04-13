@@ -2,7 +2,7 @@ from libcpp.string cimport string
 from libcpp.vector cimport vector 
 from libcpp cimport bool
 
-cdef extern from "../core/entities/design/rocket.h":
+cdef extern from "rocket.h":
     cdef cppclass Rocket:
         Rocket(string name, string comments);
         void SetName(string);

@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{11050481-0225-4296-ac2e-125aad1899b3}</ProjectGuid>
+    <ProjectHome />
+    <StartupFile>tests\integration\test.py</StartupFile>
+    <SearchPath />
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <LaunchProvider>Standard Python launcher</LaunchProvider>
+    <InterpreterId />
+    <SuppressConfigureTestFrameworkPrompt>true</SuppressConfigureTestFrameworkPrompt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="setup.py" />
+    <Compile Include="tests\integration\test.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="entities\" />
+    <Folder Include="tests\" />
+    <Folder Include="tests\integration" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="entities\configuration.pyx" />
+    <Content Include="entities\instance.pyx" />
+    <Content Include="entities\material.pyx" />
+    <Content Include="entities\motor.pyx" />
+    <Content Include="entities\part.pyx" />
+    <Content Include="entities\rocket.pyx" />
+    <Content Include="entities\simulation.pyx" />
+    <Content Include="entities\stage.pyx" />
+    <Content Include="python_wrappers.pyx" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
+</Project>

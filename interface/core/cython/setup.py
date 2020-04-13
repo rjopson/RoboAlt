@@ -3,7 +3,8 @@ from distutils.extension import Extension
 from Cython.Build import cythonize
 from Cython.Distutils import build_ext
 
-project_path = "../core/"
+#cpp paths
+project_path = "../cpp/src/"
 entities_path = project_path + "entities/"
 design_path = project_path + "entities/design/"
 flight_path = project_path + "entities/flight/"
@@ -18,7 +19,7 @@ extensions = [
                     flight_path + "atmosphere.cpp",
                     models_path + "atmosphere_isa.cpp",
                     design_path + "configuration.cpp",
-                    project_path + "database.cpp",
+                    entities_path + "entity_manager.cpp",
                     flight_path + "drag.cpp",
                     entities_path + "entity.cpp",
                     design_path + "fin_shape.cpp",

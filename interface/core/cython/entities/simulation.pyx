@@ -2,7 +2,7 @@ from libcpp.string cimport string
 from libcpp.vector cimport vector 
 from libcpp cimport bool
 
-cdef extern from "../core/entities/flight/simulation.h":
+cdef extern from "simulation.h":
     cdef cppclass Simulation:
         Simulation(string name, string comments, double height_pad, double angle_launch_rod, double length_launch_rod)
         
