@@ -4,7 +4,8 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>8dcd166b-b876-4d56-a87a-f8e7913dae6d</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>test.py</StartupFile>
+    <StartupFile>
+    </StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -33,7 +34,9 @@
     <Content Include="entities/part.pyx" />
     <Content Include="entities/simulation.pyx" />
     <Content Include="entities/stage.pyx" />
+    <Content Include="entities\python_wrappers.pyx" />
     <Content Include="entities\rocket.pyx" />
+    <Content Include="python_wrappers.pyx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="entities\" />

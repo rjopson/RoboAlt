@@ -2,7 +2,7 @@
 #include <string>
 
 #include "configuration.h"
-#include "database.h"
+#include "entity_manager.h"
 #include "fin_shape.h"
 #include "instance.h"
 #include "material.h"
@@ -16,7 +16,7 @@ int main() {
 
 	std::cout << "Creating rocket" << std::endl;
 
-    Database* db = new Database();
+    EntityManager* db = new EntityManager();
 
     //Create rocket
     db->CreateRocket("29mm 3DPME v2019");
@@ -102,7 +102,7 @@ int main() {
     
 	//Gather data for the simulation
 	//Motor* h128 = new Motor("D:/Personal/Rockets/RoboAlt/Interface/core/testFiles/AeroTech_H128.eng");
-    db->CreateMotor("C:/Users/rober/Documents/Rockets/Altimeters/interface/core/tests/test_files/AeroTech_H128.eng");
+    db->CreateMotor("C:/Users/rober/Documents/Rockets/Altimeters/RoboAlt/interface/core/cpp/tests/test_files/AeroTech_H128.eng");
     //Motor* h128 = new Motor("C:/Users/rober/Documents/Rockets/Altimeters/Interface/core/testFiles/AeroTech_H128.eng");
 
 	//let's see if simulation works...

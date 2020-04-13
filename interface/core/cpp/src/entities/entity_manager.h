@@ -1,5 +1,5 @@
-#ifndef _DATABASE_H
-#define _DATABASE_H
+#ifndef _ENTITY_MANAGER_H
+#define _ENTITY_MANAGER_H
 
 #include <vector>
 
@@ -8,10 +8,10 @@
 #include "motor.h"
 #include "rocket.h"
 
-class Database {
+class EntityManager {
   public:
-	Database();
-	~Database();
+	EntityManager();
+	~EntityManager();
 
     //bool CurrentConfiguration(const int& id);
     //Configuration* CurrentConfiguration();

@@ -1,17 +1,17 @@
-#include "Database.h"
+#include "entity_manager.h"
 
-Database::Database() {
+EntityManager::EntityManager() {
 }
 
 
-Database::~Database() {
+EntityManager::~EntityManager() {
 }
 
-void Database::CreateMaterial(const std::string& name) {
+void EntityManager::CreateMaterial(const std::string& name) {
     materials_.push_back(new Material(name, "", 1000.0));
 }
 
-void Database::DeleteMaterial(Material* material) {
+void EntityManager::DeleteMaterial(Material* material) {
     
     auto it = std::find(materials_.begin(), materials_.end(), material);
     if (it != materials_.end()) {
@@ -21,25 +21,25 @@ void Database::DeleteMaterial(Material* material) {
     }
 }
 
-Material* Database::GetMaterial(const std::string& name) {
+Material* EntityManager::GetMaterial(const std::string& name) {
     return GetEntity(materials_, name);
 }
 
-void Database::CreateRocket(const std::string& name) {
+void EntityManager::CreateRocket(const std::string& name) {
     rockets_.push_back(new Rocket(name, ""));
 }
 
-void Database::DeleteRocket(Rocket* rocket) {
+void EntityManager::DeleteRocket(Rocket* rocket) {
     
     //Lots of stuff here to delete... config, instances, parts etc.
     DeleteEntity(rockets_, rocket);
 }
 
-Rocket* Database::GetRocket(const std::string& name) {
+Rocket* EntityManager::GetRocket(const std::string& name) {
     return GetEntity(rockets_, name);
 }
 
-void Database::CreatePart(PartType part_type, const std::string& name, Rocket* rocket) {
+void EntityManager::CreatePart(PartType part_type, const std::string& name, Rocket* rocket) {
 
     Material* material = nullptr;
     Part* part = nullptr;
@@ -72,7 +72,7 @@ void Database::CreatePart(PartType part_type, const std::string& name, Rocket* r
     rocket->AddPart(part);
 }
 
-void Database::DeletePart(Part* part) {
+void EntityManager::DeletePart(Part* part) {
 
     //remove part from the rocket it was stored in
     for (auto it = rockets_.begin(); it != rockets_.end(); it++) {
@@ -94,7 +94,7 @@ void Database::DeletePart(Part* part) {
     DeleteEntity(parts_, part);
 }
 
-Part* Database::GetPart(const std::string& rocket_name, const std::string& part_name) {
+Part* EntityManager::GetPart(const std::string& rocket_name, const std::string& part_name) {
 
     Rocket* rocket = GetEntity(rockets_, rocket_name);
     Part* part;
@@ -107,7 +107,7 @@ Part* Database::GetPart(const std::string& rocket_name, const std::string& part_
     }
 }
 
-void Database::CreateConfiguration(const std::string& name, Rocket* rocket) {
+void EntityManager::CreateConfiguration(const std::string& name, Rocket* rocket) {
     configurations_.push_back(new Configuration(name, ""));
     rocket->AddConfiguration(configurations_.back());
     
@@ -115,13 +115,13 @@ void Database::CreateConfiguration(const std::string& name, Rocket* rocket) {
     //CreateStage("Sustainer", configurations_.back());
 }
 
-void Database::DeleteConfiguration(Configuration* configuration) {
+void EntityManager::DeleteConfiguration(Configuration* configuration) {
     //lots of stuff here...
 
     DeleteEntity(configurations_, configuration);
 }
 
-Configuration* Database::GetConfiguration(const std::string& rocket_name, const std::string& configuration_name) {
+Configuration* EntityManager::GetConfiguration(const std::string& rocket_name, const std::string& configuration_name) {
     
     Rocket* rocket = GetEntity(rockets_, rocket_name);
     Configuration* config;
@@ -134,18 +134,18 @@ Configuration* Database::GetConfiguration(const std::string& rocket_name, const 
     }
 }
 
-void Database::CreateStage(const std::string& name, Configuration* configuration) {    
+void EntityManager::CreateStage(const std::string& name, Configuration* configuration) {    
     stages_.push_back(new Stage(name, "", SurfaceFinish::PAINTED, 0.0, false, 0.0, false, 0.0));
     configuration->AddStage(stages_.back());
 }
 
-void Database::DeleteStage(Stage* stage) {
+void EntityManager::DeleteStage(Stage* stage) {
     //other stuff here...
 
     DeleteEntity(stages_, stage);
 }
 
-Stage* Database::GetStage(const std::string& rocket_name, const std::string& configuration_name, const std::string& stage_name) {
+Stage* EntityManager::GetStage(const std::string& rocket_name, const std::string& configuration_name, const std::string& stage_name) {
     
     Rocket* rocket = GetEntity(rockets_, rocket_name);
     Configuration* config;
@@ -166,16 +166,16 @@ Stage* Database::GetStage(const std::string& rocket_name, const std::string& con
     }
 }
 
-void Database::CreateInstance(const std::string& name, Part* part, Instance* parent) {
+void EntityManager::CreateInstance(const std::string& name, Part* part, Instance* parent) {
     instances_.push_back(new Instance(name, part, parent, PartPosition::FOREWARD, 0.0));
 }
 
-void Database::DeleteInstance(Instance* instance) {
+void EntityManager::DeleteInstance(Instance* instance) {
     
     DeleteEntity(instances_, instance);
 }
 
-Instance* Database::GetInstance(const std::string& rocket_name, const std::string& instance_name) {
+Instance* EntityManager::GetInstance(const std::string& rocket_name, const std::string& instance_name) {
     
     Rocket* rocket = GetEntity(rockets_, rocket_name);
 
@@ -187,13 +187,13 @@ Instance* Database::GetInstance(const std::string& rocket_name, const std::strin
     }
 }
 
-void Database::CreateSimulation(const std::string& name, Configuration* configuration) {
+void EntityManager::CreateSimulation(const std::string& name, Configuration* configuration) {
 
     simulations_.push_back(new Simulation(name, "", 0.0, 0.0, 2.0));
     configuration->AddSimulation(simulations_.back());
 }
 
-void Database::DeleteSimulation(Simulation* simulation) {
+void EntityManager::DeleteSimulation(Simulation* simulation) {
     
     for (auto config : configurations_) {
         config->RemoveSimulation(simulation);
@@ -204,7 +204,7 @@ void Database::DeleteSimulation(Simulation* simulation) {
     DeleteEntity(simulations_, simulation);
 }
 
-Simulation* Database::GetSimulation(const std::string& rocket_name, const std::string& configuration_name, const std::string& simulation_name) {
+Simulation* EntityManager::GetSimulation(const std::string& rocket_name, const std::string& configuration_name, const std::string& simulation_name) {
     
     Rocket* rocket = GetEntity(rockets_, rocket_name);
     Configuration* config;
@@ -225,14 +225,14 @@ Simulation* Database::GetSimulation(const std::string& rocket_name, const std::s
     }
 }
 
-void Database::CreateMotor(const std::string& file_path) {
+void EntityManager::CreateMotor(const std::string& file_path) {
     motors_.push_back(new Motor(file_path));
 }
 
-void Database::DeleteMotor(Motor* motor) {
+void EntityManager::DeleteMotor(Motor* motor) {
 
 }
 
-Motor* Database::GetMotor(const std::string& name) {
+Motor* EntityManager::GetMotor(const std::string& name) {
     return GetEntity(motors_, name);
 }

@@ -3,11 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29920.165
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "embedded", "firmware\embedded\embedded.vcxproj", "{C5F80730-F44F-4478-BDAE-6634EFC2CA88}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "interface_core_cpp", "interface\core\cpp\interface_core_cpp.vcxproj", "{3885BC2A-1C0C-43A1-BD47-AA4E2F1E9C0F}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "interface_core", "interface\core\interface_core.vcxproj", "{3885BC2A-1C0C-43A1-BD47-AA4E2F1E9C0F}"
-EndProject
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "cython", "interface\cython\cython.pyproj", "{8DCD166B-B876-4D56-A87A-F8E7913DAE6D}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "interface_core_cython", "interface\core\cython\interface_core_cython.pyproj", "{8DCD166B-B876-4D56-A87A-F8E7913DAE6D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

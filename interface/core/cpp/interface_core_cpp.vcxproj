@@ -19,67 +19,67 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="database.cpp" />
-    <ClCompile Include="entities\entity.cpp" />
-    <ClCompile Include="entities\design\part_bulkhead.cpp" />
-    <ClCompile Include="entities\design\configuration.cpp" />
-    <ClCompile Include="entities\design\part_fins.cpp" />
-    <ClCompile Include="entities\design\fin_shape.cpp" />
-    <ClCompile Include="entities\design\instance.cpp" />
-    <ClCompile Include="entities\design\inertial_override.cpp" />
-    <ClCompile Include="entities\design\part_point_mass.cpp" />
-    <ClCompile Include="entities\design\material.cpp" />
-    <ClCompile Include="entities\design\part_nosecone.cpp" />
-    <ClCompile Include="entities\design\part_parachute.cpp" />
-    <ClCompile Include="entities\design\part.cpp" />
-    <ClCompile Include="entities\design\part_tube_body.cpp" />
-    <ClCompile Include="entities\design\part_tube_inner.cpp" />
-    <ClCompile Include="entities\flight\atmosphere.cpp" />
-    <ClCompile Include="entities\flight\drag.cpp" />
-    <ClCompile Include="entities\flight\motor.cpp" />
-    <ClCompile Include="entities\flight\simulation_user_command.cpp" />
-    <ClCompile Include="entities\flight\flight_data.cpp" />
-    <ClCompile Include="entities\design\rocket.cpp" />
+    <ClCompile Include="src\entities\design\configuration.cpp" />
+    <ClCompile Include="src\entities\design\fin_shape.cpp" />
+    <ClCompile Include="src\entities\design\inertial_override.cpp" />
+    <ClCompile Include="src\entities\design\instance.cpp" />
+    <ClCompile Include="src\entities\design\material.cpp" />
+    <ClCompile Include="src\entities\design\part.cpp" />
+    <ClCompile Include="src\entities\design\part_bulkhead.cpp" />
+    <ClCompile Include="src\entities\design\part_fins.cpp" />
+    <ClCompile Include="src\entities\design\part_nosecone.cpp" />
+    <ClCompile Include="src\entities\design\part_parachute.cpp" />
+    <ClCompile Include="src\entities\design\part_point_mass.cpp" />
+    <ClCompile Include="src\entities\design\part_tube_body.cpp" />
+    <ClCompile Include="src\entities\design\part_tube_inner.cpp" />
+    <ClCompile Include="src\entities\design\rocket.cpp" />
+    <ClCompile Include="src\entities\design\stage.cpp" />
+    <ClCompile Include="src\entities\entity.cpp" />
+    <ClCompile Include="src\entities\entity_manager.cpp" />
+    <ClCompile Include="src\entities\flight\atmosphere.cpp" />
+    <ClCompile Include="src\entities\flight\drag.cpp" />
+    <ClCompile Include="src\entities\flight\flight_data.cpp" />
+    <ClCompile Include="src\entities\flight\motor.cpp" />
+    <ClCompile Include="src\entities\flight\simulation.cpp" />
+    <ClCompile Include="src\entities\flight\simulation_stage.cpp" />
+    <ClCompile Include="src\entities\flight\simulation_user_command.cpp" />
+    <ClCompile Include="src\models\aerodynamics.cpp" />
+    <ClCompile Include="src\models\atmosphere_isa.cpp" />
+    <ClCompile Include="src\utils\math_utilities.cpp" />
+    <ClCompile Include="src\utils\matrix.cpp" />
+    <ClCompile Include="src\utils\parse.cpp" />
     <ClCompile Include="tests\integration\main.cpp" />
-    <ClCompile Include="entities\flight\simulation.cpp" />
-    <ClCompile Include="entities\design\stage.cpp" />
-    <ClCompile Include="entities\flight\simulation_stage.cpp" />
-    <ClCompile Include="models\aerodynamics.cpp" />
-    <ClCompile Include="models\atmosphere_isa.cpp" />
-    <ClCompile Include="utils\matrix.cpp" />
-    <ClCompile Include="utils\parse.cpp" />
-    <ClCompile Include="utils\math_utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="database.h" />
-    <ClInclude Include="entities\entity.h" />
-    <ClInclude Include="entities\design\part_bulkhead.h" />
-    <ClInclude Include="entities\design\configuration.h" />
-    <ClInclude Include="entities\design\part_fins.h" />
-    <ClInclude Include="entities\design\fin_shape.h" />
-    <ClInclude Include="entities\design\instance.h" />
-    <ClInclude Include="entities\design\inertial_override.h" />
-    <ClInclude Include="entities\design\part_point_mass.h" />
-    <ClInclude Include="entities\design\material.h" />
-    <ClInclude Include="entities\design\part_nosecone.h" />
-    <ClInclude Include="entities\design\part_parachute.h" />
-    <ClInclude Include="entities\design\part.h" />
-    <ClInclude Include="entities\design\part_tube_body.h" />
-    <ClInclude Include="entities\design\part_tube_inner.h" />
-    <ClInclude Include="entities\flight\atmosphere.h" />
-    <ClInclude Include="entities\flight\drag.h" />
-    <ClInclude Include="entities\flight\motor.h" />
-    <ClInclude Include="entities\flight\simulation_user_command.h" />
-    <ClInclude Include="entities\flight\flight_data.h" />
-    <ClInclude Include="entities\flight\simulation.h" />
-    <ClInclude Include="entities\design\rocket.h" />
-    <ClInclude Include="entities\design\stage.h" />
-    <ClInclude Include="entities\flight\simulation_stage.h" />
-    <ClInclude Include="models\aerodynamics.h" />
-    <ClInclude Include="models\atmosphere_isa.h" />
-    <ClInclude Include="utils\matrix.h" />
-    <ClInclude Include="utils\parse.h" />
-    <ClInclude Include="utils\math_utilities.h" />
+    <ClInclude Include="src\entities\design\configuration.h" />
+    <ClInclude Include="src\entities\design\fin_shape.h" />
+    <ClInclude Include="src\entities\design\inertial_override.h" />
+    <ClInclude Include="src\entities\design\instance.h" />
+    <ClInclude Include="src\entities\design\material.h" />
+    <ClInclude Include="src\entities\design\part.h" />
+    <ClInclude Include="src\entities\design\part_bulkhead.h" />
+    <ClInclude Include="src\entities\design\part_fins.h" />
+    <ClInclude Include="src\entities\design\part_nosecone.h" />
+    <ClInclude Include="src\entities\design\part_parachute.h" />
+    <ClInclude Include="src\entities\design\part_point_mass.h" />
+    <ClInclude Include="src\entities\design\part_tube_body.h" />
+    <ClInclude Include="src\entities\design\part_tube_inner.h" />
+    <ClInclude Include="src\entities\design\rocket.h" />
+    <ClInclude Include="src\entities\design\stage.h" />
+    <ClInclude Include="src\entities\entity.h" />
+    <ClInclude Include="src\entities\entity_manager.h" />
+    <ClInclude Include="src\entities\flight\atmosphere.h" />
+    <ClInclude Include="src\entities\flight\drag.h" />
+    <ClInclude Include="src\entities\flight\flight_data.h" />
+    <ClInclude Include="src\entities\flight\motor.h" />
+    <ClInclude Include="src\entities\flight\simulation.h" />
+    <ClInclude Include="src\entities\flight\simulation_stage.h" />
+    <ClInclude Include="src\entities\flight\simulation_user_command.h" />
+    <ClInclude Include="src\models\aerodynamics.h" />
+    <ClInclude Include="src\models\atmosphere_isa.h" />
+    <ClInclude Include="src\utils\math_utilities.h" />
+    <ClInclude Include="src\utils\matrix.h" />
+    <ClInclude Include="src\utils\parse.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -163,7 +163,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)entities;$(ProjectDir)utils;$(ProjectDir)entities\models;$(ProjectDir)entities\flight;$(ProjectDir)entities\design;$(ProjectDir)models;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)src\entities;$(ProjectDir)src\utils;$(ProjectDir)src\entities\models;$(ProjectDir)src\entities\flight;$(ProjectDir)src\entities\design;$(ProjectDir)src\models;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -174,7 +174,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)entities;$(ProjectDir)utils;$(ProjectDir)entities\models;$(ProjectDir)entities\flight;$(ProjectDir)entities\design;$(ProjectDir)models;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)src\entities;$(ProjectDir)src\utils;$(ProjectDir)src\entities\models;$(ProjectDir)src\entities\flight;$(ProjectDir)src\entities\design;$(ProjectDir)src\models;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
