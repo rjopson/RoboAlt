@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="embedded.ino" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\IMU.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sensorOffset.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\baroAndTemp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\calculateAltitude.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="driver\MPU6050.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="driver\I2C.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="driver\MS5607.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="driver\H3LIS331DL.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="driver\AT45DB641.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="driver\buzzer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="driver\pyro.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\flightLogic.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dataStorage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\userSettings.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\matrixMath.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\kalman.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\processData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\voltage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="driver\analogPinRead.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\flightDataStorage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\manageSensorsAndControl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="driver\sensors.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\manageIO.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\validateSensorData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\IMU.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sensorOffset.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\baroAndTemp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\calculateAltitude.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="driver\MPU6050.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="driver\I2C.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="driver\MS5607.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="driver\H3LIS331DL.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="driver\AT45DB641.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="driver\pins.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="driver\buzzer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="driver\pyro.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\flightLogic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dataStorage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\userSettings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dataStructures.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\matrixMath.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\kalman.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\processData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\voltage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="driver\analogPinRead.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\flightDataStorage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\manageSensorsAndControl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="driver\sensors.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="__vm\.embedded.vsarduino.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\manageIO.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\validateSensorData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="embedded.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

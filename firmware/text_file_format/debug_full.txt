@@ -1,0 +1,28 @@
+version,dataMemoryBank,mpuOffset,h3lisOffset,pressureOffset,temperatureOffset,C1,C2,C3,C4,C5,C6
+time (ms), flightStatus, altitude (cm), velocity (cm/s), acceleration (cm/s2), altitudeBaro (cm), accelAxial (cm/s2), pressure (Pa), temperature (100*degC), MPU_accelX (2byte 16g), MPU_accelY (2byte 16g), MPU_accelZ (2byte 16g), MPU_gyroX (2byte 2000deg/s), MPU_gyroY (2byte 2000deg/s), MPU_gyroZ (2byte 2000deg/s), H3LIS_accelY (2byte 200g), MS5607_pressure (4 byte), MS5607_temperature (4byte), voltageAnalog (10 bit), continuityApo (10 bit), continuityMain (10 bit), continuityThird (10 bit)
+
+For readability, data row:
+0	time (ms)
+1	flightStatus
+2	altitude (mm)
+3	velocity (mm/s)
+4	acceleration (mm/s2)
+5	altitudeBaro (mm)
+6	accelAxial (mm/s2)
+7	pressure (Pa)
+8	temperature (100*degC)
+9	MPU_accelX (2byte 16g)
+10	MPU_accelY (2byte 16g)
+11	MPU_accelZ (2byte 16g)
+12	MPU_gyroX (2byte 2000deg/s)
+13	MPU_gyroY (2byte 2000deg/s)
+14	MPU_gyroZ (2byte 2000deg/s)
+15	H3LIS_accelY (2byte 200g)
+16	MS5607_pressure (4 byte)
+17	MS5607_temperature (4byte)
+18	voltageAnalog (10 bit)
+19	continuityApo (10 bit)
+20	continuityMain (10 bit)
+21	continuityThird (10 bit)
+
+
