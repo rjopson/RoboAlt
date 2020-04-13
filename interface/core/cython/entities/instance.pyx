@@ -60,3 +60,8 @@ cdef class PyInstance:
     @position_from.setter
     def position_from(self, val):
         self.ptr.SetPositionFrom(val)
+
+    def named_attributes(self):
+        return {"name":self.name, 
+                "position_type":self.position_type,
+                "position_from":self.position_from}

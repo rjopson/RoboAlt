@@ -35,6 +35,7 @@ cdef extern from "part.h":
         string Comments() const;
         Material* AssignedMaterial() const;
         double Mass() const;
+        double OverrideMass() const;
         PartType Type() const;
         
 
@@ -44,6 +45,10 @@ cdef class PyPart:
 
     def __init__(self, *args):
         pass
+
+    @property
+    def type(self):
+        return <PyPartType>self.ptr_part.Type()
 
     @property
     def name(self):
@@ -71,9 +76,13 @@ cdef class PyPart:
     @property
     def mass(self):
         return self.ptr_part.Mass()
+    @property
+    def override_mass(self):
+        return self.ptr_part.OverrideMass()
+    @override_mass.setter
     def override_mass(self, val):
-        self.ptr_part.SetOverrideMass(val)
-    def model_mass(self):
+        self.ptr_part.SetOverrideMass(val)    
+    def set_model_mass(self):
         self.ptr_part.SetModelMass()
 
 
@@ -115,6 +124,15 @@ cdef class PyBulkhead(PyPart):
     @thickness.setter
     def thickness(self, val):
         self.ptr.SetThickness(val)
+
+    def named_attributes(self):
+        return {"type":type,
+                "name":self.name,
+                "comments":self.comments,
+                "material":self.material.name,
+                "override_mass":self.override_mass,
+                "diameter":self.diameter,
+                "thickness":self.thickness}
 
 cdef extern from "fin_shape.h":
     cdef cppclass FinShape:
@@ -242,6 +260,20 @@ cdef class PyFins(PyPart):
         shape_ptr = <FinShapeTrapezoidal*>self.ptr.AssignedFinShape()
         shape_ptr.SetLengthSweep(val)
 
+    def named_attributes(self):
+        return {"type":type,
+                "name":self.name,
+                "comments":self.comments,
+                "material":self.material.name,
+                "override_mass":self.override_mass,
+                "cross_section":self.cross_section,
+                "number":self.number,
+                "thickness":self.thickness,
+                "radius_fillet":self.radius_fillet,
+                "chord_root":self.chord_root,
+                "chord_tip":self.chord_tip,
+                "span":self.spn,
+                "length_sweep":self.length_sweep}
 
 cdef extern from "aerodynamics.h":
     cdef enum NoseconeType "NoseconeType":
@@ -359,6 +391,21 @@ cdef class PyNosecone(PyPart):
     def length(self):
         return self.ptr.Length()
 
+    def named_attributes(self):
+        return {"type":type,
+                "name":self.name,
+                "comments":self.comments,
+                "material":self.material.name,
+                "override_mass":self.override_mass,
+                "nosecone_type":self.nosecone_type,
+                "shape_parameter":self.shape_parameter,
+                "length_nose":self.length_nose,
+                "length_base":self.length_base,
+                "length_shoulder":self.length_shoulder,
+                "thickness":self.thickness,
+                "diameter_outer":self.diameter_outer,
+                "diameter_shoulder":self.diameter_shoulder}
+
 
 cdef extern from "part_tube_body.h":
     cdef cppclass TubeBody:
@@ -407,3 +454,13 @@ cdef class PyTubeBody(PyPart):
     @thickness.setter
     def thickness(self, val):
         self.ptr.SetThickness(val)
+
+    def named_attributes(self):
+        return {"type":type,
+                "name":self.name,
+                "comments":self.comments,
+                "material":self.material.name,
+                "override_mass":self.override_mass,
+                "length":self.length,
+                "diameter_outer":self.diameter_outer,
+                "thickness":self.thickness}

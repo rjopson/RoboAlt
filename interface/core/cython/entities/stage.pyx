@@ -29,6 +29,9 @@ cdef extern from "stage.h":
         SurfaceFinish AssignedSurfaceFinish() const;
         double DistanceOverlap() const;
         Instance* InstanceRoot() const;
+        double OverrideMass() const;
+
+        void PrintDragCoefficients(bool include_stages_above, double mach_number, double area_thrusting)
         
 cdef class PyStage:
     cdef Stage *ptr
@@ -56,12 +59,13 @@ cdef class PyStage:
     def comments(self, val):
         self.ptr.SetComments(val.encode('utf-8'))
 
-    #@property
-    #def mass(self):
-    #    return self.ptr.Mass()
+    @property
+    def override_mass(self):
+        return self.ptr.OverrideMass()
+    @override_mass.setter
     def override_mass(self, val):
         self.ptr.SetOverrideMass(val)
-    def model_mass(self):
+    def set_model_mass(self):
         self.ptr.SetModelMass()
 
     @property
@@ -77,3 +81,12 @@ cdef class PyStage:
     @distance_overlap.setter
     def distance_overlap(self, val):
         self.ptr.DistanceOverlap()
+
+    def print_drag_coefficients(self, stages_above, mach_number, area_thrusting):
+        self.ptr.PrintDragCoefficients(stages_above, mach_number, area_thrusting)
+
+    def named_attributes(self):
+        return {"name":self.name,
+                "comments":self.comments,
+                "surface_finish":self.surface_finish,
+                "distance_overlap":self.distance_overlap}

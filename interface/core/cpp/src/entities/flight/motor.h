@@ -36,6 +36,8 @@ class Motor : public Entity {
     std::vector<double> Delay() const;
     double MassPropellant() const;
     double MassTotal() const;
+    std::vector<double> DataTime() const;
+    std::vector<double> DataThrust() const;
     double MassCase() const;
 	double GetMass(const double& time) const; //interpolate data for single mass value
 	double GetThrust(const double& time) const; //interpolate data for single thrust value

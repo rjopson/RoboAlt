@@ -16,6 +16,13 @@ class MathUtilities {
     //Interpolation
     static double InterpolateLinear(const std::vector<double>& x_data, const std::vector<double>& y_data, const double& x);
 
+    static Matrix<double> SimpleFunction(const double& x, const double& y) {
+        std::cout << "Hello from cpp" << std::endl;
+        std::vector<double> vect{x, y};
+        Matrix<double> test(1,2, vect);        
+        return test;
+    }
+
     //ODE's
     static Matrix<double> RK45(const std::vector<double>& initial_values, 
         std::function<std::vector<double>(const double&, const std::vector<double>&)> ode, 

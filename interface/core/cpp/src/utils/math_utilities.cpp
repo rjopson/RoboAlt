@@ -6,16 +6,17 @@ MathUtilities::~MathUtilities() {}
 
 double MathUtilities::InterpolateLinear(const std::vector<double>& x_data, const std::vector<double>& y_data, const double& x) {
 
-    double x0, x1, y0, y1;
-
-    if (x < x_data[0]) { //don't have data to interpolate. Use first y value
+    if (x <= x_data[0]) { //don't have data to interpolate. Use first y value
         return y_data[0];
     }
-    else if (x > x_data.back()) {
+    else if (x >= x_data.back()) {
         return y_data.back();
     }
     else {
         //we have data to interpolate
+
+        double x0, x1, y0, y1;
+
         for (int i = 1; i != x_data.size(); i++) {
 
             int i_prev = i - 1;
@@ -31,6 +32,7 @@ double MathUtilities::InterpolateLinear(const std::vector<double>& x_data, const
                 return y0 + (x - x0)*((y1 - y0) / (x1 - x0));
             }
         }
+        return y_data.back();
     }
 }
 
@@ -47,11 +49,10 @@ Matrix<double> MathUtilities::RK45(const std::vector<double>& initial_values,
     std::vector<double> y_x_np1; //n+1 step of solution
     Matrix<double> Y(iterations, initial_values.size()+2); //used to store solutions of all ode's at every timestep. For example, if initial values were [position, velocity] each Y row is [time, position, velocity, acceleration]
     std::vector<double> step_result(initial_values.size() + 2); //saves x, and all solutions for y_x_np1 step
-    int final_iteration;
 
     for (int i = 0; i != iterations; i++) {
 
-        double x_n = x_start + (double)i*step; //current time
+        double x_n = x_start + i*step; //current time
 
         //Solve ode for current timestep
         k1 = MultiplyScalarVector(step, ode(x_n, y_x_n));
@@ -76,14 +77,14 @@ Matrix<double> MathUtilities::RK45(const std::vector<double>& initial_values,
 
         //if an event is reached, break the integration early
         if (event(step_result) == true) {
-            final_iteration = i;
+            Y.Resize(1 + i, initial_values.size() + 2);
             break;
         }
 
         //Update state for next iteration.
         y_x_n = y_x_np1;
     }
-    Y.Resize(1+final_iteration, initial_values.size() + 2);
+    
     return Y;
 }
 
@@ -143,7 +144,7 @@ double MathUtilities::Derivative(std::function<double(double)> function, const d
 std::vector<double> MathUtilities::MultiplyScalarVector(const double& scalar, const std::vector<double>& vector) {
 
     std::vector<double> result(vector.size());    
-
+    
     int i = 0;
     for (auto element : vector) {
         result[i] = scalar*element;

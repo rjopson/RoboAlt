@@ -87,6 +87,7 @@ int main() {
 	//Configuration
     db->CreateConfiguration("180 case", db->GetRocket("29mm 3DPME v2019"));
     db->CreateStage("sustainer", db->GetConfiguration("29mm 3DPME v2019", "180 case"));
+    //std::cout << db->GetStage("29mm 3DPME v2019", "180 case", "sustainer")->MassEmpty(1) << std::endl;
     db->GetStage("29mm 3DPME v2019", "180 case", "sustainer")->SetOverrideMass(0.1809);
     db->GetStage("29mm 3DPME v2019", "180 case", "sustainer")->SetSurfaceFinish(SurfaceFinish::ROUGH);
 
@@ -99,11 +100,12 @@ int main() {
     db->CreateInstance("tubeFincan_1", db->GetPart("29mm 3DPME v2019", "tubeFincan"), sustainer_root);
     db->CreateInstance("Finset_1", db->GetPart("29mm 3DPME v2019", "Fin set"), db->GetInstance("29mm 3DPME v2019", "tubeFincan_1"));
     db->GetInstance("29mm 3DPME v2019", "Finset_1")->SetPositionFrom(0.0063);
+
+    //db->GetStage("29mm 3DPME v2019", "180 case", "sustainer")->PrintDragCoefficients(1, 0.46, 0.0);
     
 	//Gather data for the simulation
-	//Motor* h128 = new Motor("D:/Personal/Rockets/RoboAlt/Interface/core/testFiles/AeroTech_H128.eng");
+	//D:/Personal/Rockets/RoboAlt/Interface/core/testFiles/AeroTech_H128.eng"
     db->CreateMotor("C:/Users/rober/Documents/Rockets/Altimeters/RoboAlt/interface/core/cpp/tests/test_files/AeroTech_H128.eng");
-    //Motor* h128 = new Motor("C:/Users/rober/Documents/Rockets/Altimeters/Interface/core/testFiles/AeroTech_H128.eng");
 
 	//let's see if simulation works...
     db->CreateSimulation("h128", db->GetConfiguration("29mm 3DPME v2019", "180 case"));
@@ -139,8 +141,6 @@ int main() {
     //db->GetConfiguration(2)->simulations_[0]->Run(0.05, 5.0);
 
 	std::cout << "Complete" << std::endl;
-
-    //rkt->GetSimulationStage(2)->flight_data_.Print();
 	
 	std::getchar();
 	return 1;

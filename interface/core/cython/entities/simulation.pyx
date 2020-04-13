@@ -78,3 +78,10 @@ cdef class PySimulation:
 
     def run(self, step_ascent, step_descent):
         self.ptr.Run(step_ascent, step_descent)
+
+    def named_attributes(self):
+        return {"name":self.name,
+                "comments":self.comments,
+                "height_pad":self.height_pad,
+                "angle_launch_rod":self.angle_launch_rod,
+                "length_launch_rod":self.length_launch_rod}

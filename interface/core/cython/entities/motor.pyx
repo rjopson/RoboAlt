@@ -16,6 +16,8 @@ cdef extern from "motor.h":
         vector[double] Delay() const;
         double MassPropellant() const;
         double MassTotal() const;
+        vector[double] DataTime() const;
+        vector[double] DataThrust() const;
         double MassCase() const;
 
 cdef class PyMotor:
@@ -29,4 +31,42 @@ cdef class PyMotor:
         obj = <PyMotor>PyMotor.__new__(PyMotor)
         obj.ptr = ptr
         return obj 
+
+    @property
+    def name(self):
+        return self.ptr.Name().decode('utf-8')
+
+    @property
+    def comments(self):
+        return self.ptr.Comments().decode('utf-8')
+
+    @property
+    def manufacturer(self):
+        return self.ptr.Manufacturer().decode('utf-8')
+
+    @property
+    def diameter(self):
+        return self.ptr.Diameter()
+
+    @property
+    def length(self):
+        return self.ptr.Length()
+
+    @property
+    def mass_propellant(self):
+        return self.ptr.MassPropellant()
+
+    @property 
+    def mass_total(self):
+        return self.ptr.MassTotal()
+
+    def named_attributes(self):
+        return {"name":self.name,
+                "comments":self.comments,
+                "manufacturer":self.manufacturer,
+                "diameter":self.diameter,
+                "length":self.length,
+                "mass_propellant":self.mass_propellant,
+                "mass_total":self.mass_total}
+
 

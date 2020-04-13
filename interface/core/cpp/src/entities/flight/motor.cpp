@@ -124,6 +124,14 @@ double Motor::MassTotal() const {
 	return mass_total_;
 }
 
+std::vector<double> Motor::DataTime() const {
+	return data_time_;
+}
+
+std::vector<double> Motor::DataThrust() const {
+	return data_thrust_;
+}
+
 double Motor::MassCase() const {
 	return mass_total_ - mass_propellant_;
 }
@@ -165,7 +173,7 @@ bool Motor::CurrentlyThrusting(const double& time) const {
 	
 	bool thrusting = false;
 
-	if (data_time_.back() <= time) {
+	if (time <= data_time_.back()) {
 		thrusting = true;
 	}
 

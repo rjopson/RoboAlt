@@ -49,7 +49,7 @@ Instance* Stage::InstanceRoot() const {
     return instance_root_;
 }
 
-std::vector<Instance*> Stage::InstanceList(bool include_stages_above) {
+std::vector<Instance*> Stage::InstanceList(bool include_stages_above) const {
 
     std::vector<Instance*> flat_list;
     std::vector<Stage*> stages = StageList(include_stages_above);
@@ -61,11 +61,11 @@ std::vector<Instance*> Stage::InstanceList(bool include_stages_above) {
     return flat_list;
 }
 
-double Stage::AreaReference(bool include_stages_above) {
+double Stage::AreaReference(bool include_stages_above) const {
     return kPi * std::pow(DiameterMax(include_stages_above) / 2.0, 2.0);
 }
 
-double Stage::Length(bool include_stages_above) {
+double Stage::Length(bool include_stages_above) const {
 
     double length_sum = 0.0;
     std::vector<Stage*> stages = StageList(include_stages_above);
@@ -79,7 +79,7 @@ double Stage::Length(bool include_stages_above) {
     return length_sum;
 }
 
-double Stage::DiameterMax(bool include_stages_above) {
+double Stage::DiameterMax(bool include_stages_above) const {
 
     double diameter = 0.0;
 
@@ -97,11 +97,11 @@ double Stage::DiameterMax(bool include_stages_above) {
     return diameter;
 }
 
-double Stage::FinenessRatio(bool include_stages_above) {
+double Stage::FinenessRatio(bool include_stages_above) const {
     return Length(include_stages_above) / DiameterMax(include_stages_above);
 }
 
-double Stage::MassEmpty(bool include_stages_above) {
+double Stage::MassEmpty(bool include_stages_above) const {
 
     double mass = 0.0;
 
@@ -110,7 +110,7 @@ double Stage::MassEmpty(bool include_stages_above) {
     for (auto stage : stages) {
 
         if (inertial_.mass_override_switch_) {//user wants override value to be used
-            mass += inertial_.mass_override_;
+            mass = inertial_.mass_override_;
         }
         else {
             for (auto instance : instance_root_->Children(true)) { //loop through each child 
@@ -119,6 +119,10 @@ double Stage::MassEmpty(bool include_stages_above) {
         }
     }
     return mass;
+}
+
+double Stage::OverrideMass() const {
+    return inertial_.mass_override_;
 }
 
 SurfaceFinish Stage::GetSurfaceFinish(bool include_stages_above) {
@@ -239,7 +243,7 @@ void Stage::PrintDragCoefficients(bool include_stages_above, const double& mach_
         << " " << DragCoefficient(include_stages_above, mach_number, area_thrusting) << std::endl;
 } 
 
-std::vector<Stage*> Stage::StageList(bool include_stages_above) {
+std::vector<Stage*> Stage::StageList(bool include_stages_above) const {
 
     if (include_stages_above) {
         return stages_;

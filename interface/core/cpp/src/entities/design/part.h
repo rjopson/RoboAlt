@@ -37,6 +37,7 @@ class Part : public Entity {
     Material* AssignedMaterial() const;
     PartType Type() const;    
     double Mass() const;
+    double OverrideMass() const;
     double Cg() const;    
 
     //Core functions

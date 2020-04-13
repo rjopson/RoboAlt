@@ -35,3 +35,7 @@ cdef class PyRocket:
     @comments.setter
     def comments(self, val):
         self.ptr.SetComments(val.encode('utf-8'))
+
+    def named_attributes(self):
+        return {"name":self.name,
+                "comments":self.comments}

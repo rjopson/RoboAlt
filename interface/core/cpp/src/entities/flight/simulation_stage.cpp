@@ -7,6 +7,12 @@ SimulationStage::SimulationStage(Stage* stage)
     drag_with_stages_above_ = new Drag();
     drag_without_stages_above_ = new Drag();
 
+    drag_external_with_stages_above_ = nullptr;
+    drag_external_without_stages_above_ = nullptr;
+    drag_external_drogue_ = nullptr;
+    drag_external_main_ = nullptr;
+
+
     /*
     for (auto event : userEvents) {
 

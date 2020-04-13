@@ -70,7 +70,6 @@ void Simulation::SetMotor(Motor* motor, Stage* stage) {
     }
 }
 
-
 void Simulation::SetHeightPad(const double& height_pad) {
     height_pad_ = height_pad;
 }
@@ -120,7 +119,7 @@ void Simulation::Run(const double& step_ascent, const double& step_descent) {
 
     //initial conditions for ode
     std::vector<double> initial_conditions { height_pad_, 0.0 };
-    Phase phase = Phase::DETECT_LAUNCH;
+    Phase phase = Phase::DETECT_LAUNCH; 
 
     //loop through each stage starting with booster
     for (auto it = stages_.rbegin(); it != stages_.rend(); ++it) {
@@ -132,8 +131,8 @@ void Simulation::Run(const double& step_ascent, const double& step_descent) {
         while (phase != Phase::GROUND) {
 
             Event event;
-            Matrix<double> result_phase(0, 4);				
-
+            Matrix<double> result_phase(0, 4);
+            
             if (phase == Phase::DESCENT_DROGUE ||
                 phase == Phase::DESCENT_MAIN) {
 
@@ -142,7 +141,7 @@ void Simulation::Run(const double& step_ascent, const double& step_descent) {
             else {
                 event = RunPhase(result_phase, phase, initial_conditions, time_start, time_end, step_ascent); //calculate current phase
             }
-            
+
             //Update initial conditions for next phase
             initial_conditions.clear();
             initial_conditions.push_back(result_phase.GetLastRow()[1]);
@@ -162,8 +161,8 @@ void Simulation::Run(const double& step_ascent, const double& step_descent) {
             }
             if (phase == Phase::ASCENT_UNPOWERED_UNSTACKED && !result_next_stage_saved) {
                 result_next_stage_saved = true;
-            }			
-        }
+            }            
+        }   
 
         //Housekeeping to prepare for next stage
         //stage_current_->flight_data_ = PopulateStageFlightData(result_current_stage);
@@ -174,8 +173,8 @@ void Simulation::Run(const double& step_ascent, const double& step_descent) {
         initial_conditions.clear();
         initial_conditions.push_back(result_current_stage.GetLastRow()[1]);
         initial_conditions.push_back(result_current_stage.GetLastRow()[2]); 
-        phase = Phase::ASCENT_UNPOWERED_STACKED;
-    }	
+        phase = Phase::ASCENT_UNPOWERED_STACKED; 
+    }	  
 }
 
 //this function runs just one flight phase (for example coast=burnout->apogee). It looks for an event to say the phase is finished,
@@ -183,11 +182,11 @@ void Simulation::Run(const double& step_ascent, const double& step_descent) {
 Event Simulation::RunPhase(Matrix<double>& result_phase, Phase phase, const std::vector<double>& initial_conditions,
     const double& time_start, const double& time_end, const double& step) {
 
-    Event event;
+    Event event;    
 
     //Function definitons for events and EOM's which can change
     std::function<std::vector<double>(const double&, const std::vector<double>&)> eom;
-    std::function<bool(const std::vector<double>&)> event_detect;
+    std::function<bool(const std::vector<double>&)> event_detect;   
 
     //run appropriate phase of flight.
     switch (phase) {
@@ -335,14 +334,19 @@ double Simulation::GetMotorMassStagesAbove() {
     return mass;
 }
 
-std::vector<double> Simulation::EomAscent(const double& time, const std::vector<double>& state) {
+std::vector<double> Simulation::EomAscent(const double& time, const std::vector<double>& state) {  
 
-    bool motor_thrusting = stage_current_->motor_->CurrentlyThrusting(time - time_motor_lit_);
+    double time_this_stage = time - time_motor_lit_;
+    bool motor_thrusting = stage_current_->motor_->CurrentlyThrusting(time_this_stage);   
 
     //Get acceleration
-    double force_sum = stage_current_->motor_->GetThrust(time - time_motor_lit_) - drag_current_->GetDrag(motor_thrusting, atmosphere_->Density(state[0]), std::abs(state[1]), atmosphere_->SpeedOfSound(state[0]));
-    double mass = mass_empty_current_ + stage_current_->motor_->GetMass(time);
+    double force_sum = stage_current_->motor_->GetThrust(time_this_stage) - drag_current_->GetDrag(motor_thrusting, atmosphere_->Density(state[0]), std::abs(state[1]), atmosphere_->SpeedOfSound(state[0]));
+    
+    double mass = mass_empty_current_ + stage_current_->motor_->GetMass(time_this_stage);
     double acceleration = (force_sum / mass) - kGravity;
+
+    //std::cout << atmosphere_->Density(state[0]) << std::endl;
+
 
     //output solution to step
     std::vector<double> result_state{ state[1], acceleration};    

@@ -44,3 +44,8 @@ cdef class PyMaterial:
     @density.setter
     def density(self, val):
         self.ptr.SetDensity(val)
+
+    def named_attributes(self):
+        return {"name":self.name,
+                "comments":self.comments,
+                "density":self.density}

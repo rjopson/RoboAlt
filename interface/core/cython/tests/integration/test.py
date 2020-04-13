@@ -78,7 +78,7 @@ print(db.get_configuration("29mm 3DPME v2019", "180 case").name)
 
 db.create_stage("sustainer", "29mm 3DPME v2019", "180 case")
 print(db.get_stage("29mm 3DPME v2019", "180 case", "sustainer").name)
-db.get_stage("29mm 3DPME v2019", "180 case", "sustainer").override_mass(0.1809)
+db.get_stage("29mm 3DPME v2019", "180 case", "sustainer").override_mass = 0.1809
 db.get_stage("29mm 3DPME v2019", "180 case", "sustainer").surface_finish = PySurfaceFinish.ROUGH
 
 db.create_instance("Nosecone_1", "29mm 3DPME v2019", "180 case", "Nosecone", "sustainer")
@@ -86,8 +86,10 @@ db.create_instance("tubeMain_1", "29mm 3DPME v2019", "180 case", "tubeMain", "su
 db.create_instance("tubeDrogue_1", "29mm 3DPME v2019", "180 case", "tubeDrogue", "sustainer")
 db.create_instance("tubeExtension180_1", "29mm 3DPME v2019", "180 case", "tubeExtension180", "sustainer")
 db.create_instance("tubeFincan_1", "29mm 3DPME v2019", "180 case", "tubeFincan", "sustainer")
-db.create_instance("Finset_1", "29mm 3DPME v2019", "180 case", "Nosecone", "tubeFincan_1")
+db.create_instance("Finset_1", "29mm 3DPME v2019", "180 case", "Fin set", "tubeFincan_1")
 db.get_instance("29mm 3DPME v2019", "Finset_1").position_from = 0.0063
+
+#db.get_stage("29mm 3DPME v2019", "180 case", "sustainer").print_drag_coefficients(1, 0.46, 0.0)
 
 db.create_motor("C:/Users/rober/Documents/Rockets/Altimeters/RoboAlt/interface/core/cpp/tests/test_files/AeroTech_H128.eng")
 

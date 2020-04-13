@@ -28,15 +28,16 @@ class Stage : public Entity {
     SurfaceFinish AssignedSurfaceFinish() const;
     double DistanceOverlap() const;
     Instance* InstanceRoot() const;
+    double OverrideMass() const;
 
     //Core functions
     void SetStages(std::vector<Stage*> stages);
-    double MassEmpty(bool include_stages_above);
-    double AreaReference(bool include_stages_above);
-    double Length(bool include_stages_above);
-    double DiameterMax(bool include_stages_above);
-    double FinenessRatio(bool include_stages_above);    
-    std::vector<Instance*> InstanceList(bool include_stages_above);
+    double MassEmpty(bool include_stages_above) const;    
+    double AreaReference(bool include_stages_above) const;
+    double Length(bool include_stages_above) const;
+    double DiameterMax(bool include_stages_above) const;
+    double FinenessRatio(bool include_stages_above) const;
+    std::vector<Instance*> InstanceList(bool include_stages_above) const;
     void AddInstance(Instance* instance);
 
     //Drag model calculations
@@ -53,7 +54,7 @@ class Stage : public Entity {
 
   private:
 
-    std::vector<Stage*> StageList(bool include_stages_above);
+    std::vector<Stage*> StageList(bool include_stages_above) const;
 
     SurfaceFinish surface_finish_;
     double distance_overlap_; //amount this stage overlaps the one in front of it     
