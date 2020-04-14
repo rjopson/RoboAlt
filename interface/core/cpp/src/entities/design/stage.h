@@ -8,7 +8,7 @@
 #include "drag.h"
 #include "entity.h"
 #include "inertial_override.h"
-#include "instance.h"
+#include "part_instance.h"
 
 class Stage : public Entity {
   public:
@@ -21,24 +21,25 @@ class Stage : public Entity {
     //Values
     void SetSurfaceFinish(SurfaceFinish surface_finish);
     void SetDistanceOverlap(const double& distance_overlap);    
-    void SetOverrideMass(const double& mass);
-    void SetModelMass();
+    void SetOverrideMassEmpty(const double& mass);
+    void SetModelMassEmpty();
 
     //Datanames
     SurfaceFinish AssignedSurfaceFinish() const;
     double DistanceOverlap() const;
-    Instance* InstanceRoot() const;
-    double OverrideMass() const;
-
-    //Core functions
-    void SetStages(std::vector<Stage*> stages);
-    double MassEmpty(bool include_stages_above) const;    
+    PartInstance* InstanceRoot() const;
+    double OverrideMassEmpty() const;
+    bool OverrideMassSwitch() const;
+    double MassEmpty(bool include_stages_above) const;
     double AreaReference(bool include_stages_above) const;
     double Length(bool include_stages_above) const;
+    std::vector<PartInstance*> InstanceList(bool include_stages_above) const;
+
+    //Core functions
+    void SetStages(std::vector<Stage*> stages);    
     double DiameterMax(bool include_stages_above) const;
-    double FinenessRatio(bool include_stages_above) const;
-    std::vector<Instance*> InstanceList(bool include_stages_above) const;
-    void AddInstance(Instance* instance);
+    double FinenessRatio(bool include_stages_above) const;    
+    void AddInstance(PartInstance* instance);
 
     //Drag model calculations
     Drag DragModel(bool include_stages_above, const double& area_motor,
@@ -59,7 +60,7 @@ class Stage : public Entity {
     SurfaceFinish surface_finish_;
     double distance_overlap_; //amount this stage overlaps the one in front of it     
     InertialOverride inertial_;
-    Instance* instance_root_;
+    PartInstance* instance_root_;
     std::vector<Stage*> stages_; //stages above this one, AND this one     
 };
 #endif

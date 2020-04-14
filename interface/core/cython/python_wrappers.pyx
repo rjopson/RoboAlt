@@ -79,8 +79,7 @@ cdef class InterfaceCore:
         self.ptr.CreatePart(<PartType><int>part_type, name.encode('utf-8'), self.ptr.GetRocket(rocket_name.encode('utf-8')))
 
     def get_part(self, rocket_name, name):
-        part_ptr = self.ptr.GetPart(rocket_name.encode('utf-8'), name.encode('utf-8')).Type()   
-        part_type = <PyPartType>part_ptr
+        part_type = <PyPartType>self.ptr.GetPart(rocket_name.encode('utf-8'), name.encode('utf-8')).Type()   
         if part_type is PyPartType.BULKHEAD:
             part = PyBulkhead()
             part = PyBulkhead.create(self.ptr.GetPart[Bulkhead](rocket_name.encode('utf-8'), name.encode('utf-8')))

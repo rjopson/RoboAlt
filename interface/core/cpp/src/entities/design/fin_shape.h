@@ -13,7 +13,7 @@ class FinShape {
     static constexpr double kPi = 3.141592653589793;
     
     FinShape();
-    ~FinShape();
+    virtual ~FinShape() = 0;
 
     FinShapeType AssignedFinShapeType() const;
 
@@ -39,7 +39,7 @@ class FinShape {
 
 class FinShapeTrapezoidal : public FinShape {
   public:
-    FinShapeTrapezoidal();
+    //FinShapeTrapezoidal();
     FinShapeTrapezoidal(const double& chord_root, const double& chord_tip, const double& span, const double& length_sweep);
     ~FinShapeTrapezoidal();  
 

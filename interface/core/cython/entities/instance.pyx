@@ -24,6 +24,7 @@ cdef extern from "instance.h":
         double PositionFrom() const;
         Instance* Parent() const;
         double PositionFromParentFront();
+        vector[Instance*] Children(bool recursive);
 
 cdef class PyInstance:
     cdef Instance *ptr
@@ -60,6 +61,22 @@ cdef class PyInstance:
     @position_from.setter
     def position_from(self, val):
         self.ptr.SetPositionFrom(val)
+
+    @property
+    def parent(self):
+        instance = PyInstance()
+        instance = PyInstance.create(self.ptr.Parent())
+        return instance
+
+    @property
+    def children(self):
+        instances = []
+        instance_ptrs = self.ptr.Children(0)
+        for instance_ptr in instance_ptrs:
+            instance = PyInstance()
+            instance = PyInstance.create(instance_ptr)
+            instances.append(instance)
+        return instances
 
     def named_attributes(self):
         return {"name":self.name, 

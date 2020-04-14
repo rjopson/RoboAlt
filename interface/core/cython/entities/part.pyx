@@ -36,8 +36,8 @@ cdef extern from "part.h":
         Material* AssignedMaterial() const;
         double Mass() const;
         double OverrideMass() const;
-        PartType Type() const;
-        
+        bool OverrideMassSwitch() const;
+        PartType Type() const;        
 
 #base class - never used as a standalone, only in derived classes
 cdef class PyPart:
@@ -81,7 +81,10 @@ cdef class PyPart:
         return self.ptr_part.OverrideMass()
     @override_mass.setter
     def override_mass(self, val):
-        self.ptr_part.SetOverrideMass(val)    
+        self.ptr_part.SetOverrideMass(val)   
+    @property
+    def override_mass_switch(self):
+        self.ptr_part.OverrideMassSwitch()
     def set_model_mass(self):
         self.ptr_part.SetModelMass()
 
@@ -135,6 +138,12 @@ cdef class PyBulkhead(PyPart):
                 "thickness":self.thickness}
 
 cdef extern from "fin_shape.h":
+    cdef enum FinShapeType "FinShapeType":
+        _TRAPEZOIDAL  
+cpdef enum PyFinShapeType:
+    TRAPEZOIDAL = 0
+
+cdef extern from "fin_shape.h":
     cdef cppclass FinShape:
         FinShape();
 
@@ -147,10 +156,62 @@ cdef extern from "fin_shape.h":
         void SetSpan(double span);
         void SetLengthSweep(double length_sweep);
 
+        FinShapeType AssignedFinShapeType() const;
         double ChordRoot() const;
         double ChordTip() const;
         double Span() const;
         double LengthSweep() const;
+
+cdef class PyFinShapeTrapezoidal:
+    cdef FinShapeTrapezoidal *ptr
+
+    def __init__(self, *args):
+        pass
+
+    @staticmethod
+    cdef PyFinShapeTrapezoidal create(FinShapeTrapezoidal* ptr):
+        obj = <PyFinShapeTrapezoidal>PyFinShapeTrapezoidal.__new__(PyFinShapeTrapezoidal)
+        obj.ptr = ptr
+        return obj 
+
+    @property
+    def type(self):
+        return <PyFinShapeType>self.ptr.AssignedFinShapeType()
+
+    @property
+    def chord_root(self):
+        return self.ptr.ChordRoot()
+    @chord_root.setter
+    def chord_root(self, val):
+        self.ptr.SetChordRoot(val)
+
+    @property
+    def chord_tip(self):
+        return self.ptr.ChordTip()
+    @chord_tip.setter
+    def chord_tip(self, val):
+        self.ptr.SetChordTip(val)
+   
+    @property
+    def span(self):
+        return self.ptr.Span()
+    @span.setter
+    def span(self, val):
+        self.ptr.SetSpan(val)
+   
+    @property
+    def length_sweep(self):
+        return self.ptr.LengthSweep()
+    @length_sweep.setter
+    def length_sweep(self, val):
+        self.ptr.SetLengthSweep(val)
+
+    def named_attributes(self):
+        return {"type":type,
+                "chord_root":self.chord_root,
+                "chord_tip":self.chord_tip,
+                "span":self.spn,
+                "length_sweep":self.length_sweep}
 
 cdef extern from "aerodynamics.h":
     cdef enum FinCrossSection "FinCrossSection":
@@ -177,7 +238,7 @@ cdef extern from "part_fins.h":
         void SetThickness(double thickness);
         void SetRadiusFillet(double radius_fillet);
 
-        FinShape* AssignedFinShape() const;
+        T* AssignedShape[T]() const;
         FinCrossSection CrossSection() const;
         int Number() const;
         double Thickness() const;
@@ -194,7 +255,13 @@ cdef class PyFins(PyPart):
         obj = <PyFins>PyFins.__new__(PyFins)
         obj.ptr = ptr
         obj.ptr_part = <Part*>ptr
-        return obj  
+        return obj 
+        
+    @property
+    def shape(self):
+        shape = PyFinShapeTrapezoidal()
+        shape = PyFinShapeTrapezoidal.create(self.ptr.AssignedShape[FinShapeTrapezoidal]())
+        return shape
 
     @property
     def cross_section(self):
@@ -222,43 +289,7 @@ cdef class PyFins(PyPart):
         return self.ptr.RadiusFillet()
     @radius_fillet.setter
     def radius_fillet(self, val):
-        self.ptr.SetRadiusFillet(val)
-
-    @property
-    def chord_root(self):
-        shape_ptr = <FinShapeTrapezoidal*>self.ptr.AssignedFinShape()
-        return shape_ptr.ChordRoot()
-    @chord_root.setter
-    def chord_root(self, val):
-        shape_ptr = <FinShapeTrapezoidal*>self.ptr.AssignedFinShape()
-        shape_ptr.SetChordRoot(val)
-
-    @property
-    def chord_tip(self):
-        shape_ptr = <FinShapeTrapezoidal*>self.ptr.AssignedFinShape()
-        return shape_ptr.ChordTip()
-    @chord_tip.setter
-    def chord_tip(self, val):
-        shape_ptr = <FinShapeTrapezoidal*>self.ptr.AssignedFinShape()
-        shape_ptr.SetChordTip(val)
-   
-    @property
-    def span(self):
-        shape_ptr = <FinShapeTrapezoidal*>self.ptr.AssignedFinShape()
-        return shape_ptr.Span()
-    @span.setter
-    def span(self, val):
-        shape_ptr = <FinShapeTrapezoidal*>self.ptr.AssignedFinShape()
-        shape_ptr.SetSpan(val)
-   
-    @property
-    def length_sweep(self):
-        shape_ptr = <FinShapeTrapezoidal*>self.ptr.AssignedFinShape()
-        return shape_ptr.LengthSweep()
-    @length_sweep.setter
-    def length_sweep(self, val):
-        shape_ptr = <FinShapeTrapezoidal*>self.ptr.AssignedFinShape()
-        shape_ptr.SetLengthSweep(val)
+        self.ptr.SetRadiusFillet(val)        
 
     def named_attributes(self):
         return {"type":type,
@@ -269,11 +300,7 @@ cdef class PyFins(PyPart):
                 "cross_section":self.cross_section,
                 "number":self.number,
                 "thickness":self.thickness,
-                "radius_fillet":self.radius_fillet,
-                "chord_root":self.chord_root,
-                "chord_tip":self.chord_tip,
-                "span":self.spn,
-                "length_sweep":self.length_sweep}
+                "radius_fillet":self.radius_fillet}
 
 cdef extern from "aerodynamics.h":
     cdef enum NoseconeType "NoseconeType":

@@ -4,7 +4,10 @@ FinShape::FinShape() {}
 
 FinShape::~FinShape() {}
 
-FinShapeTrapezoidal::FinShapeTrapezoidal() {}
+FinShapeType FinShape::AssignedFinShapeType() const {
+    return type_;
+}
+
 
 FinShapeTrapezoidal::FinShapeTrapezoidal(const double& chord_root, const double& chord_tip, 
     const double& span, const double& length_sweep) 

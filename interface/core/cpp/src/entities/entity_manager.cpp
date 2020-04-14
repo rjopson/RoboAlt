@@ -166,16 +166,16 @@ Stage* EntityManager::GetStage(const std::string& rocket_name, const std::string
     }
 }
 
-void EntityManager::CreateInstance(const std::string& name, Part* part, Instance* parent) {
-    instances_.push_back(new Instance(name, part, parent, PartPosition::FOREWARD, 0.0));
+void EntityManager::CreateInstance(const std::string& name, Part* part, PartInstance* parent) {
+    instances_.push_back(new PartInstance(name, part, parent, PartPosition::FOREWARD, 0.0));
 }
 
-void EntityManager::DeleteInstance(Instance* instance) {
+void EntityManager::DeleteInstance(PartInstance* instance) {
     
     DeleteEntity(instances_, instance);
 }
 
-Instance* EntityManager::GetInstance(const std::string& rocket_name, const std::string& instance_name) {
+PartInstance* EntityManager::GetInstance(const std::string& rocket_name, const std::string& instance_name) {
     
     Rocket* rocket = GetEntity(rockets_, rocket_name);
 

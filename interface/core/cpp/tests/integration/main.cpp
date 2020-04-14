@@ -75,10 +75,10 @@ int main() {
     //Fins
     db->CreatePart(PartType::FINS, "Fin set", db->GetRocket("29mm 3DPME v2019"));
     db->GetPart<Fins>("29mm 3DPME v2019", "Fin set")->SetMaterial(db->GetMaterial("PLA"));
-    static_cast<FinShapeTrapezoidal*>(db->GetPart<Fins>("29mm 3DPME v2019", "Fin set")->AssignedFinShape())->SetChordRoot(0.102);
-    static_cast<FinShapeTrapezoidal*>(db->GetPart<Fins>("29mm 3DPME v2019", "Fin set")->AssignedFinShape())->SetChordTip(0.013);
-    static_cast<FinShapeTrapezoidal*>(db->GetPart<Fins>("29mm 3DPME v2019", "Fin set")->AssignedFinShape())->SetSpan(0.051);
-    static_cast<FinShapeTrapezoidal*>(db->GetPart<Fins>("29mm 3DPME v2019", "Fin set")->AssignedFinShape())->SetLengthSweep(0.076);
+    db->GetPart<Fins>("29mm 3DPME v2019", "Fin set")->AssignedShape<FinShapeTrapezoidal>()->SetChordRoot(0.102);
+    db->GetPart<Fins>("29mm 3DPME v2019", "Fin set")->AssignedShape<FinShapeTrapezoidal>()->SetChordTip(0.013);
+    db->GetPart<Fins>("29mm 3DPME v2019", "Fin set")->AssignedShape<FinShapeTrapezoidal>()->SetSpan(0.051);
+    db->GetPart<Fins>("29mm 3DPME v2019", "Fin set")->AssignedShape<FinShapeTrapezoidal>()->SetLengthSweep(0.076);
     db->GetPart<Fins>("29mm 3DPME v2019", "Fin set")->SetFinCrossSection(FinCrossSection::ROUNDED);
     db->GetPart<Fins>("29mm 3DPME v2019", "Fin set")->SetNumber(3);
     db->GetPart<Fins>("29mm 3DPME v2019", "Fin set")->SetThickness(0.003);
@@ -88,11 +88,11 @@ int main() {
     db->CreateConfiguration("180 case", db->GetRocket("29mm 3DPME v2019"));
     db->CreateStage("sustainer", db->GetConfiguration("29mm 3DPME v2019", "180 case"));
     //std::cout << db->GetStage("29mm 3DPME v2019", "180 case", "sustainer")->MassEmpty(1) << std::endl;
-    db->GetStage("29mm 3DPME v2019", "180 case", "sustainer")->SetOverrideMass(0.1809);
+    db->GetStage("29mm 3DPME v2019", "180 case", "sustainer")->SetOverrideMassEmpty(0.1809);
     db->GetStage("29mm 3DPME v2019", "180 case", "sustainer")->SetSurfaceFinish(SurfaceFinish::ROUGH);
 
 	//Instances
-    Instance* sustainer_root = db->GetStage("29mm 3DPME v2019", "180 case", "sustainer")->InstanceRoot();
+    PartInstance* sustainer_root = db->GetStage("29mm 3DPME v2019", "180 case", "sustainer")->InstanceRoot();
     db->CreateInstance("Nosecone_1", db->GetPart("29mm 3DPME v2019", "Nosecone"), sustainer_root);
     db->CreateInstance("tubeMain_1", db->GetPart("29mm 3DPME v2019", "tubeMain"), sustainer_root);
     db->CreateInstance("tubeDrogue_1", db->GetPart("29mm 3DPME v2019", "tubeDrogue"), sustainer_root);
@@ -113,6 +113,9 @@ int main() {
     db->GetSimulation("29mm 3DPME v2019", "180 case", "h128")->SetMotor(db->GetMotor("H128W"), db->GetStage("29mm 3DPME v2019", "180 case", "sustainer"));
     db->GetSimulation("29mm 3DPME v2019", "180 case", "h128")->Run(0.05, 5.0);
 
+    for (auto config : db->GetRocket("29mm 3DPME v2019")->Configurations()) {
+        std::cout << "config... " << config->Name() << std::endl;
+    }
 
 	//db->GetConfiguration(1)->CreateSimulation("sim1", "", 167.0, 0.0, 2.5);
 	//db->GetSimulationStage(1)->motor_ = h128;

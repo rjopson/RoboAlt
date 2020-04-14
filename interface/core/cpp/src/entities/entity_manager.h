@@ -42,9 +42,9 @@ class EntityManager {
     void DeleteStage(Stage* stage);
     Stage* GetStage(const std::string& rocket_name, const std::string& configuration_name, const std::string& stage_name);
     
-    void CreateInstance(const std::string& name, Part* part, Instance* parent);
-    void DeleteInstance(Instance* instance);
-    Instance* GetInstance(const std::string& rocket_name, const std::string& instance_name);
+    void CreateInstance(const std::string& name, Part* part, PartInstance* parent);
+    void DeleteInstance(PartInstance* instance);
+    PartInstance* GetInstance(const std::string& rocket_name, const std::string& instance_name);
 
     void CreateSimulation(const std::string& name, Configuration* configuration);
     void DeleteSimulation(Simulation* simulation);
@@ -110,7 +110,7 @@ private:
     std::vector<Configuration*> configurations_;
     std::vector<Stage*> stages_;
     std::vector<Simulation*> simulations_;
-    std::vector<Instance*> instances_;    
+    std::vector<PartInstance*> instances_;    
     std::vector<Material*> materials_;
     std::vector<Motor*> motors_;
     std::vector<Atmosphere*> atmosphere_models_;

@@ -21,15 +21,19 @@ cdef extern from "stage.h":
         void SetComments(string comments)
         void SetSurfaceFinish(SurfaceFinish surface_finish);
         void SetDistanceOverlap(double distance_overlap);    
-        void SetOverrideMass(double mass);
-        void SetModelMass();
+        void SetOverrideMassEmpty(double mass);
+        void SetModelMassEmpty();
 
         string Name() const
         string Comments() const 
         SurfaceFinish AssignedSurfaceFinish() const;
         double DistanceOverlap() const;
         Instance* InstanceRoot() const;
-        double OverrideMass() const;
+        double MassEmpty(bool include_stages_above) const; 
+        double OverrideMassEmpty() const;
+        bool OverrideMassSwitch() const;
+        double Length(bool include_stages_above) const;
+        vector[Instance*] InstanceList(bool include_stages_above) const;
 
         void PrintDragCoefficients(bool include_stages_above, double mach_number, double area_thrusting)
         
@@ -59,14 +63,18 @@ cdef class PyStage:
     def comments(self, val):
         self.ptr.SetComments(val.encode('utf-8'))
 
+    def mass_empty(self, include_stages_above):
+        return self.ptr.MassEmpty(include_stages_above)
     @property
-    def override_mass(self):
-        return self.ptr.OverrideMass()
-    @override_mass.setter
-    def override_mass(self, val):
-        self.ptr.SetOverrideMass(val)
-    def set_model_mass(self):
-        self.ptr.SetModelMass()
+    def override_mass_empty(self):
+        return self.ptr.OverrideMassEmpty()
+    def set_override_mass_empty(self, val):
+        self.ptr.SetOverrideMassEmpty(val)
+    @property
+    def override_mass_switch(self):
+        self.ptr.OverrideMassSwitch()
+    def set_model_mass_empty(self):
+        self.ptr.SetModelMassEmpty()
 
     @property
     def surface_finish(self):
@@ -81,6 +89,12 @@ cdef class PyStage:
     @distance_overlap.setter
     def distance_overlap(self, val):
         self.ptr.DistanceOverlap()
+
+    @property
+    def instances(self):
+        instance = PyInstance()
+        instance = PyInstance.create(self.ptr.InstanceRoot())
+        return instance.children
 
     def print_drag_coefficients(self, stages_above, mach_number, area_thrusting):
         self.ptr.PrintDragCoefficients(stages_above, mach_number, area_thrusting)

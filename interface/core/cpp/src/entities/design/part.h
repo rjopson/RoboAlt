@@ -26,7 +26,7 @@ class Part : public Entity {
 
     Part(PartType type, const std::string& name, const std::string& comments, Material* material,
         bool mass_override_switch, const double& mass_override, bool cg_override_switch, const double& cg_override);
-    ~Part(); 
+    virtual ~Part() = 0; 
     
     //Values 
     void SetMaterial(Material* material);
@@ -38,7 +38,10 @@ class Part : public Entity {
     PartType Type() const;    
     double Mass() const;
     double OverrideMass() const;
-    double Cg() const;    
+    bool OverrideMassSwitch() const;
+    double Cg() const;   
+    double OverrideCg() const;
+    double OverrideCgSwitch() const;
 
     //Core functions
     virtual double DiameterAirflow()  const { return 0.0; }

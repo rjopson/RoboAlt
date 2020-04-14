@@ -14,9 +14,12 @@ Fins::Fins(std::string name, std::string comments, Material* material,
     
 }
 
-Fins::~Fins() {}
+Fins::~Fins() {
+    delete shape_;
+}
 
-void Fins::SetFinShape(FinShape* shape) {
+void Fins::SetShape(FinShape* shape) {    
+    delete shape_;
     shape_ = shape;
 }
 
@@ -34,10 +37,6 @@ void Fins::SetThickness(const double& thickness) {
 
 void Fins::SetRadiusFillet(const double& radius_fillet) {
     radius_fillet_ = radius_fillet;
-}
-
-FinShape* Fins::AssignedFinShape() const {
-    return shape_;
 }
 
 FinCrossSection Fins::CrossSection() const {

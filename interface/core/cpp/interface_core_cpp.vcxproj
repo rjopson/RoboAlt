@@ -22,7 +22,7 @@
     <ClCompile Include="src\entities\design\configuration.cpp" />
     <ClCompile Include="src\entities\design\fin_shape.cpp" />
     <ClCompile Include="src\entities\design\inertial_override.cpp" />
-    <ClCompile Include="src\entities\design\instance.cpp" />
+    <ClCompile Include="src\entities\design\part_instance.cpp" />
     <ClCompile Include="src\entities\design\material.cpp" />
     <ClCompile Include="src\entities\design\part.cpp" />
     <ClCompile Include="src\entities\design\part_bulkhead.cpp" />
@@ -54,7 +54,7 @@
     <ClInclude Include="src\entities\design\configuration.h" />
     <ClInclude Include="src\entities\design\fin_shape.h" />
     <ClInclude Include="src\entities\design\inertial_override.h" />
-    <ClInclude Include="src\entities\design\instance.h" />
+    <ClInclude Include="src\entities\design\part_instance.h" />
     <ClInclude Include="src\entities\design\material.h" />
     <ClInclude Include="src\entities\design\part.h" />
     <ClInclude Include="src\entities\design\part_bulkhead.h" />

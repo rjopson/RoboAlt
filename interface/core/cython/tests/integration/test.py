@@ -64,21 +64,21 @@ db.get_part("29mm 3DPME v2019", "tubeFincan").thickness = 0.001
 db.create_part(PyPartType.FINS, "Fin set", "29mm 3DPME v2019")
 print(db.get_part("29mm 3DPME v2019", "Fin set").name)
 db.get_part("29mm 3DPME v2019", "Fin set").material = db.get_material("PLA")
-db.get_part("29mm 3DPME v2019", "Fin set").chord_root = 0.102
-db.get_part("29mm 3DPME v2019", "Fin set").chord_tip = 0.013
-db.get_part("29mm 3DPME v2019", "Fin set").span = 0.051
-db.get_part("29mm 3DPME v2019", "Fin set").length_sweep = 0.076
 db.get_part("29mm 3DPME v2019", "Fin set").cross_section = PyFinCrossSection.ROUNDED
 db.get_part("29mm 3DPME v2019", "Fin set").number = 3
 db.get_part("29mm 3DPME v2019", "Fin set").thickness = 0.003
 db.get_part("29mm 3DPME v2019", "Fin set").radius_fillet = 0.005
+db.get_part("29mm 3DPME v2019", "Fin set").shape.chord_root = 0.102
+db.get_part("29mm 3DPME v2019", "Fin set").shape.chord_tip = 0.013
+db.get_part("29mm 3DPME v2019", "Fin set").shape.span = 0.051
+db.get_part("29mm 3DPME v2019", "Fin set").shape.length_sweep = 0.076
 
 db.create_configuration("180 case", "29mm 3DPME v2019")
 print(db.get_configuration("29mm 3DPME v2019", "180 case").name)
 
 db.create_stage("sustainer", "29mm 3DPME v2019", "180 case")
 print(db.get_stage("29mm 3DPME v2019", "180 case", "sustainer").name)
-db.get_stage("29mm 3DPME v2019", "180 case", "sustainer").override_mass = 0.1809
+db.get_stage("29mm 3DPME v2019", "180 case", "sustainer").set_override_mass_empty(0.1809)
 db.get_stage("29mm 3DPME v2019", "180 case", "sustainer").surface_finish = PySurfaceFinish.ROUGH
 
 db.create_instance("Nosecone_1", "29mm 3DPME v2019", "180 case", "Nosecone", "sustainer")
@@ -98,6 +98,11 @@ print(db.get_simulation("29mm 3DPME v2019", "180 case", "h128").name)
 db.get_simulation("29mm 3DPME v2019", "180 case", "h128").height_pad = 167.0
 db.get_simulation("29mm 3DPME v2019", "180 case", "h128").set_motor(db.get_motor("H128W"), db.get_stage("29mm 3DPME v2019", "180 case", "sustainer"))
 db.get_simulation("29mm 3DPME v2019", "180 case", "h128").run(0.05, 5.0)
+
+for config in db.get_rocket("29mm 3DPME v2019").configurations:
+    for stage in config.stages:
+        for inst in stage.instances:
+            print(inst.name)
 
 print("Complete")
  

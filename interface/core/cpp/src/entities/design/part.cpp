@@ -47,6 +47,10 @@ double Part::OverrideMass() const {
     return inertial_.mass_override_;
 }
 
+bool  Part::OverrideMassSwitch() const {
+    return inertial_.mass_override_switch_;
+}
+
 double Part::Cg() const {
     
     if (inertial_.cg_override_switch_) {//user wants override value to be used

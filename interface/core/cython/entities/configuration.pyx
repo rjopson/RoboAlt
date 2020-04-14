@@ -5,10 +5,14 @@ from libcpp cimport bool
 cdef extern from "configuration.h":
     cdef cppclass Configuration:
         Configuration(string name, string comments)
-        void SetName(string name)
-        void SetComments(string comments)
-        string Name() const
-        string Comments() const   
+        
+        void SetName(string name);
+        void SetComments(string comments);
+        
+        string Name() const;
+        string Comments() const; 
+        vector[Stage*] Stages() const;
+        vector[Simulation*] Simulations() const;
         
 cdef class PyConfiguration:
     cdef Configuration *ptr
@@ -35,6 +39,26 @@ cdef class PyConfiguration:
     @comments.setter
     def comments(self, val):
         self.ptr.SetComments(val.encode('utf-8'))
+
+    @property
+    def stages(self):
+        stages = []
+        stage_ptrs = self.ptr.Stages()
+        for stage_ptr in stage_ptrs:
+            stage = PyStage()
+            stage = PyStage.create(stage_ptr)
+            stages.append(stage)
+        return stages
+
+    @property
+    def simulations(self):
+        simulations = []
+        simulation_ptrs = self.ptr.Simulations()
+        for simulation_ptr in simulation_ptrs:
+            simulation = PySimulation()
+            simulation = PySimulation.create(simulation_ptr)
+            simulations.append(simulation)
+        return simulations
 
     def named_attributes(self):
         return {"name": self.name,

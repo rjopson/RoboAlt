@@ -13,14 +13,17 @@ class Fins : public Part {
     ~Fins();    
 
     //Values
-    void SetFinShape(FinShape* shape);
+    void SetShape(FinShape* shape);
     void SetFinCrossSection(FinCrossSection cross_section);
     void SetNumber(const double& number);
     void SetThickness(const double& thickness);
     void SetRadiusFillet(const double& radius_fillet);
 
     //Datanames
-    FinShape* AssignedFinShape() const;
+    template <class T>
+    T* AssignedShape() const {
+        return reinterpret_cast<T*>(shape_);
+    }
     FinCrossSection CrossSection() const;
     int Number() const;
     double Thickness() const;

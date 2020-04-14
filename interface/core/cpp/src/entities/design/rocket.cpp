@@ -16,13 +16,13 @@ std::vector<Part*> Rocket::Parts() const {
     return parts_;
 }
 
-std::vector<Instance*> Rocket::Instances() const {
+std::vector<PartInstance*> Rocket::Instances() const {
 
-    std::vector<Instance*> list;
+    std::vector<PartInstance*> list;
 
     for (auto config : configurations_) {
         for (auto stage : config->Stages()) {
-            std::vector<Instance*> stage_instances = stage->InstanceList(false);
+            std::vector<PartInstance*> stage_instances = stage->InstanceList(false);
             list.insert(list.end(), stage_instances.begin(), stage_instances.end());
         }
     }

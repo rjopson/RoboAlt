@@ -1,8 +1,8 @@
-#include "instance.h"
+#include "part_instance.h"
 
-unsigned int Instance::id_counter = 0;
+unsigned int PartInstance::id_counter = 0;
 
-Instance::Instance()
+PartInstance::PartInstance()
 
     : Entity("", "") {
 
@@ -10,7 +10,7 @@ Instance::Instance()
 }
 
 //for all other instances
-Instance::Instance(const std::string& name, Part* part, Instance* parent, PartPosition position_type, const double& position_from)
+PartInstance::PartInstance(const std::string& name, Part* part, PartInstance* parent, PartPosition position_type, const double& position_from)
 
     : part_(part),
       parent_(parent),
@@ -25,37 +25,37 @@ Instance::Instance(const std::string& name, Part* part, Instance* parent, PartPo
         parent->AddChild(this, -1);
 }
 
-Instance::~Instance() {
+PartInstance::~PartInstance() {
     auto it = std::find(parent_->children_.begin(), parent_->children_.end(), this); //find location of this instance
     parent_->AddChildren(children_, it - parent_->children_.begin()); //add this instance's children to this instance's parent
     parent_->children_.erase(it);
 }
 
-void Instance::SetPositionType(PartPosition position_type) {
+void PartInstance::SetPositionType(PartPosition position_type) {
     position_type_ = position_type;
 }
 
-void Instance::SetPositionFrom(const double& position) {
+void PartInstance::SetPositionFrom(const double& position) {
     position_from_ = position;
 }
 
-Part* Instance::AssignedPart() const {
+Part* PartInstance::AssignedPart() const {
     return part_;
 }
 
-PartPosition Instance::PositionType() const {
+PartPosition PartInstance::PositionType() const {
     return position_type_;
 }
 
-double Instance::PositionFrom() const {
+double PartInstance::PositionFrom() const {
     return position_from_;
 }
 
-Instance* Instance::Parent() const {
+PartInstance* PartInstance::Parent() const {
     return parent_;
 }
 
-void Instance::AddChild(Instance* child, const int& index) {
+void PartInstance::AddChild(PartInstance* child, const int& index) {
 
     child->parent_ = this;
 
@@ -67,7 +67,7 @@ void Instance::AddChild(Instance* child, const int& index) {
     }    
 }
 
-void Instance::AddChildren(std::vector<Instance*> children, const int& index) {
+void PartInstance::AddChildren(std::vector<PartInstance*> children, const int& index) {
 
     for (auto inst : children) {
         inst->parent_ = this;
@@ -81,7 +81,7 @@ void Instance::AddChildren(std::vector<Instance*> children, const int& index) {
     }
 }
 
-double Instance::PositionFromParentFront() {
+double PartInstance::PositionFromParentFront() {
 
     if (position_type_ == PartPosition::FOREWARD) {
         return position_from_;
@@ -91,9 +91,9 @@ double Instance::PositionFromParentFront() {
     }
 }
 
-std::vector<Instance*> Instance::Children(bool recursive) {
+std::vector<PartInstance*> PartInstance::Children(bool recursive) {
 
-    std::vector<Instance*> flat_list;
+    std::vector<PartInstance*> flat_list;
 
     if (recursive) {
         InstanceFlatListRecursive(this, flat_list);
@@ -104,7 +104,7 @@ std::vector<Instance*> Instance::Children(bool recursive) {
     return flat_list;
 }
 
-void Instance::InstanceFlatListRecursive(Instance* parent, std::vector<Instance*>& flat_list) {
+void PartInstance::InstanceFlatListRecursive(PartInstance* parent, std::vector<PartInstance*>& flat_list) {
 
     flat_list.push_back(parent);
 

@@ -9,7 +9,7 @@ Stage::Stage(const std::string& name, const std::string& comments,
       distance_overlap_(distance_overlap),
       inertial_(mass_override_switch, mass_override, cg_override_switch, cg_override) {
 
-    instance_root_ = new Instance();
+    instance_root_ = new PartInstance();
 }
 
 Stage::~Stage() {
@@ -28,12 +28,12 @@ void Stage::SetStages(std::vector<Stage*> stages) {
     stages_ = stages;
 }
 
-void Stage::SetOverrideMass(const double& mass) {
+void Stage::SetOverrideMassEmpty(const double& mass) {
     inertial_.mass_override_switch_ = true;
     inertial_.mass_override_ = mass;
 }
 
-void Stage::SetModelMass() {
+void Stage::SetModelMassEmpty() {
     inertial_.mass_override_switch_ = false;
 }
 
@@ -45,17 +45,17 @@ double Stage::DistanceOverlap() const {
     return distance_overlap_;
 }
 
-Instance* Stage::InstanceRoot() const {
+PartInstance* Stage::InstanceRoot() const {
     return instance_root_;
 }
 
-std::vector<Instance*> Stage::InstanceList(bool include_stages_above) const {
+std::vector<PartInstance*> Stage::InstanceList(bool include_stages_above) const {
 
-    std::vector<Instance*> flat_list;
+    std::vector<PartInstance*> flat_list;
     std::vector<Stage*> stages = StageList(include_stages_above);
 
     for (auto stage : stages) {
-        std::vector<Instance*> flat_list_stage = stage->instance_root_->Children(true);
+        std::vector<PartInstance*> flat_list_stage = stage->instance_root_->Children(true);
         flat_list.insert(flat_list.end(), flat_list_stage.begin() + 1, flat_list_stage.end());
     }
     return flat_list;
@@ -105,24 +105,26 @@ double Stage::MassEmpty(bool include_stages_above) const {
 
     double mass = 0.0;
 
-    std::vector<Stage*> stages = StageList(include_stages_above);
-
-    for (auto stage : stages) {
-
-        if (inertial_.mass_override_switch_) {//user wants override value to be used
-            mass = inertial_.mass_override_;
-        }
-        else {
+    if (inertial_.mass_override_switch_) {//user wants override value to be used
+        mass = inertial_.mass_override_;
+    }
+    else {
+        std::vector<Stage*> stages = StageList(include_stages_above);
+        for (auto stage : stages) {
             for (auto instance : instance_root_->Children(true)) { //loop through each child 
                 mass += instance->AssignedPart()->Mass();
             }
         }
-    }
+    }    
     return mass;
 }
 
-double Stage::OverrideMass() const {
+double Stage::OverrideMassEmpty() const {
     return inertial_.mass_override_;
+}
+
+bool Stage::OverrideMassSwitch() const {
+    return inertial_.mass_override_switch_;
 }
 
 SurfaceFinish Stage::GetSurfaceFinish(bool include_stages_above) {
@@ -139,7 +141,7 @@ SurfaceFinish Stage::GetSurfaceFinish(bool include_stages_above) {
     return surface_finish;
 }
 
-void Stage::AddInstance(Instance* instance) {
+void Stage::AddInstance(PartInstance* instance) {
     instance_root_->AddChild(instance, -1);
 }
 
@@ -200,7 +202,7 @@ double Stage::DragCoefficientBase(bool include_stages_above, const double& mach_
 
     double cd = 0.0;
 
-    std::vector<Instance*> instanceList = InstanceList(include_stages_above);
+    std::vector<PartInstance*> instanceList = InstanceList(include_stages_above);
 
     for (auto instance : instanceList) {
         bool aft_most = false;
