@@ -5,33 +5,50 @@ EntityManager::EntityManager() {
 
 
 EntityManager::~EntityManager() {
+    
+    for (auto rocket : rockets_) {
+        DeleteRocket(rocket);
+    }
+    for (auto mat : materials_) {
+        DeleteMaterial(mat);
+    }
+    for (auto motor : motors_) {
+        DeleteMotor(motor);
+    }
 }
 
-void EntityManager::CreateMaterial(const std::string& name) {
+Material* EntityManager::CreateMaterial(const std::string& name) {
     materials_.push_back(new Material(name, "", 1000.0));
+    return materials_.back();
 }
 
 void EntityManager::DeleteMaterial(Material* material) {
-    
-    auto it = std::find(materials_.begin(), materials_.end(), material);
-    if (it != materials_.end()) {
-        delete (*it);
-        (*it) = nullptr;
-        materials_.erase(it);
+
+    for (auto part : parts_) {
+        if (part->AssignedMaterial() == material) {
+            part->SetMaterial(nullptr);
+        }
     }
+    DeleteEntity(materials_, material);
 }
 
 Material* EntityManager::GetMaterial(const std::string& name) {
     return GetEntity(materials_, name);
 }
 
-void EntityManager::CreateRocket(const std::string& name) {
+Rocket* EntityManager::CreateRocket(const std::string& name) {
     rockets_.push_back(new Rocket(name, ""));
+    return rockets_.back();
 }
 
 void EntityManager::DeleteRocket(Rocket* rocket) {
-    
-    //Lots of stuff here to delete... config, instances, parts etc.
+
+    for (auto config : rocket->Configurations()) {
+        DeleteConfiguration(config);
+    }
+    for (auto part : rocket->Parts()) {
+        DeletePart(part);
+    }
     DeleteEntity(rockets_, rocket);
 }
 
@@ -39,7 +56,54 @@ Rocket* EntityManager::GetRocket(const std::string& name) {
     return GetEntity(rockets_, name);
 }
 
-void EntityManager::CreatePart(PartType part_type, const std::string& name, Rocket* rocket) {
+template <>
+Fins* EntityManager::CreatePart<Fins>(const std::string& name, Rocket* rocket) {
+    
+    Material* material = nullptr;
+    Part* part = nullptr;
+
+    FinShape* shape = new FinShapeTrapezoidal(0.102, 0.013, 0.051, 0.076);
+    Fins* fins = new Fins(name, "", material, shape, FinCrossSection::ROUNDED, 3, 0.003, 0.005, false, 0.0, false, 0.0);
+    part = fins;
+
+    parts_.push_back(part);
+    rocket->AddPart(part);
+    return fins;
+}
+
+template <>
+Nosecone* EntityManager::CreatePart<Nosecone>(const std::string& name, Rocket* rocket) {
+
+    Material* material = nullptr;
+    Part* part = nullptr;
+
+    Nosecone* nosecone = new Nosecone(name, "",
+        material, NoseconeType::VON_KARMEN, 1.0, 0.157, 0.01, 0.0, 0.002, 0.03139, 0.0, false, 0.0, false, 0.0);
+    part = nosecone;
+
+    parts_.push_back(part);
+    rocket->AddPart(part);
+    return nosecone;
+}
+
+template <>
+TubeBody* EntityManager::CreatePart<TubeBody>(const std::string& name, Rocket* rocket) {
+
+    Material* material = nullptr;
+    Part* part = nullptr;
+
+    TubeBody* tube_body = new TubeBody(name, "",
+        material, 0.076, 0.03139, 0.001, false, 0, false, 0);
+    part = tube_body;
+
+    parts_.push_back(part);
+    rocket->AddPart(part);
+    return tube_body;
+}
+
+/*
+template<class T>
+T* EntityManager::CreatePart(const std::string& name, Rocket* rocket) {
 
     Material* material = nullptr;
     Part* part = nullptr;
@@ -48,21 +112,21 @@ void EntityManager::CreatePart(PartType part_type, const std::string& name, Rock
         case PartType::FINS: {
             FinShape* shape = new FinShapeTrapezoidal(0.102, 0.013, 0.051, 0.076);
             Fins* fins = new Fins(name, "", material, shape, FinCrossSection::ROUNDED, 3, 0.003, 0.005, false, 0.0, false, 0.0);
-            fins_.push_back(fins);
+            //fins_.push_back(fins);
             part = fins;
             break;
         }
         case PartType::NOSECONE: {
             Nosecone* nosecone = new Nosecone(name, "",
                 material, NoseconeType::VON_KARMEN, 1.0, 0.157, 0.01, 0.0, 0.002, 0.03139, 0.0, false, 0.0, false, 0.0);
-            nosecones_.push_back(nosecone);
+            //nosecones_.push_back(nosecone);
             part = nosecone;
             break;
         }
         case PartType::TUBE_BODY: {
             TubeBody* tube_body = new TubeBody(name, "", 
                 material, 0.076, 0.03139, 0.001, false, 0, false, 0);
-            body_tubes_.push_back(tube_body);
+            //body_tubes_.push_back(tube_body);
             part = tube_body;
             break;
         }
@@ -71,6 +135,7 @@ void EntityManager::CreatePart(PartType part_type, const std::string& name, Rock
     parts_.push_back(part);
     rocket->AddPart(part);
 }
+*/
 
 void EntityManager::DeletePart(Part* part) {
 
@@ -80,13 +145,11 @@ void EntityManager::DeletePart(Part* part) {
     }
 
     //remove any instances which used this part
-    for (auto it = instances_.begin(); it != instances_.end(); ) {
-        if ((*it)->AssignedPart() == part) {
-            delete (*it);
-            instances_.erase(it);
-        }
-        else {
-            ++it;
+    std::vector<PartInstance*> to_erase = GetPartInstances(part);
+    for (auto it = to_erase.begin(); it != to_erase.end(); it++) {
+        auto it_found = std::find(instances_.begin(), instances_.end(), (*it));
+        if (it_found != instances_.end()) {
+            DeletePartInstance((*it_found));
         }
     }
 
@@ -107,17 +170,22 @@ Part* EntityManager::GetPart(const std::string& rocket_name, const std::string& 
     }
 }
 
-void EntityManager::CreateConfiguration(const std::string& name, Rocket* rocket) {
+Configuration* EntityManager::CreateConfiguration(const std::string& name, Rocket* rocket) {
     configurations_.push_back(new Configuration(name, ""));
     rocket->AddConfiguration(configurations_.back());
     
     //Configuration always must have at least 1 stage
     //CreateStage("Sustainer", configurations_.back());
+    return configurations_.back();
 }
 
 void EntityManager::DeleteConfiguration(Configuration* configuration) {
-    //lots of stuff here...
-
+    for (auto sim : configuration->Simulations()) {
+        DeleteSimulation(sim);
+    }
+    for (auto stage : configuration->Stages()) {
+        DeleteStage(stage);
+    }
     DeleteEntity(configurations_, configuration);
 }
 
@@ -134,13 +202,25 @@ Configuration* EntityManager::GetConfiguration(const std::string& rocket_name, c
     }
 }
 
-void EntityManager::CreateStage(const std::string& name, Configuration* configuration) {    
+Stage* EntityManager::CreateStage(const std::string& name, Configuration* configuration) {    
     stages_.push_back(new Stage(name, "", SurfaceFinish::PAINTED, 0.0, false, 0.0, false, 0.0));
     configuration->AddStage(stages_.back());
+    return stages_.back();
 }
 
 void EntityManager::DeleteStage(Stage* stage) {
-    //other stuff here...
+
+    for (auto config : configurations_) {
+        config->RemoveStage(stage);
+    }
+
+    std::vector<PartInstance*> to_erase = stage->InstanceRoot()->Children(true);
+    for (auto it = to_erase.begin(); it != to_erase.end(); it++) {
+        auto it_found = std::find(instances_.begin(), instances_.end(), (*it));
+        if (it_found != instances_.end()) {
+            DeleteEntity(instances_, (*it_found));
+        }
+    }
 
     DeleteEntity(stages_, stage);
 }
@@ -166,16 +246,23 @@ Stage* EntityManager::GetStage(const std::string& rocket_name, const std::string
     }
 }
 
-void EntityManager::CreateInstance(const std::string& name, Part* part, PartInstance* parent) {
+PartInstance* EntityManager::CreatePartInstance(const std::string& name, Part* part, PartInstance* parent) {
     instances_.push_back(new PartInstance(name, part, parent, PartPosition::FOREWARD, 0.0));
+    return instances_.back();
 }
 
-void EntityManager::DeleteInstance(PartInstance* instance) {
-    
+void EntityManager::DeletePartInstance(PartInstance* instance) {
+
+    for (auto inst : instance->Children(false)) {
+        if (inst->AssignedPart()->Type() == PartType::FINS) {
+            DeleteEntity(instances_, inst);
+        }
+    }
+
     DeleteEntity(instances_, instance);
 }
 
-PartInstance* EntityManager::GetInstance(const std::string& rocket_name, const std::string& instance_name) {
+PartInstance* EntityManager::GetPartInstance(const std::string& rocket_name, const std::string& instance_name) {
     
     Rocket* rocket = GetEntity(rockets_, rocket_name);
 
@@ -187,10 +274,23 @@ PartInstance* EntityManager::GetInstance(const std::string& rocket_name, const s
     }
 }
 
-void EntityManager::CreateSimulation(const std::string& name, Configuration* configuration) {
+std::vector<PartInstance*> EntityManager::GetPartInstances(Part* part) {
+
+    std::vector<PartInstance*> result;
+
+    for (auto inst : instances_) {
+        if (inst->AssignedPart() == part) {
+            result.push_back(inst);
+        }
+    }
+    return result;
+}
+
+Simulation* EntityManager::CreateSimulation(const std::string& name, Configuration* configuration) {
 
     simulations_.push_back(new Simulation(name, "", 0.0, 0.0, 2.0));
     configuration->AddSimulation(simulations_.back());
+    return simulations_.back();
 }
 
 void EntityManager::DeleteSimulation(Simulation* simulation) {
@@ -225,12 +325,21 @@ Simulation* EntityManager::GetSimulation(const std::string& rocket_name, const s
     }
 }
 
-void EntityManager::CreateMotor(const std::string& file_path) {
+Motor* EntityManager::CreateMotor(const std::string& file_path) {
     motors_.push_back(new Motor(file_path));
+    return motors_.back();
 }
 
 void EntityManager::DeleteMotor(Motor* motor) {
 
+    for (auto sim : simulations_) {
+        for (auto stage: sim->Stages()) {
+            if (sim->AssignedMotor(stage) == motor) {
+                sim->SetMotor(nullptr, stage);
+            }
+        }
+    }
+    DeleteEntity(motors_, motor);
 }
 
 Motor* EntityManager::GetMotor(const std::string& name) {

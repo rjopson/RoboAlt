@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.29920.165
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "interface_core_cpp", "interface\core\cpp\interface_core_cpp.vcxproj", "{3885BC2A-1C0C-43A1-BD47-AA4E2F1E9C0F}"
 EndProject
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "cython", "interface\core\cython\cython.pyproj", "{89F7BAAA-7F2D-4A16-A3DD-D3F020A0CD81}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "interface_core_cython", "interface\core\cython\interface_core_cython.pyproj", "{89F7BAAA-7F2D-4A16-A3DD-D3F020A0CD81}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "interface", "interface\interface.pyproj", "{F8D28623-726A-428B-807C-8DE413FA65D8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,12 @@ Global
 		{89F7BAAA-7F2D-4A16-A3DD-D3F020A0CD81}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89F7BAAA-7F2D-4A16-A3DD-D3F020A0CD81}.Release|x64.ActiveCfg = Release|Any CPU
 		{89F7BAAA-7F2D-4A16-A3DD-D3F020A0CD81}.Release|x86.ActiveCfg = Release|Any CPU
+		{F8D28623-726A-428B-807C-8DE413FA65D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8D28623-726A-428B-807C-8DE413FA65D8}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F8D28623-726A-428B-807C-8DE413FA65D8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F8D28623-726A-428B-807C-8DE413FA65D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8D28623-726A-428B-807C-8DE413FA65D8}.Release|x64.ActiveCfg = Release|Any CPU
+		{F8D28623-726A-428B-807C-8DE413FA65D8}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

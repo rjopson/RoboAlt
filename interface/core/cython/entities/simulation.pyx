@@ -19,6 +19,7 @@ cdef extern from "simulation.h":
         double HeightPad() const;
         double AngleLaunchRod() const;
         double LengthLaunchRod() const;
+        vector[Stage*] Stages() const;
 
         void Run(double step_ascent, double step_descent);  
 
@@ -69,6 +70,16 @@ cdef class PySimulation:
     def length_launch_rod(self, val):
         self.ptr.SetLengthLaunchRod(val)
 
+    @property
+    def stages(self):
+        stages = []
+        stage_ptrs = self.ptr.Stages()
+        for stage_ptr in stage_ptrs:
+            stage = PyStage()
+            stage = PyStage.create(stage_ptr)
+            stages.append(stage)
+        return stages
+
     def get_motor(self, PyStage stage):
         motor = PyMotor()
         motor = PyMotor.create(self.ptr.AssignedMotor(stage.ptr))
@@ -78,6 +89,10 @@ cdef class PySimulation:
 
     def run(self, step_ascent, step_descent):
         self.ptr.Run(step_ascent, step_descent)
+
+    def initialize_attributes(self, **kwargs):
+        for key in kwargs:
+                setattr(self, key, kwargs[key])
 
     def named_attributes(self):
         return {"name":self.name,

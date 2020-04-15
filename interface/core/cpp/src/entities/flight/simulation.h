@@ -51,6 +51,8 @@ class Simulation : public Entity {
     double HeightPad() const;
     double AngleLaunchRod() const;
     double LengthLaunchRod() const;
+    std::vector<Stage*> Stages() const;
+    std::vector<Motor*> Motors() const;
 
     //Functions
     void Run(const double& step_ascent, const double& step_descent);    

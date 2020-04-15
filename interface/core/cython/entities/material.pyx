@@ -45,6 +45,10 @@ cdef class PyMaterial:
     def density(self, val):
         self.ptr.SetDensity(val)
 
+    def initialize_attributes(self, **kwargs):
+        for key in kwargs:
+                setattr(self, key, kwargs[key])
+
     def named_attributes(self):
         return {"name":self.name,
                 "comments":self.comments,

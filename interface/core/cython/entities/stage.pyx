@@ -8,7 +8,7 @@ cdef extern from "aerodynamics.h":
         _UNFINISHED,
         _PAINTED,
         _POLISHED
-cpdef enum PySurfaceFinish:
+class PySurfaceFinish(Enum):
     ROUGH = 0
     UNFINISHED = 1
     PAINTED = 2
@@ -28,12 +28,12 @@ cdef extern from "stage.h":
         string Comments() const 
         SurfaceFinish AssignedSurfaceFinish() const;
         double DistanceOverlap() const;
-        Instance* InstanceRoot() const;
+        PartInstance* InstanceRoot() const;
         double MassEmpty(bool include_stages_above) const; 
         double OverrideMassEmpty() const;
         bool OverrideMassSwitch() const;
         double Length(bool include_stages_above) const;
-        vector[Instance*] InstanceList(bool include_stages_above) const;
+        vector[PartInstance*] InstanceList(bool include_stages_above) const;
 
         void PrintDragCoefficients(bool include_stages_above, double mach_number, double area_thrusting)
         
@@ -78,9 +78,11 @@ cdef class PyStage:
 
     @property
     def surface_finish(self):
-        return <PySurfaceFinish> self.ptr.AssignedSurfaceFinish()
+        return PySurfaceFinish(<int>self.ptr.AssignedSurfaceFinish())
     @surface_finish.setter
-    def surface_finish(self, PySurfaceFinish val):
+    def surface_finish(self, val):
+        if (isinstance(val, Enum)):
+            val = val.value
         self.ptr.SetSurfaceFinish(<SurfaceFinish><int>val)
 
     @property
@@ -91,13 +93,23 @@ cdef class PyStage:
         self.ptr.DistanceOverlap()
 
     @property
-    def instances(self):
-        instance = PyInstance()
-        instance = PyInstance.create(self.ptr.InstanceRoot())
+    def instance_root(self):
+        instance = PyPartInstance()
+        instance = PyPartInstance.create(self.ptr.InstanceRoot())
+        return instance
+
+    @property
+    def part_instances(self):
+        instance = PyPartInstance()
+        instance = PyPartInstance.create(self.ptr.InstanceRoot())
         return instance.children
 
     def print_drag_coefficients(self, stages_above, mach_number, area_thrusting):
         self.ptr.PrintDragCoefficients(stages_above, mach_number, area_thrusting)
+
+    def initialize_attributes(self, **kwargs):
+        for key in kwargs:
+                setattr(self, key, kwargs[key])
 
     def named_attributes(self):
         return {"name":self.name,

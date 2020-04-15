@@ -5,104 +5,87 @@ from interface_core import PyNoseconeType
 from interface_core import PyFinCrossSection
 from interface_core import PySurfaceFinish
 
-db = core.InterfaceCore()
+db = core.PyInterfaceCore()
 
-db.create_material("PLA")
-print(db.get_material("PLA").name)
-db.get_material("PLA").density = 1380.0
+pla = db.create_material("PLA")
+pla.density = 1380.0
 
-db.create_rocket("29mm 3DPME v2019")
-print(db.get_rocket("29mm 3DPME v2019").name)
+rkt = db.create_rocket("29mm 3DPME v2019")
 
-db.create_part(PyPartType.NOSECONE, "Nosecone", "29mm 3DPME v2019")
-print(db.get_part("29mm 3DPME v2019", "Nosecone").name)
-db.get_part("29mm 3DPME v2019", "Nosecone").material = db.get_material("PLA")
-db.get_part("29mm 3DPME v2019", "Nosecone").nosecone_type = PyNoseconeType.VON_KARMEN
-db.get_part("29mm 3DPME v2019", "Nosecone").shape_parameter = 1.0
-db.get_part("29mm 3DPME v2019", "Nosecone").length_nose = 0.157
-db.get_part("29mm 3DPME v2019", "Nosecone").length_base = 0.01
-db.get_part("29mm 3DPME v2019", "Nosecone").length_shoulder = 0.0
-db.get_part("29mm 3DPME v2019", "Nosecone").thickness = 0.01
-db.get_part("29mm 3DPME v2019", "Nosecone").diameter_outer = 0.03139
-db.get_part("29mm 3DPME v2019", "Nosecone").diameter_shoulder = 0.0
+nosecone = db.create_part(PyPartType.NOSECONE, "Nosecone", rkt)
+nosecone.material = pla
+nosecone.nosecone_type = PyNoseconeType.VON_KARMEN
+nosecone.shape_parameter = 1.0
+nosecone.length_nose = 0.157
+nosecone.length_base = 0.01
+nosecone.length_shoulder = 0.0
+nosecone.thickness = 0.01
+nosecone.diameter_outer = 0.03139
+nosecone.diameter_shoulder = 0.0
 
-db.create_part(PyPartType.TUBE_BODY, "tubeMain", "29mm 3DPME v2019")
-print(db.get_part("29mm 3DPME v2019", "tubeMain").name)
-db.get_part("29mm 3DPME v2019", "tubeMain").material = db.get_material("PLA")
-db.get_part("29mm 3DPME v2019", "tubeMain").length = 0.076
-db.get_part("29mm 3DPME v2019", "tubeMain").diameter_outer = 0.03139
-db.get_part("29mm 3DPME v2019", "tubeMain").thickness = 0.001
+tube_main = db.create_part(PyPartType.TUBE_BODY, "tubeMain", rkt)
+tube_main.material = pla
+tube_main.length = 0.076
+tube_main.diameter_outer = 0.03139
+tube_main.thickness = 0.001
 
-db.create_part(PyPartType.TUBE_BODY, "tubeDrogue", "29mm 3DPME v2019")
-print(db.get_part("29mm 3DPME v2019", "tubeDrogue").name)
-db.get_part("29mm 3DPME v2019", "tubeDrogue").material = db.get_material("PLA")
-db.get_part("29mm 3DPME v2019", "tubeDrogue").length = 0.19
-db.get_part("29mm 3DPME v2019", "tubeDrogue").diameter_outer = 0.03139
-db.get_part("29mm 3DPME v2019", "tubeDrogue").thickness = 0.001
+tube_drogue = db.create_part(PyPartType.TUBE_BODY, "tubeDrogue", rkt)
+tube_drogue.material = pla
+tube_drogue.length = 0.19
+tube_drogue.diameter_outer = 0.03139
+tube_drogue.thickness = 0.001
 
-db.create_part(PyPartType.TUBE_BODY, "tubeExtension180", "29mm 3DPME v2019")
-print(db.get_part("29mm 3DPME v2019", "tubeExtension180").name)
-db.get_part("29mm 3DPME v2019", "tubeExtension180").material = db.get_material("PLA")
-db.get_part("29mm 3DPME v2019", "tubeExtension180").length = 0.001
-db.get_part("29mm 3DPME v2019", "tubeExtension180").diameter_outer = 0.03139
-db.get_part("29mm 3DPME v2019", "tubeExtension180").thickness = 0.001
+tube_extension180 = db.create_part(PyPartType.TUBE_BODY, "tubeExtension180", rkt)
+tube_extension180.material = pla
+tube_extension180.length = 0.001
+tube_extension180.diameter_outer = 0.03139
+tube_extension180.thickness = 0.001
 
-db.create_part(PyPartType.TUBE_BODY, "tubeExtension240", "29mm 3DPME v2019")
-print(db.get_part("29mm 3DPME v2019", "tubeExtension240").name)
-db.get_part("29mm 3DPME v2019", "tubeExtension240").material = db.get_material("PLA")
-db.get_part("29mm 3DPME v2019", "tubeExtension240").length = 0.04
-db.get_part("29mm 3DPME v2019", "tubeExtension240").diameter_outer = 0.03139
-db.get_part("29mm 3DPME v2019", "tubeExtension240").thickness = 0.001
+tube_extension240 = db.create_part(PyPartType.TUBE_BODY, "tubeExtension240", rkt)
+tube_extension240.material = pla
+tube_extension240.length = 0.04
+tube_extension240.diameter_outer = 0.03139
+tube_extension240.thickness = 0.001
 
-db.create_part(PyPartType.TUBE_BODY, "tubeFincan", "29mm 3DPME v2019")
-print(db.get_part("29mm 3DPME v2019", "tubeFincan").name)
-db.get_part("29mm 3DPME v2019", "tubeFincan").material = db.get_material("PLA")
-db.get_part("29mm 3DPME v2019", "tubeFincan").length = 0.114
-db.get_part("29mm 3DPME v2019", "tubeFincan").diameter_outer = 0.03139
-db.get_part("29mm 3DPME v2019", "tubeFincan").thickness = 0.001
+tube_fincan = db.create_part(PyPartType.TUBE_BODY, "tubeFincan", rkt)
+tube_fincan.material = pla
+tube_fincan.length = 0.114
+tube_fincan.diameter_outer = 0.03139
+tube_fincan.thickness = 0.001
 
-db.create_part(PyPartType.FINS, "Fin set", "29mm 3DPME v2019")
-print(db.get_part("29mm 3DPME v2019", "Fin set").name)
-db.get_part("29mm 3DPME v2019", "Fin set").material = db.get_material("PLA")
-db.get_part("29mm 3DPME v2019", "Fin set").cross_section = PyFinCrossSection.ROUNDED
-db.get_part("29mm 3DPME v2019", "Fin set").number = 3
-db.get_part("29mm 3DPME v2019", "Fin set").thickness = 0.003
-db.get_part("29mm 3DPME v2019", "Fin set").radius_fillet = 0.005
-db.get_part("29mm 3DPME v2019", "Fin set").shape.chord_root = 0.102
-db.get_part("29mm 3DPME v2019", "Fin set").shape.chord_tip = 0.013
-db.get_part("29mm 3DPME v2019", "Fin set").shape.span = 0.051
-db.get_part("29mm 3DPME v2019", "Fin set").shape.length_sweep = 0.076
+fins = db.create_part(PyPartType.FINS, "Fin set", rkt)
+fins.material = pla
+fins.cross_section = PyFinCrossSection.ROUNDED
+fins.number = 3
+fins.thickness = 0.003
+fins.radius_fillet = 0.005
+fins.shape.chord_root = 0.102
+fins.shape.chord_tip = 0.013
+fins.shape.span = 0.051
+fins.shape.length_sweep = 0.076
 
-db.create_configuration("180 case", "29mm 3DPME v2019")
-print(db.get_configuration("29mm 3DPME v2019", "180 case").name)
+config180 = db.create_configuration("180 case", rkt)
 
-db.create_stage("sustainer", "29mm 3DPME v2019", "180 case")
-print(db.get_stage("29mm 3DPME v2019", "180 case", "sustainer").name)
-db.get_stage("29mm 3DPME v2019", "180 case", "sustainer").set_override_mass_empty(0.1809)
-db.get_stage("29mm 3DPME v2019", "180 case", "sustainer").surface_finish = PySurfaceFinish.ROUGH
+sustainer180 = db.create_stage("sustainer", config180)
+sustainer180.set_override_mass_empty(0.1809)
+sustainer180.surface_finish = PySurfaceFinish.ROUGH
 
-db.create_instance("Nosecone_1", "29mm 3DPME v2019", "180 case", "Nosecone", "sustainer")
-db.create_instance("tubeMain_1", "29mm 3DPME v2019", "180 case", "tubeMain", "sustainer")
-db.create_instance("tubeDrogue_1", "29mm 3DPME v2019", "180 case", "tubeDrogue", "sustainer")
-db.create_instance("tubeExtension180_1", "29mm 3DPME v2019", "180 case", "tubeExtension180", "sustainer")
-db.create_instance("tubeFincan_1", "29mm 3DPME v2019", "180 case", "tubeFincan", "sustainer")
-db.create_instance("Finset_1", "29mm 3DPME v2019", "180 case", "Fin set", "tubeFincan_1")
-db.get_instance("29mm 3DPME v2019", "Finset_1").position_from = 0.0063
+nosecone_1 = db.create_part_instance("Nosecone_1", nosecone, sustainer180.instance_root)
+tube_main_1 = db.create_part_instance("tubeMain_1", tube_main, sustainer180.instance_root)
+tube_drogue_1 = db.create_part_instance("tubeDrogue_1", tube_drogue, sustainer180.instance_root)
+tube_extension180_1 = db.create_part_instance("tubeExtension180_1", tube_extension180, sustainer180.instance_root)
+tube_fincan_1 = db.create_part_instance("tubeFincan_1", tube_fincan, sustainer180.instance_root)
+fins_1 = db.create_part_instance("Finset_1", fins, tube_fincan_1)
+fins_1.position_from = 0.0063
 
-#db.get_stage("29mm 3DPME v2019", "180 case", "sustainer").print_drag_coefficients(1, 0.46, 0.0)
+#rkt.get_stage("29mm 3DPME v2019", "180 case", "sustainer").print_drag_coefficients(1, 0.46, 0.0)
 
-db.create_motor("C:/Users/rober/Documents/Rockets/Altimeters/RoboAlt/interface/core/cpp/tests/test_files/AeroTech_H128.eng")
+h128 = db.create_motor("C:/Users/rober/Documents/Rockets/Altimeters/RoboAlt/interface/core/cpp/tests/test_files/AeroTech_H128.eng")
 
-db.create_simulation("h128", "29mm 3DPME v2019", "180 case")
-print(db.get_simulation("29mm 3DPME v2019", "180 case", "h128").name)
-db.get_simulation("29mm 3DPME v2019", "180 case", "h128").height_pad = 167.0
-db.get_simulation("29mm 3DPME v2019", "180 case", "h128").set_motor(db.get_motor("H128W"), db.get_stage("29mm 3DPME v2019", "180 case", "sustainer"))
-db.get_simulation("29mm 3DPME v2019", "180 case", "h128").run(0.05, 5.0)
-
-for config in db.get_rocket("29mm 3DPME v2019").configurations:
-    for stage in config.stages:
-        for inst in stage.instances:
-            print(inst.name)
+sim_h128 = db.create_simulation("h128", config180)
+sim_h128.height_pad = 167.0
+sim_h128.set_motor(h128, sustainer180)
+sim_h128.run(0.05, 5.0)
 
 print("Complete")
  

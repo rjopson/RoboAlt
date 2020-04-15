@@ -39,6 +39,7 @@ void Simulation::RemoveStage(Stage* stage) {
         if ((*it)->stage_ == stage) {
             delete (*it);
             stages_.erase(it);
+            break;
         }
     }
 }
@@ -102,6 +103,24 @@ double Simulation::AngleLaunchRod() const {
 
 double Simulation::LengthLaunchRod() const {
     return length_launch_rod_;
+}
+
+std::vector<Stage*> Simulation::Stages() const {
+    
+    std::vector<Stage*> result;
+    for (auto sim_stage : stages_) {
+        result.push_back(sim_stage->stage_);
+    }
+    return result;
+}
+
+std::vector<Motor*> Simulation::Motors() const {
+
+    std::vector<Motor*> result;
+    for (auto sim_stage : stages_) {
+        result.push_back(sim_stage->motor_);
+    }
+    return result;
 }
 
 void Simulation::Run(const double& step_ascent, const double& step_descent) {

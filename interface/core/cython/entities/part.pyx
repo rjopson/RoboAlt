@@ -12,7 +12,7 @@ cdef extern from "part.h":
         _POINT_MASS,
         _TUBE_BODY,
         _TUBE_INNER  
-cpdef enum PyPartType:
+class PyPartType(Enum):
     BULKHEAD = 0
     FINS = 1
     NOSECONE = 2
@@ -37,18 +37,39 @@ cdef extern from "part.h":
         double Mass() const;
         double OverrideMass() const;
         bool OverrideMassSwitch() const;
-        PartType Type() const;        
+        PartType Type() const;   
 
 #base class - never used as a standalone, only in derived classes
 cdef class PyPart:
     cdef Part *ptr_part
 
     def __init__(self, *args):
-        pass
+        pass    
+
+    @staticmethod
+    cdef create_derived(Part* ptr):
+        obj = <PyPart>PyPart.__new__(PyPart)
+        obj.ptr_part = ptr
+        if obj.type is PyPartType.BULKHEAD:
+            part = PyBulkhead()
+            part = PyBulkhead.create(<Bulkhead*>ptr)
+            return part
+        elif obj.type is PyPartType.FINS:
+            part = PyFins()
+            part = PyFins.create(<Fins*>ptr)
+            return part
+        elif obj.type is PyPartType.NOSECONE:
+            part = PyNosecone()
+            part = PyNosecone.create(<Nosecone*>ptr)
+            return part
+        elif obj.type is PyPartType.TUBE_BODY:
+            part = PyTubeBody()
+            part = PyTubeBody.create(<TubeBody*>ptr)
+            return part
 
     @property
     def type(self):
-        return <PyPartType>self.ptr_part.Type()
+        return PyPartType(<int>self.ptr_part.Type())
 
     @property
     def name(self):
@@ -87,6 +108,10 @@ cdef class PyPart:
         self.ptr_part.OverrideMassSwitch()
     def set_model_mass(self):
         self.ptr_part.SetModelMass()
+
+    def initialize_attributes(self, **kwargs):
+        for key in kwargs:
+                setattr(self, key, kwargs[key])
 
 
 cdef extern from "part_bulkhead.h":
@@ -129,7 +154,7 @@ cdef class PyBulkhead(PyPart):
         self.ptr.SetThickness(val)
 
     def named_attributes(self):
-        return {"type":type,
+        return {"type":self.type,
                 "name":self.name,
                 "comments":self.comments,
                 "material":self.material.name,
@@ -140,7 +165,7 @@ cdef class PyBulkhead(PyPart):
 cdef extern from "fin_shape.h":
     cdef enum FinShapeType "FinShapeType":
         _TRAPEZOIDAL  
-cpdef enum PyFinShapeType:
+class PyFinShapeType(Enum):
     TRAPEZOIDAL = 0
 
 cdef extern from "fin_shape.h":
@@ -176,7 +201,7 @@ cdef class PyFinShapeTrapezoidal:
 
     @property
     def type(self):
-        return <PyFinShapeType>self.ptr.AssignedFinShapeType()
+        return PyFinShapeType(<int>self.ptr.AssignedFinShapeType())
 
     @property
     def chord_root(self):
@@ -198,6 +223,10 @@ cdef class PyFinShapeTrapezoidal:
     @span.setter
     def span(self, val):
         self.ptr.SetSpan(val)
+
+    def initialize_attributes(self, **kwargs):
+        for key in kwargs:
+                setattr(self, key, kwargs[key])
    
     @property
     def length_sweep(self):
@@ -207,10 +236,10 @@ cdef class PyFinShapeTrapezoidal:
         self.ptr.SetLengthSweep(val)
 
     def named_attributes(self):
-        return {"type":type,
+        return {"type":self.type,
                 "chord_root":self.chord_root,
                 "chord_tip":self.chord_tip,
-                "span":self.spn,
+                "span":self.span,
                 "length_sweep":self.length_sweep}
 
 cdef extern from "aerodynamics.h":
@@ -219,7 +248,7 @@ cdef extern from "aerodynamics.h":
         _ROUNDED,
         _AIRFOIL,
         _DOUBLE_WEDGE 
-cpdef enum PyFinCrossSection:
+class PyFinCrossSection(Enum):
     SQUARE = 0
     ROUNDED = 1
     AIRFOIL = 2
@@ -265,9 +294,11 @@ cdef class PyFins(PyPart):
 
     @property
     def cross_section(self):
-        return <PyFinCrossSection>self.ptr.CrossSection()
+        return PyFinCrossSection(<int>self.ptr.CrossSection())
     @cross_section.setter
-    def cross_section(self, PyFinCrossSection val):
+    def cross_section(self, val):
+        if (isinstance(val, Enum)):
+            val = val.value
         self.ptr.SetFinCrossSection(<FinCrossSection><int>val)
 
     @property
@@ -292,7 +323,7 @@ cdef class PyFins(PyPart):
         self.ptr.SetRadiusFillet(val)        
 
     def named_attributes(self):
-        return {"type":type,
+        return {"type":self.type,
                 "name":self.name,
                 "comments":self.comments,
                 "material":self.material.name,
@@ -308,7 +339,7 @@ cdef extern from "aerodynamics.h":
         _CONICAL,
         _OGIVE,
         _HAACK
-cpdef enum PyNoseconeType:
+class PyNoseconeType(Enum):
     VON_KARMEN  = 0
     CONICAL  = 1
     OGIVE  = 2
@@ -357,9 +388,11 @@ cdef class PyNosecone(PyPart):
     
     @property
     def nosecone_type(self):
-        return <PyNoseconeType>self.ptr.NoseType()
+        return PyNoseconeType(<int>self.ptr.NoseType())
     @nosecone_type.setter
-    def nosecone_type(self, PyNoseconeType val):
+    def nosecone_type(self, val):
+        if (isinstance(val, Enum)):
+                val = val.value
         self.ptr.SetNoseType(<NoseconeType><int>val)
     
     @property
@@ -419,7 +452,7 @@ cdef class PyNosecone(PyPart):
         return self.ptr.Length()
 
     def named_attributes(self):
-        return {"type":type,
+        return {"type":self.type,
                 "name":self.name,
                 "comments":self.comments,
                 "material":self.material.name,
@@ -458,7 +491,7 @@ cdef class PyTubeBody(PyPart):
     cdef PyTubeBody create(TubeBody* ptr):
         obj = <PyTubeBody>PyTubeBody.__new__(PyTubeBody)
         obj.ptr = ptr
-        obj.ptr_part = <Part*>ptr
+        obj.ptr_part = <Part*>ptr        
         return obj
 
     @property
@@ -483,7 +516,7 @@ cdef class PyTubeBody(PyPart):
         self.ptr.SetThickness(val)
 
     def named_attributes(self):
-        return {"type":type,
+        return {"type":self.type,
                 "name":self.name,
                 "comments":self.comments,
                 "material":self.material.name,

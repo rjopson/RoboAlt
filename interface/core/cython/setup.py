@@ -25,7 +25,7 @@ extensions = [
                     design_path + "fin_shape.cpp",
                     flight_path + "flight_data.cpp",
                     design_path + "inertial_override.cpp",
-                    design_path + "instance.cpp",
+                    design_path + "part_instance.cpp",
                     design_path + "material.cpp",
                     utils_path + "math_utilities.cpp",
                     utils_path + "matrix.cpp",

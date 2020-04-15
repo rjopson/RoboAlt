@@ -34,11 +34,8 @@ class PartInstance : public Entity {
     void AddChildren(std::vector<PartInstance*> children, const int& index); //-1 to add at end, 0 to insert at beginning
 
   private:
-    static unsigned int id_counter;
-
     void InstanceFlatListRecursive(PartInstance* parent, std::vector<PartInstance*>& flat_list);
-    
-    unsigned int id_;
+
     std::vector<PartInstance*> children_;
     Part* part_;
     PartInstance* parent_;

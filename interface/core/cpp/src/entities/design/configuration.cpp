@@ -38,6 +38,11 @@ void Configuration::RemoveStage(Stage* stage) {
         for (auto stage : stages_) {
             stage->SetStages(GetStageListWithStagesAbove(stage));
         }
+
+        //update simulations to remove stage 
+        for (auto sim : simulations_) {
+            sim->RemoveStage(stage);
+        }
     }   
 }
 

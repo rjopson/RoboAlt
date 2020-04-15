@@ -26,6 +26,8 @@ class Rocket : public Entity {
     std::vector<Configuration*> Configurations() const;
     std::vector<Part*> Parts() const;
     std::vector<PartInstance*> Instances() const;
+    std::vector<Motor*> Motors() const;
+    std::vector<Material*> Materials() const;
 
     //Core functions
     void AddConfiguration(Configuration* configuration);

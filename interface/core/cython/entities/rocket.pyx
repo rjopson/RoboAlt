@@ -13,6 +13,8 @@ cdef extern from "rocket.h":
         string Comments() const;
         vector[Configuration*] Configurations() const;
         vector[Part*] Parts() const;
+        vector[Motor*] Motors() const;
+        vector[Material*] Materials() const;
 
 cdef class PyRocket:
     cdef Rocket *ptr
@@ -55,21 +57,32 @@ cdef class PyRocket:
         parts = []
         part_ptrs = self.ptr.Parts()
         for part_ptr in part_ptrs:
-            part_type = <PyPartType>part_ptr.Type()
-            if part_type is PyPartType.BULKHEAD:
-                part = PyBulkhead()
-                part = PyBulkhead.create(<Bulkhead*>part_ptr)
-            elif part_type is PyPartType.FINS:
-                part = PyFins()
-                part = PyFins.create(<Fins*>part_ptr)
-            elif part_type is PyPartType.NOSECONE:
-                part = PyNosecone()
-                part = PyNosecone.create(<Nosecone*>part_ptr)
-            elif part_type is PyPartType.TUBE_BODY:
-                part = PyTubeBody()
-                part = PyTubeBody.create(<TubeBody*>part_ptr)
-            parts.append(part)
+            parts.append(PyPart.create_derived(part_ptr))
         return parts
+
+    @property 
+    def materials(self):
+        mats = []
+        mat_ptrs = self.ptr.Materials()
+        for mat_ptr in mat_ptrs:
+            mat = PyMaterial()
+            mat = PyMaterial.create(mat_ptr)
+            mats.append(mat)
+        return mats
+
+    @property
+    def motors(self):
+        motors = []
+        motor_ptrs = self.ptr.Motors()
+        for motor_ptr in motor_ptrs:
+            motor = PyMotor()
+            motor = PyMotor.create(motor_ptr)
+            motors.append(motor)
+        return motors
+
+    def initialize_attributes(self, **kwargs):
+        for key in kwargs:
+                setattr(self, key, kwargs[key])
 
     def named_attributes(self):
         return {"name":self.name,

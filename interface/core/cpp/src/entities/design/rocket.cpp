@@ -29,6 +29,36 @@ std::vector<PartInstance*> Rocket::Instances() const {
     return list;
 }
 
+std::vector<Motor*> Rocket::Motors() const {
+    
+    std::vector<Motor*> result;
+    for (auto config : configurations_) {
+        for (auto sim : config->Simulations()) {
+            for (auto motor : sim->Motors()) {
+
+                auto it = std::find(result.begin(), result.end(), motor);
+                if (it == result.end()) {
+                    result.push_back(motor);
+                }
+            }
+        }
+    }
+    return result;
+}
+
+std::vector<Material*> Rocket::Materials() const {
+
+    std::vector<Material*> result;
+    for (auto part : parts_) {
+
+        auto it = std::find(result.begin(), result.end(), part->AssignedMaterial());
+        if (it == result.end()) {
+            result.push_back(part->AssignedMaterial());
+        }
+    }
+    return result;
+}
+
 void Rocket::AddConfiguration(Configuration* configuration) {
     configurations_.push_back(configuration);
 }

@@ -17,16 +17,17 @@ class EntityManager {
     //Configuration* CurrentConfiguration();
     //Rocket* CurrentRocket();
 
-    void CreateMaterial(const std::string& name);
+    Material* CreateMaterial(const std::string& name);
     void DeleteMaterial(Material* material);
     Material* GetMaterial(const std::string& name);
 
-    void CreateRocket(const std::string& name);
+    Rocket* CreateRocket(const std::string& name);
     void DeleteRocket(Rocket* rocket);
     //Rocket* GetRocket(const int& id);
     Rocket* GetRocket(const std::string& name);
 
-    void CreatePart(PartType part_type, const std::string& name, Rocket* rocket);
+    template <class T>
+    T* CreatePart(const std::string& name, Rocket* rocket);
     void DeletePart(Part* part);
     Part* GetPart(const std::string& rocket_name, const std::string& part_name);
     template <class T>
@@ -34,26 +35,27 @@ class EntityManager {
         return reinterpret_cast<T*>(GetPart(rocket_name, part_name));
     }
 
-    void CreateConfiguration(const std::string& name, Rocket* rocket);
+    Configuration* CreateConfiguration(const std::string& name, Rocket* rocket);
     void DeleteConfiguration(Configuration* configuration);
     Configuration* GetConfiguration(const std::string& rocket_name, const std::string& configuration_name);
 
-    void CreateStage(const std::string& name, Configuration* configuration);
+    Stage* CreateStage(const std::string& name, Configuration* configuration);
     void DeleteStage(Stage* stage);
     Stage* GetStage(const std::string& rocket_name, const std::string& configuration_name, const std::string& stage_name);
     
-    void CreateInstance(const std::string& name, Part* part, PartInstance* parent);
-    void DeleteInstance(PartInstance* instance);
-    PartInstance* GetInstance(const std::string& rocket_name, const std::string& instance_name);
+    PartInstance* CreatePartInstance(const std::string& name, Part* part, PartInstance* parent);
+    void DeletePartInstance(PartInstance* instance);
+    PartInstance* GetPartInstance(const std::string& rocket_name, const std::string& instance_name);
+    std::vector<PartInstance*> GetPartInstances(Part* part);
 
-    void CreateSimulation(const std::string& name, Configuration* configuration);
+    Simulation* CreateSimulation(const std::string& name, Configuration* configuration);
     void DeleteSimulation(Simulation* simulation);
     Simulation* GetSimulation(const std::string& rocket_name, const std::string& configuration_name, const std::string& simulation_name);
     void CreateSimulationUserCommand(Simulation* simulation, Stage* stage);
     void DeleteSimulationuserCommand(SimulationUserCommand* command);
     SimulationUserCommand* GetSimulationUserCommand();
     
-    void CreateMotor(const std::string& file_path);
+    Motor* CreateMotor(const std::string& file_path);
     void DeleteMotor(Motor* motor);
     Motor* GetMotor(const std::string& name);
 
@@ -85,8 +87,7 @@ private:
     }
 
     template <class T>
-    void DeleteEntity(std::vector<T*> list, T* entity) {
-
+    void DeleteEntity(std::vector<T*>& list, T* entity) {
         auto it = std::find(list.begin(), list.end(), entity);
         if (it != list.end()) {
             delete (*it);
@@ -94,6 +95,7 @@ private:
             list.erase(it);
         }
     }
+
 
     /*
     Configuration* GetConfiguration(const int& id);
@@ -118,13 +120,13 @@ private:
 
     //Parts
     std::vector<Part*> parts_;
-    std::vector<Bulkhead*> bulkheads_;
-    std::vector<Fins*> fins_;
-    std::vector<PointMass*> masses_;
-    std::vector<Nosecone*> nosecones_;
-    std::vector<Parachute*> parachutes_;
-    std::vector<TubeBody*> body_tubes_;
-    std::vector<TubeInner*> inner_tubes_;
+    //std::vector<Bulkhead*> bulkheads_;
+    //std::vector<Fins*> fins_;
+    //std::vector<PointMass*> masses_;
+    //std::vector<Nosecone*> nosecones_;
+    //std::vector<Parachute*> parachutes_;
+    //std::vector<TubeBody*> body_tubes_;
+    //std::vector<TubeInner*> inner_tubes_;
 };
 #endif
 

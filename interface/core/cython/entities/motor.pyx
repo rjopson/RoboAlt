@@ -60,6 +60,14 @@ cdef class PyMotor:
     def mass_total(self):
         return self.ptr.MassTotal()
 
+    @property
+    def data_time(self):
+        return self.ptr.DataTime()
+
+    @property
+    def data_thrust(self):
+        return self.ptr.DataThrust()
+
     def named_attributes(self):
         return {"name":self.name,
                 "comments":self.comments,

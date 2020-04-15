@@ -1,12 +1,11 @@
 #include "part_instance.h"
 
-unsigned int PartInstance::id_counter = 0;
-
 PartInstance::PartInstance()
 
-    : Entity("", "") {
+    : Entity("", ""),
+      part_(nullptr),
+      parent_(nullptr) {
 
-    id_ = 0;
 }
 
 //for all other instances
@@ -18,17 +17,25 @@ PartInstance::PartInstance(const std::string& name, Part* part, PartInstance* pa
       position_from_(position_from),
       Entity(name, "") {
 
-    id_counter++;
-    id_ = id_counter;
-
     if (parent)
         parent->AddChild(this, -1);
 }
 
 PartInstance::~PartInstance() {
-    auto it = std::find(parent_->children_.begin(), parent_->children_.end(), this); //find location of this instance
-    parent_->AddChildren(children_, it - parent_->children_.begin()); //add this instance's children to this instance's parent
-    parent_->children_.erase(it);
+
+    if (parent_ != nullptr) {
+        
+        //add children to parent of instance being erased
+        auto it = std::find(parent_->children_.begin(), parent_->children_.end(), this); //find location of this instance        
+        
+        if (children_.size() > 0) {
+            parent_->AddChildren(children_, it - parent_->children_.begin()); //add this instance's children to this instance's parent
+        }            
+        
+        //erase instance from parent
+        it = std::find(parent_->children_.begin(), parent_->children_.end(), this);
+        parent_->children_.erase(it);
+    }
 }
 
 void PartInstance::SetPositionType(PartPosition position_type) {

@@ -60,6 +60,10 @@ cdef class PyConfiguration:
             simulations.append(simulation)
         return simulations
 
+    def initialize_attributes(self, **kwargs):
+        for key in kwargs:
+                setattr(self, key, kwargs[key])
+
     def named_attributes(self):
         return {"name": self.name,
                 "comments": self.comments}
