@@ -113,7 +113,9 @@ std::vector<PartInstance*> PartInstance::Children(bool recursive) {
 
 void PartInstance::InstanceFlatListRecursive(PartInstance* parent, std::vector<PartInstance*>& flat_list) {
 
-    flat_list.push_back(parent);
+    if (parent->parent_ != nullptr) {
+        flat_list.push_back(parent);
+    }    
 
     if (!parent->children_.empty()) { //additional instances in child list
         for (auto child : parent->children_) {

@@ -45,6 +45,7 @@ cdef extern from "entity_manager.h":
         Simulation* GetSimulation(string rocket_name, string configuration_name, string simulation_name);
 
         Motor* CreateMotor(string file_path);
+        Motor* CreateMotor();
         void DeleteMotor(Motor* motor);
         Motor* GetMotor(string name);
         
@@ -65,6 +66,9 @@ cdef class PyInterfaceCore:
             mat.initialize_attributes(**kwargs)
         return mat
 
+    def delete_material(self, PyMaterial material):
+        self.ptr.DeleteMaterial(material.ptr)
+
     def get_material(self, name):
         mat = PyMaterial()
         mat = PyMaterial.create(self.ptr.GetMaterial(name.encode('utf-8')))
@@ -77,6 +81,9 @@ cdef class PyInterfaceCore:
         if kwargs is not None:
             rocket.initialize_attributes(**kwargs)
         return rocket
+
+    def delete_rocket(self, PyRocket rocket):
+        self.ptr.DeleteRocket(rocket.ptr)
 
     def get_rocket(self, name):
         rkt = PyRocket()
@@ -99,6 +106,9 @@ cdef class PyInterfaceCore:
             part.initialize_attributes(**kwargs)
         return part
 
+    def delete_part(self, PyPart part):
+        self.ptr.DeletePart(part.ptr_part)
+
     def get_part(self, rocket_name, name):
         pass 
         return PyPart.create_derived(self.ptr.GetPart(rocket_name.encode('utf-8'), name.encode('utf-8')))
@@ -110,6 +120,9 @@ cdef class PyInterfaceCore:
         if kwargs is not None:
             config.initialize_attributes(**kwargs)
         return config
+
+    def delete_configuration(self, PyConfiguration configuration):
+        self.ptr.DeleteConfiguration(configuration.ptr)
 
     def get_configuration(self, rocket_name, name):
         config = PyConfiguration()
@@ -124,6 +137,9 @@ cdef class PyInterfaceCore:
             stage.initialize_attributes(**kwargs)
         return stage
 
+    def delete_stage(self, PyStage stage):
+        self.ptr.DeleteStage(stage.ptr)
+
     def get_stage(self, rocket_name, configuration_name, name):
         stage = PyStage()
         stage = PyStage.create(self.ptr.GetStage(rocket_name.encode('utf-8'), configuration_name.encode('utf-8'), name.encode('utf-8')))
@@ -136,6 +152,9 @@ cdef class PyInterfaceCore:
         if kwargs is not None:
             instance.initialize_attributes(**kwargs)
         return instance
+
+    def delete_part_instance(self, PyPartInstance part_instance):
+        self.ptr.DeletePartInstance(part_instance.ptr)
 
     def get_part_instance(self, rocket_name, name):
         instance = PyPartInstance()
@@ -150,16 +169,27 @@ cdef class PyInterfaceCore:
             sim.initialize_attributes(**kwargs)
         return sim
 
+    def delete_simulation(self, PySimulation simulation):
+        self.ptr.DeleteSimulation(simulation.ptr)
+
     def get_simulation(self, rocket_name, configuration_name, name):
         simulation = PySimulation()
         simulation = PySimulation.create(self.ptr.GetSimulation(rocket_name.encode('utf-8'), configuration_name.encode('utf-8'), name.encode('utf-8')))
         return simulation
 
-    def create_motor(self, path):
-        motor_ptr = self.ptr.CreateMotor(path.encode('utf-8'))
+    def create_motor(self, path=None, **kwargs):
+        if path is not None:
+            motor_ptr = self.ptr.CreateMotor(path.encode('utf-8'))
+        else:
+            motor_ptr = self.ptr.CreateMotor()
         motor = PyMotor()
         motor = PyMotor.create(motor_ptr)
+        if kwargs is not None:
+            motor.initialize_attributes(**kwargs)
         return motor
+
+    def delete_motor(self, PyMotor motor):
+        self.ptr.DeleteMotor(motor.ptr)
 
     def get_motor(self, name):
         motor = PyMotor()

@@ -12,7 +12,14 @@ Motor::Motor(std::string name, std::string manufacturer, std::string comments,
       mass_propellant_(mass_propellant),
       mass_total_(mass_total),
       data_time_(data_time),
-      data_thrust_(data_thrust) {}
+      data_thrust_(data_thrust) {
+
+	//most data doesn't have a 0 time and thrust, so add (otherwise integration of thrust is low)
+	if (data_time_[0] > 0.0) {
+		data_time_.insert(data_time_.begin(), 0.0);
+		data_thrust_.insert(data_thrust_.begin(), 0.0);
+	}
+}
 
 Motor::Motor(const std::string& file_path) 
 	: Entity("", "") {
@@ -74,12 +81,11 @@ Motor::Motor(const std::string& file_path)
 
 Motor::~Motor() {}
 
-/*
 void Motor::SetManufacturer(const std::string& manufacturer) {
 	manufacturer_ = manufacturer;
 }
 
-void Motor::setDiameter(const double& diameter) {
+void Motor::SetDiameter(const double& diameter) {
 	diameter_ = diameter;
 }
 
@@ -91,14 +97,21 @@ void Motor::SetDelay(const std::vector<double>& delay) {
 	delay_ = delay;
 }
 
-void Motor::setMassPropellant(const double& mass_propellant) {
+void Motor::SetMassPropellant(const double& mass_propellant) {
 	mass_propellant_ = mass_propellant;
 }
 
 void Motor::SetMassTotal(const double& mass_total) {
 	mass_total_ = mass_total;
 }
-*/
+
+void Motor::SetDataTime(const std::vector<double>& time) {
+	data_time_ = time;
+}
+
+void Motor::SetDataThrust(const std::vector<double>& thrust) {
+	data_thrust_ = thrust;
+}
 
 std::string Motor::Manufacturer() const {
 	return manufacturer_;

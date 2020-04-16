@@ -31,7 +31,7 @@ class Part : public Entity {
     //Values 
     void SetMaterial(Material* material);
     void SetOverrideMass(const double& mass);
-    void SetModelMass();
+    void SetOverrideMassSwitch(bool use_override);
 
     //Datanames
     Material* AssignedMaterial() const;

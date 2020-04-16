@@ -22,7 +22,7 @@ class Stage : public Entity {
     void SetSurfaceFinish(SurfaceFinish surface_finish);
     void SetDistanceOverlap(const double& distance_overlap);    
     void SetOverrideMassEmpty(const double& mass);
-    void SetModelMassEmpty();
+    void SetOverrideMassSwitch(bool use_override);
 
     //Datanames
     SurfaceFinish AssignedSurfaceFinish() const;

@@ -101,42 +101,6 @@ TubeBody* EntityManager::CreatePart<TubeBody>(const std::string& name, Rocket* r
     return tube_body;
 }
 
-/*
-template<class T>
-T* EntityManager::CreatePart(const std::string& name, Rocket* rocket) {
-
-    Material* material = nullptr;
-    Part* part = nullptr;
-
-    switch (part_type) {
-        case PartType::FINS: {
-            FinShape* shape = new FinShapeTrapezoidal(0.102, 0.013, 0.051, 0.076);
-            Fins* fins = new Fins(name, "", material, shape, FinCrossSection::ROUNDED, 3, 0.003, 0.005, false, 0.0, false, 0.0);
-            //fins_.push_back(fins);
-            part = fins;
-            break;
-        }
-        case PartType::NOSECONE: {
-            Nosecone* nosecone = new Nosecone(name, "",
-                material, NoseconeType::VON_KARMEN, 1.0, 0.157, 0.01, 0.0, 0.002, 0.03139, 0.0, false, 0.0, false, 0.0);
-            //nosecones_.push_back(nosecone);
-            part = nosecone;
-            break;
-        }
-        case PartType::TUBE_BODY: {
-            TubeBody* tube_body = new TubeBody(name, "", 
-                material, 0.076, 0.03139, 0.001, false, 0, false, 0);
-            //body_tubes_.push_back(tube_body);
-            part = tube_body;
-            break;
-        }
-    }
-
-    parts_.push_back(part);
-    rocket->AddPart(part);
-}
-*/
-
 void EntityManager::DeletePart(Part* part) {
 
     //remove part from the rocket it was stored in
@@ -327,6 +291,17 @@ Simulation* EntityManager::GetSimulation(const std::string& rocket_name, const s
 
 Motor* EntityManager::CreateMotor(const std::string& file_path) {
     motors_.push_back(new Motor(file_path));
+    return motors_.back();
+}
+
+Motor* EntityManager::CreateMotor() {
+
+    std::vector<double> delay{ 14 };
+    std::vector<double> time{ 0.0, 1.0, 1.1 };
+    std::vector<double> thrust{ 0.0, 170.0, 0.0 };
+
+    //define an H128 approximation as default. Should really ever be used with Python wrapper in place...
+    motors_.push_back(new Motor("H128W", "AT", "", 0.029, 0.194, delay, 0.09408, 0.2016, time, thrust));
     return motors_.back();
 }
 

@@ -36,14 +36,14 @@ int main() {
     nosecone->SetLengthShoulder(0.0);
     nosecone->SetThickness(0.01);
     nosecone->SetDiameterOuter(0.03139);
-    nosecone->SetDiameterShoulder(0.0);
+    nosecone->SetDiameterShoulder(0.0);    
 
     //Main tube
     TubeBody* tube_main = db->CreatePart<TubeBody>("tubeMain", rkt);
     tube_main->SetMaterial(db->GetMaterial("PLA"));
     tube_main->SetLength(0.076);
     tube_main->SetDiameterOuter(0.03139);
-    tube_main->SetThickness(0.001);
+    tube_main->SetThickness(0.001);    
     
     //Drogue tube
     TubeBody* tube_drogue = db->CreatePart<TubeBody>("tubeDrogue", rkt);
@@ -70,7 +70,7 @@ int main() {
     fincan->SetMaterial(db->GetMaterial("PLA"));
     fincan->SetLength(0.114);
     fincan->SetDiameterOuter(0.03139);
-    fincan->SetThickness(0.001);
+    fincan->SetThickness(0.001);    
 
     //Fins
     Fins* fins = db->CreatePart<Fins>("Fin set", rkt);
@@ -82,12 +82,12 @@ int main() {
     fins->SetFinCrossSection(FinCrossSection::ROUNDED);
     fins->SetNumber(3);
     fins->SetThickness(0.003);
-    fins->SetRadiusFillet(0.005);
+    fins->SetRadiusFillet(0.005);    
     
 	//Configuration
     Configuration* config180 = db->CreateConfiguration("180 case", rkt);
-    Stage* sustainer180 = db->CreateStage("sustainer", config180);
-    sustainer180->SetOverrideMassEmpty(0.1809);
+    Stage* sustainer180 = db->CreateStage("sustainer", config180);    
+    //sustainer180->SetOverrideMassEmpty(0.1809);
     sustainer180->SetSurfaceFinish(SurfaceFinish::ROUGH);
 
 	//Instances

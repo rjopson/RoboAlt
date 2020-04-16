@@ -17,12 +17,11 @@ void Part::SetMaterial(Material* material) {
 }
 
 void Part::SetOverrideMass(const double& mass) {
-    inertial_.mass_override_switch_ = true;
     inertial_.mass_override_ = mass;
 }
 
-void Part::SetModelMass() {
-    inertial_.mass_override_switch_ = false;
+void Part::SetOverrideMassSwitch(bool use_override) {
+    inertial_.mass_override_switch_ = use_override;
 }
 
 Material* Part::AssignedMaterial() const {

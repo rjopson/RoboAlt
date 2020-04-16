@@ -66,11 +66,10 @@ def run():
     fins.shape.length_sweep = 0.076
 
     config180 = db.create_configuration("180 case", rkt)
-
     sustainer180 = db.create_stage("sustainer", config180)
-    sustainer180.set_override_mass_empty(0.1809)
+    sustainer180.override_mass_empty = 0.1809
+    sustainer180.override_mass_switch = True
     sustainer180.surface_finish = PySurfaceFinish.ROUGH
-
     nosecone_1 = db.create_part_instance("Nosecone_1", nosecone, sustainer180.instance_root)
     tube_main_1 = db.create_part_instance("tubeMain_1", tube_main, sustainer180.instance_root)
     tube_drogue_1 = db.create_part_instance("tubeDrogue_1", tube_drogue, sustainer180.instance_root)
@@ -79,13 +78,32 @@ def run():
     fins_1 = db.create_part_instance("Finset_1", fins, tube_fincan_1)
     fins_1.position_from = 0.0063
 
+    config240 = db.create_configuration("240 case", rkt)
+    sustainer240 = db.create_stage("sustainer", config240)
+    sustainer240.override_mass_empty = 0.195
+    sustainer240.override_mass_switch = True
+    sustainer240.surface_finish = PySurfaceFinish.ROUGH
+    nosecone_2 = db.create_part_instance("Nosecone_2", nosecone, sustainer240.instance_root)
+    tube_main_2 = db.create_part_instance("tubeMain_2", tube_main, sustainer240.instance_root)
+    tube_drogue_2 = db.create_part_instance("tubeDrogue_2", tube_drogue, sustainer240.instance_root)
+    tube_extension240_1 = db.create_part_instance("tubeExtension240_1", tube_extension240, sustainer240.instance_root)
+    tube_fincan_2 = db.create_part_instance("tubeFincan_2", tube_fincan, sustainer240.instance_root)
+    fins_2 = db.create_part_instance("Finset_2", fins, tube_fincan_2)
+    fins_2.position_from = 0.0063
+
     #rkt.get_stage("29mm 3DPME v2019", "180 case", "sustainer").print_drag_coefficients(1, 0.46, 0.0)
 
     h128 = db.create_motor("C:/Users/rober/Documents/Rockets/Altimeters/RoboAlt/interface/core/cpp/tests/test_files/AeroTech_H128.eng")
+    h180 = db.create_motor("C:/Users/rober/Documents/Rockets/Altimeters/RoboAlt/interface/core/cpp/tests/test_files/AeroTech_H180.eng")
 
     sim_h128 = db.create_simulation("h128", config180)
     sim_h128.height_pad = 167.0
     sim_h128.set_motor(h128, sustainer180)
     sim_h128.run(0.05, 5.0)
+
+    sim_h180 = db.create_simulation("h180", config240)
+    sim_h180.height_pad = 167.0
+    sim_h180.set_motor(h180, sustainer240)
+    sim_h180.run(0.05, 5.0)
     
     return db

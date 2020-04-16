@@ -22,12 +22,14 @@ class Motor : public Entity {
 	~Motor();
 
     //Input
-    //void SetManufacturer(const std::string& manufacturer);
-    //void setDiameter(const double& diameter);
-    //void SetLength(const double& length);
-    //void SetDelay(const std::vector<double>& delay);
-    //void setMassPropellant(const double& mass_propellant);
-    //void SetMassTotal(const double& mass_total);    
+    void SetManufacturer(const std::string& manufacturer);
+    void SetDiameter(const double& diameter);
+    void SetLength(const double& length);
+    void SetDelay(const std::vector<double>& delay);
+    void SetMassPropellant(const double& mass_propellant);
+    void SetMassTotal(const double& mass_total);   
+    void SetDataTime(const std::vector<double>& time);
+    void SetDataThrust(const std::vector<double>& thrust);
 
     //Datanames
     std::string Manufacturer() const;

@@ -29,7 +29,7 @@ cdef extern from "part.h":
         void SetComments(string comments);
         void SetMaterial(Material* material);
         void SetOverrideMass(double mass);
-        void SetModelMass();
+        void SetOverrideMassSwitch(bool use_override);
 
         string Name() const;
         string Comments() const;
@@ -102,12 +102,13 @@ cdef class PyPart:
         return self.ptr_part.OverrideMass()
     @override_mass.setter
     def override_mass(self, val):
-        self.ptr_part.SetOverrideMass(val)   
+        self.ptr_part.SetOverrideMass(val)       
     @property
     def override_mass_switch(self):
-        self.ptr_part.OverrideMassSwitch()
-    def set_model_mass(self):
-        self.ptr_part.SetModelMass()
+        return self.ptr_part.OverrideMassSwitch()
+    @override_mass_switch.setter
+    def override_mass_switch(self, val):
+        self.ptr_part.SetOverrideMassSwitch(val)
 
     def initialize_attributes(self, **kwargs):
         for key in kwargs:
@@ -159,6 +160,7 @@ cdef class PyBulkhead(PyPart):
                 "comments":self.comments,
                 "material":self.material.name,
                 "override_mass":self.override_mass,
+                "override_mass_switch":self.override_mass_switch,
                 "diameter":self.diameter,
                 "thickness":self.thickness}
 
@@ -328,6 +330,7 @@ cdef class PyFins(PyPart):
                 "comments":self.comments,
                 "material":self.material.name,
                 "override_mass":self.override_mass,
+                "override_mass_switch":self.override_mass_switch,
                 "cross_section":self.cross_section,
                 "number":self.number,
                 "thickness":self.thickness,
@@ -457,6 +460,7 @@ cdef class PyNosecone(PyPart):
                 "comments":self.comments,
                 "material":self.material.name,
                 "override_mass":self.override_mass,
+                "override_mass_switch":self.override_mass_switch,
                 "nosecone_type":self.nosecone_type,
                 "shape_parameter":self.shape_parameter,
                 "length_nose":self.length_nose,
@@ -521,6 +525,7 @@ cdef class PyTubeBody(PyPart):
                 "comments":self.comments,
                 "material":self.material.name,
                 "override_mass":self.override_mass,
+                "override_mass_switch":self.override_mass_switch,
                 "length":self.length,
                 "diameter_outer":self.diameter_outer,
                 "thickness":self.thickness}

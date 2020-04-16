@@ -29,12 +29,11 @@ void Stage::SetStages(std::vector<Stage*> stages) {
 }
 
 void Stage::SetOverrideMassEmpty(const double& mass) {
-    inertial_.mass_override_switch_ = true;
     inertial_.mass_override_ = mass;
 }
 
-void Stage::SetModelMassEmpty() {
-    inertial_.mass_override_switch_ = false;
+void Stage::SetOverrideMassSwitch(bool use_override) {
+    inertial_.mass_override_switch_ = use_override;
 }
 
 SurfaceFinish Stage::AssignedSurfaceFinish() const {
@@ -111,7 +110,7 @@ double Stage::MassEmpty(bool include_stages_above) const {
     else {
         std::vector<Stage*> stages = StageList(include_stages_above);
         for (auto stage : stages) {
-            for (auto instance : instance_root_->Children(true)) { //loop through each child 
+            for (auto instance : stage->InstanceRoot()->Children(true)) { //loop through each child 
                 mass += instance->AssignedPart()->Mass();
             }
         }

@@ -22,7 +22,7 @@ cdef extern from "stage.h":
         void SetSurfaceFinish(SurfaceFinish surface_finish);
         void SetDistanceOverlap(double distance_overlap);    
         void SetOverrideMassEmpty(double mass);
-        void SetModelMassEmpty();
+        void SetOverrideMassSwitch(bool use_override);
 
         string Name() const
         string Comments() const 
@@ -68,13 +68,15 @@ cdef class PyStage:
     @property
     def override_mass_empty(self):
         return self.ptr.OverrideMassEmpty()
-    def set_override_mass_empty(self, val):
+    @override_mass_empty.setter
+    def override_mass_empty(self, val):
         self.ptr.SetOverrideMassEmpty(val)
     @property
     def override_mass_switch(self):
-        self.ptr.OverrideMassSwitch()
-    def set_model_mass_empty(self):
-        self.ptr.SetModelMassEmpty()
+        return self.ptr.OverrideMassSwitch()
+    @override_mass_switch.setter
+    def override_mass_switch(self, val):
+        self.ptr.SetOverrideMassSwitch(val)
 
     @property
     def surface_finish(self):
@@ -115,4 +117,6 @@ cdef class PyStage:
         return {"name":self.name,
                 "comments":self.comments,
                 "surface_finish":self.surface_finish,
-                "distance_overlap":self.distance_overlap}
+                "distance_overlap":self.distance_overlap,
+                "override_mass_empty":self.override_mass_empty,
+                "override_mass_switch":self.override_mass_switch}

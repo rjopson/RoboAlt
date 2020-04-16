@@ -977,7 +977,7 @@ struct __pyx_obj_14interface_core_PyMaterial {
 };
 
 
-/* "entities/motor.pyx":23
+/* "entities/motor.pyx":35
  *         double MassCase() const;
  * 
  * cdef class PyMotor:             # <<<<<<<<<<<<<<
@@ -1005,7 +1005,7 @@ struct __pyx_obj_14interface_core_PyPart {
 };
 
 
-/* "entities/part.pyx":129
+/* "entities/part.pyx":130
  *         double Thickness() const;
  * 
  * cdef class PyBulkhead(PyPart):             # <<<<<<<<<<<<<<
@@ -1018,7 +1018,7 @@ struct __pyx_obj_14interface_core_PyBulkhead {
 };
 
 
-/* "entities/part.pyx":190
+/* "entities/part.pyx":192
  *         double LengthSweep() const;
  * 
  * cdef class PyFinShapeTrapezoidal:             # <<<<<<<<<<<<<<
@@ -1032,7 +1032,7 @@ struct __pyx_obj_14interface_core_PyFinShapeTrapezoidal {
 };
 
 
-/* "entities/part.pyx":276
+/* "entities/part.pyx":278
  *         double RadiusFillet() const;
  * 
  * cdef class PyFins(PyPart):             # <<<<<<<<<<<<<<
@@ -1045,7 +1045,7 @@ struct __pyx_obj_14interface_core_PyFins {
 };
 
 
-/* "entities/part.pyx":376
+/* "entities/part.pyx":379
  *         double Length() const;
  * 
  * cdef class PyNosecone(PyPart):             # <<<<<<<<<<<<<<
@@ -1058,7 +1058,7 @@ struct __pyx_obj_14interface_core_PyNosecone {
 };
 
 
-/* "entities/part.pyx":484
+/* "entities/part.pyx":488
  *         double Thickness() const;
  * 
  * cdef class PyTubeBody(PyPart):             # <<<<<<<<<<<<<<
@@ -1113,7 +1113,7 @@ struct __pyx_obj_14interface_core_PyStage {
 };
 
 
-/* "python_wrappers.pyx":51
+/* "python_wrappers.pyx":52
  *         Motor* GetMotor(string name);
  * 
  * cdef class PyInterfaceCore:             # <<<<<<<<<<<<<<
@@ -1169,7 +1169,7 @@ struct __pyx_vtabstruct_14interface_core_PyMaterial {
 static struct __pyx_vtabstruct_14interface_core_PyMaterial *__pyx_vtabptr_14interface_core_PyMaterial;
 
 
-/* "entities/motor.pyx":23
+/* "entities/motor.pyx":35
  *         double MassCase() const;
  * 
  * cdef class PyMotor:             # <<<<<<<<<<<<<<
@@ -1197,7 +1197,7 @@ struct __pyx_vtabstruct_14interface_core_PyPart {
 static struct __pyx_vtabstruct_14interface_core_PyPart *__pyx_vtabptr_14interface_core_PyPart;
 
 
-/* "entities/part.pyx":129
+/* "entities/part.pyx":130
  *         double Thickness() const;
  * 
  * cdef class PyBulkhead(PyPart):             # <<<<<<<<<<<<<<
@@ -1212,7 +1212,7 @@ struct __pyx_vtabstruct_14interface_core_PyBulkhead {
 static struct __pyx_vtabstruct_14interface_core_PyBulkhead *__pyx_vtabptr_14interface_core_PyBulkhead;
 
 
-/* "entities/part.pyx":190
+/* "entities/part.pyx":192
  *         double LengthSweep() const;
  * 
  * cdef class PyFinShapeTrapezoidal:             # <<<<<<<<<<<<<<
@@ -1226,7 +1226,7 @@ struct __pyx_vtabstruct_14interface_core_PyFinShapeTrapezoidal {
 static struct __pyx_vtabstruct_14interface_core_PyFinShapeTrapezoidal *__pyx_vtabptr_14interface_core_PyFinShapeTrapezoidal;
 
 
-/* "entities/part.pyx":276
+/* "entities/part.pyx":278
  *         double RadiusFillet() const;
  * 
  * cdef class PyFins(PyPart):             # <<<<<<<<<<<<<<
@@ -1241,7 +1241,7 @@ struct __pyx_vtabstruct_14interface_core_PyFins {
 static struct __pyx_vtabstruct_14interface_core_PyFins *__pyx_vtabptr_14interface_core_PyFins;
 
 
-/* "entities/part.pyx":376
+/* "entities/part.pyx":379
  *         double Length() const;
  * 
  * cdef class PyNosecone(PyPart):             # <<<<<<<<<<<<<<
@@ -1256,7 +1256,7 @@ struct __pyx_vtabstruct_14interface_core_PyNosecone {
 static struct __pyx_vtabstruct_14interface_core_PyNosecone *__pyx_vtabptr_14interface_core_PyNosecone;
 
 
-/* "entities/part.pyx":484
+/* "entities/part.pyx":488
  *         double Thickness() const;
  * 
  * cdef class PyTubeBody(PyPart):             # <<<<<<<<<<<<<<
@@ -1829,6 +1829,7 @@ static CYTHON_INLINE PyObject *__pyx_convert_PyBytes_string_to_py_std__in_string
 static CYTHON_INLINE PyObject *__pyx_convert_PyByteArray_string_to_py_std__in_string(std::string const &); /*proto*/
 static std::string __pyx_convert_string_from_py_std__in_string(PyObject *); /*proto*/
 static PyObject *__pyx_convert_vector_to_py_double(const std::vector<double>  &); /*proto*/
+static std::vector<double>  __pyx_convert_vector_from_py_double(PyObject *); /*proto*/
 #define __Pyx_MODULE_NAME "interface_core"
 extern int __pyx_module_is_main_interface_core;
 int __pyx_module_is_main_interface_core = 0;
@@ -1847,6 +1848,7 @@ static const char __pyx_k_file[] = "file";
 static const char __pyx_k_main[] = "__main__";
 static const char __pyx_k_name[] = "name";
 static const char __pyx_k_part[] = "part";
+static const char __pyx_k_path[] = "path";
 static const char __pyx_k_span[] = "span";
 static const char __pyx_k_test[] = "__test__";
 static const char __pyx_k_type[] = "type";
@@ -1954,6 +1956,8 @@ static const char __pyx_k_diameter_shoulder[] = "diameter_shoulder";
 static const char __pyx_k_length_launch_rod[] = "length_launch_rod";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
 static const char __pyx_k_configuration_name[] = "configuration_name";
+static const char __pyx_k_override_mass_empty[] = "override_mass_empty";
+static const char __pyx_k_override_mass_switch[] = "override_mass_switch";
 static const char __pyx_k_PyFinShapeTrapezoidal[] = "PyFinShapeTrapezoidal";
 static const char __pyx_k_initialize_attributes[] = "initialize_attributes";
 static const char __pyx_k_self_ptr_cannot_be_converted_to[] = "self.ptr cannot be converted to a Python object for pickling";
@@ -2051,9 +2055,12 @@ static PyObject *__pyx_kp_s_no_default___reduce___due_to_non;
 static PyObject *__pyx_n_s_nosecone_type;
 static PyObject *__pyx_n_s_number;
 static PyObject *__pyx_n_s_override_mass;
+static PyObject *__pyx_n_s_override_mass_empty;
+static PyObject *__pyx_n_s_override_mass_switch;
 static PyObject *__pyx_n_s_parent;
 static PyObject *__pyx_n_s_part;
 static PyObject *__pyx_n_s_part_type;
+static PyObject *__pyx_n_s_path;
 static PyObject *__pyx_n_s_position_from;
 static PyObject *__pyx_n_s_position_type;
 static PyObject *__pyx_n_s_prepare;
@@ -2123,17 +2130,29 @@ static PyObject *__pyx_pf_14interface_core_10PyMaterial_6__reduce_cython__(CYTHO
 static PyObject *__pyx_pf_14interface_core_10PyMaterial_8__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_14interface_core_PyMaterial *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
 static int __pyx_pf_14interface_core_7PyMotor___init__(CYTHON_UNUSED struct __pyx_obj_14interface_core_PyMotor *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v_args); /* proto */
 static PyObject *__pyx_pf_14interface_core_7PyMotor_4name___get__(struct __pyx_obj_14interface_core_PyMotor *__pyx_v_self); /* proto */
+static int __pyx_pf_14interface_core_7PyMotor_4name_2__set__(struct __pyx_obj_14interface_core_PyMotor *__pyx_v_self, PyObject *__pyx_v_val); /* proto */
 static PyObject *__pyx_pf_14interface_core_7PyMotor_8comments___get__(struct __pyx_obj_14interface_core_PyMotor *__pyx_v_self); /* proto */
+static int __pyx_pf_14interface_core_7PyMotor_8comments_2__set__(struct __pyx_obj_14interface_core_PyMotor *__pyx_v_self, PyObject *__pyx_v_val); /* proto */
 static PyObject *__pyx_pf_14interface_core_7PyMotor_12manufacturer___get__(struct __pyx_obj_14interface_core_PyMotor *__pyx_v_self); /* proto */
+static int __pyx_pf_14interface_core_7PyMotor_12manufacturer_2__set__(struct __pyx_obj_14interface_core_PyMotor *__pyx_v_self, PyObject *__pyx_v_val); /* proto */
 static PyObject *__pyx_pf_14interface_core_7PyMotor_8diameter___get__(struct __pyx_obj_14interface_core_PyMotor *__pyx_v_self); /* proto */
+static int __pyx_pf_14interface_core_7PyMotor_8diameter_2__set__(struct __pyx_obj_14interface_core_PyMotor *__pyx_v_self, PyObject *__pyx_v_val); /* proto */
 static PyObject *__pyx_pf_14interface_core_7PyMotor_6length___get__(struct __pyx_obj_14interface_core_PyMotor *__pyx_v_self); /* proto */
+static int __pyx_pf_14interface_core_7PyMotor_6length_2__set__(struct __pyx_obj_14interface_core_PyMotor *__pyx_v_self, PyObject *__pyx_v_val); /* proto */
 static PyObject *__pyx_pf_14interface_core_7PyMotor_15mass_propellant___get__(struct __pyx_obj_14interface_core_PyMotor *__pyx_v_self); /* proto */
+static int __pyx_pf_14interface_core_7PyMotor_15mass_propellant_2__set__(struct __pyx_obj_14interface_core_PyMotor *__pyx_v_self, PyObject *__pyx_v_val); /* proto */
 static PyObject *__pyx_pf_14interface_core_7PyMotor_10mass_total___get__(struct __pyx_obj_14interface_core_PyMotor *__pyx_v_self); /* proto */
+static int __pyx_pf_14interface_core_7PyMotor_10mass_total_2__set__(struct __pyx_obj_14interface_core_PyMotor *__pyx_v_self, PyObject *__pyx_v_val); /* proto */
+static PyObject *__pyx_pf_14interface_core_7PyMotor_5delay___get__(struct __pyx_obj_14interface_core_PyMotor *__pyx_v_self); /* proto */
+static int __pyx_pf_14interface_core_7PyMotor_5delay_2__set__(struct __pyx_obj_14interface_core_PyMotor *__pyx_v_self, PyObject *__pyx_v_val); /* proto */
 static PyObject *__pyx_pf_14interface_core_7PyMotor_9data_time___get__(struct __pyx_obj_14interface_core_PyMotor *__pyx_v_self); /* proto */
+static int __pyx_pf_14interface_core_7PyMotor_9data_time_2__set__(struct __pyx_obj_14interface_core_PyMotor *__pyx_v_self, PyObject *__pyx_v_val); /* proto */
 static PyObject *__pyx_pf_14interface_core_7PyMotor_11data_thrust___get__(struct __pyx_obj_14interface_core_PyMotor *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_14interface_core_7PyMotor_2named_attributes(struct __pyx_obj_14interface_core_PyMotor *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_14interface_core_7PyMotor_4__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_14interface_core_PyMotor *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_14interface_core_7PyMotor_6__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_14interface_core_PyMotor *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
+static int __pyx_pf_14interface_core_7PyMotor_11data_thrust_2__set__(struct __pyx_obj_14interface_core_PyMotor *__pyx_v_self, PyObject *__pyx_v_val); /* proto */
+static PyObject *__pyx_pf_14interface_core_7PyMotor_2initialize_attributes(struct __pyx_obj_14interface_core_PyMotor *__pyx_v_self, PyObject *__pyx_v_kwargs); /* proto */
+static PyObject *__pyx_pf_14interface_core_7PyMotor_4named_attributes(struct __pyx_obj_14interface_core_PyMotor *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_14interface_core_7PyMotor_6__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_14interface_core_PyMotor *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_14interface_core_7PyMotor_8__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_14interface_core_PyMotor *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
 static int __pyx_pf_14interface_core_6PyPart___init__(CYTHON_UNUSED struct __pyx_obj_14interface_core_PyPart *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v_args); /* proto */
 static PyObject *__pyx_pf_14interface_core_6PyPart_4type___get__(struct __pyx_obj_14interface_core_PyPart *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_14interface_core_6PyPart_4name___get__(struct __pyx_obj_14interface_core_PyPart *__pyx_v_self); /* proto */
@@ -2146,10 +2165,10 @@ static PyObject *__pyx_pf_14interface_core_6PyPart_4mass___get__(struct __pyx_ob
 static PyObject *__pyx_pf_14interface_core_6PyPart_13override_mass___get__(struct __pyx_obj_14interface_core_PyPart *__pyx_v_self); /* proto */
 static int __pyx_pf_14interface_core_6PyPart_13override_mass_2__set__(struct __pyx_obj_14interface_core_PyPart *__pyx_v_self, PyObject *__pyx_v_val); /* proto */
 static PyObject *__pyx_pf_14interface_core_6PyPart_20override_mass_switch___get__(struct __pyx_obj_14interface_core_PyPart *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_14interface_core_6PyPart_2set_model_mass(struct __pyx_obj_14interface_core_PyPart *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_14interface_core_6PyPart_4initialize_attributes(struct __pyx_obj_14interface_core_PyPart *__pyx_v_self, PyObject *__pyx_v_kwargs); /* proto */
-static PyObject *__pyx_pf_14interface_core_6PyPart_6__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_14interface_core_PyPart *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_14interface_core_6PyPart_8__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_14interface_core_PyPart *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
+static int __pyx_pf_14interface_core_6PyPart_20override_mass_switch_2__set__(struct __pyx_obj_14interface_core_PyPart *__pyx_v_self, PyObject *__pyx_v_val); /* proto */
+static PyObject *__pyx_pf_14interface_core_6PyPart_2initialize_attributes(struct __pyx_obj_14interface_core_PyPart *__pyx_v_self, PyObject *__pyx_v_kwargs); /* proto */
+static PyObject *__pyx_pf_14interface_core_6PyPart_4__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_14interface_core_PyPart *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_14interface_core_6PyPart_6__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_14interface_core_PyPart *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
 static int __pyx_pf_14interface_core_10PyBulkhead___init__(CYTHON_UNUSED struct __pyx_obj_14interface_core_PyBulkhead *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v_args); /* proto */
 static PyObject *__pyx_pf_14interface_core_10PyBulkhead_8diameter___get__(struct __pyx_obj_14interface_core_PyBulkhead *__pyx_v_self); /* proto */
 static int __pyx_pf_14interface_core_10PyBulkhead_8diameter_2__set__(struct __pyx_obj_14interface_core_PyBulkhead *__pyx_v_self, PyObject *__pyx_v_val); /* proto */
@@ -2256,40 +2275,48 @@ static PyObject *__pyx_pf_14interface_core_7PyStage_8comments___get__(struct __p
 static int __pyx_pf_14interface_core_7PyStage_8comments_2__set__(struct __pyx_obj_14interface_core_PyStage *__pyx_v_self, PyObject *__pyx_v_val); /* proto */
 static PyObject *__pyx_pf_14interface_core_7PyStage_2mass_empty(struct __pyx_obj_14interface_core_PyStage *__pyx_v_self, PyObject *__pyx_v_include_stages_above); /* proto */
 static PyObject *__pyx_pf_14interface_core_7PyStage_19override_mass_empty___get__(struct __pyx_obj_14interface_core_PyStage *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_14interface_core_7PyStage_4set_override_mass_empty(struct __pyx_obj_14interface_core_PyStage *__pyx_v_self, PyObject *__pyx_v_val); /* proto */
+static int __pyx_pf_14interface_core_7PyStage_19override_mass_empty_2__set__(struct __pyx_obj_14interface_core_PyStage *__pyx_v_self, PyObject *__pyx_v_val); /* proto */
 static PyObject *__pyx_pf_14interface_core_7PyStage_20override_mass_switch___get__(struct __pyx_obj_14interface_core_PyStage *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_14interface_core_7PyStage_6set_model_mass_empty(struct __pyx_obj_14interface_core_PyStage *__pyx_v_self); /* proto */
+static int __pyx_pf_14interface_core_7PyStage_20override_mass_switch_2__set__(struct __pyx_obj_14interface_core_PyStage *__pyx_v_self, PyObject *__pyx_v_val); /* proto */
 static PyObject *__pyx_pf_14interface_core_7PyStage_14surface_finish___get__(struct __pyx_obj_14interface_core_PyStage *__pyx_v_self); /* proto */
 static int __pyx_pf_14interface_core_7PyStage_14surface_finish_2__set__(struct __pyx_obj_14interface_core_PyStage *__pyx_v_self, PyObject *__pyx_v_val); /* proto */
 static PyObject *__pyx_pf_14interface_core_7PyStage_16distance_overlap___get__(struct __pyx_obj_14interface_core_PyStage *__pyx_v_self); /* proto */
 static int __pyx_pf_14interface_core_7PyStage_16distance_overlap_2__set__(struct __pyx_obj_14interface_core_PyStage *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v_val); /* proto */
 static PyObject *__pyx_pf_14interface_core_7PyStage_13instance_root___get__(struct __pyx_obj_14interface_core_PyStage *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_14interface_core_7PyStage_14part_instances___get__(struct __pyx_obj_14interface_core_PyStage *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_14interface_core_7PyStage_8print_drag_coefficients(struct __pyx_obj_14interface_core_PyStage *__pyx_v_self, PyObject *__pyx_v_stages_above, PyObject *__pyx_v_mach_number, PyObject *__pyx_v_area_thrusting); /* proto */
-static PyObject *__pyx_pf_14interface_core_7PyStage_10initialize_attributes(struct __pyx_obj_14interface_core_PyStage *__pyx_v_self, PyObject *__pyx_v_kwargs); /* proto */
-static PyObject *__pyx_pf_14interface_core_7PyStage_12named_attributes(struct __pyx_obj_14interface_core_PyStage *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_14interface_core_7PyStage_14__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_14interface_core_PyStage *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_14interface_core_7PyStage_16__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_14interface_core_PyStage *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
+static PyObject *__pyx_pf_14interface_core_7PyStage_4print_drag_coefficients(struct __pyx_obj_14interface_core_PyStage *__pyx_v_self, PyObject *__pyx_v_stages_above, PyObject *__pyx_v_mach_number, PyObject *__pyx_v_area_thrusting); /* proto */
+static PyObject *__pyx_pf_14interface_core_7PyStage_6initialize_attributes(struct __pyx_obj_14interface_core_PyStage *__pyx_v_self, PyObject *__pyx_v_kwargs); /* proto */
+static PyObject *__pyx_pf_14interface_core_7PyStage_8named_attributes(struct __pyx_obj_14interface_core_PyStage *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_14interface_core_7PyStage_10__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_14interface_core_PyStage *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_14interface_core_7PyStage_12__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_14interface_core_PyStage *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
 static int __pyx_pf_14interface_core_15PyInterfaceCore___cinit__(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self); /* proto */
 static void __pyx_pf_14interface_core_15PyInterfaceCore_2__dealloc__(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_4create_material(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_name, PyObject *__pyx_v_kwargs); /* proto */
-static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_6get_material(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_name); /* proto */
-static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_8create_rocket(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_name, PyObject *__pyx_v_kwargs); /* proto */
-static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_10get_rocket(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_name); /* proto */
-static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_12create_part(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_part_type, PyObject *__pyx_v_name, struct __pyx_obj_14interface_core_PyRocket *__pyx_v_rocket, PyObject *__pyx_v_kwargs); /* proto */
-static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_14get_part(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_rocket_name, PyObject *__pyx_v_name); /* proto */
-static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_16create_configuration(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_name, struct __pyx_obj_14interface_core_PyRocket *__pyx_v_rocket, PyObject *__pyx_v_kwargs); /* proto */
-static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_18get_configuration(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_rocket_name, PyObject *__pyx_v_name); /* proto */
-static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_20create_stage(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_name, struct __pyx_obj_14interface_core_PyConfiguration *__pyx_v_configuration, PyObject *__pyx_v_kwargs); /* proto */
-static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_22get_stage(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_rocket_name, PyObject *__pyx_v_configuration_name, PyObject *__pyx_v_name); /* proto */
-static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_24create_part_instance(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_name, struct __pyx_obj_14interface_core_PyPart *__pyx_v_part, struct __pyx_obj_14interface_core_PyPartInstance *__pyx_v_parent, PyObject *__pyx_v_kwargs); /* proto */
-static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_26get_part_instance(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_rocket_name, PyObject *__pyx_v_name); /* proto */
-static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_28create_simulation(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_name, struct __pyx_obj_14interface_core_PyConfiguration *__pyx_v_configuration, PyObject *__pyx_v_kwargs); /* proto */
-static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_30get_simulation(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_rocket_name, PyObject *__pyx_v_configuration_name, PyObject *__pyx_v_name); /* proto */
-static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_32create_motor(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_path); /* proto */
-static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_34get_motor(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_name); /* proto */
-static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_36__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_38__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
+static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_6delete_material(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, struct __pyx_obj_14interface_core_PyMaterial *__pyx_v_material); /* proto */
+static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_8get_material(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_name); /* proto */
+static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_10create_rocket(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_name, PyObject *__pyx_v_kwargs); /* proto */
+static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_12delete_rocket(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, struct __pyx_obj_14interface_core_PyRocket *__pyx_v_rocket); /* proto */
+static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_14get_rocket(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_name); /* proto */
+static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_16create_part(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_part_type, PyObject *__pyx_v_name, struct __pyx_obj_14interface_core_PyRocket *__pyx_v_rocket, PyObject *__pyx_v_kwargs); /* proto */
+static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_18delete_part(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, struct __pyx_obj_14interface_core_PyPart *__pyx_v_part); /* proto */
+static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_20get_part(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_rocket_name, PyObject *__pyx_v_name); /* proto */
+static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_22create_configuration(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_name, struct __pyx_obj_14interface_core_PyRocket *__pyx_v_rocket, PyObject *__pyx_v_kwargs); /* proto */
+static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_24delete_configuration(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, struct __pyx_obj_14interface_core_PyConfiguration *__pyx_v_configuration); /* proto */
+static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_26get_configuration(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_rocket_name, PyObject *__pyx_v_name); /* proto */
+static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_28create_stage(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_name, struct __pyx_obj_14interface_core_PyConfiguration *__pyx_v_configuration, PyObject *__pyx_v_kwargs); /* proto */
+static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_30delete_stage(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, struct __pyx_obj_14interface_core_PyStage *__pyx_v_stage); /* proto */
+static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_32get_stage(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_rocket_name, PyObject *__pyx_v_configuration_name, PyObject *__pyx_v_name); /* proto */
+static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_34create_part_instance(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_name, struct __pyx_obj_14interface_core_PyPart *__pyx_v_part, struct __pyx_obj_14interface_core_PyPartInstance *__pyx_v_parent, PyObject *__pyx_v_kwargs); /* proto */
+static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_36delete_part_instance(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, struct __pyx_obj_14interface_core_PyPartInstance *__pyx_v_part_instance); /* proto */
+static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_38get_part_instance(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_rocket_name, PyObject *__pyx_v_name); /* proto */
+static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_40create_simulation(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_name, struct __pyx_obj_14interface_core_PyConfiguration *__pyx_v_configuration, PyObject *__pyx_v_kwargs); /* proto */
+static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_42delete_simulation(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, struct __pyx_obj_14interface_core_PySimulation *__pyx_v_simulation); /* proto */
+static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_44get_simulation(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_rocket_name, PyObject *__pyx_v_configuration_name, PyObject *__pyx_v_name); /* proto */
+static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_46create_motor(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_path, PyObject *__pyx_v_kwargs); /* proto */
+static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_48delete_motor(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, struct __pyx_obj_14interface_core_PyMotor *__pyx_v_motor); /* proto */
+static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_50get_motor(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_name); /* proto */
+static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_52__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_54__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
 static PyObject *__pyx_tp_new_14interface_core_PyConfiguration(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_14interface_core_PyPartInstance(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_14interface_core_PyMaterial(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
@@ -5316,7 +5343,7 @@ static PyObject *__pyx_pf_14interface_core_10PyMaterial_8__setstate_cython__(CYT
   return __pyx_r;
 }
 
-/* "entities/motor.pyx":26
+/* "entities/motor.pyx":38
  *     cdef Motor *ptr
  * 
  *     def __init__(self, *args):             # <<<<<<<<<<<<<<
@@ -5353,7 +5380,7 @@ static int __pyx_pf_14interface_core_7PyMotor___init__(CYTHON_UNUSED struct __py
   return __pyx_r;
 }
 
-/* "entities/motor.pyx":30
+/* "entities/motor.pyx":42
  * 
  *     @staticmethod
  *     cdef PyMotor create(Motor* ptr):             # <<<<<<<<<<<<<<
@@ -5369,14 +5396,14 @@ static struct __pyx_obj_14interface_core_PyMotor *__pyx_f_14interface_core_7PyMo
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("create", 0);
 
-  /* "entities/motor.pyx":31
+  /* "entities/motor.pyx":43
  *     @staticmethod
  *     cdef PyMotor create(Motor* ptr):
  *         obj = <PyMotor>PyMotor.__new__(PyMotor)             # <<<<<<<<<<<<<<
  *         obj.ptr = ptr
  *         return obj
  */
-  __pyx_t_1 = ((PyObject *)__pyx_tp_new_14interface_core_PyMotor(((PyTypeObject *)__pyx_ptype_14interface_core_PyMotor), __pyx_empty_tuple, NULL)); if (unlikely(!__pyx_t_1)) __PYX_ERR(4, 31, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_tp_new_14interface_core_PyMotor(((PyTypeObject *)__pyx_ptype_14interface_core_PyMotor), __pyx_empty_tuple, NULL)); if (unlikely(!__pyx_t_1)) __PYX_ERR(4, 43, __pyx_L1_error)
   __Pyx_GOTREF(((PyObject *)__pyx_t_1));
   __pyx_t_2 = ((PyObject *)__pyx_t_1);
   __Pyx_INCREF(__pyx_t_2);
@@ -5384,7 +5411,7 @@ static struct __pyx_obj_14interface_core_PyMotor *__pyx_f_14interface_core_7PyMo
   __pyx_v_obj = ((struct __pyx_obj_14interface_core_PyMotor *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "entities/motor.pyx":32
+  /* "entities/motor.pyx":44
  *     cdef PyMotor create(Motor* ptr):
  *         obj = <PyMotor>PyMotor.__new__(PyMotor)
  *         obj.ptr = ptr             # <<<<<<<<<<<<<<
@@ -5393,7 +5420,7 @@ static struct __pyx_obj_14interface_core_PyMotor *__pyx_f_14interface_core_7PyMo
  */
   __pyx_v_obj->ptr = __pyx_v_ptr;
 
-  /* "entities/motor.pyx":33
+  /* "entities/motor.pyx":45
  *         obj = <PyMotor>PyMotor.__new__(PyMotor)
  *         obj.ptr = ptr
  *         return obj             # <<<<<<<<<<<<<<
@@ -5405,7 +5432,7 @@ static struct __pyx_obj_14interface_core_PyMotor *__pyx_f_14interface_core_7PyMo
   __pyx_r = __pyx_v_obj;
   goto __pyx_L0;
 
-  /* "entities/motor.pyx":30
+  /* "entities/motor.pyx":42
  * 
  *     @staticmethod
  *     cdef PyMotor create(Motor* ptr):             # <<<<<<<<<<<<<<
@@ -5426,12 +5453,12 @@ static struct __pyx_obj_14interface_core_PyMotor *__pyx_f_14interface_core_7PyMo
   return __pyx_r;
 }
 
-/* "entities/motor.pyx":36
+/* "entities/motor.pyx":48
  * 
  *     @property
  *     def name(self):             # <<<<<<<<<<<<<<
  *         return self.ptr.Name().decode('utf-8')
- * 
+ *     @name.setter
  */
 
 /* Python wrapper */
@@ -5453,26 +5480,26 @@ static PyObject *__pyx_pf_14interface_core_7PyMotor_4name___get__(struct __pyx_o
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "entities/motor.pyx":37
+  /* "entities/motor.pyx":49
  *     @property
  *     def name(self):
  *         return self.ptr.Name().decode('utf-8')             # <<<<<<<<<<<<<<
- * 
- *     @property
+ *     @name.setter
+ *     def name(self, val):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_decode_cpp_string(__pyx_v_self->ptr->Name(), 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeUTF8); if (unlikely(!__pyx_t_1)) __PYX_ERR(4, 37, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_decode_cpp_string(__pyx_v_self->ptr->Name(), 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeUTF8); if (unlikely(!__pyx_t_1)) __PYX_ERR(4, 49, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "entities/motor.pyx":36
+  /* "entities/motor.pyx":48
  * 
  *     @property
  *     def name(self):             # <<<<<<<<<<<<<<
  *         return self.ptr.Name().decode('utf-8')
- * 
+ *     @name.setter
  */
 
   /* function exit code */
@@ -5486,12 +5513,92 @@ static PyObject *__pyx_pf_14interface_core_7PyMotor_4name___get__(struct __pyx_o
   return __pyx_r;
 }
 
-/* "entities/motor.pyx":40
+/* "entities/motor.pyx":51
+ *         return self.ptr.Name().decode('utf-8')
+ *     @name.setter
+ *     def name(self, val):             # <<<<<<<<<<<<<<
+ *         self.ptr.SetName(val.encode('utf-8'))
+ * 
+ */
+
+/* Python wrapper */
+static int __pyx_pw_14interface_core_7PyMotor_4name_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_val); /*proto*/
+static int __pyx_pw_14interface_core_7PyMotor_4name_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_val) {
+  int __pyx_r;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__set__ (wrapper)", 0);
+  __pyx_r = __pyx_pf_14interface_core_7PyMotor_4name_2__set__(((struct __pyx_obj_14interface_core_PyMotor *)__pyx_v_self), ((PyObject *)__pyx_v_val));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static int __pyx_pf_14interface_core_7PyMotor_4name_2__set__(struct __pyx_obj_14interface_core_PyMotor *__pyx_v_self, PyObject *__pyx_v_val) {
+  int __pyx_r;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  std::string __pyx_t_4;
+  __Pyx_RefNannySetupContext("__set__", 0);
+
+  /* "entities/motor.pyx":52
+ *     @name.setter
+ *     def name(self, val):
+ *         self.ptr.SetName(val.encode('utf-8'))             # <<<<<<<<<<<<<<
+ * 
+ *     @property
+ */
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_val, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(4, 52, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = NULL;
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
+    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_2);
+    if (likely(__pyx_t_3)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
+      __Pyx_INCREF(__pyx_t_3);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_2, function);
+    }
+  }
+  __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_3, __pyx_kp_s_utf_8) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_kp_s_utf_8);
+  __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(4, 52, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_4 = __pyx_convert_string_from_py_std__in_string(__pyx_t_1); if (unlikely(PyErr_Occurred())) __PYX_ERR(4, 52, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_v_self->ptr->SetName(__pyx_t_4);
+
+  /* "entities/motor.pyx":51
+ *         return self.ptr.Name().decode('utf-8')
+ *     @name.setter
+ *     def name(self, val):             # <<<<<<<<<<<<<<
+ *         self.ptr.SetName(val.encode('utf-8'))
+ * 
+ */
+
+  /* function exit code */
+  __pyx_r = 0;
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_AddTraceback("interface_core.PyMotor.name.__set__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = -1;
+  __pyx_L0:;
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "entities/motor.pyx":55
  * 
  *     @property
  *     def comments(self):             # <<<<<<<<<<<<<<
  *         return self.ptr.Comments().decode('utf-8')
- * 
+ *     @comments.setter
  */
 
 /* Python wrapper */
@@ -5513,26 +5620,26 @@ static PyObject *__pyx_pf_14interface_core_7PyMotor_8comments___get__(struct __p
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "entities/motor.pyx":41
+  /* "entities/motor.pyx":56
  *     @property
  *     def comments(self):
  *         return self.ptr.Comments().decode('utf-8')             # <<<<<<<<<<<<<<
- * 
- *     @property
+ *     @comments.setter
+ *     def comments(self, val):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_decode_cpp_string(__pyx_v_self->ptr->Comments(), 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeUTF8); if (unlikely(!__pyx_t_1)) __PYX_ERR(4, 41, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_decode_cpp_string(__pyx_v_self->ptr->Comments(), 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeUTF8); if (unlikely(!__pyx_t_1)) __PYX_ERR(4, 56, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "entities/motor.pyx":40
+  /* "entities/motor.pyx":55
  * 
  *     @property
  *     def comments(self):             # <<<<<<<<<<<<<<
  *         return self.ptr.Comments().decode('utf-8')
- * 
+ *     @comments.setter
  */
 
   /* function exit code */
@@ -5546,12 +5653,92 @@ static PyObject *__pyx_pf_14interface_core_7PyMotor_8comments___get__(struct __p
   return __pyx_r;
 }
 
-/* "entities/motor.pyx":44
+/* "entities/motor.pyx":58
+ *         return self.ptr.Comments().decode('utf-8')
+ *     @comments.setter
+ *     def comments(self, val):             # <<<<<<<<<<<<<<
+ *         self.ptr.SetComments(val.encode('utf-8'))
+ * 
+ */
+
+/* Python wrapper */
+static int __pyx_pw_14interface_core_7PyMotor_8comments_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_val); /*proto*/
+static int __pyx_pw_14interface_core_7PyMotor_8comments_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_val) {
+  int __pyx_r;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__set__ (wrapper)", 0);
+  __pyx_r = __pyx_pf_14interface_core_7PyMotor_8comments_2__set__(((struct __pyx_obj_14interface_core_PyMotor *)__pyx_v_self), ((PyObject *)__pyx_v_val));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static int __pyx_pf_14interface_core_7PyMotor_8comments_2__set__(struct __pyx_obj_14interface_core_PyMotor *__pyx_v_self, PyObject *__pyx_v_val) {
+  int __pyx_r;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  std::string __pyx_t_4;
+  __Pyx_RefNannySetupContext("__set__", 0);
+
+  /* "entities/motor.pyx":59
+ *     @comments.setter
+ *     def comments(self, val):
+ *         self.ptr.SetComments(val.encode('utf-8'))             # <<<<<<<<<<<<<<
+ * 
+ *     @property
+ */
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_val, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(4, 59, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = NULL;
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
+    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_2);
+    if (likely(__pyx_t_3)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
+      __Pyx_INCREF(__pyx_t_3);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_2, function);
+    }
+  }
+  __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_3, __pyx_kp_s_utf_8) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_kp_s_utf_8);
+  __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(4, 59, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_4 = __pyx_convert_string_from_py_std__in_string(__pyx_t_1); if (unlikely(PyErr_Occurred())) __PYX_ERR(4, 59, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_v_self->ptr->SetComments(__pyx_t_4);
+
+  /* "entities/motor.pyx":58
+ *         return self.ptr.Comments().decode('utf-8')
+ *     @comments.setter
+ *     def comments(self, val):             # <<<<<<<<<<<<<<
+ *         self.ptr.SetComments(val.encode('utf-8'))
+ * 
+ */
+
+  /* function exit code */
+  __pyx_r = 0;
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_AddTraceback("interface_core.PyMotor.comments.__set__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = -1;
+  __pyx_L0:;
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "entities/motor.pyx":62
  * 
  *     @property
  *     def manufacturer(self):             # <<<<<<<<<<<<<<
  *         return self.ptr.Manufacturer().decode('utf-8')
- * 
+ *     @manufacturer.setter
  */
 
 /* Python wrapper */
@@ -5573,26 +5760,26 @@ static PyObject *__pyx_pf_14interface_core_7PyMotor_12manufacturer___get__(struc
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "entities/motor.pyx":45
+  /* "entities/motor.pyx":63
  *     @property
  *     def manufacturer(self):
  *         return self.ptr.Manufacturer().decode('utf-8')             # <<<<<<<<<<<<<<
- * 
- *     @property
+ *     @manufacturer.setter
+ *     def manufacturer(self, val):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_decode_cpp_string(__pyx_v_self->ptr->Manufacturer(), 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeUTF8); if (unlikely(!__pyx_t_1)) __PYX_ERR(4, 45, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_decode_cpp_string(__pyx_v_self->ptr->Manufacturer(), 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeUTF8); if (unlikely(!__pyx_t_1)) __PYX_ERR(4, 63, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "entities/motor.pyx":44
+  /* "entities/motor.pyx":62
  * 
  *     @property
  *     def manufacturer(self):             # <<<<<<<<<<<<<<
  *         return self.ptr.Manufacturer().decode('utf-8')
- * 
+ *     @manufacturer.setter
  */
 
   /* function exit code */
@@ -5606,12 +5793,92 @@ static PyObject *__pyx_pf_14interface_core_7PyMotor_12manufacturer___get__(struc
   return __pyx_r;
 }
 
-/* "entities/motor.pyx":48
+/* "entities/motor.pyx":65
+ *         return self.ptr.Manufacturer().decode('utf-8')
+ *     @manufacturer.setter
+ *     def manufacturer(self, val):             # <<<<<<<<<<<<<<
+ *         self.ptr.SetManufacturer(val.encode('utf-8'))
+ * 
+ */
+
+/* Python wrapper */
+static int __pyx_pw_14interface_core_7PyMotor_12manufacturer_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_val); /*proto*/
+static int __pyx_pw_14interface_core_7PyMotor_12manufacturer_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_val) {
+  int __pyx_r;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__set__ (wrapper)", 0);
+  __pyx_r = __pyx_pf_14interface_core_7PyMotor_12manufacturer_2__set__(((struct __pyx_obj_14interface_core_PyMotor *)__pyx_v_self), ((PyObject *)__pyx_v_val));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static int __pyx_pf_14interface_core_7PyMotor_12manufacturer_2__set__(struct __pyx_obj_14interface_core_PyMotor *__pyx_v_self, PyObject *__pyx_v_val) {
+  int __pyx_r;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  std::string __pyx_t_4;
+  __Pyx_RefNannySetupContext("__set__", 0);
+
+  /* "entities/motor.pyx":66
+ *     @manufacturer.setter
+ *     def manufacturer(self, val):
+ *         self.ptr.SetManufacturer(val.encode('utf-8'))             # <<<<<<<<<<<<<<
+ * 
+ *     @property
+ */
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_val, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(4, 66, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = NULL;
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
+    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_2);
+    if (likely(__pyx_t_3)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
+      __Pyx_INCREF(__pyx_t_3);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_2, function);
+    }
+  }
+  __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_3, __pyx_kp_s_utf_8) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_kp_s_utf_8);
+  __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(4, 66, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_4 = __pyx_convert_string_from_py_std__in_string(__pyx_t_1); if (unlikely(PyErr_Occurred())) __PYX_ERR(4, 66, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_v_self->ptr->SetManufacturer(__pyx_t_4);
+
+  /* "entities/motor.pyx":65
+ *         return self.ptr.Manufacturer().decode('utf-8')
+ *     @manufacturer.setter
+ *     def manufacturer(self, val):             # <<<<<<<<<<<<<<
+ *         self.ptr.SetManufacturer(val.encode('utf-8'))
+ * 
+ */
+
+  /* function exit code */
+  __pyx_r = 0;
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_AddTraceback("interface_core.PyMotor.manufacturer.__set__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = -1;
+  __pyx_L0:;
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "entities/motor.pyx":69
  * 
  *     @property
  *     def diameter(self):             # <<<<<<<<<<<<<<
  *         return self.ptr.Diameter()
- * 
+ *     @diameter.setter
  */
 
 /* Python wrapper */
@@ -5633,26 +5900,26 @@ static PyObject *__pyx_pf_14interface_core_7PyMotor_8diameter___get__(struct __p
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "entities/motor.pyx":49
+  /* "entities/motor.pyx":70
  *     @property
  *     def diameter(self):
  *         return self.ptr.Diameter()             # <<<<<<<<<<<<<<
- * 
- *     @property
+ *     @diameter.setter
+ *     def diameter(self, val):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->ptr->Diameter()); if (unlikely(!__pyx_t_1)) __PYX_ERR(4, 49, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->ptr->Diameter()); if (unlikely(!__pyx_t_1)) __PYX_ERR(4, 70, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "entities/motor.pyx":48
+  /* "entities/motor.pyx":69
  * 
  *     @property
  *     def diameter(self):             # <<<<<<<<<<<<<<
  *         return self.ptr.Diameter()
- * 
+ *     @diameter.setter
  */
 
   /* function exit code */
@@ -5666,12 +5933,68 @@ static PyObject *__pyx_pf_14interface_core_7PyMotor_8diameter___get__(struct __p
   return __pyx_r;
 }
 
-/* "entities/motor.pyx":52
+/* "entities/motor.pyx":72
+ *         return self.ptr.Diameter()
+ *     @diameter.setter
+ *     def diameter(self, val):             # <<<<<<<<<<<<<<
+ *         self.ptr.SetDiameter(val)
+ * 
+ */
+
+/* Python wrapper */
+static int __pyx_pw_14interface_core_7PyMotor_8diameter_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_val); /*proto*/
+static int __pyx_pw_14interface_core_7PyMotor_8diameter_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_val) {
+  int __pyx_r;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__set__ (wrapper)", 0);
+  __pyx_r = __pyx_pf_14interface_core_7PyMotor_8diameter_2__set__(((struct __pyx_obj_14interface_core_PyMotor *)__pyx_v_self), ((PyObject *)__pyx_v_val));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static int __pyx_pf_14interface_core_7PyMotor_8diameter_2__set__(struct __pyx_obj_14interface_core_PyMotor *__pyx_v_self, PyObject *__pyx_v_val) {
+  int __pyx_r;
+  __Pyx_RefNannyDeclarations
+  double __pyx_t_1;
+  __Pyx_RefNannySetupContext("__set__", 0);
+
+  /* "entities/motor.pyx":73
+ *     @diameter.setter
+ *     def diameter(self, val):
+ *         self.ptr.SetDiameter(val)             # <<<<<<<<<<<<<<
+ * 
+ *     @property
+ */
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(4, 73, __pyx_L1_error)
+  __pyx_v_self->ptr->SetDiameter(__pyx_t_1);
+
+  /* "entities/motor.pyx":72
+ *         return self.ptr.Diameter()
+ *     @diameter.setter
+ *     def diameter(self, val):             # <<<<<<<<<<<<<<
+ *         self.ptr.SetDiameter(val)
+ * 
+ */
+
+  /* function exit code */
+  __pyx_r = 0;
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __Pyx_AddTraceback("interface_core.PyMotor.diameter.__set__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = -1;
+  __pyx_L0:;
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "entities/motor.pyx":76
  * 
  *     @property
  *     def length(self):             # <<<<<<<<<<<<<<
  *         return self.ptr.Length()
- * 
+ *     @length.setter
  */
 
 /* Python wrapper */
@@ -5693,26 +6016,26 @@ static PyObject *__pyx_pf_14interface_core_7PyMotor_6length___get__(struct __pyx
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "entities/motor.pyx":53
+  /* "entities/motor.pyx":77
  *     @property
  *     def length(self):
  *         return self.ptr.Length()             # <<<<<<<<<<<<<<
- * 
- *     @property
+ *     @length.setter
+ *     def length(self, val):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->ptr->Length()); if (unlikely(!__pyx_t_1)) __PYX_ERR(4, 53, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->ptr->Length()); if (unlikely(!__pyx_t_1)) __PYX_ERR(4, 77, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "entities/motor.pyx":52
+  /* "entities/motor.pyx":76
  * 
  *     @property
  *     def length(self):             # <<<<<<<<<<<<<<
  *         return self.ptr.Length()
- * 
+ *     @length.setter
  */
 
   /* function exit code */
@@ -5726,12 +6049,68 @@ static PyObject *__pyx_pf_14interface_core_7PyMotor_6length___get__(struct __pyx
   return __pyx_r;
 }
 
-/* "entities/motor.pyx":56
+/* "entities/motor.pyx":79
+ *         return self.ptr.Length()
+ *     @length.setter
+ *     def length(self, val):             # <<<<<<<<<<<<<<
+ *         self.ptr.SetLength(val)
+ * 
+ */
+
+/* Python wrapper */
+static int __pyx_pw_14interface_core_7PyMotor_6length_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_val); /*proto*/
+static int __pyx_pw_14interface_core_7PyMotor_6length_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_val) {
+  int __pyx_r;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__set__ (wrapper)", 0);
+  __pyx_r = __pyx_pf_14interface_core_7PyMotor_6length_2__set__(((struct __pyx_obj_14interface_core_PyMotor *)__pyx_v_self), ((PyObject *)__pyx_v_val));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static int __pyx_pf_14interface_core_7PyMotor_6length_2__set__(struct __pyx_obj_14interface_core_PyMotor *__pyx_v_self, PyObject *__pyx_v_val) {
+  int __pyx_r;
+  __Pyx_RefNannyDeclarations
+  double __pyx_t_1;
+  __Pyx_RefNannySetupContext("__set__", 0);
+
+  /* "entities/motor.pyx":80
+ *     @length.setter
+ *     def length(self, val):
+ *         self.ptr.SetLength(val)             # <<<<<<<<<<<<<<
+ * 
+ *     @property
+ */
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(4, 80, __pyx_L1_error)
+  __pyx_v_self->ptr->SetLength(__pyx_t_1);
+
+  /* "entities/motor.pyx":79
+ *         return self.ptr.Length()
+ *     @length.setter
+ *     def length(self, val):             # <<<<<<<<<<<<<<
+ *         self.ptr.SetLength(val)
+ * 
+ */
+
+  /* function exit code */
+  __pyx_r = 0;
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __Pyx_AddTraceback("interface_core.PyMotor.length.__set__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = -1;
+  __pyx_L0:;
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "entities/motor.pyx":83
  * 
  *     @property
  *     def mass_propellant(self):             # <<<<<<<<<<<<<<
  *         return self.ptr.MassPropellant()
- * 
+ *     @mass_propellant.setter
  */
 
 /* Python wrapper */
@@ -5753,26 +6132,26 @@ static PyObject *__pyx_pf_14interface_core_7PyMotor_15mass_propellant___get__(st
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "entities/motor.pyx":57
+  /* "entities/motor.pyx":84
  *     @property
  *     def mass_propellant(self):
  *         return self.ptr.MassPropellant()             # <<<<<<<<<<<<<<
- * 
- *     @property
+ *     @mass_propellant.setter
+ *     def mass_propellant(self, val):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->ptr->MassPropellant()); if (unlikely(!__pyx_t_1)) __PYX_ERR(4, 57, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->ptr->MassPropellant()); if (unlikely(!__pyx_t_1)) __PYX_ERR(4, 84, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "entities/motor.pyx":56
+  /* "entities/motor.pyx":83
  * 
  *     @property
  *     def mass_propellant(self):             # <<<<<<<<<<<<<<
  *         return self.ptr.MassPropellant()
- * 
+ *     @mass_propellant.setter
  */
 
   /* function exit code */
@@ -5786,12 +6165,68 @@ static PyObject *__pyx_pf_14interface_core_7PyMotor_15mass_propellant___get__(st
   return __pyx_r;
 }
 
-/* "entities/motor.pyx":60
+/* "entities/motor.pyx":86
+ *         return self.ptr.MassPropellant()
+ *     @mass_propellant.setter
+ *     def mass_propellant(self, val):             # <<<<<<<<<<<<<<
+ *         self.ptr.SetMassPropellant(val)
+ * 
+ */
+
+/* Python wrapper */
+static int __pyx_pw_14interface_core_7PyMotor_15mass_propellant_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_val); /*proto*/
+static int __pyx_pw_14interface_core_7PyMotor_15mass_propellant_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_val) {
+  int __pyx_r;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__set__ (wrapper)", 0);
+  __pyx_r = __pyx_pf_14interface_core_7PyMotor_15mass_propellant_2__set__(((struct __pyx_obj_14interface_core_PyMotor *)__pyx_v_self), ((PyObject *)__pyx_v_val));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static int __pyx_pf_14interface_core_7PyMotor_15mass_propellant_2__set__(struct __pyx_obj_14interface_core_PyMotor *__pyx_v_self, PyObject *__pyx_v_val) {
+  int __pyx_r;
+  __Pyx_RefNannyDeclarations
+  double __pyx_t_1;
+  __Pyx_RefNannySetupContext("__set__", 0);
+
+  /* "entities/motor.pyx":87
+ *     @mass_propellant.setter
+ *     def mass_propellant(self, val):
+ *         self.ptr.SetMassPropellant(val)             # <<<<<<<<<<<<<<
+ * 
+ *     @property
+ */
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(4, 87, __pyx_L1_error)
+  __pyx_v_self->ptr->SetMassPropellant(__pyx_t_1);
+
+  /* "entities/motor.pyx":86
+ *         return self.ptr.MassPropellant()
+ *     @mass_propellant.setter
+ *     def mass_propellant(self, val):             # <<<<<<<<<<<<<<
+ *         self.ptr.SetMassPropellant(val)
+ * 
+ */
+
+  /* function exit code */
+  __pyx_r = 0;
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __Pyx_AddTraceback("interface_core.PyMotor.mass_propellant.__set__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = -1;
+  __pyx_L0:;
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "entities/motor.pyx":90
  * 
  *     @property
  *     def mass_total(self):             # <<<<<<<<<<<<<<
  *         return self.ptr.MassTotal()
- * 
+ *     @mass_total.setter
  */
 
 /* Python wrapper */
@@ -5813,26 +6248,26 @@ static PyObject *__pyx_pf_14interface_core_7PyMotor_10mass_total___get__(struct 
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "entities/motor.pyx":61
+  /* "entities/motor.pyx":91
  *     @property
  *     def mass_total(self):
  *         return self.ptr.MassTotal()             # <<<<<<<<<<<<<<
- * 
- *     @property
+ *     @mass_total.setter
+ *     def mass_total(self, val):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->ptr->MassTotal()); if (unlikely(!__pyx_t_1)) __PYX_ERR(4, 61, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->ptr->MassTotal()); if (unlikely(!__pyx_t_1)) __PYX_ERR(4, 91, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "entities/motor.pyx":60
+  /* "entities/motor.pyx":90
  * 
  *     @property
  *     def mass_total(self):             # <<<<<<<<<<<<<<
  *         return self.ptr.MassTotal()
- * 
+ *     @mass_total.setter
  */
 
   /* function exit code */
@@ -5846,12 +6281,184 @@ static PyObject *__pyx_pf_14interface_core_7PyMotor_10mass_total___get__(struct 
   return __pyx_r;
 }
 
-/* "entities/motor.pyx":64
+/* "entities/motor.pyx":93
+ *         return self.ptr.MassTotal()
+ *     @mass_total.setter
+ *     def mass_total(self, val):             # <<<<<<<<<<<<<<
+ *         self.ptr.SetMassTotal(val)
+ * 
+ */
+
+/* Python wrapper */
+static int __pyx_pw_14interface_core_7PyMotor_10mass_total_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_val); /*proto*/
+static int __pyx_pw_14interface_core_7PyMotor_10mass_total_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_val) {
+  int __pyx_r;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__set__ (wrapper)", 0);
+  __pyx_r = __pyx_pf_14interface_core_7PyMotor_10mass_total_2__set__(((struct __pyx_obj_14interface_core_PyMotor *)__pyx_v_self), ((PyObject *)__pyx_v_val));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static int __pyx_pf_14interface_core_7PyMotor_10mass_total_2__set__(struct __pyx_obj_14interface_core_PyMotor *__pyx_v_self, PyObject *__pyx_v_val) {
+  int __pyx_r;
+  __Pyx_RefNannyDeclarations
+  double __pyx_t_1;
+  __Pyx_RefNannySetupContext("__set__", 0);
+
+  /* "entities/motor.pyx":94
+ *     @mass_total.setter
+ *     def mass_total(self, val):
+ *         self.ptr.SetMassTotal(val)             # <<<<<<<<<<<<<<
+ * 
+ *     @property
+ */
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(4, 94, __pyx_L1_error)
+  __pyx_v_self->ptr->SetMassTotal(__pyx_t_1);
+
+  /* "entities/motor.pyx":93
+ *         return self.ptr.MassTotal()
+ *     @mass_total.setter
+ *     def mass_total(self, val):             # <<<<<<<<<<<<<<
+ *         self.ptr.SetMassTotal(val)
+ * 
+ */
+
+  /* function exit code */
+  __pyx_r = 0;
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __Pyx_AddTraceback("interface_core.PyMotor.mass_total.__set__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = -1;
+  __pyx_L0:;
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "entities/motor.pyx":97
+ * 
+ *     @property
+ *     def delay(self):             # <<<<<<<<<<<<<<
+ *         return self.ptr.Delay()
+ *     @delay.setter
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_14interface_core_7PyMotor_5delay_1__get__(PyObject *__pyx_v_self); /*proto*/
+static PyObject *__pyx_pw_14interface_core_7PyMotor_5delay_1__get__(PyObject *__pyx_v_self) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__get__ (wrapper)", 0);
+  __pyx_r = __pyx_pf_14interface_core_7PyMotor_5delay___get__(((struct __pyx_obj_14interface_core_PyMotor *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_14interface_core_7PyMotor_5delay___get__(struct __pyx_obj_14interface_core_PyMotor *__pyx_v_self) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  __Pyx_RefNannySetupContext("__get__", 0);
+
+  /* "entities/motor.pyx":98
+ *     @property
+ *     def delay(self):
+ *         return self.ptr.Delay()             # <<<<<<<<<<<<<<
+ *     @delay.setter
+ *     def delay(self, val):
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __pyx_convert_vector_to_py_double(__pyx_v_self->ptr->Delay()); if (unlikely(!__pyx_t_1)) __PYX_ERR(4, 98, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* "entities/motor.pyx":97
+ * 
+ *     @property
+ *     def delay(self):             # <<<<<<<<<<<<<<
+ *         return self.ptr.Delay()
+ *     @delay.setter
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("interface_core.PyMotor.delay.__get__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "entities/motor.pyx":100
+ *         return self.ptr.Delay()
+ *     @delay.setter
+ *     def delay(self, val):             # <<<<<<<<<<<<<<
+ *         self.ptr.SetDelay(val)
+ * 
+ */
+
+/* Python wrapper */
+static int __pyx_pw_14interface_core_7PyMotor_5delay_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_val); /*proto*/
+static int __pyx_pw_14interface_core_7PyMotor_5delay_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_val) {
+  int __pyx_r;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__set__ (wrapper)", 0);
+  __pyx_r = __pyx_pf_14interface_core_7PyMotor_5delay_2__set__(((struct __pyx_obj_14interface_core_PyMotor *)__pyx_v_self), ((PyObject *)__pyx_v_val));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static int __pyx_pf_14interface_core_7PyMotor_5delay_2__set__(struct __pyx_obj_14interface_core_PyMotor *__pyx_v_self, PyObject *__pyx_v_val) {
+  int __pyx_r;
+  __Pyx_RefNannyDeclarations
+  std::vector<double>  __pyx_t_1;
+  __Pyx_RefNannySetupContext("__set__", 0);
+
+  /* "entities/motor.pyx":101
+ *     @delay.setter
+ *     def delay(self, val):
+ *         self.ptr.SetDelay(val)             # <<<<<<<<<<<<<<
+ * 
+ *     @property
+ */
+  __pyx_t_1 = __pyx_convert_vector_from_py_double(__pyx_v_val); if (unlikely(PyErr_Occurred())) __PYX_ERR(4, 101, __pyx_L1_error)
+  __pyx_v_self->ptr->SetDelay(__pyx_t_1);
+
+  /* "entities/motor.pyx":100
+ *         return self.ptr.Delay()
+ *     @delay.setter
+ *     def delay(self, val):             # <<<<<<<<<<<<<<
+ *         self.ptr.SetDelay(val)
+ * 
+ */
+
+  /* function exit code */
+  __pyx_r = 0;
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __Pyx_AddTraceback("interface_core.PyMotor.delay.__set__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = -1;
+  __pyx_L0:;
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "entities/motor.pyx":104
  * 
  *     @property
  *     def data_time(self):             # <<<<<<<<<<<<<<
  *         return self.ptr.DataTime()
- * 
+ *     @data_time.setter
  */
 
 /* Python wrapper */
@@ -5873,26 +6480,26 @@ static PyObject *__pyx_pf_14interface_core_7PyMotor_9data_time___get__(struct __
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "entities/motor.pyx":65
+  /* "entities/motor.pyx":105
  *     @property
  *     def data_time(self):
  *         return self.ptr.DataTime()             # <<<<<<<<<<<<<<
- * 
- *     @property
+ *     @data_time.setter
+ *     def data_time(self, val):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_convert_vector_to_py_double(__pyx_v_self->ptr->DataTime()); if (unlikely(!__pyx_t_1)) __PYX_ERR(4, 65, __pyx_L1_error)
+  __pyx_t_1 = __pyx_convert_vector_to_py_double(__pyx_v_self->ptr->DataTime()); if (unlikely(!__pyx_t_1)) __PYX_ERR(4, 105, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "entities/motor.pyx":64
+  /* "entities/motor.pyx":104
  * 
  *     @property
  *     def data_time(self):             # <<<<<<<<<<<<<<
  *         return self.ptr.DataTime()
- * 
+ *     @data_time.setter
  */
 
   /* function exit code */
@@ -5906,12 +6513,68 @@ static PyObject *__pyx_pf_14interface_core_7PyMotor_9data_time___get__(struct __
   return __pyx_r;
 }
 
-/* "entities/motor.pyx":68
+/* "entities/motor.pyx":107
+ *         return self.ptr.DataTime()
+ *     @data_time.setter
+ *     def data_time(self, val):             # <<<<<<<<<<<<<<
+ *         self.ptr.SetDataTime(val)
+ * 
+ */
+
+/* Python wrapper */
+static int __pyx_pw_14interface_core_7PyMotor_9data_time_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_val); /*proto*/
+static int __pyx_pw_14interface_core_7PyMotor_9data_time_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_val) {
+  int __pyx_r;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__set__ (wrapper)", 0);
+  __pyx_r = __pyx_pf_14interface_core_7PyMotor_9data_time_2__set__(((struct __pyx_obj_14interface_core_PyMotor *)__pyx_v_self), ((PyObject *)__pyx_v_val));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static int __pyx_pf_14interface_core_7PyMotor_9data_time_2__set__(struct __pyx_obj_14interface_core_PyMotor *__pyx_v_self, PyObject *__pyx_v_val) {
+  int __pyx_r;
+  __Pyx_RefNannyDeclarations
+  std::vector<double>  __pyx_t_1;
+  __Pyx_RefNannySetupContext("__set__", 0);
+
+  /* "entities/motor.pyx":108
+ *     @data_time.setter
+ *     def data_time(self, val):
+ *         self.ptr.SetDataTime(val)             # <<<<<<<<<<<<<<
+ * 
+ *     @property
+ */
+  __pyx_t_1 = __pyx_convert_vector_from_py_double(__pyx_v_val); if (unlikely(PyErr_Occurred())) __PYX_ERR(4, 108, __pyx_L1_error)
+  __pyx_v_self->ptr->SetDataTime(__pyx_t_1);
+
+  /* "entities/motor.pyx":107
+ *         return self.ptr.DataTime()
+ *     @data_time.setter
+ *     def data_time(self, val):             # <<<<<<<<<<<<<<
+ *         self.ptr.SetDataTime(val)
+ * 
+ */
+
+  /* function exit code */
+  __pyx_r = 0;
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __Pyx_AddTraceback("interface_core.PyMotor.data_time.__set__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = -1;
+  __pyx_L0:;
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "entities/motor.pyx":111
  * 
  *     @property
  *     def data_thrust(self):             # <<<<<<<<<<<<<<
  *         return self.ptr.DataThrust()
- * 
+ *     @data_thrust.setter
  */
 
 /* Python wrapper */
@@ -5933,26 +6596,26 @@ static PyObject *__pyx_pf_14interface_core_7PyMotor_11data_thrust___get__(struct
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "entities/motor.pyx":69
+  /* "entities/motor.pyx":112
  *     @property
  *     def data_thrust(self):
  *         return self.ptr.DataThrust()             # <<<<<<<<<<<<<<
- * 
- *     def named_attributes(self):
+ *     @data_thrust.setter
+ *     def data_thrust(self, val):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_convert_vector_to_py_double(__pyx_v_self->ptr->DataThrust()); if (unlikely(!__pyx_t_1)) __PYX_ERR(4, 69, __pyx_L1_error)
+  __pyx_t_1 = __pyx_convert_vector_to_py_double(__pyx_v_self->ptr->DataThrust()); if (unlikely(!__pyx_t_1)) __PYX_ERR(4, 112, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "entities/motor.pyx":68
+  /* "entities/motor.pyx":111
  * 
  *     @property
  *     def data_thrust(self):             # <<<<<<<<<<<<<<
  *         return self.ptr.DataThrust()
- * 
+ *     @data_thrust.setter
  */
 
   /* function exit code */
@@ -5966,8 +6629,163 @@ static PyObject *__pyx_pf_14interface_core_7PyMotor_11data_thrust___get__(struct
   return __pyx_r;
 }
 
-/* "entities/motor.pyx":71
+/* "entities/motor.pyx":114
  *         return self.ptr.DataThrust()
+ *     @data_thrust.setter
+ *     def data_thrust(self, val):             # <<<<<<<<<<<<<<
+ *         self.ptr.SetDataThrust(val)
+ * 
+ */
+
+/* Python wrapper */
+static int __pyx_pw_14interface_core_7PyMotor_11data_thrust_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_val); /*proto*/
+static int __pyx_pw_14interface_core_7PyMotor_11data_thrust_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_val) {
+  int __pyx_r;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__set__ (wrapper)", 0);
+  __pyx_r = __pyx_pf_14interface_core_7PyMotor_11data_thrust_2__set__(((struct __pyx_obj_14interface_core_PyMotor *)__pyx_v_self), ((PyObject *)__pyx_v_val));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static int __pyx_pf_14interface_core_7PyMotor_11data_thrust_2__set__(struct __pyx_obj_14interface_core_PyMotor *__pyx_v_self, PyObject *__pyx_v_val) {
+  int __pyx_r;
+  __Pyx_RefNannyDeclarations
+  std::vector<double>  __pyx_t_1;
+  __Pyx_RefNannySetupContext("__set__", 0);
+
+  /* "entities/motor.pyx":115
+ *     @data_thrust.setter
+ *     def data_thrust(self, val):
+ *         self.ptr.SetDataThrust(val)             # <<<<<<<<<<<<<<
+ * 
+ *     def initialize_attributes(self, **kwargs):
+ */
+  __pyx_t_1 = __pyx_convert_vector_from_py_double(__pyx_v_val); if (unlikely(PyErr_Occurred())) __PYX_ERR(4, 115, __pyx_L1_error)
+  __pyx_v_self->ptr->SetDataThrust(__pyx_t_1);
+
+  /* "entities/motor.pyx":114
+ *         return self.ptr.DataThrust()
+ *     @data_thrust.setter
+ *     def data_thrust(self, val):             # <<<<<<<<<<<<<<
+ *         self.ptr.SetDataThrust(val)
+ * 
+ */
+
+  /* function exit code */
+  __pyx_r = 0;
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __Pyx_AddTraceback("interface_core.PyMotor.data_thrust.__set__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = -1;
+  __pyx_L0:;
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "entities/motor.pyx":117
+ *         self.ptr.SetDataThrust(val)
+ * 
+ *     def initialize_attributes(self, **kwargs):             # <<<<<<<<<<<<<<
+ *         for key in kwargs:
+ *                 setattr(self, key, kwargs[key])
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_14interface_core_7PyMotor_3initialize_attributes(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_pw_14interface_core_7PyMotor_3initialize_attributes(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+  PyObject *__pyx_v_kwargs = 0;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("initialize_attributes (wrapper)", 0);
+  if (unlikely(PyTuple_GET_SIZE(__pyx_args) > 0)) {
+    __Pyx_RaiseArgtupleInvalid("initialize_attributes", 1, 0, 0, PyTuple_GET_SIZE(__pyx_args)); return NULL;}
+  if (__pyx_kwds && unlikely(!__Pyx_CheckKeywordStrings(__pyx_kwds, "initialize_attributes", 1))) return NULL;
+  __pyx_v_kwargs = (__pyx_kwds) ? PyDict_Copy(__pyx_kwds) : PyDict_New(); if (unlikely(!__pyx_v_kwargs)) return NULL;
+  __Pyx_GOTREF(__pyx_v_kwargs);
+  __pyx_r = __pyx_pf_14interface_core_7PyMotor_2initialize_attributes(((struct __pyx_obj_14interface_core_PyMotor *)__pyx_v_self), __pyx_v_kwargs);
+
+  /* function exit code */
+  __Pyx_XDECREF(__pyx_v_kwargs);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_14interface_core_7PyMotor_2initialize_attributes(struct __pyx_obj_14interface_core_PyMotor *__pyx_v_self, PyObject *__pyx_v_kwargs) {
+  PyObject *__pyx_v_key = NULL;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  Py_ssize_t __pyx_t_2;
+  Py_ssize_t __pyx_t_3;
+  int __pyx_t_4;
+  PyObject *__pyx_t_5 = NULL;
+  int __pyx_t_6;
+  int __pyx_t_7;
+  __Pyx_RefNannySetupContext("initialize_attributes", 0);
+
+  /* "entities/motor.pyx":118
+ * 
+ *     def initialize_attributes(self, **kwargs):
+ *         for key in kwargs:             # <<<<<<<<<<<<<<
+ *                 setattr(self, key, kwargs[key])
+ * 
+ */
+  __pyx_t_2 = 0;
+  __pyx_t_5 = __Pyx_dict_iterator(__pyx_v_kwargs, 1, ((PyObject *)NULL), (&__pyx_t_3), (&__pyx_t_4)); if (unlikely(!__pyx_t_5)) __PYX_ERR(4, 118, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  __Pyx_XDECREF(__pyx_t_1);
+  __pyx_t_1 = __pyx_t_5;
+  __pyx_t_5 = 0;
+  while (1) {
+    __pyx_t_6 = __Pyx_dict_iter_next(__pyx_t_1, __pyx_t_3, &__pyx_t_2, &__pyx_t_5, NULL, NULL, __pyx_t_4);
+    if (unlikely(__pyx_t_6 == 0)) break;
+    if (unlikely(__pyx_t_6 == -1)) __PYX_ERR(4, 118, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_5);
+    __Pyx_XDECREF_SET(__pyx_v_key, __pyx_t_5);
+    __pyx_t_5 = 0;
+
+    /* "entities/motor.pyx":119
+ *     def initialize_attributes(self, **kwargs):
+ *         for key in kwargs:
+ *                 setattr(self, key, kwargs[key])             # <<<<<<<<<<<<<<
+ * 
+ *     def named_attributes(self):
+ */
+    __pyx_t_5 = __Pyx_PyDict_GetItem(__pyx_v_kwargs, __pyx_v_key); if (unlikely(!__pyx_t_5)) __PYX_ERR(4, 119, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_5);
+    __pyx_t_7 = PyObject_SetAttr(((PyObject *)__pyx_v_self), __pyx_v_key, __pyx_t_5); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(4, 119, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  }
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "entities/motor.pyx":117
+ *         self.ptr.SetDataThrust(val)
+ * 
+ *     def initialize_attributes(self, **kwargs):             # <<<<<<<<<<<<<<
+ *         for key in kwargs:
+ *                 setattr(self, key, kwargs[key])
+ */
+
+  /* function exit code */
+  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_5);
+  __Pyx_AddTraceback("interface_core.PyMotor.initialize_attributes", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XDECREF(__pyx_v_key);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "entities/motor.pyx":121
+ *                 setattr(self, key, kwargs[key])
  * 
  *     def named_attributes(self):             # <<<<<<<<<<<<<<
  *         return {"name":self.name,
@@ -5975,26 +6793,26 @@ static PyObject *__pyx_pf_14interface_core_7PyMotor_11data_thrust___get__(struct
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_14interface_core_7PyMotor_3named_attributes(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_14interface_core_7PyMotor_3named_attributes(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_14interface_core_7PyMotor_5named_attributes(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_14interface_core_7PyMotor_5named_attributes(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("named_attributes (wrapper)", 0);
-  __pyx_r = __pyx_pf_14interface_core_7PyMotor_2named_attributes(((struct __pyx_obj_14interface_core_PyMotor *)__pyx_v_self));
+  __pyx_r = __pyx_pf_14interface_core_7PyMotor_4named_attributes(((struct __pyx_obj_14interface_core_PyMotor *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_14interface_core_7PyMotor_2named_attributes(struct __pyx_obj_14interface_core_PyMotor *__pyx_v_self) {
+static PyObject *__pyx_pf_14interface_core_7PyMotor_4named_attributes(struct __pyx_obj_14interface_core_PyMotor *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("named_attributes", 0);
 
-  /* "entities/motor.pyx":72
+  /* "entities/motor.pyx":122
  * 
  *     def named_attributes(self):
  *         return {"name":self.name,             # <<<<<<<<<<<<<<
@@ -6002,90 +6820,90 @@ static PyObject *__pyx_pf_14interface_core_7PyMotor_2named_attributes(struct __p
  *                 "manufacturer":self.manufacturer,
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(7); if (unlikely(!__pyx_t_1)) __PYX_ERR(4, 72, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(7); if (unlikely(!__pyx_t_1)) __PYX_ERR(4, 122, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_name); if (unlikely(!__pyx_t_2)) __PYX_ERR(4, 72, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_name); if (unlikely(!__pyx_t_2)) __PYX_ERR(4, 122, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_name, __pyx_t_2) < 0) __PYX_ERR(4, 72, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_name, __pyx_t_2) < 0) __PYX_ERR(4, 122, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "entities/motor.pyx":73
+  /* "entities/motor.pyx":123
  *     def named_attributes(self):
  *         return {"name":self.name,
  *                 "comments":self.comments,             # <<<<<<<<<<<<<<
  *                 "manufacturer":self.manufacturer,
  *                 "diameter":self.diameter,
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_comments); if (unlikely(!__pyx_t_2)) __PYX_ERR(4, 73, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_comments); if (unlikely(!__pyx_t_2)) __PYX_ERR(4, 123, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_comments, __pyx_t_2) < 0) __PYX_ERR(4, 72, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_comments, __pyx_t_2) < 0) __PYX_ERR(4, 122, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "entities/motor.pyx":74
+  /* "entities/motor.pyx":124
  *         return {"name":self.name,
  *                 "comments":self.comments,
  *                 "manufacturer":self.manufacturer,             # <<<<<<<<<<<<<<
  *                 "diameter":self.diameter,
  *                 "length":self.length,
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_manufacturer); if (unlikely(!__pyx_t_2)) __PYX_ERR(4, 74, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_manufacturer); if (unlikely(!__pyx_t_2)) __PYX_ERR(4, 124, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_manufacturer, __pyx_t_2) < 0) __PYX_ERR(4, 72, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_manufacturer, __pyx_t_2) < 0) __PYX_ERR(4, 122, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "entities/motor.pyx":75
+  /* "entities/motor.pyx":125
  *                 "comments":self.comments,
  *                 "manufacturer":self.manufacturer,
  *                 "diameter":self.diameter,             # <<<<<<<<<<<<<<
  *                 "length":self.length,
  *                 "mass_propellant":self.mass_propellant,
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_diameter); if (unlikely(!__pyx_t_2)) __PYX_ERR(4, 75, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_diameter); if (unlikely(!__pyx_t_2)) __PYX_ERR(4, 125, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_diameter, __pyx_t_2) < 0) __PYX_ERR(4, 72, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_diameter, __pyx_t_2) < 0) __PYX_ERR(4, 122, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "entities/motor.pyx":76
+  /* "entities/motor.pyx":126
  *                 "manufacturer":self.manufacturer,
  *                 "diameter":self.diameter,
  *                 "length":self.length,             # <<<<<<<<<<<<<<
  *                 "mass_propellant":self.mass_propellant,
  *                 "mass_total":self.mass_total}
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_length); if (unlikely(!__pyx_t_2)) __PYX_ERR(4, 76, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_length); if (unlikely(!__pyx_t_2)) __PYX_ERR(4, 126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_length, __pyx_t_2) < 0) __PYX_ERR(4, 72, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_length, __pyx_t_2) < 0) __PYX_ERR(4, 122, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "entities/motor.pyx":77
+  /* "entities/motor.pyx":127
  *                 "diameter":self.diameter,
  *                 "length":self.length,
  *                 "mass_propellant":self.mass_propellant,             # <<<<<<<<<<<<<<
  *                 "mass_total":self.mass_total}
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_mass_propellant); if (unlikely(!__pyx_t_2)) __PYX_ERR(4, 77, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_mass_propellant); if (unlikely(!__pyx_t_2)) __PYX_ERR(4, 127, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_mass_propellant, __pyx_t_2) < 0) __PYX_ERR(4, 72, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_mass_propellant, __pyx_t_2) < 0) __PYX_ERR(4, 122, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "entities/motor.pyx":78
+  /* "entities/motor.pyx":128
  *                 "length":self.length,
  *                 "mass_propellant":self.mass_propellant,
  *                 "mass_total":self.mass_total}             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_mass_total); if (unlikely(!__pyx_t_2)) __PYX_ERR(4, 78, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_mass_total); if (unlikely(!__pyx_t_2)) __PYX_ERR(4, 128, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_mass_total, __pyx_t_2) < 0) __PYX_ERR(4, 72, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_mass_total, __pyx_t_2) < 0) __PYX_ERR(4, 122, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "entities/motor.pyx":71
- *         return self.ptr.DataThrust()
+  /* "entities/motor.pyx":121
+ *                 setattr(self, key, kwargs[key])
  * 
  *     def named_attributes(self):             # <<<<<<<<<<<<<<
  *         return {"name":self.name,
@@ -6111,19 +6929,19 @@ static PyObject *__pyx_pf_14interface_core_7PyMotor_2named_attributes(struct __p
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_14interface_core_7PyMotor_5__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_14interface_core_7PyMotor_5__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_14interface_core_7PyMotor_7__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_14interface_core_7PyMotor_7__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__reduce_cython__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_14interface_core_7PyMotor_4__reduce_cython__(((struct __pyx_obj_14interface_core_PyMotor *)__pyx_v_self));
+  __pyx_r = __pyx_pf_14interface_core_7PyMotor_6__reduce_cython__(((struct __pyx_obj_14interface_core_PyMotor *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_14interface_core_7PyMotor_4__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_14interface_core_PyMotor *__pyx_v_self) {
+static PyObject *__pyx_pf_14interface_core_7PyMotor_6__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_14interface_core_PyMotor *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -6165,19 +6983,19 @@ static PyObject *__pyx_pf_14interface_core_7PyMotor_4__reduce_cython__(CYTHON_UN
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_14interface_core_7PyMotor_7__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state); /*proto*/
-static PyObject *__pyx_pw_14interface_core_7PyMotor_7__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pw_14interface_core_7PyMotor_9__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state); /*proto*/
+static PyObject *__pyx_pw_14interface_core_7PyMotor_9__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__setstate_cython__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_14interface_core_7PyMotor_6__setstate_cython__(((struct __pyx_obj_14interface_core_PyMotor *)__pyx_v_self), ((PyObject *)__pyx_v___pyx_state));
+  __pyx_r = __pyx_pf_14interface_core_7PyMotor_8__setstate_cython__(((struct __pyx_obj_14interface_core_PyMotor *)__pyx_v_self), ((PyObject *)__pyx_v___pyx_state));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_14interface_core_7PyMotor_6__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_14interface_core_PyMotor *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_14interface_core_7PyMotor_8__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_14interface_core_PyMotor *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -7259,8 +8077,8 @@ static int __pyx_pf_14interface_core_6PyPart_13override_mass_2__set__(struct __p
  *         self.ptr_part.SetOverrideMass(val)
  *     @property
  *     def override_mass_switch(self):             # <<<<<<<<<<<<<<
- *         self.ptr_part.OverrideMassSwitch()
- *     def set_model_mass(self):
+ *         return self.ptr_part.OverrideMassSwitch()
+ *     @override_mass_switch.setter
  */
 
 /* Python wrapper */
@@ -7279,84 +8097,100 @@ static PyObject *__pyx_pw_14interface_core_6PyPart_20override_mass_switch_1__get
 static PyObject *__pyx_pf_14interface_core_6PyPart_20override_mass_switch___get__(struct __pyx_obj_14interface_core_PyPart *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
   /* "entities/part.pyx":108
  *     @property
  *     def override_mass_switch(self):
- *         self.ptr_part.OverrideMassSwitch()             # <<<<<<<<<<<<<<
- *     def set_model_mass(self):
- *         self.ptr_part.SetModelMass()
+ *         return self.ptr_part.OverrideMassSwitch()             # <<<<<<<<<<<<<<
+ *     @override_mass_switch.setter
+ *     def override_mass_switch(self, val):
  */
-  (void)(__pyx_v_self->ptr_part->OverrideMassSwitch());
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __Pyx_PyBool_FromLong(__pyx_v_self->ptr_part->OverrideMassSwitch()); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 108, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
 
   /* "entities/part.pyx":107
  *         self.ptr_part.SetOverrideMass(val)
  *     @property
  *     def override_mass_switch(self):             # <<<<<<<<<<<<<<
- *         self.ptr_part.OverrideMassSwitch()
- *     def set_model_mass(self):
+ *         return self.ptr_part.OverrideMassSwitch()
+ *     @override_mass_switch.setter
  */
 
   /* function exit code */
-  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("interface_core.PyPart.override_mass_switch.__get__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "entities/part.pyx":109
- *     def override_mass_switch(self):
- *         self.ptr_part.OverrideMassSwitch()
- *     def set_model_mass(self):             # <<<<<<<<<<<<<<
- *         self.ptr_part.SetModelMass()
+/* "entities/part.pyx":110
+ *         return self.ptr_part.OverrideMassSwitch()
+ *     @override_mass_switch.setter
+ *     def override_mass_switch(self, val):             # <<<<<<<<<<<<<<
+ *         self.ptr_part.SetOverrideMassSwitch(val)
  * 
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_14interface_core_6PyPart_3set_model_mass(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_14interface_core_6PyPart_3set_model_mass(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
-  PyObject *__pyx_r = 0;
+static int __pyx_pw_14interface_core_6PyPart_20override_mass_switch_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_val); /*proto*/
+static int __pyx_pw_14interface_core_6PyPart_20override_mass_switch_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_val) {
+  int __pyx_r;
   __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("set_model_mass (wrapper)", 0);
-  __pyx_r = __pyx_pf_14interface_core_6PyPart_2set_model_mass(((struct __pyx_obj_14interface_core_PyPart *)__pyx_v_self));
+  __Pyx_RefNannySetupContext("__set__ (wrapper)", 0);
+  __pyx_r = __pyx_pf_14interface_core_6PyPart_20override_mass_switch_2__set__(((struct __pyx_obj_14interface_core_PyPart *)__pyx_v_self), ((PyObject *)__pyx_v_val));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_14interface_core_6PyPart_2set_model_mass(struct __pyx_obj_14interface_core_PyPart *__pyx_v_self) {
-  PyObject *__pyx_r = NULL;
+static int __pyx_pf_14interface_core_6PyPart_20override_mass_switch_2__set__(struct __pyx_obj_14interface_core_PyPart *__pyx_v_self, PyObject *__pyx_v_val) {
+  int __pyx_r;
   __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("set_model_mass", 0);
+  bool __pyx_t_1;
+  __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "entities/part.pyx":110
- *         self.ptr_part.OverrideMassSwitch()
- *     def set_model_mass(self):
- *         self.ptr_part.SetModelMass()             # <<<<<<<<<<<<<<
+  /* "entities/part.pyx":111
+ *     @override_mass_switch.setter
+ *     def override_mass_switch(self, val):
+ *         self.ptr_part.SetOverrideMassSwitch(val)             # <<<<<<<<<<<<<<
  * 
  *     def initialize_attributes(self, **kwargs):
  */
-  __pyx_v_self->ptr_part->SetModelMass();
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_val); if (unlikely((__pyx_t_1 == ((bool)-1)) && PyErr_Occurred())) __PYX_ERR(5, 111, __pyx_L1_error)
+  __pyx_v_self->ptr_part->SetOverrideMassSwitch(__pyx_t_1);
 
-  /* "entities/part.pyx":109
- *     def override_mass_switch(self):
- *         self.ptr_part.OverrideMassSwitch()
- *     def set_model_mass(self):             # <<<<<<<<<<<<<<
- *         self.ptr_part.SetModelMass()
+  /* "entities/part.pyx":110
+ *         return self.ptr_part.OverrideMassSwitch()
+ *     @override_mass_switch.setter
+ *     def override_mass_switch(self, val):             # <<<<<<<<<<<<<<
+ *         self.ptr_part.SetOverrideMassSwitch(val)
  * 
  */
 
   /* function exit code */
-  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
-  __Pyx_XGIVEREF(__pyx_r);
+  __pyx_r = 0;
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __Pyx_AddTraceback("interface_core.PyPart.override_mass_switch.__set__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = -1;
+  __pyx_L0:;
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "entities/part.pyx":112
- *         self.ptr_part.SetModelMass()
+/* "entities/part.pyx":113
+ *         self.ptr_part.SetOverrideMassSwitch(val)
  * 
  *     def initialize_attributes(self, **kwargs):             # <<<<<<<<<<<<<<
  *         for key in kwargs:
@@ -7364,8 +8198,8 @@ static PyObject *__pyx_pf_14interface_core_6PyPart_2set_model_mass(struct __pyx_
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_14interface_core_6PyPart_5initialize_attributes(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyObject *__pyx_pw_14interface_core_6PyPart_5initialize_attributes(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_14interface_core_6PyPart_3initialize_attributes(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_pw_14interface_core_6PyPart_3initialize_attributes(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_kwargs = 0;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
@@ -7375,7 +8209,7 @@ static PyObject *__pyx_pw_14interface_core_6PyPart_5initialize_attributes(PyObje
   if (__pyx_kwds && unlikely(!__Pyx_CheckKeywordStrings(__pyx_kwds, "initialize_attributes", 1))) return NULL;
   __pyx_v_kwargs = (__pyx_kwds) ? PyDict_Copy(__pyx_kwds) : PyDict_New(); if (unlikely(!__pyx_v_kwargs)) return NULL;
   __Pyx_GOTREF(__pyx_v_kwargs);
-  __pyx_r = __pyx_pf_14interface_core_6PyPart_4initialize_attributes(((struct __pyx_obj_14interface_core_PyPart *)__pyx_v_self), __pyx_v_kwargs);
+  __pyx_r = __pyx_pf_14interface_core_6PyPart_2initialize_attributes(((struct __pyx_obj_14interface_core_PyPart *)__pyx_v_self), __pyx_v_kwargs);
 
   /* function exit code */
   __Pyx_XDECREF(__pyx_v_kwargs);
@@ -7383,7 +8217,7 @@ static PyObject *__pyx_pw_14interface_core_6PyPart_5initialize_attributes(PyObje
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_14interface_core_6PyPart_4initialize_attributes(struct __pyx_obj_14interface_core_PyPart *__pyx_v_self, PyObject *__pyx_v_kwargs) {
+static PyObject *__pyx_pf_14interface_core_6PyPart_2initialize_attributes(struct __pyx_obj_14interface_core_PyPart *__pyx_v_self, PyObject *__pyx_v_kwargs) {
   PyObject *__pyx_v_key = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -7396,7 +8230,7 @@ static PyObject *__pyx_pf_14interface_core_6PyPart_4initialize_attributes(struct
   int __pyx_t_7;
   __Pyx_RefNannySetupContext("initialize_attributes", 0);
 
-  /* "entities/part.pyx":113
+  /* "entities/part.pyx":114
  * 
  *     def initialize_attributes(self, **kwargs):
  *         for key in kwargs:             # <<<<<<<<<<<<<<
@@ -7404,7 +8238,7 @@ static PyObject *__pyx_pf_14interface_core_6PyPart_4initialize_attributes(struct
  * 
  */
   __pyx_t_2 = 0;
-  __pyx_t_5 = __Pyx_dict_iterator(__pyx_v_kwargs, 1, ((PyObject *)NULL), (&__pyx_t_3), (&__pyx_t_4)); if (unlikely(!__pyx_t_5)) __PYX_ERR(5, 113, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_dict_iterator(__pyx_v_kwargs, 1, ((PyObject *)NULL), (&__pyx_t_3), (&__pyx_t_4)); if (unlikely(!__pyx_t_5)) __PYX_ERR(5, 114, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_XDECREF(__pyx_t_1);
   __pyx_t_1 = __pyx_t_5;
@@ -7412,27 +8246,27 @@ static PyObject *__pyx_pf_14interface_core_6PyPart_4initialize_attributes(struct
   while (1) {
     __pyx_t_6 = __Pyx_dict_iter_next(__pyx_t_1, __pyx_t_3, &__pyx_t_2, &__pyx_t_5, NULL, NULL, __pyx_t_4);
     if (unlikely(__pyx_t_6 == 0)) break;
-    if (unlikely(__pyx_t_6 == -1)) __PYX_ERR(5, 113, __pyx_L1_error)
+    if (unlikely(__pyx_t_6 == -1)) __PYX_ERR(5, 114, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_XDECREF_SET(__pyx_v_key, __pyx_t_5);
     __pyx_t_5 = 0;
 
-    /* "entities/part.pyx":114
+    /* "entities/part.pyx":115
  *     def initialize_attributes(self, **kwargs):
  *         for key in kwargs:
  *                 setattr(self, key, kwargs[key])             # <<<<<<<<<<<<<<
  * 
  * 
  */
-    __pyx_t_5 = __Pyx_PyDict_GetItem(__pyx_v_kwargs, __pyx_v_key); if (unlikely(!__pyx_t_5)) __PYX_ERR(5, 114, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyDict_GetItem(__pyx_v_kwargs, __pyx_v_key); if (unlikely(!__pyx_t_5)) __PYX_ERR(5, 115, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_7 = PyObject_SetAttr(((PyObject *)__pyx_v_self), __pyx_v_key, __pyx_t_5); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(5, 114, __pyx_L1_error)
+    __pyx_t_7 = PyObject_SetAttr(((PyObject *)__pyx_v_self), __pyx_v_key, __pyx_t_5); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(5, 115, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "entities/part.pyx":112
- *         self.ptr_part.SetModelMass()
+  /* "entities/part.pyx":113
+ *         self.ptr_part.SetOverrideMassSwitch(val)
  * 
  *     def initialize_attributes(self, **kwargs):             # <<<<<<<<<<<<<<
  *         for key in kwargs:
@@ -7461,19 +8295,19 @@ static PyObject *__pyx_pf_14interface_core_6PyPart_4initialize_attributes(struct
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_14interface_core_6PyPart_7__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_14interface_core_6PyPart_7__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_14interface_core_6PyPart_5__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_14interface_core_6PyPart_5__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__reduce_cython__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_14interface_core_6PyPart_6__reduce_cython__(((struct __pyx_obj_14interface_core_PyPart *)__pyx_v_self));
+  __pyx_r = __pyx_pf_14interface_core_6PyPart_4__reduce_cython__(((struct __pyx_obj_14interface_core_PyPart *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_14interface_core_6PyPart_6__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_14interface_core_PyPart *__pyx_v_self) {
+static PyObject *__pyx_pf_14interface_core_6PyPart_4__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_14interface_core_PyPart *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -7515,19 +8349,19 @@ static PyObject *__pyx_pf_14interface_core_6PyPart_6__reduce_cython__(CYTHON_UNU
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_14interface_core_6PyPart_9__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state); /*proto*/
-static PyObject *__pyx_pw_14interface_core_6PyPart_9__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pw_14interface_core_6PyPart_7__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state); /*proto*/
+static PyObject *__pyx_pw_14interface_core_6PyPart_7__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__setstate_cython__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_14interface_core_6PyPart_8__setstate_cython__(((struct __pyx_obj_14interface_core_PyPart *)__pyx_v_self), ((PyObject *)__pyx_v___pyx_state));
+  __pyx_r = __pyx_pf_14interface_core_6PyPart_6__setstate_cython__(((struct __pyx_obj_14interface_core_PyPart *)__pyx_v_self), ((PyObject *)__pyx_v___pyx_state));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_14interface_core_6PyPart_8__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_14interface_core_PyPart *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_14interface_core_6PyPart_6__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_14interface_core_PyPart *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -7561,7 +8395,7 @@ static PyObject *__pyx_pf_14interface_core_6PyPart_8__setstate_cython__(CYTHON_U
   return __pyx_r;
 }
 
-/* "entities/part.pyx":132
+/* "entities/part.pyx":133
  *     cdef Bulkhead *ptr
  * 
  *     def __init__(self, *args):             # <<<<<<<<<<<<<<
@@ -7598,7 +8432,7 @@ static int __pyx_pf_14interface_core_10PyBulkhead___init__(CYTHON_UNUSED struct 
   return __pyx_r;
 }
 
-/* "entities/part.pyx":136
+/* "entities/part.pyx":137
  * 
  *     @staticmethod
  *     cdef PyBulkhead create(Bulkhead* ptr):             # <<<<<<<<<<<<<<
@@ -7614,14 +8448,14 @@ static struct __pyx_obj_14interface_core_PyBulkhead *__pyx_f_14interface_core_10
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("create", 0);
 
-  /* "entities/part.pyx":137
+  /* "entities/part.pyx":138
  *     @staticmethod
  *     cdef PyBulkhead create(Bulkhead* ptr):
  *         obj = <PyBulkhead>PyBulkhead.__new__(PyBulkhead)             # <<<<<<<<<<<<<<
  *         obj.ptr = ptr
  *         obj.ptr_part = <Part*>ptr
  */
-  __pyx_t_1 = ((PyObject *)__pyx_tp_new_14interface_core_PyBulkhead(((PyTypeObject *)__pyx_ptype_14interface_core_PyBulkhead), __pyx_empty_tuple, NULL)); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 137, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_tp_new_14interface_core_PyBulkhead(((PyTypeObject *)__pyx_ptype_14interface_core_PyBulkhead), __pyx_empty_tuple, NULL)); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 138, __pyx_L1_error)
   __Pyx_GOTREF(((PyObject *)__pyx_t_1));
   __pyx_t_2 = ((PyObject *)__pyx_t_1);
   __Pyx_INCREF(__pyx_t_2);
@@ -7629,7 +8463,7 @@ static struct __pyx_obj_14interface_core_PyBulkhead *__pyx_f_14interface_core_10
   __pyx_v_obj = ((struct __pyx_obj_14interface_core_PyBulkhead *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "entities/part.pyx":138
+  /* "entities/part.pyx":139
  *     cdef PyBulkhead create(Bulkhead* ptr):
  *         obj = <PyBulkhead>PyBulkhead.__new__(PyBulkhead)
  *         obj.ptr = ptr             # <<<<<<<<<<<<<<
@@ -7638,7 +8472,7 @@ static struct __pyx_obj_14interface_core_PyBulkhead *__pyx_f_14interface_core_10
  */
   __pyx_v_obj->ptr = __pyx_v_ptr;
 
-  /* "entities/part.pyx":139
+  /* "entities/part.pyx":140
  *         obj = <PyBulkhead>PyBulkhead.__new__(PyBulkhead)
  *         obj.ptr = ptr
  *         obj.ptr_part = <Part*>ptr             # <<<<<<<<<<<<<<
@@ -7647,7 +8481,7 @@ static struct __pyx_obj_14interface_core_PyBulkhead *__pyx_f_14interface_core_10
  */
   __pyx_v_obj->__pyx_base.ptr_part = ((Part *)__pyx_v_ptr);
 
-  /* "entities/part.pyx":140
+  /* "entities/part.pyx":141
  *         obj.ptr = ptr
  *         obj.ptr_part = <Part*>ptr
  *         return obj             # <<<<<<<<<<<<<<
@@ -7659,7 +8493,7 @@ static struct __pyx_obj_14interface_core_PyBulkhead *__pyx_f_14interface_core_10
   __pyx_r = __pyx_v_obj;
   goto __pyx_L0;
 
-  /* "entities/part.pyx":136
+  /* "entities/part.pyx":137
  * 
  *     @staticmethod
  *     cdef PyBulkhead create(Bulkhead* ptr):             # <<<<<<<<<<<<<<
@@ -7680,7 +8514,7 @@ static struct __pyx_obj_14interface_core_PyBulkhead *__pyx_f_14interface_core_10
   return __pyx_r;
 }
 
-/* "entities/part.pyx":143
+/* "entities/part.pyx":144
  * 
  *     @property
  *     def diameter(self):             # <<<<<<<<<<<<<<
@@ -7707,7 +8541,7 @@ static PyObject *__pyx_pf_14interface_core_10PyBulkhead_8diameter___get__(struct
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "entities/part.pyx":144
+  /* "entities/part.pyx":145
  *     @property
  *     def diameter(self):
  *         return self.ptr.Diameter()             # <<<<<<<<<<<<<<
@@ -7715,13 +8549,13 @@ static PyObject *__pyx_pf_14interface_core_10PyBulkhead_8diameter___get__(struct
  *     def diameter(self, val):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->ptr->Diameter()); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 144, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->ptr->Diameter()); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 145, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "entities/part.pyx":143
+  /* "entities/part.pyx":144
  * 
  *     @property
  *     def diameter(self):             # <<<<<<<<<<<<<<
@@ -7740,7 +8574,7 @@ static PyObject *__pyx_pf_14interface_core_10PyBulkhead_8diameter___get__(struct
   return __pyx_r;
 }
 
-/* "entities/part.pyx":146
+/* "entities/part.pyx":147
  *         return self.ptr.Diameter()
  *     @diameter.setter
  *     def diameter(self, val):             # <<<<<<<<<<<<<<
@@ -7767,17 +8601,17 @@ static int __pyx_pf_14interface_core_10PyBulkhead_8diameter_2__set__(struct __py
   double __pyx_t_1;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "entities/part.pyx":147
+  /* "entities/part.pyx":148
  *     @diameter.setter
  *     def diameter(self, val):
  *         self.ptr.SetDiameter(val)             # <<<<<<<<<<<<<<
  * 
  *     @property
  */
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 147, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 148, __pyx_L1_error)
   __pyx_v_self->ptr->SetDiameter(__pyx_t_1);
 
-  /* "entities/part.pyx":146
+  /* "entities/part.pyx":147
  *         return self.ptr.Diameter()
  *     @diameter.setter
  *     def diameter(self, val):             # <<<<<<<<<<<<<<
@@ -7796,7 +8630,7 @@ static int __pyx_pf_14interface_core_10PyBulkhead_8diameter_2__set__(struct __py
   return __pyx_r;
 }
 
-/* "entities/part.pyx":150
+/* "entities/part.pyx":151
  * 
  *     @property
  *     def thickness(self):             # <<<<<<<<<<<<<<
@@ -7823,7 +8657,7 @@ static PyObject *__pyx_pf_14interface_core_10PyBulkhead_9thickness___get__(struc
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "entities/part.pyx":151
+  /* "entities/part.pyx":152
  *     @property
  *     def thickness(self):
  *         return self.ptr.Thickness()             # <<<<<<<<<<<<<<
@@ -7831,13 +8665,13 @@ static PyObject *__pyx_pf_14interface_core_10PyBulkhead_9thickness___get__(struc
  *     def thickness(self, val):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->ptr->Thickness()); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 151, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->ptr->Thickness()); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 152, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "entities/part.pyx":150
+  /* "entities/part.pyx":151
  * 
  *     @property
  *     def thickness(self):             # <<<<<<<<<<<<<<
@@ -7856,7 +8690,7 @@ static PyObject *__pyx_pf_14interface_core_10PyBulkhead_9thickness___get__(struc
   return __pyx_r;
 }
 
-/* "entities/part.pyx":153
+/* "entities/part.pyx":154
  *         return self.ptr.Thickness()
  *     @thickness.setter
  *     def thickness(self, val):             # <<<<<<<<<<<<<<
@@ -7883,17 +8717,17 @@ static int __pyx_pf_14interface_core_10PyBulkhead_9thickness_2__set__(struct __p
   double __pyx_t_1;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "entities/part.pyx":154
+  /* "entities/part.pyx":155
  *     @thickness.setter
  *     def thickness(self, val):
  *         self.ptr.SetThickness(val)             # <<<<<<<<<<<<<<
  * 
  *     def named_attributes(self):
  */
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 154, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 155, __pyx_L1_error)
   __pyx_v_self->ptr->SetThickness(__pyx_t_1);
 
-  /* "entities/part.pyx":153
+  /* "entities/part.pyx":154
  *         return self.ptr.Thickness()
  *     @thickness.setter
  *     def thickness(self, val):             # <<<<<<<<<<<<<<
@@ -7912,7 +8746,7 @@ static int __pyx_pf_14interface_core_10PyBulkhead_9thickness_2__set__(struct __p
   return __pyx_r;
 }
 
-/* "entities/part.pyx":156
+/* "entities/part.pyx":157
  *         self.ptr.SetThickness(val)
  * 
  *     def named_attributes(self):             # <<<<<<<<<<<<<<
@@ -7941,7 +8775,7 @@ static PyObject *__pyx_pf_14interface_core_10PyBulkhead_2named_attributes(struct
   PyObject *__pyx_t_3 = NULL;
   __Pyx_RefNannySetupContext("named_attributes", 0);
 
-  /* "entities/part.pyx":157
+  /* "entities/part.pyx":158
  * 
  *     def named_attributes(self):
  *         return {"type":self.type,             # <<<<<<<<<<<<<<
@@ -7949,92 +8783,104 @@ static PyObject *__pyx_pf_14interface_core_10PyBulkhead_2named_attributes(struct
  *                 "comments":self.comments,
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(7); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 157, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(8); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 158, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_type); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 157, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_type); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 158, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_type, __pyx_t_2) < 0) __PYX_ERR(5, 157, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_type, __pyx_t_2) < 0) __PYX_ERR(5, 158, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "entities/part.pyx":158
+  /* "entities/part.pyx":159
  *     def named_attributes(self):
  *         return {"type":self.type,
  *                 "name":self.name,             # <<<<<<<<<<<<<<
  *                 "comments":self.comments,
  *                 "material":self.material.name,
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_name); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 158, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_name); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 159, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_name, __pyx_t_2) < 0) __PYX_ERR(5, 157, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_name, __pyx_t_2) < 0) __PYX_ERR(5, 158, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "entities/part.pyx":159
+  /* "entities/part.pyx":160
  *         return {"type":self.type,
  *                 "name":self.name,
  *                 "comments":self.comments,             # <<<<<<<<<<<<<<
  *                 "material":self.material.name,
  *                 "override_mass":self.override_mass,
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_comments); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 159, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_comments); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 160, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_comments, __pyx_t_2) < 0) __PYX_ERR(5, 157, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_comments, __pyx_t_2) < 0) __PYX_ERR(5, 158, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "entities/part.pyx":160
+  /* "entities/part.pyx":161
  *                 "name":self.name,
  *                 "comments":self.comments,
  *                 "material":self.material.name,             # <<<<<<<<<<<<<<
  *                 "override_mass":self.override_mass,
- *                 "diameter":self.diameter,
+ *                 "override_mass_switch":self.override_mass_switch,
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_material); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 160, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_material); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 161, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_name); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 160, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_name); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 161, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_material, __pyx_t_3) < 0) __PYX_ERR(5, 157, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-
-  /* "entities/part.pyx":161
- *                 "comments":self.comments,
- *                 "material":self.material.name,
- *                 "override_mass":self.override_mass,             # <<<<<<<<<<<<<<
- *                 "diameter":self.diameter,
- *                 "thickness":self.thickness}
- */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_override_mass); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 161, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_override_mass, __pyx_t_3) < 0) __PYX_ERR(5, 157, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_material, __pyx_t_3) < 0) __PYX_ERR(5, 158, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
   /* "entities/part.pyx":162
+ *                 "comments":self.comments,
+ *                 "material":self.material.name,
+ *                 "override_mass":self.override_mass,             # <<<<<<<<<<<<<<
+ *                 "override_mass_switch":self.override_mass_switch,
+ *                 "diameter":self.diameter,
+ */
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_override_mass); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 162, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_override_mass, __pyx_t_3) < 0) __PYX_ERR(5, 158, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+  /* "entities/part.pyx":163
  *                 "material":self.material.name,
  *                 "override_mass":self.override_mass,
+ *                 "override_mass_switch":self.override_mass_switch,             # <<<<<<<<<<<<<<
+ *                 "diameter":self.diameter,
+ *                 "thickness":self.thickness}
+ */
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_override_mass_switch); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 163, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_override_mass_switch, __pyx_t_3) < 0) __PYX_ERR(5, 158, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+  /* "entities/part.pyx":164
+ *                 "override_mass":self.override_mass,
+ *                 "override_mass_switch":self.override_mass_switch,
  *                 "diameter":self.diameter,             # <<<<<<<<<<<<<<
  *                 "thickness":self.thickness}
  * 
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_diameter); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 162, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_diameter); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 164, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_diameter, __pyx_t_3) < 0) __PYX_ERR(5, 157, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_diameter, __pyx_t_3) < 0) __PYX_ERR(5, 158, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "entities/part.pyx":163
- *                 "override_mass":self.override_mass,
+  /* "entities/part.pyx":165
+ *                 "override_mass_switch":self.override_mass_switch,
  *                 "diameter":self.diameter,
  *                 "thickness":self.thickness}             # <<<<<<<<<<<<<<
  * 
  * cdef extern from "fin_shape.h":
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_thickness); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 163, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_thickness); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 165, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_thickness, __pyx_t_3) < 0) __PYX_ERR(5, 157, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_thickness, __pyx_t_3) < 0) __PYX_ERR(5, 158, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "entities/part.pyx":156
+  /* "entities/part.pyx":157
  *         self.ptr.SetThickness(val)
  * 
  *     def named_attributes(self):             # <<<<<<<<<<<<<<
@@ -8162,7 +9008,7 @@ static PyObject *__pyx_pf_14interface_core_10PyBulkhead_6__setstate_cython__(CYT
   return __pyx_r;
 }
 
-/* "entities/part.pyx":193
+/* "entities/part.pyx":195
  *     cdef FinShapeTrapezoidal *ptr
  * 
  *     def __init__(self, *args):             # <<<<<<<<<<<<<<
@@ -8199,7 +9045,7 @@ static int __pyx_pf_14interface_core_21PyFinShapeTrapezoidal___init__(CYTHON_UNU
   return __pyx_r;
 }
 
-/* "entities/part.pyx":197
+/* "entities/part.pyx":199
  * 
  *     @staticmethod
  *     cdef PyFinShapeTrapezoidal create(FinShapeTrapezoidal* ptr):             # <<<<<<<<<<<<<<
@@ -8215,14 +9061,14 @@ static struct __pyx_obj_14interface_core_PyFinShapeTrapezoidal *__pyx_f_14interf
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("create", 0);
 
-  /* "entities/part.pyx":198
+  /* "entities/part.pyx":200
  *     @staticmethod
  *     cdef PyFinShapeTrapezoidal create(FinShapeTrapezoidal* ptr):
  *         obj = <PyFinShapeTrapezoidal>PyFinShapeTrapezoidal.__new__(PyFinShapeTrapezoidal)             # <<<<<<<<<<<<<<
  *         obj.ptr = ptr
  *         return obj
  */
-  __pyx_t_1 = ((PyObject *)__pyx_tp_new_14interface_core_PyFinShapeTrapezoidal(((PyTypeObject *)__pyx_ptype_14interface_core_PyFinShapeTrapezoidal), __pyx_empty_tuple, NULL)); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 198, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_tp_new_14interface_core_PyFinShapeTrapezoidal(((PyTypeObject *)__pyx_ptype_14interface_core_PyFinShapeTrapezoidal), __pyx_empty_tuple, NULL)); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 200, __pyx_L1_error)
   __Pyx_GOTREF(((PyObject *)__pyx_t_1));
   __pyx_t_2 = ((PyObject *)__pyx_t_1);
   __Pyx_INCREF(__pyx_t_2);
@@ -8230,7 +9076,7 @@ static struct __pyx_obj_14interface_core_PyFinShapeTrapezoidal *__pyx_f_14interf
   __pyx_v_obj = ((struct __pyx_obj_14interface_core_PyFinShapeTrapezoidal *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "entities/part.pyx":199
+  /* "entities/part.pyx":201
  *     cdef PyFinShapeTrapezoidal create(FinShapeTrapezoidal* ptr):
  *         obj = <PyFinShapeTrapezoidal>PyFinShapeTrapezoidal.__new__(PyFinShapeTrapezoidal)
  *         obj.ptr = ptr             # <<<<<<<<<<<<<<
@@ -8239,7 +9085,7 @@ static struct __pyx_obj_14interface_core_PyFinShapeTrapezoidal *__pyx_f_14interf
  */
   __pyx_v_obj->ptr = __pyx_v_ptr;
 
-  /* "entities/part.pyx":200
+  /* "entities/part.pyx":202
  *         obj = <PyFinShapeTrapezoidal>PyFinShapeTrapezoidal.__new__(PyFinShapeTrapezoidal)
  *         obj.ptr = ptr
  *         return obj             # <<<<<<<<<<<<<<
@@ -8251,7 +9097,7 @@ static struct __pyx_obj_14interface_core_PyFinShapeTrapezoidal *__pyx_f_14interf
   __pyx_r = __pyx_v_obj;
   goto __pyx_L0;
 
-  /* "entities/part.pyx":197
+  /* "entities/part.pyx":199
  * 
  *     @staticmethod
  *     cdef PyFinShapeTrapezoidal create(FinShapeTrapezoidal* ptr):             # <<<<<<<<<<<<<<
@@ -8272,7 +9118,7 @@ static struct __pyx_obj_14interface_core_PyFinShapeTrapezoidal *__pyx_f_14interf
   return __pyx_r;
 }
 
-/* "entities/part.pyx":203
+/* "entities/part.pyx":205
  * 
  *     @property
  *     def type(self):             # <<<<<<<<<<<<<<
@@ -8302,7 +9148,7 @@ static PyObject *__pyx_pf_14interface_core_21PyFinShapeTrapezoidal_4type___get__
   PyObject *__pyx_t_4 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "entities/part.pyx":204
+  /* "entities/part.pyx":206
  *     @property
  *     def type(self):
  *         return PyFinShapeType(<int>self.ptr.AssignedFinShapeType())             # <<<<<<<<<<<<<<
@@ -8310,9 +9156,9 @@ static PyObject *__pyx_pf_14interface_core_21PyFinShapeTrapezoidal_4type___get__
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_PyFinShapeType); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 204, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_PyFinShapeType); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 206, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyInt_From_int(((int)__pyx_v_self->ptr->AssignedFinShapeType())); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 204, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_From_int(((int)__pyx_v_self->ptr->AssignedFinShapeType())); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 206, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_2))) {
@@ -8327,14 +9173,14 @@ static PyObject *__pyx_pf_14interface_core_21PyFinShapeTrapezoidal_4type___get__
   __pyx_t_1 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_4, __pyx_t_3) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 204, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 206, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "entities/part.pyx":203
+  /* "entities/part.pyx":205
  * 
  *     @property
  *     def type(self):             # <<<<<<<<<<<<<<
@@ -8356,7 +9202,7 @@ static PyObject *__pyx_pf_14interface_core_21PyFinShapeTrapezoidal_4type___get__
   return __pyx_r;
 }
 
-/* "entities/part.pyx":207
+/* "entities/part.pyx":209
  * 
  *     @property
  *     def chord_root(self):             # <<<<<<<<<<<<<<
@@ -8383,7 +9229,7 @@ static PyObject *__pyx_pf_14interface_core_21PyFinShapeTrapezoidal_10chord_root_
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "entities/part.pyx":208
+  /* "entities/part.pyx":210
  *     @property
  *     def chord_root(self):
  *         return self.ptr.ChordRoot()             # <<<<<<<<<<<<<<
@@ -8391,13 +9237,13 @@ static PyObject *__pyx_pf_14interface_core_21PyFinShapeTrapezoidal_10chord_root_
  *     def chord_root(self, val):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->ptr->ChordRoot()); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 208, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->ptr->ChordRoot()); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 210, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "entities/part.pyx":207
+  /* "entities/part.pyx":209
  * 
  *     @property
  *     def chord_root(self):             # <<<<<<<<<<<<<<
@@ -8416,7 +9262,7 @@ static PyObject *__pyx_pf_14interface_core_21PyFinShapeTrapezoidal_10chord_root_
   return __pyx_r;
 }
 
-/* "entities/part.pyx":210
+/* "entities/part.pyx":212
  *         return self.ptr.ChordRoot()
  *     @chord_root.setter
  *     def chord_root(self, val):             # <<<<<<<<<<<<<<
@@ -8443,17 +9289,17 @@ static int __pyx_pf_14interface_core_21PyFinShapeTrapezoidal_10chord_root_2__set
   double __pyx_t_1;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "entities/part.pyx":211
+  /* "entities/part.pyx":213
  *     @chord_root.setter
  *     def chord_root(self, val):
  *         self.ptr.SetChordRoot(val)             # <<<<<<<<<<<<<<
  * 
  *     @property
  */
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 211, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 213, __pyx_L1_error)
   __pyx_v_self->ptr->SetChordRoot(__pyx_t_1);
 
-  /* "entities/part.pyx":210
+  /* "entities/part.pyx":212
  *         return self.ptr.ChordRoot()
  *     @chord_root.setter
  *     def chord_root(self, val):             # <<<<<<<<<<<<<<
@@ -8472,7 +9318,7 @@ static int __pyx_pf_14interface_core_21PyFinShapeTrapezoidal_10chord_root_2__set
   return __pyx_r;
 }
 
-/* "entities/part.pyx":214
+/* "entities/part.pyx":216
  * 
  *     @property
  *     def chord_tip(self):             # <<<<<<<<<<<<<<
@@ -8499,7 +9345,7 @@ static PyObject *__pyx_pf_14interface_core_21PyFinShapeTrapezoidal_9chord_tip___
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "entities/part.pyx":215
+  /* "entities/part.pyx":217
  *     @property
  *     def chord_tip(self):
  *         return self.ptr.ChordTip()             # <<<<<<<<<<<<<<
@@ -8507,13 +9353,13 @@ static PyObject *__pyx_pf_14interface_core_21PyFinShapeTrapezoidal_9chord_tip___
  *     def chord_tip(self, val):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->ptr->ChordTip()); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 215, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->ptr->ChordTip()); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 217, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "entities/part.pyx":214
+  /* "entities/part.pyx":216
  * 
  *     @property
  *     def chord_tip(self):             # <<<<<<<<<<<<<<
@@ -8532,7 +9378,7 @@ static PyObject *__pyx_pf_14interface_core_21PyFinShapeTrapezoidal_9chord_tip___
   return __pyx_r;
 }
 
-/* "entities/part.pyx":217
+/* "entities/part.pyx":219
  *         return self.ptr.ChordTip()
  *     @chord_tip.setter
  *     def chord_tip(self, val):             # <<<<<<<<<<<<<<
@@ -8559,17 +9405,17 @@ static int __pyx_pf_14interface_core_21PyFinShapeTrapezoidal_9chord_tip_2__set__
   double __pyx_t_1;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "entities/part.pyx":218
+  /* "entities/part.pyx":220
  *     @chord_tip.setter
  *     def chord_tip(self, val):
  *         self.ptr.SetChordTip(val)             # <<<<<<<<<<<<<<
  * 
  *     @property
  */
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 218, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 220, __pyx_L1_error)
   __pyx_v_self->ptr->SetChordTip(__pyx_t_1);
 
-  /* "entities/part.pyx":217
+  /* "entities/part.pyx":219
  *         return self.ptr.ChordTip()
  *     @chord_tip.setter
  *     def chord_tip(self, val):             # <<<<<<<<<<<<<<
@@ -8588,7 +9434,7 @@ static int __pyx_pf_14interface_core_21PyFinShapeTrapezoidal_9chord_tip_2__set__
   return __pyx_r;
 }
 
-/* "entities/part.pyx":221
+/* "entities/part.pyx":223
  * 
  *     @property
  *     def span(self):             # <<<<<<<<<<<<<<
@@ -8615,7 +9461,7 @@ static PyObject *__pyx_pf_14interface_core_21PyFinShapeTrapezoidal_4span___get__
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "entities/part.pyx":222
+  /* "entities/part.pyx":224
  *     @property
  *     def span(self):
  *         return self.ptr.Span()             # <<<<<<<<<<<<<<
@@ -8623,13 +9469,13 @@ static PyObject *__pyx_pf_14interface_core_21PyFinShapeTrapezoidal_4span___get__
  *     def span(self, val):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->ptr->Span()); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 222, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->ptr->Span()); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 224, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "entities/part.pyx":221
+  /* "entities/part.pyx":223
  * 
  *     @property
  *     def span(self):             # <<<<<<<<<<<<<<
@@ -8648,7 +9494,7 @@ static PyObject *__pyx_pf_14interface_core_21PyFinShapeTrapezoidal_4span___get__
   return __pyx_r;
 }
 
-/* "entities/part.pyx":224
+/* "entities/part.pyx":226
  *         return self.ptr.Span()
  *     @span.setter
  *     def span(self, val):             # <<<<<<<<<<<<<<
@@ -8675,17 +9521,17 @@ static int __pyx_pf_14interface_core_21PyFinShapeTrapezoidal_4span_2__set__(stru
   double __pyx_t_1;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "entities/part.pyx":225
+  /* "entities/part.pyx":227
  *     @span.setter
  *     def span(self, val):
  *         self.ptr.SetSpan(val)             # <<<<<<<<<<<<<<
  * 
  *     def initialize_attributes(self, **kwargs):
  */
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 225, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 227, __pyx_L1_error)
   __pyx_v_self->ptr->SetSpan(__pyx_t_1);
 
-  /* "entities/part.pyx":224
+  /* "entities/part.pyx":226
  *         return self.ptr.Span()
  *     @span.setter
  *     def span(self, val):             # <<<<<<<<<<<<<<
@@ -8704,7 +9550,7 @@ static int __pyx_pf_14interface_core_21PyFinShapeTrapezoidal_4span_2__set__(stru
   return __pyx_r;
 }
 
-/* "entities/part.pyx":227
+/* "entities/part.pyx":229
  *         self.ptr.SetSpan(val)
  * 
  *     def initialize_attributes(self, **kwargs):             # <<<<<<<<<<<<<<
@@ -8745,7 +9591,7 @@ static PyObject *__pyx_pf_14interface_core_21PyFinShapeTrapezoidal_2initialize_a
   int __pyx_t_7;
   __Pyx_RefNannySetupContext("initialize_attributes", 0);
 
-  /* "entities/part.pyx":228
+  /* "entities/part.pyx":230
  * 
  *     def initialize_attributes(self, **kwargs):
  *         for key in kwargs:             # <<<<<<<<<<<<<<
@@ -8753,7 +9599,7 @@ static PyObject *__pyx_pf_14interface_core_21PyFinShapeTrapezoidal_2initialize_a
  * 
  */
   __pyx_t_2 = 0;
-  __pyx_t_5 = __Pyx_dict_iterator(__pyx_v_kwargs, 1, ((PyObject *)NULL), (&__pyx_t_3), (&__pyx_t_4)); if (unlikely(!__pyx_t_5)) __PYX_ERR(5, 228, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_dict_iterator(__pyx_v_kwargs, 1, ((PyObject *)NULL), (&__pyx_t_3), (&__pyx_t_4)); if (unlikely(!__pyx_t_5)) __PYX_ERR(5, 230, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_XDECREF(__pyx_t_1);
   __pyx_t_1 = __pyx_t_5;
@@ -8761,26 +9607,26 @@ static PyObject *__pyx_pf_14interface_core_21PyFinShapeTrapezoidal_2initialize_a
   while (1) {
     __pyx_t_6 = __Pyx_dict_iter_next(__pyx_t_1, __pyx_t_3, &__pyx_t_2, &__pyx_t_5, NULL, NULL, __pyx_t_4);
     if (unlikely(__pyx_t_6 == 0)) break;
-    if (unlikely(__pyx_t_6 == -1)) __PYX_ERR(5, 228, __pyx_L1_error)
+    if (unlikely(__pyx_t_6 == -1)) __PYX_ERR(5, 230, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_XDECREF_SET(__pyx_v_key, __pyx_t_5);
     __pyx_t_5 = 0;
 
-    /* "entities/part.pyx":229
+    /* "entities/part.pyx":231
  *     def initialize_attributes(self, **kwargs):
  *         for key in kwargs:
  *                 setattr(self, key, kwargs[key])             # <<<<<<<<<<<<<<
  * 
  *     @property
  */
-    __pyx_t_5 = __Pyx_PyDict_GetItem(__pyx_v_kwargs, __pyx_v_key); if (unlikely(!__pyx_t_5)) __PYX_ERR(5, 229, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyDict_GetItem(__pyx_v_kwargs, __pyx_v_key); if (unlikely(!__pyx_t_5)) __PYX_ERR(5, 231, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_7 = PyObject_SetAttr(((PyObject *)__pyx_v_self), __pyx_v_key, __pyx_t_5); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(5, 229, __pyx_L1_error)
+    __pyx_t_7 = PyObject_SetAttr(((PyObject *)__pyx_v_self), __pyx_v_key, __pyx_t_5); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(5, 231, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "entities/part.pyx":227
+  /* "entities/part.pyx":229
  *         self.ptr.SetSpan(val)
  * 
  *     def initialize_attributes(self, **kwargs):             # <<<<<<<<<<<<<<
@@ -8803,7 +9649,7 @@ static PyObject *__pyx_pf_14interface_core_21PyFinShapeTrapezoidal_2initialize_a
   return __pyx_r;
 }
 
-/* "entities/part.pyx":232
+/* "entities/part.pyx":234
  * 
  *     @property
  *     def length_sweep(self):             # <<<<<<<<<<<<<<
@@ -8830,7 +9676,7 @@ static PyObject *__pyx_pf_14interface_core_21PyFinShapeTrapezoidal_12length_swee
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "entities/part.pyx":233
+  /* "entities/part.pyx":235
  *     @property
  *     def length_sweep(self):
  *         return self.ptr.LengthSweep()             # <<<<<<<<<<<<<<
@@ -8838,13 +9684,13 @@ static PyObject *__pyx_pf_14interface_core_21PyFinShapeTrapezoidal_12length_swee
  *     def length_sweep(self, val):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->ptr->LengthSweep()); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 233, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->ptr->LengthSweep()); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 235, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "entities/part.pyx":232
+  /* "entities/part.pyx":234
  * 
  *     @property
  *     def length_sweep(self):             # <<<<<<<<<<<<<<
@@ -8863,7 +9709,7 @@ static PyObject *__pyx_pf_14interface_core_21PyFinShapeTrapezoidal_12length_swee
   return __pyx_r;
 }
 
-/* "entities/part.pyx":235
+/* "entities/part.pyx":237
  *         return self.ptr.LengthSweep()
  *     @length_sweep.setter
  *     def length_sweep(self, val):             # <<<<<<<<<<<<<<
@@ -8890,17 +9736,17 @@ static int __pyx_pf_14interface_core_21PyFinShapeTrapezoidal_12length_sweep_2__s
   double __pyx_t_1;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "entities/part.pyx":236
+  /* "entities/part.pyx":238
  *     @length_sweep.setter
  *     def length_sweep(self, val):
  *         self.ptr.SetLengthSweep(val)             # <<<<<<<<<<<<<<
  * 
  *     def named_attributes(self):
  */
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 236, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 238, __pyx_L1_error)
   __pyx_v_self->ptr->SetLengthSweep(__pyx_t_1);
 
-  /* "entities/part.pyx":235
+  /* "entities/part.pyx":237
  *         return self.ptr.LengthSweep()
  *     @length_sweep.setter
  *     def length_sweep(self, val):             # <<<<<<<<<<<<<<
@@ -8919,7 +9765,7 @@ static int __pyx_pf_14interface_core_21PyFinShapeTrapezoidal_12length_sweep_2__s
   return __pyx_r;
 }
 
-/* "entities/part.pyx":238
+/* "entities/part.pyx":240
  *         self.ptr.SetLengthSweep(val)
  * 
  *     def named_attributes(self):             # <<<<<<<<<<<<<<
@@ -8947,7 +9793,7 @@ static PyObject *__pyx_pf_14interface_core_21PyFinShapeTrapezoidal_4named_attrib
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("named_attributes", 0);
 
-  /* "entities/part.pyx":239
+  /* "entities/part.pyx":241
  * 
  *     def named_attributes(self):
  *         return {"type":self.type,             # <<<<<<<<<<<<<<
@@ -8955,65 +9801,65 @@ static PyObject *__pyx_pf_14interface_core_21PyFinShapeTrapezoidal_4named_attrib
  *                 "chord_tip":self.chord_tip,
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(5); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 239, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(5); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 241, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_type); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 239, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_type); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 241, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_type, __pyx_t_2) < 0) __PYX_ERR(5, 239, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_type, __pyx_t_2) < 0) __PYX_ERR(5, 241, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "entities/part.pyx":240
+  /* "entities/part.pyx":242
  *     def named_attributes(self):
  *         return {"type":self.type,
  *                 "chord_root":self.chord_root,             # <<<<<<<<<<<<<<
  *                 "chord_tip":self.chord_tip,
  *                 "span":self.span,
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_chord_root); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 240, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_chord_root); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 242, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_chord_root, __pyx_t_2) < 0) __PYX_ERR(5, 239, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_chord_root, __pyx_t_2) < 0) __PYX_ERR(5, 241, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "entities/part.pyx":241
+  /* "entities/part.pyx":243
  *         return {"type":self.type,
  *                 "chord_root":self.chord_root,
  *                 "chord_tip":self.chord_tip,             # <<<<<<<<<<<<<<
  *                 "span":self.span,
  *                 "length_sweep":self.length_sweep}
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_chord_tip); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 241, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_chord_tip); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 243, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_chord_tip, __pyx_t_2) < 0) __PYX_ERR(5, 239, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_chord_tip, __pyx_t_2) < 0) __PYX_ERR(5, 241, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "entities/part.pyx":242
+  /* "entities/part.pyx":244
  *                 "chord_root":self.chord_root,
  *                 "chord_tip":self.chord_tip,
  *                 "span":self.span,             # <<<<<<<<<<<<<<
  *                 "length_sweep":self.length_sweep}
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_span); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 242, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_span); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 244, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_span, __pyx_t_2) < 0) __PYX_ERR(5, 239, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_span, __pyx_t_2) < 0) __PYX_ERR(5, 241, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "entities/part.pyx":243
+  /* "entities/part.pyx":245
  *                 "chord_tip":self.chord_tip,
  *                 "span":self.span,
  *                 "length_sweep":self.length_sweep}             # <<<<<<<<<<<<<<
  * 
  * cdef extern from "aerodynamics.h":
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_length_sweep); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 243, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_length_sweep); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 245, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_length_sweep, __pyx_t_2) < 0) __PYX_ERR(5, 239, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_length_sweep, __pyx_t_2) < 0) __PYX_ERR(5, 241, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "entities/part.pyx":238
+  /* "entities/part.pyx":240
  *         self.ptr.SetLengthSweep(val)
  * 
  *     def named_attributes(self):             # <<<<<<<<<<<<<<
@@ -9140,7 +9986,7 @@ static PyObject *__pyx_pf_14interface_core_21PyFinShapeTrapezoidal_8__setstate_c
   return __pyx_r;
 }
 
-/* "entities/part.pyx":279
+/* "entities/part.pyx":281
  *     cdef Fins *ptr
  * 
  *     def __init__(self, *args):             # <<<<<<<<<<<<<<
@@ -9177,7 +10023,7 @@ static int __pyx_pf_14interface_core_6PyFins___init__(CYTHON_UNUSED struct __pyx
   return __pyx_r;
 }
 
-/* "entities/part.pyx":283
+/* "entities/part.pyx":285
  * 
  *     @staticmethod
  *     cdef PyFins create(Fins* ptr):             # <<<<<<<<<<<<<<
@@ -9193,14 +10039,14 @@ static struct __pyx_obj_14interface_core_PyFins *__pyx_f_14interface_core_6PyFin
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("create", 0);
 
-  /* "entities/part.pyx":284
+  /* "entities/part.pyx":286
  *     @staticmethod
  *     cdef PyFins create(Fins* ptr):
  *         obj = <PyFins>PyFins.__new__(PyFins)             # <<<<<<<<<<<<<<
  *         obj.ptr = ptr
  *         obj.ptr_part = <Part*>ptr
  */
-  __pyx_t_1 = ((PyObject *)__pyx_tp_new_14interface_core_PyFins(((PyTypeObject *)__pyx_ptype_14interface_core_PyFins), __pyx_empty_tuple, NULL)); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 284, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_tp_new_14interface_core_PyFins(((PyTypeObject *)__pyx_ptype_14interface_core_PyFins), __pyx_empty_tuple, NULL)); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 286, __pyx_L1_error)
   __Pyx_GOTREF(((PyObject *)__pyx_t_1));
   __pyx_t_2 = ((PyObject *)__pyx_t_1);
   __Pyx_INCREF(__pyx_t_2);
@@ -9208,7 +10054,7 @@ static struct __pyx_obj_14interface_core_PyFins *__pyx_f_14interface_core_6PyFin
   __pyx_v_obj = ((struct __pyx_obj_14interface_core_PyFins *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "entities/part.pyx":285
+  /* "entities/part.pyx":287
  *     cdef PyFins create(Fins* ptr):
  *         obj = <PyFins>PyFins.__new__(PyFins)
  *         obj.ptr = ptr             # <<<<<<<<<<<<<<
@@ -9217,7 +10063,7 @@ static struct __pyx_obj_14interface_core_PyFins *__pyx_f_14interface_core_6PyFin
  */
   __pyx_v_obj->ptr = __pyx_v_ptr;
 
-  /* "entities/part.pyx":286
+  /* "entities/part.pyx":288
  *         obj = <PyFins>PyFins.__new__(PyFins)
  *         obj.ptr = ptr
  *         obj.ptr_part = <Part*>ptr             # <<<<<<<<<<<<<<
@@ -9226,7 +10072,7 @@ static struct __pyx_obj_14interface_core_PyFins *__pyx_f_14interface_core_6PyFin
  */
   __pyx_v_obj->__pyx_base.ptr_part = ((Part *)__pyx_v_ptr);
 
-  /* "entities/part.pyx":287
+  /* "entities/part.pyx":289
  *         obj.ptr = ptr
  *         obj.ptr_part = <Part*>ptr
  *         return obj             # <<<<<<<<<<<<<<
@@ -9238,7 +10084,7 @@ static struct __pyx_obj_14interface_core_PyFins *__pyx_f_14interface_core_6PyFin
   __pyx_r = __pyx_v_obj;
   goto __pyx_L0;
 
-  /* "entities/part.pyx":283
+  /* "entities/part.pyx":285
  * 
  *     @staticmethod
  *     cdef PyFins create(Fins* ptr):             # <<<<<<<<<<<<<<
@@ -9259,7 +10105,7 @@ static struct __pyx_obj_14interface_core_PyFins *__pyx_f_14interface_core_6PyFin
   return __pyx_r;
 }
 
-/* "entities/part.pyx":290
+/* "entities/part.pyx":292
  * 
  *     @property
  *     def shape(self):             # <<<<<<<<<<<<<<
@@ -9287,31 +10133,31 @@ static PyObject *__pyx_pf_14interface_core_6PyFins_5shape___get__(struct __pyx_o
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "entities/part.pyx":291
+  /* "entities/part.pyx":293
  *     @property
  *     def shape(self):
  *         shape = PyFinShapeTrapezoidal()             # <<<<<<<<<<<<<<
  *         shape = PyFinShapeTrapezoidal.create(self.ptr.AssignedShape[FinShapeTrapezoidal]())
  *         return shape
  */
-  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_14interface_core_PyFinShapeTrapezoidal)); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 291, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_14interface_core_PyFinShapeTrapezoidal)); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 293, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_shape = ((struct __pyx_obj_14interface_core_PyFinShapeTrapezoidal *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "entities/part.pyx":292
+  /* "entities/part.pyx":294
  *     def shape(self):
  *         shape = PyFinShapeTrapezoidal()
  *         shape = PyFinShapeTrapezoidal.create(self.ptr.AssignedShape[FinShapeTrapezoidal]())             # <<<<<<<<<<<<<<
  *         return shape
  * 
  */
-  __pyx_t_1 = ((PyObject *)__pyx_f_14interface_core_21PyFinShapeTrapezoidal_create(__pyx_v_self->ptr->AssignedShape<FinShapeTrapezoidal>())); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 292, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_14interface_core_21PyFinShapeTrapezoidal_create(__pyx_v_self->ptr->AssignedShape<FinShapeTrapezoidal>())); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 294, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF_SET(__pyx_v_shape, ((struct __pyx_obj_14interface_core_PyFinShapeTrapezoidal *)__pyx_t_1));
   __pyx_t_1 = 0;
 
-  /* "entities/part.pyx":293
+  /* "entities/part.pyx":295
  *         shape = PyFinShapeTrapezoidal()
  *         shape = PyFinShapeTrapezoidal.create(self.ptr.AssignedShape[FinShapeTrapezoidal]())
  *         return shape             # <<<<<<<<<<<<<<
@@ -9323,7 +10169,7 @@ static PyObject *__pyx_pf_14interface_core_6PyFins_5shape___get__(struct __pyx_o
   __pyx_r = ((PyObject *)__pyx_v_shape);
   goto __pyx_L0;
 
-  /* "entities/part.pyx":290
+  /* "entities/part.pyx":292
  * 
  *     @property
  *     def shape(self):             # <<<<<<<<<<<<<<
@@ -9343,7 +10189,7 @@ static PyObject *__pyx_pf_14interface_core_6PyFins_5shape___get__(struct __pyx_o
   return __pyx_r;
 }
 
-/* "entities/part.pyx":296
+/* "entities/part.pyx":298
  * 
  *     @property
  *     def cross_section(self):             # <<<<<<<<<<<<<<
@@ -9373,7 +10219,7 @@ static PyObject *__pyx_pf_14interface_core_6PyFins_13cross_section___get__(struc
   PyObject *__pyx_t_4 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "entities/part.pyx":297
+  /* "entities/part.pyx":299
  *     @property
  *     def cross_section(self):
  *         return PyFinCrossSection(<int>self.ptr.CrossSection())             # <<<<<<<<<<<<<<
@@ -9381,9 +10227,9 @@ static PyObject *__pyx_pf_14interface_core_6PyFins_13cross_section___get__(struc
  *     def cross_section(self, val):
  */
   __Pyx_XDECREF(__pyx_r);
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_PyFinCrossSection); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 297, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_PyFinCrossSection); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 299, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyInt_From_int(((int)__pyx_v_self->ptr->CrossSection())); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 297, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_From_int(((int)__pyx_v_self->ptr->CrossSection())); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 299, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_2))) {
@@ -9398,14 +10244,14 @@ static PyObject *__pyx_pf_14interface_core_6PyFins_13cross_section___get__(struc
   __pyx_t_1 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_4, __pyx_t_3) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 297, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 299, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "entities/part.pyx":296
+  /* "entities/part.pyx":298
  * 
  *     @property
  *     def cross_section(self):             # <<<<<<<<<<<<<<
@@ -9427,7 +10273,7 @@ static PyObject *__pyx_pf_14interface_core_6PyFins_13cross_section___get__(struc
   return __pyx_r;
 }
 
-/* "entities/part.pyx":299
+/* "entities/part.pyx":301
  *         return PyFinCrossSection(<int>self.ptr.CrossSection())
  *     @cross_section.setter
  *     def cross_section(self, val):             # <<<<<<<<<<<<<<
@@ -9458,33 +10304,33 @@ static int __pyx_pf_14interface_core_6PyFins_13cross_section_2__set__(struct __p
   __Pyx_RefNannySetupContext("__set__", 0);
   __Pyx_INCREF(__pyx_v_val);
 
-  /* "entities/part.pyx":300
+  /* "entities/part.pyx":302
  *     @cross_section.setter
  *     def cross_section(self, val):
  *         if (isinstance(val, Enum)):             # <<<<<<<<<<<<<<
  *             val = val.value
  *         self.ptr.SetFinCrossSection(<FinCrossSection><int>val)
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_Enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 300, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_Enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 302, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_IsInstance(__pyx_v_val, __pyx_t_1); if (unlikely(__pyx_t_2 == ((int)-1))) __PYX_ERR(5, 300, __pyx_L1_error)
+  __pyx_t_2 = PyObject_IsInstance(__pyx_v_val, __pyx_t_1); if (unlikely(__pyx_t_2 == ((int)-1))) __PYX_ERR(5, 302, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_3 = (__pyx_t_2 != 0);
   if (__pyx_t_3) {
 
-    /* "entities/part.pyx":301
+    /* "entities/part.pyx":303
  *     def cross_section(self, val):
  *         if (isinstance(val, Enum)):
  *             val = val.value             # <<<<<<<<<<<<<<
  *         self.ptr.SetFinCrossSection(<FinCrossSection><int>val)
  * 
  */
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_val, __pyx_n_s_value); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 301, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_val, __pyx_n_s_value); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 303, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF_SET(__pyx_v_val, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "entities/part.pyx":300
+    /* "entities/part.pyx":302
  *     @cross_section.setter
  *     def cross_section(self, val):
  *         if (isinstance(val, Enum)):             # <<<<<<<<<<<<<<
@@ -9493,17 +10339,17 @@ static int __pyx_pf_14interface_core_6PyFins_13cross_section_2__set__(struct __p
  */
   }
 
-  /* "entities/part.pyx":302
+  /* "entities/part.pyx":304
  *         if (isinstance(val, Enum)):
  *             val = val.value
  *         self.ptr.SetFinCrossSection(<FinCrossSection><int>val)             # <<<<<<<<<<<<<<
  * 
  *     @property
  */
-  __pyx_t_4 = __Pyx_PyInt_As_int(__pyx_v_val); if (unlikely((__pyx_t_4 == (int)-1) && PyErr_Occurred())) __PYX_ERR(5, 302, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_As_int(__pyx_v_val); if (unlikely((__pyx_t_4 == (int)-1) && PyErr_Occurred())) __PYX_ERR(5, 304, __pyx_L1_error)
   __pyx_v_self->ptr->SetFinCrossSection(((enum FinCrossSection)((int)__pyx_t_4)));
 
-  /* "entities/part.pyx":299
+  /* "entities/part.pyx":301
  *         return PyFinCrossSection(<int>self.ptr.CrossSection())
  *     @cross_section.setter
  *     def cross_section(self, val):             # <<<<<<<<<<<<<<
@@ -9524,7 +10370,7 @@ static int __pyx_pf_14interface_core_6PyFins_13cross_section_2__set__(struct __p
   return __pyx_r;
 }
 
-/* "entities/part.pyx":305
+/* "entities/part.pyx":307
  * 
  *     @property
  *     def number(self):             # <<<<<<<<<<<<<<
@@ -9551,7 +10397,7 @@ static PyObject *__pyx_pf_14interface_core_6PyFins_6number___get__(struct __pyx_
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "entities/part.pyx":306
+  /* "entities/part.pyx":308
  *     @property
  *     def number(self):
  *         return self.ptr.Number()             # <<<<<<<<<<<<<<
@@ -9559,13 +10405,13 @@ static PyObject *__pyx_pf_14interface_core_6PyFins_6number___get__(struct __pyx_
  *     def number(self, val):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->ptr->Number()); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 306, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->ptr->Number()); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 308, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "entities/part.pyx":305
+  /* "entities/part.pyx":307
  * 
  *     @property
  *     def number(self):             # <<<<<<<<<<<<<<
@@ -9584,7 +10430,7 @@ static PyObject *__pyx_pf_14interface_core_6PyFins_6number___get__(struct __pyx_
   return __pyx_r;
 }
 
-/* "entities/part.pyx":308
+/* "entities/part.pyx":310
  *         return self.ptr.Number()
  *     @number.setter
  *     def number(self, val):             # <<<<<<<<<<<<<<
@@ -9611,17 +10457,17 @@ static int __pyx_pf_14interface_core_6PyFins_6number_2__set__(struct __pyx_obj_1
   double __pyx_t_1;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "entities/part.pyx":309
+  /* "entities/part.pyx":311
  *     @number.setter
  *     def number(self, val):
  *         self.ptr.SetNumber(val)             # <<<<<<<<<<<<<<
  * 
  *     @property
  */
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 309, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 311, __pyx_L1_error)
   __pyx_v_self->ptr->SetNumber(__pyx_t_1);
 
-  /* "entities/part.pyx":308
+  /* "entities/part.pyx":310
  *         return self.ptr.Number()
  *     @number.setter
  *     def number(self, val):             # <<<<<<<<<<<<<<
@@ -9640,7 +10486,7 @@ static int __pyx_pf_14interface_core_6PyFins_6number_2__set__(struct __pyx_obj_1
   return __pyx_r;
 }
 
-/* "entities/part.pyx":312
+/* "entities/part.pyx":314
  * 
  *     @property
  *     def thickness(self):             # <<<<<<<<<<<<<<
@@ -9667,7 +10513,7 @@ static PyObject *__pyx_pf_14interface_core_6PyFins_9thickness___get__(struct __p
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "entities/part.pyx":313
+  /* "entities/part.pyx":315
  *     @property
  *     def thickness(self):
  *         return self.ptr.Thickness()             # <<<<<<<<<<<<<<
@@ -9675,13 +10521,13 @@ static PyObject *__pyx_pf_14interface_core_6PyFins_9thickness___get__(struct __p
  *     def thickness(self, val):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->ptr->Thickness()); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 313, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->ptr->Thickness()); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 315, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "entities/part.pyx":312
+  /* "entities/part.pyx":314
  * 
  *     @property
  *     def thickness(self):             # <<<<<<<<<<<<<<
@@ -9700,7 +10546,7 @@ static PyObject *__pyx_pf_14interface_core_6PyFins_9thickness___get__(struct __p
   return __pyx_r;
 }
 
-/* "entities/part.pyx":315
+/* "entities/part.pyx":317
  *         return self.ptr.Thickness()
  *     @thickness.setter
  *     def thickness(self, val):             # <<<<<<<<<<<<<<
@@ -9727,17 +10573,17 @@ static int __pyx_pf_14interface_core_6PyFins_9thickness_2__set__(struct __pyx_ob
   double __pyx_t_1;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "entities/part.pyx":316
+  /* "entities/part.pyx":318
  *     @thickness.setter
  *     def thickness(self, val):
  *         self.ptr.SetThickness(val)             # <<<<<<<<<<<<<<
  * 
  *     @property
  */
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 316, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 318, __pyx_L1_error)
   __pyx_v_self->ptr->SetThickness(__pyx_t_1);
 
-  /* "entities/part.pyx":315
+  /* "entities/part.pyx":317
  *         return self.ptr.Thickness()
  *     @thickness.setter
  *     def thickness(self, val):             # <<<<<<<<<<<<<<
@@ -9756,7 +10602,7 @@ static int __pyx_pf_14interface_core_6PyFins_9thickness_2__set__(struct __pyx_ob
   return __pyx_r;
 }
 
-/* "entities/part.pyx":319
+/* "entities/part.pyx":321
  * 
  *     @property
  *     def radius_fillet(self):             # <<<<<<<<<<<<<<
@@ -9783,7 +10629,7 @@ static PyObject *__pyx_pf_14interface_core_6PyFins_13radius_fillet___get__(struc
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "entities/part.pyx":320
+  /* "entities/part.pyx":322
  *     @property
  *     def radius_fillet(self):
  *         return self.ptr.RadiusFillet()             # <<<<<<<<<<<<<<
@@ -9791,13 +10637,13 @@ static PyObject *__pyx_pf_14interface_core_6PyFins_13radius_fillet___get__(struc
  *     def radius_fillet(self, val):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->ptr->RadiusFillet()); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 320, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->ptr->RadiusFillet()); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 322, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "entities/part.pyx":319
+  /* "entities/part.pyx":321
  * 
  *     @property
  *     def radius_fillet(self):             # <<<<<<<<<<<<<<
@@ -9816,7 +10662,7 @@ static PyObject *__pyx_pf_14interface_core_6PyFins_13radius_fillet___get__(struc
   return __pyx_r;
 }
 
-/* "entities/part.pyx":322
+/* "entities/part.pyx":324
  *         return self.ptr.RadiusFillet()
  *     @radius_fillet.setter
  *     def radius_fillet(self, val):             # <<<<<<<<<<<<<<
@@ -9843,17 +10689,17 @@ static int __pyx_pf_14interface_core_6PyFins_13radius_fillet_2__set__(struct __p
   double __pyx_t_1;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "entities/part.pyx":323
+  /* "entities/part.pyx":325
  *     @radius_fillet.setter
  *     def radius_fillet(self, val):
  *         self.ptr.SetRadiusFillet(val)             # <<<<<<<<<<<<<<
  * 
  *     def named_attributes(self):
  */
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 323, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 325, __pyx_L1_error)
   __pyx_v_self->ptr->SetRadiusFillet(__pyx_t_1);
 
-  /* "entities/part.pyx":322
+  /* "entities/part.pyx":324
  *         return self.ptr.RadiusFillet()
  *     @radius_fillet.setter
  *     def radius_fillet(self, val):             # <<<<<<<<<<<<<<
@@ -9872,7 +10718,7 @@ static int __pyx_pf_14interface_core_6PyFins_13radius_fillet_2__set__(struct __p
   return __pyx_r;
 }
 
-/* "entities/part.pyx":325
+/* "entities/part.pyx":327
  *         self.ptr.SetRadiusFillet(val)
  * 
  *     def named_attributes(self):             # <<<<<<<<<<<<<<
@@ -9901,7 +10747,7 @@ static PyObject *__pyx_pf_14interface_core_6PyFins_2named_attributes(struct __py
   PyObject *__pyx_t_3 = NULL;
   __Pyx_RefNannySetupContext("named_attributes", 0);
 
-  /* "entities/part.pyx":326
+  /* "entities/part.pyx":328
  * 
  *     def named_attributes(self):
  *         return {"type":self.type,             # <<<<<<<<<<<<<<
@@ -9909,116 +10755,128 @@ static PyObject *__pyx_pf_14interface_core_6PyFins_2named_attributes(struct __py
  *                 "comments":self.comments,
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(9); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 326, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(10); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 328, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_type); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 326, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_type); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 328, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_type, __pyx_t_2) < 0) __PYX_ERR(5, 326, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_type, __pyx_t_2) < 0) __PYX_ERR(5, 328, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "entities/part.pyx":327
+  /* "entities/part.pyx":329
  *     def named_attributes(self):
  *         return {"type":self.type,
  *                 "name":self.name,             # <<<<<<<<<<<<<<
  *                 "comments":self.comments,
  *                 "material":self.material.name,
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_name); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 327, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_name); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 329, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_name, __pyx_t_2) < 0) __PYX_ERR(5, 326, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_name, __pyx_t_2) < 0) __PYX_ERR(5, 328, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "entities/part.pyx":328
+  /* "entities/part.pyx":330
  *         return {"type":self.type,
  *                 "name":self.name,
  *                 "comments":self.comments,             # <<<<<<<<<<<<<<
  *                 "material":self.material.name,
  *                 "override_mass":self.override_mass,
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_comments); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 328, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_comments); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 330, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_comments, __pyx_t_2) < 0) __PYX_ERR(5, 326, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_comments, __pyx_t_2) < 0) __PYX_ERR(5, 328, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "entities/part.pyx":329
+  /* "entities/part.pyx":331
  *                 "name":self.name,
  *                 "comments":self.comments,
  *                 "material":self.material.name,             # <<<<<<<<<<<<<<
  *                 "override_mass":self.override_mass,
- *                 "cross_section":self.cross_section,
+ *                 "override_mass_switch":self.override_mass_switch,
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_material); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 329, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_material); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 331, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_name); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 329, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_name); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 331, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_material, __pyx_t_3) < 0) __PYX_ERR(5, 326, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_material, __pyx_t_3) < 0) __PYX_ERR(5, 328, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "entities/part.pyx":330
+  /* "entities/part.pyx":332
  *                 "comments":self.comments,
  *                 "material":self.material.name,
  *                 "override_mass":self.override_mass,             # <<<<<<<<<<<<<<
+ *                 "override_mass_switch":self.override_mass_switch,
+ *                 "cross_section":self.cross_section,
+ */
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_override_mass); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 332, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_override_mass, __pyx_t_3) < 0) __PYX_ERR(5, 328, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+  /* "entities/part.pyx":333
+ *                 "material":self.material.name,
+ *                 "override_mass":self.override_mass,
+ *                 "override_mass_switch":self.override_mass_switch,             # <<<<<<<<<<<<<<
  *                 "cross_section":self.cross_section,
  *                 "number":self.number,
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_override_mass); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 330, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_override_mass_switch); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 333, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_override_mass, __pyx_t_3) < 0) __PYX_ERR(5, 326, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_override_mass_switch, __pyx_t_3) < 0) __PYX_ERR(5, 328, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "entities/part.pyx":331
- *                 "material":self.material.name,
+  /* "entities/part.pyx":334
  *                 "override_mass":self.override_mass,
+ *                 "override_mass_switch":self.override_mass_switch,
  *                 "cross_section":self.cross_section,             # <<<<<<<<<<<<<<
  *                 "number":self.number,
  *                 "thickness":self.thickness,
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_cross_section); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 331, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_cross_section); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 334, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_cross_section, __pyx_t_3) < 0) __PYX_ERR(5, 326, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_cross_section, __pyx_t_3) < 0) __PYX_ERR(5, 328, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "entities/part.pyx":332
- *                 "override_mass":self.override_mass,
+  /* "entities/part.pyx":335
+ *                 "override_mass_switch":self.override_mass_switch,
  *                 "cross_section":self.cross_section,
  *                 "number":self.number,             # <<<<<<<<<<<<<<
  *                 "thickness":self.thickness,
  *                 "radius_fillet":self.radius_fillet}
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_number); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 332, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_number); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 335, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_number, __pyx_t_3) < 0) __PYX_ERR(5, 326, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_number, __pyx_t_3) < 0) __PYX_ERR(5, 328, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "entities/part.pyx":333
+  /* "entities/part.pyx":336
  *                 "cross_section":self.cross_section,
  *                 "number":self.number,
  *                 "thickness":self.thickness,             # <<<<<<<<<<<<<<
  *                 "radius_fillet":self.radius_fillet}
  * 
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_thickness); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 333, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_thickness); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 336, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_thickness, __pyx_t_3) < 0) __PYX_ERR(5, 326, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_thickness, __pyx_t_3) < 0) __PYX_ERR(5, 328, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "entities/part.pyx":334
+  /* "entities/part.pyx":337
  *                 "number":self.number,
  *                 "thickness":self.thickness,
  *                 "radius_fillet":self.radius_fillet}             # <<<<<<<<<<<<<<
  * 
  * cdef extern from "aerodynamics.h":
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_radius_fillet); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 334, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_radius_fillet); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 337, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_radius_fillet, __pyx_t_3) < 0) __PYX_ERR(5, 326, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_radius_fillet, __pyx_t_3) < 0) __PYX_ERR(5, 328, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "entities/part.pyx":325
+  /* "entities/part.pyx":327
  *         self.ptr.SetRadiusFillet(val)
  * 
  *     def named_attributes(self):             # <<<<<<<<<<<<<<
@@ -10146,7 +11004,7 @@ static PyObject *__pyx_pf_14interface_core_6PyFins_6__setstate_cython__(CYTHON_U
   return __pyx_r;
 }
 
-/* "entities/part.pyx":379
+/* "entities/part.pyx":382
  *     cdef Nosecone *ptr
  * 
  *     def __init__(self, *args):             # <<<<<<<<<<<<<<
@@ -10183,7 +11041,7 @@ static int __pyx_pf_14interface_core_10PyNosecone___init__(CYTHON_UNUSED struct 
   return __pyx_r;
 }
 
-/* "entities/part.pyx":383
+/* "entities/part.pyx":386
  * 
  *     @staticmethod
  *     cdef PyNosecone create(Nosecone* ptr):             # <<<<<<<<<<<<<<
@@ -10199,14 +11057,14 @@ static struct __pyx_obj_14interface_core_PyNosecone *__pyx_f_14interface_core_10
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("create", 0);
 
-  /* "entities/part.pyx":384
+  /* "entities/part.pyx":387
  *     @staticmethod
  *     cdef PyNosecone create(Nosecone* ptr):
  *         obj = <PyNosecone>PyNosecone.__new__(PyNosecone)             # <<<<<<<<<<<<<<
  *         obj.ptr = ptr
  *         obj.ptr_part = <Part*>ptr
  */
-  __pyx_t_1 = ((PyObject *)__pyx_tp_new_14interface_core_PyNosecone(((PyTypeObject *)__pyx_ptype_14interface_core_PyNosecone), __pyx_empty_tuple, NULL)); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 384, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_tp_new_14interface_core_PyNosecone(((PyTypeObject *)__pyx_ptype_14interface_core_PyNosecone), __pyx_empty_tuple, NULL)); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 387, __pyx_L1_error)
   __Pyx_GOTREF(((PyObject *)__pyx_t_1));
   __pyx_t_2 = ((PyObject *)__pyx_t_1);
   __Pyx_INCREF(__pyx_t_2);
@@ -10214,7 +11072,7 @@ static struct __pyx_obj_14interface_core_PyNosecone *__pyx_f_14interface_core_10
   __pyx_v_obj = ((struct __pyx_obj_14interface_core_PyNosecone *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "entities/part.pyx":385
+  /* "entities/part.pyx":388
  *     cdef PyNosecone create(Nosecone* ptr):
  *         obj = <PyNosecone>PyNosecone.__new__(PyNosecone)
  *         obj.ptr = ptr             # <<<<<<<<<<<<<<
@@ -10223,7 +11081,7 @@ static struct __pyx_obj_14interface_core_PyNosecone *__pyx_f_14interface_core_10
  */
   __pyx_v_obj->ptr = __pyx_v_ptr;
 
-  /* "entities/part.pyx":386
+  /* "entities/part.pyx":389
  *         obj = <PyNosecone>PyNosecone.__new__(PyNosecone)
  *         obj.ptr = ptr
  *         obj.ptr_part = <Part*>ptr             # <<<<<<<<<<<<<<
@@ -10232,7 +11090,7 @@ static struct __pyx_obj_14interface_core_PyNosecone *__pyx_f_14interface_core_10
  */
   __pyx_v_obj->__pyx_base.ptr_part = ((Part *)__pyx_v_ptr);
 
-  /* "entities/part.pyx":387
+  /* "entities/part.pyx":390
  *         obj.ptr = ptr
  *         obj.ptr_part = <Part*>ptr
  *         return obj             # <<<<<<<<<<<<<<
@@ -10244,7 +11102,7 @@ static struct __pyx_obj_14interface_core_PyNosecone *__pyx_f_14interface_core_10
   __pyx_r = __pyx_v_obj;
   goto __pyx_L0;
 
-  /* "entities/part.pyx":383
+  /* "entities/part.pyx":386
  * 
  *     @staticmethod
  *     cdef PyNosecone create(Nosecone* ptr):             # <<<<<<<<<<<<<<
@@ -10265,7 +11123,7 @@ static struct __pyx_obj_14interface_core_PyNosecone *__pyx_f_14interface_core_10
   return __pyx_r;
 }
 
-/* "entities/part.pyx":390
+/* "entities/part.pyx":393
  * 
  *     @property
  *     def nosecone_type(self):             # <<<<<<<<<<<<<<
@@ -10295,7 +11153,7 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_13nosecone_type___get__(
   PyObject *__pyx_t_4 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "entities/part.pyx":391
+  /* "entities/part.pyx":394
  *     @property
  *     def nosecone_type(self):
  *         return PyNoseconeType(<int>self.ptr.NoseType())             # <<<<<<<<<<<<<<
@@ -10303,9 +11161,9 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_13nosecone_type___get__(
  *     def nosecone_type(self, val):
  */
   __Pyx_XDECREF(__pyx_r);
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_PyNoseconeType); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 391, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_PyNoseconeType); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 394, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyInt_From_int(((int)__pyx_v_self->ptr->NoseType())); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 391, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_From_int(((int)__pyx_v_self->ptr->NoseType())); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 394, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_2))) {
@@ -10320,14 +11178,14 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_13nosecone_type___get__(
   __pyx_t_1 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_4, __pyx_t_3) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 391, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 394, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "entities/part.pyx":390
+  /* "entities/part.pyx":393
  * 
  *     @property
  *     def nosecone_type(self):             # <<<<<<<<<<<<<<
@@ -10349,7 +11207,7 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_13nosecone_type___get__(
   return __pyx_r;
 }
 
-/* "entities/part.pyx":393
+/* "entities/part.pyx":396
  *         return PyNoseconeType(<int>self.ptr.NoseType())
  *     @nosecone_type.setter
  *     def nosecone_type(self, val):             # <<<<<<<<<<<<<<
@@ -10380,33 +11238,33 @@ static int __pyx_pf_14interface_core_10PyNosecone_13nosecone_type_2__set__(struc
   __Pyx_RefNannySetupContext("__set__", 0);
   __Pyx_INCREF(__pyx_v_val);
 
-  /* "entities/part.pyx":394
+  /* "entities/part.pyx":397
  *     @nosecone_type.setter
  *     def nosecone_type(self, val):
  *         if (isinstance(val, Enum)):             # <<<<<<<<<<<<<<
  *                 val = val.value
  *         self.ptr.SetNoseType(<NoseconeType><int>val)
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_Enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 394, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_Enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 397, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_IsInstance(__pyx_v_val, __pyx_t_1); if (unlikely(__pyx_t_2 == ((int)-1))) __PYX_ERR(5, 394, __pyx_L1_error)
+  __pyx_t_2 = PyObject_IsInstance(__pyx_v_val, __pyx_t_1); if (unlikely(__pyx_t_2 == ((int)-1))) __PYX_ERR(5, 397, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_3 = (__pyx_t_2 != 0);
   if (__pyx_t_3) {
 
-    /* "entities/part.pyx":395
+    /* "entities/part.pyx":398
  *     def nosecone_type(self, val):
  *         if (isinstance(val, Enum)):
  *                 val = val.value             # <<<<<<<<<<<<<<
  *         self.ptr.SetNoseType(<NoseconeType><int>val)
  * 
  */
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_val, __pyx_n_s_value); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 395, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_val, __pyx_n_s_value); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 398, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF_SET(__pyx_v_val, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "entities/part.pyx":394
+    /* "entities/part.pyx":397
  *     @nosecone_type.setter
  *     def nosecone_type(self, val):
  *         if (isinstance(val, Enum)):             # <<<<<<<<<<<<<<
@@ -10415,17 +11273,17 @@ static int __pyx_pf_14interface_core_10PyNosecone_13nosecone_type_2__set__(struc
  */
   }
 
-  /* "entities/part.pyx":396
+  /* "entities/part.pyx":399
  *         if (isinstance(val, Enum)):
  *                 val = val.value
  *         self.ptr.SetNoseType(<NoseconeType><int>val)             # <<<<<<<<<<<<<<
  * 
  *     @property
  */
-  __pyx_t_4 = __Pyx_PyInt_As_int(__pyx_v_val); if (unlikely((__pyx_t_4 == (int)-1) && PyErr_Occurred())) __PYX_ERR(5, 396, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_As_int(__pyx_v_val); if (unlikely((__pyx_t_4 == (int)-1) && PyErr_Occurred())) __PYX_ERR(5, 399, __pyx_L1_error)
   __pyx_v_self->ptr->SetNoseType(((enum NoseconeType)((int)__pyx_t_4)));
 
-  /* "entities/part.pyx":393
+  /* "entities/part.pyx":396
  *         return PyNoseconeType(<int>self.ptr.NoseType())
  *     @nosecone_type.setter
  *     def nosecone_type(self, val):             # <<<<<<<<<<<<<<
@@ -10446,7 +11304,7 @@ static int __pyx_pf_14interface_core_10PyNosecone_13nosecone_type_2__set__(struc
   return __pyx_r;
 }
 
-/* "entities/part.pyx":399
+/* "entities/part.pyx":402
  * 
  *     @property
  *     def shape_parameter(self):             # <<<<<<<<<<<<<<
@@ -10473,7 +11331,7 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_15shape_parameter___get_
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "entities/part.pyx":400
+  /* "entities/part.pyx":403
  *     @property
  *     def shape_parameter(self):
  *         return self.ptr.ShapeParameter()             # <<<<<<<<<<<<<<
@@ -10481,13 +11339,13 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_15shape_parameter___get_
  *     def shape_parameter(self, val):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->ptr->ShapeParameter()); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 400, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->ptr->ShapeParameter()); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 403, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "entities/part.pyx":399
+  /* "entities/part.pyx":402
  * 
  *     @property
  *     def shape_parameter(self):             # <<<<<<<<<<<<<<
@@ -10506,7 +11364,7 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_15shape_parameter___get_
   return __pyx_r;
 }
 
-/* "entities/part.pyx":402
+/* "entities/part.pyx":405
  *         return self.ptr.ShapeParameter()
  *     @shape_parameter.setter
  *     def shape_parameter(self, val):             # <<<<<<<<<<<<<<
@@ -10533,17 +11391,17 @@ static int __pyx_pf_14interface_core_10PyNosecone_15shape_parameter_2__set__(str
   double __pyx_t_1;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "entities/part.pyx":403
+  /* "entities/part.pyx":406
  *     @shape_parameter.setter
  *     def shape_parameter(self, val):
  *         self.ptr.SetShapeParameter(val)             # <<<<<<<<<<<<<<
  * 
  *     @property
  */
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 403, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 406, __pyx_L1_error)
   __pyx_v_self->ptr->SetShapeParameter(__pyx_t_1);
 
-  /* "entities/part.pyx":402
+  /* "entities/part.pyx":405
  *         return self.ptr.ShapeParameter()
  *     @shape_parameter.setter
  *     def shape_parameter(self, val):             # <<<<<<<<<<<<<<
@@ -10562,7 +11420,7 @@ static int __pyx_pf_14interface_core_10PyNosecone_15shape_parameter_2__set__(str
   return __pyx_r;
 }
 
-/* "entities/part.pyx":406
+/* "entities/part.pyx":409
  * 
  *     @property
  *     def length_nose(self):             # <<<<<<<<<<<<<<
@@ -10589,7 +11447,7 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_11length_nose___get__(st
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "entities/part.pyx":407
+  /* "entities/part.pyx":410
  *     @property
  *     def length_nose(self):
  *         return self.ptr.LengthNose()             # <<<<<<<<<<<<<<
@@ -10597,13 +11455,13 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_11length_nose___get__(st
  *     def length_nose(self, val):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->ptr->LengthNose()); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 407, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->ptr->LengthNose()); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 410, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "entities/part.pyx":406
+  /* "entities/part.pyx":409
  * 
  *     @property
  *     def length_nose(self):             # <<<<<<<<<<<<<<
@@ -10622,7 +11480,7 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_11length_nose___get__(st
   return __pyx_r;
 }
 
-/* "entities/part.pyx":409
+/* "entities/part.pyx":412
  *         return self.ptr.LengthNose()
  *     @length_nose.setter
  *     def length_nose(self, val):             # <<<<<<<<<<<<<<
@@ -10649,17 +11507,17 @@ static int __pyx_pf_14interface_core_10PyNosecone_11length_nose_2__set__(struct 
   double __pyx_t_1;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "entities/part.pyx":410
+  /* "entities/part.pyx":413
  *     @length_nose.setter
  *     def length_nose(self, val):
  *         self.ptr.SetLengthNose(val)             # <<<<<<<<<<<<<<
  * 
  *     @property
  */
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 410, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 413, __pyx_L1_error)
   __pyx_v_self->ptr->SetLengthNose(__pyx_t_1);
 
-  /* "entities/part.pyx":409
+  /* "entities/part.pyx":412
  *         return self.ptr.LengthNose()
  *     @length_nose.setter
  *     def length_nose(self, val):             # <<<<<<<<<<<<<<
@@ -10678,7 +11536,7 @@ static int __pyx_pf_14interface_core_10PyNosecone_11length_nose_2__set__(struct 
   return __pyx_r;
 }
 
-/* "entities/part.pyx":413
+/* "entities/part.pyx":416
  * 
  *     @property
  *     def length_base(self):             # <<<<<<<<<<<<<<
@@ -10705,7 +11563,7 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_11length_base___get__(st
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "entities/part.pyx":414
+  /* "entities/part.pyx":417
  *     @property
  *     def length_base(self):
  *         return self.ptr.LengthBase()             # <<<<<<<<<<<<<<
@@ -10713,13 +11571,13 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_11length_base___get__(st
  *     def length_base(self, val):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->ptr->LengthBase()); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 414, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->ptr->LengthBase()); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 417, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "entities/part.pyx":413
+  /* "entities/part.pyx":416
  * 
  *     @property
  *     def length_base(self):             # <<<<<<<<<<<<<<
@@ -10738,7 +11596,7 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_11length_base___get__(st
   return __pyx_r;
 }
 
-/* "entities/part.pyx":416
+/* "entities/part.pyx":419
  *         return self.ptr.LengthBase()
  *     @length_base.setter
  *     def length_base(self, val):             # <<<<<<<<<<<<<<
@@ -10765,17 +11623,17 @@ static int __pyx_pf_14interface_core_10PyNosecone_11length_base_2__set__(struct 
   double __pyx_t_1;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "entities/part.pyx":417
+  /* "entities/part.pyx":420
  *     @length_base.setter
  *     def length_base(self, val):
  *         self.ptr.SetLengthBase(val)             # <<<<<<<<<<<<<<
  * 
  *     @property
  */
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 417, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 420, __pyx_L1_error)
   __pyx_v_self->ptr->SetLengthBase(__pyx_t_1);
 
-  /* "entities/part.pyx":416
+  /* "entities/part.pyx":419
  *         return self.ptr.LengthBase()
  *     @length_base.setter
  *     def length_base(self, val):             # <<<<<<<<<<<<<<
@@ -10794,7 +11652,7 @@ static int __pyx_pf_14interface_core_10PyNosecone_11length_base_2__set__(struct 
   return __pyx_r;
 }
 
-/* "entities/part.pyx":420
+/* "entities/part.pyx":423
  * 
  *     @property
  *     def length_shoulder(self):             # <<<<<<<<<<<<<<
@@ -10821,7 +11679,7 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_15length_shoulder___get_
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "entities/part.pyx":421
+  /* "entities/part.pyx":424
  *     @property
  *     def length_shoulder(self):
  *         return self.ptr.LengthShoulder()             # <<<<<<<<<<<<<<
@@ -10829,13 +11687,13 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_15length_shoulder___get_
  *     def length_shoulder(self, val):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->ptr->LengthShoulder()); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 421, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->ptr->LengthShoulder()); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 424, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "entities/part.pyx":420
+  /* "entities/part.pyx":423
  * 
  *     @property
  *     def length_shoulder(self):             # <<<<<<<<<<<<<<
@@ -10854,7 +11712,7 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_15length_shoulder___get_
   return __pyx_r;
 }
 
-/* "entities/part.pyx":423
+/* "entities/part.pyx":426
  *         return self.ptr.LengthShoulder()
  *     @length_shoulder.setter
  *     def length_shoulder(self, val):             # <<<<<<<<<<<<<<
@@ -10881,17 +11739,17 @@ static int __pyx_pf_14interface_core_10PyNosecone_15length_shoulder_2__set__(str
   double __pyx_t_1;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "entities/part.pyx":424
+  /* "entities/part.pyx":427
  *     @length_shoulder.setter
  *     def length_shoulder(self, val):
  *         self.ptr.SetLengthShoulder(val)             # <<<<<<<<<<<<<<
  * 
  *     @property
  */
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 424, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 427, __pyx_L1_error)
   __pyx_v_self->ptr->SetLengthShoulder(__pyx_t_1);
 
-  /* "entities/part.pyx":423
+  /* "entities/part.pyx":426
  *         return self.ptr.LengthShoulder()
  *     @length_shoulder.setter
  *     def length_shoulder(self, val):             # <<<<<<<<<<<<<<
@@ -10910,7 +11768,7 @@ static int __pyx_pf_14interface_core_10PyNosecone_15length_shoulder_2__set__(str
   return __pyx_r;
 }
 
-/* "entities/part.pyx":427
+/* "entities/part.pyx":430
  * 
  *     @property
  *     def thickness(self):             # <<<<<<<<<<<<<<
@@ -10937,7 +11795,7 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_9thickness___get__(struc
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "entities/part.pyx":428
+  /* "entities/part.pyx":431
  *     @property
  *     def thickness(self):
  *         return self.ptr.Thickness()             # <<<<<<<<<<<<<<
@@ -10945,13 +11803,13 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_9thickness___get__(struc
  *     def thickness(self, val):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->ptr->Thickness()); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 428, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->ptr->Thickness()); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 431, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "entities/part.pyx":427
+  /* "entities/part.pyx":430
  * 
  *     @property
  *     def thickness(self):             # <<<<<<<<<<<<<<
@@ -10970,7 +11828,7 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_9thickness___get__(struc
   return __pyx_r;
 }
 
-/* "entities/part.pyx":430
+/* "entities/part.pyx":433
  *         return self.ptr.Thickness()
  *     @thickness.setter
  *     def thickness(self, val):             # <<<<<<<<<<<<<<
@@ -10997,17 +11855,17 @@ static int __pyx_pf_14interface_core_10PyNosecone_9thickness_2__set__(struct __p
   double __pyx_t_1;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "entities/part.pyx":431
+  /* "entities/part.pyx":434
  *     @thickness.setter
  *     def thickness(self, val):
  *         self.ptr.SetThickness(val)             # <<<<<<<<<<<<<<
  * 
  *     @property
  */
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 431, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 434, __pyx_L1_error)
   __pyx_v_self->ptr->SetThickness(__pyx_t_1);
 
-  /* "entities/part.pyx":430
+  /* "entities/part.pyx":433
  *         return self.ptr.Thickness()
  *     @thickness.setter
  *     def thickness(self, val):             # <<<<<<<<<<<<<<
@@ -11026,7 +11884,7 @@ static int __pyx_pf_14interface_core_10PyNosecone_9thickness_2__set__(struct __p
   return __pyx_r;
 }
 
-/* "entities/part.pyx":434
+/* "entities/part.pyx":437
  * 
  *     @property
  *     def diameter_outer(self):             # <<<<<<<<<<<<<<
@@ -11053,7 +11911,7 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_14diameter_outer___get__
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "entities/part.pyx":435
+  /* "entities/part.pyx":438
  *     @property
  *     def diameter_outer(self):
  *         return self.ptr.DiameterOuter()             # <<<<<<<<<<<<<<
@@ -11061,13 +11919,13 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_14diameter_outer___get__
  *     def diameter_outer(self, val):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->ptr->DiameterOuter()); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 435, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->ptr->DiameterOuter()); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 438, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "entities/part.pyx":434
+  /* "entities/part.pyx":437
  * 
  *     @property
  *     def diameter_outer(self):             # <<<<<<<<<<<<<<
@@ -11086,7 +11944,7 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_14diameter_outer___get__
   return __pyx_r;
 }
 
-/* "entities/part.pyx":437
+/* "entities/part.pyx":440
  *         return self.ptr.DiameterOuter()
  *     @diameter_outer.setter
  *     def diameter_outer(self, val):             # <<<<<<<<<<<<<<
@@ -11113,17 +11971,17 @@ static int __pyx_pf_14interface_core_10PyNosecone_14diameter_outer_2__set__(stru
   double __pyx_t_1;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "entities/part.pyx":438
+  /* "entities/part.pyx":441
  *     @diameter_outer.setter
  *     def diameter_outer(self, val):
  *         self.ptr.SetDiameterOuter(val)             # <<<<<<<<<<<<<<
  * 
  *     @property
  */
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 438, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 441, __pyx_L1_error)
   __pyx_v_self->ptr->SetDiameterOuter(__pyx_t_1);
 
-  /* "entities/part.pyx":437
+  /* "entities/part.pyx":440
  *         return self.ptr.DiameterOuter()
  *     @diameter_outer.setter
  *     def diameter_outer(self, val):             # <<<<<<<<<<<<<<
@@ -11142,7 +12000,7 @@ static int __pyx_pf_14interface_core_10PyNosecone_14diameter_outer_2__set__(stru
   return __pyx_r;
 }
 
-/* "entities/part.pyx":441
+/* "entities/part.pyx":444
  * 
  *     @property
  *     def diameter_shoulder(self):             # <<<<<<<<<<<<<<
@@ -11169,7 +12027,7 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_17diameter_shoulder___ge
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "entities/part.pyx":442
+  /* "entities/part.pyx":445
  *     @property
  *     def diameter_shoulder(self):
  *         return self.ptr.DiameterShoulder()             # <<<<<<<<<<<<<<
@@ -11177,13 +12035,13 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_17diameter_shoulder___ge
  *     def diameter_shoulder(self, val):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->ptr->DiameterShoulder()); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 442, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->ptr->DiameterShoulder()); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 445, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "entities/part.pyx":441
+  /* "entities/part.pyx":444
  * 
  *     @property
  *     def diameter_shoulder(self):             # <<<<<<<<<<<<<<
@@ -11202,7 +12060,7 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_17diameter_shoulder___ge
   return __pyx_r;
 }
 
-/* "entities/part.pyx":444
+/* "entities/part.pyx":447
  *         return self.ptr.DiameterShoulder()
  *     @diameter_shoulder.setter
  *     def diameter_shoulder(self, val):             # <<<<<<<<<<<<<<
@@ -11229,17 +12087,17 @@ static int __pyx_pf_14interface_core_10PyNosecone_17diameter_shoulder_2__set__(s
   double __pyx_t_1;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "entities/part.pyx":445
+  /* "entities/part.pyx":448
  *     @diameter_shoulder.setter
  *     def diameter_shoulder(self, val):
  *         self.ptr.SetDiameterShoulder(val)             # <<<<<<<<<<<<<<
  * 
  *     @property
  */
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 445, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 448, __pyx_L1_error)
   __pyx_v_self->ptr->SetDiameterShoulder(__pyx_t_1);
 
-  /* "entities/part.pyx":444
+  /* "entities/part.pyx":447
  *         return self.ptr.DiameterShoulder()
  *     @diameter_shoulder.setter
  *     def diameter_shoulder(self, val):             # <<<<<<<<<<<<<<
@@ -11258,7 +12116,7 @@ static int __pyx_pf_14interface_core_10PyNosecone_17diameter_shoulder_2__set__(s
   return __pyx_r;
 }
 
-/* "entities/part.pyx":448
+/* "entities/part.pyx":451
  * 
  *     @property
  *     def radius(self):             # <<<<<<<<<<<<<<
@@ -11285,7 +12143,7 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_6radius___get__(struct _
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "entities/part.pyx":449
+  /* "entities/part.pyx":452
  *     @property
  *     def radius(self):
  *         return self.ptr.Radius()             # <<<<<<<<<<<<<<
@@ -11293,13 +12151,13 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_6radius___get__(struct _
  *     def length(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->ptr->Radius()); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 449, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->ptr->Radius()); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 452, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "entities/part.pyx":448
+  /* "entities/part.pyx":451
  * 
  *     @property
  *     def radius(self):             # <<<<<<<<<<<<<<
@@ -11318,7 +12176,7 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_6radius___get__(struct _
   return __pyx_r;
 }
 
-/* "entities/part.pyx":451
+/* "entities/part.pyx":454
  *         return self.ptr.Radius()
  *     @property
  *     def length(self):             # <<<<<<<<<<<<<<
@@ -11345,7 +12203,7 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_6length___get__(struct _
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "entities/part.pyx":452
+  /* "entities/part.pyx":455
  *     @property
  *     def length(self):
  *         return self.ptr.Length()             # <<<<<<<<<<<<<<
@@ -11353,13 +12211,13 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_6length___get__(struct _
  *     def named_attributes(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->ptr->Length()); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 452, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->ptr->Length()); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 455, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "entities/part.pyx":451
+  /* "entities/part.pyx":454
  *         return self.ptr.Radius()
  *     @property
  *     def length(self):             # <<<<<<<<<<<<<<
@@ -11378,7 +12236,7 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_6length___get__(struct _
   return __pyx_r;
 }
 
-/* "entities/part.pyx":454
+/* "entities/part.pyx":457
  *         return self.ptr.Length()
  * 
  *     def named_attributes(self):             # <<<<<<<<<<<<<<
@@ -11407,7 +12265,7 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_2named_attributes(struct
   PyObject *__pyx_t_3 = NULL;
   __Pyx_RefNannySetupContext("named_attributes", 0);
 
-  /* "entities/part.pyx":455
+  /* "entities/part.pyx":458
  * 
  *     def named_attributes(self):
  *         return {"type":self.type,             # <<<<<<<<<<<<<<
@@ -11415,164 +12273,176 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_2named_attributes(struct
  *                 "comments":self.comments,
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(13); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 455, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(14); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 458, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_type); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 455, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_type); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 458, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_type, __pyx_t_2) < 0) __PYX_ERR(5, 455, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_type, __pyx_t_2) < 0) __PYX_ERR(5, 458, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "entities/part.pyx":456
+  /* "entities/part.pyx":459
  *     def named_attributes(self):
  *         return {"type":self.type,
  *                 "name":self.name,             # <<<<<<<<<<<<<<
  *                 "comments":self.comments,
  *                 "material":self.material.name,
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_name); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 456, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_name); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 459, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_name, __pyx_t_2) < 0) __PYX_ERR(5, 455, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_name, __pyx_t_2) < 0) __PYX_ERR(5, 458, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "entities/part.pyx":457
+  /* "entities/part.pyx":460
  *         return {"type":self.type,
  *                 "name":self.name,
  *                 "comments":self.comments,             # <<<<<<<<<<<<<<
  *                 "material":self.material.name,
  *                 "override_mass":self.override_mass,
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_comments); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 457, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_comments); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 460, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_comments, __pyx_t_2) < 0) __PYX_ERR(5, 455, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_comments, __pyx_t_2) < 0) __PYX_ERR(5, 458, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "entities/part.pyx":458
+  /* "entities/part.pyx":461
  *                 "name":self.name,
  *                 "comments":self.comments,
  *                 "material":self.material.name,             # <<<<<<<<<<<<<<
  *                 "override_mass":self.override_mass,
- *                 "nosecone_type":self.nosecone_type,
+ *                 "override_mass_switch":self.override_mass_switch,
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_material); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 458, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_material); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 461, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_name); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 458, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_name); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 461, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_material, __pyx_t_3) < 0) __PYX_ERR(5, 455, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_material, __pyx_t_3) < 0) __PYX_ERR(5, 458, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "entities/part.pyx":459
+  /* "entities/part.pyx":462
  *                 "comments":self.comments,
  *                 "material":self.material.name,
  *                 "override_mass":self.override_mass,             # <<<<<<<<<<<<<<
+ *                 "override_mass_switch":self.override_mass_switch,
+ *                 "nosecone_type":self.nosecone_type,
+ */
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_override_mass); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 462, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_override_mass, __pyx_t_3) < 0) __PYX_ERR(5, 458, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+  /* "entities/part.pyx":463
+ *                 "material":self.material.name,
+ *                 "override_mass":self.override_mass,
+ *                 "override_mass_switch":self.override_mass_switch,             # <<<<<<<<<<<<<<
  *                 "nosecone_type":self.nosecone_type,
  *                 "shape_parameter":self.shape_parameter,
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_override_mass); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 459, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_override_mass_switch); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 463, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_override_mass, __pyx_t_3) < 0) __PYX_ERR(5, 455, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_override_mass_switch, __pyx_t_3) < 0) __PYX_ERR(5, 458, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "entities/part.pyx":460
- *                 "material":self.material.name,
+  /* "entities/part.pyx":464
  *                 "override_mass":self.override_mass,
+ *                 "override_mass_switch":self.override_mass_switch,
  *                 "nosecone_type":self.nosecone_type,             # <<<<<<<<<<<<<<
  *                 "shape_parameter":self.shape_parameter,
  *                 "length_nose":self.length_nose,
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_nosecone_type); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 460, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_nosecone_type); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 464, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_nosecone_type, __pyx_t_3) < 0) __PYX_ERR(5, 455, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_nosecone_type, __pyx_t_3) < 0) __PYX_ERR(5, 458, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "entities/part.pyx":461
- *                 "override_mass":self.override_mass,
+  /* "entities/part.pyx":465
+ *                 "override_mass_switch":self.override_mass_switch,
  *                 "nosecone_type":self.nosecone_type,
  *                 "shape_parameter":self.shape_parameter,             # <<<<<<<<<<<<<<
  *                 "length_nose":self.length_nose,
  *                 "length_base":self.length_base,
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_shape_parameter); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 461, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_shape_parameter); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 465, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_shape_parameter, __pyx_t_3) < 0) __PYX_ERR(5, 455, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_shape_parameter, __pyx_t_3) < 0) __PYX_ERR(5, 458, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "entities/part.pyx":462
+  /* "entities/part.pyx":466
  *                 "nosecone_type":self.nosecone_type,
  *                 "shape_parameter":self.shape_parameter,
  *                 "length_nose":self.length_nose,             # <<<<<<<<<<<<<<
  *                 "length_base":self.length_base,
  *                 "length_shoulder":self.length_shoulder,
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_length_nose); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 462, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_length_nose); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 466, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_length_nose, __pyx_t_3) < 0) __PYX_ERR(5, 455, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_length_nose, __pyx_t_3) < 0) __PYX_ERR(5, 458, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "entities/part.pyx":463
+  /* "entities/part.pyx":467
  *                 "shape_parameter":self.shape_parameter,
  *                 "length_nose":self.length_nose,
  *                 "length_base":self.length_base,             # <<<<<<<<<<<<<<
  *                 "length_shoulder":self.length_shoulder,
  *                 "thickness":self.thickness,
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_length_base); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 463, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_length_base); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 467, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_length_base, __pyx_t_3) < 0) __PYX_ERR(5, 455, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_length_base, __pyx_t_3) < 0) __PYX_ERR(5, 458, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "entities/part.pyx":464
+  /* "entities/part.pyx":468
  *                 "length_nose":self.length_nose,
  *                 "length_base":self.length_base,
  *                 "length_shoulder":self.length_shoulder,             # <<<<<<<<<<<<<<
  *                 "thickness":self.thickness,
  *                 "diameter_outer":self.diameter_outer,
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_length_shoulder); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 464, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_length_shoulder); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 468, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_length_shoulder, __pyx_t_3) < 0) __PYX_ERR(5, 455, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_length_shoulder, __pyx_t_3) < 0) __PYX_ERR(5, 458, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "entities/part.pyx":465
+  /* "entities/part.pyx":469
  *                 "length_base":self.length_base,
  *                 "length_shoulder":self.length_shoulder,
  *                 "thickness":self.thickness,             # <<<<<<<<<<<<<<
  *                 "diameter_outer":self.diameter_outer,
  *                 "diameter_shoulder":self.diameter_shoulder}
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_thickness); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 465, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_thickness); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 469, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_thickness, __pyx_t_3) < 0) __PYX_ERR(5, 455, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_thickness, __pyx_t_3) < 0) __PYX_ERR(5, 458, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "entities/part.pyx":466
+  /* "entities/part.pyx":470
  *                 "length_shoulder":self.length_shoulder,
  *                 "thickness":self.thickness,
  *                 "diameter_outer":self.diameter_outer,             # <<<<<<<<<<<<<<
  *                 "diameter_shoulder":self.diameter_shoulder}
  * 
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_diameter_outer); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 466, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_diameter_outer); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 470, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_diameter_outer, __pyx_t_3) < 0) __PYX_ERR(5, 455, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_diameter_outer, __pyx_t_3) < 0) __PYX_ERR(5, 458, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "entities/part.pyx":467
+  /* "entities/part.pyx":471
  *                 "thickness":self.thickness,
  *                 "diameter_outer":self.diameter_outer,
  *                 "diameter_shoulder":self.diameter_shoulder}             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_diameter_shoulder); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 467, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_diameter_shoulder); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 471, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_diameter_shoulder, __pyx_t_3) < 0) __PYX_ERR(5, 455, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_diameter_shoulder, __pyx_t_3) < 0) __PYX_ERR(5, 458, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "entities/part.pyx":454
+  /* "entities/part.pyx":457
  *         return self.ptr.Length()
  * 
  *     def named_attributes(self):             # <<<<<<<<<<<<<<
@@ -11700,7 +12570,7 @@ static PyObject *__pyx_pf_14interface_core_10PyNosecone_6__setstate_cython__(CYT
   return __pyx_r;
 }
 
-/* "entities/part.pyx":487
+/* "entities/part.pyx":491
  *     cdef TubeBody *ptr
  * 
  *     def __init__(self, *args):             # <<<<<<<<<<<<<<
@@ -11737,7 +12607,7 @@ static int __pyx_pf_14interface_core_10PyTubeBody___init__(CYTHON_UNUSED struct 
   return __pyx_r;
 }
 
-/* "entities/part.pyx":491
+/* "entities/part.pyx":495
  * 
  *     @staticmethod
  *     cdef PyTubeBody create(TubeBody* ptr):             # <<<<<<<<<<<<<<
@@ -11753,14 +12623,14 @@ static struct __pyx_obj_14interface_core_PyTubeBody *__pyx_f_14interface_core_10
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("create", 0);
 
-  /* "entities/part.pyx":492
+  /* "entities/part.pyx":496
  *     @staticmethod
  *     cdef PyTubeBody create(TubeBody* ptr):
  *         obj = <PyTubeBody>PyTubeBody.__new__(PyTubeBody)             # <<<<<<<<<<<<<<
  *         obj.ptr = ptr
  *         obj.ptr_part = <Part*>ptr
  */
-  __pyx_t_1 = ((PyObject *)__pyx_tp_new_14interface_core_PyTubeBody(((PyTypeObject *)__pyx_ptype_14interface_core_PyTubeBody), __pyx_empty_tuple, NULL)); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 492, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_tp_new_14interface_core_PyTubeBody(((PyTypeObject *)__pyx_ptype_14interface_core_PyTubeBody), __pyx_empty_tuple, NULL)); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 496, __pyx_L1_error)
   __Pyx_GOTREF(((PyObject *)__pyx_t_1));
   __pyx_t_2 = ((PyObject *)__pyx_t_1);
   __Pyx_INCREF(__pyx_t_2);
@@ -11768,7 +12638,7 @@ static struct __pyx_obj_14interface_core_PyTubeBody *__pyx_f_14interface_core_10
   __pyx_v_obj = ((struct __pyx_obj_14interface_core_PyTubeBody *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "entities/part.pyx":493
+  /* "entities/part.pyx":497
  *     cdef PyTubeBody create(TubeBody* ptr):
  *         obj = <PyTubeBody>PyTubeBody.__new__(PyTubeBody)
  *         obj.ptr = ptr             # <<<<<<<<<<<<<<
@@ -11777,7 +12647,7 @@ static struct __pyx_obj_14interface_core_PyTubeBody *__pyx_f_14interface_core_10
  */
   __pyx_v_obj->ptr = __pyx_v_ptr;
 
-  /* "entities/part.pyx":494
+  /* "entities/part.pyx":498
  *         obj = <PyTubeBody>PyTubeBody.__new__(PyTubeBody)
  *         obj.ptr = ptr
  *         obj.ptr_part = <Part*>ptr             # <<<<<<<<<<<<<<
@@ -11786,7 +12656,7 @@ static struct __pyx_obj_14interface_core_PyTubeBody *__pyx_f_14interface_core_10
  */
   __pyx_v_obj->__pyx_base.ptr_part = ((Part *)__pyx_v_ptr);
 
-  /* "entities/part.pyx":495
+  /* "entities/part.pyx":499
  *         obj.ptr = ptr
  *         obj.ptr_part = <Part*>ptr
  *         return obj             # <<<<<<<<<<<<<<
@@ -11798,7 +12668,7 @@ static struct __pyx_obj_14interface_core_PyTubeBody *__pyx_f_14interface_core_10
   __pyx_r = __pyx_v_obj;
   goto __pyx_L0;
 
-  /* "entities/part.pyx":491
+  /* "entities/part.pyx":495
  * 
  *     @staticmethod
  *     cdef PyTubeBody create(TubeBody* ptr):             # <<<<<<<<<<<<<<
@@ -11819,7 +12689,7 @@ static struct __pyx_obj_14interface_core_PyTubeBody *__pyx_f_14interface_core_10
   return __pyx_r;
 }
 
-/* "entities/part.pyx":498
+/* "entities/part.pyx":502
  * 
  *     @property
  *     def length(self):             # <<<<<<<<<<<<<<
@@ -11846,7 +12716,7 @@ static PyObject *__pyx_pf_14interface_core_10PyTubeBody_6length___get__(struct _
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "entities/part.pyx":499
+  /* "entities/part.pyx":503
  *     @property
  *     def length(self):
  *         return self.ptr.Length()             # <<<<<<<<<<<<<<
@@ -11854,13 +12724,13 @@ static PyObject *__pyx_pf_14interface_core_10PyTubeBody_6length___get__(struct _
  *     def length(self, val):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->ptr->Length()); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 499, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->ptr->Length()); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 503, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "entities/part.pyx":498
+  /* "entities/part.pyx":502
  * 
  *     @property
  *     def length(self):             # <<<<<<<<<<<<<<
@@ -11879,7 +12749,7 @@ static PyObject *__pyx_pf_14interface_core_10PyTubeBody_6length___get__(struct _
   return __pyx_r;
 }
 
-/* "entities/part.pyx":501
+/* "entities/part.pyx":505
  *         return self.ptr.Length()
  *     @length.setter
  *     def length(self, val):             # <<<<<<<<<<<<<<
@@ -11906,17 +12776,17 @@ static int __pyx_pf_14interface_core_10PyTubeBody_6length_2__set__(struct __pyx_
   double __pyx_t_1;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "entities/part.pyx":502
+  /* "entities/part.pyx":506
  *     @length.setter
  *     def length(self, val):
  *         self.ptr.SetLength(val)             # <<<<<<<<<<<<<<
  * 
  *     @property
  */
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 502, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 506, __pyx_L1_error)
   __pyx_v_self->ptr->SetLength(__pyx_t_1);
 
-  /* "entities/part.pyx":501
+  /* "entities/part.pyx":505
  *         return self.ptr.Length()
  *     @length.setter
  *     def length(self, val):             # <<<<<<<<<<<<<<
@@ -11935,7 +12805,7 @@ static int __pyx_pf_14interface_core_10PyTubeBody_6length_2__set__(struct __pyx_
   return __pyx_r;
 }
 
-/* "entities/part.pyx":505
+/* "entities/part.pyx":509
  * 
  *     @property
  *     def diameter_outer(self):             # <<<<<<<<<<<<<<
@@ -11962,7 +12832,7 @@ static PyObject *__pyx_pf_14interface_core_10PyTubeBody_14diameter_outer___get__
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "entities/part.pyx":506
+  /* "entities/part.pyx":510
  *     @property
  *     def diameter_outer(self):
  *         return self.ptr.DiameterOuter()             # <<<<<<<<<<<<<<
@@ -11970,13 +12840,13 @@ static PyObject *__pyx_pf_14interface_core_10PyTubeBody_14diameter_outer___get__
  *     def diameter_outer(self, val):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->ptr->DiameterOuter()); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 506, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->ptr->DiameterOuter()); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 510, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "entities/part.pyx":505
+  /* "entities/part.pyx":509
  * 
  *     @property
  *     def diameter_outer(self):             # <<<<<<<<<<<<<<
@@ -11995,7 +12865,7 @@ static PyObject *__pyx_pf_14interface_core_10PyTubeBody_14diameter_outer___get__
   return __pyx_r;
 }
 
-/* "entities/part.pyx":508
+/* "entities/part.pyx":512
  *         return self.ptr.DiameterOuter()
  *     @diameter_outer.setter
  *     def diameter_outer(self, val):             # <<<<<<<<<<<<<<
@@ -12022,17 +12892,17 @@ static int __pyx_pf_14interface_core_10PyTubeBody_14diameter_outer_2__set__(stru
   double __pyx_t_1;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "entities/part.pyx":509
+  /* "entities/part.pyx":513
  *     @diameter_outer.setter
  *     def diameter_outer(self, val):
  *         self.ptr.SetDiameterOuter(val)             # <<<<<<<<<<<<<<
  * 
  *     @property
  */
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 509, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 513, __pyx_L1_error)
   __pyx_v_self->ptr->SetDiameterOuter(__pyx_t_1);
 
-  /* "entities/part.pyx":508
+  /* "entities/part.pyx":512
  *         return self.ptr.DiameterOuter()
  *     @diameter_outer.setter
  *     def diameter_outer(self, val):             # <<<<<<<<<<<<<<
@@ -12051,7 +12921,7 @@ static int __pyx_pf_14interface_core_10PyTubeBody_14diameter_outer_2__set__(stru
   return __pyx_r;
 }
 
-/* "entities/part.pyx":512
+/* "entities/part.pyx":516
  * 
  *     @property
  *     def thickness(self):             # <<<<<<<<<<<<<<
@@ -12078,7 +12948,7 @@ static PyObject *__pyx_pf_14interface_core_10PyTubeBody_9thickness___get__(struc
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "entities/part.pyx":513
+  /* "entities/part.pyx":517
  *     @property
  *     def thickness(self):
  *         return self.ptr.Thickness()             # <<<<<<<<<<<<<<
@@ -12086,13 +12956,13 @@ static PyObject *__pyx_pf_14interface_core_10PyTubeBody_9thickness___get__(struc
  *     def thickness(self, val):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->ptr->Thickness()); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 513, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->ptr->Thickness()); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 517, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "entities/part.pyx":512
+  /* "entities/part.pyx":516
  * 
  *     @property
  *     def thickness(self):             # <<<<<<<<<<<<<<
@@ -12111,7 +12981,7 @@ static PyObject *__pyx_pf_14interface_core_10PyTubeBody_9thickness___get__(struc
   return __pyx_r;
 }
 
-/* "entities/part.pyx":515
+/* "entities/part.pyx":519
  *         return self.ptr.Thickness()
  *     @thickness.setter
  *     def thickness(self, val):             # <<<<<<<<<<<<<<
@@ -12138,17 +13008,17 @@ static int __pyx_pf_14interface_core_10PyTubeBody_9thickness_2__set__(struct __p
   double __pyx_t_1;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "entities/part.pyx":516
+  /* "entities/part.pyx":520
  *     @thickness.setter
  *     def thickness(self, val):
  *         self.ptr.SetThickness(val)             # <<<<<<<<<<<<<<
  * 
  *     def named_attributes(self):
  */
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 516, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(5, 520, __pyx_L1_error)
   __pyx_v_self->ptr->SetThickness(__pyx_t_1);
 
-  /* "entities/part.pyx":515
+  /* "entities/part.pyx":519
  *         return self.ptr.Thickness()
  *     @thickness.setter
  *     def thickness(self, val):             # <<<<<<<<<<<<<<
@@ -12167,7 +13037,7 @@ static int __pyx_pf_14interface_core_10PyTubeBody_9thickness_2__set__(struct __p
   return __pyx_r;
 }
 
-/* "entities/part.pyx":518
+/* "entities/part.pyx":522
  *         self.ptr.SetThickness(val)
  * 
  *     def named_attributes(self):             # <<<<<<<<<<<<<<
@@ -12196,7 +13066,7 @@ static PyObject *__pyx_pf_14interface_core_10PyTubeBody_2named_attributes(struct
   PyObject *__pyx_t_3 = NULL;
   __Pyx_RefNannySetupContext("named_attributes", 0);
 
-  /* "entities/part.pyx":519
+  /* "entities/part.pyx":523
  * 
  *     def named_attributes(self):
  *         return {"type":self.type,             # <<<<<<<<<<<<<<
@@ -12204,101 +13074,113 @@ static PyObject *__pyx_pf_14interface_core_10PyTubeBody_2named_attributes(struct
  *                 "comments":self.comments,
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(8); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 519, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(9); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 523, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_type); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 519, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_type); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 523, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_type, __pyx_t_2) < 0) __PYX_ERR(5, 519, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_type, __pyx_t_2) < 0) __PYX_ERR(5, 523, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "entities/part.pyx":520
+  /* "entities/part.pyx":524
  *     def named_attributes(self):
  *         return {"type":self.type,
  *                 "name":self.name,             # <<<<<<<<<<<<<<
  *                 "comments":self.comments,
  *                 "material":self.material.name,
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_name); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 520, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_name); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 524, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_name, __pyx_t_2) < 0) __PYX_ERR(5, 519, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_name, __pyx_t_2) < 0) __PYX_ERR(5, 523, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "entities/part.pyx":521
+  /* "entities/part.pyx":525
  *         return {"type":self.type,
  *                 "name":self.name,
  *                 "comments":self.comments,             # <<<<<<<<<<<<<<
  *                 "material":self.material.name,
  *                 "override_mass":self.override_mass,
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_comments); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 521, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_comments); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 525, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_comments, __pyx_t_2) < 0) __PYX_ERR(5, 519, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_comments, __pyx_t_2) < 0) __PYX_ERR(5, 523, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "entities/part.pyx":522
+  /* "entities/part.pyx":526
  *                 "name":self.name,
  *                 "comments":self.comments,
  *                 "material":self.material.name,             # <<<<<<<<<<<<<<
  *                 "override_mass":self.override_mass,
- *                 "length":self.length,
+ *                 "override_mass_switch":self.override_mass_switch,
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_material); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 522, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_material); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 526, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_name); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 522, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_name); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 526, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_material, __pyx_t_3) < 0) __PYX_ERR(5, 519, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_material, __pyx_t_3) < 0) __PYX_ERR(5, 523, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "entities/part.pyx":523
+  /* "entities/part.pyx":527
  *                 "comments":self.comments,
  *                 "material":self.material.name,
  *                 "override_mass":self.override_mass,             # <<<<<<<<<<<<<<
+ *                 "override_mass_switch":self.override_mass_switch,
+ *                 "length":self.length,
+ */
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_override_mass); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 527, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_override_mass, __pyx_t_3) < 0) __PYX_ERR(5, 523, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+  /* "entities/part.pyx":528
+ *                 "material":self.material.name,
+ *                 "override_mass":self.override_mass,
+ *                 "override_mass_switch":self.override_mass_switch,             # <<<<<<<<<<<<<<
  *                 "length":self.length,
  *                 "diameter_outer":self.diameter_outer,
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_override_mass); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 523, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_override_mass_switch); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 528, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_override_mass, __pyx_t_3) < 0) __PYX_ERR(5, 519, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_override_mass_switch, __pyx_t_3) < 0) __PYX_ERR(5, 523, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "entities/part.pyx":524
- *                 "material":self.material.name,
+  /* "entities/part.pyx":529
  *                 "override_mass":self.override_mass,
+ *                 "override_mass_switch":self.override_mass_switch,
  *                 "length":self.length,             # <<<<<<<<<<<<<<
  *                 "diameter_outer":self.diameter_outer,
  *                 "thickness":self.thickness}
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_length); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 524, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_length); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 529, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_length, __pyx_t_3) < 0) __PYX_ERR(5, 519, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_length, __pyx_t_3) < 0) __PYX_ERR(5, 523, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "entities/part.pyx":525
- *                 "override_mass":self.override_mass,
+  /* "entities/part.pyx":530
+ *                 "override_mass_switch":self.override_mass_switch,
  *                 "length":self.length,
  *                 "diameter_outer":self.diameter_outer,             # <<<<<<<<<<<<<<
  *                 "thickness":self.thickness}
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_diameter_outer); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 525, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_diameter_outer); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 530, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_diameter_outer, __pyx_t_3) < 0) __PYX_ERR(5, 519, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_diameter_outer, __pyx_t_3) < 0) __PYX_ERR(5, 523, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "entities/part.pyx":526
+  /* "entities/part.pyx":531
  *                 "length":self.length,
  *                 "diameter_outer":self.diameter_outer,
  *                 "thickness":self.thickness}             # <<<<<<<<<<<<<<
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_thickness); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 526, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_thickness); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 531, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_thickness, __pyx_t_3) < 0) __PYX_ERR(5, 519, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_thickness, __pyx_t_3) < 0) __PYX_ERR(5, 523, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "entities/part.pyx":518
+  /* "entities/part.pyx":522
  *         self.ptr.SetThickness(val)
  * 
  *     def named_attributes(self):             # <<<<<<<<<<<<<<
@@ -15609,7 +16491,7 @@ static PyObject *__pyx_pf_14interface_core_7PyStage_2mass_empty(struct __pyx_obj
  *     @property
  *     def override_mass_empty(self):             # <<<<<<<<<<<<<<
  *         return self.ptr.OverrideMassEmpty()
- *     def set_override_mass_empty(self, val):
+ *     @override_mass_empty.setter
  */
 
 /* Python wrapper */
@@ -15635,8 +16517,8 @@ static PyObject *__pyx_pf_14interface_core_7PyStage_19override_mass_empty___get_
  *     @property
  *     def override_mass_empty(self):
  *         return self.ptr.OverrideMassEmpty()             # <<<<<<<<<<<<<<
- *     def set_override_mass_empty(self, val):
- *         self.ptr.SetOverrideMassEmpty(val)
+ *     @override_mass_empty.setter
+ *     def override_mass_empty(self, val):
  */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->ptr->OverrideMassEmpty()); if (unlikely(!__pyx_t_1)) __PYX_ERR(8, 70, __pyx_L1_error)
@@ -15650,7 +16532,7 @@ static PyObject *__pyx_pf_14interface_core_7PyStage_19override_mass_empty___get_
  *     @property
  *     def override_mass_empty(self):             # <<<<<<<<<<<<<<
  *         return self.ptr.OverrideMassEmpty()
- *     def set_override_mass_empty(self, val):
+ *     @override_mass_empty.setter
  */
 
   /* function exit code */
@@ -15664,69 +16546,68 @@ static PyObject *__pyx_pf_14interface_core_7PyStage_19override_mass_empty___get_
   return __pyx_r;
 }
 
-/* "entities/stage.pyx":71
- *     def override_mass_empty(self):
+/* "entities/stage.pyx":72
  *         return self.ptr.OverrideMassEmpty()
- *     def set_override_mass_empty(self, val):             # <<<<<<<<<<<<<<
+ *     @override_mass_empty.setter
+ *     def override_mass_empty(self, val):             # <<<<<<<<<<<<<<
  *         self.ptr.SetOverrideMassEmpty(val)
  *     @property
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_14interface_core_7PyStage_5set_override_mass_empty(PyObject *__pyx_v_self, PyObject *__pyx_v_val); /*proto*/
-static PyObject *__pyx_pw_14interface_core_7PyStage_5set_override_mass_empty(PyObject *__pyx_v_self, PyObject *__pyx_v_val) {
-  PyObject *__pyx_r = 0;
+static int __pyx_pw_14interface_core_7PyStage_19override_mass_empty_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_val); /*proto*/
+static int __pyx_pw_14interface_core_7PyStage_19override_mass_empty_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_val) {
+  int __pyx_r;
   __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("set_override_mass_empty (wrapper)", 0);
-  __pyx_r = __pyx_pf_14interface_core_7PyStage_4set_override_mass_empty(((struct __pyx_obj_14interface_core_PyStage *)__pyx_v_self), ((PyObject *)__pyx_v_val));
+  __Pyx_RefNannySetupContext("__set__ (wrapper)", 0);
+  __pyx_r = __pyx_pf_14interface_core_7PyStage_19override_mass_empty_2__set__(((struct __pyx_obj_14interface_core_PyStage *)__pyx_v_self), ((PyObject *)__pyx_v_val));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_14interface_core_7PyStage_4set_override_mass_empty(struct __pyx_obj_14interface_core_PyStage *__pyx_v_self, PyObject *__pyx_v_val) {
-  PyObject *__pyx_r = NULL;
+static int __pyx_pf_14interface_core_7PyStage_19override_mass_empty_2__set__(struct __pyx_obj_14interface_core_PyStage *__pyx_v_self, PyObject *__pyx_v_val) {
+  int __pyx_r;
   __Pyx_RefNannyDeclarations
   double __pyx_t_1;
-  __Pyx_RefNannySetupContext("set_override_mass_empty", 0);
+  __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "entities/stage.pyx":72
- *         return self.ptr.OverrideMassEmpty()
- *     def set_override_mass_empty(self, val):
+  /* "entities/stage.pyx":73
+ *     @override_mass_empty.setter
+ *     def override_mass_empty(self, val):
  *         self.ptr.SetOverrideMassEmpty(val)             # <<<<<<<<<<<<<<
  *     @property
  *     def override_mass_switch(self):
  */
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(8, 72, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(8, 73, __pyx_L1_error)
   __pyx_v_self->ptr->SetOverrideMassEmpty(__pyx_t_1);
 
-  /* "entities/stage.pyx":71
- *     def override_mass_empty(self):
+  /* "entities/stage.pyx":72
  *         return self.ptr.OverrideMassEmpty()
- *     def set_override_mass_empty(self, val):             # <<<<<<<<<<<<<<
+ *     @override_mass_empty.setter
+ *     def override_mass_empty(self, val):             # <<<<<<<<<<<<<<
  *         self.ptr.SetOverrideMassEmpty(val)
  *     @property
  */
 
   /* function exit code */
-  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+  __pyx_r = 0;
   goto __pyx_L0;
   __pyx_L1_error:;
-  __Pyx_AddTraceback("interface_core.PyStage.set_override_mass_empty", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
+  __Pyx_AddTraceback("interface_core.PyStage.override_mass_empty.__set__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = -1;
   __pyx_L0:;
-  __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "entities/stage.pyx":74
+/* "entities/stage.pyx":75
  *         self.ptr.SetOverrideMassEmpty(val)
  *     @property
  *     def override_mass_switch(self):             # <<<<<<<<<<<<<<
- *         self.ptr.OverrideMassSwitch()
- *     def set_model_mass_empty(self):
+ *         return self.ptr.OverrideMassSwitch()
+ *     @override_mass_switch.setter
  */
 
 /* Python wrapper */
@@ -15745,83 +16626,99 @@ static PyObject *__pyx_pw_14interface_core_7PyStage_20override_mass_switch_1__ge
 static PyObject *__pyx_pf_14interface_core_7PyStage_20override_mass_switch___get__(struct __pyx_obj_14interface_core_PyStage *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "entities/stage.pyx":75
+  /* "entities/stage.pyx":76
  *     @property
  *     def override_mass_switch(self):
- *         self.ptr.OverrideMassSwitch()             # <<<<<<<<<<<<<<
- *     def set_model_mass_empty(self):
- *         self.ptr.SetModelMassEmpty()
+ *         return self.ptr.OverrideMassSwitch()             # <<<<<<<<<<<<<<
+ *     @override_mass_switch.setter
+ *     def override_mass_switch(self, val):
  */
-  (void)(__pyx_v_self->ptr->OverrideMassSwitch());
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __Pyx_PyBool_FromLong(__pyx_v_self->ptr->OverrideMassSwitch()); if (unlikely(!__pyx_t_1)) __PYX_ERR(8, 76, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
 
-  /* "entities/stage.pyx":74
+  /* "entities/stage.pyx":75
  *         self.ptr.SetOverrideMassEmpty(val)
  *     @property
  *     def override_mass_switch(self):             # <<<<<<<<<<<<<<
- *         self.ptr.OverrideMassSwitch()
- *     def set_model_mass_empty(self):
+ *         return self.ptr.OverrideMassSwitch()
+ *     @override_mass_switch.setter
  */
 
   /* function exit code */
-  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("interface_core.PyStage.override_mass_switch.__get__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "entities/stage.pyx":76
- *     def override_mass_switch(self):
- *         self.ptr.OverrideMassSwitch()
- *     def set_model_mass_empty(self):             # <<<<<<<<<<<<<<
- *         self.ptr.SetModelMassEmpty()
+/* "entities/stage.pyx":78
+ *         return self.ptr.OverrideMassSwitch()
+ *     @override_mass_switch.setter
+ *     def override_mass_switch(self, val):             # <<<<<<<<<<<<<<
+ *         self.ptr.SetOverrideMassSwitch(val)
  * 
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_14interface_core_7PyStage_7set_model_mass_empty(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_14interface_core_7PyStage_7set_model_mass_empty(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
-  PyObject *__pyx_r = 0;
+static int __pyx_pw_14interface_core_7PyStage_20override_mass_switch_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_val); /*proto*/
+static int __pyx_pw_14interface_core_7PyStage_20override_mass_switch_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_val) {
+  int __pyx_r;
   __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("set_model_mass_empty (wrapper)", 0);
-  __pyx_r = __pyx_pf_14interface_core_7PyStage_6set_model_mass_empty(((struct __pyx_obj_14interface_core_PyStage *)__pyx_v_self));
+  __Pyx_RefNannySetupContext("__set__ (wrapper)", 0);
+  __pyx_r = __pyx_pf_14interface_core_7PyStage_20override_mass_switch_2__set__(((struct __pyx_obj_14interface_core_PyStage *)__pyx_v_self), ((PyObject *)__pyx_v_val));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_14interface_core_7PyStage_6set_model_mass_empty(struct __pyx_obj_14interface_core_PyStage *__pyx_v_self) {
-  PyObject *__pyx_r = NULL;
+static int __pyx_pf_14interface_core_7PyStage_20override_mass_switch_2__set__(struct __pyx_obj_14interface_core_PyStage *__pyx_v_self, PyObject *__pyx_v_val) {
+  int __pyx_r;
   __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("set_model_mass_empty", 0);
+  bool __pyx_t_1;
+  __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "entities/stage.pyx":77
- *         self.ptr.OverrideMassSwitch()
- *     def set_model_mass_empty(self):
- *         self.ptr.SetModelMassEmpty()             # <<<<<<<<<<<<<<
+  /* "entities/stage.pyx":79
+ *     @override_mass_switch.setter
+ *     def override_mass_switch(self, val):
+ *         self.ptr.SetOverrideMassSwitch(val)             # <<<<<<<<<<<<<<
  * 
  *     @property
  */
-  __pyx_v_self->ptr->SetModelMassEmpty();
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_val); if (unlikely((__pyx_t_1 == ((bool)-1)) && PyErr_Occurred())) __PYX_ERR(8, 79, __pyx_L1_error)
+  __pyx_v_self->ptr->SetOverrideMassSwitch(__pyx_t_1);
 
-  /* "entities/stage.pyx":76
- *     def override_mass_switch(self):
- *         self.ptr.OverrideMassSwitch()
- *     def set_model_mass_empty(self):             # <<<<<<<<<<<<<<
- *         self.ptr.SetModelMassEmpty()
+  /* "entities/stage.pyx":78
+ *         return self.ptr.OverrideMassSwitch()
+ *     @override_mass_switch.setter
+ *     def override_mass_switch(self, val):             # <<<<<<<<<<<<<<
+ *         self.ptr.SetOverrideMassSwitch(val)
  * 
  */
 
   /* function exit code */
-  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
-  __Pyx_XGIVEREF(__pyx_r);
+  __pyx_r = 0;
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __Pyx_AddTraceback("interface_core.PyStage.override_mass_switch.__set__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = -1;
+  __pyx_L0:;
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "entities/stage.pyx":80
+/* "entities/stage.pyx":82
  * 
  *     @property
  *     def surface_finish(self):             # <<<<<<<<<<<<<<
@@ -15851,7 +16748,7 @@ static PyObject *__pyx_pf_14interface_core_7PyStage_14surface_finish___get__(str
   PyObject *__pyx_t_4 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "entities/stage.pyx":81
+  /* "entities/stage.pyx":83
  *     @property
  *     def surface_finish(self):
  *         return PySurfaceFinish(<int>self.ptr.AssignedSurfaceFinish())             # <<<<<<<<<<<<<<
@@ -15859,9 +16756,9 @@ static PyObject *__pyx_pf_14interface_core_7PyStage_14surface_finish___get__(str
  *     def surface_finish(self, val):
  */
   __Pyx_XDECREF(__pyx_r);
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_PySurfaceFinish); if (unlikely(!__pyx_t_2)) __PYX_ERR(8, 81, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_PySurfaceFinish); if (unlikely(!__pyx_t_2)) __PYX_ERR(8, 83, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyInt_From_int(((int)__pyx_v_self->ptr->AssignedSurfaceFinish())); if (unlikely(!__pyx_t_3)) __PYX_ERR(8, 81, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_From_int(((int)__pyx_v_self->ptr->AssignedSurfaceFinish())); if (unlikely(!__pyx_t_3)) __PYX_ERR(8, 83, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_2))) {
@@ -15876,14 +16773,14 @@ static PyObject *__pyx_pf_14interface_core_7PyStage_14surface_finish___get__(str
   __pyx_t_1 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_4, __pyx_t_3) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(8, 81, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(8, 83, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "entities/stage.pyx":80
+  /* "entities/stage.pyx":82
  * 
  *     @property
  *     def surface_finish(self):             # <<<<<<<<<<<<<<
@@ -15905,7 +16802,7 @@ static PyObject *__pyx_pf_14interface_core_7PyStage_14surface_finish___get__(str
   return __pyx_r;
 }
 
-/* "entities/stage.pyx":83
+/* "entities/stage.pyx":85
  *         return PySurfaceFinish(<int>self.ptr.AssignedSurfaceFinish())
  *     @surface_finish.setter
  *     def surface_finish(self, val):             # <<<<<<<<<<<<<<
@@ -15936,33 +16833,33 @@ static int __pyx_pf_14interface_core_7PyStage_14surface_finish_2__set__(struct _
   __Pyx_RefNannySetupContext("__set__", 0);
   __Pyx_INCREF(__pyx_v_val);
 
-  /* "entities/stage.pyx":84
+  /* "entities/stage.pyx":86
  *     @surface_finish.setter
  *     def surface_finish(self, val):
  *         if (isinstance(val, Enum)):             # <<<<<<<<<<<<<<
  *             val = val.value
  *         self.ptr.SetSurfaceFinish(<SurfaceFinish><int>val)
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_Enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(8, 84, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_Enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(8, 86, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_IsInstance(__pyx_v_val, __pyx_t_1); if (unlikely(__pyx_t_2 == ((int)-1))) __PYX_ERR(8, 84, __pyx_L1_error)
+  __pyx_t_2 = PyObject_IsInstance(__pyx_v_val, __pyx_t_1); if (unlikely(__pyx_t_2 == ((int)-1))) __PYX_ERR(8, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_3 = (__pyx_t_2 != 0);
   if (__pyx_t_3) {
 
-    /* "entities/stage.pyx":85
+    /* "entities/stage.pyx":87
  *     def surface_finish(self, val):
  *         if (isinstance(val, Enum)):
  *             val = val.value             # <<<<<<<<<<<<<<
  *         self.ptr.SetSurfaceFinish(<SurfaceFinish><int>val)
  * 
  */
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_val, __pyx_n_s_value); if (unlikely(!__pyx_t_1)) __PYX_ERR(8, 85, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_val, __pyx_n_s_value); if (unlikely(!__pyx_t_1)) __PYX_ERR(8, 87, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF_SET(__pyx_v_val, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "entities/stage.pyx":84
+    /* "entities/stage.pyx":86
  *     @surface_finish.setter
  *     def surface_finish(self, val):
  *         if (isinstance(val, Enum)):             # <<<<<<<<<<<<<<
@@ -15971,17 +16868,17 @@ static int __pyx_pf_14interface_core_7PyStage_14surface_finish_2__set__(struct _
  */
   }
 
-  /* "entities/stage.pyx":86
+  /* "entities/stage.pyx":88
  *         if (isinstance(val, Enum)):
  *             val = val.value
  *         self.ptr.SetSurfaceFinish(<SurfaceFinish><int>val)             # <<<<<<<<<<<<<<
  * 
  *     @property
  */
-  __pyx_t_4 = __Pyx_PyInt_As_int(__pyx_v_val); if (unlikely((__pyx_t_4 == (int)-1) && PyErr_Occurred())) __PYX_ERR(8, 86, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_As_int(__pyx_v_val); if (unlikely((__pyx_t_4 == (int)-1) && PyErr_Occurred())) __PYX_ERR(8, 88, __pyx_L1_error)
   __pyx_v_self->ptr->SetSurfaceFinish(((enum SurfaceFinish)((int)__pyx_t_4)));
 
-  /* "entities/stage.pyx":83
+  /* "entities/stage.pyx":85
  *         return PySurfaceFinish(<int>self.ptr.AssignedSurfaceFinish())
  *     @surface_finish.setter
  *     def surface_finish(self, val):             # <<<<<<<<<<<<<<
@@ -16002,7 +16899,7 @@ static int __pyx_pf_14interface_core_7PyStage_14surface_finish_2__set__(struct _
   return __pyx_r;
 }
 
-/* "entities/stage.pyx":89
+/* "entities/stage.pyx":91
  * 
  *     @property
  *     def distance_overlap(self):             # <<<<<<<<<<<<<<
@@ -16029,7 +16926,7 @@ static PyObject *__pyx_pf_14interface_core_7PyStage_16distance_overlap___get__(s
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "entities/stage.pyx":90
+  /* "entities/stage.pyx":92
  *     @property
  *     def distance_overlap(self):
  *         return self.ptr.DistanceOverlap()             # <<<<<<<<<<<<<<
@@ -16037,13 +16934,13 @@ static PyObject *__pyx_pf_14interface_core_7PyStage_16distance_overlap___get__(s
  *     def distance_overlap(self, val):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->ptr->DistanceOverlap()); if (unlikely(!__pyx_t_1)) __PYX_ERR(8, 90, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->ptr->DistanceOverlap()); if (unlikely(!__pyx_t_1)) __PYX_ERR(8, 92, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "entities/stage.pyx":89
+  /* "entities/stage.pyx":91
  * 
  *     @property
  *     def distance_overlap(self):             # <<<<<<<<<<<<<<
@@ -16062,7 +16959,7 @@ static PyObject *__pyx_pf_14interface_core_7PyStage_16distance_overlap___get__(s
   return __pyx_r;
 }
 
-/* "entities/stage.pyx":92
+/* "entities/stage.pyx":94
  *         return self.ptr.DistanceOverlap()
  *     @distance_overlap.setter
  *     def distance_overlap(self, val):             # <<<<<<<<<<<<<<
@@ -16088,7 +16985,7 @@ static int __pyx_pf_14interface_core_7PyStage_16distance_overlap_2__set__(struct
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "entities/stage.pyx":93
+  /* "entities/stage.pyx":95
  *     @distance_overlap.setter
  *     def distance_overlap(self, val):
  *         self.ptr.DistanceOverlap()             # <<<<<<<<<<<<<<
@@ -16097,7 +16994,7 @@ static int __pyx_pf_14interface_core_7PyStage_16distance_overlap_2__set__(struct
  */
   (void)(__pyx_v_self->ptr->DistanceOverlap());
 
-  /* "entities/stage.pyx":92
+  /* "entities/stage.pyx":94
  *         return self.ptr.DistanceOverlap()
  *     @distance_overlap.setter
  *     def distance_overlap(self, val):             # <<<<<<<<<<<<<<
@@ -16111,7 +17008,7 @@ static int __pyx_pf_14interface_core_7PyStage_16distance_overlap_2__set__(struct
   return __pyx_r;
 }
 
-/* "entities/stage.pyx":96
+/* "entities/stage.pyx":98
  * 
  *     @property
  *     def instance_root(self):             # <<<<<<<<<<<<<<
@@ -16139,31 +17036,31 @@ static PyObject *__pyx_pf_14interface_core_7PyStage_13instance_root___get__(stru
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "entities/stage.pyx":97
+  /* "entities/stage.pyx":99
  *     @property
  *     def instance_root(self):
  *         instance = PyPartInstance()             # <<<<<<<<<<<<<<
  *         instance = PyPartInstance.create(self.ptr.InstanceRoot())
  *         return instance
  */
-  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_14interface_core_PyPartInstance)); if (unlikely(!__pyx_t_1)) __PYX_ERR(8, 97, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_14interface_core_PyPartInstance)); if (unlikely(!__pyx_t_1)) __PYX_ERR(8, 99, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_instance = ((struct __pyx_obj_14interface_core_PyPartInstance *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "entities/stage.pyx":98
+  /* "entities/stage.pyx":100
  *     def instance_root(self):
  *         instance = PyPartInstance()
  *         instance = PyPartInstance.create(self.ptr.InstanceRoot())             # <<<<<<<<<<<<<<
  *         return instance
  * 
  */
-  __pyx_t_1 = ((PyObject *)__pyx_f_14interface_core_14PyPartInstance_create(__pyx_v_self->ptr->InstanceRoot())); if (unlikely(!__pyx_t_1)) __PYX_ERR(8, 98, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_14interface_core_14PyPartInstance_create(__pyx_v_self->ptr->InstanceRoot())); if (unlikely(!__pyx_t_1)) __PYX_ERR(8, 100, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF_SET(__pyx_v_instance, ((struct __pyx_obj_14interface_core_PyPartInstance *)__pyx_t_1));
   __pyx_t_1 = 0;
 
-  /* "entities/stage.pyx":99
+  /* "entities/stage.pyx":101
  *         instance = PyPartInstance()
  *         instance = PyPartInstance.create(self.ptr.InstanceRoot())
  *         return instance             # <<<<<<<<<<<<<<
@@ -16175,7 +17072,7 @@ static PyObject *__pyx_pf_14interface_core_7PyStage_13instance_root___get__(stru
   __pyx_r = ((PyObject *)__pyx_v_instance);
   goto __pyx_L0;
 
-  /* "entities/stage.pyx":96
+  /* "entities/stage.pyx":98
  * 
  *     @property
  *     def instance_root(self):             # <<<<<<<<<<<<<<
@@ -16195,7 +17092,7 @@ static PyObject *__pyx_pf_14interface_core_7PyStage_13instance_root___get__(stru
   return __pyx_r;
 }
 
-/* "entities/stage.pyx":102
+/* "entities/stage.pyx":104
  * 
  *     @property
  *     def part_instances(self):             # <<<<<<<<<<<<<<
@@ -16223,31 +17120,31 @@ static PyObject *__pyx_pf_14interface_core_7PyStage_14part_instances___get__(str
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "entities/stage.pyx":103
+  /* "entities/stage.pyx":105
  *     @property
  *     def part_instances(self):
  *         instance = PyPartInstance()             # <<<<<<<<<<<<<<
  *         instance = PyPartInstance.create(self.ptr.InstanceRoot())
  *         return instance.children
  */
-  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_14interface_core_PyPartInstance)); if (unlikely(!__pyx_t_1)) __PYX_ERR(8, 103, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_14interface_core_PyPartInstance)); if (unlikely(!__pyx_t_1)) __PYX_ERR(8, 105, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_instance = ((struct __pyx_obj_14interface_core_PyPartInstance *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "entities/stage.pyx":104
+  /* "entities/stage.pyx":106
  *     def part_instances(self):
  *         instance = PyPartInstance()
  *         instance = PyPartInstance.create(self.ptr.InstanceRoot())             # <<<<<<<<<<<<<<
  *         return instance.children
  * 
  */
-  __pyx_t_1 = ((PyObject *)__pyx_f_14interface_core_14PyPartInstance_create(__pyx_v_self->ptr->InstanceRoot())); if (unlikely(!__pyx_t_1)) __PYX_ERR(8, 104, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_14interface_core_14PyPartInstance_create(__pyx_v_self->ptr->InstanceRoot())); if (unlikely(!__pyx_t_1)) __PYX_ERR(8, 106, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF_SET(__pyx_v_instance, ((struct __pyx_obj_14interface_core_PyPartInstance *)__pyx_t_1));
   __pyx_t_1 = 0;
 
-  /* "entities/stage.pyx":105
+  /* "entities/stage.pyx":107
  *         instance = PyPartInstance()
  *         instance = PyPartInstance.create(self.ptr.InstanceRoot())
  *         return instance.children             # <<<<<<<<<<<<<<
@@ -16255,13 +17152,13 @@ static PyObject *__pyx_pf_14interface_core_7PyStage_14part_instances___get__(str
  *     def print_drag_coefficients(self, stages_above, mach_number, area_thrusting):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_instance), __pyx_n_s_children); if (unlikely(!__pyx_t_1)) __PYX_ERR(8, 105, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_instance), __pyx_n_s_children); if (unlikely(!__pyx_t_1)) __PYX_ERR(8, 107, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "entities/stage.pyx":102
+  /* "entities/stage.pyx":104
  * 
  *     @property
  *     def part_instances(self):             # <<<<<<<<<<<<<<
@@ -16281,7 +17178,7 @@ static PyObject *__pyx_pf_14interface_core_7PyStage_14part_instances___get__(str
   return __pyx_r;
 }
 
-/* "entities/stage.pyx":107
+/* "entities/stage.pyx":109
  *         return instance.children
  * 
  *     def print_drag_coefficients(self, stages_above, mach_number, area_thrusting):             # <<<<<<<<<<<<<<
@@ -16290,8 +17187,8 @@ static PyObject *__pyx_pf_14interface_core_7PyStage_14part_instances___get__(str
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_14interface_core_7PyStage_9print_drag_coefficients(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyObject *__pyx_pw_14interface_core_7PyStage_9print_drag_coefficients(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_14interface_core_7PyStage_5print_drag_coefficients(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_pw_14interface_core_7PyStage_5print_drag_coefficients(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_stages_above = 0;
   PyObject *__pyx_v_mach_number = 0;
   PyObject *__pyx_v_area_thrusting = 0;
@@ -16323,17 +17220,17 @@ static PyObject *__pyx_pw_14interface_core_7PyStage_9print_drag_coefficients(PyO
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_mach_number)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("print_drag_coefficients", 1, 3, 3, 1); __PYX_ERR(8, 107, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("print_drag_coefficients", 1, 3, 3, 1); __PYX_ERR(8, 109, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_area_thrusting)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("print_drag_coefficients", 1, 3, 3, 2); __PYX_ERR(8, 107, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("print_drag_coefficients", 1, 3, 3, 2); __PYX_ERR(8, 109, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "print_drag_coefficients") < 0)) __PYX_ERR(8, 107, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "print_drag_coefficients") < 0)) __PYX_ERR(8, 109, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -16348,20 +17245,20 @@ static PyObject *__pyx_pw_14interface_core_7PyStage_9print_drag_coefficients(PyO
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("print_drag_coefficients", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(8, 107, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("print_drag_coefficients", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(8, 109, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("interface_core.PyStage.print_drag_coefficients", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_14interface_core_7PyStage_8print_drag_coefficients(((struct __pyx_obj_14interface_core_PyStage *)__pyx_v_self), __pyx_v_stages_above, __pyx_v_mach_number, __pyx_v_area_thrusting);
+  __pyx_r = __pyx_pf_14interface_core_7PyStage_4print_drag_coefficients(((struct __pyx_obj_14interface_core_PyStage *)__pyx_v_self), __pyx_v_stages_above, __pyx_v_mach_number, __pyx_v_area_thrusting);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_14interface_core_7PyStage_8print_drag_coefficients(struct __pyx_obj_14interface_core_PyStage *__pyx_v_self, PyObject *__pyx_v_stages_above, PyObject *__pyx_v_mach_number, PyObject *__pyx_v_area_thrusting) {
+static PyObject *__pyx_pf_14interface_core_7PyStage_4print_drag_coefficients(struct __pyx_obj_14interface_core_PyStage *__pyx_v_self, PyObject *__pyx_v_stages_above, PyObject *__pyx_v_mach_number, PyObject *__pyx_v_area_thrusting) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   bool __pyx_t_1;
@@ -16369,19 +17266,19 @@ static PyObject *__pyx_pf_14interface_core_7PyStage_8print_drag_coefficients(str
   double __pyx_t_3;
   __Pyx_RefNannySetupContext("print_drag_coefficients", 0);
 
-  /* "entities/stage.pyx":108
+  /* "entities/stage.pyx":110
  * 
  *     def print_drag_coefficients(self, stages_above, mach_number, area_thrusting):
  *         self.ptr.PrintDragCoefficients(stages_above, mach_number, area_thrusting)             # <<<<<<<<<<<<<<
  * 
  *     def initialize_attributes(self, **kwargs):
  */
-  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_stages_above); if (unlikely((__pyx_t_1 == ((bool)-1)) && PyErr_Occurred())) __PYX_ERR(8, 108, __pyx_L1_error)
-  __pyx_t_2 = __pyx_PyFloat_AsDouble(__pyx_v_mach_number); if (unlikely((__pyx_t_2 == (double)-1) && PyErr_Occurred())) __PYX_ERR(8, 108, __pyx_L1_error)
-  __pyx_t_3 = __pyx_PyFloat_AsDouble(__pyx_v_area_thrusting); if (unlikely((__pyx_t_3 == (double)-1) && PyErr_Occurred())) __PYX_ERR(8, 108, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_stages_above); if (unlikely((__pyx_t_1 == ((bool)-1)) && PyErr_Occurred())) __PYX_ERR(8, 110, __pyx_L1_error)
+  __pyx_t_2 = __pyx_PyFloat_AsDouble(__pyx_v_mach_number); if (unlikely((__pyx_t_2 == (double)-1) && PyErr_Occurred())) __PYX_ERR(8, 110, __pyx_L1_error)
+  __pyx_t_3 = __pyx_PyFloat_AsDouble(__pyx_v_area_thrusting); if (unlikely((__pyx_t_3 == (double)-1) && PyErr_Occurred())) __PYX_ERR(8, 110, __pyx_L1_error)
   __pyx_v_self->ptr->PrintDragCoefficients(__pyx_t_1, __pyx_t_2, __pyx_t_3);
 
-  /* "entities/stage.pyx":107
+  /* "entities/stage.pyx":109
  *         return instance.children
  * 
  *     def print_drag_coefficients(self, stages_above, mach_number, area_thrusting):             # <<<<<<<<<<<<<<
@@ -16401,7 +17298,7 @@ static PyObject *__pyx_pf_14interface_core_7PyStage_8print_drag_coefficients(str
   return __pyx_r;
 }
 
-/* "entities/stage.pyx":110
+/* "entities/stage.pyx":112
  *         self.ptr.PrintDragCoefficients(stages_above, mach_number, area_thrusting)
  * 
  *     def initialize_attributes(self, **kwargs):             # <<<<<<<<<<<<<<
@@ -16410,8 +17307,8 @@ static PyObject *__pyx_pf_14interface_core_7PyStage_8print_drag_coefficients(str
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_14interface_core_7PyStage_11initialize_attributes(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyObject *__pyx_pw_14interface_core_7PyStage_11initialize_attributes(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_14interface_core_7PyStage_7initialize_attributes(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_pw_14interface_core_7PyStage_7initialize_attributes(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_kwargs = 0;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
@@ -16421,7 +17318,7 @@ static PyObject *__pyx_pw_14interface_core_7PyStage_11initialize_attributes(PyOb
   if (__pyx_kwds && unlikely(!__Pyx_CheckKeywordStrings(__pyx_kwds, "initialize_attributes", 1))) return NULL;
   __pyx_v_kwargs = (__pyx_kwds) ? PyDict_Copy(__pyx_kwds) : PyDict_New(); if (unlikely(!__pyx_v_kwargs)) return NULL;
   __Pyx_GOTREF(__pyx_v_kwargs);
-  __pyx_r = __pyx_pf_14interface_core_7PyStage_10initialize_attributes(((struct __pyx_obj_14interface_core_PyStage *)__pyx_v_self), __pyx_v_kwargs);
+  __pyx_r = __pyx_pf_14interface_core_7PyStage_6initialize_attributes(((struct __pyx_obj_14interface_core_PyStage *)__pyx_v_self), __pyx_v_kwargs);
 
   /* function exit code */
   __Pyx_XDECREF(__pyx_v_kwargs);
@@ -16429,7 +17326,7 @@ static PyObject *__pyx_pw_14interface_core_7PyStage_11initialize_attributes(PyOb
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_14interface_core_7PyStage_10initialize_attributes(struct __pyx_obj_14interface_core_PyStage *__pyx_v_self, PyObject *__pyx_v_kwargs) {
+static PyObject *__pyx_pf_14interface_core_7PyStage_6initialize_attributes(struct __pyx_obj_14interface_core_PyStage *__pyx_v_self, PyObject *__pyx_v_kwargs) {
   PyObject *__pyx_v_key = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -16442,7 +17339,7 @@ static PyObject *__pyx_pf_14interface_core_7PyStage_10initialize_attributes(stru
   int __pyx_t_7;
   __Pyx_RefNannySetupContext("initialize_attributes", 0);
 
-  /* "entities/stage.pyx":111
+  /* "entities/stage.pyx":113
  * 
  *     def initialize_attributes(self, **kwargs):
  *         for key in kwargs:             # <<<<<<<<<<<<<<
@@ -16450,7 +17347,7 @@ static PyObject *__pyx_pf_14interface_core_7PyStage_10initialize_attributes(stru
  * 
  */
   __pyx_t_2 = 0;
-  __pyx_t_5 = __Pyx_dict_iterator(__pyx_v_kwargs, 1, ((PyObject *)NULL), (&__pyx_t_3), (&__pyx_t_4)); if (unlikely(!__pyx_t_5)) __PYX_ERR(8, 111, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_dict_iterator(__pyx_v_kwargs, 1, ((PyObject *)NULL), (&__pyx_t_3), (&__pyx_t_4)); if (unlikely(!__pyx_t_5)) __PYX_ERR(8, 113, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_XDECREF(__pyx_t_1);
   __pyx_t_1 = __pyx_t_5;
@@ -16458,26 +17355,26 @@ static PyObject *__pyx_pf_14interface_core_7PyStage_10initialize_attributes(stru
   while (1) {
     __pyx_t_6 = __Pyx_dict_iter_next(__pyx_t_1, __pyx_t_3, &__pyx_t_2, &__pyx_t_5, NULL, NULL, __pyx_t_4);
     if (unlikely(__pyx_t_6 == 0)) break;
-    if (unlikely(__pyx_t_6 == -1)) __PYX_ERR(8, 111, __pyx_L1_error)
+    if (unlikely(__pyx_t_6 == -1)) __PYX_ERR(8, 113, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_XDECREF_SET(__pyx_v_key, __pyx_t_5);
     __pyx_t_5 = 0;
 
-    /* "entities/stage.pyx":112
+    /* "entities/stage.pyx":114
  *     def initialize_attributes(self, **kwargs):
  *         for key in kwargs:
  *                 setattr(self, key, kwargs[key])             # <<<<<<<<<<<<<<
  * 
  *     def named_attributes(self):
  */
-    __pyx_t_5 = __Pyx_PyDict_GetItem(__pyx_v_kwargs, __pyx_v_key); if (unlikely(!__pyx_t_5)) __PYX_ERR(8, 112, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyDict_GetItem(__pyx_v_kwargs, __pyx_v_key); if (unlikely(!__pyx_t_5)) __PYX_ERR(8, 114, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_7 = PyObject_SetAttr(((PyObject *)__pyx_v_self), __pyx_v_key, __pyx_t_5); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(8, 112, __pyx_L1_error)
+    __pyx_t_7 = PyObject_SetAttr(((PyObject *)__pyx_v_self), __pyx_v_key, __pyx_t_5); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(8, 114, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "entities/stage.pyx":110
+  /* "entities/stage.pyx":112
  *         self.ptr.PrintDragCoefficients(stages_above, mach_number, area_thrusting)
  * 
  *     def initialize_attributes(self, **kwargs):             # <<<<<<<<<<<<<<
@@ -16500,7 +17397,7 @@ static PyObject *__pyx_pf_14interface_core_7PyStage_10initialize_attributes(stru
   return __pyx_r;
 }
 
-/* "entities/stage.pyx":114
+/* "entities/stage.pyx":116
  *                 setattr(self, key, kwargs[key])
  * 
  *     def named_attributes(self):             # <<<<<<<<<<<<<<
@@ -16509,26 +17406,26 @@ static PyObject *__pyx_pf_14interface_core_7PyStage_10initialize_attributes(stru
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_14interface_core_7PyStage_13named_attributes(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_14interface_core_7PyStage_13named_attributes(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_14interface_core_7PyStage_9named_attributes(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_14interface_core_7PyStage_9named_attributes(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("named_attributes (wrapper)", 0);
-  __pyx_r = __pyx_pf_14interface_core_7PyStage_12named_attributes(((struct __pyx_obj_14interface_core_PyStage *)__pyx_v_self));
+  __pyx_r = __pyx_pf_14interface_core_7PyStage_8named_attributes(((struct __pyx_obj_14interface_core_PyStage *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_14interface_core_7PyStage_12named_attributes(struct __pyx_obj_14interface_core_PyStage *__pyx_v_self) {
+static PyObject *__pyx_pf_14interface_core_7PyStage_8named_attributes(struct __pyx_obj_14interface_core_PyStage *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("named_attributes", 0);
 
-  /* "entities/stage.pyx":115
+  /* "entities/stage.pyx":117
  * 
  *     def named_attributes(self):
  *         return {"name":self.name,             # <<<<<<<<<<<<<<
@@ -16536,50 +17433,74 @@ static PyObject *__pyx_pf_14interface_core_7PyStage_12named_attributes(struct __
  *                 "surface_finish":self.surface_finish,
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(4); if (unlikely(!__pyx_t_1)) __PYX_ERR(8, 115, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(6); if (unlikely(!__pyx_t_1)) __PYX_ERR(8, 117, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_name); if (unlikely(!__pyx_t_2)) __PYX_ERR(8, 115, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_name); if (unlikely(!__pyx_t_2)) __PYX_ERR(8, 117, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_name, __pyx_t_2) < 0) __PYX_ERR(8, 115, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_name, __pyx_t_2) < 0) __PYX_ERR(8, 117, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "entities/stage.pyx":116
+  /* "entities/stage.pyx":118
  *     def named_attributes(self):
  *         return {"name":self.name,
  *                 "comments":self.comments,             # <<<<<<<<<<<<<<
  *                 "surface_finish":self.surface_finish,
- *                 "distance_overlap":self.distance_overlap}
+ *                 "distance_overlap":self.distance_overlap,
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_comments); if (unlikely(!__pyx_t_2)) __PYX_ERR(8, 116, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_comments); if (unlikely(!__pyx_t_2)) __PYX_ERR(8, 118, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_comments, __pyx_t_2) < 0) __PYX_ERR(8, 115, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_comments, __pyx_t_2) < 0) __PYX_ERR(8, 117, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "entities/stage.pyx":117
+  /* "entities/stage.pyx":119
  *         return {"name":self.name,
  *                 "comments":self.comments,
  *                 "surface_finish":self.surface_finish,             # <<<<<<<<<<<<<<
- *                 "distance_overlap":self.distance_overlap}
+ *                 "distance_overlap":self.distance_overlap,
+ *                 "override_mass_empty":self.override_mass_empty,
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_surface_finish); if (unlikely(!__pyx_t_2)) __PYX_ERR(8, 117, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_surface_finish); if (unlikely(!__pyx_t_2)) __PYX_ERR(8, 119, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_surface_finish, __pyx_t_2) < 0) __PYX_ERR(8, 115, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_surface_finish, __pyx_t_2) < 0) __PYX_ERR(8, 117, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "entities/stage.pyx":118
+  /* "entities/stage.pyx":120
  *                 "comments":self.comments,
  *                 "surface_finish":self.surface_finish,
- *                 "distance_overlap":self.distance_overlap}             # <<<<<<<<<<<<<<
+ *                 "distance_overlap":self.distance_overlap,             # <<<<<<<<<<<<<<
+ *                 "override_mass_empty":self.override_mass_empty,
+ *                 "override_mass_switch":self.override_mass_switch}
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_distance_overlap); if (unlikely(!__pyx_t_2)) __PYX_ERR(8, 118, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_distance_overlap); if (unlikely(!__pyx_t_2)) __PYX_ERR(8, 120, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_distance_overlap, __pyx_t_2) < 0) __PYX_ERR(8, 115, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_distance_overlap, __pyx_t_2) < 0) __PYX_ERR(8, 117, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "entities/stage.pyx":121
+ *                 "surface_finish":self.surface_finish,
+ *                 "distance_overlap":self.distance_overlap,
+ *                 "override_mass_empty":self.override_mass_empty,             # <<<<<<<<<<<<<<
+ *                 "override_mass_switch":self.override_mass_switch}
+ */
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_override_mass_empty); if (unlikely(!__pyx_t_2)) __PYX_ERR(8, 121, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_override_mass_empty, __pyx_t_2) < 0) __PYX_ERR(8, 117, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "entities/stage.pyx":122
+ *                 "distance_overlap":self.distance_overlap,
+ *                 "override_mass_empty":self.override_mass_empty,
+ *                 "override_mass_switch":self.override_mass_switch}             # <<<<<<<<<<<<<<
+ */
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_override_mass_switch); if (unlikely(!__pyx_t_2)) __PYX_ERR(8, 122, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_override_mass_switch, __pyx_t_2) < 0) __PYX_ERR(8, 117, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "entities/stage.pyx":114
+  /* "entities/stage.pyx":116
  *                 setattr(self, key, kwargs[key])
  * 
  *     def named_attributes(self):             # <<<<<<<<<<<<<<
@@ -16606,19 +17527,19 @@ static PyObject *__pyx_pf_14interface_core_7PyStage_12named_attributes(struct __
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_14interface_core_7PyStage_15__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_14interface_core_7PyStage_15__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_14interface_core_7PyStage_11__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_14interface_core_7PyStage_11__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__reduce_cython__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_14interface_core_7PyStage_14__reduce_cython__(((struct __pyx_obj_14interface_core_PyStage *)__pyx_v_self));
+  __pyx_r = __pyx_pf_14interface_core_7PyStage_10__reduce_cython__(((struct __pyx_obj_14interface_core_PyStage *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_14interface_core_7PyStage_14__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_14interface_core_PyStage *__pyx_v_self) {
+static PyObject *__pyx_pf_14interface_core_7PyStage_10__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_14interface_core_PyStage *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -16660,19 +17581,19 @@ static PyObject *__pyx_pf_14interface_core_7PyStage_14__reduce_cython__(CYTHON_U
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_14interface_core_7PyStage_17__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state); /*proto*/
-static PyObject *__pyx_pw_14interface_core_7PyStage_17__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pw_14interface_core_7PyStage_13__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state); /*proto*/
+static PyObject *__pyx_pw_14interface_core_7PyStage_13__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__setstate_cython__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_14interface_core_7PyStage_16__setstate_cython__(((struct __pyx_obj_14interface_core_PyStage *)__pyx_v_self), ((PyObject *)__pyx_v___pyx_state));
+  __pyx_r = __pyx_pf_14interface_core_7PyStage_12__setstate_cython__(((struct __pyx_obj_14interface_core_PyStage *)__pyx_v_self), ((PyObject *)__pyx_v___pyx_state));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_14interface_core_7PyStage_16__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_14interface_core_PyStage *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_14interface_core_7PyStage_12__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_14interface_core_PyStage *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -16706,7 +17627,7 @@ static PyObject *__pyx_pf_14interface_core_7PyStage_16__setstate_cython__(CYTHON
   return __pyx_r;
 }
 
-/* "python_wrappers.pyx":54
+/* "python_wrappers.pyx":55
  *     cdef EntityManager *ptr
  * 
  *     def __cinit__(self):             # <<<<<<<<<<<<<<
@@ -16735,7 +17656,7 @@ static int __pyx_pf_14interface_core_15PyInterfaceCore___cinit__(struct __pyx_ob
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__cinit__", 0);
 
-  /* "python_wrappers.pyx":55
+  /* "python_wrappers.pyx":56
  * 
  *     def __cinit__(self):
  *         self.ptr = new EntityManager()             # <<<<<<<<<<<<<<
@@ -16744,7 +17665,7 @@ static int __pyx_pf_14interface_core_15PyInterfaceCore___cinit__(struct __pyx_ob
  */
   __pyx_v_self->ptr = new EntityManager();
 
-  /* "python_wrappers.pyx":54
+  /* "python_wrappers.pyx":55
  *     cdef EntityManager *ptr
  * 
  *     def __cinit__(self):             # <<<<<<<<<<<<<<
@@ -16758,7 +17679,7 @@ static int __pyx_pf_14interface_core_15PyInterfaceCore___cinit__(struct __pyx_ob
   return __pyx_r;
 }
 
-/* "python_wrappers.pyx":57
+/* "python_wrappers.pyx":58
  *         self.ptr = new EntityManager()
  * 
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
@@ -16781,7 +17702,7 @@ static void __pyx_pf_14interface_core_15PyInterfaceCore_2__dealloc__(struct __py
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__dealloc__", 0);
 
-  /* "python_wrappers.pyx":58
+  /* "python_wrappers.pyx":59
  * 
  *     def __dealloc__(self):
  *         del self.ptr             # <<<<<<<<<<<<<<
@@ -16790,7 +17711,7 @@ static void __pyx_pf_14interface_core_15PyInterfaceCore_2__dealloc__(struct __py
  */
   delete __pyx_v_self->ptr;
 
-  /* "python_wrappers.pyx":57
+  /* "python_wrappers.pyx":58
  *         self.ptr = new EntityManager()
  * 
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
@@ -16802,7 +17723,7 @@ static void __pyx_pf_14interface_core_15PyInterfaceCore_2__dealloc__(struct __py
   __Pyx_RefNannyFinishContext();
 }
 
-/* "python_wrappers.pyx":60
+/* "python_wrappers.pyx":61
  *         del self.ptr
  * 
  *     def create_material(self, name, **kwargs):             # <<<<<<<<<<<<<<
@@ -16839,7 +17760,7 @@ static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_5create_material(Py
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, __pyx_v_kwargs, values, pos_args, "create_material") < 0)) __PYX_ERR(9, 60, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, __pyx_v_kwargs, values, pos_args, "create_material") < 0)) __PYX_ERR(9, 61, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 1) {
       goto __pyx_L5_argtuple_error;
@@ -16850,7 +17771,7 @@ static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_5create_material(Py
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("create_material", 1, 1, 1, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(9, 60, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("create_material", 1, 1, 1, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(9, 61, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_DECREF(__pyx_v_kwargs); __pyx_v_kwargs = 0;
   __Pyx_AddTraceback("interface_core.PyInterfaceCore.create_material", __pyx_clineno, __pyx_lineno, __pyx_filename);
@@ -16878,14 +17799,14 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_4create_material(st
   int __pyx_t_6;
   __Pyx_RefNannySetupContext("create_material", 0);
 
-  /* "python_wrappers.pyx":61
+  /* "python_wrappers.pyx":62
  * 
  *     def create_material(self, name, **kwargs):
  *         mat_ptr = self.ptr.CreateMaterial(name.encode('utf-8'))             # <<<<<<<<<<<<<<
  *         mat = PyMaterial()
  *         mat = PyMaterial.create(mat_ptr)
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_name, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(9, 61, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_name, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(9, 62, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -16899,38 +17820,38 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_4create_material(st
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_3, __pyx_kp_s_utf_8) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_kp_s_utf_8);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 61, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 62, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_4 = __pyx_convert_string_from_py_std__in_string(__pyx_t_1); if (unlikely(PyErr_Occurred())) __PYX_ERR(9, 61, __pyx_L1_error)
+  __pyx_t_4 = __pyx_convert_string_from_py_std__in_string(__pyx_t_1); if (unlikely(PyErr_Occurred())) __PYX_ERR(9, 62, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_mat_ptr = __pyx_v_self->ptr->CreateMaterial(__pyx_t_4);
 
-  /* "python_wrappers.pyx":62
+  /* "python_wrappers.pyx":63
  *     def create_material(self, name, **kwargs):
  *         mat_ptr = self.ptr.CreateMaterial(name.encode('utf-8'))
  *         mat = PyMaterial()             # <<<<<<<<<<<<<<
  *         mat = PyMaterial.create(mat_ptr)
  *         if kwargs is not None:
  */
-  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_14interface_core_PyMaterial)); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 62, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_14interface_core_PyMaterial)); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 63, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_mat = ((struct __pyx_obj_14interface_core_PyMaterial *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "python_wrappers.pyx":63
+  /* "python_wrappers.pyx":64
  *         mat_ptr = self.ptr.CreateMaterial(name.encode('utf-8'))
  *         mat = PyMaterial()
  *         mat = PyMaterial.create(mat_ptr)             # <<<<<<<<<<<<<<
  *         if kwargs is not None:
  *             mat.initialize_attributes(**kwargs)
  */
-  __pyx_t_1 = ((PyObject *)__pyx_f_14interface_core_10PyMaterial_create(__pyx_v_mat_ptr)); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 63, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_14interface_core_10PyMaterial_create(__pyx_v_mat_ptr)); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 64, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF_SET(__pyx_v_mat, ((struct __pyx_obj_14interface_core_PyMaterial *)__pyx_t_1));
   __pyx_t_1 = 0;
 
-  /* "python_wrappers.pyx":64
+  /* "python_wrappers.pyx":65
  *         mat = PyMaterial()
  *         mat = PyMaterial.create(mat_ptr)
  *         if kwargs is not None:             # <<<<<<<<<<<<<<
@@ -16941,21 +17862,21 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_4create_material(st
   __pyx_t_6 = (__pyx_t_5 != 0);
   if (__pyx_t_6) {
 
-    /* "python_wrappers.pyx":65
+    /* "python_wrappers.pyx":66
  *         mat = PyMaterial.create(mat_ptr)
  *         if kwargs is not None:
  *             mat.initialize_attributes(**kwargs)             # <<<<<<<<<<<<<<
  *         return mat
  * 
  */
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_mat), __pyx_n_s_initialize_attributes); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 65, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_mat), __pyx_n_s_initialize_attributes); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 66, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_v_kwargs); if (unlikely(!__pyx_t_2)) __PYX_ERR(9, 65, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_v_kwargs); if (unlikely(!__pyx_t_2)) __PYX_ERR(9, 66, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "python_wrappers.pyx":64
+    /* "python_wrappers.pyx":65
  *         mat = PyMaterial()
  *         mat = PyMaterial.create(mat_ptr)
  *         if kwargs is not None:             # <<<<<<<<<<<<<<
@@ -16964,19 +17885,19 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_4create_material(st
  */
   }
 
-  /* "python_wrappers.pyx":66
+  /* "python_wrappers.pyx":67
  *         if kwargs is not None:
  *             mat.initialize_attributes(**kwargs)
  *         return mat             # <<<<<<<<<<<<<<
  * 
- *     def get_material(self, name):
+ *     def delete_material(self, PyMaterial material):
  */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_INCREF(((PyObject *)__pyx_v_mat));
   __pyx_r = ((PyObject *)__pyx_v_mat);
   goto __pyx_L0;
 
-  /* "python_wrappers.pyx":60
+  /* "python_wrappers.pyx":61
  *         del self.ptr
  * 
  *     def create_material(self, name, **kwargs):             # <<<<<<<<<<<<<<
@@ -16998,8 +17919,63 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_4create_material(st
   return __pyx_r;
 }
 
-/* "python_wrappers.pyx":68
+/* "python_wrappers.pyx":69
  *         return mat
+ * 
+ *     def delete_material(self, PyMaterial material):             # <<<<<<<<<<<<<<
+ *         self.ptr.DeleteMaterial(material.ptr)
+ * 
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_7delete_material(PyObject *__pyx_v_self, PyObject *__pyx_v_material); /*proto*/
+static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_7delete_material(PyObject *__pyx_v_self, PyObject *__pyx_v_material) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("delete_material (wrapper)", 0);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_material), __pyx_ptype_14interface_core_PyMaterial, 1, "material", 0))) __PYX_ERR(9, 69, __pyx_L1_error)
+  __pyx_r = __pyx_pf_14interface_core_15PyInterfaceCore_6delete_material(((struct __pyx_obj_14interface_core_PyInterfaceCore *)__pyx_v_self), ((struct __pyx_obj_14interface_core_PyMaterial *)__pyx_v_material));
+
+  /* function exit code */
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_6delete_material(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, struct __pyx_obj_14interface_core_PyMaterial *__pyx_v_material) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("delete_material", 0);
+
+  /* "python_wrappers.pyx":70
+ * 
+ *     def delete_material(self, PyMaterial material):
+ *         self.ptr.DeleteMaterial(material.ptr)             # <<<<<<<<<<<<<<
+ * 
+ *     def get_material(self, name):
+ */
+  __pyx_v_self->ptr->DeleteMaterial(__pyx_v_material->ptr);
+
+  /* "python_wrappers.pyx":69
+ *         return mat
+ * 
+ *     def delete_material(self, PyMaterial material):             # <<<<<<<<<<<<<<
+ *         self.ptr.DeleteMaterial(material.ptr)
+ * 
+ */
+
+  /* function exit code */
+  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "python_wrappers.pyx":72
+ *         self.ptr.DeleteMaterial(material.ptr)
  * 
  *     def get_material(self, name):             # <<<<<<<<<<<<<<
  *         mat = PyMaterial()
@@ -17007,19 +17983,19 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_4create_material(st
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_7get_material(PyObject *__pyx_v_self, PyObject *__pyx_v_name); /*proto*/
-static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_7get_material(PyObject *__pyx_v_self, PyObject *__pyx_v_name) {
+static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_9get_material(PyObject *__pyx_v_self, PyObject *__pyx_v_name); /*proto*/
+static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_9get_material(PyObject *__pyx_v_self, PyObject *__pyx_v_name) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("get_material (wrapper)", 0);
-  __pyx_r = __pyx_pf_14interface_core_15PyInterfaceCore_6get_material(((struct __pyx_obj_14interface_core_PyInterfaceCore *)__pyx_v_self), ((PyObject *)__pyx_v_name));
+  __pyx_r = __pyx_pf_14interface_core_15PyInterfaceCore_8get_material(((struct __pyx_obj_14interface_core_PyInterfaceCore *)__pyx_v_self), ((PyObject *)__pyx_v_name));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_6get_material(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_name) {
+static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_8get_material(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_name) {
   struct __pyx_obj_14interface_core_PyMaterial *__pyx_v_mat = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -17029,26 +18005,26 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_6get_material(struc
   std::string __pyx_t_4;
   __Pyx_RefNannySetupContext("get_material", 0);
 
-  /* "python_wrappers.pyx":69
+  /* "python_wrappers.pyx":73
  * 
  *     def get_material(self, name):
  *         mat = PyMaterial()             # <<<<<<<<<<<<<<
  *         mat = PyMaterial.create(self.ptr.GetMaterial(name.encode('utf-8')))
  *         return mat
  */
-  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_14interface_core_PyMaterial)); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 69, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_14interface_core_PyMaterial)); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 73, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_mat = ((struct __pyx_obj_14interface_core_PyMaterial *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "python_wrappers.pyx":70
+  /* "python_wrappers.pyx":74
  *     def get_material(self, name):
  *         mat = PyMaterial()
  *         mat = PyMaterial.create(self.ptr.GetMaterial(name.encode('utf-8')))             # <<<<<<<<<<<<<<
  *         return mat
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_name, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(9, 70, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_name, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(9, 74, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -17062,17 +18038,17 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_6get_material(struc
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_3, __pyx_kp_s_utf_8) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_kp_s_utf_8);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 70, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 74, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_4 = __pyx_convert_string_from_py_std__in_string(__pyx_t_1); if (unlikely(PyErr_Occurred())) __PYX_ERR(9, 70, __pyx_L1_error)
+  __pyx_t_4 = __pyx_convert_string_from_py_std__in_string(__pyx_t_1); if (unlikely(PyErr_Occurred())) __PYX_ERR(9, 74, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = ((PyObject *)__pyx_f_14interface_core_10PyMaterial_create(__pyx_v_self->ptr->GetMaterial(__pyx_t_4))); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 70, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_14interface_core_10PyMaterial_create(__pyx_v_self->ptr->GetMaterial(__pyx_t_4))); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 74, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF_SET(__pyx_v_mat, ((struct __pyx_obj_14interface_core_PyMaterial *)__pyx_t_1));
   __pyx_t_1 = 0;
 
-  /* "python_wrappers.pyx":71
+  /* "python_wrappers.pyx":75
  *         mat = PyMaterial()
  *         mat = PyMaterial.create(self.ptr.GetMaterial(name.encode('utf-8')))
  *         return mat             # <<<<<<<<<<<<<<
@@ -17084,8 +18060,8 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_6get_material(struc
   __pyx_r = ((PyObject *)__pyx_v_mat);
   goto __pyx_L0;
 
-  /* "python_wrappers.pyx":68
- *         return mat
+  /* "python_wrappers.pyx":72
+ *         self.ptr.DeleteMaterial(material.ptr)
  * 
  *     def get_material(self, name):             # <<<<<<<<<<<<<<
  *         mat = PyMaterial()
@@ -17106,7 +18082,7 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_6get_material(struc
   return __pyx_r;
 }
 
-/* "python_wrappers.pyx":73
+/* "python_wrappers.pyx":77
  *         return mat
  * 
  *     def create_rocket(self, name, **kwargs):             # <<<<<<<<<<<<<<
@@ -17115,8 +18091,8 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_6get_material(struc
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_9create_rocket(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_9create_rocket(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_11create_rocket(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_11create_rocket(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_name = 0;
   PyObject *__pyx_v_kwargs = 0;
   PyObject *__pyx_r = 0;
@@ -17143,7 +18119,7 @@ static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_9create_rocket(PyOb
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, __pyx_v_kwargs, values, pos_args, "create_rocket") < 0)) __PYX_ERR(9, 73, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, __pyx_v_kwargs, values, pos_args, "create_rocket") < 0)) __PYX_ERR(9, 77, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 1) {
       goto __pyx_L5_argtuple_error;
@@ -17154,14 +18130,14 @@ static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_9create_rocket(PyOb
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("create_rocket", 1, 1, 1, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(9, 73, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("create_rocket", 1, 1, 1, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(9, 77, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_DECREF(__pyx_v_kwargs); __pyx_v_kwargs = 0;
   __Pyx_AddTraceback("interface_core.PyInterfaceCore.create_rocket", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_14interface_core_15PyInterfaceCore_8create_rocket(((struct __pyx_obj_14interface_core_PyInterfaceCore *)__pyx_v_self), __pyx_v_name, __pyx_v_kwargs);
+  __pyx_r = __pyx_pf_14interface_core_15PyInterfaceCore_10create_rocket(((struct __pyx_obj_14interface_core_PyInterfaceCore *)__pyx_v_self), __pyx_v_name, __pyx_v_kwargs);
 
   /* function exit code */
   __Pyx_XDECREF(__pyx_v_kwargs);
@@ -17169,7 +18145,7 @@ static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_9create_rocket(PyOb
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_8create_rocket(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_name, PyObject *__pyx_v_kwargs) {
+static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_10create_rocket(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_name, PyObject *__pyx_v_kwargs) {
   Rocket *__pyx_v_rocket_ptr;
   struct __pyx_obj_14interface_core_PyRocket *__pyx_v_rocket = NULL;
   PyObject *__pyx_r = NULL;
@@ -17182,14 +18158,14 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_8create_rocket(stru
   int __pyx_t_6;
   __Pyx_RefNannySetupContext("create_rocket", 0);
 
-  /* "python_wrappers.pyx":74
+  /* "python_wrappers.pyx":78
  * 
  *     def create_rocket(self, name, **kwargs):
  *         rocket_ptr = self.ptr.CreateRocket(name.encode('utf-8'))             # <<<<<<<<<<<<<<
  *         rocket = PyRocket()
  *         rocket = PyRocket.create(rocket_ptr)
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_name, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(9, 74, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_name, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(9, 78, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -17203,38 +18179,38 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_8create_rocket(stru
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_3, __pyx_kp_s_utf_8) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_kp_s_utf_8);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 74, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 78, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_4 = __pyx_convert_string_from_py_std__in_string(__pyx_t_1); if (unlikely(PyErr_Occurred())) __PYX_ERR(9, 74, __pyx_L1_error)
+  __pyx_t_4 = __pyx_convert_string_from_py_std__in_string(__pyx_t_1); if (unlikely(PyErr_Occurred())) __PYX_ERR(9, 78, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_rocket_ptr = __pyx_v_self->ptr->CreateRocket(__pyx_t_4);
 
-  /* "python_wrappers.pyx":75
+  /* "python_wrappers.pyx":79
  *     def create_rocket(self, name, **kwargs):
  *         rocket_ptr = self.ptr.CreateRocket(name.encode('utf-8'))
  *         rocket = PyRocket()             # <<<<<<<<<<<<<<
  *         rocket = PyRocket.create(rocket_ptr)
  *         if kwargs is not None:
  */
-  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_14interface_core_PyRocket)); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 75, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_14interface_core_PyRocket)); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 79, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_rocket = ((struct __pyx_obj_14interface_core_PyRocket *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "python_wrappers.pyx":76
+  /* "python_wrappers.pyx":80
  *         rocket_ptr = self.ptr.CreateRocket(name.encode('utf-8'))
  *         rocket = PyRocket()
  *         rocket = PyRocket.create(rocket_ptr)             # <<<<<<<<<<<<<<
  *         if kwargs is not None:
  *             rocket.initialize_attributes(**kwargs)
  */
-  __pyx_t_1 = ((PyObject *)__pyx_f_14interface_core_8PyRocket_create(__pyx_v_rocket_ptr)); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 76, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_14interface_core_8PyRocket_create(__pyx_v_rocket_ptr)); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 80, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF_SET(__pyx_v_rocket, ((struct __pyx_obj_14interface_core_PyRocket *)__pyx_t_1));
   __pyx_t_1 = 0;
 
-  /* "python_wrappers.pyx":77
+  /* "python_wrappers.pyx":81
  *         rocket = PyRocket()
  *         rocket = PyRocket.create(rocket_ptr)
  *         if kwargs is not None:             # <<<<<<<<<<<<<<
@@ -17245,21 +18221,21 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_8create_rocket(stru
   __pyx_t_6 = (__pyx_t_5 != 0);
   if (__pyx_t_6) {
 
-    /* "python_wrappers.pyx":78
+    /* "python_wrappers.pyx":82
  *         rocket = PyRocket.create(rocket_ptr)
  *         if kwargs is not None:
  *             rocket.initialize_attributes(**kwargs)             # <<<<<<<<<<<<<<
  *         return rocket
  * 
  */
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_rocket), __pyx_n_s_initialize_attributes); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 78, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_rocket), __pyx_n_s_initialize_attributes); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 82, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_v_kwargs); if (unlikely(!__pyx_t_2)) __PYX_ERR(9, 78, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_v_kwargs); if (unlikely(!__pyx_t_2)) __PYX_ERR(9, 82, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "python_wrappers.pyx":77
+    /* "python_wrappers.pyx":81
  *         rocket = PyRocket()
  *         rocket = PyRocket.create(rocket_ptr)
  *         if kwargs is not None:             # <<<<<<<<<<<<<<
@@ -17268,19 +18244,19 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_8create_rocket(stru
  */
   }
 
-  /* "python_wrappers.pyx":79
+  /* "python_wrappers.pyx":83
  *         if kwargs is not None:
  *             rocket.initialize_attributes(**kwargs)
  *         return rocket             # <<<<<<<<<<<<<<
  * 
- *     def get_rocket(self, name):
+ *     def delete_rocket(self, PyRocket rocket):
  */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_INCREF(((PyObject *)__pyx_v_rocket));
   __pyx_r = ((PyObject *)__pyx_v_rocket);
   goto __pyx_L0;
 
-  /* "python_wrappers.pyx":73
+  /* "python_wrappers.pyx":77
  *         return mat
  * 
  *     def create_rocket(self, name, **kwargs):             # <<<<<<<<<<<<<<
@@ -17302,8 +18278,63 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_8create_rocket(stru
   return __pyx_r;
 }
 
-/* "python_wrappers.pyx":81
+/* "python_wrappers.pyx":85
  *         return rocket
+ * 
+ *     def delete_rocket(self, PyRocket rocket):             # <<<<<<<<<<<<<<
+ *         self.ptr.DeleteRocket(rocket.ptr)
+ * 
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_13delete_rocket(PyObject *__pyx_v_self, PyObject *__pyx_v_rocket); /*proto*/
+static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_13delete_rocket(PyObject *__pyx_v_self, PyObject *__pyx_v_rocket) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("delete_rocket (wrapper)", 0);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_rocket), __pyx_ptype_14interface_core_PyRocket, 1, "rocket", 0))) __PYX_ERR(9, 85, __pyx_L1_error)
+  __pyx_r = __pyx_pf_14interface_core_15PyInterfaceCore_12delete_rocket(((struct __pyx_obj_14interface_core_PyInterfaceCore *)__pyx_v_self), ((struct __pyx_obj_14interface_core_PyRocket *)__pyx_v_rocket));
+
+  /* function exit code */
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_12delete_rocket(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, struct __pyx_obj_14interface_core_PyRocket *__pyx_v_rocket) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("delete_rocket", 0);
+
+  /* "python_wrappers.pyx":86
+ * 
+ *     def delete_rocket(self, PyRocket rocket):
+ *         self.ptr.DeleteRocket(rocket.ptr)             # <<<<<<<<<<<<<<
+ * 
+ *     def get_rocket(self, name):
+ */
+  __pyx_v_self->ptr->DeleteRocket(__pyx_v_rocket->ptr);
+
+  /* "python_wrappers.pyx":85
+ *         return rocket
+ * 
+ *     def delete_rocket(self, PyRocket rocket):             # <<<<<<<<<<<<<<
+ *         self.ptr.DeleteRocket(rocket.ptr)
+ * 
+ */
+
+  /* function exit code */
+  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "python_wrappers.pyx":88
+ *         self.ptr.DeleteRocket(rocket.ptr)
  * 
  *     def get_rocket(self, name):             # <<<<<<<<<<<<<<
  *         rkt = PyRocket()
@@ -17311,19 +18342,19 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_8create_rocket(stru
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_11get_rocket(PyObject *__pyx_v_self, PyObject *__pyx_v_name); /*proto*/
-static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_11get_rocket(PyObject *__pyx_v_self, PyObject *__pyx_v_name) {
+static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_15get_rocket(PyObject *__pyx_v_self, PyObject *__pyx_v_name); /*proto*/
+static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_15get_rocket(PyObject *__pyx_v_self, PyObject *__pyx_v_name) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("get_rocket (wrapper)", 0);
-  __pyx_r = __pyx_pf_14interface_core_15PyInterfaceCore_10get_rocket(((struct __pyx_obj_14interface_core_PyInterfaceCore *)__pyx_v_self), ((PyObject *)__pyx_v_name));
+  __pyx_r = __pyx_pf_14interface_core_15PyInterfaceCore_14get_rocket(((struct __pyx_obj_14interface_core_PyInterfaceCore *)__pyx_v_self), ((PyObject *)__pyx_v_name));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_10get_rocket(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_name) {
+static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_14get_rocket(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_name) {
   struct __pyx_obj_14interface_core_PyRocket *__pyx_v_rkt = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -17334,26 +18365,26 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_10get_rocket(struct
   int __pyx_t_5;
   __Pyx_RefNannySetupContext("get_rocket", 0);
 
-  /* "python_wrappers.pyx":82
+  /* "python_wrappers.pyx":89
  * 
  *     def get_rocket(self, name):
  *         rkt = PyRocket()             # <<<<<<<<<<<<<<
  *         rkt = PyRocket.create(self.ptr.GetRocket(name.encode('utf-8')))
  *         if rkt.ptr is NULL:
  */
-  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_14interface_core_PyRocket)); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 82, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_14interface_core_PyRocket)); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 89, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_rkt = ((struct __pyx_obj_14interface_core_PyRocket *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "python_wrappers.pyx":83
+  /* "python_wrappers.pyx":90
  *     def get_rocket(self, name):
  *         rkt = PyRocket()
  *         rkt = PyRocket.create(self.ptr.GetRocket(name.encode('utf-8')))             # <<<<<<<<<<<<<<
  *         if rkt.ptr is NULL:
  *             print("Null")
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_name, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(9, 83, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_name, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(9, 90, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -17367,17 +18398,17 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_10get_rocket(struct
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_3, __pyx_kp_s_utf_8) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_kp_s_utf_8);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 83, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 90, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_4 = __pyx_convert_string_from_py_std__in_string(__pyx_t_1); if (unlikely(PyErr_Occurred())) __PYX_ERR(9, 83, __pyx_L1_error)
+  __pyx_t_4 = __pyx_convert_string_from_py_std__in_string(__pyx_t_1); if (unlikely(PyErr_Occurred())) __PYX_ERR(9, 90, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = ((PyObject *)__pyx_f_14interface_core_8PyRocket_create(__pyx_v_self->ptr->GetRocket(__pyx_t_4))); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 83, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_14interface_core_8PyRocket_create(__pyx_v_self->ptr->GetRocket(__pyx_t_4))); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 90, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF_SET(__pyx_v_rkt, ((struct __pyx_obj_14interface_core_PyRocket *)__pyx_t_1));
   __pyx_t_1 = 0;
 
-  /* "python_wrappers.pyx":84
+  /* "python_wrappers.pyx":91
  *         rkt = PyRocket()
  *         rkt = PyRocket.create(self.ptr.GetRocket(name.encode('utf-8')))
  *         if rkt.ptr is NULL:             # <<<<<<<<<<<<<<
@@ -17387,16 +18418,16 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_10get_rocket(struct
   __pyx_t_5 = ((__pyx_v_rkt->ptr == NULL) != 0);
   if (__pyx_t_5) {
 
-    /* "python_wrappers.pyx":85
+    /* "python_wrappers.pyx":92
  *         rkt = PyRocket.create(self.ptr.GetRocket(name.encode('utf-8')))
  *         if rkt.ptr is NULL:
  *             print("Null")             # <<<<<<<<<<<<<<
  *         return rkt
  * 
  */
-    if (__Pyx_PrintOne(0, __pyx_n_s_Null) < 0) __PYX_ERR(9, 85, __pyx_L1_error)
+    if (__Pyx_PrintOne(0, __pyx_n_s_Null) < 0) __PYX_ERR(9, 92, __pyx_L1_error)
 
-    /* "python_wrappers.pyx":84
+    /* "python_wrappers.pyx":91
  *         rkt = PyRocket()
  *         rkt = PyRocket.create(self.ptr.GetRocket(name.encode('utf-8')))
  *         if rkt.ptr is NULL:             # <<<<<<<<<<<<<<
@@ -17405,7 +18436,7 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_10get_rocket(struct
  */
   }
 
-  /* "python_wrappers.pyx":86
+  /* "python_wrappers.pyx":93
  *         if rkt.ptr is NULL:
  *             print("Null")
  *         return rkt             # <<<<<<<<<<<<<<
@@ -17417,8 +18448,8 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_10get_rocket(struct
   __pyx_r = ((PyObject *)__pyx_v_rkt);
   goto __pyx_L0;
 
-  /* "python_wrappers.pyx":81
- *         return rocket
+  /* "python_wrappers.pyx":88
+ *         self.ptr.DeleteRocket(rocket.ptr)
  * 
  *     def get_rocket(self, name):             # <<<<<<<<<<<<<<
  *         rkt = PyRocket()
@@ -17439,7 +18470,7 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_10get_rocket(struct
   return __pyx_r;
 }
 
-/* "python_wrappers.pyx":88
+/* "python_wrappers.pyx":95
  *         return rkt
  * 
  *     def create_part(self, part_type, name, PyRocket rocket, **kwargs):             # <<<<<<<<<<<<<<
@@ -17448,8 +18479,8 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_10get_rocket(struct
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_13create_part(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_13create_part(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_17create_part(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_17create_part(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_part_type = 0;
   PyObject *__pyx_v_name = 0;
   struct __pyx_obj_14interface_core_PyRocket *__pyx_v_rocket = 0;
@@ -17484,17 +18515,17 @@ static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_13create_part(PyObj
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_name)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("create_part", 1, 3, 3, 1); __PYX_ERR(9, 88, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("create_part", 1, 3, 3, 1); __PYX_ERR(9, 95, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_rocket)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("create_part", 1, 3, 3, 2); __PYX_ERR(9, 88, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("create_part", 1, 3, 3, 2); __PYX_ERR(9, 95, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, __pyx_v_kwargs, values, pos_args, "create_part") < 0)) __PYX_ERR(9, 88, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, __pyx_v_kwargs, values, pos_args, "create_part") < 0)) __PYX_ERR(9, 95, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -17509,15 +18540,15 @@ static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_13create_part(PyObj
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("create_part", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(9, 88, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("create_part", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(9, 95, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_DECREF(__pyx_v_kwargs); __pyx_v_kwargs = 0;
   __Pyx_AddTraceback("interface_core.PyInterfaceCore.create_part", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_rocket), __pyx_ptype_14interface_core_PyRocket, 1, "rocket", 0))) __PYX_ERR(9, 88, __pyx_L1_error)
-  __pyx_r = __pyx_pf_14interface_core_15PyInterfaceCore_12create_part(((struct __pyx_obj_14interface_core_PyInterfaceCore *)__pyx_v_self), __pyx_v_part_type, __pyx_v_name, __pyx_v_rocket, __pyx_v_kwargs);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_rocket), __pyx_ptype_14interface_core_PyRocket, 1, "rocket", 0))) __PYX_ERR(9, 95, __pyx_L1_error)
+  __pyx_r = __pyx_pf_14interface_core_15PyInterfaceCore_16create_part(((struct __pyx_obj_14interface_core_PyInterfaceCore *)__pyx_v_self), __pyx_v_part_type, __pyx_v_name, __pyx_v_rocket, __pyx_v_kwargs);
 
   /* function exit code */
   goto __pyx_L0;
@@ -17529,7 +18560,7 @@ static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_13create_part(PyObj
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_12create_part(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_part_type, PyObject *__pyx_v_name, struct __pyx_obj_14interface_core_PyRocket *__pyx_v_rocket, PyObject *__pyx_v_kwargs) {
+static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_16create_part(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_part_type, PyObject *__pyx_v_name, struct __pyx_obj_14interface_core_PyRocket *__pyx_v_rocket, PyObject *__pyx_v_kwargs) {
   PyObject *__pyx_v_part = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -17542,7 +18573,7 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_12create_part(struc
   __Pyx_RefNannySetupContext("create_part", 0);
   __Pyx_INCREF(__pyx_v_part_type);
 
-  /* "python_wrappers.pyx":89
+  /* "python_wrappers.pyx":96
  * 
  *     def create_part(self, part_type, name, PyRocket rocket, **kwargs):
  *         part = None             # <<<<<<<<<<<<<<
@@ -17552,33 +18583,33 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_12create_part(struc
   __Pyx_INCREF(Py_None);
   __pyx_v_part = Py_None;
 
-  /* "python_wrappers.pyx":90
+  /* "python_wrappers.pyx":97
  *     def create_part(self, part_type, name, PyRocket rocket, **kwargs):
  *         part = None
  *         if (isinstance(part_type, Enum)):             # <<<<<<<<<<<<<<
  *             part_type = part_type.value
  *         if (part_type == PyPartType.FINS.value):
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_Enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 90, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_Enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 97, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_IsInstance(__pyx_v_part_type, __pyx_t_1); if (unlikely(__pyx_t_2 == ((int)-1))) __PYX_ERR(9, 90, __pyx_L1_error)
+  __pyx_t_2 = PyObject_IsInstance(__pyx_v_part_type, __pyx_t_1); if (unlikely(__pyx_t_2 == ((int)-1))) __PYX_ERR(9, 97, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_3 = (__pyx_t_2 != 0);
   if (__pyx_t_3) {
 
-    /* "python_wrappers.pyx":91
+    /* "python_wrappers.pyx":98
  *         part = None
  *         if (isinstance(part_type, Enum)):
  *             part_type = part_type.value             # <<<<<<<<<<<<<<
  *         if (part_type == PyPartType.FINS.value):
  *             part = PyPart.create_derived(<Part*>self.ptr.CreatePart[Fins](name.encode('utf-8'), rocket.ptr))
  */
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_part_type, __pyx_n_s_value); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 91, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_part_type, __pyx_n_s_value); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 98, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF_SET(__pyx_v_part_type, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "python_wrappers.pyx":90
+    /* "python_wrappers.pyx":97
  *     def create_part(self, part_type, name, PyRocket rocket, **kwargs):
  *         part = None
  *         if (isinstance(part_type, Enum)):             # <<<<<<<<<<<<<<
@@ -17587,35 +18618,35 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_12create_part(struc
  */
   }
 
-  /* "python_wrappers.pyx":92
+  /* "python_wrappers.pyx":99
  *         if (isinstance(part_type, Enum)):
  *             part_type = part_type.value
  *         if (part_type == PyPartType.FINS.value):             # <<<<<<<<<<<<<<
  *             part = PyPart.create_derived(<Part*>self.ptr.CreatePart[Fins](name.encode('utf-8'), rocket.ptr))
  *         elif (part_type == PyPartType.NOSECONE.value):
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_PyPartType); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 92, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_PyPartType); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 99, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_FINS); if (unlikely(!__pyx_t_4)) __PYX_ERR(9, 92, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_FINS); if (unlikely(!__pyx_t_4)) __PYX_ERR(9, 99, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_value); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 92, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_value); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 99, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = PyObject_RichCompare(__pyx_v_part_type, __pyx_t_1, Py_EQ); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(9, 92, __pyx_L1_error)
+  __pyx_t_4 = PyObject_RichCompare(__pyx_v_part_type, __pyx_t_1, Py_EQ); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(9, 99, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(9, 92, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(9, 99, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   if (__pyx_t_3) {
 
-    /* "python_wrappers.pyx":93
+    /* "python_wrappers.pyx":100
  *             part_type = part_type.value
  *         if (part_type == PyPartType.FINS.value):
  *             part = PyPart.create_derived(<Part*>self.ptr.CreatePart[Fins](name.encode('utf-8'), rocket.ptr))             # <<<<<<<<<<<<<<
  *         elif (part_type == PyPartType.NOSECONE.value):
  *             part = PyPart.create_derived(<Part*>self.ptr.CreatePart[Nosecone](name.encode('utf-8'), rocket.ptr))
  */
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_name, __pyx_n_s_encode); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 93, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_name, __pyx_n_s_encode); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 100, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __pyx_t_5 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_1))) {
@@ -17629,17 +18660,17 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_12create_part(struc
     }
     __pyx_t_4 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_1, __pyx_t_5, __pyx_kp_s_utf_8) : __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_kp_s_utf_8);
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (unlikely(!__pyx_t_4)) __PYX_ERR(9, 93, __pyx_L1_error)
+    if (unlikely(!__pyx_t_4)) __PYX_ERR(9, 100, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_6 = __pyx_convert_string_from_py_std__in_string(__pyx_t_4); if (unlikely(PyErr_Occurred())) __PYX_ERR(9, 93, __pyx_L1_error)
+    __pyx_t_6 = __pyx_convert_string_from_py_std__in_string(__pyx_t_4); if (unlikely(PyErr_Occurred())) __PYX_ERR(9, 100, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = __pyx_f_14interface_core_6PyPart_create_derived(((Part *)__pyx_v_self->ptr->CreatePart<Fins>(__pyx_t_6, __pyx_v_rocket->ptr))); if (unlikely(!__pyx_t_4)) __PYX_ERR(9, 93, __pyx_L1_error)
+    __pyx_t_4 = __pyx_f_14interface_core_6PyPart_create_derived(((Part *)__pyx_v_self->ptr->CreatePart<Fins>(__pyx_t_6, __pyx_v_rocket->ptr))); if (unlikely(!__pyx_t_4)) __PYX_ERR(9, 100, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF_SET(__pyx_v_part, __pyx_t_4);
     __pyx_t_4 = 0;
 
-    /* "python_wrappers.pyx":92
+    /* "python_wrappers.pyx":99
  *         if (isinstance(part_type, Enum)):
  *             part_type = part_type.value
  *         if (part_type == PyPartType.FINS.value):             # <<<<<<<<<<<<<<
@@ -17649,35 +18680,35 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_12create_part(struc
     goto __pyx_L4;
   }
 
-  /* "python_wrappers.pyx":94
+  /* "python_wrappers.pyx":101
  *         if (part_type == PyPartType.FINS.value):
  *             part = PyPart.create_derived(<Part*>self.ptr.CreatePart[Fins](name.encode('utf-8'), rocket.ptr))
  *         elif (part_type == PyPartType.NOSECONE.value):             # <<<<<<<<<<<<<<
  *             part = PyPart.create_derived(<Part*>self.ptr.CreatePart[Nosecone](name.encode('utf-8'), rocket.ptr))
  *         elif (part_type == PyPartType.TUBE_BODY.value):
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_PyPartType); if (unlikely(!__pyx_t_4)) __PYX_ERR(9, 94, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_PyPartType); if (unlikely(!__pyx_t_4)) __PYX_ERR(9, 101, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_NOSECONE); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 94, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_NOSECONE); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 101, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_value); if (unlikely(!__pyx_t_4)) __PYX_ERR(9, 94, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_value); if (unlikely(!__pyx_t_4)) __PYX_ERR(9, 101, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyObject_RichCompare(__pyx_v_part_type, __pyx_t_4, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 94, __pyx_L1_error)
+  __pyx_t_1 = PyObject_RichCompare(__pyx_v_part_type, __pyx_t_4, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 101, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(9, 94, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(9, 101, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_3) {
 
-    /* "python_wrappers.pyx":95
+    /* "python_wrappers.pyx":102
  *             part = PyPart.create_derived(<Part*>self.ptr.CreatePart[Fins](name.encode('utf-8'), rocket.ptr))
  *         elif (part_type == PyPartType.NOSECONE.value):
  *             part = PyPart.create_derived(<Part*>self.ptr.CreatePart[Nosecone](name.encode('utf-8'), rocket.ptr))             # <<<<<<<<<<<<<<
  *         elif (part_type == PyPartType.TUBE_BODY.value):
  *             part = PyPart.create_derived(<Part*>self.ptr.CreatePart[TubeBody](name.encode('utf-8'), rocket.ptr))
  */
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_name, __pyx_n_s_encode); if (unlikely(!__pyx_t_4)) __PYX_ERR(9, 95, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_name, __pyx_n_s_encode); if (unlikely(!__pyx_t_4)) __PYX_ERR(9, 102, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_t_5 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_4))) {
@@ -17691,17 +18722,17 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_12create_part(struc
     }
     __pyx_t_1 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_5, __pyx_kp_s_utf_8) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_kp_s_utf_8);
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 95, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 102, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_6 = __pyx_convert_string_from_py_std__in_string(__pyx_t_1); if (unlikely(PyErr_Occurred())) __PYX_ERR(9, 95, __pyx_L1_error)
+    __pyx_t_6 = __pyx_convert_string_from_py_std__in_string(__pyx_t_1); if (unlikely(PyErr_Occurred())) __PYX_ERR(9, 102, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = __pyx_f_14interface_core_6PyPart_create_derived(((Part *)__pyx_v_self->ptr->CreatePart<Nosecone>(__pyx_t_6, __pyx_v_rocket->ptr))); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 95, __pyx_L1_error)
+    __pyx_t_1 = __pyx_f_14interface_core_6PyPart_create_derived(((Part *)__pyx_v_self->ptr->CreatePart<Nosecone>(__pyx_t_6, __pyx_v_rocket->ptr))); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 102, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF_SET(__pyx_v_part, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "python_wrappers.pyx":94
+    /* "python_wrappers.pyx":101
  *         if (part_type == PyPartType.FINS.value):
  *             part = PyPart.create_derived(<Part*>self.ptr.CreatePart[Fins](name.encode('utf-8'), rocket.ptr))
  *         elif (part_type == PyPartType.NOSECONE.value):             # <<<<<<<<<<<<<<
@@ -17711,35 +18742,35 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_12create_part(struc
     goto __pyx_L4;
   }
 
-  /* "python_wrappers.pyx":96
+  /* "python_wrappers.pyx":103
  *         elif (part_type == PyPartType.NOSECONE.value):
  *             part = PyPart.create_derived(<Part*>self.ptr.CreatePart[Nosecone](name.encode('utf-8'), rocket.ptr))
  *         elif (part_type == PyPartType.TUBE_BODY.value):             # <<<<<<<<<<<<<<
  *             part = PyPart.create_derived(<Part*>self.ptr.CreatePart[TubeBody](name.encode('utf-8'), rocket.ptr))
  *         if kwargs is not None:
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_PyPartType); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 96, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_PyPartType); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 103, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_TUBE_BODY); if (unlikely(!__pyx_t_4)) __PYX_ERR(9, 96, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_TUBE_BODY); if (unlikely(!__pyx_t_4)) __PYX_ERR(9, 103, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_value); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 96, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_value); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 103, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = PyObject_RichCompare(__pyx_v_part_type, __pyx_t_1, Py_EQ); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(9, 96, __pyx_L1_error)
+  __pyx_t_4 = PyObject_RichCompare(__pyx_v_part_type, __pyx_t_1, Py_EQ); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(9, 103, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(9, 96, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(9, 103, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   if (__pyx_t_3) {
 
-    /* "python_wrappers.pyx":97
+    /* "python_wrappers.pyx":104
  *             part = PyPart.create_derived(<Part*>self.ptr.CreatePart[Nosecone](name.encode('utf-8'), rocket.ptr))
  *         elif (part_type == PyPartType.TUBE_BODY.value):
  *             part = PyPart.create_derived(<Part*>self.ptr.CreatePart[TubeBody](name.encode('utf-8'), rocket.ptr))             # <<<<<<<<<<<<<<
  *         if kwargs is not None:
  *             part.initialize_attributes(**kwargs)
  */
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_name, __pyx_n_s_encode); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 97, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_name, __pyx_n_s_encode); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 104, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __pyx_t_5 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_1))) {
@@ -17753,17 +18784,17 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_12create_part(struc
     }
     __pyx_t_4 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_1, __pyx_t_5, __pyx_kp_s_utf_8) : __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_kp_s_utf_8);
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (unlikely(!__pyx_t_4)) __PYX_ERR(9, 97, __pyx_L1_error)
+    if (unlikely(!__pyx_t_4)) __PYX_ERR(9, 104, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_6 = __pyx_convert_string_from_py_std__in_string(__pyx_t_4); if (unlikely(PyErr_Occurred())) __PYX_ERR(9, 97, __pyx_L1_error)
+    __pyx_t_6 = __pyx_convert_string_from_py_std__in_string(__pyx_t_4); if (unlikely(PyErr_Occurred())) __PYX_ERR(9, 104, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = __pyx_f_14interface_core_6PyPart_create_derived(((Part *)__pyx_v_self->ptr->CreatePart<TubeBody>(__pyx_t_6, __pyx_v_rocket->ptr))); if (unlikely(!__pyx_t_4)) __PYX_ERR(9, 97, __pyx_L1_error)
+    __pyx_t_4 = __pyx_f_14interface_core_6PyPart_create_derived(((Part *)__pyx_v_self->ptr->CreatePart<TubeBody>(__pyx_t_6, __pyx_v_rocket->ptr))); if (unlikely(!__pyx_t_4)) __PYX_ERR(9, 104, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF_SET(__pyx_v_part, __pyx_t_4);
     __pyx_t_4 = 0;
 
-    /* "python_wrappers.pyx":96
+    /* "python_wrappers.pyx":103
  *         elif (part_type == PyPartType.NOSECONE.value):
  *             part = PyPart.create_derived(<Part*>self.ptr.CreatePart[Nosecone](name.encode('utf-8'), rocket.ptr))
  *         elif (part_type == PyPartType.TUBE_BODY.value):             # <<<<<<<<<<<<<<
@@ -17773,7 +18804,7 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_12create_part(struc
   }
   __pyx_L4:;
 
-  /* "python_wrappers.pyx":98
+  /* "python_wrappers.pyx":105
  *         elif (part_type == PyPartType.TUBE_BODY.value):
  *             part = PyPart.create_derived(<Part*>self.ptr.CreatePart[TubeBody](name.encode('utf-8'), rocket.ptr))
  *         if kwargs is not None:             # <<<<<<<<<<<<<<
@@ -17784,21 +18815,21 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_12create_part(struc
   __pyx_t_2 = (__pyx_t_3 != 0);
   if (__pyx_t_2) {
 
-    /* "python_wrappers.pyx":99
+    /* "python_wrappers.pyx":106
  *             part = PyPart.create_derived(<Part*>self.ptr.CreatePart[TubeBody](name.encode('utf-8'), rocket.ptr))
  *         if kwargs is not None:
  *             part.initialize_attributes(**kwargs)             # <<<<<<<<<<<<<<
  *         return part
  * 
  */
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_part, __pyx_n_s_initialize_attributes); if (unlikely(!__pyx_t_4)) __PYX_ERR(9, 99, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_part, __pyx_n_s_initialize_attributes); if (unlikely(!__pyx_t_4)) __PYX_ERR(9, 106, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_empty_tuple, __pyx_v_kwargs); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 99, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_empty_tuple, __pyx_v_kwargs); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 106, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "python_wrappers.pyx":98
+    /* "python_wrappers.pyx":105
  *         elif (part_type == PyPartType.TUBE_BODY.value):
  *             part = PyPart.create_derived(<Part*>self.ptr.CreatePart[TubeBody](name.encode('utf-8'), rocket.ptr))
  *         if kwargs is not None:             # <<<<<<<<<<<<<<
@@ -17807,19 +18838,19 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_12create_part(struc
  */
   }
 
-  /* "python_wrappers.pyx":100
+  /* "python_wrappers.pyx":107
  *         if kwargs is not None:
  *             part.initialize_attributes(**kwargs)
  *         return part             # <<<<<<<<<<<<<<
  * 
- *     def get_part(self, rocket_name, name):
+ *     def delete_part(self, PyPart part):
  */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_INCREF(__pyx_v_part);
   __pyx_r = __pyx_v_part;
   goto __pyx_L0;
 
-  /* "python_wrappers.pyx":88
+  /* "python_wrappers.pyx":95
  *         return rkt
  * 
  *     def create_part(self, part_type, name, PyRocket rocket, **kwargs):             # <<<<<<<<<<<<<<
@@ -17842,8 +18873,63 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_12create_part(struc
   return __pyx_r;
 }
 
-/* "python_wrappers.pyx":102
+/* "python_wrappers.pyx":109
  *         return part
+ * 
+ *     def delete_part(self, PyPart part):             # <<<<<<<<<<<<<<
+ *         self.ptr.DeletePart(part.ptr_part)
+ * 
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_19delete_part(PyObject *__pyx_v_self, PyObject *__pyx_v_part); /*proto*/
+static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_19delete_part(PyObject *__pyx_v_self, PyObject *__pyx_v_part) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("delete_part (wrapper)", 0);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_part), __pyx_ptype_14interface_core_PyPart, 1, "part", 0))) __PYX_ERR(9, 109, __pyx_L1_error)
+  __pyx_r = __pyx_pf_14interface_core_15PyInterfaceCore_18delete_part(((struct __pyx_obj_14interface_core_PyInterfaceCore *)__pyx_v_self), ((struct __pyx_obj_14interface_core_PyPart *)__pyx_v_part));
+
+  /* function exit code */
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_18delete_part(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, struct __pyx_obj_14interface_core_PyPart *__pyx_v_part) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("delete_part", 0);
+
+  /* "python_wrappers.pyx":110
+ * 
+ *     def delete_part(self, PyPart part):
+ *         self.ptr.DeletePart(part.ptr_part)             # <<<<<<<<<<<<<<
+ * 
+ *     def get_part(self, rocket_name, name):
+ */
+  __pyx_v_self->ptr->DeletePart(__pyx_v_part->ptr_part);
+
+  /* "python_wrappers.pyx":109
+ *         return part
+ * 
+ *     def delete_part(self, PyPart part):             # <<<<<<<<<<<<<<
+ *         self.ptr.DeletePart(part.ptr_part)
+ * 
+ */
+
+  /* function exit code */
+  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "python_wrappers.pyx":112
+ *         self.ptr.DeletePart(part.ptr_part)
  * 
  *     def get_part(self, rocket_name, name):             # <<<<<<<<<<<<<<
  *         pass
@@ -17851,8 +18937,8 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_12create_part(struc
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_15get_part(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_15get_part(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_21get_part(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_21get_part(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_rocket_name = 0;
   PyObject *__pyx_v_name = 0;
   PyObject *__pyx_r = 0;
@@ -17881,11 +18967,11 @@ static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_15get_part(PyObject
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_name)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("get_part", 1, 2, 2, 1); __PYX_ERR(9, 102, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("get_part", 1, 2, 2, 1); __PYX_ERR(9, 112, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "get_part") < 0)) __PYX_ERR(9, 102, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "get_part") < 0)) __PYX_ERR(9, 112, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -17898,20 +18984,20 @@ static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_15get_part(PyObject
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("get_part", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(9, 102, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("get_part", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(9, 112, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("interface_core.PyInterfaceCore.get_part", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_14interface_core_15PyInterfaceCore_14get_part(((struct __pyx_obj_14interface_core_PyInterfaceCore *)__pyx_v_self), __pyx_v_rocket_name, __pyx_v_name);
+  __pyx_r = __pyx_pf_14interface_core_15PyInterfaceCore_20get_part(((struct __pyx_obj_14interface_core_PyInterfaceCore *)__pyx_v_self), __pyx_v_rocket_name, __pyx_v_name);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_14get_part(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_rocket_name, PyObject *__pyx_v_name) {
+static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_20get_part(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_rocket_name, PyObject *__pyx_v_name) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -17921,7 +19007,7 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_14get_part(struct _
   std::string __pyx_t_5;
   __Pyx_RefNannySetupContext("get_part", 0);
 
-  /* "python_wrappers.pyx":104
+  /* "python_wrappers.pyx":114
  *     def get_part(self, rocket_name, name):
  *         pass
  *         return PyPart.create_derived(self.ptr.GetPart(rocket_name.encode('utf-8'), name.encode('utf-8')))             # <<<<<<<<<<<<<<
@@ -17929,7 +19015,7 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_14get_part(struct _
  *     def create_configuration(self, name, PyRocket rocket, **kwargs):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_rocket_name, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(9, 104, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_rocket_name, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(9, 114, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -17943,12 +19029,12 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_14get_part(struct _
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_3, __pyx_kp_s_utf_8) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_kp_s_utf_8);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 104, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 114, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_4 = __pyx_convert_string_from_py_std__in_string(__pyx_t_1); if (unlikely(PyErr_Occurred())) __PYX_ERR(9, 104, __pyx_L1_error)
+  __pyx_t_4 = __pyx_convert_string_from_py_std__in_string(__pyx_t_1); if (unlikely(PyErr_Occurred())) __PYX_ERR(9, 114, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_name, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(9, 104, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_name, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(9, 114, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -17962,19 +19048,19 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_14get_part(struct _
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_3, __pyx_kp_s_utf_8) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_kp_s_utf_8);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 104, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 114, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_5 = __pyx_convert_string_from_py_std__in_string(__pyx_t_1); if (unlikely(PyErr_Occurred())) __PYX_ERR(9, 104, __pyx_L1_error)
+  __pyx_t_5 = __pyx_convert_string_from_py_std__in_string(__pyx_t_1); if (unlikely(PyErr_Occurred())) __PYX_ERR(9, 114, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __pyx_f_14interface_core_6PyPart_create_derived(__pyx_v_self->ptr->GetPart(__pyx_t_4, __pyx_t_5)); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 104, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_14interface_core_6PyPart_create_derived(__pyx_v_self->ptr->GetPart(__pyx_t_4, __pyx_t_5)); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 114, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "python_wrappers.pyx":102
- *         return part
+  /* "python_wrappers.pyx":112
+ *         self.ptr.DeletePart(part.ptr_part)
  * 
  *     def get_part(self, rocket_name, name):             # <<<<<<<<<<<<<<
  *         pass
@@ -17994,7 +19080,7 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_14get_part(struct _
   return __pyx_r;
 }
 
-/* "python_wrappers.pyx":106
+/* "python_wrappers.pyx":116
  *         return PyPart.create_derived(self.ptr.GetPart(rocket_name.encode('utf-8'), name.encode('utf-8')))
  * 
  *     def create_configuration(self, name, PyRocket rocket, **kwargs):             # <<<<<<<<<<<<<<
@@ -18003,8 +19089,8 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_14get_part(struct _
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_17create_configuration(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_17create_configuration(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_23create_configuration(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_23create_configuration(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_name = 0;
   struct __pyx_obj_14interface_core_PyRocket *__pyx_v_rocket = 0;
   PyObject *__pyx_v_kwargs = 0;
@@ -18036,11 +19122,11 @@ static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_17create_configurat
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_rocket)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("create_configuration", 1, 2, 2, 1); __PYX_ERR(9, 106, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("create_configuration", 1, 2, 2, 1); __PYX_ERR(9, 116, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, __pyx_v_kwargs, values, pos_args, "create_configuration") < 0)) __PYX_ERR(9, 106, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, __pyx_v_kwargs, values, pos_args, "create_configuration") < 0)) __PYX_ERR(9, 116, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -18053,15 +19139,15 @@ static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_17create_configurat
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("create_configuration", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(9, 106, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("create_configuration", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(9, 116, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_DECREF(__pyx_v_kwargs); __pyx_v_kwargs = 0;
   __Pyx_AddTraceback("interface_core.PyInterfaceCore.create_configuration", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_rocket), __pyx_ptype_14interface_core_PyRocket, 1, "rocket", 0))) __PYX_ERR(9, 106, __pyx_L1_error)
-  __pyx_r = __pyx_pf_14interface_core_15PyInterfaceCore_16create_configuration(((struct __pyx_obj_14interface_core_PyInterfaceCore *)__pyx_v_self), __pyx_v_name, __pyx_v_rocket, __pyx_v_kwargs);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_rocket), __pyx_ptype_14interface_core_PyRocket, 1, "rocket", 0))) __PYX_ERR(9, 116, __pyx_L1_error)
+  __pyx_r = __pyx_pf_14interface_core_15PyInterfaceCore_22create_configuration(((struct __pyx_obj_14interface_core_PyInterfaceCore *)__pyx_v_self), __pyx_v_name, __pyx_v_rocket, __pyx_v_kwargs);
 
   /* function exit code */
   goto __pyx_L0;
@@ -18073,7 +19159,7 @@ static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_17create_configurat
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_16create_configuration(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_name, struct __pyx_obj_14interface_core_PyRocket *__pyx_v_rocket, PyObject *__pyx_v_kwargs) {
+static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_22create_configuration(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_name, struct __pyx_obj_14interface_core_PyRocket *__pyx_v_rocket, PyObject *__pyx_v_kwargs) {
   Configuration *__pyx_v_config_ptr;
   struct __pyx_obj_14interface_core_PyConfiguration *__pyx_v_config = NULL;
   PyObject *__pyx_r = NULL;
@@ -18086,14 +19172,14 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_16create_configurat
   int __pyx_t_6;
   __Pyx_RefNannySetupContext("create_configuration", 0);
 
-  /* "python_wrappers.pyx":107
+  /* "python_wrappers.pyx":117
  * 
  *     def create_configuration(self, name, PyRocket rocket, **kwargs):
  *         config_ptr = self.ptr.CreateConfiguration(name.encode('utf-8'), rocket.ptr)             # <<<<<<<<<<<<<<
  *         config = PyConfiguration()
  *         config = PyConfiguration.create(config_ptr)
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_name, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(9, 107, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_name, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(9, 117, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -18107,38 +19193,38 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_16create_configurat
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_3, __pyx_kp_s_utf_8) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_kp_s_utf_8);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 107, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 117, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_4 = __pyx_convert_string_from_py_std__in_string(__pyx_t_1); if (unlikely(PyErr_Occurred())) __PYX_ERR(9, 107, __pyx_L1_error)
+  __pyx_t_4 = __pyx_convert_string_from_py_std__in_string(__pyx_t_1); if (unlikely(PyErr_Occurred())) __PYX_ERR(9, 117, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_config_ptr = __pyx_v_self->ptr->CreateConfiguration(__pyx_t_4, __pyx_v_rocket->ptr);
 
-  /* "python_wrappers.pyx":108
+  /* "python_wrappers.pyx":118
  *     def create_configuration(self, name, PyRocket rocket, **kwargs):
  *         config_ptr = self.ptr.CreateConfiguration(name.encode('utf-8'), rocket.ptr)
  *         config = PyConfiguration()             # <<<<<<<<<<<<<<
  *         config = PyConfiguration.create(config_ptr)
  *         if kwargs is not None:
  */
-  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_14interface_core_PyConfiguration)); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 108, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_14interface_core_PyConfiguration)); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 118, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_config = ((struct __pyx_obj_14interface_core_PyConfiguration *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "python_wrappers.pyx":109
+  /* "python_wrappers.pyx":119
  *         config_ptr = self.ptr.CreateConfiguration(name.encode('utf-8'), rocket.ptr)
  *         config = PyConfiguration()
  *         config = PyConfiguration.create(config_ptr)             # <<<<<<<<<<<<<<
  *         if kwargs is not None:
  *             config.initialize_attributes(**kwargs)
  */
-  __pyx_t_1 = ((PyObject *)__pyx_f_14interface_core_15PyConfiguration_create(__pyx_v_config_ptr)); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 109, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_14interface_core_15PyConfiguration_create(__pyx_v_config_ptr)); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 119, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF_SET(__pyx_v_config, ((struct __pyx_obj_14interface_core_PyConfiguration *)__pyx_t_1));
   __pyx_t_1 = 0;
 
-  /* "python_wrappers.pyx":110
+  /* "python_wrappers.pyx":120
  *         config = PyConfiguration()
  *         config = PyConfiguration.create(config_ptr)
  *         if kwargs is not None:             # <<<<<<<<<<<<<<
@@ -18149,21 +19235,21 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_16create_configurat
   __pyx_t_6 = (__pyx_t_5 != 0);
   if (__pyx_t_6) {
 
-    /* "python_wrappers.pyx":111
+    /* "python_wrappers.pyx":121
  *         config = PyConfiguration.create(config_ptr)
  *         if kwargs is not None:
  *             config.initialize_attributes(**kwargs)             # <<<<<<<<<<<<<<
  *         return config
  * 
  */
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_config), __pyx_n_s_initialize_attributes); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 111, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_config), __pyx_n_s_initialize_attributes); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 121, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_v_kwargs); if (unlikely(!__pyx_t_2)) __PYX_ERR(9, 111, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_v_kwargs); if (unlikely(!__pyx_t_2)) __PYX_ERR(9, 121, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "python_wrappers.pyx":110
+    /* "python_wrappers.pyx":120
  *         config = PyConfiguration()
  *         config = PyConfiguration.create(config_ptr)
  *         if kwargs is not None:             # <<<<<<<<<<<<<<
@@ -18172,19 +19258,19 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_16create_configurat
  */
   }
 
-  /* "python_wrappers.pyx":112
+  /* "python_wrappers.pyx":122
  *         if kwargs is not None:
  *             config.initialize_attributes(**kwargs)
  *         return config             # <<<<<<<<<<<<<<
  * 
- *     def get_configuration(self, rocket_name, name):
+ *     def delete_configuration(self, PyConfiguration configuration):
  */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_INCREF(((PyObject *)__pyx_v_config));
   __pyx_r = ((PyObject *)__pyx_v_config);
   goto __pyx_L0;
 
-  /* "python_wrappers.pyx":106
+  /* "python_wrappers.pyx":116
  *         return PyPart.create_derived(self.ptr.GetPart(rocket_name.encode('utf-8'), name.encode('utf-8')))
  * 
  *     def create_configuration(self, name, PyRocket rocket, **kwargs):             # <<<<<<<<<<<<<<
@@ -18206,8 +19292,63 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_16create_configurat
   return __pyx_r;
 }
 
-/* "python_wrappers.pyx":114
+/* "python_wrappers.pyx":124
  *         return config
+ * 
+ *     def delete_configuration(self, PyConfiguration configuration):             # <<<<<<<<<<<<<<
+ *         self.ptr.DeleteConfiguration(configuration.ptr)
+ * 
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_25delete_configuration(PyObject *__pyx_v_self, PyObject *__pyx_v_configuration); /*proto*/
+static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_25delete_configuration(PyObject *__pyx_v_self, PyObject *__pyx_v_configuration) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("delete_configuration (wrapper)", 0);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_configuration), __pyx_ptype_14interface_core_PyConfiguration, 1, "configuration", 0))) __PYX_ERR(9, 124, __pyx_L1_error)
+  __pyx_r = __pyx_pf_14interface_core_15PyInterfaceCore_24delete_configuration(((struct __pyx_obj_14interface_core_PyInterfaceCore *)__pyx_v_self), ((struct __pyx_obj_14interface_core_PyConfiguration *)__pyx_v_configuration));
+
+  /* function exit code */
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_24delete_configuration(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, struct __pyx_obj_14interface_core_PyConfiguration *__pyx_v_configuration) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("delete_configuration", 0);
+
+  /* "python_wrappers.pyx":125
+ * 
+ *     def delete_configuration(self, PyConfiguration configuration):
+ *         self.ptr.DeleteConfiguration(configuration.ptr)             # <<<<<<<<<<<<<<
+ * 
+ *     def get_configuration(self, rocket_name, name):
+ */
+  __pyx_v_self->ptr->DeleteConfiguration(__pyx_v_configuration->ptr);
+
+  /* "python_wrappers.pyx":124
+ *         return config
+ * 
+ *     def delete_configuration(self, PyConfiguration configuration):             # <<<<<<<<<<<<<<
+ *         self.ptr.DeleteConfiguration(configuration.ptr)
+ * 
+ */
+
+  /* function exit code */
+  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "python_wrappers.pyx":127
+ *         self.ptr.DeleteConfiguration(configuration.ptr)
  * 
  *     def get_configuration(self, rocket_name, name):             # <<<<<<<<<<<<<<
  *         config = PyConfiguration()
@@ -18215,8 +19356,8 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_16create_configurat
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_19get_configuration(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_19get_configuration(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_27get_configuration(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_27get_configuration(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_rocket_name = 0;
   PyObject *__pyx_v_name = 0;
   PyObject *__pyx_r = 0;
@@ -18245,11 +19386,11 @@ static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_19get_configuration
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_name)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("get_configuration", 1, 2, 2, 1); __PYX_ERR(9, 114, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("get_configuration", 1, 2, 2, 1); __PYX_ERR(9, 127, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "get_configuration") < 0)) __PYX_ERR(9, 114, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "get_configuration") < 0)) __PYX_ERR(9, 127, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -18262,20 +19403,20 @@ static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_19get_configuration
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("get_configuration", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(9, 114, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("get_configuration", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(9, 127, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("interface_core.PyInterfaceCore.get_configuration", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_14interface_core_15PyInterfaceCore_18get_configuration(((struct __pyx_obj_14interface_core_PyInterfaceCore *)__pyx_v_self), __pyx_v_rocket_name, __pyx_v_name);
+  __pyx_r = __pyx_pf_14interface_core_15PyInterfaceCore_26get_configuration(((struct __pyx_obj_14interface_core_PyInterfaceCore *)__pyx_v_self), __pyx_v_rocket_name, __pyx_v_name);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_18get_configuration(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_rocket_name, PyObject *__pyx_v_name) {
+static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_26get_configuration(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_rocket_name, PyObject *__pyx_v_name) {
   struct __pyx_obj_14interface_core_PyConfiguration *__pyx_v_config = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -18286,26 +19427,26 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_18get_configuration
   std::string __pyx_t_5;
   __Pyx_RefNannySetupContext("get_configuration", 0);
 
-  /* "python_wrappers.pyx":115
+  /* "python_wrappers.pyx":128
  * 
  *     def get_configuration(self, rocket_name, name):
  *         config = PyConfiguration()             # <<<<<<<<<<<<<<
  *         config = PyConfiguration.create(self.ptr.GetConfiguration(rocket_name.encode('utf-8'), name.encode('utf-8')))
  *         return config
  */
-  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_14interface_core_PyConfiguration)); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 115, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_14interface_core_PyConfiguration)); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 128, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_config = ((struct __pyx_obj_14interface_core_PyConfiguration *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "python_wrappers.pyx":116
+  /* "python_wrappers.pyx":129
  *     def get_configuration(self, rocket_name, name):
  *         config = PyConfiguration()
  *         config = PyConfiguration.create(self.ptr.GetConfiguration(rocket_name.encode('utf-8'), name.encode('utf-8')))             # <<<<<<<<<<<<<<
  *         return config
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_rocket_name, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(9, 116, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_rocket_name, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(9, 129, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -18319,12 +19460,12 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_18get_configuration
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_3, __pyx_kp_s_utf_8) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_kp_s_utf_8);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 116, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 129, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_4 = __pyx_convert_string_from_py_std__in_string(__pyx_t_1); if (unlikely(PyErr_Occurred())) __PYX_ERR(9, 116, __pyx_L1_error)
+  __pyx_t_4 = __pyx_convert_string_from_py_std__in_string(__pyx_t_1); if (unlikely(PyErr_Occurred())) __PYX_ERR(9, 129, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_name, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(9, 116, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_name, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(9, 129, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -18338,17 +19479,17 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_18get_configuration
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_3, __pyx_kp_s_utf_8) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_kp_s_utf_8);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 116, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 129, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_5 = __pyx_convert_string_from_py_std__in_string(__pyx_t_1); if (unlikely(PyErr_Occurred())) __PYX_ERR(9, 116, __pyx_L1_error)
+  __pyx_t_5 = __pyx_convert_string_from_py_std__in_string(__pyx_t_1); if (unlikely(PyErr_Occurred())) __PYX_ERR(9, 129, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = ((PyObject *)__pyx_f_14interface_core_15PyConfiguration_create(__pyx_v_self->ptr->GetConfiguration(__pyx_t_4, __pyx_t_5))); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 116, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_14interface_core_15PyConfiguration_create(__pyx_v_self->ptr->GetConfiguration(__pyx_t_4, __pyx_t_5))); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 129, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF_SET(__pyx_v_config, ((struct __pyx_obj_14interface_core_PyConfiguration *)__pyx_t_1));
   __pyx_t_1 = 0;
 
-  /* "python_wrappers.pyx":117
+  /* "python_wrappers.pyx":130
  *         config = PyConfiguration()
  *         config = PyConfiguration.create(self.ptr.GetConfiguration(rocket_name.encode('utf-8'), name.encode('utf-8')))
  *         return config             # <<<<<<<<<<<<<<
@@ -18360,8 +19501,8 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_18get_configuration
   __pyx_r = ((PyObject *)__pyx_v_config);
   goto __pyx_L0;
 
-  /* "python_wrappers.pyx":114
- *         return config
+  /* "python_wrappers.pyx":127
+ *         self.ptr.DeleteConfiguration(configuration.ptr)
  * 
  *     def get_configuration(self, rocket_name, name):             # <<<<<<<<<<<<<<
  *         config = PyConfiguration()
@@ -18382,7 +19523,7 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_18get_configuration
   return __pyx_r;
 }
 
-/* "python_wrappers.pyx":119
+/* "python_wrappers.pyx":132
  *         return config
  * 
  *     def create_stage(self, name, PyConfiguration configuration, **kwargs):             # <<<<<<<<<<<<<<
@@ -18391,8 +19532,8 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_18get_configuration
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_21create_stage(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_21create_stage(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_29create_stage(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_29create_stage(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_name = 0;
   struct __pyx_obj_14interface_core_PyConfiguration *__pyx_v_configuration = 0;
   PyObject *__pyx_v_kwargs = 0;
@@ -18424,11 +19565,11 @@ static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_21create_stage(PyOb
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_configuration)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("create_stage", 1, 2, 2, 1); __PYX_ERR(9, 119, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("create_stage", 1, 2, 2, 1); __PYX_ERR(9, 132, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, __pyx_v_kwargs, values, pos_args, "create_stage") < 0)) __PYX_ERR(9, 119, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, __pyx_v_kwargs, values, pos_args, "create_stage") < 0)) __PYX_ERR(9, 132, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -18441,15 +19582,15 @@ static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_21create_stage(PyOb
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("create_stage", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(9, 119, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("create_stage", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(9, 132, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_DECREF(__pyx_v_kwargs); __pyx_v_kwargs = 0;
   __Pyx_AddTraceback("interface_core.PyInterfaceCore.create_stage", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_configuration), __pyx_ptype_14interface_core_PyConfiguration, 1, "configuration", 0))) __PYX_ERR(9, 119, __pyx_L1_error)
-  __pyx_r = __pyx_pf_14interface_core_15PyInterfaceCore_20create_stage(((struct __pyx_obj_14interface_core_PyInterfaceCore *)__pyx_v_self), __pyx_v_name, __pyx_v_configuration, __pyx_v_kwargs);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_configuration), __pyx_ptype_14interface_core_PyConfiguration, 1, "configuration", 0))) __PYX_ERR(9, 132, __pyx_L1_error)
+  __pyx_r = __pyx_pf_14interface_core_15PyInterfaceCore_28create_stage(((struct __pyx_obj_14interface_core_PyInterfaceCore *)__pyx_v_self), __pyx_v_name, __pyx_v_configuration, __pyx_v_kwargs);
 
   /* function exit code */
   goto __pyx_L0;
@@ -18461,7 +19602,7 @@ static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_21create_stage(PyOb
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_20create_stage(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_name, struct __pyx_obj_14interface_core_PyConfiguration *__pyx_v_configuration, PyObject *__pyx_v_kwargs) {
+static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_28create_stage(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_name, struct __pyx_obj_14interface_core_PyConfiguration *__pyx_v_configuration, PyObject *__pyx_v_kwargs) {
   Stage *__pyx_v_stage_ptr;
   struct __pyx_obj_14interface_core_PyStage *__pyx_v_stage = NULL;
   PyObject *__pyx_r = NULL;
@@ -18474,14 +19615,14 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_20create_stage(stru
   int __pyx_t_6;
   __Pyx_RefNannySetupContext("create_stage", 0);
 
-  /* "python_wrappers.pyx":120
+  /* "python_wrappers.pyx":133
  * 
  *     def create_stage(self, name, PyConfiguration configuration, **kwargs):
  *         stage_ptr = self.ptr.CreateStage(name.encode('utf-8'), configuration.ptr)             # <<<<<<<<<<<<<<
  *         stage = PyStage()
  *         stage = PyStage.create(stage_ptr)
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_name, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(9, 120, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_name, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(9, 133, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -18495,38 +19636,38 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_20create_stage(stru
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_3, __pyx_kp_s_utf_8) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_kp_s_utf_8);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 120, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 133, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_4 = __pyx_convert_string_from_py_std__in_string(__pyx_t_1); if (unlikely(PyErr_Occurred())) __PYX_ERR(9, 120, __pyx_L1_error)
+  __pyx_t_4 = __pyx_convert_string_from_py_std__in_string(__pyx_t_1); if (unlikely(PyErr_Occurred())) __PYX_ERR(9, 133, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_stage_ptr = __pyx_v_self->ptr->CreateStage(__pyx_t_4, __pyx_v_configuration->ptr);
 
-  /* "python_wrappers.pyx":121
+  /* "python_wrappers.pyx":134
  *     def create_stage(self, name, PyConfiguration configuration, **kwargs):
  *         stage_ptr = self.ptr.CreateStage(name.encode('utf-8'), configuration.ptr)
  *         stage = PyStage()             # <<<<<<<<<<<<<<
  *         stage = PyStage.create(stage_ptr)
  *         if kwargs is not None:
  */
-  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_14interface_core_PyStage)); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 121, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_14interface_core_PyStage)); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 134, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_stage = ((struct __pyx_obj_14interface_core_PyStage *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "python_wrappers.pyx":122
+  /* "python_wrappers.pyx":135
  *         stage_ptr = self.ptr.CreateStage(name.encode('utf-8'), configuration.ptr)
  *         stage = PyStage()
  *         stage = PyStage.create(stage_ptr)             # <<<<<<<<<<<<<<
  *         if kwargs is not None:
  *             stage.initialize_attributes(**kwargs)
  */
-  __pyx_t_1 = ((PyObject *)__pyx_f_14interface_core_7PyStage_create(__pyx_v_stage_ptr)); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 122, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_14interface_core_7PyStage_create(__pyx_v_stage_ptr)); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 135, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF_SET(__pyx_v_stage, ((struct __pyx_obj_14interface_core_PyStage *)__pyx_t_1));
   __pyx_t_1 = 0;
 
-  /* "python_wrappers.pyx":123
+  /* "python_wrappers.pyx":136
  *         stage = PyStage()
  *         stage = PyStage.create(stage_ptr)
  *         if kwargs is not None:             # <<<<<<<<<<<<<<
@@ -18537,21 +19678,21 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_20create_stage(stru
   __pyx_t_6 = (__pyx_t_5 != 0);
   if (__pyx_t_6) {
 
-    /* "python_wrappers.pyx":124
+    /* "python_wrappers.pyx":137
  *         stage = PyStage.create(stage_ptr)
  *         if kwargs is not None:
  *             stage.initialize_attributes(**kwargs)             # <<<<<<<<<<<<<<
  *         return stage
  * 
  */
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_stage), __pyx_n_s_initialize_attributes); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 124, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_stage), __pyx_n_s_initialize_attributes); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 137, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_v_kwargs); if (unlikely(!__pyx_t_2)) __PYX_ERR(9, 124, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_v_kwargs); if (unlikely(!__pyx_t_2)) __PYX_ERR(9, 137, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "python_wrappers.pyx":123
+    /* "python_wrappers.pyx":136
  *         stage = PyStage()
  *         stage = PyStage.create(stage_ptr)
  *         if kwargs is not None:             # <<<<<<<<<<<<<<
@@ -18560,19 +19701,19 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_20create_stage(stru
  */
   }
 
-  /* "python_wrappers.pyx":125
+  /* "python_wrappers.pyx":138
  *         if kwargs is not None:
  *             stage.initialize_attributes(**kwargs)
  *         return stage             # <<<<<<<<<<<<<<
  * 
- *     def get_stage(self, rocket_name, configuration_name, name):
+ *     def delete_stage(self, PyStage stage):
  */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_INCREF(((PyObject *)__pyx_v_stage));
   __pyx_r = ((PyObject *)__pyx_v_stage);
   goto __pyx_L0;
 
-  /* "python_wrappers.pyx":119
+  /* "python_wrappers.pyx":132
  *         return config
  * 
  *     def create_stage(self, name, PyConfiguration configuration, **kwargs):             # <<<<<<<<<<<<<<
@@ -18594,8 +19735,63 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_20create_stage(stru
   return __pyx_r;
 }
 
-/* "python_wrappers.pyx":127
+/* "python_wrappers.pyx":140
  *         return stage
+ * 
+ *     def delete_stage(self, PyStage stage):             # <<<<<<<<<<<<<<
+ *         self.ptr.DeleteStage(stage.ptr)
+ * 
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_31delete_stage(PyObject *__pyx_v_self, PyObject *__pyx_v_stage); /*proto*/
+static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_31delete_stage(PyObject *__pyx_v_self, PyObject *__pyx_v_stage) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("delete_stage (wrapper)", 0);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_stage), __pyx_ptype_14interface_core_PyStage, 1, "stage", 0))) __PYX_ERR(9, 140, __pyx_L1_error)
+  __pyx_r = __pyx_pf_14interface_core_15PyInterfaceCore_30delete_stage(((struct __pyx_obj_14interface_core_PyInterfaceCore *)__pyx_v_self), ((struct __pyx_obj_14interface_core_PyStage *)__pyx_v_stage));
+
+  /* function exit code */
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_30delete_stage(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, struct __pyx_obj_14interface_core_PyStage *__pyx_v_stage) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("delete_stage", 0);
+
+  /* "python_wrappers.pyx":141
+ * 
+ *     def delete_stage(self, PyStage stage):
+ *         self.ptr.DeleteStage(stage.ptr)             # <<<<<<<<<<<<<<
+ * 
+ *     def get_stage(self, rocket_name, configuration_name, name):
+ */
+  __pyx_v_self->ptr->DeleteStage(__pyx_v_stage->ptr);
+
+  /* "python_wrappers.pyx":140
+ *         return stage
+ * 
+ *     def delete_stage(self, PyStage stage):             # <<<<<<<<<<<<<<
+ *         self.ptr.DeleteStage(stage.ptr)
+ * 
+ */
+
+  /* function exit code */
+  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "python_wrappers.pyx":143
+ *         self.ptr.DeleteStage(stage.ptr)
  * 
  *     def get_stage(self, rocket_name, configuration_name, name):             # <<<<<<<<<<<<<<
  *         stage = PyStage()
@@ -18603,8 +19799,8 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_20create_stage(stru
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_23get_stage(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_23get_stage(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_33get_stage(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_33get_stage(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_rocket_name = 0;
   PyObject *__pyx_v_configuration_name = 0;
   PyObject *__pyx_v_name = 0;
@@ -18636,17 +19832,17 @@ static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_23get_stage(PyObjec
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_configuration_name)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("get_stage", 1, 3, 3, 1); __PYX_ERR(9, 127, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("get_stage", 1, 3, 3, 1); __PYX_ERR(9, 143, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_name)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("get_stage", 1, 3, 3, 2); __PYX_ERR(9, 127, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("get_stage", 1, 3, 3, 2); __PYX_ERR(9, 143, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "get_stage") < 0)) __PYX_ERR(9, 127, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "get_stage") < 0)) __PYX_ERR(9, 143, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -18661,20 +19857,20 @@ static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_23get_stage(PyObjec
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("get_stage", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(9, 127, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("get_stage", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(9, 143, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("interface_core.PyInterfaceCore.get_stage", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_14interface_core_15PyInterfaceCore_22get_stage(((struct __pyx_obj_14interface_core_PyInterfaceCore *)__pyx_v_self), __pyx_v_rocket_name, __pyx_v_configuration_name, __pyx_v_name);
+  __pyx_r = __pyx_pf_14interface_core_15PyInterfaceCore_32get_stage(((struct __pyx_obj_14interface_core_PyInterfaceCore *)__pyx_v_self), __pyx_v_rocket_name, __pyx_v_configuration_name, __pyx_v_name);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_22get_stage(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_rocket_name, PyObject *__pyx_v_configuration_name, PyObject *__pyx_v_name) {
+static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_32get_stage(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_rocket_name, PyObject *__pyx_v_configuration_name, PyObject *__pyx_v_name) {
   struct __pyx_obj_14interface_core_PyStage *__pyx_v_stage = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -18686,26 +19882,26 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_22get_stage(struct 
   std::string __pyx_t_6;
   __Pyx_RefNannySetupContext("get_stage", 0);
 
-  /* "python_wrappers.pyx":128
+  /* "python_wrappers.pyx":144
  * 
  *     def get_stage(self, rocket_name, configuration_name, name):
  *         stage = PyStage()             # <<<<<<<<<<<<<<
  *         stage = PyStage.create(self.ptr.GetStage(rocket_name.encode('utf-8'), configuration_name.encode('utf-8'), name.encode('utf-8')))
  *         return stage
  */
-  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_14interface_core_PyStage)); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 128, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_14interface_core_PyStage)); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 144, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_stage = ((struct __pyx_obj_14interface_core_PyStage *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "python_wrappers.pyx":129
+  /* "python_wrappers.pyx":145
  *     def get_stage(self, rocket_name, configuration_name, name):
  *         stage = PyStage()
  *         stage = PyStage.create(self.ptr.GetStage(rocket_name.encode('utf-8'), configuration_name.encode('utf-8'), name.encode('utf-8')))             # <<<<<<<<<<<<<<
  *         return stage
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_rocket_name, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(9, 129, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_rocket_name, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(9, 145, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -18719,12 +19915,12 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_22get_stage(struct 
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_3, __pyx_kp_s_utf_8) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_kp_s_utf_8);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 129, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 145, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_4 = __pyx_convert_string_from_py_std__in_string(__pyx_t_1); if (unlikely(PyErr_Occurred())) __PYX_ERR(9, 129, __pyx_L1_error)
+  __pyx_t_4 = __pyx_convert_string_from_py_std__in_string(__pyx_t_1); if (unlikely(PyErr_Occurred())) __PYX_ERR(9, 145, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_configuration_name, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(9, 129, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_configuration_name, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(9, 145, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -18738,12 +19934,12 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_22get_stage(struct 
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_3, __pyx_kp_s_utf_8) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_kp_s_utf_8);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 129, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 145, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_5 = __pyx_convert_string_from_py_std__in_string(__pyx_t_1); if (unlikely(PyErr_Occurred())) __PYX_ERR(9, 129, __pyx_L1_error)
+  __pyx_t_5 = __pyx_convert_string_from_py_std__in_string(__pyx_t_1); if (unlikely(PyErr_Occurred())) __PYX_ERR(9, 145, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_name, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(9, 129, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_name, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(9, 145, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -18757,17 +19953,17 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_22get_stage(struct 
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_3, __pyx_kp_s_utf_8) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_kp_s_utf_8);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 129, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 145, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_6 = __pyx_convert_string_from_py_std__in_string(__pyx_t_1); if (unlikely(PyErr_Occurred())) __PYX_ERR(9, 129, __pyx_L1_error)
+  __pyx_t_6 = __pyx_convert_string_from_py_std__in_string(__pyx_t_1); if (unlikely(PyErr_Occurred())) __PYX_ERR(9, 145, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = ((PyObject *)__pyx_f_14interface_core_7PyStage_create(__pyx_v_self->ptr->GetStage(__pyx_t_4, __pyx_t_5, __pyx_t_6))); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 129, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_14interface_core_7PyStage_create(__pyx_v_self->ptr->GetStage(__pyx_t_4, __pyx_t_5, __pyx_t_6))); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 145, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF_SET(__pyx_v_stage, ((struct __pyx_obj_14interface_core_PyStage *)__pyx_t_1));
   __pyx_t_1 = 0;
 
-  /* "python_wrappers.pyx":130
+  /* "python_wrappers.pyx":146
  *         stage = PyStage()
  *         stage = PyStage.create(self.ptr.GetStage(rocket_name.encode('utf-8'), configuration_name.encode('utf-8'), name.encode('utf-8')))
  *         return stage             # <<<<<<<<<<<<<<
@@ -18779,8 +19975,8 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_22get_stage(struct 
   __pyx_r = ((PyObject *)__pyx_v_stage);
   goto __pyx_L0;
 
-  /* "python_wrappers.pyx":127
- *         return stage
+  /* "python_wrappers.pyx":143
+ *         self.ptr.DeleteStage(stage.ptr)
  * 
  *     def get_stage(self, rocket_name, configuration_name, name):             # <<<<<<<<<<<<<<
  *         stage = PyStage()
@@ -18801,7 +19997,7 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_22get_stage(struct 
   return __pyx_r;
 }
 
-/* "python_wrappers.pyx":132
+/* "python_wrappers.pyx":148
  *         return stage
  * 
  *     def create_part_instance(self, name, PyPart part, PyPartInstance parent, **kwargs):             # <<<<<<<<<<<<<<
@@ -18810,8 +20006,8 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_22get_stage(struct 
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_25create_part_instance(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_25create_part_instance(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_35create_part_instance(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_35create_part_instance(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_name = 0;
   struct __pyx_obj_14interface_core_PyPart *__pyx_v_part = 0;
   struct __pyx_obj_14interface_core_PyPartInstance *__pyx_v_parent = 0;
@@ -18846,17 +20042,17 @@ static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_25create_part_insta
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_part)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("create_part_instance", 1, 3, 3, 1); __PYX_ERR(9, 132, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("create_part_instance", 1, 3, 3, 1); __PYX_ERR(9, 148, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_parent)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("create_part_instance", 1, 3, 3, 2); __PYX_ERR(9, 132, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("create_part_instance", 1, 3, 3, 2); __PYX_ERR(9, 148, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, __pyx_v_kwargs, values, pos_args, "create_part_instance") < 0)) __PYX_ERR(9, 132, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, __pyx_v_kwargs, values, pos_args, "create_part_instance") < 0)) __PYX_ERR(9, 148, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -18871,16 +20067,16 @@ static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_25create_part_insta
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("create_part_instance", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(9, 132, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("create_part_instance", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(9, 148, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_DECREF(__pyx_v_kwargs); __pyx_v_kwargs = 0;
   __Pyx_AddTraceback("interface_core.PyInterfaceCore.create_part_instance", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_part), __pyx_ptype_14interface_core_PyPart, 1, "part", 0))) __PYX_ERR(9, 132, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_parent), __pyx_ptype_14interface_core_PyPartInstance, 1, "parent", 0))) __PYX_ERR(9, 132, __pyx_L1_error)
-  __pyx_r = __pyx_pf_14interface_core_15PyInterfaceCore_24create_part_instance(((struct __pyx_obj_14interface_core_PyInterfaceCore *)__pyx_v_self), __pyx_v_name, __pyx_v_part, __pyx_v_parent, __pyx_v_kwargs);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_part), __pyx_ptype_14interface_core_PyPart, 1, "part", 0))) __PYX_ERR(9, 148, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_parent), __pyx_ptype_14interface_core_PyPartInstance, 1, "parent", 0))) __PYX_ERR(9, 148, __pyx_L1_error)
+  __pyx_r = __pyx_pf_14interface_core_15PyInterfaceCore_34create_part_instance(((struct __pyx_obj_14interface_core_PyInterfaceCore *)__pyx_v_self), __pyx_v_name, __pyx_v_part, __pyx_v_parent, __pyx_v_kwargs);
 
   /* function exit code */
   goto __pyx_L0;
@@ -18892,7 +20088,7 @@ static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_25create_part_insta
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_24create_part_instance(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_name, struct __pyx_obj_14interface_core_PyPart *__pyx_v_part, struct __pyx_obj_14interface_core_PyPartInstance *__pyx_v_parent, PyObject *__pyx_v_kwargs) {
+static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_34create_part_instance(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_name, struct __pyx_obj_14interface_core_PyPart *__pyx_v_part, struct __pyx_obj_14interface_core_PyPartInstance *__pyx_v_parent, PyObject *__pyx_v_kwargs) {
   PartInstance *__pyx_v_instance_ptr;
   struct __pyx_obj_14interface_core_PyPartInstance *__pyx_v_instance = NULL;
   PyObject *__pyx_r = NULL;
@@ -18905,14 +20101,14 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_24create_part_insta
   int __pyx_t_6;
   __Pyx_RefNannySetupContext("create_part_instance", 0);
 
-  /* "python_wrappers.pyx":133
+  /* "python_wrappers.pyx":149
  * 
  *     def create_part_instance(self, name, PyPart part, PyPartInstance parent, **kwargs):
  *         instance_ptr = self.ptr.CreatePartInstance(name.encode('utf-8'), part.ptr_part, parent.ptr)             # <<<<<<<<<<<<<<
  *         instance = PyPartInstance()
  *         instance = PyPartInstance.create(instance_ptr)
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_name, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(9, 133, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_name, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(9, 149, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -18926,38 +20122,38 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_24create_part_insta
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_3, __pyx_kp_s_utf_8) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_kp_s_utf_8);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 133, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 149, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_4 = __pyx_convert_string_from_py_std__in_string(__pyx_t_1); if (unlikely(PyErr_Occurred())) __PYX_ERR(9, 133, __pyx_L1_error)
+  __pyx_t_4 = __pyx_convert_string_from_py_std__in_string(__pyx_t_1); if (unlikely(PyErr_Occurred())) __PYX_ERR(9, 149, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_instance_ptr = __pyx_v_self->ptr->CreatePartInstance(__pyx_t_4, __pyx_v_part->ptr_part, __pyx_v_parent->ptr);
 
-  /* "python_wrappers.pyx":134
+  /* "python_wrappers.pyx":150
  *     def create_part_instance(self, name, PyPart part, PyPartInstance parent, **kwargs):
  *         instance_ptr = self.ptr.CreatePartInstance(name.encode('utf-8'), part.ptr_part, parent.ptr)
  *         instance = PyPartInstance()             # <<<<<<<<<<<<<<
  *         instance = PyPartInstance.create(instance_ptr)
  *         if kwargs is not None:
  */
-  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_14interface_core_PyPartInstance)); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 134, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_14interface_core_PyPartInstance)); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 150, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_instance = ((struct __pyx_obj_14interface_core_PyPartInstance *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "python_wrappers.pyx":135
+  /* "python_wrappers.pyx":151
  *         instance_ptr = self.ptr.CreatePartInstance(name.encode('utf-8'), part.ptr_part, parent.ptr)
  *         instance = PyPartInstance()
  *         instance = PyPartInstance.create(instance_ptr)             # <<<<<<<<<<<<<<
  *         if kwargs is not None:
  *             instance.initialize_attributes(**kwargs)
  */
-  __pyx_t_1 = ((PyObject *)__pyx_f_14interface_core_14PyPartInstance_create(__pyx_v_instance_ptr)); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 135, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_14interface_core_14PyPartInstance_create(__pyx_v_instance_ptr)); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 151, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF_SET(__pyx_v_instance, ((struct __pyx_obj_14interface_core_PyPartInstance *)__pyx_t_1));
   __pyx_t_1 = 0;
 
-  /* "python_wrappers.pyx":136
+  /* "python_wrappers.pyx":152
  *         instance = PyPartInstance()
  *         instance = PyPartInstance.create(instance_ptr)
  *         if kwargs is not None:             # <<<<<<<<<<<<<<
@@ -18968,21 +20164,21 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_24create_part_insta
   __pyx_t_6 = (__pyx_t_5 != 0);
   if (__pyx_t_6) {
 
-    /* "python_wrappers.pyx":137
+    /* "python_wrappers.pyx":153
  *         instance = PyPartInstance.create(instance_ptr)
  *         if kwargs is not None:
  *             instance.initialize_attributes(**kwargs)             # <<<<<<<<<<<<<<
  *         return instance
  * 
  */
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_instance), __pyx_n_s_initialize_attributes); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 137, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_instance), __pyx_n_s_initialize_attributes); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 153, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_v_kwargs); if (unlikely(!__pyx_t_2)) __PYX_ERR(9, 137, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_v_kwargs); if (unlikely(!__pyx_t_2)) __PYX_ERR(9, 153, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "python_wrappers.pyx":136
+    /* "python_wrappers.pyx":152
  *         instance = PyPartInstance()
  *         instance = PyPartInstance.create(instance_ptr)
  *         if kwargs is not None:             # <<<<<<<<<<<<<<
@@ -18991,19 +20187,19 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_24create_part_insta
  */
   }
 
-  /* "python_wrappers.pyx":138
+  /* "python_wrappers.pyx":154
  *         if kwargs is not None:
  *             instance.initialize_attributes(**kwargs)
  *         return instance             # <<<<<<<<<<<<<<
  * 
- *     def get_part_instance(self, rocket_name, name):
+ *     def delete_part_instance(self, PyPartInstance part_instance):
  */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_INCREF(((PyObject *)__pyx_v_instance));
   __pyx_r = ((PyObject *)__pyx_v_instance);
   goto __pyx_L0;
 
-  /* "python_wrappers.pyx":132
+  /* "python_wrappers.pyx":148
  *         return stage
  * 
  *     def create_part_instance(self, name, PyPart part, PyPartInstance parent, **kwargs):             # <<<<<<<<<<<<<<
@@ -19025,8 +20221,63 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_24create_part_insta
   return __pyx_r;
 }
 
-/* "python_wrappers.pyx":140
+/* "python_wrappers.pyx":156
  *         return instance
+ * 
+ *     def delete_part_instance(self, PyPartInstance part_instance):             # <<<<<<<<<<<<<<
+ *         self.ptr.DeletePartInstance(part_instance.ptr)
+ * 
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_37delete_part_instance(PyObject *__pyx_v_self, PyObject *__pyx_v_part_instance); /*proto*/
+static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_37delete_part_instance(PyObject *__pyx_v_self, PyObject *__pyx_v_part_instance) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("delete_part_instance (wrapper)", 0);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_part_instance), __pyx_ptype_14interface_core_PyPartInstance, 1, "part_instance", 0))) __PYX_ERR(9, 156, __pyx_L1_error)
+  __pyx_r = __pyx_pf_14interface_core_15PyInterfaceCore_36delete_part_instance(((struct __pyx_obj_14interface_core_PyInterfaceCore *)__pyx_v_self), ((struct __pyx_obj_14interface_core_PyPartInstance *)__pyx_v_part_instance));
+
+  /* function exit code */
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_36delete_part_instance(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, struct __pyx_obj_14interface_core_PyPartInstance *__pyx_v_part_instance) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("delete_part_instance", 0);
+
+  /* "python_wrappers.pyx":157
+ * 
+ *     def delete_part_instance(self, PyPartInstance part_instance):
+ *         self.ptr.DeletePartInstance(part_instance.ptr)             # <<<<<<<<<<<<<<
+ * 
+ *     def get_part_instance(self, rocket_name, name):
+ */
+  __pyx_v_self->ptr->DeletePartInstance(__pyx_v_part_instance->ptr);
+
+  /* "python_wrappers.pyx":156
+ *         return instance
+ * 
+ *     def delete_part_instance(self, PyPartInstance part_instance):             # <<<<<<<<<<<<<<
+ *         self.ptr.DeletePartInstance(part_instance.ptr)
+ * 
+ */
+
+  /* function exit code */
+  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "python_wrappers.pyx":159
+ *         self.ptr.DeletePartInstance(part_instance.ptr)
  * 
  *     def get_part_instance(self, rocket_name, name):             # <<<<<<<<<<<<<<
  *         instance = PyPartInstance()
@@ -19034,8 +20285,8 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_24create_part_insta
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_27get_part_instance(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_27get_part_instance(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_39get_part_instance(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_39get_part_instance(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_rocket_name = 0;
   PyObject *__pyx_v_name = 0;
   PyObject *__pyx_r = 0;
@@ -19064,11 +20315,11 @@ static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_27get_part_instance
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_name)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("get_part_instance", 1, 2, 2, 1); __PYX_ERR(9, 140, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("get_part_instance", 1, 2, 2, 1); __PYX_ERR(9, 159, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "get_part_instance") < 0)) __PYX_ERR(9, 140, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "get_part_instance") < 0)) __PYX_ERR(9, 159, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -19081,20 +20332,20 @@ static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_27get_part_instance
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("get_part_instance", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(9, 140, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("get_part_instance", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(9, 159, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("interface_core.PyInterfaceCore.get_part_instance", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_14interface_core_15PyInterfaceCore_26get_part_instance(((struct __pyx_obj_14interface_core_PyInterfaceCore *)__pyx_v_self), __pyx_v_rocket_name, __pyx_v_name);
+  __pyx_r = __pyx_pf_14interface_core_15PyInterfaceCore_38get_part_instance(((struct __pyx_obj_14interface_core_PyInterfaceCore *)__pyx_v_self), __pyx_v_rocket_name, __pyx_v_name);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_26get_part_instance(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_rocket_name, PyObject *__pyx_v_name) {
+static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_38get_part_instance(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_rocket_name, PyObject *__pyx_v_name) {
   struct __pyx_obj_14interface_core_PyPartInstance *__pyx_v_instance = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -19105,26 +20356,26 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_26get_part_instance
   std::string __pyx_t_5;
   __Pyx_RefNannySetupContext("get_part_instance", 0);
 
-  /* "python_wrappers.pyx":141
+  /* "python_wrappers.pyx":160
  * 
  *     def get_part_instance(self, rocket_name, name):
  *         instance = PyPartInstance()             # <<<<<<<<<<<<<<
  *         instance = PyPartInstance.create(self.ptr.GetPartInstance(rocket_name.encode('utf-8'), name.encode('utf-8')))
  *         return instance
  */
-  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_14interface_core_PyPartInstance)); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 141, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_14interface_core_PyPartInstance)); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 160, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_instance = ((struct __pyx_obj_14interface_core_PyPartInstance *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "python_wrappers.pyx":142
+  /* "python_wrappers.pyx":161
  *     def get_part_instance(self, rocket_name, name):
  *         instance = PyPartInstance()
  *         instance = PyPartInstance.create(self.ptr.GetPartInstance(rocket_name.encode('utf-8'), name.encode('utf-8')))             # <<<<<<<<<<<<<<
  *         return instance
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_rocket_name, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(9, 142, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_rocket_name, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(9, 161, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -19138,12 +20389,12 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_26get_part_instance
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_3, __pyx_kp_s_utf_8) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_kp_s_utf_8);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 142, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 161, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_4 = __pyx_convert_string_from_py_std__in_string(__pyx_t_1); if (unlikely(PyErr_Occurred())) __PYX_ERR(9, 142, __pyx_L1_error)
+  __pyx_t_4 = __pyx_convert_string_from_py_std__in_string(__pyx_t_1); if (unlikely(PyErr_Occurred())) __PYX_ERR(9, 161, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_name, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(9, 142, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_name, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(9, 161, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -19157,17 +20408,17 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_26get_part_instance
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_3, __pyx_kp_s_utf_8) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_kp_s_utf_8);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 142, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 161, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_5 = __pyx_convert_string_from_py_std__in_string(__pyx_t_1); if (unlikely(PyErr_Occurred())) __PYX_ERR(9, 142, __pyx_L1_error)
+  __pyx_t_5 = __pyx_convert_string_from_py_std__in_string(__pyx_t_1); if (unlikely(PyErr_Occurred())) __PYX_ERR(9, 161, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = ((PyObject *)__pyx_f_14interface_core_14PyPartInstance_create(__pyx_v_self->ptr->GetPartInstance(__pyx_t_4, __pyx_t_5))); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 142, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_14interface_core_14PyPartInstance_create(__pyx_v_self->ptr->GetPartInstance(__pyx_t_4, __pyx_t_5))); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 161, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF_SET(__pyx_v_instance, ((struct __pyx_obj_14interface_core_PyPartInstance *)__pyx_t_1));
   __pyx_t_1 = 0;
 
-  /* "python_wrappers.pyx":143
+  /* "python_wrappers.pyx":162
  *         instance = PyPartInstance()
  *         instance = PyPartInstance.create(self.ptr.GetPartInstance(rocket_name.encode('utf-8'), name.encode('utf-8')))
  *         return instance             # <<<<<<<<<<<<<<
@@ -19179,8 +20430,8 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_26get_part_instance
   __pyx_r = ((PyObject *)__pyx_v_instance);
   goto __pyx_L0;
 
-  /* "python_wrappers.pyx":140
- *         return instance
+  /* "python_wrappers.pyx":159
+ *         self.ptr.DeletePartInstance(part_instance.ptr)
  * 
  *     def get_part_instance(self, rocket_name, name):             # <<<<<<<<<<<<<<
  *         instance = PyPartInstance()
@@ -19201,7 +20452,7 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_26get_part_instance
   return __pyx_r;
 }
 
-/* "python_wrappers.pyx":145
+/* "python_wrappers.pyx":164
  *         return instance
  * 
  *     def create_simulation(self, name, PyConfiguration configuration, **kwargs):             # <<<<<<<<<<<<<<
@@ -19210,8 +20461,8 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_26get_part_instance
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_29create_simulation(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_29create_simulation(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_41create_simulation(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_41create_simulation(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_name = 0;
   struct __pyx_obj_14interface_core_PyConfiguration *__pyx_v_configuration = 0;
   PyObject *__pyx_v_kwargs = 0;
@@ -19243,11 +20494,11 @@ static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_29create_simulation
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_configuration)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("create_simulation", 1, 2, 2, 1); __PYX_ERR(9, 145, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("create_simulation", 1, 2, 2, 1); __PYX_ERR(9, 164, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, __pyx_v_kwargs, values, pos_args, "create_simulation") < 0)) __PYX_ERR(9, 145, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, __pyx_v_kwargs, values, pos_args, "create_simulation") < 0)) __PYX_ERR(9, 164, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -19260,15 +20511,15 @@ static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_29create_simulation
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("create_simulation", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(9, 145, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("create_simulation", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(9, 164, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_DECREF(__pyx_v_kwargs); __pyx_v_kwargs = 0;
   __Pyx_AddTraceback("interface_core.PyInterfaceCore.create_simulation", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_configuration), __pyx_ptype_14interface_core_PyConfiguration, 1, "configuration", 0))) __PYX_ERR(9, 145, __pyx_L1_error)
-  __pyx_r = __pyx_pf_14interface_core_15PyInterfaceCore_28create_simulation(((struct __pyx_obj_14interface_core_PyInterfaceCore *)__pyx_v_self), __pyx_v_name, __pyx_v_configuration, __pyx_v_kwargs);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_configuration), __pyx_ptype_14interface_core_PyConfiguration, 1, "configuration", 0))) __PYX_ERR(9, 164, __pyx_L1_error)
+  __pyx_r = __pyx_pf_14interface_core_15PyInterfaceCore_40create_simulation(((struct __pyx_obj_14interface_core_PyInterfaceCore *)__pyx_v_self), __pyx_v_name, __pyx_v_configuration, __pyx_v_kwargs);
 
   /* function exit code */
   goto __pyx_L0;
@@ -19280,7 +20531,7 @@ static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_29create_simulation
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_28create_simulation(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_name, struct __pyx_obj_14interface_core_PyConfiguration *__pyx_v_configuration, PyObject *__pyx_v_kwargs) {
+static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_40create_simulation(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_name, struct __pyx_obj_14interface_core_PyConfiguration *__pyx_v_configuration, PyObject *__pyx_v_kwargs) {
   Simulation *__pyx_v_sim_ptr;
   struct __pyx_obj_14interface_core_PySimulation *__pyx_v_sim = NULL;
   PyObject *__pyx_r = NULL;
@@ -19293,14 +20544,14 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_28create_simulation
   int __pyx_t_6;
   __Pyx_RefNannySetupContext("create_simulation", 0);
 
-  /* "python_wrappers.pyx":146
+  /* "python_wrappers.pyx":165
  * 
  *     def create_simulation(self, name, PyConfiguration configuration, **kwargs):
  *         sim_ptr = self.ptr.CreateSimulation(name.encode('utf-8'), configuration.ptr)             # <<<<<<<<<<<<<<
  *         sim = PySimulation()
  *         sim = PySimulation.create(sim_ptr)
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_name, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(9, 146, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_name, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(9, 165, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -19314,38 +20565,38 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_28create_simulation
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_3, __pyx_kp_s_utf_8) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_kp_s_utf_8);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 146, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 165, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_4 = __pyx_convert_string_from_py_std__in_string(__pyx_t_1); if (unlikely(PyErr_Occurred())) __PYX_ERR(9, 146, __pyx_L1_error)
+  __pyx_t_4 = __pyx_convert_string_from_py_std__in_string(__pyx_t_1); if (unlikely(PyErr_Occurred())) __PYX_ERR(9, 165, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_sim_ptr = __pyx_v_self->ptr->CreateSimulation(__pyx_t_4, __pyx_v_configuration->ptr);
 
-  /* "python_wrappers.pyx":147
+  /* "python_wrappers.pyx":166
  *     def create_simulation(self, name, PyConfiguration configuration, **kwargs):
  *         sim_ptr = self.ptr.CreateSimulation(name.encode('utf-8'), configuration.ptr)
  *         sim = PySimulation()             # <<<<<<<<<<<<<<
  *         sim = PySimulation.create(sim_ptr)
  *         if kwargs is not None:
  */
-  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_14interface_core_PySimulation)); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 147, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_14interface_core_PySimulation)); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 166, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_sim = ((struct __pyx_obj_14interface_core_PySimulation *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "python_wrappers.pyx":148
+  /* "python_wrappers.pyx":167
  *         sim_ptr = self.ptr.CreateSimulation(name.encode('utf-8'), configuration.ptr)
  *         sim = PySimulation()
  *         sim = PySimulation.create(sim_ptr)             # <<<<<<<<<<<<<<
  *         if kwargs is not None:
  *             sim.initialize_attributes(**kwargs)
  */
-  __pyx_t_1 = ((PyObject *)__pyx_f_14interface_core_12PySimulation_create(__pyx_v_sim_ptr)); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 148, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_14interface_core_12PySimulation_create(__pyx_v_sim_ptr)); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 167, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF_SET(__pyx_v_sim, ((struct __pyx_obj_14interface_core_PySimulation *)__pyx_t_1));
   __pyx_t_1 = 0;
 
-  /* "python_wrappers.pyx":149
+  /* "python_wrappers.pyx":168
  *         sim = PySimulation()
  *         sim = PySimulation.create(sim_ptr)
  *         if kwargs is not None:             # <<<<<<<<<<<<<<
@@ -19356,21 +20607,21 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_28create_simulation
   __pyx_t_6 = (__pyx_t_5 != 0);
   if (__pyx_t_6) {
 
-    /* "python_wrappers.pyx":150
+    /* "python_wrappers.pyx":169
  *         sim = PySimulation.create(sim_ptr)
  *         if kwargs is not None:
  *             sim.initialize_attributes(**kwargs)             # <<<<<<<<<<<<<<
  *         return sim
  * 
  */
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_sim), __pyx_n_s_initialize_attributes); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 150, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_sim), __pyx_n_s_initialize_attributes); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 169, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_v_kwargs); if (unlikely(!__pyx_t_2)) __PYX_ERR(9, 150, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_v_kwargs); if (unlikely(!__pyx_t_2)) __PYX_ERR(9, 169, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "python_wrappers.pyx":149
+    /* "python_wrappers.pyx":168
  *         sim = PySimulation()
  *         sim = PySimulation.create(sim_ptr)
  *         if kwargs is not None:             # <<<<<<<<<<<<<<
@@ -19379,19 +20630,19 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_28create_simulation
  */
   }
 
-  /* "python_wrappers.pyx":151
+  /* "python_wrappers.pyx":170
  *         if kwargs is not None:
  *             sim.initialize_attributes(**kwargs)
  *         return sim             # <<<<<<<<<<<<<<
  * 
- *     def get_simulation(self, rocket_name, configuration_name, name):
+ *     def delete_simulation(self, PySimulation simulation):
  */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_INCREF(((PyObject *)__pyx_v_sim));
   __pyx_r = ((PyObject *)__pyx_v_sim);
   goto __pyx_L0;
 
-  /* "python_wrappers.pyx":145
+  /* "python_wrappers.pyx":164
  *         return instance
  * 
  *     def create_simulation(self, name, PyConfiguration configuration, **kwargs):             # <<<<<<<<<<<<<<
@@ -19413,8 +20664,63 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_28create_simulation
   return __pyx_r;
 }
 
-/* "python_wrappers.pyx":153
+/* "python_wrappers.pyx":172
  *         return sim
+ * 
+ *     def delete_simulation(self, PySimulation simulation):             # <<<<<<<<<<<<<<
+ *         self.ptr.DeleteSimulation(simulation.ptr)
+ * 
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_43delete_simulation(PyObject *__pyx_v_self, PyObject *__pyx_v_simulation); /*proto*/
+static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_43delete_simulation(PyObject *__pyx_v_self, PyObject *__pyx_v_simulation) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("delete_simulation (wrapper)", 0);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_simulation), __pyx_ptype_14interface_core_PySimulation, 1, "simulation", 0))) __PYX_ERR(9, 172, __pyx_L1_error)
+  __pyx_r = __pyx_pf_14interface_core_15PyInterfaceCore_42delete_simulation(((struct __pyx_obj_14interface_core_PyInterfaceCore *)__pyx_v_self), ((struct __pyx_obj_14interface_core_PySimulation *)__pyx_v_simulation));
+
+  /* function exit code */
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_42delete_simulation(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, struct __pyx_obj_14interface_core_PySimulation *__pyx_v_simulation) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("delete_simulation", 0);
+
+  /* "python_wrappers.pyx":173
+ * 
+ *     def delete_simulation(self, PySimulation simulation):
+ *         self.ptr.DeleteSimulation(simulation.ptr)             # <<<<<<<<<<<<<<
+ * 
+ *     def get_simulation(self, rocket_name, configuration_name, name):
+ */
+  __pyx_v_self->ptr->DeleteSimulation(__pyx_v_simulation->ptr);
+
+  /* "python_wrappers.pyx":172
+ *         return sim
+ * 
+ *     def delete_simulation(self, PySimulation simulation):             # <<<<<<<<<<<<<<
+ *         self.ptr.DeleteSimulation(simulation.ptr)
+ * 
+ */
+
+  /* function exit code */
+  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "python_wrappers.pyx":175
+ *         self.ptr.DeleteSimulation(simulation.ptr)
  * 
  *     def get_simulation(self, rocket_name, configuration_name, name):             # <<<<<<<<<<<<<<
  *         simulation = PySimulation()
@@ -19422,8 +20728,8 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_28create_simulation
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_31get_simulation(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_31get_simulation(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_45get_simulation(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_45get_simulation(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_rocket_name = 0;
   PyObject *__pyx_v_configuration_name = 0;
   PyObject *__pyx_v_name = 0;
@@ -19455,17 +20761,17 @@ static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_31get_simulation(Py
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_configuration_name)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("get_simulation", 1, 3, 3, 1); __PYX_ERR(9, 153, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("get_simulation", 1, 3, 3, 1); __PYX_ERR(9, 175, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_name)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("get_simulation", 1, 3, 3, 2); __PYX_ERR(9, 153, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("get_simulation", 1, 3, 3, 2); __PYX_ERR(9, 175, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "get_simulation") < 0)) __PYX_ERR(9, 153, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "get_simulation") < 0)) __PYX_ERR(9, 175, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -19480,20 +20786,20 @@ static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_31get_simulation(Py
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("get_simulation", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(9, 153, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("get_simulation", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(9, 175, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("interface_core.PyInterfaceCore.get_simulation", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_14interface_core_15PyInterfaceCore_30get_simulation(((struct __pyx_obj_14interface_core_PyInterfaceCore *)__pyx_v_self), __pyx_v_rocket_name, __pyx_v_configuration_name, __pyx_v_name);
+  __pyx_r = __pyx_pf_14interface_core_15PyInterfaceCore_44get_simulation(((struct __pyx_obj_14interface_core_PyInterfaceCore *)__pyx_v_self), __pyx_v_rocket_name, __pyx_v_configuration_name, __pyx_v_name);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_30get_simulation(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_rocket_name, PyObject *__pyx_v_configuration_name, PyObject *__pyx_v_name) {
+static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_44get_simulation(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_rocket_name, PyObject *__pyx_v_configuration_name, PyObject *__pyx_v_name) {
   struct __pyx_obj_14interface_core_PySimulation *__pyx_v_simulation = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -19505,26 +20811,26 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_30get_simulation(st
   std::string __pyx_t_6;
   __Pyx_RefNannySetupContext("get_simulation", 0);
 
-  /* "python_wrappers.pyx":154
+  /* "python_wrappers.pyx":176
  * 
  *     def get_simulation(self, rocket_name, configuration_name, name):
  *         simulation = PySimulation()             # <<<<<<<<<<<<<<
  *         simulation = PySimulation.create(self.ptr.GetSimulation(rocket_name.encode('utf-8'), configuration_name.encode('utf-8'), name.encode('utf-8')))
  *         return simulation
  */
-  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_14interface_core_PySimulation)); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 154, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_14interface_core_PySimulation)); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 176, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_simulation = ((struct __pyx_obj_14interface_core_PySimulation *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "python_wrappers.pyx":155
+  /* "python_wrappers.pyx":177
  *     def get_simulation(self, rocket_name, configuration_name, name):
  *         simulation = PySimulation()
  *         simulation = PySimulation.create(self.ptr.GetSimulation(rocket_name.encode('utf-8'), configuration_name.encode('utf-8'), name.encode('utf-8')))             # <<<<<<<<<<<<<<
  *         return simulation
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_rocket_name, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(9, 155, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_rocket_name, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(9, 177, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -19538,12 +20844,12 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_30get_simulation(st
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_3, __pyx_kp_s_utf_8) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_kp_s_utf_8);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 155, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 177, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_4 = __pyx_convert_string_from_py_std__in_string(__pyx_t_1); if (unlikely(PyErr_Occurred())) __PYX_ERR(9, 155, __pyx_L1_error)
+  __pyx_t_4 = __pyx_convert_string_from_py_std__in_string(__pyx_t_1); if (unlikely(PyErr_Occurred())) __PYX_ERR(9, 177, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_configuration_name, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(9, 155, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_configuration_name, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(9, 177, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -19557,12 +20863,12 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_30get_simulation(st
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_3, __pyx_kp_s_utf_8) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_kp_s_utf_8);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 155, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 177, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_5 = __pyx_convert_string_from_py_std__in_string(__pyx_t_1); if (unlikely(PyErr_Occurred())) __PYX_ERR(9, 155, __pyx_L1_error)
+  __pyx_t_5 = __pyx_convert_string_from_py_std__in_string(__pyx_t_1); if (unlikely(PyErr_Occurred())) __PYX_ERR(9, 177, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_name, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(9, 155, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_name, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(9, 177, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -19576,30 +20882,30 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_30get_simulation(st
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_3, __pyx_kp_s_utf_8) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_kp_s_utf_8);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 155, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 177, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_6 = __pyx_convert_string_from_py_std__in_string(__pyx_t_1); if (unlikely(PyErr_Occurred())) __PYX_ERR(9, 155, __pyx_L1_error)
+  __pyx_t_6 = __pyx_convert_string_from_py_std__in_string(__pyx_t_1); if (unlikely(PyErr_Occurred())) __PYX_ERR(9, 177, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = ((PyObject *)__pyx_f_14interface_core_12PySimulation_create(__pyx_v_self->ptr->GetSimulation(__pyx_t_4, __pyx_t_5, __pyx_t_6))); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 155, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_14interface_core_12PySimulation_create(__pyx_v_self->ptr->GetSimulation(__pyx_t_4, __pyx_t_5, __pyx_t_6))); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 177, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF_SET(__pyx_v_simulation, ((struct __pyx_obj_14interface_core_PySimulation *)__pyx_t_1));
   __pyx_t_1 = 0;
 
-  /* "python_wrappers.pyx":156
+  /* "python_wrappers.pyx":178
  *         simulation = PySimulation()
  *         simulation = PySimulation.create(self.ptr.GetSimulation(rocket_name.encode('utf-8'), configuration_name.encode('utf-8'), name.encode('utf-8')))
  *         return simulation             # <<<<<<<<<<<<<<
  * 
- *     def create_motor(self, path):
+ *     def create_motor(self, path=None, **kwargs):
  */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_INCREF(((PyObject *)__pyx_v_simulation));
   __pyx_r = ((PyObject *)__pyx_v_simulation);
   goto __pyx_L0;
 
-  /* "python_wrappers.pyx":153
- *         return sim
+  /* "python_wrappers.pyx":175
+ *         self.ptr.DeleteSimulation(simulation.ptr)
  * 
  *     def get_simulation(self, rocket_name, configuration_name, name):             # <<<<<<<<<<<<<<
  *         simulation = PySimulation()
@@ -19620,115 +20926,232 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_30get_simulation(st
   return __pyx_r;
 }
 
-/* "python_wrappers.pyx":158
+/* "python_wrappers.pyx":180
  *         return simulation
  * 
- *     def create_motor(self, path):             # <<<<<<<<<<<<<<
- *         motor_ptr = self.ptr.CreateMotor(path.encode('utf-8'))
- *         motor = PyMotor()
+ *     def create_motor(self, path=None, **kwargs):             # <<<<<<<<<<<<<<
+ *         if path is not None:
+ *             motor_ptr = self.ptr.CreateMotor(path.encode('utf-8'))
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_33create_motor(PyObject *__pyx_v_self, PyObject *__pyx_v_path); /*proto*/
-static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_33create_motor(PyObject *__pyx_v_self, PyObject *__pyx_v_path) {
+static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_47create_motor(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_47create_motor(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+  PyObject *__pyx_v_path = 0;
+  PyObject *__pyx_v_kwargs = 0;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("create_motor (wrapper)", 0);
-  __pyx_r = __pyx_pf_14interface_core_15PyInterfaceCore_32create_motor(((struct __pyx_obj_14interface_core_PyInterfaceCore *)__pyx_v_self), ((PyObject *)__pyx_v_path));
+  __pyx_v_kwargs = PyDict_New(); if (unlikely(!__pyx_v_kwargs)) return NULL;
+  __Pyx_GOTREF(__pyx_v_kwargs);
+  {
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_path,0};
+    PyObject* values[1] = {0};
+    values[0] = ((PyObject *)Py_None);
+    if (unlikely(__pyx_kwds)) {
+      Py_ssize_t kw_args;
+      const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
+      switch (pos_args) {
+        case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      kw_args = PyDict_Size(__pyx_kwds);
+      switch (pos_args) {
+        case  0:
+        if (kw_args > 0) {
+          PyObject* value = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_path);
+          if (value) { values[0] = value; kw_args--; }
+        }
+      }
+      if (unlikely(kw_args > 0)) {
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, __pyx_v_kwargs, values, pos_args, "create_motor") < 0)) __PYX_ERR(9, 180, __pyx_L3_error)
+      }
+    } else {
+      switch (PyTuple_GET_SIZE(__pyx_args)) {
+        case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+    }
+    __pyx_v_path = values[0];
+  }
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("create_motor", 0, 0, 1, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(9, 180, __pyx_L3_error)
+  __pyx_L3_error:;
+  __Pyx_DECREF(__pyx_v_kwargs); __pyx_v_kwargs = 0;
+  __Pyx_AddTraceback("interface_core.PyInterfaceCore.create_motor", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_14interface_core_15PyInterfaceCore_46create_motor(((struct __pyx_obj_14interface_core_PyInterfaceCore *)__pyx_v_self), __pyx_v_path, __pyx_v_kwargs);
 
   /* function exit code */
+  __Pyx_XDECREF(__pyx_v_kwargs);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_32create_motor(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_path) {
+static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_46create_motor(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_path, PyObject *__pyx_v_kwargs) {
   Motor *__pyx_v_motor_ptr;
   struct __pyx_obj_14interface_core_PyMotor *__pyx_v_motor = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
-  PyObject *__pyx_t_2 = NULL;
+  int __pyx_t_1;
+  int __pyx_t_2;
   PyObject *__pyx_t_3 = NULL;
-  std::string __pyx_t_4;
+  PyObject *__pyx_t_4 = NULL;
+  PyObject *__pyx_t_5 = NULL;
+  std::string __pyx_t_6;
   __Pyx_RefNannySetupContext("create_motor", 0);
 
-  /* "python_wrappers.pyx":159
+  /* "python_wrappers.pyx":181
  * 
- *     def create_motor(self, path):
- *         motor_ptr = self.ptr.CreateMotor(path.encode('utf-8'))             # <<<<<<<<<<<<<<
+ *     def create_motor(self, path=None, **kwargs):
+ *         if path is not None:             # <<<<<<<<<<<<<<
+ *             motor_ptr = self.ptr.CreateMotor(path.encode('utf-8'))
+ *         else:
+ */
+  __pyx_t_1 = (__pyx_v_path != Py_None);
+  __pyx_t_2 = (__pyx_t_1 != 0);
+  if (__pyx_t_2) {
+
+    /* "python_wrappers.pyx":182
+ *     def create_motor(self, path=None, **kwargs):
+ *         if path is not None:
+ *             motor_ptr = self.ptr.CreateMotor(path.encode('utf-8'))             # <<<<<<<<<<<<<<
+ *         else:
+ *             motor_ptr = self.ptr.CreateMotor()
+ */
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_path, __pyx_n_s_encode); if (unlikely(!__pyx_t_4)) __PYX_ERR(9, 182, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
+    __pyx_t_5 = NULL;
+    if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_4))) {
+      __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_4);
+      if (likely(__pyx_t_5)) {
+        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
+        __Pyx_INCREF(__pyx_t_5);
+        __Pyx_INCREF(function);
+        __Pyx_DECREF_SET(__pyx_t_4, function);
+      }
+    }
+    __pyx_t_3 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_5, __pyx_kp_s_utf_8) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_kp_s_utf_8);
+    __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(9, 182, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __pyx_t_6 = __pyx_convert_string_from_py_std__in_string(__pyx_t_3); if (unlikely(PyErr_Occurred())) __PYX_ERR(9, 182, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __pyx_v_motor_ptr = __pyx_v_self->ptr->CreateMotor(__pyx_t_6);
+
+    /* "python_wrappers.pyx":181
+ * 
+ *     def create_motor(self, path=None, **kwargs):
+ *         if path is not None:             # <<<<<<<<<<<<<<
+ *             motor_ptr = self.ptr.CreateMotor(path.encode('utf-8'))
+ *         else:
+ */
+    goto __pyx_L3;
+  }
+
+  /* "python_wrappers.pyx":184
+ *             motor_ptr = self.ptr.CreateMotor(path.encode('utf-8'))
+ *         else:
+ *             motor_ptr = self.ptr.CreateMotor()             # <<<<<<<<<<<<<<
  *         motor = PyMotor()
  *         motor = PyMotor.create(motor_ptr)
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_path, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(9, 159, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = NULL;
-  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
-    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_2);
-    if (likely(__pyx_t_3)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
-      __Pyx_INCREF(__pyx_t_3);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_2, function);
-    }
+  /*else*/ {
+    __pyx_v_motor_ptr = __pyx_v_self->ptr->CreateMotor();
   }
-  __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_3, __pyx_kp_s_utf_8) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_kp_s_utf_8);
-  __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 159, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_4 = __pyx_convert_string_from_py_std__in_string(__pyx_t_1); if (unlikely(PyErr_Occurred())) __PYX_ERR(9, 159, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_v_motor_ptr = __pyx_v_self->ptr->CreateMotor(__pyx_t_4);
+  __pyx_L3:;
 
-  /* "python_wrappers.pyx":160
- *     def create_motor(self, path):
- *         motor_ptr = self.ptr.CreateMotor(path.encode('utf-8'))
+  /* "python_wrappers.pyx":185
+ *         else:
+ *             motor_ptr = self.ptr.CreateMotor()
  *         motor = PyMotor()             # <<<<<<<<<<<<<<
  *         motor = PyMotor.create(motor_ptr)
- *         return motor
+ *         if kwargs is not None:
  */
-  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_14interface_core_PyMotor)); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 160, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_v_motor = ((struct __pyx_obj_14interface_core_PyMotor *)__pyx_t_1);
-  __pyx_t_1 = 0;
+  __pyx_t_3 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_14interface_core_PyMotor)); if (unlikely(!__pyx_t_3)) __PYX_ERR(9, 185, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_v_motor = ((struct __pyx_obj_14interface_core_PyMotor *)__pyx_t_3);
+  __pyx_t_3 = 0;
 
-  /* "python_wrappers.pyx":161
- *         motor_ptr = self.ptr.CreateMotor(path.encode('utf-8'))
+  /* "python_wrappers.pyx":186
+ *             motor_ptr = self.ptr.CreateMotor()
  *         motor = PyMotor()
  *         motor = PyMotor.create(motor_ptr)             # <<<<<<<<<<<<<<
+ *         if kwargs is not None:
+ *             motor.initialize_attributes(**kwargs)
+ */
+  __pyx_t_3 = ((PyObject *)__pyx_f_14interface_core_7PyMotor_create(__pyx_v_motor_ptr)); if (unlikely(!__pyx_t_3)) __PYX_ERR(9, 186, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF_SET(__pyx_v_motor, ((struct __pyx_obj_14interface_core_PyMotor *)__pyx_t_3));
+  __pyx_t_3 = 0;
+
+  /* "python_wrappers.pyx":187
+ *         motor = PyMotor()
+ *         motor = PyMotor.create(motor_ptr)
+ *         if kwargs is not None:             # <<<<<<<<<<<<<<
+ *             motor.initialize_attributes(**kwargs)
+ *         return motor
+ */
+  __pyx_t_2 = (__pyx_v_kwargs != ((PyObject*)Py_None));
+  __pyx_t_1 = (__pyx_t_2 != 0);
+  if (__pyx_t_1) {
+
+    /* "python_wrappers.pyx":188
+ *         motor = PyMotor.create(motor_ptr)
+ *         if kwargs is not None:
+ *             motor.initialize_attributes(**kwargs)             # <<<<<<<<<<<<<<
  *         return motor
  * 
  */
-  __pyx_t_1 = ((PyObject *)__pyx_f_14interface_core_7PyMotor_create(__pyx_v_motor_ptr)); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 161, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF_SET(__pyx_v_motor, ((struct __pyx_obj_14interface_core_PyMotor *)__pyx_t_1));
-  __pyx_t_1 = 0;
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_motor), __pyx_n_s_initialize_attributes); if (unlikely(!__pyx_t_3)) __PYX_ERR(9, 188, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_empty_tuple, __pyx_v_kwargs); if (unlikely(!__pyx_t_4)) __PYX_ERR(9, 188, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "python_wrappers.pyx":162
+    /* "python_wrappers.pyx":187
  *         motor = PyMotor()
  *         motor = PyMotor.create(motor_ptr)
+ *         if kwargs is not None:             # <<<<<<<<<<<<<<
+ *             motor.initialize_attributes(**kwargs)
+ *         return motor
+ */
+  }
+
+  /* "python_wrappers.pyx":189
+ *         if kwargs is not None:
+ *             motor.initialize_attributes(**kwargs)
  *         return motor             # <<<<<<<<<<<<<<
  * 
- *     def get_motor(self, name):
+ *     def delete_motor(self, PyMotor motor):
  */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_INCREF(((PyObject *)__pyx_v_motor));
   __pyx_r = ((PyObject *)__pyx_v_motor);
   goto __pyx_L0;
 
-  /* "python_wrappers.pyx":158
+  /* "python_wrappers.pyx":180
  *         return simulation
  * 
- *     def create_motor(self, path):             # <<<<<<<<<<<<<<
- *         motor_ptr = self.ptr.CreateMotor(path.encode('utf-8'))
- *         motor = PyMotor()
+ *     def create_motor(self, path=None, **kwargs):             # <<<<<<<<<<<<<<
+ *         if path is not None:
+ *             motor_ptr = self.ptr.CreateMotor(path.encode('utf-8'))
  */
 
   /* function exit code */
   __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_XDECREF(__pyx_t_5);
   __Pyx_AddTraceback("interface_core.PyInterfaceCore.create_motor", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
@@ -19738,8 +21161,63 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_32create_motor(stru
   return __pyx_r;
 }
 
-/* "python_wrappers.pyx":164
+/* "python_wrappers.pyx":191
  *         return motor
+ * 
+ *     def delete_motor(self, PyMotor motor):             # <<<<<<<<<<<<<<
+ *         self.ptr.DeleteMotor(motor.ptr)
+ * 
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_49delete_motor(PyObject *__pyx_v_self, PyObject *__pyx_v_motor); /*proto*/
+static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_49delete_motor(PyObject *__pyx_v_self, PyObject *__pyx_v_motor) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("delete_motor (wrapper)", 0);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_motor), __pyx_ptype_14interface_core_PyMotor, 1, "motor", 0))) __PYX_ERR(9, 191, __pyx_L1_error)
+  __pyx_r = __pyx_pf_14interface_core_15PyInterfaceCore_48delete_motor(((struct __pyx_obj_14interface_core_PyInterfaceCore *)__pyx_v_self), ((struct __pyx_obj_14interface_core_PyMotor *)__pyx_v_motor));
+
+  /* function exit code */
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_48delete_motor(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, struct __pyx_obj_14interface_core_PyMotor *__pyx_v_motor) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("delete_motor", 0);
+
+  /* "python_wrappers.pyx":192
+ * 
+ *     def delete_motor(self, PyMotor motor):
+ *         self.ptr.DeleteMotor(motor.ptr)             # <<<<<<<<<<<<<<
+ * 
+ *     def get_motor(self, name):
+ */
+  __pyx_v_self->ptr->DeleteMotor(__pyx_v_motor->ptr);
+
+  /* "python_wrappers.pyx":191
+ *         return motor
+ * 
+ *     def delete_motor(self, PyMotor motor):             # <<<<<<<<<<<<<<
+ *         self.ptr.DeleteMotor(motor.ptr)
+ * 
+ */
+
+  /* function exit code */
+  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "python_wrappers.pyx":194
+ *         self.ptr.DeleteMotor(motor.ptr)
  * 
  *     def get_motor(self, name):             # <<<<<<<<<<<<<<
  *         motor = PyMotor()
@@ -19747,19 +21225,19 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_32create_motor(stru
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_35get_motor(PyObject *__pyx_v_self, PyObject *__pyx_v_name); /*proto*/
-static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_35get_motor(PyObject *__pyx_v_self, PyObject *__pyx_v_name) {
+static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_51get_motor(PyObject *__pyx_v_self, PyObject *__pyx_v_name); /*proto*/
+static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_51get_motor(PyObject *__pyx_v_self, PyObject *__pyx_v_name) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("get_motor (wrapper)", 0);
-  __pyx_r = __pyx_pf_14interface_core_15PyInterfaceCore_34get_motor(((struct __pyx_obj_14interface_core_PyInterfaceCore *)__pyx_v_self), ((PyObject *)__pyx_v_name));
+  __pyx_r = __pyx_pf_14interface_core_15PyInterfaceCore_50get_motor(((struct __pyx_obj_14interface_core_PyInterfaceCore *)__pyx_v_self), ((PyObject *)__pyx_v_name));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_34get_motor(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_name) {
+static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_50get_motor(struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, PyObject *__pyx_v_name) {
   struct __pyx_obj_14interface_core_PyMotor *__pyx_v_motor = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -19769,26 +21247,26 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_34get_motor(struct 
   std::string __pyx_t_4;
   __Pyx_RefNannySetupContext("get_motor", 0);
 
-  /* "python_wrappers.pyx":165
+  /* "python_wrappers.pyx":195
  * 
  *     def get_motor(self, name):
  *         motor = PyMotor()             # <<<<<<<<<<<<<<
  *         motor = PyMotor.create(self.ptr.GetMotor(name.encode('utf-8')))
  *         return motor
  */
-  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_14interface_core_PyMotor)); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 165, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_14interface_core_PyMotor)); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 195, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_motor = ((struct __pyx_obj_14interface_core_PyMotor *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "python_wrappers.pyx":166
+  /* "python_wrappers.pyx":196
  *     def get_motor(self, name):
  *         motor = PyMotor()
  *         motor = PyMotor.create(self.ptr.GetMotor(name.encode('utf-8')))             # <<<<<<<<<<<<<<
  *         return motor
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_name, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(9, 166, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_name, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(9, 196, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -19802,17 +21280,17 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_34get_motor(struct 
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_3, __pyx_kp_s_utf_8) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_kp_s_utf_8);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 166, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 196, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_4 = __pyx_convert_string_from_py_std__in_string(__pyx_t_1); if (unlikely(PyErr_Occurred())) __PYX_ERR(9, 166, __pyx_L1_error)
+  __pyx_t_4 = __pyx_convert_string_from_py_std__in_string(__pyx_t_1); if (unlikely(PyErr_Occurred())) __PYX_ERR(9, 196, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = ((PyObject *)__pyx_f_14interface_core_7PyMotor_create(__pyx_v_self->ptr->GetMotor(__pyx_t_4))); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 166, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_14interface_core_7PyMotor_create(__pyx_v_self->ptr->GetMotor(__pyx_t_4))); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 196, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF_SET(__pyx_v_motor, ((struct __pyx_obj_14interface_core_PyMotor *)__pyx_t_1));
   __pyx_t_1 = 0;
 
-  /* "python_wrappers.pyx":167
+  /* "python_wrappers.pyx":197
  *         motor = PyMotor()
  *         motor = PyMotor.create(self.ptr.GetMotor(name.encode('utf-8')))
  *         return motor             # <<<<<<<<<<<<<<
@@ -19824,8 +21302,8 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_34get_motor(struct 
   __pyx_r = ((PyObject *)__pyx_v_motor);
   goto __pyx_L0;
 
-  /* "python_wrappers.pyx":164
- *         return motor
+  /* "python_wrappers.pyx":194
+ *         self.ptr.DeleteMotor(motor.ptr)
  * 
  *     def get_motor(self, name):             # <<<<<<<<<<<<<<
  *         motor = PyMotor()
@@ -19853,19 +21331,19 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_34get_motor(struct 
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_37__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_37__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_53__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_53__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__reduce_cython__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_14interface_core_15PyInterfaceCore_36__reduce_cython__(((struct __pyx_obj_14interface_core_PyInterfaceCore *)__pyx_v_self));
+  __pyx_r = __pyx_pf_14interface_core_15PyInterfaceCore_52__reduce_cython__(((struct __pyx_obj_14interface_core_PyInterfaceCore *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_36__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self) {
+static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_52__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -19907,19 +21385,19 @@ static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_36__reduce_cython__
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_39__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state); /*proto*/
-static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_39__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_55__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state); /*proto*/
+static PyObject *__pyx_pw_14interface_core_15PyInterfaceCore_55__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__setstate_cython__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_14interface_core_15PyInterfaceCore_38__setstate_cython__(((struct __pyx_obj_14interface_core_PyInterfaceCore *)__pyx_v_self), ((PyObject *)__pyx_v___pyx_state));
+  __pyx_r = __pyx_pf_14interface_core_15PyInterfaceCore_54__setstate_cython__(((struct __pyx_obj_14interface_core_PyInterfaceCore *)__pyx_v_self), ((PyObject *)__pyx_v___pyx_state));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_38__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_14interface_core_15PyInterfaceCore_54__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_14interface_core_PyInterfaceCore *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -20307,6 +21785,125 @@ static PyObject *__pyx_convert_vector_to_py_double(const std::vector<double>  &_
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "vector.from_py":45
+ * 
+ * @cname("__pyx_convert_vector_from_py_double")
+ * cdef vector[X] __pyx_convert_vector_from_py_double(object o) except *:             # <<<<<<<<<<<<<<
+ *     cdef vector[X] v
+ *     for item in o:
+ */
+
+static std::vector<double>  __pyx_convert_vector_from_py_double(PyObject *__pyx_v_o) {
+  std::vector<double>  __pyx_v_v;
+  PyObject *__pyx_v_item = NULL;
+  std::vector<double>  __pyx_r;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  Py_ssize_t __pyx_t_2;
+  PyObject *(*__pyx_t_3)(PyObject *);
+  PyObject *__pyx_t_4 = NULL;
+  double __pyx_t_5;
+  __Pyx_RefNannySetupContext("__pyx_convert_vector_from_py_double", 0);
+
+  /* "vector.from_py":47
+ * cdef vector[X] __pyx_convert_vector_from_py_double(object o) except *:
+ *     cdef vector[X] v
+ *     for item in o:             # <<<<<<<<<<<<<<
+ *         v.push_back(<X>item)
+ *     return v
+ */
+  if (likely(PyList_CheckExact(__pyx_v_o)) || PyTuple_CheckExact(__pyx_v_o)) {
+    __pyx_t_1 = __pyx_v_o; __Pyx_INCREF(__pyx_t_1); __pyx_t_2 = 0;
+    __pyx_t_3 = NULL;
+  } else {
+    __pyx_t_2 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_v_o); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 47, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_3 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 47, __pyx_L1_error)
+  }
+  for (;;) {
+    if (likely(!__pyx_t_3)) {
+      if (likely(PyList_CheckExact(__pyx_t_1))) {
+        if (__pyx_t_2 >= PyList_GET_SIZE(__pyx_t_1)) break;
+        #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+        __pyx_t_4 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_2); __Pyx_INCREF(__pyx_t_4); __pyx_t_2++; if (unlikely(0 < 0)) __PYX_ERR(0, 47, __pyx_L1_error)
+        #else
+        __pyx_t_4 = PySequence_ITEM(__pyx_t_1, __pyx_t_2); __pyx_t_2++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 47, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_4);
+        #endif
+      } else {
+        if (__pyx_t_2 >= PyTuple_GET_SIZE(__pyx_t_1)) break;
+        #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+        __pyx_t_4 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_2); __Pyx_INCREF(__pyx_t_4); __pyx_t_2++; if (unlikely(0 < 0)) __PYX_ERR(0, 47, __pyx_L1_error)
+        #else
+        __pyx_t_4 = PySequence_ITEM(__pyx_t_1, __pyx_t_2); __pyx_t_2++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 47, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_4);
+        #endif
+      }
+    } else {
+      __pyx_t_4 = __pyx_t_3(__pyx_t_1);
+      if (unlikely(!__pyx_t_4)) {
+        PyObject* exc_type = PyErr_Occurred();
+        if (exc_type) {
+          if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
+          else __PYX_ERR(0, 47, __pyx_L1_error)
+        }
+        break;
+      }
+      __Pyx_GOTREF(__pyx_t_4);
+    }
+    __Pyx_XDECREF_SET(__pyx_v_item, __pyx_t_4);
+    __pyx_t_4 = 0;
+
+    /* "vector.from_py":48
+ *     cdef vector[X] v
+ *     for item in o:
+ *         v.push_back(<X>item)             # <<<<<<<<<<<<<<
+ *     return v
+ * 
+ */
+    __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_v_item); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 48, __pyx_L1_error)
+    __pyx_v_v.push_back(((double)__pyx_t_5));
+
+    /* "vector.from_py":47
+ * cdef vector[X] __pyx_convert_vector_from_py_double(object o) except *:
+ *     cdef vector[X] v
+ *     for item in o:             # <<<<<<<<<<<<<<
+ *         v.push_back(<X>item)
+ *     return v
+ */
+  }
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "vector.from_py":49
+ *     for item in o:
+ *         v.push_back(<X>item)
+ *     return v             # <<<<<<<<<<<<<<
+ * 
+ * 
+ */
+  __pyx_r = __pyx_v_v;
+  goto __pyx_L0;
+
+  /* "vector.from_py":45
+ * 
+ * @cname("__pyx_convert_vector_from_py_double")
+ * cdef vector[X] __pyx_convert_vector_from_py_double(object o) except *:             # <<<<<<<<<<<<<<
+ *     cdef vector[X] v
+ *     for item in o:
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_AddTraceback("vector.from_py.__pyx_convert_vector_from_py_double", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_pretend_to_initialize(&__pyx_r);
+  __pyx_L0:;
+  __Pyx_XDECREF(__pyx_v_item);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
@@ -20804,55 +22401,161 @@ static PyObject *__pyx_getprop_14interface_core_7PyMotor_name(PyObject *o, CYTHO
   return __pyx_pw_14interface_core_7PyMotor_4name_1__get__(o);
 }
 
+static int __pyx_setprop_14interface_core_7PyMotor_name(PyObject *o, PyObject *v, CYTHON_UNUSED void *x) {
+  if (v) {
+    return __pyx_pw_14interface_core_7PyMotor_4name_3__set__(o, v);
+  }
+  else {
+    PyErr_SetString(PyExc_NotImplementedError, "__del__");
+    return -1;
+  }
+}
+
 static PyObject *__pyx_getprop_14interface_core_7PyMotor_comments(PyObject *o, CYTHON_UNUSED void *x) {
   return __pyx_pw_14interface_core_7PyMotor_8comments_1__get__(o);
+}
+
+static int __pyx_setprop_14interface_core_7PyMotor_comments(PyObject *o, PyObject *v, CYTHON_UNUSED void *x) {
+  if (v) {
+    return __pyx_pw_14interface_core_7PyMotor_8comments_3__set__(o, v);
+  }
+  else {
+    PyErr_SetString(PyExc_NotImplementedError, "__del__");
+    return -1;
+  }
 }
 
 static PyObject *__pyx_getprop_14interface_core_7PyMotor_manufacturer(PyObject *o, CYTHON_UNUSED void *x) {
   return __pyx_pw_14interface_core_7PyMotor_12manufacturer_1__get__(o);
 }
 
+static int __pyx_setprop_14interface_core_7PyMotor_manufacturer(PyObject *o, PyObject *v, CYTHON_UNUSED void *x) {
+  if (v) {
+    return __pyx_pw_14interface_core_7PyMotor_12manufacturer_3__set__(o, v);
+  }
+  else {
+    PyErr_SetString(PyExc_NotImplementedError, "__del__");
+    return -1;
+  }
+}
+
 static PyObject *__pyx_getprop_14interface_core_7PyMotor_diameter(PyObject *o, CYTHON_UNUSED void *x) {
   return __pyx_pw_14interface_core_7PyMotor_8diameter_1__get__(o);
+}
+
+static int __pyx_setprop_14interface_core_7PyMotor_diameter(PyObject *o, PyObject *v, CYTHON_UNUSED void *x) {
+  if (v) {
+    return __pyx_pw_14interface_core_7PyMotor_8diameter_3__set__(o, v);
+  }
+  else {
+    PyErr_SetString(PyExc_NotImplementedError, "__del__");
+    return -1;
+  }
 }
 
 static PyObject *__pyx_getprop_14interface_core_7PyMotor_length(PyObject *o, CYTHON_UNUSED void *x) {
   return __pyx_pw_14interface_core_7PyMotor_6length_1__get__(o);
 }
 
+static int __pyx_setprop_14interface_core_7PyMotor_length(PyObject *o, PyObject *v, CYTHON_UNUSED void *x) {
+  if (v) {
+    return __pyx_pw_14interface_core_7PyMotor_6length_3__set__(o, v);
+  }
+  else {
+    PyErr_SetString(PyExc_NotImplementedError, "__del__");
+    return -1;
+  }
+}
+
 static PyObject *__pyx_getprop_14interface_core_7PyMotor_mass_propellant(PyObject *o, CYTHON_UNUSED void *x) {
   return __pyx_pw_14interface_core_7PyMotor_15mass_propellant_1__get__(o);
+}
+
+static int __pyx_setprop_14interface_core_7PyMotor_mass_propellant(PyObject *o, PyObject *v, CYTHON_UNUSED void *x) {
+  if (v) {
+    return __pyx_pw_14interface_core_7PyMotor_15mass_propellant_3__set__(o, v);
+  }
+  else {
+    PyErr_SetString(PyExc_NotImplementedError, "__del__");
+    return -1;
+  }
 }
 
 static PyObject *__pyx_getprop_14interface_core_7PyMotor_mass_total(PyObject *o, CYTHON_UNUSED void *x) {
   return __pyx_pw_14interface_core_7PyMotor_10mass_total_1__get__(o);
 }
 
+static int __pyx_setprop_14interface_core_7PyMotor_mass_total(PyObject *o, PyObject *v, CYTHON_UNUSED void *x) {
+  if (v) {
+    return __pyx_pw_14interface_core_7PyMotor_10mass_total_3__set__(o, v);
+  }
+  else {
+    PyErr_SetString(PyExc_NotImplementedError, "__del__");
+    return -1;
+  }
+}
+
+static PyObject *__pyx_getprop_14interface_core_7PyMotor_delay(PyObject *o, CYTHON_UNUSED void *x) {
+  return __pyx_pw_14interface_core_7PyMotor_5delay_1__get__(o);
+}
+
+static int __pyx_setprop_14interface_core_7PyMotor_delay(PyObject *o, PyObject *v, CYTHON_UNUSED void *x) {
+  if (v) {
+    return __pyx_pw_14interface_core_7PyMotor_5delay_3__set__(o, v);
+  }
+  else {
+    PyErr_SetString(PyExc_NotImplementedError, "__del__");
+    return -1;
+  }
+}
+
 static PyObject *__pyx_getprop_14interface_core_7PyMotor_data_time(PyObject *o, CYTHON_UNUSED void *x) {
   return __pyx_pw_14interface_core_7PyMotor_9data_time_1__get__(o);
+}
+
+static int __pyx_setprop_14interface_core_7PyMotor_data_time(PyObject *o, PyObject *v, CYTHON_UNUSED void *x) {
+  if (v) {
+    return __pyx_pw_14interface_core_7PyMotor_9data_time_3__set__(o, v);
+  }
+  else {
+    PyErr_SetString(PyExc_NotImplementedError, "__del__");
+    return -1;
+  }
 }
 
 static PyObject *__pyx_getprop_14interface_core_7PyMotor_data_thrust(PyObject *o, CYTHON_UNUSED void *x) {
   return __pyx_pw_14interface_core_7PyMotor_11data_thrust_1__get__(o);
 }
 
+static int __pyx_setprop_14interface_core_7PyMotor_data_thrust(PyObject *o, PyObject *v, CYTHON_UNUSED void *x) {
+  if (v) {
+    return __pyx_pw_14interface_core_7PyMotor_11data_thrust_3__set__(o, v);
+  }
+  else {
+    PyErr_SetString(PyExc_NotImplementedError, "__del__");
+    return -1;
+  }
+}
+
 static PyMethodDef __pyx_methods_14interface_core_PyMotor[] = {
-  {"named_attributes", (PyCFunction)__pyx_pw_14interface_core_7PyMotor_3named_attributes, METH_NOARGS, 0},
-  {"__reduce_cython__", (PyCFunction)__pyx_pw_14interface_core_7PyMotor_5__reduce_cython__, METH_NOARGS, 0},
-  {"__setstate_cython__", (PyCFunction)__pyx_pw_14interface_core_7PyMotor_7__setstate_cython__, METH_O, 0},
+  {"initialize_attributes", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_14interface_core_7PyMotor_3initialize_attributes, METH_VARARGS|METH_KEYWORDS, 0},
+  {"named_attributes", (PyCFunction)__pyx_pw_14interface_core_7PyMotor_5named_attributes, METH_NOARGS, 0},
+  {"__reduce_cython__", (PyCFunction)__pyx_pw_14interface_core_7PyMotor_7__reduce_cython__, METH_NOARGS, 0},
+  {"__setstate_cython__", (PyCFunction)__pyx_pw_14interface_core_7PyMotor_9__setstate_cython__, METH_O, 0},
   {0, 0, 0, 0}
 };
 
 static struct PyGetSetDef __pyx_getsets_14interface_core_PyMotor[] = {
-  {(char *)"name", __pyx_getprop_14interface_core_7PyMotor_name, 0, (char *)0, 0},
-  {(char *)"comments", __pyx_getprop_14interface_core_7PyMotor_comments, 0, (char *)0, 0},
-  {(char *)"manufacturer", __pyx_getprop_14interface_core_7PyMotor_manufacturer, 0, (char *)0, 0},
-  {(char *)"diameter", __pyx_getprop_14interface_core_7PyMotor_diameter, 0, (char *)0, 0},
-  {(char *)"length", __pyx_getprop_14interface_core_7PyMotor_length, 0, (char *)0, 0},
-  {(char *)"mass_propellant", __pyx_getprop_14interface_core_7PyMotor_mass_propellant, 0, (char *)0, 0},
-  {(char *)"mass_total", __pyx_getprop_14interface_core_7PyMotor_mass_total, 0, (char *)0, 0},
-  {(char *)"data_time", __pyx_getprop_14interface_core_7PyMotor_data_time, 0, (char *)0, 0},
-  {(char *)"data_thrust", __pyx_getprop_14interface_core_7PyMotor_data_thrust, 0, (char *)0, 0},
+  {(char *)"name", __pyx_getprop_14interface_core_7PyMotor_name, __pyx_setprop_14interface_core_7PyMotor_name, (char *)0, 0},
+  {(char *)"comments", __pyx_getprop_14interface_core_7PyMotor_comments, __pyx_setprop_14interface_core_7PyMotor_comments, (char *)0, 0},
+  {(char *)"manufacturer", __pyx_getprop_14interface_core_7PyMotor_manufacturer, __pyx_setprop_14interface_core_7PyMotor_manufacturer, (char *)0, 0},
+  {(char *)"diameter", __pyx_getprop_14interface_core_7PyMotor_diameter, __pyx_setprop_14interface_core_7PyMotor_diameter, (char *)0, 0},
+  {(char *)"length", __pyx_getprop_14interface_core_7PyMotor_length, __pyx_setprop_14interface_core_7PyMotor_length, (char *)0, 0},
+  {(char *)"mass_propellant", __pyx_getprop_14interface_core_7PyMotor_mass_propellant, __pyx_setprop_14interface_core_7PyMotor_mass_propellant, (char *)0, 0},
+  {(char *)"mass_total", __pyx_getprop_14interface_core_7PyMotor_mass_total, __pyx_setprop_14interface_core_7PyMotor_mass_total, (char *)0, 0},
+  {(char *)"delay", __pyx_getprop_14interface_core_7PyMotor_delay, __pyx_setprop_14interface_core_7PyMotor_delay, (char *)0, 0},
+  {(char *)"data_time", __pyx_getprop_14interface_core_7PyMotor_data_time, __pyx_setprop_14interface_core_7PyMotor_data_time, (char *)0, 0},
+  {(char *)"data_thrust", __pyx_getprop_14interface_core_7PyMotor_data_thrust, __pyx_setprop_14interface_core_7PyMotor_data_thrust, (char *)0, 0},
   {0, 0, 0, 0, 0}
 };
 
@@ -21017,11 +22720,20 @@ static PyObject *__pyx_getprop_14interface_core_6PyPart_override_mass_switch(PyO
   return __pyx_pw_14interface_core_6PyPart_20override_mass_switch_1__get__(o);
 }
 
+static int __pyx_setprop_14interface_core_6PyPart_override_mass_switch(PyObject *o, PyObject *v, CYTHON_UNUSED void *x) {
+  if (v) {
+    return __pyx_pw_14interface_core_6PyPart_20override_mass_switch_3__set__(o, v);
+  }
+  else {
+    PyErr_SetString(PyExc_NotImplementedError, "__del__");
+    return -1;
+  }
+}
+
 static PyMethodDef __pyx_methods_14interface_core_PyPart[] = {
-  {"set_model_mass", (PyCFunction)__pyx_pw_14interface_core_6PyPart_3set_model_mass, METH_NOARGS, 0},
-  {"initialize_attributes", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_14interface_core_6PyPart_5initialize_attributes, METH_VARARGS|METH_KEYWORDS, 0},
-  {"__reduce_cython__", (PyCFunction)__pyx_pw_14interface_core_6PyPart_7__reduce_cython__, METH_NOARGS, 0},
-  {"__setstate_cython__", (PyCFunction)__pyx_pw_14interface_core_6PyPart_9__setstate_cython__, METH_O, 0},
+  {"initialize_attributes", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_14interface_core_6PyPart_3initialize_attributes, METH_VARARGS|METH_KEYWORDS, 0},
+  {"__reduce_cython__", (PyCFunction)__pyx_pw_14interface_core_6PyPart_5__reduce_cython__, METH_NOARGS, 0},
+  {"__setstate_cython__", (PyCFunction)__pyx_pw_14interface_core_6PyPart_7__setstate_cython__, METH_O, 0},
   {0, 0, 0, 0}
 };
 
@@ -21032,7 +22744,7 @@ static struct PyGetSetDef __pyx_getsets_14interface_core_PyPart[] = {
   {(char *)"material", __pyx_getprop_14interface_core_6PyPart_material, __pyx_setprop_14interface_core_6PyPart_material, (char *)0, 0},
   {(char *)"mass", __pyx_getprop_14interface_core_6PyPart_mass, 0, (char *)0, 0},
   {(char *)"override_mass", __pyx_getprop_14interface_core_6PyPart_override_mass, __pyx_setprop_14interface_core_6PyPart_override_mass, (char *)0, 0},
-  {(char *)"override_mass_switch", __pyx_getprop_14interface_core_6PyPart_override_mass_switch, 0, (char *)0, 0},
+  {(char *)"override_mass_switch", __pyx_getprop_14interface_core_6PyPart_override_mass_switch, __pyx_setprop_14interface_core_6PyPart_override_mass_switch, (char *)0, 0},
   {0, 0, 0, 0, 0}
 };
 
@@ -22304,8 +24016,28 @@ static PyObject *__pyx_getprop_14interface_core_7PyStage_override_mass_empty(PyO
   return __pyx_pw_14interface_core_7PyStage_19override_mass_empty_1__get__(o);
 }
 
+static int __pyx_setprop_14interface_core_7PyStage_override_mass_empty(PyObject *o, PyObject *v, CYTHON_UNUSED void *x) {
+  if (v) {
+    return __pyx_pw_14interface_core_7PyStage_19override_mass_empty_3__set__(o, v);
+  }
+  else {
+    PyErr_SetString(PyExc_NotImplementedError, "__del__");
+    return -1;
+  }
+}
+
 static PyObject *__pyx_getprop_14interface_core_7PyStage_override_mass_switch(PyObject *o, CYTHON_UNUSED void *x) {
   return __pyx_pw_14interface_core_7PyStage_20override_mass_switch_1__get__(o);
+}
+
+static int __pyx_setprop_14interface_core_7PyStage_override_mass_switch(PyObject *o, PyObject *v, CYTHON_UNUSED void *x) {
+  if (v) {
+    return __pyx_pw_14interface_core_7PyStage_20override_mass_switch_3__set__(o, v);
+  }
+  else {
+    PyErr_SetString(PyExc_NotImplementedError, "__del__");
+    return -1;
+  }
 }
 
 static PyObject *__pyx_getprop_14interface_core_7PyStage_surface_finish(PyObject *o, CYTHON_UNUSED void *x) {
@@ -22346,21 +24078,19 @@ static PyObject *__pyx_getprop_14interface_core_7PyStage_part_instances(PyObject
 
 static PyMethodDef __pyx_methods_14interface_core_PyStage[] = {
   {"mass_empty", (PyCFunction)__pyx_pw_14interface_core_7PyStage_3mass_empty, METH_O, 0},
-  {"set_override_mass_empty", (PyCFunction)__pyx_pw_14interface_core_7PyStage_5set_override_mass_empty, METH_O, 0},
-  {"set_model_mass_empty", (PyCFunction)__pyx_pw_14interface_core_7PyStage_7set_model_mass_empty, METH_NOARGS, 0},
-  {"print_drag_coefficients", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_14interface_core_7PyStage_9print_drag_coefficients, METH_VARARGS|METH_KEYWORDS, 0},
-  {"initialize_attributes", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_14interface_core_7PyStage_11initialize_attributes, METH_VARARGS|METH_KEYWORDS, 0},
-  {"named_attributes", (PyCFunction)__pyx_pw_14interface_core_7PyStage_13named_attributes, METH_NOARGS, 0},
-  {"__reduce_cython__", (PyCFunction)__pyx_pw_14interface_core_7PyStage_15__reduce_cython__, METH_NOARGS, 0},
-  {"__setstate_cython__", (PyCFunction)__pyx_pw_14interface_core_7PyStage_17__setstate_cython__, METH_O, 0},
+  {"print_drag_coefficients", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_14interface_core_7PyStage_5print_drag_coefficients, METH_VARARGS|METH_KEYWORDS, 0},
+  {"initialize_attributes", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_14interface_core_7PyStage_7initialize_attributes, METH_VARARGS|METH_KEYWORDS, 0},
+  {"named_attributes", (PyCFunction)__pyx_pw_14interface_core_7PyStage_9named_attributes, METH_NOARGS, 0},
+  {"__reduce_cython__", (PyCFunction)__pyx_pw_14interface_core_7PyStage_11__reduce_cython__, METH_NOARGS, 0},
+  {"__setstate_cython__", (PyCFunction)__pyx_pw_14interface_core_7PyStage_13__setstate_cython__, METH_O, 0},
   {0, 0, 0, 0}
 };
 
 static struct PyGetSetDef __pyx_getsets_14interface_core_PyStage[] = {
   {(char *)"name", __pyx_getprop_14interface_core_7PyStage_name, __pyx_setprop_14interface_core_7PyStage_name, (char *)0, 0},
   {(char *)"comments", __pyx_getprop_14interface_core_7PyStage_comments, __pyx_setprop_14interface_core_7PyStage_comments, (char *)0, 0},
-  {(char *)"override_mass_empty", __pyx_getprop_14interface_core_7PyStage_override_mass_empty, 0, (char *)0, 0},
-  {(char *)"override_mass_switch", __pyx_getprop_14interface_core_7PyStage_override_mass_switch, 0, (char *)0, 0},
+  {(char *)"override_mass_empty", __pyx_getprop_14interface_core_7PyStage_override_mass_empty, __pyx_setprop_14interface_core_7PyStage_override_mass_empty, (char *)0, 0},
+  {(char *)"override_mass_switch", __pyx_getprop_14interface_core_7PyStage_override_mass_switch, __pyx_setprop_14interface_core_7PyStage_override_mass_switch, (char *)0, 0},
   {(char *)"surface_finish", __pyx_getprop_14interface_core_7PyStage_surface_finish, __pyx_setprop_14interface_core_7PyStage_surface_finish, (char *)0, 0},
   {(char *)"distance_overlap", __pyx_getprop_14interface_core_7PyStage_distance_overlap, __pyx_setprop_14interface_core_7PyStage_distance_overlap, (char *)0, 0},
   {(char *)"instance_root", __pyx_getprop_14interface_core_7PyStage_instance_root, 0, (char *)0, 0},
@@ -22471,23 +24201,31 @@ static void __pyx_tp_dealloc_14interface_core_PyInterfaceCore(PyObject *o) {
 
 static PyMethodDef __pyx_methods_14interface_core_PyInterfaceCore[] = {
   {"create_material", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_14interface_core_15PyInterfaceCore_5create_material, METH_VARARGS|METH_KEYWORDS, 0},
-  {"get_material", (PyCFunction)__pyx_pw_14interface_core_15PyInterfaceCore_7get_material, METH_O, 0},
-  {"create_rocket", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_14interface_core_15PyInterfaceCore_9create_rocket, METH_VARARGS|METH_KEYWORDS, 0},
-  {"get_rocket", (PyCFunction)__pyx_pw_14interface_core_15PyInterfaceCore_11get_rocket, METH_O, 0},
-  {"create_part", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_14interface_core_15PyInterfaceCore_13create_part, METH_VARARGS|METH_KEYWORDS, 0},
-  {"get_part", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_14interface_core_15PyInterfaceCore_15get_part, METH_VARARGS|METH_KEYWORDS, 0},
-  {"create_configuration", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_14interface_core_15PyInterfaceCore_17create_configuration, METH_VARARGS|METH_KEYWORDS, 0},
-  {"get_configuration", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_14interface_core_15PyInterfaceCore_19get_configuration, METH_VARARGS|METH_KEYWORDS, 0},
-  {"create_stage", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_14interface_core_15PyInterfaceCore_21create_stage, METH_VARARGS|METH_KEYWORDS, 0},
-  {"get_stage", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_14interface_core_15PyInterfaceCore_23get_stage, METH_VARARGS|METH_KEYWORDS, 0},
-  {"create_part_instance", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_14interface_core_15PyInterfaceCore_25create_part_instance, METH_VARARGS|METH_KEYWORDS, 0},
-  {"get_part_instance", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_14interface_core_15PyInterfaceCore_27get_part_instance, METH_VARARGS|METH_KEYWORDS, 0},
-  {"create_simulation", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_14interface_core_15PyInterfaceCore_29create_simulation, METH_VARARGS|METH_KEYWORDS, 0},
-  {"get_simulation", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_14interface_core_15PyInterfaceCore_31get_simulation, METH_VARARGS|METH_KEYWORDS, 0},
-  {"create_motor", (PyCFunction)__pyx_pw_14interface_core_15PyInterfaceCore_33create_motor, METH_O, 0},
-  {"get_motor", (PyCFunction)__pyx_pw_14interface_core_15PyInterfaceCore_35get_motor, METH_O, 0},
-  {"__reduce_cython__", (PyCFunction)__pyx_pw_14interface_core_15PyInterfaceCore_37__reduce_cython__, METH_NOARGS, 0},
-  {"__setstate_cython__", (PyCFunction)__pyx_pw_14interface_core_15PyInterfaceCore_39__setstate_cython__, METH_O, 0},
+  {"delete_material", (PyCFunction)__pyx_pw_14interface_core_15PyInterfaceCore_7delete_material, METH_O, 0},
+  {"get_material", (PyCFunction)__pyx_pw_14interface_core_15PyInterfaceCore_9get_material, METH_O, 0},
+  {"create_rocket", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_14interface_core_15PyInterfaceCore_11create_rocket, METH_VARARGS|METH_KEYWORDS, 0},
+  {"delete_rocket", (PyCFunction)__pyx_pw_14interface_core_15PyInterfaceCore_13delete_rocket, METH_O, 0},
+  {"get_rocket", (PyCFunction)__pyx_pw_14interface_core_15PyInterfaceCore_15get_rocket, METH_O, 0},
+  {"create_part", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_14interface_core_15PyInterfaceCore_17create_part, METH_VARARGS|METH_KEYWORDS, 0},
+  {"delete_part", (PyCFunction)__pyx_pw_14interface_core_15PyInterfaceCore_19delete_part, METH_O, 0},
+  {"get_part", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_14interface_core_15PyInterfaceCore_21get_part, METH_VARARGS|METH_KEYWORDS, 0},
+  {"create_configuration", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_14interface_core_15PyInterfaceCore_23create_configuration, METH_VARARGS|METH_KEYWORDS, 0},
+  {"delete_configuration", (PyCFunction)__pyx_pw_14interface_core_15PyInterfaceCore_25delete_configuration, METH_O, 0},
+  {"get_configuration", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_14interface_core_15PyInterfaceCore_27get_configuration, METH_VARARGS|METH_KEYWORDS, 0},
+  {"create_stage", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_14interface_core_15PyInterfaceCore_29create_stage, METH_VARARGS|METH_KEYWORDS, 0},
+  {"delete_stage", (PyCFunction)__pyx_pw_14interface_core_15PyInterfaceCore_31delete_stage, METH_O, 0},
+  {"get_stage", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_14interface_core_15PyInterfaceCore_33get_stage, METH_VARARGS|METH_KEYWORDS, 0},
+  {"create_part_instance", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_14interface_core_15PyInterfaceCore_35create_part_instance, METH_VARARGS|METH_KEYWORDS, 0},
+  {"delete_part_instance", (PyCFunction)__pyx_pw_14interface_core_15PyInterfaceCore_37delete_part_instance, METH_O, 0},
+  {"get_part_instance", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_14interface_core_15PyInterfaceCore_39get_part_instance, METH_VARARGS|METH_KEYWORDS, 0},
+  {"create_simulation", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_14interface_core_15PyInterfaceCore_41create_simulation, METH_VARARGS|METH_KEYWORDS, 0},
+  {"delete_simulation", (PyCFunction)__pyx_pw_14interface_core_15PyInterfaceCore_43delete_simulation, METH_O, 0},
+  {"get_simulation", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_14interface_core_15PyInterfaceCore_45get_simulation, METH_VARARGS|METH_KEYWORDS, 0},
+  {"create_motor", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_14interface_core_15PyInterfaceCore_47create_motor, METH_VARARGS|METH_KEYWORDS, 0},
+  {"delete_motor", (PyCFunction)__pyx_pw_14interface_core_15PyInterfaceCore_49delete_motor, METH_O, 0},
+  {"get_motor", (PyCFunction)__pyx_pw_14interface_core_15PyInterfaceCore_51get_motor, METH_O, 0},
+  {"__reduce_cython__", (PyCFunction)__pyx_pw_14interface_core_15PyInterfaceCore_53__reduce_cython__, METH_NOARGS, 0},
+  {"__setstate_cython__", (PyCFunction)__pyx_pw_14interface_core_15PyInterfaceCore_55__setstate_cython__, METH_O, 0},
   {0, 0, 0, 0}
 };
 
@@ -22697,9 +24435,12 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_nosecone_type, __pyx_k_nosecone_type, sizeof(__pyx_k_nosecone_type), 0, 0, 1, 1},
   {&__pyx_n_s_number, __pyx_k_number, sizeof(__pyx_k_number), 0, 0, 1, 1},
   {&__pyx_n_s_override_mass, __pyx_k_override_mass, sizeof(__pyx_k_override_mass), 0, 0, 1, 1},
+  {&__pyx_n_s_override_mass_empty, __pyx_k_override_mass_empty, sizeof(__pyx_k_override_mass_empty), 0, 0, 1, 1},
+  {&__pyx_n_s_override_mass_switch, __pyx_k_override_mass_switch, sizeof(__pyx_k_override_mass_switch), 0, 0, 1, 1},
   {&__pyx_n_s_parent, __pyx_k_parent, sizeof(__pyx_k_parent), 0, 0, 1, 1},
   {&__pyx_n_s_part, __pyx_k_part, sizeof(__pyx_k_part), 0, 0, 1, 1},
   {&__pyx_n_s_part_type, __pyx_k_part_type, sizeof(__pyx_k_part_type), 0, 0, 1, 1},
+  {&__pyx_n_s_path, __pyx_k_path, sizeof(__pyx_k_path), 0, 0, 1, 1},
   {&__pyx_n_s_position_from, __pyx_k_position_from, sizeof(__pyx_k_position_from), 0, 0, 1, 1},
   {&__pyx_n_s_position_type, __pyx_k_position_type, sizeof(__pyx_k_position_type), 0, 0, 1, 1},
   {&__pyx_n_s_prepare, __pyx_k_prepare, sizeof(__pyx_k_prepare), 0, 0, 1, 1},
@@ -23107,16 +24848,16 @@ static int __Pyx_modinit_type_init_code(void) {
   __pyx_ptype_14interface_core_PyMaterial = &__pyx_type_14interface_core_PyMaterial;
   __pyx_vtabptr_14interface_core_PyMotor = &__pyx_vtable_14interface_core_PyMotor;
   __pyx_vtable_14interface_core_PyMotor.create = (struct __pyx_obj_14interface_core_PyMotor *(*)(Motor *))__pyx_f_14interface_core_7PyMotor_create;
-  if (PyType_Ready(&__pyx_type_14interface_core_PyMotor) < 0) __PYX_ERR(4, 23, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_14interface_core_PyMotor) < 0) __PYX_ERR(4, 35, __pyx_L1_error)
   #if PY_VERSION_HEX < 0x030800B1
   __pyx_type_14interface_core_PyMotor.tp_print = 0;
   #endif
   if ((CYTHON_USE_TYPE_SLOTS && CYTHON_USE_PYTYPE_LOOKUP) && likely(!__pyx_type_14interface_core_PyMotor.tp_dictoffset && __pyx_type_14interface_core_PyMotor.tp_getattro == PyObject_GenericGetAttr)) {
     __pyx_type_14interface_core_PyMotor.tp_getattro = __Pyx_PyObject_GenericGetAttr;
   }
-  if (__Pyx_SetVtable(__pyx_type_14interface_core_PyMotor.tp_dict, __pyx_vtabptr_14interface_core_PyMotor) < 0) __PYX_ERR(4, 23, __pyx_L1_error)
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_PyMotor, (PyObject *)&__pyx_type_14interface_core_PyMotor) < 0) __PYX_ERR(4, 23, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_14interface_core_PyMotor) < 0) __PYX_ERR(4, 23, __pyx_L1_error)
+  if (__Pyx_SetVtable(__pyx_type_14interface_core_PyMotor.tp_dict, __pyx_vtabptr_14interface_core_PyMotor) < 0) __PYX_ERR(4, 35, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_PyMotor, (PyObject *)&__pyx_type_14interface_core_PyMotor) < 0) __PYX_ERR(4, 35, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_14interface_core_PyMotor) < 0) __PYX_ERR(4, 35, __pyx_L1_error)
   __pyx_ptype_14interface_core_PyMotor = &__pyx_type_14interface_core_PyMotor;
   __pyx_vtabptr_14interface_core_PyPart = &__pyx_vtable_14interface_core_PyPart;
   __pyx_vtable_14interface_core_PyPart.create_derived = (PyObject *(*)(Part *))__pyx_f_14interface_core_6PyPart_create_derived;
@@ -23135,74 +24876,74 @@ static int __Pyx_modinit_type_init_code(void) {
   __pyx_vtable_14interface_core_PyBulkhead.__pyx_base = *__pyx_vtabptr_14interface_core_PyPart;
   __pyx_vtable_14interface_core_PyBulkhead.create = (struct __pyx_obj_14interface_core_PyBulkhead *(*)(Bulkhead *))__pyx_f_14interface_core_10PyBulkhead_create;
   __pyx_type_14interface_core_PyBulkhead.tp_base = __pyx_ptype_14interface_core_PyPart;
-  if (PyType_Ready(&__pyx_type_14interface_core_PyBulkhead) < 0) __PYX_ERR(5, 129, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_14interface_core_PyBulkhead) < 0) __PYX_ERR(5, 130, __pyx_L1_error)
   #if PY_VERSION_HEX < 0x030800B1
   __pyx_type_14interface_core_PyBulkhead.tp_print = 0;
   #endif
   if ((CYTHON_USE_TYPE_SLOTS && CYTHON_USE_PYTYPE_LOOKUP) && likely(!__pyx_type_14interface_core_PyBulkhead.tp_dictoffset && __pyx_type_14interface_core_PyBulkhead.tp_getattro == PyObject_GenericGetAttr)) {
     __pyx_type_14interface_core_PyBulkhead.tp_getattro = __Pyx_PyObject_GenericGetAttr;
   }
-  if (__Pyx_SetVtable(__pyx_type_14interface_core_PyBulkhead.tp_dict, __pyx_vtabptr_14interface_core_PyBulkhead) < 0) __PYX_ERR(5, 129, __pyx_L1_error)
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_PyBulkhead, (PyObject *)&__pyx_type_14interface_core_PyBulkhead) < 0) __PYX_ERR(5, 129, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_14interface_core_PyBulkhead) < 0) __PYX_ERR(5, 129, __pyx_L1_error)
+  if (__Pyx_SetVtable(__pyx_type_14interface_core_PyBulkhead.tp_dict, __pyx_vtabptr_14interface_core_PyBulkhead) < 0) __PYX_ERR(5, 130, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_PyBulkhead, (PyObject *)&__pyx_type_14interface_core_PyBulkhead) < 0) __PYX_ERR(5, 130, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_14interface_core_PyBulkhead) < 0) __PYX_ERR(5, 130, __pyx_L1_error)
   __pyx_ptype_14interface_core_PyBulkhead = &__pyx_type_14interface_core_PyBulkhead;
   __pyx_vtabptr_14interface_core_PyFinShapeTrapezoidal = &__pyx_vtable_14interface_core_PyFinShapeTrapezoidal;
   __pyx_vtable_14interface_core_PyFinShapeTrapezoidal.create = (struct __pyx_obj_14interface_core_PyFinShapeTrapezoidal *(*)(FinShapeTrapezoidal *))__pyx_f_14interface_core_21PyFinShapeTrapezoidal_create;
-  if (PyType_Ready(&__pyx_type_14interface_core_PyFinShapeTrapezoidal) < 0) __PYX_ERR(5, 190, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_14interface_core_PyFinShapeTrapezoidal) < 0) __PYX_ERR(5, 192, __pyx_L1_error)
   #if PY_VERSION_HEX < 0x030800B1
   __pyx_type_14interface_core_PyFinShapeTrapezoidal.tp_print = 0;
   #endif
   if ((CYTHON_USE_TYPE_SLOTS && CYTHON_USE_PYTYPE_LOOKUP) && likely(!__pyx_type_14interface_core_PyFinShapeTrapezoidal.tp_dictoffset && __pyx_type_14interface_core_PyFinShapeTrapezoidal.tp_getattro == PyObject_GenericGetAttr)) {
     __pyx_type_14interface_core_PyFinShapeTrapezoidal.tp_getattro = __Pyx_PyObject_GenericGetAttr;
   }
-  if (__Pyx_SetVtable(__pyx_type_14interface_core_PyFinShapeTrapezoidal.tp_dict, __pyx_vtabptr_14interface_core_PyFinShapeTrapezoidal) < 0) __PYX_ERR(5, 190, __pyx_L1_error)
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_PyFinShapeTrapezoidal, (PyObject *)&__pyx_type_14interface_core_PyFinShapeTrapezoidal) < 0) __PYX_ERR(5, 190, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_14interface_core_PyFinShapeTrapezoidal) < 0) __PYX_ERR(5, 190, __pyx_L1_error)
+  if (__Pyx_SetVtable(__pyx_type_14interface_core_PyFinShapeTrapezoidal.tp_dict, __pyx_vtabptr_14interface_core_PyFinShapeTrapezoidal) < 0) __PYX_ERR(5, 192, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_PyFinShapeTrapezoidal, (PyObject *)&__pyx_type_14interface_core_PyFinShapeTrapezoidal) < 0) __PYX_ERR(5, 192, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_14interface_core_PyFinShapeTrapezoidal) < 0) __PYX_ERR(5, 192, __pyx_L1_error)
   __pyx_ptype_14interface_core_PyFinShapeTrapezoidal = &__pyx_type_14interface_core_PyFinShapeTrapezoidal;
   __pyx_vtabptr_14interface_core_PyFins = &__pyx_vtable_14interface_core_PyFins;
   __pyx_vtable_14interface_core_PyFins.__pyx_base = *__pyx_vtabptr_14interface_core_PyPart;
   __pyx_vtable_14interface_core_PyFins.create = (struct __pyx_obj_14interface_core_PyFins *(*)(Fins *))__pyx_f_14interface_core_6PyFins_create;
   __pyx_type_14interface_core_PyFins.tp_base = __pyx_ptype_14interface_core_PyPart;
-  if (PyType_Ready(&__pyx_type_14interface_core_PyFins) < 0) __PYX_ERR(5, 276, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_14interface_core_PyFins) < 0) __PYX_ERR(5, 278, __pyx_L1_error)
   #if PY_VERSION_HEX < 0x030800B1
   __pyx_type_14interface_core_PyFins.tp_print = 0;
   #endif
   if ((CYTHON_USE_TYPE_SLOTS && CYTHON_USE_PYTYPE_LOOKUP) && likely(!__pyx_type_14interface_core_PyFins.tp_dictoffset && __pyx_type_14interface_core_PyFins.tp_getattro == PyObject_GenericGetAttr)) {
     __pyx_type_14interface_core_PyFins.tp_getattro = __Pyx_PyObject_GenericGetAttr;
   }
-  if (__Pyx_SetVtable(__pyx_type_14interface_core_PyFins.tp_dict, __pyx_vtabptr_14interface_core_PyFins) < 0) __PYX_ERR(5, 276, __pyx_L1_error)
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_PyFins, (PyObject *)&__pyx_type_14interface_core_PyFins) < 0) __PYX_ERR(5, 276, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_14interface_core_PyFins) < 0) __PYX_ERR(5, 276, __pyx_L1_error)
+  if (__Pyx_SetVtable(__pyx_type_14interface_core_PyFins.tp_dict, __pyx_vtabptr_14interface_core_PyFins) < 0) __PYX_ERR(5, 278, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_PyFins, (PyObject *)&__pyx_type_14interface_core_PyFins) < 0) __PYX_ERR(5, 278, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_14interface_core_PyFins) < 0) __PYX_ERR(5, 278, __pyx_L1_error)
   __pyx_ptype_14interface_core_PyFins = &__pyx_type_14interface_core_PyFins;
   __pyx_vtabptr_14interface_core_PyNosecone = &__pyx_vtable_14interface_core_PyNosecone;
   __pyx_vtable_14interface_core_PyNosecone.__pyx_base = *__pyx_vtabptr_14interface_core_PyPart;
   __pyx_vtable_14interface_core_PyNosecone.create = (struct __pyx_obj_14interface_core_PyNosecone *(*)(Nosecone *))__pyx_f_14interface_core_10PyNosecone_create;
   __pyx_type_14interface_core_PyNosecone.tp_base = __pyx_ptype_14interface_core_PyPart;
-  if (PyType_Ready(&__pyx_type_14interface_core_PyNosecone) < 0) __PYX_ERR(5, 376, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_14interface_core_PyNosecone) < 0) __PYX_ERR(5, 379, __pyx_L1_error)
   #if PY_VERSION_HEX < 0x030800B1
   __pyx_type_14interface_core_PyNosecone.tp_print = 0;
   #endif
   if ((CYTHON_USE_TYPE_SLOTS && CYTHON_USE_PYTYPE_LOOKUP) && likely(!__pyx_type_14interface_core_PyNosecone.tp_dictoffset && __pyx_type_14interface_core_PyNosecone.tp_getattro == PyObject_GenericGetAttr)) {
     __pyx_type_14interface_core_PyNosecone.tp_getattro = __Pyx_PyObject_GenericGetAttr;
   }
-  if (__Pyx_SetVtable(__pyx_type_14interface_core_PyNosecone.tp_dict, __pyx_vtabptr_14interface_core_PyNosecone) < 0) __PYX_ERR(5, 376, __pyx_L1_error)
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_PyNosecone, (PyObject *)&__pyx_type_14interface_core_PyNosecone) < 0) __PYX_ERR(5, 376, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_14interface_core_PyNosecone) < 0) __PYX_ERR(5, 376, __pyx_L1_error)
+  if (__Pyx_SetVtable(__pyx_type_14interface_core_PyNosecone.tp_dict, __pyx_vtabptr_14interface_core_PyNosecone) < 0) __PYX_ERR(5, 379, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_PyNosecone, (PyObject *)&__pyx_type_14interface_core_PyNosecone) < 0) __PYX_ERR(5, 379, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_14interface_core_PyNosecone) < 0) __PYX_ERR(5, 379, __pyx_L1_error)
   __pyx_ptype_14interface_core_PyNosecone = &__pyx_type_14interface_core_PyNosecone;
   __pyx_vtabptr_14interface_core_PyTubeBody = &__pyx_vtable_14interface_core_PyTubeBody;
   __pyx_vtable_14interface_core_PyTubeBody.__pyx_base = *__pyx_vtabptr_14interface_core_PyPart;
   __pyx_vtable_14interface_core_PyTubeBody.create = (struct __pyx_obj_14interface_core_PyTubeBody *(*)(TubeBody *))__pyx_f_14interface_core_10PyTubeBody_create;
   __pyx_type_14interface_core_PyTubeBody.tp_base = __pyx_ptype_14interface_core_PyPart;
-  if (PyType_Ready(&__pyx_type_14interface_core_PyTubeBody) < 0) __PYX_ERR(5, 484, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_14interface_core_PyTubeBody) < 0) __PYX_ERR(5, 488, __pyx_L1_error)
   #if PY_VERSION_HEX < 0x030800B1
   __pyx_type_14interface_core_PyTubeBody.tp_print = 0;
   #endif
   if ((CYTHON_USE_TYPE_SLOTS && CYTHON_USE_PYTYPE_LOOKUP) && likely(!__pyx_type_14interface_core_PyTubeBody.tp_dictoffset && __pyx_type_14interface_core_PyTubeBody.tp_getattro == PyObject_GenericGetAttr)) {
     __pyx_type_14interface_core_PyTubeBody.tp_getattro = __Pyx_PyObject_GenericGetAttr;
   }
-  if (__Pyx_SetVtable(__pyx_type_14interface_core_PyTubeBody.tp_dict, __pyx_vtabptr_14interface_core_PyTubeBody) < 0) __PYX_ERR(5, 484, __pyx_L1_error)
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_PyTubeBody, (PyObject *)&__pyx_type_14interface_core_PyTubeBody) < 0) __PYX_ERR(5, 484, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_14interface_core_PyTubeBody) < 0) __PYX_ERR(5, 484, __pyx_L1_error)
+  if (__Pyx_SetVtable(__pyx_type_14interface_core_PyTubeBody.tp_dict, __pyx_vtabptr_14interface_core_PyTubeBody) < 0) __PYX_ERR(5, 488, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_PyTubeBody, (PyObject *)&__pyx_type_14interface_core_PyTubeBody) < 0) __PYX_ERR(5, 488, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_14interface_core_PyTubeBody) < 0) __PYX_ERR(5, 488, __pyx_L1_error)
   __pyx_ptype_14interface_core_PyTubeBody = &__pyx_type_14interface_core_PyTubeBody;
   __pyx_vtabptr_14interface_core_PyRocket = &__pyx_vtable_14interface_core_PyRocket;
   __pyx_vtable_14interface_core_PyRocket.create = (struct __pyx_obj_14interface_core_PyRocket *(*)(Rocket *))__pyx_f_14interface_core_8PyRocket_create;
@@ -23243,15 +24984,15 @@ static int __Pyx_modinit_type_init_code(void) {
   if (PyObject_SetAttr(__pyx_m, __pyx_n_s_PyStage, (PyObject *)&__pyx_type_14interface_core_PyStage) < 0) __PYX_ERR(8, 40, __pyx_L1_error)
   if (__Pyx_setup_reduce((PyObject*)&__pyx_type_14interface_core_PyStage) < 0) __PYX_ERR(8, 40, __pyx_L1_error)
   __pyx_ptype_14interface_core_PyStage = &__pyx_type_14interface_core_PyStage;
-  if (PyType_Ready(&__pyx_type_14interface_core_PyInterfaceCore) < 0) __PYX_ERR(9, 51, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_14interface_core_PyInterfaceCore) < 0) __PYX_ERR(9, 52, __pyx_L1_error)
   #if PY_VERSION_HEX < 0x030800B1
   __pyx_type_14interface_core_PyInterfaceCore.tp_print = 0;
   #endif
   if ((CYTHON_USE_TYPE_SLOTS && CYTHON_USE_PYTYPE_LOOKUP) && likely(!__pyx_type_14interface_core_PyInterfaceCore.tp_dictoffset && __pyx_type_14interface_core_PyInterfaceCore.tp_getattro == PyObject_GenericGetAttr)) {
     __pyx_type_14interface_core_PyInterfaceCore.tp_getattro = __Pyx_PyObject_GenericGetAttr;
   }
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_PyInterfaceCore, (PyObject *)&__pyx_type_14interface_core_PyInterfaceCore) < 0) __PYX_ERR(9, 51, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_14interface_core_PyInterfaceCore) < 0) __PYX_ERR(9, 51, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_PyInterfaceCore, (PyObject *)&__pyx_type_14interface_core_PyInterfaceCore) < 0) __PYX_ERR(9, 52, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_14interface_core_PyInterfaceCore) < 0) __PYX_ERR(9, 52, __pyx_L1_error)
   __pyx_ptype_14interface_core_PyInterfaceCore = &__pyx_type_14interface_core_PyInterfaceCore;
   __Pyx_RefNannyFinishContext();
   return 0;
@@ -23654,184 +25395,184 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "entities/part.pyx":168
+  /* "entities/part.pyx":170
  *     cdef enum FinShapeType "FinShapeType":
  *         _TRAPEZOIDAL
  * class PyFinShapeType(Enum):             # <<<<<<<<<<<<<<
  *     TRAPEZOIDAL = 0
  * 
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_Enum); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 168, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_Enum); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 170, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 168, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 170, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 168, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 170, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_PyFinShapeType, __pyx_n_s_PyFinShapeType, (PyObject *) NULL, __pyx_n_s_interface_core, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 168, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_PyFinShapeType, __pyx_n_s_PyFinShapeType, (PyObject *) NULL, __pyx_n_s_interface_core, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 170, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "entities/part.pyx":169
+  /* "entities/part.pyx":171
  *         _TRAPEZOIDAL
  * class PyFinShapeType(Enum):
  *     TRAPEZOIDAL = 0             # <<<<<<<<<<<<<<
  * 
  * cdef extern from "fin_shape.h":
  */
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_TRAPEZOIDAL, __pyx_int_0) < 0) __PYX_ERR(5, 169, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_TRAPEZOIDAL, __pyx_int_0) < 0) __PYX_ERR(5, 171, __pyx_L1_error)
 
-  /* "entities/part.pyx":168
+  /* "entities/part.pyx":170
  *     cdef enum FinShapeType "FinShapeType":
  *         _TRAPEZOIDAL
  * class PyFinShapeType(Enum):             # <<<<<<<<<<<<<<
  *     TRAPEZOIDAL = 0
  * 
  */
-  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_PyFinShapeType, __pyx_t_1, __pyx_t_3, NULL, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(5, 168, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_PyFinShapeType, __pyx_t_1, __pyx_t_3, NULL, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(5, 170, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_PyFinShapeType, __pyx_t_4) < 0) __PYX_ERR(5, 168, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_PyFinShapeType, __pyx_t_4) < 0) __PYX_ERR(5, 170, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "entities/part.pyx":251
+  /* "entities/part.pyx":253
  *         _AIRFOIL,
  *         _DOUBLE_WEDGE
  * class PyFinCrossSection(Enum):             # <<<<<<<<<<<<<<
  *     SQUARE = 0
  *     ROUNDED = 1
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_Enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 251, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_Enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 253, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 251, __pyx_L1_error)
+  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 253, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_CalculateMetaclass(NULL, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 251, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_CalculateMetaclass(NULL, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 253, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_1, __pyx_t_2, __pyx_n_s_PyFinCrossSection, __pyx_n_s_PyFinCrossSection, (PyObject *) NULL, __pyx_n_s_interface_core, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 251, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_1, __pyx_t_2, __pyx_n_s_PyFinCrossSection, __pyx_n_s_PyFinCrossSection, (PyObject *) NULL, __pyx_n_s_interface_core, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 253, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "entities/part.pyx":252
+  /* "entities/part.pyx":254
  *         _DOUBLE_WEDGE
  * class PyFinCrossSection(Enum):
  *     SQUARE = 0             # <<<<<<<<<<<<<<
  *     ROUNDED = 1
  *     AIRFOIL = 2
  */
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_SQUARE, __pyx_int_0) < 0) __PYX_ERR(5, 252, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_SQUARE, __pyx_int_0) < 0) __PYX_ERR(5, 254, __pyx_L1_error)
 
-  /* "entities/part.pyx":253
+  /* "entities/part.pyx":255
  * class PyFinCrossSection(Enum):
  *     SQUARE = 0
  *     ROUNDED = 1             # <<<<<<<<<<<<<<
  *     AIRFOIL = 2
  *     DOUBLE_WEDGE = 3
  */
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ROUNDED, __pyx_int_1) < 0) __PYX_ERR(5, 253, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ROUNDED, __pyx_int_1) < 0) __PYX_ERR(5, 255, __pyx_L1_error)
 
-  /* "entities/part.pyx":254
+  /* "entities/part.pyx":256
  *     SQUARE = 0
  *     ROUNDED = 1
  *     AIRFOIL = 2             # <<<<<<<<<<<<<<
  *     DOUBLE_WEDGE = 3
  * 
  */
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_AIRFOIL, __pyx_int_2) < 0) __PYX_ERR(5, 254, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_AIRFOIL, __pyx_int_2) < 0) __PYX_ERR(5, 256, __pyx_L1_error)
 
-  /* "entities/part.pyx":255
+  /* "entities/part.pyx":257
  *     ROUNDED = 1
  *     AIRFOIL = 2
  *     DOUBLE_WEDGE = 3             # <<<<<<<<<<<<<<
  * 
  * cdef extern from "part_fins.h":
  */
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_DOUBLE_WEDGE, __pyx_int_3) < 0) __PYX_ERR(5, 255, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_DOUBLE_WEDGE, __pyx_int_3) < 0) __PYX_ERR(5, 257, __pyx_L1_error)
 
-  /* "entities/part.pyx":251
+  /* "entities/part.pyx":253
  *         _AIRFOIL,
  *         _DOUBLE_WEDGE
  * class PyFinCrossSection(Enum):             # <<<<<<<<<<<<<<
  *     SQUARE = 0
  *     ROUNDED = 1
  */
-  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_1, __pyx_n_s_PyFinCrossSection, __pyx_t_2, __pyx_t_3, NULL, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(5, 251, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_1, __pyx_n_s_PyFinCrossSection, __pyx_t_2, __pyx_t_3, NULL, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(5, 253, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_PyFinCrossSection, __pyx_t_4) < 0) __PYX_ERR(5, 251, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_PyFinCrossSection, __pyx_t_4) < 0) __PYX_ERR(5, 253, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "entities/part.pyx":342
+  /* "entities/part.pyx":345
  *         _OGIVE,
  *         _HAACK
  * class PyNoseconeType(Enum):             # <<<<<<<<<<<<<<
  *     VON_KARMEN  = 0
  *     CONICAL  = 1
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_Enum); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 342, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_Enum); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 345, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 342, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 345, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 342, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(5, 345, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_PyNoseconeType, __pyx_n_s_PyNoseconeType, (PyObject *) NULL, __pyx_n_s_interface_core, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 342, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_PyNoseconeType, __pyx_n_s_PyNoseconeType, (PyObject *) NULL, __pyx_n_s_interface_core, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(5, 345, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "entities/part.pyx":343
+  /* "entities/part.pyx":346
  *         _HAACK
  * class PyNoseconeType(Enum):
  *     VON_KARMEN  = 0             # <<<<<<<<<<<<<<
  *     CONICAL  = 1
  *     OGIVE  = 2
  */
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_VON_KARMEN, __pyx_int_0) < 0) __PYX_ERR(5, 343, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_VON_KARMEN, __pyx_int_0) < 0) __PYX_ERR(5, 346, __pyx_L1_error)
 
-  /* "entities/part.pyx":344
+  /* "entities/part.pyx":347
  * class PyNoseconeType(Enum):
  *     VON_KARMEN  = 0
  *     CONICAL  = 1             # <<<<<<<<<<<<<<
  *     OGIVE  = 2
  *     HAACK  = 3
  */
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_CONICAL, __pyx_int_1) < 0) __PYX_ERR(5, 344, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_CONICAL, __pyx_int_1) < 0) __PYX_ERR(5, 347, __pyx_L1_error)
 
-  /* "entities/part.pyx":345
+  /* "entities/part.pyx":348
  *     VON_KARMEN  = 0
  *     CONICAL  = 1
  *     OGIVE  = 2             # <<<<<<<<<<<<<<
  *     HAACK  = 3
  * 
  */
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_OGIVE, __pyx_int_2) < 0) __PYX_ERR(5, 345, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_OGIVE, __pyx_int_2) < 0) __PYX_ERR(5, 348, __pyx_L1_error)
 
-  /* "entities/part.pyx":346
+  /* "entities/part.pyx":349
  *     CONICAL  = 1
  *     OGIVE  = 2
  *     HAACK  = 3             # <<<<<<<<<<<<<<
  * 
  * cdef extern from "part_nosecone.h":
  */
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_HAACK, __pyx_int_3) < 0) __PYX_ERR(5, 346, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_HAACK, __pyx_int_3) < 0) __PYX_ERR(5, 349, __pyx_L1_error)
 
-  /* "entities/part.pyx":342
+  /* "entities/part.pyx":345
  *         _OGIVE,
  *         _HAACK
  * class PyNoseconeType(Enum):             # <<<<<<<<<<<<<<
  *     VON_KARMEN  = 0
  *     CONICAL  = 1
  */
-  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_PyNoseconeType, __pyx_t_1, __pyx_t_3, NULL, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(5, 342, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_PyNoseconeType, __pyx_t_1, __pyx_t_3, NULL, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(5, 345, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_PyNoseconeType, __pyx_t_4) < 0) __PYX_ERR(5, 342, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_PyNoseconeType, __pyx_t_4) < 0) __PYX_ERR(5, 345, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -23917,12 +25658,12 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_test, __pyx_t_2) < 0) __PYX_ERR(9, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "vector.to_py":60
+  /* "vector.from_py":45
  * 
- * @cname("__pyx_convert_vector_to_py_double")
- * cdef object __pyx_convert_vector_to_py_double(vector[X]& v):             # <<<<<<<<<<<<<<
- *     return [v[i] for i in range(v.size())]
- * 
+ * @cname("__pyx_convert_vector_from_py_double")
+ * cdef vector[X] __pyx_convert_vector_from_py_double(object o) except *:             # <<<<<<<<<<<<<<
+ *     cdef vector[X] v
+ *     for item in o:
  */
 
   /*--- Wrapped vars code ---*/

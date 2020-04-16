@@ -56,6 +56,7 @@ class EntityManager {
     SimulationUserCommand* GetSimulationUserCommand();
     
     Motor* CreateMotor(const std::string& file_path);
+    Motor* CreateMotor();
     void DeleteMotor(Motor* motor);
     Motor* GetMotor(const std::string& name);
 

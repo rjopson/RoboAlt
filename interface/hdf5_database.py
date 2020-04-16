@@ -26,14 +26,12 @@ class Database():
     def read(self, core_data):
         self.hf = h5py.File(self.file_path, 'r')
         self.core_data = core_data
-        #self.dictionary_from_group_attributes(self.hf)
-        self.read_rocket(self.hf)
         self.read_materials(self.hf)
+        self.read_motors(self.hf)
+        self.read_rocket(self.hf)        
         self.read_parts(self.hf)
-        self.read_configurations(self.hf)
-        #self.read_motors(self.hf)
+        self.read_configurations(self.hf)        
         self.hf.close()
-
 
     def write_attributes(self, dict, hf_group): 
         for key, value in dict.items():
@@ -51,10 +49,10 @@ class Database():
 
     def write_rocket(self, rocket):
         self.write_attributes(rocket.named_attributes(), self.hf)
-        self.write_configurations(rocket.configurations, self.hf)
-        self.write_parts(rocket.parts, self.hf)
         self.write_materials(rocket.materials, self.hf)
         self.write_motors(rocket.motors, self.hf)
+        self.write_parts(rocket.parts, self.hf)   
+        self.write_configurations(rocket.configurations, self.hf)             
 
     def write_configurations(self, configurations, hf_group):
         hf_configs = hf_group.create_group("configurations")
@@ -81,12 +79,12 @@ class Database():
                 hf_stage.attrs["motor"] = simulation.get_motor(stage).name
 
     def write_part_instances(self, part_instances, hf_group):
-        hf_part_instances = hf_group.create_group("parts")
+        hf_part_instances = hf_group.create_group("parts", track_order=True)
         for instance in part_instances:
             self.write_part_instance(instance, hf_part_instances)
     
     def write_part_instance(self, part_instance, hf_group):
-        hf_instance = hf_group.create_group(part_instance.name)
+        hf_instance = hf_group.create_group(part_instance.name, track_order=True)
         self.write_attributes(part_instance.named_attributes(), hf_instance)
         if len(part_instance.children) > 0:
             for child in part_instance.children:
@@ -119,6 +117,7 @@ class Database():
             self.write_attributes(motor.named_attributes(), hf_motor)
             hf_motor.create_dataset("time (s)", data=motor.data_time)
             hf_motor.create_dataset("thrust (N)", data=motor.data_thrust)
+            hf_motor.create_dataset("delay", data=motor.delay)
 
     def dictionary_from_group_attributes(self, group):
         dictionary = {}
@@ -130,46 +129,45 @@ class Database():
             if name == "material":
                 value = self.core_data.get_material(value)
             if name == "part":
-                value = self.core_data.get_part(self.rocket_name, value)
+                value = self.core_data.get_part(self.rocket.name, value)
+            if name == "motor":
+                value = self.core_data.get_motor(value)
             dictionary[name] = value
 
         return dictionary
     
     def read_rocket(self, group):
         dict = self.dictionary_from_group_attributes(group)
-        self.rocket_name = dict["name"]
-        self.core_data.create_rocket(**dict)
+        self.rocket = self.core_data.create_rocket(**dict)
 
     def read_configurations(self, group):
         hf_configs = group.__getitem__("configurations")
         for hf_config in hf_configs.values():
             dict = self.dictionary_from_group_attributes(hf_config)
-            config_name = dict["name"]
-            self.core_data.create_configuration(rocket_name=self.rocket_name, **dict)
-            self.read_stages(config_name, hf_config.__getitem__("stages"))
-            self.read_simulations(config_name, hf_config.__getitem__("simulations"))            
+            config = self.core_data.create_configuration(rocket=self.rocket, **dict)
+            self.read_stages(config, hf_config.__getitem__("stages"))
+            self.read_simulations(config, hf_config.__getitem__("simulations"))            
 
-    def read_stages(self, configuration_name, group):
+    def read_stages(self, configuration, group):
         for hf_stage in group.values():
             dict = self.dictionary_from_group_attributes(hf_stage)
-            stage_name = dict["name"]
-            self.core_data.create_stage(rocket_name=self.rocket_name, configuration_name=configuration_name, **dict)
+            stage=self.core_data.create_stage(configuration=configuration, **dict)   
             for hf_instance in hf_stage.__getitem__("parts").values():
-                self.read_part_instance(configuration_name, stage_name, hf_instance)
+                self.read_part_instance(stage.instance_root, hf_instance)
 
-    def read_simulations(self, configuration_name, group):
+    def read_simulations(self, configuration, group):
         for hf_sim in group.values():
             dict = self.dictionary_from_group_attributes(hf_sim)
-            self.core_data.create_simulation(rocket_name=self.rocket_name, configuration_name=configuration_name, **dict)
+            sim = self.core_data.create_simulation(configuration=configuration, **dict)
+            for name, hf_stage in hf_sim.items():
+                dict = self.dictionary_from_group_attributes(hf_stage)
+                sim.set_motor(dict["motor"], self.core_data.get_stage(self.rocket.name, configuration.name, name))
 
-    def read_part_instance(self, configuration_name, parent_name, group):
+    def read_part_instance(self, parent, group):
         dict = self.dictionary_from_group_attributes(group)
-        part_name = dict["part"].name
-        inst_name = dict["name"]
-        del dict["part"]
-        self.core_data.create_part_instance(rocket_name=self.rocket_name, configuration_name=configuration_name, part_name=part_name, parent_name=parent_name, **dict)
+        instance = self.core_data.create_part_instance(parent=parent, **dict)
         for child in group.values():
-            self.read_part_instance(configuration_name, inst_name, child)
+            self.read_part_instance(instance, child)
 
     def read_parts(self, group):
         hf_parts = group.__getitem__("parts")
@@ -177,12 +175,11 @@ class Database():
             dict = self.dictionary_from_group_attributes(hf_part)
             part_type = dict["type"]
             del dict["type"]
-            self.core_data.create_part(part_type=part_type, rocket_name=self.rocket_name, **dict)
+            part = self.core_data.create_part(part_type=part_type, rocket=self.rocket, **dict)
             if part_type == PyPartType.FINS.value:
-                part_name = dict["name"]
                 dict = self.dictionary_from_group_attributes(hf_part.__getitem__("shape"))
                 del dict["type"]
-                self.core_data.get_part(self.rocket_name, part_name).shape.initialize_attributes(**dict)
+                part.shape.initialize_attributes(**dict)
 
     def read_materials(self, group):
         hf_materials = group.__getitem__("materials")
@@ -194,7 +191,11 @@ class Database():
         hf_motors = group.__getitem__("motors")
         for hf_motor in hf_motors.values():
             dict = self.dictionary_from_group_attributes(hf_motor)
-            self.core_data.create_motor(**dict)
+            dict["data_time"] = hf_motor.__getitem__("time (s)")[()]
+            dict["data_thrust"] = hf_motor.__getitem__("thrust (N)")[()]
+            dict["delay"] = hf_motor.__getitem__("delay")[()]
+            motor = self.core_data.create_motor(**dict)
+
 
     
 
