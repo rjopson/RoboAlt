@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "atmosphere.h"
+#include "atmosphere_isa.h"
 #include "material.h"
 #include "motor.h"
 #include "rocket.h"
@@ -60,8 +61,12 @@ class EntityManager {
     void DeleteMotor(Motor* motor);
     Motor* GetMotor(const std::string& name);
 
-    void CreateAtmosphere();
-    void CreateDrag(Rocket* rocket);     
+    //void CreateAtmosphere(need path to data here?);
+    void DeleteAtmosphere(Atmosphere* atmosphere);
+    //Atmosphere* GetAtmosphere(const std::string& name) const;
+    Atmosphere* GetAtmosphereModel() const;
+
+    //void CreateDrag(Rocket* rocket);     
 
 private:     
     //Rocket* GetRocket(const int& id);
@@ -97,18 +102,6 @@ private:
         }
     }
 
-
-    /*
-    Configuration* GetConfiguration(const int& id);
-    Stage* GetStage(const int& id);
-    Simulation* GetSimulation(const int& id);
-    Instance* GetInstance(const int& id);
-    Part* GetPart(const int& id);
-    Material* GetMaterial(const int& id);
-    Motor* GetMotor(const int& id);
-    Atmosphere* GetAtmosphere(const int& id);
-    Drag* GetDrag(const int& id); */    
-
 	std::vector<Rocket*> rockets_;
     std::vector<Configuration*> configurations_;
     std::vector<Stage*> stages_;
@@ -118,8 +111,6 @@ private:
     std::vector<Motor*> motors_;
     std::vector<Atmosphere*> atmosphere_models_;
     std::vector<Drag*> drag_models_;
-
-    //Parts
     std::vector<Part*> parts_;
     //std::vector<Bulkhead*> bulkheads_;
     //std::vector<Fins*> fins_;

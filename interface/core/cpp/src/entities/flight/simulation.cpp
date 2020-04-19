@@ -1,6 +1,6 @@
 #include "simulation.h"
 
-Simulation::Simulation(std::string name, std::string comments,
+Simulation::Simulation(std::string name, std::string comments, Atmosphere* atmosphere,
     const double& height_pad, const double& angle_launch_rod, const double& length_launch_rod)
 
     : Entity(name, comments),
@@ -8,20 +8,10 @@ Simulation::Simulation(std::string name, std::string comments,
       angle_launch_rod_(angle_launch_rod),
       length_launch_rod_(length_launch_rod) {
 
-    time_max_ = 500.0;
-
-    //Create default atmosphere to use 
-    atmosphere_ = new Atmosphere();
-    AtmosphereISA atmosphere_model;
-    *atmosphere_ = atmosphere_model.GetModel();
-    atmosphere_internal_calc_ = true;
+    time_max_ = 500.0;    
 }
 
 Simulation::~Simulation() {
-
-    if (atmosphere_internal_calc_) {
-        delete atmosphere_;
-    }
 
     for (auto sim_stage : stages_) {
         delete sim_stage;
@@ -93,6 +83,14 @@ Motor* Simulation::AssignedMotor(Stage* stage) const {
     return nullptr;
 }
 
+void Simulation::SetAtmosphere(Atmosphere* atmosphere) {
+    atmosphere_ = atmosphere;
+}
+
+Atmosphere* Simulation::AssignedAtmosphere() const {
+    return atmosphere_;
+}
+
 double Simulation::HeightPad() const {
     return height_pad_;
 }
@@ -138,7 +136,7 @@ void Simulation::Run(const double& step_ascent, const double& step_descent) {
 
     //initial conditions for ode
     std::vector<double> initial_conditions { height_pad_, 0.0 };
-    Phase phase = Phase::DETECT_LAUNCH; 
+    phase_ = Phase::DETECT_LAUNCH; 
 
     //loop through each stage starting with booster
     for (auto it = stages_.rbegin(); it != stages_.rend(); ++it) {
@@ -147,18 +145,18 @@ void Simulation::Run(const double& step_ascent, const double& step_descent) {
         stage_current_->PopulateModelDrag();
 
         //run full simulation for this stage until it's back on the ground. Then start the next one
-        while (phase != Phase::GROUND) {
+        while (phase_ != Phase::GROUND) {
 
             Event event;
             Matrix<double> result_phase(0, 4);
             
-            if (phase == Phase::DESCENT_DROGUE ||
-                phase == Phase::DESCENT_MAIN) {
+            if (phase_ == Phase::DESCENT_DROGUE ||
+                phase_ == Phase::DESCENT_MAIN) {
 
-                event = RunPhase(result_phase, phase, initial_conditions, time_start, time_end, step_descent); //calculate current phase
+                event = RunPhase(result_phase, phase_, initial_conditions, time_start, time_end, step_descent); //calculate current phase
             }
             else {
-                event = RunPhase(result_phase, phase, initial_conditions, time_start, time_end, step_ascent); //calculate current phase
+                event = RunPhase(result_phase, phase_, initial_conditions, time_start, time_end, step_ascent); //calculate current phase
             }
 
             //Update initial conditions for next phase
@@ -168,7 +166,7 @@ void Simulation::Run(const double& step_ascent, const double& step_descent) {
 
             //Determine next phase of flight and times to use
             time_start = result_phase.GetLastRow()[0];
-            phase = GetNextPhase(event, time_start);			
+            phase_ = GetNextPhase(event, time_start);			
             time_end = stage_current_->GetTimeForNearestDelayedUserCommand(time_start + time_max_);
             
             //Add data from current phase to current stage flight data
@@ -178,7 +176,7 @@ void Simulation::Run(const double& step_ascent, const double& step_descent) {
             if (!result_next_stage_saved) { //stages haven't separated yet, keep saving data for next stage
                 result_next_stage = result_current_stage;
             }
-            if (phase == Phase::ASCENT_UNPOWERED_UNSTACKED && !result_next_stage_saved) {
+            if (phase_ == Phase::ASCENT_UNPOWERED_UNSTACKED && !result_next_stage_saved) {
                 result_next_stage_saved = true;
             }            
         }   
@@ -192,7 +190,7 @@ void Simulation::Run(const double& step_ascent, const double& step_descent) {
         initial_conditions.clear();
         initial_conditions.push_back(result_current_stage.GetLastRow()[1]);
         initial_conditions.push_back(result_current_stage.GetLastRow()[2]); 
-        phase = Phase::ASCENT_UNPOWERED_STACKED; 
+        phase_ = Phase::ASCENT_UNPOWERED_STACKED; 
     }	  
 }
 
@@ -204,7 +202,7 @@ Event Simulation::RunPhase(Matrix<double>& result_phase, Phase phase, const std:
     Event event;    
 
     //Function definitons for events and EOM's which can change
-    std::function<std::vector<double>(const double&, const std::vector<double>&)> eom;
+    std::function<std::vector<double>(const double&, const std::vector<double>&)> eom = std::bind(&Simulation::Eom, this, std::placeholders::_1, std::placeholders::_2);;
     std::function<bool(const std::vector<double>&)> event_detect;   
 
     //run appropriate phase of flight.
@@ -212,7 +210,7 @@ Event Simulation::RunPhase(Matrix<double>& result_phase, Phase phase, const std:
         case Phase::DETECT_LAUNCH: {
             drag_current_ = stage_current_->GetDragWithStagesAbove();
             mass_empty_current_ = stage_current_->stage_->MassEmpty(true) + GetMotorMassStagesAbove();
-            eom = std::bind(&Simulation::EomAscent, this, std::placeholders::_1, std::placeholders::_2);
+            //eom = std::bind(&Simulation::Eom, this, std::placeholders::_1, std::placeholders::_2);
             result_phase = MathUtilities::RK45(initial_conditions, eom, Simulation::LaunchDetect, time_start, time_end, step);
             event = Event::LIFTOFF;
             break;
@@ -220,7 +218,7 @@ Event Simulation::RunPhase(Matrix<double>& result_phase, Phase phase, const std:
         case Phase::ASCENT_POWERED: {
             drag_current_ = stage_current_->GetDragWithStagesAbove();
             mass_empty_current_ = stage_current_->stage_->MassEmpty(true) + GetMotorMassStagesAbove();
-            eom = std::bind(&Simulation::EomAscent, this, std::placeholders::_1, std::placeholders::_2);
+            //eom = std::bind(&Simulation::Eom, this, std::placeholders::_1, std::placeholders::_2);
             event_detect = std::bind(&Simulation::CoastDetect, this, std::placeholders::_1);
             result_phase = MathUtilities::RK45(initial_conditions, eom, event_detect, time_start, time_end, step);
             event = Event::BURNOUT;
@@ -229,7 +227,7 @@ Event Simulation::RunPhase(Matrix<double>& result_phase, Phase phase, const std:
         case Phase::ASCENT_UNPOWERED_STACKED: {
             drag_current_ = stage_current_->GetDragWithStagesAbove();
             mass_empty_current_ = stage_current_->stage_->MassEmpty(true) + GetMotorMassStagesAbove();
-            eom = std::bind(&Simulation::EomAscent, this, std::placeholders::_1, std::placeholders::_2);
+            //eom = std::bind(&Simulation::Eom, this, std::placeholders::_1, std::placeholders::_2);
             result_phase = MathUtilities::RK45(initial_conditions, eom, Simulation::ApogeeDetect, time_start, time_end, step);
             event = Event::APOGEE;
             break;
@@ -237,7 +235,7 @@ Event Simulation::RunPhase(Matrix<double>& result_phase, Phase phase, const std:
         case Phase::ASCENT_UNPOWERED_UNSTACKED: {
             drag_current_ = stage_current_->GetDragWithoutStagesAbove();
             mass_empty_current_ = stage_current_->stage_->MassEmpty(false);
-            eom = std::bind(&Simulation::EomAscent, this, std::placeholders::_1, std::placeholders::_2);
+            //eom = std::bind(&Simulation::Eom, this, std::placeholders::_1, std::placeholders::_2);
             result_phase = MathUtilities::RK45(initial_conditions, eom, Simulation::ApogeeDetect, time_start, time_end, step);
             event = Event::APOGEE;
             break;
@@ -245,7 +243,7 @@ Event Simulation::RunPhase(Matrix<double>& result_phase, Phase phase, const std:
         case Phase::DESCENT_UNPOWERED_STACKED: {
             drag_current_ = stage_current_->GetDragWithStagesAbove();
             mass_empty_current_ = stage_current_->stage_->MassEmpty(true) + GetMotorMassStagesAbove();
-            eom = std::bind(&Simulation::EomDescent, this, std::placeholders::_1, std::placeholders::_2);
+            //eom = std::bind(&Simulation::Eom, this, std::placeholders::_1, std::placeholders::_2);
             event_detect = std::bind(&Simulation::GroundDetect, this, std::placeholders::_1);
             result_phase = MathUtilities::RK45(initial_conditions, eom, event_detect, time_start, time_end, step);
             event = Event::GROUND;
@@ -254,7 +252,7 @@ Event Simulation::RunPhase(Matrix<double>& result_phase, Phase phase, const std:
         case Phase::DESCENT_UNPOWERED_UNSTACKED: {
             drag_current_ = stage_current_->GetDragWithoutStagesAbove();
             mass_empty_current_ = stage_current_->stage_->MassEmpty(false);
-            eom = std::bind(&Simulation::EomDescent, this, std::placeholders::_1, std::placeholders::_2);
+            //eom = std::bind(&Simulation::Eom, this, std::placeholders::_1, std::placeholders::_2);
             event_detect = std::bind(&Simulation::GroundDetect, this, std::placeholders::_1);
             result_phase = MathUtilities::RK45(initial_conditions, eom, event_detect, time_start, time_end, step);
             event = Event::GROUND;
@@ -263,7 +261,7 @@ Event Simulation::RunPhase(Matrix<double>& result_phase, Phase phase, const std:
         case Phase::DESCENT_DROGUE: {
             drag_current_ = stage_current_->GetDragDrogue();
             mass_empty_current_ = stage_current_->stage_->MassEmpty(false);
-            eom = std::bind(&Simulation::EomDescent, this, std::placeholders::_1, std::placeholders::_2);
+            //eom = std::bind(&Simulation::Eom, this, std::placeholders::_1, std::placeholders::_2);
             event_detect = std::bind(&Simulation::MainDetect, this, std::placeholders::_1);
             result_phase = MathUtilities::RK45(initial_conditions, eom, event_detect, time_start, time_end, step);
             event = Event::ALTITUDE_MAIN;
@@ -272,7 +270,7 @@ Event Simulation::RunPhase(Matrix<double>& result_phase, Phase phase, const std:
         case Phase::DESCENT_MAIN: {
             drag_current_ = stage_current_->GetDragMain();
             mass_empty_current_ = stage_current_->stage_->MassEmpty(false);
-            eom = std::bind(&Simulation::EomDescent, this, std::placeholders::_1, std::placeholders::_2);
+            //eom = std::bind(&Simulation::Eom, this, std::placeholders::_1, std::placeholders::_2);
             event_detect = std::bind(&Simulation::GroundDetect, this, std::placeholders::_1);
             result_phase = MathUtilities::RK45(initial_conditions, eom, event_detect, time_start, time_end, step);
             event = Event::GROUND;
@@ -353,7 +351,22 @@ double Simulation::GetMotorMassStagesAbove() {
     return mass;
 }
 
-std::vector<double> Simulation::EomAscent(const double& time, const std::vector<double>& state) {  
+std::vector<double> time; //already calced
+std::vector<double> altitude; //already calced
+std::vector<double> velocity; //already calced
+std::vector<double> acceleration; //already calced     
+std::vector<double> mach_number;
+std::vector<double> dynamic_pressure;
+std::vector<double> drag; //already calced
+std::vector<double> drag_coefficient;
+std::vector<double> mass; //already calced
+std::vector<double> pressure;
+std::vector<double> temperature;
+std::vector<double> thrust; //already calced
+
+std::vector<double> Simulation::Eom(const double& time, const std::vector<double>& state) {  
+
+    SolverResult results_step;
 
     double time_this_stage = time - time_motor_lit_;
     bool motor_thrusting = stage_current_->motor_->CurrentlyThrusting(time_this_stage);   
@@ -373,6 +386,7 @@ std::vector<double> Simulation::EomAscent(const double& time, const std::vector<
     return result_state;
 }
 
+/*
 std::vector<double> Simulation::EomDescent(const double& time, const std::vector<double>& state) {
 
     //Get acceleration
@@ -383,7 +397,7 @@ std::vector<double> Simulation::EomDescent(const double& time, const std::vector
     //output solution to step
     std::vector<double> result_state{ state[1], acceleration };
     return result_state;
-}
+} */
 
 bool Simulation::LaunchDetect(const std::vector<double>& state) {
 
@@ -437,16 +451,16 @@ bool Simulation::GroundDetect(const std::vector<double>& state) {
     }
 }
 
-FlightData Simulation::PopulateStageFlightData(Matrix<double> stage_result) {
+//FlightData Simulation::PopulateStageFlightData(Matrix<double> stage_result) {
 
-    FlightData result;	
-
-    result.time_ = stage_result.GetColumn(0);
-    result.altitude_msl_ = stage_result.GetColumn(1);
-    //result.altitudeAGL = result.altitudeMSL
-    result.velocity_ = stage_result.GetColumn(2);
-    result.acceleration_ = stage_result.GetColumn(3);
-    result.length_vector_ = result.time_.size();
-
-    return result;
-}
+    //FlightData result;	
+    //
+    //result.time_ = stage_result.GetColumn(0);
+    //result.altitude_msl_ = stage_result.GetColumn(1);
+    ////result.altitudeAGL = result.altitudeMSL
+    //result.velocity_ = stage_result.GetColumn(2);
+    //result.acceleration_ = stage_result.GetColumn(3);
+    //result.length_vector_ = result.time_.size();
+    //
+    //return result;
+//}

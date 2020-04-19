@@ -18,10 +18,6 @@ Drag::Drag(std::string name, std::string comments, bool internally_calculated, D
 
 Drag::~Drag() {}
 
-double Drag::GetDynamicPressure(const double& in_density, const double& in_velocity) const {
-    return 0.5*in_density*std::pow(in_velocity, 2);
-}
-
 double Drag::GetCd(bool powered, const double& mach_number) const {
     if (powered) {
         return MathUtilities::InterpolateLinear(data_mach_powered_, data_cd_powered_, mach_number);
@@ -31,7 +27,6 @@ double Drag::GetCd(bool powered, const double& mach_number) const {
     }
 }
 
-double Drag::GetDrag(bool powered, const double& density, const double& velocity, const double& speed_sound) const {
-    double mach_number = velocity / speed_sound;
-    return GetDynamicPressure(density, velocity)*area_reference_*GetCd(powered, mach_number);
+double Drag::GetDrag(bool powered, const double& dynamic_pressure, const double& mach_number) const {
+    return dynamic_pressure*area_reference_* GetCd(powered, mach_number);
 }

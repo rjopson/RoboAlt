@@ -20,6 +20,10 @@ double Aerodynamics::Beta(const double& mach_number) {
     return std::sqrt(std::abs(std::pow(mach_number, 2) - 1));
 }
 
+double Aerodynamics::DynamicPressure(const double& in_density, const double& in_velocity) {
+    return 0.5 * in_density * std::pow(in_velocity, 2);
+}
+
 double Aerodynamics::Drag(const double& density, const double& velocity, const double& drag_coefficient, const double& area_reference) {
     return 0.5*density*std::pow(velocity, 2)*drag_coefficient*area_reference;
 }

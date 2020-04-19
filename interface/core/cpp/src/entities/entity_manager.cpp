@@ -1,6 +1,12 @@
 #include "entity_manager.h"
 
 EntityManager::EntityManager() {
+
+    //Create default atmosphere to use 
+    Atmosphere* atmosphere = new Atmosphere();
+    AtmosphereISA atmosphere_model;
+    *atmosphere = atmosphere_model.GetModel();
+    atmosphere_models_.push_back(atmosphere);
 }
 
 
@@ -14,6 +20,10 @@ EntityManager::~EntityManager() {
     }
     for (auto motor : motors_) {
         DeleteMotor(motor);
+    }
+
+    for (auto atmosphere : atmosphere_models_) {
+        DeleteAtmosphere(atmosphere);
     }
 }
 
@@ -252,7 +262,7 @@ std::vector<PartInstance*> EntityManager::GetPartInstances(Part* part) {
 
 Simulation* EntityManager::CreateSimulation(const std::string& name, Configuration* configuration) {
 
-    simulations_.push_back(new Simulation(name, "", 0.0, 0.0, 2.0));
+    simulations_.push_back(new Simulation(name, "", GetAtmosphereModel(), 0.0, 0.0, 2.0));
     configuration->AddSimulation(simulations_.back());
     return simulations_.back();
 }
@@ -319,4 +329,12 @@ void EntityManager::DeleteMotor(Motor* motor) {
 
 Motor* EntityManager::GetMotor(const std::string& name) {
     return GetEntity(motors_, name);
+}
+
+void EntityManager::DeleteAtmosphere(Atmosphere* atmosphere) {
+    DeleteEntity(atmosphere_models_, atmosphere);
+}
+
+Atmosphere* EntityManager::GetAtmosphereModel() const {
+    return atmosphere_models_.front();
 }

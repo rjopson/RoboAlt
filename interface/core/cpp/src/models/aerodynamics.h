@@ -42,7 +42,7 @@ class Aerodynamics {
     static double ReynoldsNumber(const double& velocity, const double& length);
     static double PrandtlFactor(const double& mach_number);
     static double Beta(const double& mach_number);
-    static double DynamicPressure();
+    static double DynamicPressure(const double& density, const double& velocity);
 
     //rocket drag
     static double Drag(const double& density, const double& velocity, const double& drag_coefficient, const double& area_reference);

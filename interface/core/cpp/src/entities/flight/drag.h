@@ -23,9 +23,9 @@ class Drag {
         const std::vector<double>& data_mach_powered, const std::vector<double>& data_cd_powered);
     ~Drag();   
 
-    double GetDynamicPressure(const double& density, const double& velocity) const;
+    
     double GetCd(bool powered, const double& mach_number) const; //interpolate data for single mach number
-    double GetDrag(bool powered, const double& density, const double& velocity, const double& speed_sound) const; //interpolate data for single drag
+    double GetDrag(bool powered, const double& dynamic_pressure, const double& mach_number) const; //interpolate data for single drag
 
     std::string name_;
     bool internally_calculated_;
