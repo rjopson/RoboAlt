@@ -45,7 +45,6 @@
     <ClCompile Include="src\entities\flight\motor.cpp" />
     <ClCompile Include="src\entities\flight\simulation.cpp" />
     <ClCompile Include="src\entities\flight\simulation_data.cpp" />
-    <ClCompile Include="src\entities\flight\simulation_stage.cpp" />
     <ClCompile Include="src\entities\flight\simulation_user_command.cpp" />
     <ClCompile Include="src\models\aerodynamics.cpp" />
     <ClCompile Include="src\models\atmosphere_isa.cpp" />
@@ -82,7 +81,6 @@
     <ClInclude Include="src\entities\flight\motor.h" />
     <ClInclude Include="src\entities\flight\simulation.h" />
     <ClInclude Include="src\entities\flight\simulation_data.h" />
-    <ClInclude Include="src\entities\flight\simulation_stage.h" />
     <ClInclude Include="src\entities\flight\simulation_user_command.h" />
     <ClInclude Include="src\models\aerodynamics.h" />
     <ClInclude Include="src\models\atmosphere_isa.h" />

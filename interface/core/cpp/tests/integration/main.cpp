@@ -132,8 +132,8 @@ int main() {
     main_command->SetAltitudeMainDeploy(500.0);
     
     sim_h128->Run();
-    std::cout << sim_h128->Results(sustainer180)->DescentRateMain() << std::endl;;
-    //sim_h128->Results(sustainer180)->Print();  
+    //std::cout << sim_h128->Results(sustainer180).DescentRateMain() << std::endl;;
+    //sim_h128->Results(sustainer180).Print();  
 
     Experiment* flight_h128 = db->CreateFlight("h128", config180);
     flight_h128->GetDataFromFile(sustainer180, "C:/Users/rober/Documents/Rockets/Altimeters/RoboAlt/flight_tests/3DPME_29mm_H128_TriCities_9-2019_v2.csv");

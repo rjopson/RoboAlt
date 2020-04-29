@@ -8,23 +8,27 @@ Simulation::Simulation(const std::string& name, const std::string& comments, Atm
       step_ascent_(step_ascent),
       step_descent_(step_descent),
       time_max_(500.0),
-      drag_current_(nullptr),
+      mass_empty_current_(-1.0),
+      phase_(Phase::DETECT_LAUNCH),
+      time_motor_lit_(-1.0),
+      drag_current_(new Drag()),
       stage_current_(nullptr) {
-
 }
 
 Simulation::~Simulation() {
 
     for (auto sim_stage : stages_) {
-        for (auto command : sim_stage->UserCommands()) {
-            DeleteUserCommand(command);
+        for (auto command : sim_stage->user_commands_) {
+            DeleteUserCommand(sim_stage->stage_, command);
         }
         delete sim_stage;
     }
+    delete drag_current_;
 }
 
 void Simulation::AddStage(Stage* stage) {
-    stages_.push_back(new SimulationStage(stage));
+    stages_.push_back(new SimulationStage());
+    stages_.back()->stage_ = stage;
 }
 
 void Simulation::RemoveStage(Stage* stage) {
@@ -41,32 +45,39 @@ void Simulation::RemoveStage(Stage* stage) {
 SimulationUserCommand* Simulation::CreateUserCommand(Stage* stage) {
 
     SimulationUserCommand* user_command = new SimulationUserCommand(Event::APOGEE, Command::NONE, 0.0, nullptr, 0.0);
+    SimulationStage* sim_stage = GetSimulationStage(stage);
 
-    for (auto it = stages_.begin(); it != stages_.end(); it++) {
-        if ((*it)->stage_ == stage) {
-            (*it)->AddUserCommand(user_command);
-        }
+    if (sim_stage != nullptr) {
+        sim_stage->user_commands_.push_back(user_command);
+    }
+    else {
+        delete user_command;
+        user_command = nullptr;
     }
     return user_command;
 }
 
-void Simulation::DeleteUserCommand(SimulationUserCommand* user_command) {
+void Simulation::DeleteUserCommand(Stage* stage, SimulationUserCommand* user_command) {
 
-    for (auto it = stages_.begin(); it != stages_.end(); it++) {
-        (*it)->RemoveUserCommand(user_command);
-    }
-    delete user_command;
-}
+    SimulationStage* sim_stage = GetSimulationStage(stage);
 
-void Simulation::SetMotor(Motor* motor, Stage* stage) {    
-    
-    for (auto it = stages_.begin(); it != stages_.end(); it++) {
-        if ((*it)->stage_ == stage) {
-            (*it)->motor_ = motor;
+    if (sim_stage != nullptr) {
+
+        auto it = std::find(sim_stage->user_commands_.begin(), sim_stage->user_commands_.end(), user_command);
+        if (it != sim_stage->user_commands_.end()) {
+            sim_stage->user_commands_.erase(it);
+            delete user_command;
         }
     }
 }
 
+void Simulation::SetMotor(Motor* motor, Stage* stage) {
+
+    SimulationStage* sim_stage = GetSimulationStage(stage);
+    if (sim_stage != nullptr) {
+        sim_stage->motor_ = motor;
+    }
+}
 
 void Simulation::SetStepAscent(const double& step_ascent) {
     step_ascent_ = step_ascent;
@@ -78,11 +89,10 @@ void Simulation::SetStepDescent(const double& step_descent) {
 
 Motor* Simulation::AssignedMotor(Stage* stage) const {
 
-    for (auto it = stages_.begin(); it != stages_.end(); it++) {
-        if ((*it)->stage_ == stage) {
-            return (*it)->motor_;
-        }
-    }   
+    SimulationStage* sim_stage = GetSimulationStage(stage);
+    if (sim_stage != nullptr) {
+        return sim_stage->motor_;
+    }
     return nullptr;
 }
 
@@ -112,25 +122,24 @@ double Simulation::StepDescent() const {
     return step_descent_;
 }
 
-std::vector<SimulationUserCommand*> Simulation::UserCommands() const {
+std::vector<SimulationUserCommand*> Simulation::UserCommands(Stage* stage) const {
 
-    std::vector<SimulationUserCommand*> result;
-    for (auto sim_stage : stages_) {
-
-        std::vector<SimulationUserCommand*> commands = sim_stage->UserCommands();
-        result.insert(result.end(), commands.begin(), commands.end());
+    SimulationStage* sim_stage = GetSimulationStage(stage);
+    if (sim_stage != nullptr) {
+        return sim_stage->user_commands_;
     }
-    return result;
+    else {
+        std::vector<SimulationUserCommand*> result;
+        return result;
+    }
 }
 
-SimulationData* Simulation::Results(Stage* stage) const {
+SimulationData Simulation::Results(Stage* stage) const {
 
-    for (auto it = stages_.begin(); it != stages_.end(); it++) {
-        if ((*it)->stage_ == stage) {
-            return (*it)->simulation_data_;
-        }
+    SimulationStage* sim_stage = GetSimulationStage(stage);
+    if (sim_stage != nullptr) {
+        return sim_stage->simulation_data_;
     }
-    return nullptr;
 }
 
 void Simulation::Run() {
@@ -153,7 +162,6 @@ void Simulation::Run() {
     for (auto it = stages_.rbegin(); it != stages_.rend(); ++it) {
 
         stage_current_ = (*it);
-        stage_current_->PopulateModelDrag();
 
         //run full simulation for this stage until it's back on the ground. Then start the next one
         while (phase_ != Phase::GROUND) {            
@@ -186,7 +194,7 @@ void Simulation::Run() {
             //Determine next phase of flight and times to use
             time_start = results_phase.back().time;
             phase_ = GetNextPhase(event, time_start);			
-            time_end = stage_current_->GetTimeForNearestDelayedUserCommand(time_start, time_start + time_max_);                    
+            time_end = GetTimeForNearestDelayedUserCommand(stage_current_, time_start, time_start + time_max_);                    
 
             //If stages haven't separated, save data to pass to next stage simulation
             if (!result_next_stage_saved) { //stages haven't separated yet, keep saving data for next stage
@@ -208,7 +216,7 @@ void Simulation::Run() {
         phase_ = Phase::ASCENT_UNPOWERED_STACKED; 
 
         //save results for stage
-        stage_current_->simulation_data_->Populate(results_current_stage);
+        stage_current_->simulation_data_.Populate(results_current_stage);
         results_current_stage.clear();
     }	    
 }
@@ -228,56 +236,56 @@ Event Simulation::RunPhase(std::vector<SolverResult>& results, Phase phase, cons
     //run appropriate phase of flight.
     switch (phase) {
         case Phase::DETECT_LAUNCH: {
-            drag_current_ = stage_current_->GetDragWithStagesAbove();
+            *drag_current_ = GetDragStageStacked(stage_current_);
             mass_empty_current_ = stage_current_->stage_->MassEmpty(true) + GetMotorMassStagesAbove();
             event_function = std::bind(&Simulation::LaunchDetect, this, std::placeholders::_1);
             event = Event::LIFTOFF;
             break;
         }
         case Phase::ASCENT_POWERED: {
-            drag_current_ = stage_current_->GetDragWithStagesAbove();
+            *drag_current_ = GetDragStageStacked(stage_current_);
             mass_empty_current_ = stage_current_->stage_->MassEmpty(true) + GetMotorMassStagesAbove();
             event_function = std::bind(&Simulation::CoastDetect, this, std::placeholders::_1);
             event = Event::BURNOUT;
             break;
         }
         case Phase::ASCENT_UNPOWERED_STACKED: {
-            drag_current_ = stage_current_->GetDragWithStagesAbove();
+            *drag_current_ = GetDragStageStacked(stage_current_);
             mass_empty_current_ = stage_current_->stage_->MassEmpty(true) + GetMotorMassStagesAbove();
             event_function = std::bind(&Simulation::ApogeeDetect, this, std::placeholders::_1);
             event = Event::APOGEE;
             break;
         }
         case Phase::ASCENT_UNPOWERED_UNSTACKED: {
-            drag_current_ = stage_current_->GetDragWithoutStagesAbove();
+            *drag_current_ = GetDragStageUnstacked(stage_current_);
             mass_empty_current_ = stage_current_->stage_->MassEmpty(false);
             event_function = std::bind(&Simulation::ApogeeDetect, this, std::placeholders::_1);
             event = Event::APOGEE;
             break;
         }
         case Phase::DESCENT_UNPOWERED_STACKED: {
-            drag_current_ = stage_current_->GetDragWithStagesAbove();
+            *drag_current_ = GetDragStageStacked(stage_current_);
             mass_empty_current_ = stage_current_->stage_->MassEmpty(true) + GetMotorMassStagesAbove();
             event_function = std::bind(&Simulation::GroundDetect, this, std::placeholders::_1);
             event = Event::GROUND;
             break;
         }
         case Phase::DESCENT_UNPOWERED_UNSTACKED: {
-            drag_current_ = stage_current_->GetDragWithoutStagesAbove();
+            *drag_current_ = GetDragStageUnstacked(stage_current_);
             mass_empty_current_ = stage_current_->stage_->MassEmpty(false);
             event_function = std::bind(&Simulation::GroundDetect, this, std::placeholders::_1);
             event = Event::GROUND;
             break;
         }
         case Phase::DESCENT_DROGUE: {
-            drag_current_ = stage_current_->GetDragDrogue();
+            *drag_current_ = GetDragDrogueParachute(stage_current_);
             mass_empty_current_ = stage_current_->stage_->MassEmpty(false);
             event_function = std::bind(&Simulation::MainDetect, this, std::placeholders::_1);
             event = Event::ALTITUDE_MAIN;
             break;
         }
         case Phase::DESCENT_MAIN: {
-            drag_current_ = stage_current_->GetDragMain();
+            *drag_current_ = GetDragMainParachute(stage_current_);
             mass_empty_current_ = stage_current_->stage_->MassEmpty(false);
             event_function = std::bind(&Simulation::GroundDetect, this, std::placeholders::_1);
             event = Event::GROUND;
@@ -302,7 +310,7 @@ Event Simulation::RunPhase(std::vector<SolverResult>& results, Phase phase, cons
 Phase Simulation::GetNextPhase(Event event_current, const double& time_of_flight) {
 
     Phase phase = Phase::GROUND;
-    Command command = stage_current_->UpdateUserCommands(event_current, time_of_flight);
+    Command command = UpdateUserCommands(stage_current_, event_current, time_of_flight);
     switch (command) {            
         case Command::DEPLOY_DROGUE: {
             phase = Phase::DESCENT_DROGUE;
@@ -360,6 +368,110 @@ double Simulation::GetMotorMassStagesAbove() {
         mass += (*it)->motor_->MassTotal();
     }
     return mass;
+}
+
+SimulationStage* Simulation::GetSimulationStage(Stage* stage) const {
+
+    SimulationStage* result;
+
+    for (auto it = stages_.begin(); it != stages_.end(); it++) {
+        if ((*it)->stage_ == stage) {
+            return (*it);
+        }
+    }
+    return nullptr;
+}
+
+double Simulation::AltitudeMainDeploy(SimulationStage* stage) const {
+
+    double altitude_main_deploy = -1.0;
+
+    for (auto user_command : stage->user_commands_) {
+        if (user_command->AssignedEvent() == Event::ALTITUDE_MAIN) {
+            altitude_main_deploy = user_command->AltitudeMainDeploy();
+            break;
+        }
+    }      
+    return altitude_main_deploy;
+}
+
+Command Simulation::UpdateUserCommands(SimulationStage* stage, Event event, const double& time_of_flight) {
+
+    Command command = Command::NONE;
+
+    for (auto user_command : stage->user_commands_) {
+
+        //Return the command which would result in the latest flight phase (any other user commands found are processed but irrelevent for simulation)
+        Command command_test = user_command->Update(event, time_of_flight);
+        if (command_test > command) {
+            command = command_test;
+        }
+    }    
+    return command;
+}
+
+double Simulation::GetTimeForNearestDelayedUserCommand(SimulationStage* stage, const double& time_of_flight, const double& time_max) const {
+
+    double time = time_max;
+
+    for (auto user_command : stage->user_commands_) {
+        if (user_command->TimeToActivateCommand() != -1.0) {
+            if (user_command->TimeToActivateCommand() < time_max) {
+                time = user_command->TimeToActivateCommand();
+            }
+        }
+    }    
+    return time;
+}
+
+Drag Simulation::GetDragStageStacked(SimulationStage* stage) {
+    
+    if (stage->drag_with_stages_above_ != nullptr) {
+        return *stage->drag_with_stages_above_;
+    }
+    else {
+        return stage->stage_->DragModel(true, stage->motor_->Area(), 0.0, 5.0, 1000);
+    }    
+}
+
+Drag Simulation::GetDragStageUnstacked(SimulationStage* stage) {
+
+    if (stage->drag_without_stages_above_ != nullptr) {
+        return *stage->drag_without_stages_above_;
+    }
+    else {
+        return stage->stage_->DragModel(false, stage->motor_->Area(), 0.0, 5.0, 1000);
+    }
+}
+
+Drag Simulation::GetDragDrogueParachute(SimulationStage* stage) {
+
+    if (stage->drag_drogue_ != nullptr) {
+        return *stage->drag_drogue_;
+    }
+    else {
+        for (auto command : stage->user_commands_) {
+            if (command->AssignedCommand() == Command::DEPLOY_DROGUE) {
+                return command->AssignedParachute()->DragModel();
+            }
+
+        }
+    }    
+}
+
+Drag Simulation::GetDragMainParachute(SimulationStage* stage) {
+
+    if (stage->drag_main_ != nullptr) {
+        return *stage->drag_main_;
+    }
+    else {
+        for (auto command : stage->user_commands_) {
+            if (command->AssignedCommand() == Command::DEPLOY_MAIN) {
+                return command->AssignedParachute()->DragModel();
+            }
+
+        }
+    }    
 }
 
 std::vector<double> Simulation::Eom(SolverResult& results_step, const double& time, const std::vector<double>& state) {
@@ -443,7 +555,7 @@ bool Simulation::ApogeeDetect(const SolverResult& result_step) {
 
 bool Simulation::MainDetect(const SolverResult& result_step) {
 
-    double altitude_main_deploy = stage_current_->AltitudeMainDeploy();
+    double altitude_main_deploy = AltitudeMainDeploy(stage_current_);
 
     if (result_step.altitude_agl < altitude_main_deploy) {
         return true;
