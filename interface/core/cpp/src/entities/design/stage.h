@@ -7,7 +7,6 @@
 #include "atmosphere_isa.h"
 #include "drag.h"
 #include "entity.h"
-#include "inertial_override.h"
 #include "part_instance.h"
 
 class Stage : public Entity {
@@ -59,9 +58,12 @@ class Stage : public Entity {
 
     SurfaceFinish surface_finish_;
     double distance_overlap_; //amount this stage overlaps the one in front of it     
-    InertialOverride inertial_;
     PartInstance* instance_root_;
     std::vector<Stage*> stages_; //stages above this one, AND this one     
+    bool mass_override_switch_;
+    double mass_override_;
+    bool cg_override_switch_;
+    double cg_override_;
 };
 #endif
 

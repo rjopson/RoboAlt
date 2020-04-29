@@ -3,6 +3,7 @@
 
 #include "configuration.h"
 #include "entity_manager.h"
+#include "experiment.h"
 #include "fin_shape.h"
 #include "part_instance.h"
 #include "material.h"
@@ -83,20 +84,31 @@ int main() {
     fins->SetNumber(3);
     fins->SetThickness(0.003);
     fins->SetRadiusFillet(0.005);    
+
+    //Parachutes
+    Parachute* drogue_chute = db->CreatePart<Parachute>("drogueless", rkt);
+    drogue_chute->SetThickness(0.000);
+    drogue_chute->SetArea(0.03);
+    Parachute* main_chute = db->CreatePart<Parachute>("Top Flight 15in", rkt);
+    main_chute->SetThickness(0.0002);
+    main_chute->SetDiameter(0.31);
     
 	//Configuration
     Configuration* config180 = db->CreateConfiguration("180 case", rkt);
     Stage* sustainer180 = db->CreateStage("sustainer", config180);    
-    //sustainer180->SetOverrideMassEmpty(0.1809);
+    sustainer180->SetOverrideMassEmpty(0.1809);
+    sustainer180->SetOverrideMassSwitch(true);
     sustainer180->SetSurfaceFinish(SurfaceFinish::ROUGH);
 
 	//Instances
     PartInstance* nosecone_1 = db->CreatePartInstance("Nosecone_1", nosecone, sustainer180->InstanceRoot());
     PartInstance* tube_main_1 = db->CreatePartInstance("tubeMain_1", tube_main, sustainer180->InstanceRoot());
+    PartInstance* main_chute_1 = db->CreatePartInstance("Top Flight 15in_1", main_chute, tube_main_1);
     PartInstance* tube_drogue_1 = db->CreatePartInstance("tubeDrogue_1", tube_drogue, sustainer180->InstanceRoot());
+    PartInstance* drogue_chute_1 = db->CreatePartInstance("drogueless_1", drogue_chute, tube_drogue_1);
     PartInstance* tube_extension180_1 = db->CreatePartInstance("tubeExtension180_1", tube_extension180, sustainer180->InstanceRoot());
     PartInstance* fincan_1 = db->CreatePartInstance("tubeFincan_1", fincan, sustainer180->InstanceRoot());
-    PartInstance* finset_1 = db->CreatePartInstance("Finset_1", fins, fincan_1);
+    PartInstance* finset_1 = db->CreatePartInstance("Finset_1", fins, fincan_1);    
     finset_1->SetPositionFrom(0.0063);
 
     //db->GetStage("29mm 3DPME v2019", "180 case", "sustainer")->PrintDragCoefficients(1, 0.46, 0.0);
@@ -108,11 +120,27 @@ int main() {
 	//let's see if simulation works...
     Simulation* sim_h128 = db->CreateSimulation("h128", config180);
     sim_h128->SetHeightPad(167.0);
-    sim_h128->SetMotor(h128, sustainer180);
-    sim_h128->Run(0.05, 5.0);
+    sim_h128->SetMotor(h128, sustainer180);    
+    SimulationUserCommand* apogee_command = sim_h128->CreateUserCommand(sustainer180);
+    apogee_command->SetEvent(Event::APOGEE);
+    apogee_command->SetCommand(Command::DEPLOY_DROGUE);
+    apogee_command->SetParachute(drogue_chute);
+    SimulationUserCommand* main_command = sim_h128->CreateUserCommand(sustainer180);
+    main_command->SetEvent(Event::ALTITUDE_MAIN);
+    main_command->SetCommand(Command::DEPLOY_MAIN);
+    main_command->SetParachute(main_chute);
+    main_command->SetAltitudeMainDeploy(500.0);
+    
+    sim_h128->Run();
+    std::cout << sim_h128->Results(sustainer180)->DescentRateMain() << std::endl;;
+    //sim_h128->Results(sustainer180)->Print();  
 
-    db->DeletePart(nosecone);
-    db->DeleteRocket(rkt);
+    Experiment* flight_h128 = db->CreateFlight("h128", config180);
+    flight_h128->GetDataFromFile(sustainer180, "C:/Users/rober/Documents/Rockets/Altimeters/RoboAlt/flight_tests/3DPME_29mm_H128_TriCities_9-2019_v2.csv");
+    flight_h128->ProcessData();
+
+    //db->DeletePart(nosecone);
+    //db->DeleteRocket(rkt);
 
 
     //Configuration

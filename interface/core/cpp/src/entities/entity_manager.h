@@ -52,9 +52,9 @@ class EntityManager {
     Simulation* CreateSimulation(const std::string& name, Configuration* configuration);
     void DeleteSimulation(Simulation* simulation);
     Simulation* GetSimulation(const std::string& rocket_name, const std::string& configuration_name, const std::string& simulation_name);
-    void CreateSimulationUserCommand(Simulation* simulation, Stage* stage);
-    void DeleteSimulationuserCommand(SimulationUserCommand* command);
-    SimulationUserCommand* GetSimulationUserCommand();
+    Experiment* CreateFlight(const std::string& name, Configuration* configuration);
+    void DeleteFlight(Experiment* flight);
+    Experiment* GetFlight(const std::string& rocket_name, const std::string& configuration_name, const std::string& flight_name);
     
     Motor* CreateMotor(const std::string& file_path);
     Motor* CreateMotor();
@@ -106,12 +106,14 @@ private:
     std::vector<Configuration*> configurations_;
     std::vector<Stage*> stages_;
     std::vector<Simulation*> simulations_;
+    std::vector<Experiment*> flights_;
     std::vector<PartInstance*> instances_;    
     std::vector<Material*> materials_;
     std::vector<Motor*> motors_;
     std::vector<Atmosphere*> atmosphere_models_;
     std::vector<Drag*> drag_models_;
     std::vector<Part*> parts_;
+    std::vector<SimulationUserCommand*> user_commands_;
     //std::vector<Bulkhead*> bulkheads_;
     //std::vector<Fins*> fins_;
     //std::vector<PointMass*> masses_;

@@ -4,16 +4,8 @@
 
 #include <vector>
 
+#include "flight_data.h"
 #include "part_parachute.h"
-
-enum class Event {
-    LIFTOFF,
-    BURNOUT,
-    APOGEE,
-    ALTITUDE_MAIN,
-    GROUND,
-    AT_TIME_DELAY
-};
 
 enum class Command {	
     NONE,

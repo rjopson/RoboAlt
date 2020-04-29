@@ -7,7 +7,6 @@
 
 #include "aerodynamics.h"
 #include "entity.h"
-#include "inertial_override.h"
 #include "material.h"
 
 enum class PartType {
@@ -58,10 +57,13 @@ class Part : public Entity {
     virtual double DragCoefficientBase(const bool& aft_most_part,
         const double& mach_number, const double& area_thrusting, const double& area_reference)  const {return 0.0;}     
 
-  private:
-    InertialOverride inertial_;    
+  private: 
     Material* material_;
     PartType type_;
+    bool mass_override_switch_;
+    double mass_override_;
+    bool cg_override_switch_;
+    double cg_override_;
 };
 #endif
 

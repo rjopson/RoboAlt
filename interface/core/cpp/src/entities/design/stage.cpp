@@ -7,7 +7,10 @@ Stage::Stage(const std::string& name, const std::string& comments,
     : Entity(name, comments),
       surface_finish_(surface_finish),
       distance_overlap_(distance_overlap),
-      inertial_(mass_override_switch, mass_override, cg_override_switch, cg_override) {
+      mass_override_switch_(mass_override_switch),
+      mass_override_(mass_override),
+      cg_override_switch_(cg_override_switch),
+      cg_override_(cg_override) {
 
     instance_root_ = new PartInstance();
 }
@@ -29,11 +32,11 @@ void Stage::SetStages(std::vector<Stage*> stages) {
 }
 
 void Stage::SetOverrideMassEmpty(const double& mass) {
-    inertial_.mass_override_ = mass;
+    mass_override_ = mass;
 }
 
 void Stage::SetOverrideMassSwitch(bool use_override) {
-    inertial_.mass_override_switch_ = use_override;
+    mass_override_switch_ = use_override;
 }
 
 SurfaceFinish Stage::AssignedSurfaceFinish() const {
@@ -104,8 +107,8 @@ double Stage::MassEmpty(bool include_stages_above) const {
 
     double mass = 0.0;
 
-    if (inertial_.mass_override_switch_) {//user wants override value to be used
-        mass = inertial_.mass_override_;
+    if (mass_override_switch_) {//user wants override value to be used
+        mass = mass_override_;
     }
     else {
         std::vector<Stage*> stages = StageList(include_stages_above);
@@ -119,11 +122,11 @@ double Stage::MassEmpty(bool include_stages_above) const {
 }
 
 double Stage::OverrideMassEmpty() const {
-    return inertial_.mass_override_;
+    return mass_override_;
 }
 
 bool Stage::OverrideMassSwitch() const {
-    return inertial_.mass_override_switch_;
+    return mass_override_switch_;
 }
 
 SurfaceFinish Stage::GetSurfaceFinish(bool include_stages_above) {

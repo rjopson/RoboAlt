@@ -55,7 +55,10 @@ double SimulationUserCommand::AltitudeMainDeploy() const {
 
 Command SimulationUserCommand::Update(Event event, const double& time_of_flight) {
 
-    if (!command_complete_) {
+    if (command_ == Command::NONE) {
+        return command_;
+    }
+    else if (!command_complete_) {
 
         //current simulation event is the user's event. Set the activation time
         if (event == event_) {
@@ -65,6 +68,7 @@ Command SimulationUserCommand::Update(Event event, const double& time_of_flight)
         //If we're at or past the activation time, return the user's action
         if (time_to_activate_command_ != -1.0 && time_of_flight >= time_to_activate_command_) {
             command_complete_ = true;
+            time_to_activate_command_ = -1.0;
             return command_;
         }
     }

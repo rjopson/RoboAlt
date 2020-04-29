@@ -18,10 +18,17 @@ public:
 
     //get values
     T GetValue(const int& row, const int& column) const;
+    int GetRowSize() const;
+    int GetColumnSize() const;
+    bool IsSquare() const;
+    bool IsSingular() const;
     std::vector<T> GetRow(const int& row) const;
     std::vector<T> GetColumn(const int& column) const;
     std::vector<T> GetLastRow() const;
     std::vector<T> GetLastColumn() const;
+    Matrix<T> Transpose() const;
+    T Determinant() const;
+    Matrix<T> Inverse() const;
 
     //set values
     void SetValue(const int& row, const int& column, const T& value);
@@ -47,7 +54,12 @@ public:
 
     void Print(); //for debugging
 
-//private:
+  //private:
+    Matrix<T> RemoveElementRowAndColumn(const int& row_element, const int& col_element) const;
+    T Cofactor(const int& row_element, const int& col_element) const;
+    Matrix<T> CofactorMatrix() const;
+    Matrix<T> Adjoint() const;
+    T DeterminantRecursive(Matrix<T> matrix) const;
     int rows_;
     int columns_;
     std::vector<T> elements_;

@@ -8,7 +8,7 @@ Parse::Parse() {
 Parse::~Parse() {
 }
 
-std::vector<std::string> Parse::split(const std::string& input, const char& delimeter, bool outputEmpty) {
+std::vector<std::string> Parse::Split(const std::string& input, const char& delimeter, bool outputEmpty) {
 
 	std::vector<std::string> output;
 	std::string word = "";	
@@ -46,4 +46,24 @@ std::vector<std::string> Parse::split(const std::string& input, const char& deli
 	}
 
 	return output;
+}
+
+std::string Parse::GetDataString(const std::string& file_path) {
+
+	std::ifstream file(file_path);
+	std::string data_string;
+
+	if (!file.is_open()) {
+		std::cout << "Unable to open file" << '\n';
+	}
+	else {
+		file.seekg(0, std::ios::end);
+		data_string.reserve(file.tellg());
+		file.seekg(0, std::ios::beg);
+
+		data_string.assign((std::istreambuf_iterator<char>(file)),
+			std::istreambuf_iterator<char>());
+	}
+	file.close();
+	return data_string;
 }

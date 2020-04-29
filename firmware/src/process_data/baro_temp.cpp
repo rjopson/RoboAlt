@@ -1,30 +1,34 @@
 /*
- * baroAndTemp.cpp
+ * baro_temp.cpp
  */
 
-#include "baroAndTemp.h"
+#include "baro_temp.h"
 
 /* Default constructor
 */
-baroAndTemp::baroAndTemp() {
+BaroTemp::BaroTemp() {
 
+}
+
+BaroTemp::~BaroTemp() {
+	
 }
 
 /* Fetch MS5607 calibration coefficients from sensor class, which are used to 
  * calculate temp and pressure in engineering units.
  */
-void baroAndTemp::fetchCalibrationCoefficients(const uint16_t C_in[6]) {
+void BaroTemp::GetCalibrationCoefficients(const uint16_t c[6]) {
 	for (int i = 0; i != 6; i++) {
-		C[i] = C_in[i];
+		c_[i] = c[i];
 	}
 }
 
 /* Calculate temperature in 100*deg/s
  */
-int32_t baroAndTemp::calculateTemperature(const uint32_t& rawTemperature) {
+int32_t BaroTemp::CalculateTemperature(const uint32_t& temperature_sensor) {
 
 	//Define variables necessary for calculations
-	int64_t D2 = rawTemperature; //raw temperature value
+	int64_t D2 = temperature_sensor; //raw temperature value
 	int64_t TEMP; //actual temperature, 64 bit number used for calculation
 	int64_t dT; //difference between actual temperature and reference temperature
 
@@ -37,11 +41,11 @@ int32_t baroAndTemp::calculateTemperature(const uint32_t& rawTemperature) {
 /* Calculate pressure in Pascal
  *
  */
-int32_t baroAndTemp::calculatePressure(const uint32_t& rawPressure, const int32_t& rawTemperature) {
+int32_t BaroTemp::CalculatePressure(const uint32_t& pressure_sensor, const int32_t& temperature_sensor) {
 
 	//Define variables necessary for calculations
-	int64_t D1 = rawPressure; //raw pressure value
-	int64_t D2 = rawTemperature; //raw temperature value
+	int64_t D1 = pressure_sensor; //raw pressure value
+	int64_t D2 = temperature_sensor; //raw temperature value
 	int64_t dT; //difference between actual temperature and reference temperature
 	int64_t OFF; //offset at actual temperature
 	int64_t SENS; //sensitivity at actual temperature

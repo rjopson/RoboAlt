@@ -24,59 +24,13 @@ Motor::Motor(std::string name, std::string manufacturer, std::string comments,
 Motor::Motor(const std::string& file_path) 
 	: Entity("", "") {
 
-	std::ifstream file(file_path);
-	std::string line;
-	std::string command;
+	Parse(file_path);
 
-	if (!file.is_open()) {
-		std::cout << "Unable to open file" << '\n';
+	//most data doesn't have a 0 time and thrust, so add (otherwise integration of thrust is low)
+	if (data_time_[0] > 0.0) {
+		data_time_.insert(data_time_.begin(), 0.0);
+		data_thrust_.insert(data_thrust_.begin(), 0.0);
 	}
-	else {
-
-		bool headerReached = false;
-		while (std::getline(file, line)) {			
-			
-			//comment line
-			if (line.at(0) == ';') {
-				line.erase(line.begin());
-				line.append("\n");
-				AddToComments(line);
-			}
-			
-			//header line
-			else if (!headerReached) {
-
-				std::vector<std::string> line_list = Parse::split(line, ' ', false);
-				SetName(line_list[0]);
-				diameter_ = stod(line_list[1])*0.001;
-				length_ = stod(line_list[2])*0.001;
-				mass_propellant_ = stod(line_list[4]);
-				mass_total_ = stod(line_list[5]);
-				manufacturer_ = line_list[6];
-
-				//Could have multiple delays
-				for (auto element : Parse::split(line_list[3], '-', false)) {
-					delay_.push_back(stod(element));
-				}
-				headerReached = true;
-			}
-			
-			//data line
-			else {
-				std::vector<std::string> line_list = Parse::split(line, ' ', false);
-
-				data_time_.push_back(stod(line_list[0]));
-				data_thrust_.push_back(stod(line_list[1]));
-			}		
-		}
-
-		//most data doesn't have a 0 time and thrust, so add (otherwise integration of thrust is low)
-		if (data_time_[0] > 0.0) {
-			data_time_.insert(data_time_.begin(), 0.0);
-			data_thrust_.insert(data_thrust_.begin(), 0.0);
-		}
-	}
-	file.close();
 }
 
 Motor::~Motor() {}
@@ -191,4 +145,49 @@ bool Motor::CurrentlyThrusting(const double& time) const {
 	}
 
 	return thrusting;
+}
+
+void Motor::Parse(const std::string& file_path) {
+
+	std::string data_string = Parse::GetDataString(file_path);
+	std::istringstream iss(data_string);
+	std::string line;
+	std::string command;
+
+	bool headerReached = false;
+	while (std::getline(iss, line)) {
+
+		//comment line
+		if (line.at(0) == ';') {
+			line.erase(line.begin());
+			line.append("\n");
+			AddToComments(line);
+		}
+
+		//header line
+		else if (!headerReached) {
+
+			std::vector<std::string> line_list = Parse::Split(line, ' ', false);
+			SetName(line_list[0]);
+			diameter_ = stod(line_list[1]) * 0.001;
+			length_ = stod(line_list[2]) * 0.001;
+			mass_propellant_ = stod(line_list[4]);
+			mass_total_ = stod(line_list[5]);
+			manufacturer_ = line_list[6];
+
+			//Could have multiple delays
+			for (auto element : Parse::Split(line_list[3], '-', false)) {
+				delay_.push_back(stod(element));
+			}
+			headerReached = true;
+		}
+
+		//data line
+		else {
+			std::vector<std::string> line_list = Parse::Split(line, ' ', false);
+
+			data_time_.push_back(stod(line_list[0]));
+			data_thrust_.push_back(stod(line_list[1]));
+		}
+	}		
 }

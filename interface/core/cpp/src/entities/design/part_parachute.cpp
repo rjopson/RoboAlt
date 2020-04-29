@@ -20,6 +20,10 @@ void Parachute::SetDiameter(const double& diameter) {
     diameter_ = diameter;
 }
 
+void Parachute::SetArea(const double& area) {
+    diameter_ = 2 * std::sqrt(area / kPi);
+}
+
 double Parachute::Thickness() const {
     return thickness_;
 }

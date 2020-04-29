@@ -14,6 +14,7 @@ class Parachute : public Part {
     //Values
     void SetThickness(const double& thickness);
     void SetDiameter(const double& diameter);
+    void SetArea(const double& area);
 
     //Datanames
     double Thickness() const;

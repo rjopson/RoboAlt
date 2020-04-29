@@ -10,6 +10,18 @@
 
 #include <inttypes.h>
 
+enum class Phase {
+    DETECT_LAUNCH = 0,
+    ASCENT_POWERED = 1,
+    ASCENT_UNPOWERED_STACKED = 2,
+	DESCENT_DROGUE = 3,
+    DESCENT_MAIN = 4,
+    GROUND = 5
+    ASCENT_UNPOWERED_UNSTACKED = 6,
+    DESCENT_UNPOWERED_STACKED = 7,
+    DESCENT_UNPOWERED_UNSTACKED = 8,    
+};
+
 /** Flight logic written to flash chip
 *		Value		Description				Wait For
 *		0			Launch Detect			vel > define mm/s && a > define (mm/s^2) (takeoff)

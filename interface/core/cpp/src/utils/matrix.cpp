@@ -33,6 +33,39 @@ T Matrix<T>::GetValue(const int& row, const int& column)  const {
 }
 
 template <class T>
+int Matrix<T>::GetRowSize() const {
+    return rows_;
+}
+
+template <class T>
+int Matrix<T>::GetColumnSize() const {
+    return columns_;
+}
+
+template <class T>
+bool Matrix<T>::IsSquare() const {
+
+    if (rows_ == columns_) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+template <class T>
+bool Matrix<T>::IsSingular() const {
+
+    T det = Determinant();
+    if (det == 0) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+template <class T>
 std::vector<T> Matrix<T>::GetRow(const int& row)  const {
     
     std::vector<T> result(columns_);
@@ -64,6 +97,57 @@ std::vector<T> Matrix<T>::GetLastRow()  const {
 template <class T>
 std::vector<T> Matrix<T>::GetLastColumn()  const {
     return GetColumn(columns_ - 1);
+}
+
+template <class T>
+Matrix<T> Matrix<T>::Transpose() const {
+
+    Matrix<T> result(columns_, rows_);
+    for (int i = 0; i != rows_; i++) {
+        for (int j = 0; j != columns_; j++) {
+            result.SetValue(j, i, GetValue(i, j));
+        }
+    }
+    return result;
+}
+
+template <class T>
+T Matrix<T>::Determinant() const {
+
+    if (IsSquare()) { //matrix is square
+        return DeterminantRecursive(*this);
+    }
+    else {
+        return NAN;
+    }
+}
+
+template <class T>
+Matrix<T> Matrix<T>::Inverse() const {
+
+    Matrix<T> adjoint = Adjoint();
+    T det = Determinant();
+    Matrix<T> result(GetRowSize(), GetColumnSize());
+
+    if (!IsSquare()) {
+        std::vector<T> bad {NAN};
+        Matrix<T> bad_m(1, 1, bad);
+        return bad_m;
+    }
+
+    if (det == 0) {
+        std::vector<T> bad{ NAN };
+        Matrix<T> bad_m(1, 1, bad);
+        return bad_m;
+    }
+
+    for (int i = 0; i != GetRowSize(); i++) {
+        for (int j = 0; j != GetRowSize(); j++) {
+            T val = adjoint.GetValue(i, j) / det;
+            result.SetValue(i, j, val);
+        }
+    }
+    return result;
 }
 
 template <class T>
@@ -174,12 +258,89 @@ void Matrix<T>::operator=(const Matrix<T>& a)  {
 template <class T>
 void Matrix<T>::Print() {
 
+    std::cout << std::endl;
     for (int row = 0; row != rows_; row++) {
         for (int column = 0; column != columns_; column++) {
             std::cout << elements_[column + row * columns_] << ", ";
         }
         std::cout << std::endl;
     }
+    std::cout << std::endl;
+}
+
+template <class T>
+Matrix<T> Matrix<T>::RemoveElementRowAndColumn(const int& row_element, const int& col_element) const {
+
+    Matrix<T> result(rows_ - 1, columns_ - 1);
+    int i = 0, j = 0;
+
+    for (int row = 0; row != rows_; row++) {
+        
+        for (int col = 0; col != columns_; col++) {
+            
+            if (row != row_element && col != col_element) {
+                
+                result.SetValue(i, j++, GetValue(row, col));
+
+                if (j == result.GetRowSize()) {
+                    j = 0;
+                    i++;
+                }
+            }
+        }
+    }
+    return result;
+}
+
+template <class T>
+T Matrix<T>::Cofactor(const int& row_element, const int& col_element) const {
+
+    Matrix<T> remove_row_col = RemoveElementRowAndColumn(row_element, col_element);
+    int sign = ((row_element + col_element) % 2 == 0) ? 1 : -1;
+    return sign*DeterminantRecursive(remove_row_col);
+}
+
+template <class T>
+Matrix<T> Matrix<T>::CofactorMatrix() const {
+
+    Matrix<T> result(GetRowSize(), GetColumnSize());
+
+    for (int i = 0; i != GetRowSize(); i++) {
+        for (int j = 0; j != GetRowSize(); j++) {
+            result.SetValue(i, j, Cofactor(i, j));
+        }
+    }
+    return result;
+}
+
+template <class T>
+T Matrix<T>::DeterminantRecursive(Matrix<T> matrix) const {
+
+    T det = 0; //initialize
+
+    if (matrix.GetRowSize() == 1) { //base case - if matrix is 1x1
+        return matrix.GetValue(0, 0);
+    }
+
+    int sign = 1;
+    
+    //iterate through each elem of first row
+    for (int i = 0; i != matrix.GetColumnSize(); i++) {
+
+        Matrix<T> remove_row_col = matrix.RemoveElementRowAndColumn(0, i);
+        det += sign * matrix.GetValue(0, i) * DeterminantRecursive(remove_row_col);
+        sign = -sign;
+    }
+    return det;
+}
+
+
+template <class T>
+Matrix<T> Matrix<T>::Adjoint() const {
+
+    Matrix<T> cofactor = CofactorMatrix();
+    Matrix<T> adjoint = cofactor.Transpose();
+    return adjoint;
 }
 
 //template class Matrix<int>;

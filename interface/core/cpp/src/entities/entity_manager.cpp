@@ -111,6 +111,21 @@ TubeBody* EntityManager::CreatePart<TubeBody>(const std::string& name, Rocket* r
     return tube_body;
 }
 
+template <>
+Parachute* EntityManager::CreatePart<Parachute>(const std::string& name, Rocket* rocket) {
+
+    Material* material = nullptr;
+    Part* part = nullptr;
+
+    Parachute* parachute = new Parachute(name, "",
+        material, 0.381, 0.0002, false, 0, false, 0);
+    part = parachute;
+
+    parts_.push_back(part);
+    rocket->AddPart(part);
+    return parachute;
+}
+
 void EntityManager::DeletePart(Part* part) {
 
     //remove part from the rocket it was stored in
@@ -159,6 +174,9 @@ void EntityManager::DeleteConfiguration(Configuration* configuration) {
     }
     for (auto stage : configuration->Stages()) {
         DeleteStage(stage);
+    }
+    for (auto flight : configuration->Flights()) {
+        DeleteFlight(flight);
     }
     DeleteEntity(configurations_, configuration);
 }
@@ -262,7 +280,7 @@ std::vector<PartInstance*> EntityManager::GetPartInstances(Part* part) {
 
 Simulation* EntityManager::CreateSimulation(const std::string& name, Configuration* configuration) {
 
-    simulations_.push_back(new Simulation(name, "", GetAtmosphereModel(), 0.0, 0.0, 2.0));
+    simulations_.push_back(new Simulation(name, "", GetAtmosphereModel(), 0.0, 0.0, 2.0, 0.05, 0.1));
     configuration->AddSimulation(simulations_.back());
     return simulations_.back();
 }
@@ -272,8 +290,6 @@ void EntityManager::DeleteSimulation(Simulation* simulation) {
     for (auto config : configurations_) {
         config->RemoveSimulation(simulation);
     }
-
-    //remove user commands set for simulation...
 
     DeleteEntity(simulations_, simulation);
 }
@@ -296,6 +312,43 @@ Simulation* EntityManager::GetSimulation(const std::string& rocket_name, const s
     }
     else {
         return GetEntity(config->Simulations(), simulation_name);
+    }
+}
+
+Experiment* EntityManager::CreateFlight(const std::string& name, Configuration* configuration) {
+
+    flights_.push_back(new Experiment(name, "", "", GetAtmosphereModel(), 0.0, 0.0, 2.0));
+    configuration->AddFlight(flights_.back());
+    return flights_.back();
+}
+
+void EntityManager::DeleteFlight(Experiment* flight) {
+
+    for (auto config : configurations_) {
+        config->RemoveFlight(flight);
+    }
+
+    DeleteEntity(flights_, flight);
+}
+
+Experiment* EntityManager::GetFlight(const std::string& rocket_name, const std::string& configuration_name, const std::string& flight_name) {
+
+    Rocket* rocket = GetEntity(rockets_, rocket_name);
+    Configuration* config;
+    Experiment* flight;
+
+    if (rocket == nullptr) {
+        return nullptr;
+    }
+    else {
+        config = GetEntity(rocket->Configurations(), configuration_name);
+    }
+
+    if (config == nullptr) {
+        return nullptr;
+    }
+    else {
+        return GetEntity(config->Flights(), flight_name);
     }
 }
 

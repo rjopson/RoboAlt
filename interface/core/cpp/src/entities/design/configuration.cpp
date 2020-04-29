@@ -22,6 +22,10 @@ std::vector<Simulation*> Configuration::Simulations() const {
     return simulations_;
 }
 
+std::vector<Experiment*> Configuration::Flights() const {
+    return flights_;
+}
+
 void Configuration::AddStage(Stage* stage) {
     stages_.push_back(stage); 
     stage->SetStages(stages_);    
@@ -70,6 +74,23 @@ void Configuration::RemoveSimulation(Simulation* simulation) {
 
     if (it != simulations_.end()) {
         simulations_.erase(it);
+    }
+}
+
+void Configuration::AddFlight(Experiment* flight) {
+    flights_.push_back(flight);
+
+    for (auto stage : stages_) {
+        flights_.back()->AddStage(stage);
+    }
+}
+
+void Configuration::RemoveFlight(Experiment* flight) {
+    
+    auto it = std::find(flights_.begin(), flights_.end(), flight);
+
+    if (it != flights_.end()) {
+        flights_.erase(it);
     }
 }
 

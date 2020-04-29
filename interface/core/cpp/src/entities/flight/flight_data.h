@@ -1,45 +1,72 @@
 #ifndef _FLIGHT_DATA_H
 #define _FLIGHT_DATA_H
 
+#include <algorithm>
 #include <iostream>
+#include <map>
 #include <vector>
 
 #include "atmosphere.h"
 #include "matrix.h"
 
+enum class Phase {
+    DETECT_LAUNCH,
+    ASCENT_POWERED,
+    ASCENT_UNPOWERED_STACKED,
+    DESCENT_DROGUE,
+    DESCENT_MAIN,
+    GROUND,
+    ASCENT_UNPOWERED_UNSTACKED,
+    DESCENT_UNPOWERED_STACKED,
+    DESCENT_UNPOWERED_UNSTACKED
+};
+
+enum class Event {
+    LIFTOFF,
+    BURNOUT,
+    APOGEE,
+    ALTITUDE_MAIN,
+    GROUND,
+    AT_TIME_DELAY,
+    NONE
+};
+
 class FlightData {
   public:
-    FlightData(Atmosphere* atmosphere, const double& altitude_pad);
+    FlightData();
+ 
     virtual ~FlightData() = 0;	
 
-    virtual std::vector<double> Time() const;
-    virtual std::vector<double> AltitudeMsl() const;
-    virtual std::vector<double> AltitudeAgl() const;
-    virtual std::vector<double> Velocity() const;
-    virtual std::vector<double> Acceleration() const;
-    virtual std::vector<double> RotationX() const;
-    virtual std::vector<double> RotationY() const;
-    virtual std::vector<double> RotationZ() const;
-    virtual std::vector<double> MachNumber() const;
-    virtual std::vector<double> ReynoldsNumber() const;
-    virtual std::vector<double> DynamicPressure() const;
-    virtual std::vector<double> Drag() const;
-    virtual std::vector<double> DragCoefficient() const;
-    virtual std::vector<double> Mass() const;
-    virtual std::vector<double> Pressure() const;
-    virtual std::vector<double> Temperature() const;
-    virtual std::vector<double> Thrust() const;
+    std::vector<double> Time() const;
+    std::vector<double> AltitudeMsl() const;
+    std::vector<double> AltitudeAgl() const;
+    std::vector<double> Velocity() const;
+    std::vector<double> Acceleration() const;
+    //std::vector<double> RotationX() const;
+    //std::vector<double> RotationY() const;
+    //std::vector<double> RotationZ() const;
+    std::vector<double> MachNumber() const;
+    //std::vector<double> ReynoldsNumber() const;
+    std::vector<double> DynamicPressure() const;
+    std::vector<double> Drag() const;
+    std::vector<double> DragCoefficient() const;
+    std::vector<double> Mass() const;
+    std::vector<double> Pressure() const;
+    std::vector<double> Temperature() const;
+    std::vector<double> Thrust() const;
     
-    virtual double AltitudeMaxMsl() const;
-    virtual double AltitudeMaxAgl() const;
-    virtual double VelocityMax() const;
-    virtual double VelocityOffRail() const;
-    virtual double AccelerationMax() const;
-    virtual double DynamicPressureMax() const;
-    virtual double TimeBurnout() const;
-    virtual double TimeApogee() const;
-    virtual double TimeMainDeploy() const;
-    virtual double TimeOfFlight() const;
+    double AltitudeMslMax() const;
+    double AltitudeAglMax() const;
+    double VelocityMax() const;
+    double VelocityOffRail() const;
+    double AccelerationMax() const;
+    double DynamicPressureMax() const;
+    double TimeBurnout() const;
+    double TimeApogee() const;
+    double TimeMainDeploy() const;
+    double TimeOfFlight() const;
+    double DescentRateDrogue() const;
+    double DescentRateMain() const;
 
     //SimulationData
     //populated with output time/position/velocity/acceleration data - calculations of everything else
@@ -49,31 +76,30 @@ class FlightData {
     //Class does conversion to engineering data, calculations using data from design entities (masses, reference area etc.)
 
     void Print(); //debug
+    static Event GetEvent(const std::string& val);
+    static Phase GetPhase();
+    static Phase UpdatePhase(const double& altitude, const double& velocity, const double& acceleration, const double& altitude_main, Phase phase_previous);
 
-    //int length_vector_;
+  protected:
+    int Length() const;
 
-  private:
-    Atmosphere* atmosphere_;
-    double altitude_pad;
-
+    std::vector<Phase> phase_;
+    std::map<Event, int> events_;
     std::vector<double> time_;
     std::vector<double> altitude_msl_, altitude_agl_;
     std::vector<double> velocity_;
     std::vector<double> acceleration_;
+    std::vector<double> acceleration_x_, acceleration_y_, acceleration_z_;
     std::vector<double> mach_number_, reynolds_number_, dynamic_pressure_;
     std::vector<double> rotation_x_, rotation_y_, rotation_z_;
     std::vector<double> drag_, drag_coefficient_;
     std::vector<double> mass_;
+    std::vector<double> thrust_;
     std::vector<double> pressure_, temperature_;
-    double altitude_msl_max_, altitude_agl_max_, velocity_max_, acceleration_max_;
-    double time_liftoff_, time_burnout_, time_apogee_, time_main_deploy_, time_landing_;
-    double time_of_flight_, time_to_apogee_;
-    
-    //double velocity_off_rail_;
 
-    //std::vector<double> altitude_baro_, altitude_accerlerometer_;
-    //std::vector<double> acceleration_x_, acceleration_y_, acceleration_z_, acceleration_axial_, acceleration_z_high_g;    
-    //std::vector<double> voltage_;    
+  private:
+    
+    //double velocity_off_rail_;    
 };
 #endif
 

@@ -51,6 +51,7 @@ class Motor : public Entity {
 	void Print() const;
 
   private:
+    void Parse(const std::string& file_path);
     std::string manufacturer_;
     double diameter_;
     double length_;
