@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{89f7baaa-7f2d-4a16-a3dd-d3f020a0cd81}</ProjectGuid>
+    <ProjectHome />
+    <StartupFile>
+    </StartupFile>
+    <SearchPath />
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <LaunchProvider>Standard Python launcher</LaunchProvider>
+    <InterpreterId />
+    <SuppressConfigureTestFrameworkPrompt>true</SuppressConfigureTestFrameworkPrompt>
+    <Name>interface_core_cython</Name>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="entities\atmosphere.pyx" />
+    <Content Include="entities\configuration.pyx" />
+    <Content Include="entities\experiment.pyx" />
+    <Content Include="entities\flight.pyx">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="entities\instance.pyx" />
+    <Content Include="entities\material.pyx" />
+    <Content Include="entities\motor.pyx" />
+    <Content Include="entities\part.pyx" />
+    <Content Include="entities\rocket.pyx" />
+    <Content Include="entities\simulation.pyx" />
+    <Content Include="entities\stage.pyx" />
+    <Content Include="python_wrappers.pyx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="setup.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="entities" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
+</Project>

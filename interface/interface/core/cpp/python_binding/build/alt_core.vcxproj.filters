@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\rober\Documents\Rockets\Altimeters\RoboAlt\interface\interface\core\cpp\src\entities\entity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\rober\Documents\Rockets\Altimeters\RoboAlt\interface\interface\core\cpp\src\entities\entity_manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\rober\Documents\Rockets\Altimeters\RoboAlt\interface\interface\core\cpp\src\entities\design\configuration.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\rober\Documents\Rockets\Altimeters\RoboAlt\interface\interface\core\cpp\src\entities\design\fin_shape.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\rober\Documents\Rockets\Altimeters\RoboAlt\interface\interface\core\cpp\src\entities\design\material.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\rober\Documents\Rockets\Altimeters\RoboAlt\interface\interface\core\cpp\src\entities\design\part.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\rober\Documents\Rockets\Altimeters\RoboAlt\interface\interface\core\cpp\src\entities\design\part_bulkhead.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\rober\Documents\Rockets\Altimeters\RoboAlt\interface\interface\core\cpp\src\entities\design\part_fins.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\rober\Documents\Rockets\Altimeters\RoboAlt\interface\interface\core\cpp\src\entities\design\part_instance.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\rober\Documents\Rockets\Altimeters\RoboAlt\interface\interface\core\cpp\src\entities\design\part_nosecone.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\rober\Documents\Rockets\Altimeters\RoboAlt\interface\interface\core\cpp\src\entities\design\part_parachute.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\rober\Documents\Rockets\Altimeters\RoboAlt\interface\interface\core\cpp\src\entities\design\part_point_mass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\rober\Documents\Rockets\Altimeters\RoboAlt\interface\interface\core\cpp\src\entities\design\part_tube_body.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\rober\Documents\Rockets\Altimeters\RoboAlt\interface\interface\core\cpp\src\entities\design\part_tube_inner.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\rober\Documents\Rockets\Altimeters\RoboAlt\interface\interface\core\cpp\src\entities\design\rocket.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\rober\Documents\Rockets\Altimeters\RoboAlt\interface\interface\core\cpp\src\entities\design\stage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\rober\Documents\Rockets\Altimeters\RoboAlt\interface\interface\core\cpp\src\entities\flight\altimeter_user_commands.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\rober\Documents\Rockets\Altimeters\RoboAlt\interface\interface\core\cpp\src\entities\flight\atmosphere.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\rober\Documents\Rockets\Altimeters\RoboAlt\interface\interface\core\cpp\src\entities\flight\drag.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\rober\Documents\Rockets\Altimeters\RoboAlt\interface\interface\core\cpp\src\entities\flight\experiment.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\rober\Documents\Rockets\Altimeters\RoboAlt\interface\interface\core\cpp\src\entities\flight\experimental_data.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\rober\Documents\Rockets\Altimeters\RoboAlt\interface\interface\core\cpp\src\entities\flight\flight.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\rober\Documents\Rockets\Altimeters\RoboAlt\interface\interface\core\cpp\src\entities\flight\flight_data.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\rober\Documents\Rockets\Altimeters\RoboAlt\interface\interface\core\cpp\src\entities\flight\motor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\rober\Documents\Rockets\Altimeters\RoboAlt\interface\interface\core\cpp\src\entities\flight\simulation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\rober\Documents\Rockets\Altimeters\RoboAlt\interface\interface\core\cpp\src\entities\flight\simulation_data.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\rober\Documents\Rockets\Altimeters\RoboAlt\interface\interface\core\cpp\src\entities\flight\simulation_user_command.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\rober\Documents\Rockets\Altimeters\RoboAlt\interface\interface\core\cpp\src\models\aerodynamics.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\rober\Documents\Rockets\Altimeters\RoboAlt\interface\interface\core\cpp\src\models\atmosphere_isa.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\rober\Documents\Rockets\Altimeters\RoboAlt\interface\interface\core\cpp\src\models\kalman_state.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\rober\Documents\Rockets\Altimeters\RoboAlt\interface\interface\core\cpp\src\utils\math_utilities.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\rober\Documents\Rockets\Altimeters\RoboAlt\interface\interface\core\cpp\src\utils\matrix.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\rober\Documents\Rockets\Altimeters\RoboAlt\interface\interface\core\cpp\src\utils\parse.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\rober\Documents\Rockets\Altimeters\RoboAlt\interface\interface\core\cpp\python_binding\binding\py_binding.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\rober\Documents\Rockets\Altimeters\RoboAlt\interface\interface\core\cpp\python_binding\binding\py_entity_manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\rober\Documents\Rockets\Altimeters\RoboAlt\interface\interface\core\cpp\python_binding\binding\py_entity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\rober\Documents\Rockets\Altimeters\RoboAlt\interface\interface\core\cpp\python_binding\binding\py_rocket.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\rober\Documents\Rockets\Altimeters\RoboAlt\interface\interface\core\cpp\python_binding\binding\py_configuration.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\rober\Documents\Rockets\Altimeters\RoboAlt\interface\interface\core\cpp\python_binding\binding\py_stage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\rober\Documents\Rockets\Altimeters\RoboAlt\interface\interface\core\cpp\python_binding\binding\py_part_instance.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\rober\Documents\Rockets\Altimeters\RoboAlt\interface\interface\core\cpp\python_binding\binding\py_part.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\rober\Documents\Rockets\Altimeters\RoboAlt\interface\interface\core\cpp\python_binding\binding\py_part_bulkhead.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\rober\Documents\Rockets\Altimeters\RoboAlt\interface\interface\core\cpp\python_binding\binding\py_part_fins.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\rober\Documents\Rockets\Altimeters\RoboAlt\interface\interface\core\cpp\python_binding\binding\py_part_nosecone.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\rober\Documents\Rockets\Altimeters\RoboAlt\interface\interface\core\cpp\python_binding\binding\py_part_parachute.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\rober\Documents\Rockets\Altimeters\RoboAlt\interface\interface\core\cpp\python_binding\binding\py_part_tube_body.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\rober\Documents\Rockets\Altimeters\RoboAlt\interface\interface\core\cpp\python_binding\binding\py_motor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\rober\Documents\Rockets\Altimeters\RoboAlt\interface\interface\core\cpp\python_binding\binding\py_material.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\rober\Documents\Rockets\Altimeters\RoboAlt\interface\interface\core\cpp\python_binding\binding\py_atmosphere.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\rober\Documents\Rockets\Altimeters\RoboAlt\interface\interface\core\cpp\python_binding\binding\py_flight.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\rober\Documents\Rockets\Altimeters\RoboAlt\interface\interface\core\cpp\python_binding\binding\py_experiment.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\rober\Documents\Rockets\Altimeters\RoboAlt\interface\interface\core\cpp\python_binding\binding\py_simulation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\rober\Documents\Rockets\Altimeters\RoboAlt\interface\interface\core\cpp\python_binding\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{B4515158-04F7-3723-A659-8FA6E5B1DB88}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
