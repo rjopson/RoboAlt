@@ -6,7 +6,10 @@ from enum import Enum
 import numpy as np
 
 rkt = scripted_29mm.run()
-db = hdf5.Database("C:/Users/rober/Documents/Rockets/Altimeters/RoboAlt/interface/interface/core/tests/29mm.h5")
-db.write(rkt.get_rocket("29mm 3DPME v2019"))
+#db = hdf5.Database("C:/Users/rober/Documents/Rockets/Altimeters/RoboAlt/interface/interface/core/tests/29mm.h5")
+#db.write(rkt.get_rocket("29mm 3DPME v2019"))
+
+for part in rkt.get_rocket("29mm 3DPME v2019").parts:
+    print(part.name)
 
 print("Complete")

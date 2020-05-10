@@ -40,7 +40,8 @@ class Experiment : public Flight {
     void GetDataFromFile(Stage* stage, const std::string& file_path);
     void GetDataFromAltimeterDownload(Stage* stage, const std::string& data_string);    
     void ProcessData();
-    ExperimentalData Results(Stage* stage) const;
+    ReducedData Results(Stage* stage) const;
+    SensorData AltimeterData(Stage* stage) const;
 
   private:
     ExperimentalStage* GetExperimentalStage(Stage* stage) const;

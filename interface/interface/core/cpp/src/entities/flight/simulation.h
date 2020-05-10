@@ -50,7 +50,7 @@ class Simulation : public Flight {
 
     //Datanames    
     std::vector<SimulationUserCommand*> UserCommands(Stage* stage) const;
-    SimulationData Results(Stage* stage) const;
+    ReducedData Results(Stage* stage) const;
     Motor* AssignedMotor(Stage* stage) const;
     std::vector<Stage*> Stages() const;
     std::vector<Motor*> Motors() const;

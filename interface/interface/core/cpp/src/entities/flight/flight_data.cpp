@@ -105,7 +105,6 @@ double FlightData::DescentRateMain() const {
 	for (auto phase : reduced_.phase) {
 		if (phase == Phase::DESCENT_DROGUE) {
 			int start = reduced_.events.at(Event::ALTITUDE_MAIN);
-			std::cout << "here" << std::endl;
 			break;
 		}
 	}

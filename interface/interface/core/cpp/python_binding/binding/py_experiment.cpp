@@ -46,40 +46,71 @@ void init_experiment(py::module& m) {
         .def("attributes", &AttributesExperiment)
         .def("attributes_stage", [](Experiment* self, Stage* stage) -> py::dict {
             return py::dict("motor"_a = self->AssignedMotor(stage)->Name());
+            })
+        .def("altimeter_data", [](Experiment* self, Stage* stage) -> py::dict {
+                SensorData data = self->AltimeterData(stage);
+                return py::dict("pad_mpu6050"_a = data.pad_mpu,
+                    "pad_h3lis331dl"_a = data.pad_h3lis,
+                    "pad_ms5607_pressure"_a = data.pad_pressure,
+                    "pad_ms5607_temperature"_a = data.pad_temperature,
+                    "pad_ms5607_calibration"_a = data.pad_ms5607_calibration,
+                    "pad_voltage"_a = data.pad_voltage,
+                    "time"_a = data.time,
+                    "phase"_a = data.phase,
+                    "altitude"_a = data.altitude,
+                    "velocity"_a = data.velocity,
+                    "acceleration"_a = data.acceleration,
+                    "altitude_baro"_a = data.altitude_baro,
+                    "acceleration_axial"_a = data.acceleration_axial,
+                    "pressure"_a = data.pressure,
+                    "temperature"_a = data.temperature,
+                    "accel_low_x"_a = data.accel_low_x,
+                    "accel_low_y"_a = data.accel_low_y,
+                    "accel_low_z"_a = data.accel_low_z,
+                    "rotation_x"_a = data.rotation_x,
+                    "rotation_y"_a = data.rotation_y,
+                    "rotation_z"_a = data.rotation_z,
+                    "accel_high"_a = data.accel_high,
+                    "pressure_raw"_a = data.pressure_raw,
+                    "temperature_raw"_a = data.temperature_raw,
+                    "voltage"_a = data.voltage,
+                    "continuity_one"_a = data.continuity_one,
+                    "continuity_two"_a = data.continuity_two,
+                    "continuity_three"_a = data.continuity_three);
         });
 
-    py::class_<ExperimentalData, FlightData>(m, "ExperimentalData")
-        .def(py::init<>())
-        .def("attributes", [](const ExperimentalData& self) -> py::dict {
-            SensorData data = self.AltimeterData();
-            return py::dict("pad_mpu6050"_a = data.pad_mpu,
-                "pad_h3lis331dl"_a = data.pad_h3lis,
-                "pad_ms5607_pressure"_a = data.pad_pressure,
-                "pad_ms5607_temperature"_a = data.pad_temperature,
-                "pad_ms5607_calibration"_a = data.pad_ms5607_calibration,
-                "pad_voltage"_a = data.pad_voltage,
-                "time"_a = data.time,
-                "phase"_a = data.phase,
-                "altitude"_a = data.altitude,
-                "velocity"_a = data.velocity,
-                "acceleration"_a = data.acceleration,
-                "altitude_baro"_a = data.altitude_baro,
-                "acceleration_axial"_a = data.acceleration_axial,
-                "pressure"_a = data.pressure,
-                "temperature"_a = data.temperature,
-                "accel_low_x"_a = data.accel_low_x,
-                "accel_low_y"_a = data.accel_low_y,
-                "accel_low_z"_a = data.accel_low_z,
-                "rotation_x"_a = data.rotation_x,
-                "rotation_y"_a = data.rotation_y,
-                "rotation_z"_a = data.rotation_z,
-                "accel_high"_a = data.accel_high,
-                "pressure_raw"_a = data.pressure_raw,
-                "temperature_raw"_a = data.temperature_raw,
-                "voltage"_a = data.voltage,
-                "continuity_one"_a = data.continuity_one,
-                "continuity_two"_a = data.continuity_two,
-                "continuity_three"_a = data.continuity_three);
-        });
+    //py::class_<ExperimentalData, FlightData>(m, "ExperimentalData")
+    //    .def(py::init<>())
+    //    .def("attributes", [](const ExperimentalData& self) -> py::dict {
+    //        SensorData data = self.AltimeterData();
+    //        return py::dict("pad_mpu6050"_a = data.pad_mpu,
+    //            "pad_h3lis331dl"_a = data.pad_h3lis,
+    //            "pad_ms5607_pressure"_a = data.pad_pressure,
+    //            "pad_ms5607_temperature"_a = data.pad_temperature,
+    //            "pad_ms5607_calibration"_a = data.pad_ms5607_calibration,
+    //            "pad_voltage"_a = data.pad_voltage,
+    //            "time"_a = data.time,
+    //            "phase"_a = data.phase,
+    //            "altitude"_a = data.altitude,
+    //            "velocity"_a = data.velocity,
+    //            "acceleration"_a = data.acceleration,
+    //            "altitude_baro"_a = data.altitude_baro,
+    //            "acceleration_axial"_a = data.acceleration_axial,
+    //            "pressure"_a = data.pressure,
+    //            "temperature"_a = data.temperature,
+    //            "accel_low_x"_a = data.accel_low_x,
+    //            "accel_low_y"_a = data.accel_low_y,
+    //            "accel_low_z"_a = data.accel_low_z,
+    //            "rotation_x"_a = data.rotation_x,
+    //            "rotation_y"_a = data.rotation_y,
+    //            "rotation_z"_a = data.rotation_z,
+    //            "accel_high"_a = data.accel_high,
+    //            "pressure_raw"_a = data.pressure_raw,
+    //            "temperature_raw"_a = data.temperature_raw,
+    //            "voltage"_a = data.voltage,
+    //            "continuity_one"_a = data.continuity_one,
+    //            "continuity_two"_a = data.continuity_two,
+    //            "continuity_three"_a = data.continuity_three);
+    //    });
 }
 

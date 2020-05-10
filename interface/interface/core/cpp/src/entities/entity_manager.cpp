@@ -157,8 +157,9 @@ Parachute* EntityManager::CreatePart<Parachute>(Rocket* rocket) {
     return parachute;
 }
 
-void EntityManager::AddPart(Part* part) {
+void EntityManager::AddPart(Part* part, Rocket* rocket) {
     parts_.push_back(part);
+    rocket->AddPart(part);
 }
 
 void EntityManager::DeletePart(Part* part) {
@@ -205,8 +206,9 @@ Configuration* EntityManager::CreateConfiguration(Rocket* rocket) {
     return configurations_.back();
 }
 
-void EntityManager::AddConfiguration(Configuration* configuration) {
+void EntityManager::AddConfiguration(Configuration* configuration, Rocket* rocket) {
     configurations_.push_back(configuration);
+    rocket->AddConfiguration(configuration);
 }
 
 void EntityManager::DeleteConfiguration(Configuration* configuration) {
@@ -243,8 +245,9 @@ Stage* EntityManager::CreateStage(Configuration* configuration) {
     return stages_.back();
 }
 
-void EntityManager::AddStage(Stage* stage) {
+void EntityManager::AddStage(Stage* stage, Configuration* configuration) {
     stages_.push_back(stage);
+    configuration->AddStage(stage);
 }
 
 void EntityManager::DeleteStage(Stage* stage) {
@@ -345,8 +348,9 @@ Simulation* EntityManager::CreateSimulation(Configuration* configuration) {
     return simulations_.back();
 }
 
-void EntityManager::AddSimulation(Simulation* simulation) {
+void EntityManager::AddSimulation(Simulation* simulation, Configuration* configuration) {
     simulations_.push_back(simulation);
+    configuration->AddSimulation(simulation);
 }
 
 void EntityManager::DeleteSimulation(Simulation* simulation) {
@@ -392,8 +396,9 @@ Experiment* EntityManager::CreateFlight(Configuration* configuration) {
     return flights_.back();
 }
 
-void EntityManager::AddFlight(Experiment* flight) {
+void EntityManager::AddFlight(Experiment* flight, Configuration* configuration) {
     flights_.push_back(flight);
+    configuration->AddFlight(flight);
 }
 
 void EntityManager::DeleteFlight(Experiment* flight) {

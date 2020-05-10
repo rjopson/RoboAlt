@@ -108,6 +108,15 @@ double Experiment::MassMeasuredStageTotal(Stage* stage) {
     }
 }
 
+SensorData Experiment::AltimeterData(Stage* stage) const {
+    
+    ExperimentalStage* temp = GetExperimentalStage(stage);
+
+    if (temp != nullptr) {
+        return temp->flight_data.AltimeterData();
+    }
+}
+
 double Experiment::MassMeasuredPropellant(Stage* stage) {
 
     ExperimentalStage* temp = GetExperimentalStage(stage);
@@ -143,11 +152,11 @@ void Experiment::ProcessData() {
     }
 }
 
-ExperimentalData Experiment::Results(Stage* stage) const {
+ReducedData Experiment::Results(Stage* stage) const {
 
     ExperimentalStage* exp_stage = GetExperimentalStage(stage);
     if (exp_stage != nullptr) {
-        return exp_stage->flight_data;
+        return exp_stage->flight_data.Reduced();
     }
 }
 

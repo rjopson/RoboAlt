@@ -158,8 +158,8 @@ int main() {
     flight_h128->ProcessData();
     //flight_h128->Results(sustainer180).Print();
 
-    ReducedData sim_results = sim_h128->Results(sustainer180).Reduced();
-    ReducedData flight_results = flight_h128->Results(sustainer180).Reduced();
+    ReducedData sim_results = sim_h128->Results(sustainer180);
+    ReducedData flight_results = flight_h128->Results(sustainer180);
 
     cout << "Simulation " << "Flight" << endl;
     cout << "Altitude: " << sim_results.altitude_agl_max << " " << flight_results.altitude_agl_max << endl;

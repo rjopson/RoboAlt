@@ -136,11 +136,11 @@ std::vector<SimulationUserCommand*> Simulation::UserCommands(Stage* stage) const
     }
 }
 
-SimulationData Simulation::Results(Stage* stage) const {
+ReducedData Simulation::Results(Stage* stage) const {
 
     SimulationStage* sim_stage = GetSimulationStage(stage);
     if (sim_stage != nullptr) {
-        return sim_stage->simulation_data;
+        return sim_stage->simulation_data.Reduced();
     }
 }
 

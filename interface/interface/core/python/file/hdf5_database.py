@@ -52,9 +52,9 @@ class Database():
         for config in configurations:
             hf_config = hf_configs.create_group(config.name)
             self.write_attributes(config.attributes(), hf_config)
-            self.write_stages(config.stages, hf_config)
-            self.write_simulations(config.simulations, hf_config)
-            self.write_flights(config.flights, hf_config)
+            #self.write_stages(config.stages, hf_config)
+            #self.write_simulations(config.simulations, hf_config)
+            #self.write_flights(config.flights, hf_config)
 
     def write_stages(self, stages, hf_group):
         hf_stages = hf_group.create_group("stages")
@@ -82,7 +82,7 @@ class Database():
                 hf_stage = hf_flight.create_group(stage.name)
                 self.write_attributes(flight.attributes_stage(stage), hf_stage)
                 hf_data = hf_stage.create_group("altimeter_data")
-                self.write_attributes(flight.results(stage).attributes(), hf_data)
+                self.write_attributes(flight.altimeter_data(stage), hf_data)
                 
     def write_simulation_user_commands(self, user_commands, hf_group):
         hf_sim_commands = hf_group.create_group("user_commands")
@@ -105,12 +105,16 @@ class Database():
 
     def write_parts(self, parts, hf_group):
         hf_parts = hf_group.create_group("parts")
+        
         for part in parts:
-            hf_part = hf_parts.create_group(part.name)
-            self.write_attributes(part.attributes(), hf_part)
-            if part.type is core.PartType.FINS:
-                hf_shape = hf_part.create_group("shape")
-                self.write_attributes(part.shape.attributes(), hf_shape)
+            print(part.name)
+        
+        #for part in parts:
+        #    hf_part = hf_parts.create_group(part.name)
+        #    self.write_attributes(part.attributes(), hf_part)
+        #    if part.type is core.PartType.FINS:
+        #        hf_shape = hf_part.create_group("shape")
+        #        self.write_attributes(part.shape.attributes(), hf_shape)
 
     def write_materials(self, materials, hf_group):
         hf_materials = hf_group.create_group("materials")

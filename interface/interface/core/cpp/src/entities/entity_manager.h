@@ -32,7 +32,7 @@ class EntityManager {
 
     template <class T>
     T* CreatePart(Rocket* rocket);
-    void AddPart(Part* part);
+    void AddPart(Part* part, Rocket* rocket);
     void DeletePart(Part* part);
     Part* GetPart(const std::string& rocket_name, const std::string& part_name);
     template <class T>
@@ -41,12 +41,12 @@ class EntityManager {
     }
 
     Configuration* CreateConfiguration(Rocket* rocket);
-    void AddConfiguration(Configuration* configuration);
+    void AddConfiguration(Configuration* configuration, Rocket* rocket);
     void DeleteConfiguration(Configuration* configuration);
     Configuration* GetConfiguration(const std::string& rocket_name, const std::string& configuration_name);
 
     Stage* CreateStage(Configuration* configuration);
-    void AddStage(Stage* stage);
+    void AddStage(Stage* stage, Configuration* configuration);
     void DeleteStage(Stage* stage);
     Stage* GetStage(const std::string& rocket_name, const std::string& configuration_name, const std::string& stage_name);
     
@@ -57,12 +57,12 @@ class EntityManager {
     std::vector<PartInstance*> GetPartInstances(Part* part);
 
     Simulation* CreateSimulation(Configuration* configuration);
-    void AddSimulation(Simulation* simulation);
+    void AddSimulation(Simulation* simulation, Configuration* configuration);
     void DeleteSimulation(Simulation* simulation);
     Simulation* GetSimulation(const std::string& rocket_name, const std::string& configuration_name, const std::string& simulation_name);
     
     Experiment* CreateFlight(Configuration* configuration);
-    void AddFlight(Experiment* flight);
+    void AddFlight(Experiment* flight, Configuration* configuration);
     void DeleteFlight(Experiment* flight);
     Experiment* GetFlight(const std::string& rocket_name, const std::string& configuration_name, const std::string& flight_name);
     

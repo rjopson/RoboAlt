@@ -9,6 +9,12 @@ def run():
     pla.name = "PLA"
     pla.density = 1380
     
+    pla2 = db.create_material()
+    dict = {"name":"pla5353", "comments":"", "density":2250}
+    pla3 = db.create_material(**dict)
+    
+    print(pla3.name)
+    
     rkt = db.create_rocket()
     rkt.name = "29mm 3DPME v2019"
 
@@ -23,7 +29,6 @@ def run():
     nosecone.thickness = 0.01
     nosecone.diameter_outer = 0.03139
     nosecone.diameter_shoulder = 0.0
-    print(nosecone.nosecone_type.name)
 
     tube_main = db.create_part(alt_core.PartType.TUBE_BODY, rkt)
     tube_main.name = "tubeMain"
@@ -31,6 +36,13 @@ def run():
     tube_main.length = 0.076
     tube_main.diameter_outer = 0.03139
     tube_main.thickness = 0.001
+    
+    #tube_main = alt_core.TubeBody("tubeMain", "", pla, 0.19, 0.03139, 0.001, False, 0.0, False, 0.0)
+    #db.add_part(tube_main, rkt)
+    
+    
+    #db.delete_part(tube_main)
+    #db.delete_part(nosecone)
 
     tube_drogue = db.create_part(alt_core.PartType.TUBE_BODY, rkt)
     tube_drogue.name = "tubeDrogue"
@@ -130,7 +142,7 @@ def run():
     main_cmd_h128.parachute = main_chute
     main_cmd_h128.altitude_main_deploy = 500.0
     sim_h128.run()
-    sim_h128_results = sim_h128.results(sustainer180)
+    #sim_h128_results = sim_h128.results(sustainer180)
 
     flight_h128 = db.create_flight(config180)
     flight_h128.name = "h128"
@@ -138,6 +150,7 @@ def run():
     flight_h128.set_motor(h128, sustainer180)
     flight_h128.process_data()
     flight_h128_results = flight_h128.results(sustainer180)
+    print(flight_h128_results.time_of_flight)
     
     #
     #sim_h180 = db.create_simulation("h180", config240)

@@ -77,6 +77,6 @@ void init_simulation(py::module& m) {
             return py::dict("motor"_a = self->AssignedMotor(stage)->Name());
         });
 
-    py::class_<SimulationData, FlightData>(m, "SimulationData")
-        .def(py::init<>());
+    //py::class_<SimulationData, FlightData>(m, "SimulationData")
+    //    .def(py::init<>());
 }
