@@ -441,12 +441,13 @@ void EntityManager::AddMotor(Motor* motor) {
 
 Motor* EntityManager::CreateMotor() {
 
+    std::string name = "material" + std::to_string(materials_.size());
     std::vector<double> delay{ 14 };
     std::vector<double> time{ 0.0, 1.0, 1.1 };
     std::vector<double> thrust{ 0.0, 170.0, 0.0 };
 
     //define an H128 approximation as default. Should really ever be used with Python wrapper in place...
-    motors_.push_back(new Motor("H128W", "AT", "", 0.029, 0.194, delay, 0.09408, 0.2016, time, thrust));
+    motors_.push_back(new Motor(name, "", "", 0.029, 0.194, delay, 0.09408, 0.2016, time, thrust));
     return motors_.back();
 }
 

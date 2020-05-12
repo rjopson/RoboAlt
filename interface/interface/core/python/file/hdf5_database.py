@@ -237,7 +237,7 @@ class Database():
         hf_motors = group.__getitem__("motors")
         for hf_motor in hf_motors.values():
             dict = self.read_group(hf_motor)
-            motor = self.core_data.create_motor(**dict)     
+            motor = self.core_data.create_motor(**dict)  
 
 
     
