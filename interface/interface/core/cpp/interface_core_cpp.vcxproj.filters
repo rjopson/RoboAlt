@@ -48,9 +48,6 @@
     <ClCompile Include="src\entities\flight\experimental_data.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\entities\design\fin_shape.cpp">
-      <Filter>Header Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\entities\flight\flight.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -118,6 +115,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\models\kalman_state.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entities\design\fin_shape.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

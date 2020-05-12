@@ -34,7 +34,7 @@ void init_motor(py::module& m) {
         .def_property("mass_propellant", &Motor::MassPropellant, &Motor::SetMassPropellant)
         .def_property("mass_total", &Motor::MassTotal, &Motor::SetMassTotal)
         .def_property("data_time", &Motor::DataTime, &Motor::SetDataTime)
-        .def_property("data_thrust", &Motor::DataThrust, &Motor::DataThrust)
+        .def_property("data_thrust", &Motor::DataThrust, &Motor::SetDataThrust)
         .def_property_readonly("mass_case", &Motor::MassCase)
         //.def_property_readonly("isp", &Motor::Isp)
         //.def_property_readonly("impulse", &Motor::ImpulseTotal)

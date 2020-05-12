@@ -1,5 +1,7 @@
 #include <pybind11/pybind11.h>
+#include <pybind11/attr.h>
 #include <pybind11/stl.h>
+#include <pybind11/pytypes.h>
 
 #include "simulation.h"
 #include "simulation_data.h"
@@ -7,6 +9,15 @@
 
 namespace py = pybind11;
 using namespace pybind11::literals;
+
+template<class T>
+void SetAttributes(T* entity, py::dict dict) {
+    py::object obj = py::cast(entity);
+    for (auto item : dict) {
+        obj.attr(item.first) = item.second;
+    }
+    entity = py::cast<T*>(obj);
+}
 
 py::dict AttributesFlight(Flight* flight);
 py::dict AttributesSimulation(Simulation* simulation) {
@@ -53,17 +64,21 @@ void init_simulation(py::module& m) {
                             "altitude_main_deploy"_a = self->AltitudeMainDeploy());
         });
 
-    py::class_<Simulation, PySimulation, Flight>(m, "Simulation", py::multiple_inheritance())
-        .def(py::init<const std::string&, const std::string&, Atmosphere*,
-            const double&, const double&, const double&,
-            const double&, const double&>(),
-            "name"_a, "comments"_a, "atmosphere"_a, "height_pad"_a, "angle_launch_rod"_a, "length_launch_rod"_a,
-            "step_ascent"_a, "step_descent"_a)
+        py::class_<Simulation, PySimulation, Flight>(m, "Simulation", py::multiple_inheritance())
+            .def(py::init<const std::string&, const std::string&, Atmosphere*,
+                const double&, const double&, const double&,
+                const double&, const double&>(),
+                "name"_a, "comments"_a, "atmosphere"_a, "height_pad"_a, "angle_launch_rod"_a, "length_launch_rod"_a,
+                "step_ascent"_a, "step_descent"_a)
         .def_property("step_ascent", &Simulation::StepAscent, &Simulation::SetStepAscent)
         .def_property("step_descent", &Simulation::StepDescent, &Simulation::SetStepDescent)
         .def("add_stage", &Simulation::AddStage, "stage"_a)
         .def("remove_stage", &Simulation::RemoveStage, "stage"_a)
-        .def("create_user_command", &Simulation::CreateUserCommand, "stage"_a, py::return_value_policy::reference_internal)
+        .def("create_user_command", [](Simulation* self, Stage* stage, py::kwargs kwargs) -> SimulationUserCommand* {
+            SimulationUserCommand* command = self->CreateUserCommand(stage);
+            SetAttributes<SimulationUserCommand>(command, kwargs);
+            return command;
+                }, "stage"_a, py::return_value_policy::reference_internal)
         .def("delete_user_command", &Simulation::DeleteUserCommand, "stage"_a, "user_command"_a)
         .def("user_commands", &Simulation::UserCommands, "stage"_a, py::return_value_policy::reference_internal)
         .def("set_motor", &Simulation::SetMotor, "motor"_a, "stage"_a)

@@ -9,12 +9,6 @@ def run():
     pla.name = "PLA"
     pla.density = 1380
     
-    pla2 = db.create_material()
-    dict = {"name":"pla5353", "comments":"", "density":2250}
-    pla3 = db.create_material(**dict)
-    
-    print(pla3.name)
-    
     rkt = db.create_rocket()
     rkt.name = "29mm 3DPME v2019"
 
@@ -37,12 +31,10 @@ def run():
     tube_main.diameter_outer = 0.03139
     tube_main.thickness = 0.001
     
-    #tube_main = alt_core.TubeBody("tubeMain", "", pla, 0.19, 0.03139, 0.001, False, 0.0, False, 0.0)
-    #db.add_part(tube_main, rkt)
-    
-    
-    #db.delete_part(tube_main)
-    #db.delete_part(nosecone)
+    #dict_part = {"name":"tubeMain", "comments":"", "material":pla, 
+    #"length":0.076, "diameter_outer":0.03139, "thickness":0.001, 
+    #"mass_override_switch":False, "mass_override":0.0, "cg_override_switch":False, "cg_override":0.0}
+    #tube_main = db.create_part(alt_core.PartType.TUBE_BODY, rkt, **dict_part)
 
     tube_drogue = db.create_part(alt_core.PartType.TUBE_BODY, rkt)
     tube_drogue.name = "tubeDrogue"
@@ -142,20 +134,12 @@ def run():
     main_cmd_h128.parachute = main_chute
     main_cmd_h128.altitude_main_deploy = 500.0
     sim_h128.run()
-    #sim_h128_results = sim_h128.results(sustainer180)
 
     flight_h128 = db.create_flight(config180)
     flight_h128.name = "h128"
     flight_h128.get_data_from_file(sustainer180, "C:/Users/rober/Documents/Rockets/Altimeters/RoboAlt/flight_tests/3DPME_29mm_H128_TriCities_9-2019_v2.csv")
     flight_h128.set_motor(h128, sustainer180)
     flight_h128.process_data()
-    flight_h128_results = flight_h128.results(sustainer180)
-    print(flight_h128_results.time_of_flight)
-    
-    #
-    #sim_h180 = db.create_simulation("h180", config240)
-    #sim_h180.height_pad = 167.0
-    #sim_h180.set_motor(h180, sustainer240)
-    #sim_h180.run()
+
     print("Scripted 29mm build complete")
     return db

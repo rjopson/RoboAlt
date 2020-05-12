@@ -28,7 +28,8 @@ class Experiment : public Flight {
     void RemoveStage(Stage* stage);
     void SetMotor(Motor* motor, Stage* stage);
     void SetMeasuredMassTotal(Stage* stage, const double& mass);
-    void SetMeasuredMassPropellant(Stage* stage, const double& mass);    
+    void SetMeasuredMassPropellant(Stage* stage, const double& mass);   
+    void SetAltimeterData(Stage* stage, const SensorData& data);
 
     std::string Date() const;
     Motor* AssignedMotor(Stage* stage) const;

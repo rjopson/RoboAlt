@@ -72,12 +72,19 @@ void init_part_fins(py::module& m) {
         .def_property("chord_tip", &FinShape::ChordTip, &FinShapeTrapezoidal::SetChordTip)
         .def_property("span", &FinShape::Span, &FinShapeTrapezoidal::SetSpan)
         .def_property("length_sweep", &FinShape::LengthSweep, &FinShapeTrapezoidal::SetLengthSweep)
-
-        .def("attributes", [](FinShape* fin_shape) -> py::dict {
-            return py::dict("chord_root"_a = fin_shape->ChordRoot(),
-                            "chord_tip"_a = fin_shape->ChordTip(),
-                            "span"_a = fin_shape->Span(),
-                            "length_sweep"_a = fin_shape->LengthSweep());
+        .def("set_attributes", [](FinShapeTrapezoidal* self, py::kwargs kwargs) {
+            py::object obj = py::cast(self);
+            for (auto item : kwargs) {
+                obj.attr(item.first) = item.second;
+            }
+            self = py::cast<FinShapeTrapezoidal*>(obj); 
+        })
+        .def("attributes", [](FinShapeTrapezoidal* self) -> py::dict {
+            return py::dict("type"_a = self->AssignedFinShapeType(),
+                            "chord_root"_a = self->ChordRoot(),
+                            "chord_tip"_a = self->ChordTip(),
+                            "span"_a = self->Span(),
+                            "length_sweep"_a = self->LengthSweep());
         });
 
     py::enum_<FinCrossSection>(m, "FinCrossSection")
@@ -94,12 +101,12 @@ void init_part_fins(py::module& m) {
             "shape"_a, "cross_section"_a, "number"_a, "thickness"_a, "radius_fillet"_a,
             "mass_override_switch"_a, "mass_override"_a, "cg_override_switch"_a, "cg_override"_a)
 
-        .def_property("shape", [](Fins* fins) -> FinShape* {
-                switch (fins->AssignedShapeType()) {
+        .def_property("shape", [](Fins* self) -> FinShape* {
+                switch (self->AssignedShapeType()) {
                     case FinShapeType::TRAPEZOIDAL:
-                        return fins->AssignedShape<FinShapeTrapezoidal>();
+                        return self->AssignedShape<FinShapeTrapezoidal>();
                 }
-            }, &Fins::SetShape)
+            }, &Fins::SetShape, py::return_value_policy::reference_internal)
         .def_property("cross_section", &Fins::CrossSection, &Fins::SetFinCrossSection)
         .def_property("number", &Fins::Number, &Fins::SetNumber)
         .def_property("thickness", &Fins::Thickness, &Fins::SetThickness)

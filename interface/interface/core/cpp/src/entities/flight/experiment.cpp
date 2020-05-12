@@ -64,6 +64,14 @@ void Experiment::SetMeasuredMassPropellant(Stage* stage, const double& mass) {
     }
 }
 
+void Experiment::SetAltimeterData(Stage* stage, const SensorData& data) {
+    
+    ExperimentalStage* temp = GetExperimentalStage(stage);
+    if (temp != nullptr) {
+        temp->flight_data.SetAltimeterData(data);
+    }
+}
+
 std::string Experiment::Date() const {
     return date_;
 }
